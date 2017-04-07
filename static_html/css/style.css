@@ -43,11 +43,11 @@ body{
 }
 
 .sitecontainer{
-	margin-top: 100px;
+	margin-top: 90px;
 }
 
 .maincontainer{
-	margin-top: 30px;
+	margin-top: 50px;
 /*	border-radius: 6px;
 	border: solid 1px #FFF;*/
 }
@@ -184,4 +184,21 @@ nav {
 
 .right-nav ul > li:hover ul li{
 	height: 35px;
+}
+
+
+/* Smaller than mobile screen */
+@media (max-width: 40.0rem) {
+
+}
+
+/* Smaller than tablet screen */
+@media (max-width: 880px) { 
+	.row .column.column-75 {
+	    flex: 0 0 100%;
+	    max-width: 100%;
+	}
+	.row .column.column-25.sidebar {
+	    display: none;
+	}
 }
