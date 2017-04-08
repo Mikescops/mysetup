@@ -483,6 +483,11 @@ nav {
 		width: 50%;
 	}
 
+	.comment-section .column{
+		max-width: 100%!important;
+		margin-left: 0!important;
+	}
+
 	/* MENU RESPONSIVE */
 	.right-nav{
 		display: none;
