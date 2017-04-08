@@ -91,7 +91,7 @@ body{
 
 .featured-container{
 	position: relative;
-	height: 500px;
+	max-height: 500px;
 	overflow: hidden;
 }
 
@@ -157,6 +157,16 @@ body{
 	border: solid 2px #328fea;
 }
 
+.config-post .column-67{
+	position: relative;
+}
+
+.item-youtube{
+	position: absolute;
+	bottom: -50px;
+	left: 0;
+	width: 100%;
+}
 
  /*********** MENU CSS ***********/
 
@@ -285,5 +295,22 @@ nav {
 		display: inline-block;
 		flex: 0 0 100%!important;
 		max-width: 100%!important;
+	}
+
+	.featured-container{
+		max-height: 400px;
+	}
+
+	.featured-inner{
+		height: 70px;
+	}
+
+	.featured-inner h3{
+		font-size: 1.5em;
+		line-height: 50px
+	}
+
+	.featured-user img{
+		width: 50px;
 	}
 }
