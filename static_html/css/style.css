@@ -52,6 +52,20 @@ body{
 	border: solid 1px #FFF;*/
 }
 
+footer{
+	margin-top: 40px;
+	padding: 50px 0 50px 0;
+	background-color: #000;
+}
+
+footer ul{
+	list-style-type: none;
+}
+
+.footer-title{
+	border-bottom: 1px solid #fff;
+	margin-bottom: 10px;
+}
 
  /*********** INDEX CSS ***********/
 
