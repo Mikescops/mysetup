@@ -74,13 +74,13 @@ footer ul{
 
  /*********** INDEX CSS ***********/
 
-.slider-item{
+.home_slider .slider-item{
 	margin: 13px;
 	max-height: 310px;
 	overflow: hidden;
 }
 
-.slider-item-inner{
+.home_slider .slider-item-inner{
 	height: 80px;
 	position: absolute;
 	left: 0;
@@ -90,7 +90,7 @@ footer ul{
 	z-index: 9;
 }
 
-.slider-item-inner img{
+.home_slider .slider-item-inner img{
 	width: 60px;
 	border-radius: 100%;
 	float: left;
@@ -232,6 +232,12 @@ footer ul{
 	bottom: -50px;
 	left: 0;
 	width: 100%;
+}
+
+.post_slider .slider-item{
+	margin: 13px;
+	max-height: 250px;
+	overflow: hidden;
 }
 
 .slick-prev{
