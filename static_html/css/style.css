@@ -185,21 +185,43 @@ footer ul{
 .slick-prev{
 	position: absolute;
 	top: 45%;
-	left: -20px;
+	left: -55px;
 	z-index: 5;
 
+	display: inline-block;
+	font: normal normal normal 25px/1 FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+
+	visibility: hidden;
 	background: none;
 	border: none;
+}
+
+.slick-prev:before{
+	content: "\f053";
+	visibility: visible;
 }
 
 .slick-next{
 	position: absolute;
 	top: 45%;
-	right: -20px;
+	right: -55px;
 	z-index: 5;
 
+	display: inline-block;
+	font: normal normal normal 25px/1 FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+
+	visibility: hidden;
 	background: none;
 	border: none;
+}
+
+.slick-next:after{
+	content: "\f054";
+	visibility: visible;
 }
 
  /*********** MENU CSS ***********/
