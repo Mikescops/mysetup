@@ -168,6 +168,26 @@ body{
 	width: 100%;
 }
 
+.slick-prev{
+	position: absolute;
+	top: 45%;
+	left: -20px;
+	z-index: 5;
+
+	background: none;
+	border: none;
+}
+
+.slick-next{
+	position: absolute;
+	top: 45%;
+	right: -20px;
+	z-index: 5;
+
+	background: none;
+	border: none;
+}
+
  /*********** MENU CSS ***********/
 
 nav {

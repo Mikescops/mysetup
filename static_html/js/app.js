@@ -30,7 +30,9 @@ $('.home_slider').slick({
 
 
 $('.post_slider').slick({
+  lazyLoad: 'ondemand',
   arrows: false,
+  arrows: true,
   infinite: false,
   slidesToShow: 2,
   responsive: [
