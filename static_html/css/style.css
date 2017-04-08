@@ -59,6 +59,11 @@ body{
 	margin: 13px;
 }
 
+.slider-item-inner{
+	max-height: 250px;
+	overflow: hidden;
+}
+
 
 .slick-center {
 	-webkit-transform: scale(1.08);

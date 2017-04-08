@@ -31,6 +31,9 @@
 	<!-- slider default style 
 	<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>-->
 
+	<!-- Lightbox css -->
+	<link href="css/lity.min.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -145,12 +148,34 @@
 
 			<div class="post_slider">
 				
-				<div class="slider-item"><img src="http://placehold.it/1120x490/ffffff/000000?text=Image_1"></div>
-				<div class="slider-item"><img src="http://placehold.it/1120x490?text=Image_2"></div>
-				<div class="slider-item"><img src="http://placehold.it/1120x490/ffffff/000000?text=Image_3"></div>
-				<div class="slider-item"><img src="http://placehold.it/1120x490?text=Image_4"></div>
-				<div class="slider-item"><img src="http://placehold.it/1120x490/ffffff/000000?text=Image_5"></div>
-				<div class="slider-item"><img src="http://placehold.it/1120x490?text=Image_6"></div>
+				<div class="slider-item">
+					<div class="slider-item-inner">
+						<a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
+							<img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
+						</a>
+					</div>
+				</div>
+
+				<div class="slider-item">
+					<a href="http://placehold.it/1120x520/ffffff/000000?text=Image_Popup" data-lity data-lity-desc="Photo of an Image">
+						<img src="http://placehold.it/1120x520/ffffff/000000?text=Image_2">
+					</a>
+				</div>
+				<div class="slider-item">
+					<a href="http://placehold.it/1120x520/ffffff/000000?text=Image_Popup" data-lity data-lity-desc="Photo of an Image">
+						<img src="http://placehold.it/1120x520/ffffff/000000?text=Image_3">
+					</a>
+				</div>
+				<div class="slider-item">
+					<a href="http://placehold.it/1120x520/ffffff/000000?text=Image_Popup" data-lity data-lity-desc="Photo of an Image">
+						<img src="http://placehold.it/1120x520/ffffff/000000?text=Image_4">
+					</a>
+				</div>
+				<div class="slider-item">
+					<a href="http://placehold.it/1120x520/ffffff/000000?text=Image_Popup" data-lity data-lity-desc="Photo of an Image">
+						<img src="http://placehold.it/1120x520/ffffff/000000?text=Image_5">
+					</a>
+				</div>
 
 			</div>
 
@@ -201,7 +226,11 @@
 	<!-- Slider Js async load -->
 	<script type="text/javascript" src="slick/slick.min.js"></script>
 
+	<!-- Lightbox Js async load -->
+	<script src="js/lity.min.js"></script>
+
 	<!-- App Js async load -->
 	<script type="text/javascript" src="js/app.js"></script>
+
 </body>
 </html>
