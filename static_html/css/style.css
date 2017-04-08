@@ -63,6 +63,7 @@ footer ul{
 }
 
 .footer-title{
+	font-size: 1.1em;
 	border-bottom: 1px solid #fff;
 	margin-bottom: 10px;
 }
@@ -223,6 +224,71 @@ footer ul{
 	content: "\f054";
 	visibility: visible;
 }
+
+.comment-section{
+	margin-top: 30px;
+}
+
+
+#commentField{
+	color: #fff;
+	font-size: 1.2em;
+}
+
+.comment {
+    overflow: hidden;
+    padding: 0 0 1em;
+    border-bottom: 1px solid #393939;;
+    margin: 0 0 1em;
+    *zoom: 1;
+    width: 100%;
+}
+
+.comment-img {
+    float: left;
+    margin-right: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.comment-img img { display: block }
+
+.comment-body { overflow: hidden }
+
+.comment .text {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background: #fff;
+    color: #000;
+}
+
+.comment .text p:last-child { margin: 0 }
+
+.comment .attribution {
+    margin: 0.5em 0 0;
+    font-size: 14px;
+}
+
+.comments, .comment { position: relative }
+
+.comment .text:before {
+	content: "";
+	position: absolute;
+    top: 18px;
+    left: 65px;
+    width: 9px;
+    height: 9px;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color: #e5e5e5;
+    background: #fff;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+
 
  /*********** MENU CSS ***********/
 
