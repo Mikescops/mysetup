@@ -82,9 +82,7 @@ body{
 }
 
 
-
  /********** POST CSS **********/
-
 
 .featured-container{
 	position: relative;
@@ -253,7 +251,11 @@ nav {
 
 
 /* Smaller than mobile screen */
-@media (max-width: 40.0rem) {
+@media (max-width: 600px) {
+
+	.item-config{
+		width: 50%;
+	}
 
 }
 
@@ -265,5 +267,18 @@ nav {
 	}
 	.row .column.column-25.sidebar {
 	    display: none;
+	}
+
+
+	/* POST PAGE RESPONSIVE */
+
+	.config-post{
+		display: block;
+	}
+
+	.config-post .column{
+		display: inline-block;
+		flex: 0 0 100%!important;
+		max-width: 100%!important;
 	}
 }
