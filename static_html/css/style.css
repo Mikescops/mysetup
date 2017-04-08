@@ -515,12 +515,39 @@ nav {
 	.featured-inner .featured-user img{
 		display: none;
 	}
+	.featured-inner .column.column-75{
+		text-align: center;
+	}
 
 }
 
 
 /* Smaller than smartphone screen */
 @media (max-width: 640px) {
+
+	.home_slider .slider-item-inner{
+		height: 60px;
+	}
+
+	.home_slider .slider-item-inner img{
+		width: 40px;
+	}
+
+	.fullitem:hover > .fullitem-inner {
+	    height: 80px;
+	}
+
+	.fullitem-inner .featured-user img{
+		width: 40px;
+	}
+
+	.fullitem-inner h3{
+		line-height: 40px;
+		font-size: 1.2em;
+		margin-left: 10px;
+	}
+
+	/* POST RESPONSIVE */
 
 	.item-config{
 		width: 50%;
