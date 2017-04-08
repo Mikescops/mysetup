@@ -414,6 +414,41 @@ nav {
 	height: 35px;
 }
 
+.lity-hide {
+    display: none;
+}
+
+#add_setup_modal{
+	color: #000;
+	overflow:auto;
+	background:#FDFDF6;
+	padding: 20px 20px 0 20px;
+	width:600px;
+	max-width:100%;
+	border-radius:6px
+}
+
+#filedrag
+{
+	display: none;
+	font-weight: bold;
+	text-align: center;
+	padding: 1em 0;
+	margin: 1em 0;
+	color: #555;
+	border: 2px dashed #555;
+	border-radius: 7px;
+	cursor: default;
+}
+
+#filedrag.hover
+{
+	color: #328fea;
+	border-color: #328fea;
+	border-style: solid;
+	box-shadow: inset 0 3px 4px #888;
+}
+
 
 /* Smaller than mobile screen */
 @media (max-width: 600px) {
@@ -460,7 +495,7 @@ nav {
 		line-height: 50px
 	}
 
-	.featured-user img{
+	.featured-inner .featured-user img{
 		width: 50px;
 	}
 }
