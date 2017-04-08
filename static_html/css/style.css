@@ -506,8 +506,20 @@ nav {
 	box-shadow: inset 0 3px 4px #888;
 }
 
-
 /* Smaller than mobile screen */
+@media (max-width: 380px) {
+
+	.featured-inner h3{
+		margin-left: 0;
+	}
+	.featured-inner .featured-user img{
+		display: none;
+	}
+
+}
+
+
+/* Smaller than smartphone screen */
 @media (max-width: 640px) {
 
 	.item-config{
