@@ -173,13 +173,15 @@ footer ul{
 }
 
 .featured-inner h3{
-	font-size: 2.1em;
-	line-height: 80px;
+	margin: 10px 0 0 20px; 
 	display: inline-block;
-	margin-left: 20px;
 	text-shadow: 0 1px 0 black;
 	-moz-text-shadow: 0 1px 0 black;
 	-webkit-text-shadow: 0 1px 0 black;
+}
+
+.featured-inner p{
+	margin-left: 100px;
 }
 
 .featured-inner .featured-user img{
@@ -577,8 +579,11 @@ nav {
 	}
 
 	.featured-inner h3{
-		font-size: 1.5em;
-		line-height: 50px
+		font-size: 1.3em;
+	}
+
+	.featured-inner p{
+		display: none;
 	}
 
 	.featured-inner .featured-user img{
