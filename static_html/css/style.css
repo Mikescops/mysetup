@@ -10,6 +10,10 @@
 
  /********** GENERAL CSS **********/
 
+*:focus {
+	outline: none;
+}
+
 body{
 	color: #fff;
 	background-color: #151515;
@@ -72,15 +76,34 @@ footer ul{
 
 .slider-item{
 	margin: 13px;
-}
-
-.slider-item-inner{
-	max-height: 250px;
+	max-height: 310px;
 	overflow: hidden;
 }
 
+.slider-item-inner{
+	height: 80px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 10px;
+	z-index: 9;
+}
+
+.slider-item-inner img{
+	width: 60px;
+	border-radius: 100%;
+	float: left;
+	border: solid 2px #328fea;
+	box-shadow: 0 0 15px rgba(0,0,0,.55);
+	-moz-box-shadow: 0 0 15px rgba(0,0,0,.55);
+	-webkit-box-shadow: 0 0 15px rgba(0,0,0,.55);
+}
 
 .slick-center {
+	box-shadow: 0 0 35px rgba(0,0,0,.75);
+	-moz-box-shadow: 0 0 35px rgba(0,0,0,.75);
+	-webkit-box-shadow: 0 0 35px rgba(0,0,0,.75);
 	-webkit-transform: scale(1.08);
 	transform: scale(1.08);
 }
@@ -430,8 +453,8 @@ nav {
 	background-color: #000;
 	border: 20px solid #000;
 	box-shadow: 0 0 50px rgba(0,0,0,.60);
-	-moz-box-shadow: 0 0 30px rgba(0,0,0,.60);
-	-webkit-box-shadow: 0 0 30px rgba(0,0,0,.60);
+	-moz-box-shadow: 0 0 50px rgba(0,0,0,.60);
+	-webkit-box-shadow: 0 0 50px rgba(0,0,0,.60);
 }
 
 #mobile-nav a{
