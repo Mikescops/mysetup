@@ -66,7 +66,7 @@ class UsersTable extends Table
         $validator
             ->notEmpty('password')
             ->add('password', 'length', [
-                'rule' => ['minLength' => '8'],
+                'rule' => ['minLength', 8],
                 'message' => 'The password has to contain more than 8 characters']);
 
         $validator
