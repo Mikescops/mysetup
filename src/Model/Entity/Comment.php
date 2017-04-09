@@ -4,21 +4,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Setup Entity
+ * Comment Entity
  *
  * @property int $id
  * @property int $user_id
- * @property string $title
- * @property string $description
- * @property string $author
- * @property int $counter
- * @property bool $featured
- * @property \Cake\I18n\Time $creationDate
+ * @property int $setup_id
+ * @property string $content
+ * @property \Cake\I18n\Time $dateTime
  *
  * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Resource[] $resources
+ * @property \App\Model\Entity\Setup $setup
  */
-class Setup extends Entity
+class Comment extends Entity
 {
 
     /**

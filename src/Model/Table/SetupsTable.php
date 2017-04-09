@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Setups Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\HasMany $Comments
  * @property \Cake\ORM\Association\HasMany $Resources
  *
  * @method \App\Model\Entity\Setup get($primaryKey, $options = [])
@@ -39,6 +40,9 @@ class SetupsTable extends Table
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Comments', [
+            'foreignKey' => 'setup_id'
         ]);
         $this->hasMany('Resources', [
             'foreignKey' => 'setup_id'
@@ -73,7 +77,12 @@ class SetupsTable extends Table
 
         $validator
             ->boolean('featured')
-            ->allowEmpty('featured');
+            ->requirePresence('featured', 'create')
+            ->notEmpty('featured');
+
+        $validator
+            ->date('creationDate')
+            ->allowEmpty('creationDate');
 
         return $validator;
     }

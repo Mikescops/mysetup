@@ -12,6 +12,8 @@
         <li><?= $this->Html->link(__('New Setup'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Resources'), ['controller' => 'Resources', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Resource'), ['controller' => 'Resources', 'action' => 'add']) ?> </li>
     </ul>
@@ -40,6 +42,10 @@
             <td><?= $this->Number->format($setup->counter) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('CreationDate') ?></th>
+            <td><?= h($setup->creationDate) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Featured') ?></th>
             <td><?= $setup->featured ? __('Yes') : __('No'); ?></td>
         </tr>
@@ -47,6 +53,35 @@
     <div class="row">
         <h4><?= __('Description') ?></h4>
         <?= $this->Text->autoParagraph(h($setup->description)); ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Comments') ?></h4>
+        <?php if (!empty($setup->comments)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('User Id') ?></th>
+                <th scope="col"><?= __('Setup Id') ?></th>
+                <th scope="col"><?= __('Content') ?></th>
+                <th scope="col"><?= __('DateTime') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($setup->comments as $comments): ?>
+            <tr>
+                <td><?= h($comments->id) ?></td>
+                <td><?= h($comments->user_id) ?></td>
+                <td><?= h($comments->setup_id) ?></td>
+                <td><?= h($comments->content) ?></td>
+                <td><?= h($comments->dateTime) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Comments', 'action' => 'view', $comments->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Comments', 'action' => 'edit', $comments->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Comments', 'action' => 'delete', $comments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comments->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
     </div>
     <div class="related">
         <h4><?= __('Related Resources') ?></h4>

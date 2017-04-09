@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Resources
+ * @property \Cake\ORM\Association\HasMany $Comments
  * @property \Cake\ORM\Association\HasMany $Setups
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
@@ -36,6 +38,12 @@ class UsersTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
+        $this->belongsTo('Resources', [
+            'foreignKey' => 'resource_id'
+        ]);
+        $this->hasMany('Comments', [
+            'foreignKey' => 'user_id'
+        ]);
         $this->hasMany('Setups', [
             'foreignKey' => 'user_id'
         ]);
@@ -51,10 +59,10 @@ class UsersTable extends Table
     {
         $validator
             ->integer('id')
-            ->notEmpty('id', 'create');
+            ->allowEmpty('id', 'create');
 
         $validator
-            ->notEmpty('name');
+            ->allowEmpty('name');
 
         $validator
             ->notEmpty('mail')
@@ -70,28 +78,8 @@ class UsersTable extends Table
                 'message' => 'The password has to contain more than 8 characters']);
 
         $validator
-            ->allowEmpty('profileImagePath');
-
-        $validator
-            ->allowEmpty('facebook')
-            ->add('facebook', 'validFormat', [
-                'rule' => 'url',
-                'message' => 'We need a valid link']);
-
-        $validator
-            ->allowEmpty('twitter')
-            ->add('twitter', 'validFormat', [
-                'rule' => 'url',
-                'message' => 'We need a valid link']);
-
-        $validator
-            ->allowEmpty('mastodon')
-            ->add('mastodon', 'validFormat', [
-                'rule' => 'url',
-                'message' => 'We need a valid link']);
-
-        $validator
             ->boolean('verified')
+            ->requirePresence('verified', 'create')
             ->notEmpty('verified');
 
         return $validator;
@@ -107,6 +95,7 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['mail']));
+        $rules->add($rules->existsIn(['resource_id'], 'Resources'));
 
         return $rules;
     }

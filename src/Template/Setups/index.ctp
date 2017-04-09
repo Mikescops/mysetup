@@ -9,6 +9,8 @@
         <li><?= $this->Html->link(__('New Setup'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Resources'), ['controller' => 'Resources', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Resource'), ['controller' => 'Resources', 'action' => 'add']) ?></li>
     </ul>
@@ -24,6 +26,7 @@
                 <th scope="col"><?= $this->Paginator->sort('author') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('counter') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('featured') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('creationDate') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -36,6 +39,7 @@
                 <td><?= h($setup->author) ?></td>
                 <td><?= $this->Number->format($setup->counter) ?></td>
                 <td><?= h($setup->featured) ?></td>
+                <td><?= h($setup->creationDate) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $setup->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $setup->id]) ?>

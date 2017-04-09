@@ -13,6 +13,10 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Resources'), ['controller' => 'Resources', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Resource'), ['controller' => 'Resources', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Setups'), ['controller' => 'Setups', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Setup'), ['controller' => 'Setups', 'action' => 'add']) ?></li>
     </ul>
@@ -25,10 +29,7 @@
             echo $this->Form->control('name');
             echo $this->Form->control('mail');
             echo $this->Form->control('password');
-            echo $this->Form->control('profileImagePath');
-            echo $this->Form->control('facebook');
-            echo $this->Form->control('twitter');
-            echo $this->Form->control('mastodon');
+            echo $this->Form->control('resource_id', ['options' => $resources, 'empty' => true]);
             echo $this->Form->control('verified');
         ?>
     </fieldset>

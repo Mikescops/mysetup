@@ -106,4 +106,39 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function login()
+    {
+        if($this->request->is('post'))
+        {
+            $user = $this->Auth->identify();
+
+            if($user)
+            {
+                $this->Auth->setUser($user);
+                $this->Flash->success(__('You are successfully logged in !'));
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+
+            else
+            {
+                $this->Flash->error(__('Username or password is incorrect'));
+            }
+        }
+    }
+
+    public function logout()
+    {
+        if($this->request->session()->read('Auth.User.id') != null)
+        {
+            $this->Flash->success(__('You are now logged out, see you soon !'));
+            return $this->redirect($this->Auth->logout());
+        }
+
+        else
+        {
+            $this->Flash->warning(__('You can\'t logout because you\'re not connected.'));
+            return $this->redirect('/');
+        }
+    }
 }

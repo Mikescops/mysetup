@@ -1,8 +1,8 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * User Entity
@@ -10,12 +10,12 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property string $mail
- * @property string $profileImagePath
- * @property string $facebook
- * @property string $twitter
- * @property string $mastodon
+ * @property string $password
+ * @property int $resource_id
  * @property bool $verified
  *
+ * @property \App\Model\Entity\Resource $resource
+ * @property \App\Model\Entity\Comment[] $comments
  * @property \App\Model\Entity\Setup[] $setups
  */
 class User extends Entity
@@ -33,6 +33,15 @@ class User extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false
+    ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'password'
     ];
 
     protected function _setPassword($password)

@@ -7,6 +7,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Resources'), ['controller' => 'Resources', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Resource'), ['controller' => 'Resources', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Setups'), ['controller' => 'Setups', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Setup'), ['controller' => 'Setups', 'action' => 'add']) ?></li>
     </ul>
@@ -19,11 +23,7 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('mail') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('password') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('profileImagePath') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('facebook') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('twitter') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('mastodon') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('resource_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('verified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -34,11 +34,7 @@
                 <td><?= $this->Number->format($user->id) ?></td>
                 <td><?= h($user->name) ?></td>
                 <td><?= h($user->mail) ?></td>
-                <td><?= h($user->password) ?></td>
-                <td><?= h($user->profileImagePath) ?></td>
-                <td><?= h($user->facebook) ?></td>
-                <td><?= h($user->twitter) ?></td>
-                <td><?= h($user->mastodon) ?></td>
+                <td><?= $user->has('resource') ? $this->Html->link($user->resource->title, ['controller' => 'Resources', 'action' => 'view', $user->resource->id]) : '' ?></td>
                 <td><?= h($user->verified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Setups Controller
@@ -110,5 +111,10 @@ class SetupsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['controller' => 'Setups', 'action' => 'index']);
     }
 }

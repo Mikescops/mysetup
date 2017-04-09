@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 09, 2017 at 11:14 AM
+-- Generation Time: Apr 09, 2017 at 10:47 PM
 -- Server version: 5.6.30-1
 -- PHP Version: 7.0.16-3
 
@@ -19,6 +19,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `MySetup`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `setup_id` int(11) NOT NULL,
+  `content` text COLLATE utf8_bin NOT NULL,
+  `dateTime` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -59,8 +73,16 @@ CREATE TABLE `setups` (
   `description` text COLLATE utf8_bin,
   `author` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `counter` int(11) NOT NULL,
-  `featured` tinyint(1) DEFAULT NULL
+  `featured` tinyint(1) NOT NULL,
+  `creationDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `setups`
+--
+
+INSERT INTO `setups` (`id`, `user_id`, `title`, `description`, `author`, `counter`, `featured`, `creationDate`) VALUES
+(0, NULL, 'dsd', 'sds', 'sdsd', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -73,16 +95,19 @@ CREATE TABLE `users` (
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `mail` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `profileImagePath` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `facebook` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `twitter` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `mastodon` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `verified` tinyint(1) DEFAULT NULL
+  `resource_id` int(11) DEFAULT NULL,
+  `verified` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pages`
