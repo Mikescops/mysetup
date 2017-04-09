@@ -58,14 +58,14 @@ class UsersTable extends Table
 
         $validator
             ->notEmpty('mail')
-            ->add('mail', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-            ->add('mail', 'validFormat' => [
+            ->add('mail', 'unique', ['rule' => 'validateUnique', 'provider' => 'table'])
+            ->add('mail', 'validFormat', [
                 'rule' => 'email',
                 'message' => 'We need a valid E-mail address']);
 
         $validator
-            ->notEmpty('password');
-            ->add('password', 'minLength' => [
+            ->notEmpty('password')
+            ->add('password', 'length', [
                 'rule' => ['minLength' => '8'],
                 'message' => 'The password has to contain more than 8 characters']);
 
@@ -73,22 +73,22 @@ class UsersTable extends Table
             ->allowEmpty('profileImagePath');
 
         $validator
-            ->allowEmpty('facebook');
-            ->add('facebook', 'validFormat' => [
+            ->allowEmpty('facebook')
+            ->add('facebook', 'validFormat', [
                 'rule' => 'url',
-                'message' => 'We need a valid link'])
+                'message' => 'We need a valid link']);
 
         $validator
-            ->allowEmpty('twitter');
-            ->add('twitter', 'validFormat' => [
+            ->allowEmpty('twitter')
+            ->add('twitter', 'validFormat', [
                 'rule' => 'url',
-                'message' => 'We need a valid link'])
+                'message' => 'We need a valid link']);
 
         $validator
-            ->allowEmpty('mastodon');
-            ->add('mastodon', 'validFormat' => [
+            ->allowEmpty('mastodon')
+            ->add('mastodon', 'validFormat', [
                 'rule' => 'url',
-                'message' => 'We need a valid link'])
+                'message' => 'We need a valid link']);
 
         $validator
             ->boolean('verified')
