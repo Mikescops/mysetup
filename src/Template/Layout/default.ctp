@@ -28,7 +28,9 @@
         <div class="row">
             <div class="column column-20">
                 
-                <a href="<?= $this->Url->build('/', true); ?>"><img src="img/mysetup_menu.png" alt="mySetup"></a>
+                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mysetup_menu.png', array('alt' => 'mySetup')); ?></a>
+
+
 
             </div>
             <div class="column column-80">
@@ -155,7 +157,7 @@
                       </ul>
                     </div>
                     <div class="column column-25">
-                        <img class="float-right" src="img/mysetup_menu.png" alt="mySetup">
+                        <?php echo $this->Html->image('mysetup_menu.png', array('alt' => 'mySetup', 'class' => 'float-right')); ?>
                     </div>
               </div>
 
