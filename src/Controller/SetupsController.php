@@ -115,6 +115,6 @@ class SetupsController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['controller' => 'Setups', 'action' => 'index']);
+        $this->Auth->allow(['index', 'view']);
     }
 }
