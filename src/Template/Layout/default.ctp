@@ -8,7 +8,7 @@
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $this->fetch('title') ?>
+        <?= $this->fetch('title') ?> | MySetup
     </title>
     <?= $this->Html->meta('icon') ?>
 
@@ -133,8 +133,8 @@
                     <div class="column column-25">
                       <div class="footer-title">Partenaires</div>
                       <ul>
-                        <li><a href="http://pixelswap.fr/" target="_blank" class="item">PixelSwap</a></li>
-                        <li><a href="http://geek-mexicain.net/" target="_blank">Geek-Mexicain</a></li>
+                        <li><a href="https://pixelswap.fr/" target="_blank" class="item">PixelSwap</a></li>
+                        <li><a href="http://geek-mexicain.net/" target="_blank">Geek Mexicain</a></li>
                         <li><a href="https://horlogeskynet.github.io/" target="_blank" class="item">HorlogeSkynet</a></li>
                       </ul>
                     </div>
