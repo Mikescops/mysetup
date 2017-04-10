@@ -15,9 +15,9 @@
     <?= $this->Html->css('normalize.css') ?>
     <?= $this->Html->css('milligram.min.css') ?>
     <?= $this->Html->css('font-awesome.min.css') ?>
-    <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('slick.css') ?>
     <?= $this->Html->css('lity.min.css') ?>
+    <?= $this->Html->css('style.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
