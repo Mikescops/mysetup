@@ -53,16 +53,50 @@ class SetupsController extends AppController
     public function add()
     {
         $setup = $this->Setups->newEntity();
-        if ($this->request->is('post')) {
-            $setup = $this->Setups->patchEntity($setup, $this->request->getData());
-            if ($this->Setups->save($setup)) {
-                $this->Flash->success(__('The setup has been saved.'));
 
+        if ($this->request->is('post')) {
+
+            // Let's get the data from the form
+            $data = $this->request->getData();
+
+            // Classical patch entity operation
+            $setup = $this->Setups->patchEntity($setup, $data);
+
+            // An array in order to stock the resources temporary
+            $resources = [];
+
+            // Let's check if the resources selected by the user are from amazon.com
+            foreach(explode(',', $data['resources']) as $value)
+            {
+                $parsing = parse_url($value);
+                if(isset($parsing['host']) && strstr($parsing['host'], "amazon"))
+                {
+                    $resource = $this->Setups->Resources->newEntity();
+                    $resource->user_id = null;
+                    $resource->type = 'SETUP_PRODUCT';
+                    $resource->href = $value;
+
+                    array_push($resources, $resource);
+                }
+            }
+
+            if($this->Setups->save($setup))
+            {
+                // The data has been saved, now we got its 'id'. Let's fix it onto each resource previously created
+                foreach ($resources as $resource)
+                {
+                    $resource->setup_id = $setup->id;
+
+                    $this->Setups->Resources->save($resource);
+                }
+
+                $this->Flash->success(__('The setup has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The setup could not be saved. Please, try again.'));
         }
         $users = $this->Setups->Users->find('list', ['limit' => 200]);
+
         $this->set(compact('setup', 'users'));
         $this->set('_serialize', ['setup']);
     }

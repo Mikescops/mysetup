@@ -28,6 +28,9 @@
                 echo $this->Form->control('counter');
                 echo $this->Form->control('featured');
                 echo $this->Form->control('creationDate', ['empty' => true]);
+
+                // A hidden entry to gather the item resources
+                echo $this->Form->control('resources', ['id' => 'resourcesInput', 'type' => 'hidden']);
             ?>
         </fieldset>
         <?= $this->Form->button(__('Submit')) ?>
