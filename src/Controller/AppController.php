@@ -46,25 +46,25 @@ class AppController extends Controller
         $this->loadComponent('Security');
         $this->loadComponent('Csrf');
 
-        $this->loadComponent('Auth', [
-            'authenticate' => [
-                'Form' => [
-                    'fields' => [
-                        'username' => 'mail',
-                        'password' => 'password'
-                    ]
-                ]
-            ],
-            'authorize' => ['Controller'],
-            'loginRedirect' => [
-                'controller' => 'Setups',
-                'action' => 'index'
-            ],
-            'logoutRedirect' => [
-                'controller' => 'Setups',
-                'action' => 'index'
-            ]
-        ]);
+        // $this->loadComponent('Auth', [
+        //     'authenticate' => [
+        //         'Form' => [
+        //             'fields' => [
+        //                 'username' => 'mail',
+        //                 'password' => 'password'
+        //             ]
+        //         ]
+        //     ],
+        //     'authorize' => ['Controller'],
+        //     'loginRedirect' => [
+        //         'controller' => 'Setups',
+        //         'action' => 'index'
+        //     ],
+        //     'logoutRedirect' => [
+        //         'controller' => 'Setups',
+        //         'action' => 'index'
+        //     ]
+        // ]);
     }
 
     /**
@@ -86,6 +86,5 @@ class AppController extends Controller
     {
         /* SWAP THESE TWO OPERATIONS WHEN LEAVING DEVELOPMENT */
         // $this->Auth->deny();
-        $this->Auth->allow();
     }
 }

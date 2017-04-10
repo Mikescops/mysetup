@@ -73,7 +73,8 @@ class SetupsTable extends Table
         $validator
             ->integer('counter')
             ->requirePresence('counter', 'create')
-            ->notEmpty('counter');
+            // ->notEmpty('counter');
+            ->allowEmpty('counter');
 
         $validator
             ->boolean('featured')

@@ -134,7 +134,7 @@
                       <div class="footer-title">Partenaires</div>
                       <ul>
                         <li><a href="https://pixelswap.fr/" target="_blank" class="item">PixelSwap</a></li>
-                        <li><a href="http://geek-mexicain.net/" target="_blank">Geek Mexicain</a></li>
+                        <li><a href="https://geek-mexicain.net/" target="_blank">Geek Mexicain</a></li>
                         <li><a href="https://horlogeskynet.github.io/" target="_blank" class="item">HorlogeSkynet</a></li>
                       </ul>
                     </div>
