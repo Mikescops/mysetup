@@ -3,86 +3,166 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Setup'), ['action' => 'edit', $setup->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Setup'), ['action' => 'delete', $setup->id], ['confirm' => __('Are you sure you want to delete # {0}?', $setup->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Setups'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Setup'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Resources'), ['controller' => 'Resources', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Resource'), ['controller' => 'Resources', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="setups view large-9 medium-8 columns content">
-    <h3><?= h($setup->title) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('User') ?></th>
-            <td><?= $setup->has('user') ? $this->Html->link($setup->user->name, ['controller' => 'Users', 'action' => 'view', $setup->user->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Title') ?></th>
-            <td><?= h($setup->title) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Author') ?></th>
-            <td><?= h($setup->author) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($setup->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Counter') ?></th>
-            <td><?= $this->Number->format($setup->counter) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('CreationDate') ?></th>
-            <td><?= h($setup->creationDate) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Featured') ?></th>
-            <td><?= $setup->featured ? __('Yes') : __('No'); ?></td>
-        </tr>
-    </table>
-    <div class="row">
-        <h4><?= __('Description') ?></h4>
-        <?= $this->Text->autoParagraph(h($setup->description)); ?>
+<div class="featured-container">
+
+    <img width="1120" src="https://i.ytimg.com/vi/4kBLJK4FdfQ/maxresdefault.jpg" alt="">
+
+    <div class="featured-inner">
+
+        <div class="row">
+
+            <div class="column column-75">
+                <a class="featured-user" href="#">
+                    <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
+                </a>
+
+                <h3><?= $setup->title ?></h3>
+                <p>Shared by <?= $setup->user->name ?></p>
+
+            </div>
+
+            <div class="column column-25"></div>
+
+        </div>
+
     </div>
-    <div class="related">
-        <h4><?= __('Related Comments') ?></h4>
+
+</div>
+
+
+<div class="maincontainer">
+
+    <div class="row config-post">
+        <div class="column column-67">
+
+            <h4>My components</h4>
+
+            <div class="config-items">
+                <a href="#" target="_blank" class="item-config">
+                    <img src="https://placehold.it/175x175?text=item" alt="">
+                </a>
+
+                <a href="#" class="item-config">
+                    <img src="https://placehold.it/175x175?text=item" alt="">
+                </a>                    <a href="#" class="item-config">
+                    <img src="https://placehold.it/175x175?text=item" alt="">
+                </a>                    <a href="#" class="item-config">
+                    <img src="https://placehold.it/175x175?text=item" alt="">
+                </a>                    <a href="#" class="item-config">
+                    <img src="https://placehold.it/175x175?text=item" alt="">
+                </a>                    <a href="#" class="item-config">
+                    <img src="https://placehold.it/175x175?text=item" alt="">
+                </a>                    <a href="#" class="item-config">
+                    <img src="https://placehold.it/175x175?text=item" alt="">
+                </a>
+            </div>
+
+            <a class="button item-youtube" href="https://www.youtube.com/watch?v=rZQXp_OUp9s" data-lity>Voir la vidéo Youtube</a>
+
+        </div>
+        <div class="column column-33 item-meta">
+
+            <h4>Description</h4>
+
+            <?= $this->Text->autoParagraph(h($setup->description)); ?>
+
+            <p>Created : <?= h($setup->creationDate) ?></p>
+
+            <div class="social-networks">
+                <a href="#" class="button button-clear"><i class="fa fa-facebook fa-2x"></i></a>
+                <a href="#" class="button button-clear"><i class="fa fa-twitter fa-2x"></i></a>
+                <a href="#" class="button button-clear"><i class="fa fa-youtube fa-2x"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <br><br><br>
+    <h4>Gallery</h4>
+
+    <div class="post_slider">
+        
+        <div class="slider-item">
+            <div class="slider-item-inner">
+                <a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
+                    <img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
+                </a>
+            </div>
+        </div>
+
+        <div class="slider-item">
+            <div class="slider-item-inner">
+                <a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
+                    <img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
+                </a>
+            </div>
+        </div>
+        <div class="slider-item">
+            <div class="slider-item-inner">
+                <a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
+                    <img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
+                </a>
+            </div>
+        </div>
+        <div class="slider-item">
+            <div class="slider-item-inner">
+                <a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
+                    <img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
+                </a>
+            </div>
+        </div>
+        <div class="slider-item">
+            <div class="slider-item-inner">
+                <a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
+                    <img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row comment-section">
+        
+        <div class="column column-50 column-offset-25">
+        <h4>Wanna share your opinion ?</h4>
+
+        <section class="comments">
         <?php if (!empty($setup->comments)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col"><?= __('Setup Id') ?></th>
-                <th scope="col"><?= __('Content') ?></th>
-                <th scope="col"><?= __('DateTime') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
             <?php foreach ($setup->comments as $comments): ?>
-            <tr>
-                <td><?= h($comments->id) ?></td>
-                <td><?= h($comments->user_id) ?></td>
-                <td><?= h($comments->setup_id) ?></td>
-                <td><?= h($comments->content) ?></td>
-                <td><?= h($comments->dateTime) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Comments', 'action' => 'view', $comments->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Comments', 'action' => 'edit', $comments->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Comments', 'action' => 'delete', $comments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comments->id)]) ?>
-                </td>
-            </tr>
+            <article class="comment">
+                <a class="comment-img" href="#non">
+                    <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460" alt="" width="50" height="50" />
+                </a>
+                    
+                <div class="comment-body">
+                    <div class="text">
+                      <p><?= h($comments->content) ?></p>
+                    </div>
+                    <p class="attribution">by <a href="#non"><?= h($comments->user_id) ?></a> at <?= h($comments->dateTime) ?></p>
+                </div>
+            </article>
+
             <?php endforeach; ?>
-        </table>
         <?php endif; ?>
+
+        </section>
+            
+        <form>
+            <label for="commentField">Comment</label>
+            <textarea placeholder="Nice config' …" id="commentField"></textarea>
+            <input class="button-primary float-right" type="submit" value="Send">
+          </fieldset>
+        </form>
+
+        </div>
+
     </div>
+
+</div>
+
+<div class="setups view large-9 medium-8 columns content">
+
     <div class="related">
         <h4><?= __('Related Resources') ?></h4>
         <?php if (!empty($setup->resources)): ?>
