@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\I18n\Time;
 
 /**
  * Setups Controller
@@ -68,6 +69,9 @@ class SetupsController extends AppController
 
             // Classical patch entity operation
             $setup = $this->Setups->patchEntity($setup, $data);
+
+            // Sets the current date to the entity before its saving
+            $setup['creationDate'] = Time::now()->i18nFormat('yyyy-MM-dd');
 
             // An array in order to stock the resources temporary
             $resources = [];
