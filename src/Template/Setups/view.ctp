@@ -17,7 +17,7 @@
                 </a>
 
                 <h3><?= $setup->title ?></h3>
-                <p>Shared by <?= $setup->user->name ?></p>
+                <p>Shared by <?= $userNames['owner'] ?></p>
 
             </div>
 
@@ -139,7 +139,7 @@
                     <div class="text">
                       <p><?= h($comments->content) ?></p>
                     </div>
-                    <p class="attribution">by <a href="#non"><?= h($comments->user_id) ?></a> at <?= h($comments->dateTime) ?></p>
+                    <p class="attribution">by <a href="#non"><?= h($userNames[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
                 </div>
             </article>
 
