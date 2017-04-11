@@ -21,16 +21,14 @@
         <fieldset>
             <legend><?= __('Add Setup') ?></legend>
             <?php
-                echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
+                echo $this->Form->control('user_id', ['options' => $users, 'empty' => true, 'type' => 'hidden']);
                 echo $this->Form->control('title');
                 echo $this->Form->control('description');
                 echo $this->Form->control('author');
-                echo $this->Form->control('counter');
                 echo $this->Form->control('featured');
-                echo $this->Form->control('creationDate', ['empty' => true]);
 
                 // A hidden entry to gather the item resources
-                echo $this->Form->control('resources', ['id' => 'resourcesInput', 'type' => 'hidden']);
+                echo $this->Form->control('resources', ['id' => 'resourcesInput' 'type' => 'hidden']);
             ?>
         </fieldset>
         <?= $this->Form->button(__('Submit')) ?>

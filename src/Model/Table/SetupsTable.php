@@ -69,7 +69,7 @@ class SetupsTable extends Table
             ->notEmpty('title');
 
         $validator
-            ->notEmpty('description');
+            ->allowEmpty('description');
 
         $validator
             ->notEmpty('author');
