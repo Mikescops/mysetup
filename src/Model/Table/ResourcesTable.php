@@ -40,7 +40,6 @@ class ResourcesTable extends Table
             'foreignKey' => 'setup_id',
             'joinType' => 'INNER'
         ]);
-
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'

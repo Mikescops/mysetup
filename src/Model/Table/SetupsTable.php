@@ -42,10 +42,14 @@ class SetupsTable extends Table
             'foreignKey' => 'user_id'
         ]);
         $this->hasMany('Comments', [
-            'foreignKey' => 'setup_id'
+            'foreignKey' => 'setup_id',
+            'dependent' => 'true',
+            'cascadeCallbacks' => 'true'
         ]);
         $this->hasMany('Resources', [
-            'foreignKey' => 'setup_id'
+            'foreignKey' => 'setup_id',
+            'dependent' => 'true',
+            'cascadeCallbacks' => 'true'
         ]);
     }
 

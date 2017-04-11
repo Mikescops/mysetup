@@ -39,13 +39,19 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->hasMany('Resources', [
-            'foreignKey' => 'resource_id'
+            'foreignKey' => 'user_id',
+            'dependent' => 'true',
+            'cascadeCallbacks' => 'true'
         ]);
         $this->hasMany('Comments', [
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
+            'dependent' => 'true',
+            'cascadeCallbacks' => 'true'
         ]);
         $this->hasMany('Setups', [
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
+            'dependent' => 'true',
+            'cascadeCallbacks' => 'true'
         ]);
     }
 
