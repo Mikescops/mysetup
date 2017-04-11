@@ -28,7 +28,7 @@
                 echo $this->Form->control('featured');
 
                 // A hidden entry to gather the item resources
-                echo $this->Form->control('resources', ['id' => 'resourcesInput' 'type' => 'hidden']);
+                echo $this->Form->control('resources', ['id' => 'resourcesInput', 'type' => 'hidden']);
             ?>
         </fieldset>
         <?= $this->Form->button(__('Submit')) ?>
