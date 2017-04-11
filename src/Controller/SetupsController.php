@@ -38,7 +38,7 @@ class SetupsController extends AppController
     public function view($id = null)
     {
         $setup = $this->Setups->get($id, [
-            'contain' => ['Users', 'Resources']
+            'contain' => ['Users', 'Resources', 'Comments']
         ]);
 
         $this->set('setup', $setup);
