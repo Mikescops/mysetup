@@ -41,7 +41,14 @@ class SetupsController extends AppController
             'contain' => ['Users', 'Resources', 'Comments']
         ]);
 
-        $this->set('setup', $setup);
+        $userNames['owner'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first()['name'];
+
+        foreach($setup['comments'] as $comment)
+        {
+            $userNames[$comment->user_id] = $this->Setups->Users->find()->where(['id' => $comment->user_id])->first()['name'];
+        }
+
+        $this->set(compact('setup', 'userNames'));
         $this->set('_serialize', ['setup']);
     }
 
