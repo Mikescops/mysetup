@@ -64,7 +64,7 @@ class CommentsTable extends Table
 
         $validator
             ->dateTime('dateTime')
-            ->allowEmpty('dateTime');
+            ->notEmpty('dateTime');
 
         return $validator;
     }

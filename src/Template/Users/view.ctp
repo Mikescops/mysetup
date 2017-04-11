@@ -30,10 +30,6 @@
             <td><?= h($user->mail) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Resource') ?></th>
-            <td><?= $user->has('resource') ? $this->Html->link($user->resource->title, ['controller' => 'Resources', 'action' => 'view', $user->resource->id]) : '' ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($user->id) ?></td>
         </tr>
@@ -100,6 +96,41 @@
                     <?= $this->Html->link(__('View'), ['controller' => 'Setups', 'action' => 'view', $setups->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Setups', 'action' => 'edit', $setups->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Setups', 'action' => 'delete', $setups->id], ['confirm' => __('Are you sure you want to delete # {0}?', $setups->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Resources') ?></h4>
+        <?php if (!empty($user->resources)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('User Id') ?></th>
+                <th scope="col"><?= __('Title') ?></th>
+                <th scope="col"><?= __('Description') ?></th>
+                <th scope="col"><?= __('Author') ?></th>
+                <th scope="col"><?= __('Counter') ?></th>
+                <th scope="col"><?= __('Featured') ?></th>
+                <th scope="col"><?= __('CreationDate') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($user->resources as $resources): ?>
+            <tr>
+                <td><?= h($resources->id) ?></td>
+                <td><?= h($resources->user_id) ?></td>
+                <td><?= h($resources->title) ?></td>
+                <td><?= h($resources->description) ?></td>
+                <td><?= h($resources->author) ?></td>
+                <td><?= h($resources->counter) ?></td>
+                <td><?= h($resources->featured) ?></td>
+                <td><?= h($resources->creationDate) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Resources', 'action' => 'view', $resources->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Resources', 'action' => 'edit', $resources->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Resources', 'action' => 'delete', $resources->id], ['confirm' => __('Are you sure you want to delete # {0}?', $resources->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

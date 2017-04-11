@@ -40,6 +40,11 @@ class ResourcesTable extends Table
             'foreignKey' => 'setup_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -55,14 +60,10 @@ class ResourcesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('title');
+            ->notEmpty('title');
 
         $validator
-            ->allowEmpty('href');
-
-        $validator
-            ->requirePresence('type', 'create')
-            ->notEmpty('type');
+            ->notEmpty('href');
 
         return $validator;
     }
@@ -76,7 +77,29 @@ class ResourcesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['setup_id'], 'Setups'));
+        // Special validation: 'user_id' XOR 'setup_id' has to be set
+        // Furthermore, the 'id' no-null on the moment has to exist in the DB
+        $rules->
+            add(function($entity) {
+                if(isset($entity['user_id']) XOR isset($entity['setup_id']))
+                {
+                    if(isset($entity['user_id']))
+                    {
+                        return $this->Users->find()->where(['id' =>  $entity['user_id']])->first() !== null;
+                    }
+
+                    else
+                    {
+                        return $this->Setups->find()->where(['id' =>  $entity['setup_id']])->first() !== null;
+                    }
+                }
+
+                else
+                {
+                    return false;
+                }
+            },
+            'foreignKey_rule');
 
         return $rules;
     }

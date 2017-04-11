@@ -24,7 +24,6 @@
                     <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('mail') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('resource_id') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('verified') ?></th>
                     <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -35,7 +34,6 @@
                     <td><?= $this->Number->format($user->id) ?></td>
                     <td><?= h($user->name) ?></td>
                     <td><?= h($user->mail) ?></td>
-                    <td><?= $user->has('resource') ? $this->Html->link($user->resource->title, ['controller' => 'Resources', 'action' => 'view', $user->resource->id]) : '' ?></td>
                     <td><?= h($user->verified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>

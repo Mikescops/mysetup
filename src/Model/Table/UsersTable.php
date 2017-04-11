@@ -38,7 +38,7 @@ class UsersTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Resources', [
+        $this->hasMany('Resources', [
             'foreignKey' => 'resource_id'
         ]);
         $this->hasMany('Comments', [
@@ -62,7 +62,7 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('name');
+            ->notEmpty('name');
 
         $validator
             ->notEmpty('mail')
@@ -79,7 +79,6 @@ class UsersTable extends Table
 
         $validator
             ->boolean('verified')
-            ->requirePresence('verified', 'create')
             ->notEmpty('verified');
 
         return $validator;
@@ -95,7 +94,6 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['mail']));
-        $rules->add($rules->existsIn(['resource_id'], 'Resources'));
 
         return $rules;
     }

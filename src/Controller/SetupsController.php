@@ -83,11 +83,17 @@ class SetupsController extends AppController
             if($this->Setups->save($setup))
             {
                 // The data has been saved, now we got its 'id'. Let's fix it onto each resource previously created
-                foreach ($resources as $resource)
+                foreach($resources as $resource)
                 {
                     $resource->setup_id = $setup->id;
 
-                    $this->Setups->Resources->save($resource);
+                    // If the resource does not validate its rule, we rollback and throw an error...
+                    if(!$this->Setups->Resources->save($resource))
+                    {
+                        $this->Setups->delete($setup);
+                        $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
+                        return $this->redirect(['action' => 'add']);
+                    }
                 }
 
                 $this->Flash->success(__('The setup has been saved.'));

@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb2
+-- version 4.6.6deb4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 09, 2017 at 10:47 PM
+-- Generation Time: Apr 11, 2017 at 11:26 AM
 -- Server version: 5.6.30-1
 -- PHP Version: 7.0.16-3
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `setup_id` int(11) NOT NULL,
   `content` text COLLATE utf8_bin NOT NULL,
-  `dateTime` datetime DEFAULT NULL
+  `dateTime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -54,10 +54,10 @@ CREATE TABLE `pages` (
 
 CREATE TABLE `resources` (
   `id` int(11) NOT NULL,
-  `setup_id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `href` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8_bin NOT NULL
+  `user_id` int(11) DEFAULT NULL,
+  `setup_id` int(11) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_bin NOT NULL,
+  `href` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -77,13 +77,6 @@ CREATE TABLE `setups` (
   `creationDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `setups`
---
-
-INSERT INTO `setups` (`id`, `user_id`, `title`, `description`, `author`, `counter`, `featured`, `creationDate`) VALUES
-(0, NULL, 'dsd', 'sds', 'sdsd', 1, 1, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -92,10 +85,9 @@ INSERT INTO `setups` (`id`, `user_id`, `title`, `description`, `author`, `counte
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `mail` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `resource_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `mail` varchar(255) COLLATE utf8_bin NOT NULL,
+  `password` varchar(255) COLLATE utf8_bin NOT NULL,
   `verified` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -134,6 +126,35 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `mail` (`mail`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `resources`
+--
+ALTER TABLE `resources`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `setups`
+--
+ALTER TABLE `setups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

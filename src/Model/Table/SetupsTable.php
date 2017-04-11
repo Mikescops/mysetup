@@ -62,28 +62,25 @@ class SetupsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('title');
+            ->notEmpty('title');
 
         $validator
-            ->allowEmpty('description');
+            ->notEmpty('description');
 
         $validator
-            ->allowEmpty('author');
+            ->notEmpty('author');
 
         $validator
             ->integer('counter')
-            ->requirePresence('counter', 'create')
-            // ->notEmpty('counter');
-            ->allowEmpty('counter');
+            ->notEmpty('counter');
 
         $validator
             ->boolean('featured')
-            ->requirePresence('featured', 'create')
             ->notEmpty('featured');
 
         $validator
             ->date('creationDate')
-            ->allowEmpty('creationDate');
+            ->notEmpty('creationDate');
 
         return $validator;
     }
