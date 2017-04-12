@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 11, 2017 at 11:26 AM
+-- Generation Time: Apr 12, 2017 at 11:56 AM
 -- Server version: 5.6.30-1
 -- PHP Version: 7.0.16-3
 
@@ -56,8 +56,10 @@ CREATE TABLE `resources` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `setup_id` int(11) DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8_bin NOT NULL,
   `title` varchar(255) COLLATE utf8_bin NOT NULL,
-  `href` varchar(255) COLLATE utf8_bin NOT NULL
+  `href` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `src` varchar(255) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -144,17 +146,17 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `setups`
 --
 ALTER TABLE `setups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

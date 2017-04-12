@@ -61,31 +61,26 @@
                 </div>
 
                 <div id="add_setup_modal" class="lity-hide">
-                        <form>
-                            <fieldset style="border:0;">
-                                <ul style="list-style:none">
-                                    <li>
-                                        <label for="input">Title</label>
-                                        <input type="text" required="" name="name" id="input">
-                                    </li>
-                                    <li>
-                                        <label for="textarea" style="width:100%">Description</label>
-                                        <textarea id="textarea" rows="10" style="width:100%"></textarea>
-                                    </li>
-                                    <li>
-                                        <input type="text" id="myInput" onkeyup="" placeholder="Search for components..">
-                                    </li>
-                                    <li>
-                                        <label for="fileselect">Images to upload:</label>
-                                        <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
-                                        <div id="filedrag">or drop files here</div>
+                        <?= $this->Form->create($newSetupEntity, ['url' => ['controller' => 'Setups', 'action' => 'add']]); ?>
+                        <fieldset style="border:0;">
+                            <?php
+                                echo $this->Form->control('title', ['id' => 'title']);
+                                echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%']);
+                                echo $this->Form->control('author');
+                                echo $this->Form->control('featured');
 
-                                        <div id="messages"></div>
-                                    </li>
-                                        <input class="float-right" type="submit">
-                                </ul>
-                            </fieldset>
-                        </form>
+                                // A hidden entry to gather the item resources
+                                echo $this->Form->control('resources', ['id' => 'resourcesInput', 'type' => 'hidden']);
+                            ?>
+<!--                             <input type="text" id="myInput" onkeyup="" placeholder="Search for components..">
+                            <label for="fileselect">Images to upload:</label>
+                            <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+                            <div id="filedrag">or drop files here</div>
+                            <div id="messages"></div> -->
+                        </fieldset>
+                        <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']) ?>
+                        <?= $this->Form->end(); ?>
+                    </form>
                 </div>
             </div>
 

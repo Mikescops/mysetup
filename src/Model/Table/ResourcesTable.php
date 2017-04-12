@@ -62,7 +62,13 @@ class ResourcesTable extends Table
             ->notEmpty('title');
 
         $validator
+            ->notEmpty('type');
+
+        $Validator
             ->notEmpty('href');
+
+        $validator
+            ->notEmpty('src');
 
         return $validator;
     }
