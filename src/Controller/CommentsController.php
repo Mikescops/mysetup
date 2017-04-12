@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Comments Controller
@@ -112,5 +113,26 @@ class CommentsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function isAuthorized($user)
+    {
+        if(isset($user))
+        {
+            if(in_array($this->request->action, ['edit', 'delete']))
+            {
+                if($this->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+                {
+                    return true;
+                }
+            }
+
+            else if($this->request->action === 'add')
+            {
+                return true;
+            }
+        }
+
+        return parent::isAuthorized($user);
     }
 }

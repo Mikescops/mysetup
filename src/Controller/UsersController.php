@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -50,13 +51,27 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            $data = $this->request->getData();
+
+            if($data['password'] === $data['password2'])
+            {
+                $user = $this->Users->patchEntity($user, $data);
+
+                if ($this->Users->save($user)) {
+                    $this->Flash->success(__('The user has been saved.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+
+            else
+            {
+                $this->Flash->error(__('These passwords do not match. Please try again.'));
+
+                return $this->redirect(['action' => 'add']);
+            }
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
@@ -109,6 +124,12 @@ class UsersController extends AppController
 
     public function login()
     {
+        if($this->request->session()->read('Auth.User.id') != null)
+        {
+            $this->Flash->warning(__('You are already logged in.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
         if($this->request->is('post'))
         {
             $user = $this->Auth->identify();
@@ -140,5 +161,27 @@ class UsersController extends AppController
             $this->Flash->warning(__('You can\'t logout because you\'re not connected.'));
             return $this->redirect('/');
         }
+    }
+
+    public function resetPassword()
+    {
+        /* TO DO ! */
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->Auth->allow(['logout', 'add', 'resetPassword', 'view']);
+    }
+
+    public function isAuthorized($user)
+    {
+        if(isset($user) && in_array($this->request->action, ['edit', 'delete', 'view']) && (int)$this->request->params['pass'][0] === $user['id'])
+        {
+            return true;
+        }
+
+        return parent::isAuthorized($user);
     }
 }

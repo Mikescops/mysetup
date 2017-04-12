@@ -178,6 +178,29 @@ class SetupsController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        // $this->Auth->allow(['index', 'view']);
+        parent::beforeFilter($event);
+
+        $this->Auth->allow(['index', 'view']);
+    }
+
+    public function isAuthorized($user)
+    {
+        if(isset($user))
+        {
+            if(in_array($this->request->action, ['edit', 'delete']))
+            {
+                if($this->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+                {
+                    return true;
+                }
+            }
+
+            else if($this->request->action === 'add')
+            {
+                return true;
+            }
+        }
+
+        return parent::isAuthorized($user);
     }
 }
