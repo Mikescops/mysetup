@@ -1,6 +1,8 @@
 <?php
 
 $this->layout = 'default';
+$this->assign('title', 'Home');
+
 ?>
 
 <div class="home_slider">
