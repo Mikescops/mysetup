@@ -102,4 +102,9 @@ class SetupsTable extends Table
 
         return $rules;
     }
+
+    public function isOwnedBy($setup_id, $user_id)
+    {
+        return $this->exists(['id' => $setup_id, 'user_id' => $user_id]);
+    }
 }
