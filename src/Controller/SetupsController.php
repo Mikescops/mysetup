@@ -76,18 +76,30 @@ class SetupsController extends AppController
             // An array in order to stock the resources temporary
             $resources = [];
 
-            // Let's check if the resources selected by the user are from amazon.com
-            foreach(explode(',', $data['resources']) as $value)
+            // "Title_1,href_1,src_1;Title_2,href_2,src_2;...,Title_n,href_n,src_n"
+            foreach(explode(';', $data['resources']) as $elements)
             {
-                $parsing = parse_url($value);
-                if(isset($parsing['host']) && strstr($parsing['host'], "amazon"))
+                $elements = explode(',', $elements);
+                if(count($elements) == 3)
                 {
+                    // Let's create a new entity to store these data !
                     $resource = $this->Setups->Resources->newEntity();
-                    $resource->user_id = null;
-                    $resource->type = 'SETUP_PRODUCT';
-                    $resource->href = $value;
 
-                    array_push($resources, $resource);
+                    // Let's parse the URls provided, in order to check their authenticity
+                    $parsing_2 = parse_url($elements[1]);
+                    $parsing_3 = parse_url($elements[2]);
+
+                    // Let's check if the resources selected by the user are from Amazon
+                    if(isset($parsing_2['host']) && strstr($parsing_2['host'], "amazon") && isset($parsing_3['host']) && strstr($parsing_3['host'], "amazon"))
+                    {
+                        $resource->user_id = null;
+                        $resource->type    = 'SETUP_PRODUCT';
+                        $resource->title   = $elements[0];
+                        $resource->href    = $elements[1];
+                        $resource->src     = $elements[2];
+
+                        array_push($resources, $resource);
+                    }
                 }
             }
 

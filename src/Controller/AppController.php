@@ -80,6 +80,11 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+
+        // Before render the view, let's give a new entity for add Setup modal to it
+        $this->loadModel('Setups');
+        $newSetupEntity = $this->Setups->newEntity();
+        $this->set(compact('newSetupEntity'));
     }
 
     public function beforeFilter(Event $event)
