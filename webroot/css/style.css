@@ -514,6 +514,124 @@ nav {
 	box-shadow: inset 0 3px 4px #888;
 }
 
+/************** LOGIN / REGISTER CSS ******************/
+
+.login-form {
+  background: #2167bd;
+  margin: 210px auto;
+  width: 500px;
+  height: 320px;
+  position: relative;
+}
+.login-form .tabs {
+  background: #328fea;
+  height: 49px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+  position: relative;
+  display: block;
+  margin-bottom: 20px;
+}
+.login-form .tabs li {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.login-form .tabs a {
+  background: #328fea;
+  display: block;
+  float: left;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 12px 22px 12px 22px;
+}
+.login-form .tabs li:last-child a {
+  border-right: none;
+  width: 174px;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+}
+.login-form .tabs a.active {
+  background: #2167bd;
+  border-right: none;
+  -webkit-transition: all 0.5s linear;
+	-moz-transition: all 0.5s linear;
+	transition: all 0.5s linear;
+}
+
+.login-form .form-action {
+  padding: 0 20px;
+  position: relative;
+}
+
+.login-form form {
+  padding-right: 20px !important;
+}
+
+.login-form form input[type=text],
+.login-form form input[type=password] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  background: #fff;
+  border: none;
+  color: #2167bd;
+  outline: none;
+}
+
+.login-form form ul{
+	list-style: none;
+}
+
+.login-form .dark-box {
+  background: #5e0400;
+  box-shadow: 1px 3px 3px #3d0100 inset;
+  height: 40px;
+  width: 50px;
+}
+.login-form .form-action .dark-box.bottom {
+  position: absolute;
+  right: 0;
+  bottom: -24px;
+}
+.login-form .tabs + .dark-box.top {
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+.login-form .show {
+  display: block;
+}
+.login-form .hide {
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  color: #2167bd;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #2167bd;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #2167bd;
+}
+
+
+
+/**********************************************************/
+/******************* RESPONSIVE PART *********************/
+/********************************************************/
+
+
+
 /* Smaller than mobile screen */
 @media (max-width: 380px) {
 
