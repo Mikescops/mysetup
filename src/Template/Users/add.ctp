@@ -25,6 +25,7 @@
                 echo $this->Form->control('name');
                 echo $this->Form->control('mail');
                 echo $this->Form->control('password');
+                echo $this->Form->control('password2');
                 echo $this->Form->control('verified');
             ?>
         </fieldset>
