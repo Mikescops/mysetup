@@ -71,14 +71,11 @@
                                 echo $this->Form->control('title', ['id' => 'title']);
                                 echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%']);
                                 echo $this->Form->control('author');
-                                echo $this->Form->control('featured');
 
                                 // A hidden entry to gather the item resources
-                                echo $this->Form->control('resources', ['id' => 'resourcesInput', 'type' => 'hidden']);
+                                echo $this->Form->control('resources', ['class' => 'hiddenInput', 'type' => 'hidden']);
                             ?>
                             <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
-
-                            <input type="text" class="hiddenInput">
 
                             <ul class="search_results"></ul>
 

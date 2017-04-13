@@ -76,18 +76,18 @@ class SetupsController extends AppController
             // An array in order to stock the resources temporary
             $resources = [];
 
-            // "Title_1,href_1,src_1;Title_2,href_2,src_2;...,Title_n,href_n,src_n"
-            foreach(explode(';', $data['resources']) as $elements)
+            // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"
+            foreach(explode(',', $data['resources']) as $elements)
             {
-                $elements = explode(',', $elements);
+                $elements = explode(';', $elements);
                 if(count($elements) == 3)
                 {
                     // Let's create a new entity to store these data !
                     $resource = $this->Setups->Resources->newEntity();
 
                     // Let's parse the URls provided, in order to check their authenticity
-                    $parsing_2 = parse_url($elements[1]);
-                    $parsing_3 = parse_url($elements[2]);
+                    $parsing_2 = parse_url(urldecode($elements[1]));
+                    $parsing_3 = parse_url(urldecode($elements[2]));
 
                     // Let's check if the resources selected by the user are from Amazon
                     if(isset($parsing_2['host']) && strstr($parsing_2['host'], "amazon") && isset($parsing_3['host']) && strstr($parsing_3['host'], "amazon"))
@@ -179,6 +179,9 @@ class SetupsController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
+
+        // Let's remove the tampering protection on the hidden `resources` field (handles by JS)
+        $this->Security->config('unlockedFields', 'resources');
 
         $this->Auth->allow(['index', 'view']);
     }
