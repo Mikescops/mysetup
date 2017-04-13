@@ -30,16 +30,16 @@
                 
                 <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mysetup_menu.png', array('alt' => 'mySetup')); ?></a>
 
-
-
             </div>
             <div class="column column-80">
                 <div class="right-nav">
                     
                     <ul>
-                        <li>
-                            <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
-                        </li>
+                        <?php if($this->request->session()->read('Auth.User.id') != null): ?>
+                            <li>
+                                <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
+                            </li>
+                        <?php endif; ?>
                         <li>
                             <a>Categories <i class="fa fa-caret-down"></i></a>
                             <ul>
@@ -49,12 +49,16 @@
                             </ul>
                         </li>
                         <li>
-                            <a>Profile <i class="fa fa-caret-down"></i></a>
-                            <ul>
-                                <li><a href="#">My Setups</a></li>
-                                <li><a href="#">Edit Profile</a></li>
-                                <li><a href="#">Logout</a></li>
-                            </ul>
+                            <?php if($this->request->session()->read('Auth.User.id') != null): ?>
+                                <a>Profile <i class="fa fa-caret-down"></i></a>
+                                <ul>
+                                    <li><a href="#">My Setups</a></li>
+                                    <li><a href="#">Edit Profile</a></li>
+                                    <li><a href="<?= $this->Url->build('/users/logout'); ?>">Logout</a></li>
+                                </ul>
+                            <?php else: ?>
+                                <a href="<?= $this->Url->build('/users/login'); ?>"><i class="fa fa-user"></i> Login</a>
+                            <?php endif; ?>
                         </li>
                     </ul>
 
@@ -96,9 +100,11 @@
             <div id="mobile-nav" class="lity-hide">
                 
                 <ul>
-                    <li>
-                        <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
-                    </li>
+                    <?php if($this->request->session()->read('Auth.User.id') != null): ?>
+                        <li>
+                            <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
+                        </li>
+                    <?php endif; ?>
                     <li>
                         <span>Categories</span>
                         <ul>
@@ -108,12 +114,16 @@
                         </ul>
                     </li>
                     <li>
-                        <span>Profile</span>
-                        <ul>
-                            <li><a href="#">My Setups</a></li>
-                            <li><a href="#">Edit Profile</a></li>
-                            <li><a href="#">Logout</a></li>
-                        </ul>
+                        <?php if($this->request->session()->read('Auth.User.id') != null): ?>
+                            <span>Profile</span>
+                            <ul>
+                                <li><a href="#">My Setups</a></li>
+                                <li><a href="#">Edit Profile</a></li>
+                                <li><a href="<?= $this->Url->build('/users/logout'); ?>">Logout</a></li>
+                            </ul>
+                        <?php else: ?>
+                            <a href="<?= $this->Url->build('/users/login'); ?>">Login</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
 
