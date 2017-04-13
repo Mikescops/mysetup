@@ -235,6 +235,10 @@ footer ul{
   	background-color: #fff;
   	display: inline-block;
   	vertical-align: middle;
+  	text-align: center;
+  	  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .item-config:before{
@@ -244,8 +248,10 @@ footer ul{
 }
 
 .item-config img{
-	width:100%;
 	vertical-align:middle;
+	position: relative; /* allows repositioning */
+    left: 100%; /* move the whole width of the image to the right */
+    margin-left: -200%; /* magic! */
 }
 
 .item-config:hover{

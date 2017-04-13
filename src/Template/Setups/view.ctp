@@ -47,7 +47,7 @@
             <div class="config-items">
 
             <?php foreach ($products as $item): ?>
-                <a href="#" target="_blank" class="item-config">
+                <a href="<?= urldecode($item->href) ?>" target="_blank" class="item-config">
                     <img src="<?= urldecode($item->src) ?>" alt="">
                 </a>
             <?php endforeach ?>
