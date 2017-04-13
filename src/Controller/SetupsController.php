@@ -42,14 +42,18 @@ class SetupsController extends AppController
             'contain' => ['Users', 'Resources', 'Comments']
         ]);
 
-        $userNames['owner'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first()['name'];
+        // List of products that we have to send to the View
+        $products = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all();
 
+        // Sets an array with the name of the owner as a first entry
+        $userNames['owner'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first()['name'];
         foreach($setup['comments'] as $comment)
         {
+            // Let's complete that array with the name of each person who postes a comment on this setup
             $userNames[$comment->user_id] = $this->Setups->Users->find()->where(['id' => $comment->user_id])->first()['name'];
         }
 
-        $this->set(compact('setup', 'userNames'));
+        $this->set(compact('setup', 'userNames', 'products'));
         $this->set('_serialize', ['setup']);
     }
 
@@ -179,9 +183,6 @@ class SetupsController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-
-        // Let's remove the tampering protection on the hidden `resources` field (handles by JS)
-        $this->Security->config('unlockedFields', 'resources');
 
         $this->Auth->allow(['index', 'view']);
     }
