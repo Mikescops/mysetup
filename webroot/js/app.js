@@ -222,11 +222,11 @@ function searchItem(query) {
       var image = $('mediumimage')
 
     }
-});}, 500);}
+});}, 500);};
 
 function addToBasket(title, url, src) {
 
-  $('.hiddenInput').val($('.hiddenInput').val() + title + ','+ url + ',' + src + ';');
+  $('.hiddenInput').val($('.hiddenInput').val() + title + ';'+ url + ';' + src + ',');
 
   $( ".search_results" ).html("");
   $( ".liveInput" ).val("");
@@ -237,11 +237,25 @@ function addToBasket(title, url, src) {
   var list = $('<li></li>');
   var img = $('<img>');
   img.attr('src', decodedSrc);
-  list.html('<p>' + decodedTitle + '</p><a onclick="deleteFromBasket('+title+')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>');
-  list.prepend(img);
+  list.html('<p>' + decodedTitle + '</p><a onclick="deleteFromBasket(\''+title+'\',this)"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>');
+  list.prepend(img);0
   $( ".basket_items" ).append(list);
-
 }
 
 
-function deleteFromBasket(title) {}
+function deleteFromBasket(title, parent) {
+
+
+  var ResearchArea = $('.hiddenInput').val();
+
+  var splitTextInput = ResearchArea.split(",");
+
+  new_arr = $.grep(splitTextInput, function(n, i){ // just use arr
+    return n.split(";")[0] != title;
+  });
+
+  $('.hiddenInput').val(new_arr);
+  
+  parent.closest('li').remove();
+
+}
