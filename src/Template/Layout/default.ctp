@@ -65,30 +65,31 @@
                 </div>
 
                 <div id="add_setup_modal" class="lity-hide">
-                        <?= $this->Form->create($newSetupEntity, ['url' => ['controller' => 'Setups', 'action' => 'add']]); ?>
-                        <fieldset style="border:0;">
-                            <?php
-                                echo $this->Form->control('title', ['id' => 'title']);
-                                echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%']);
-                                echo $this->Form->control('author');
+                    <?= $this->Form->create($newSetupEntity, ['url' => ['controller' => 'Setups', 'action' => 'add']]); ?>
+                    <fieldset style="border:0;">
+                        <?php
+                            echo $this->Form->control('title', ['id' => 'title']);
+                            echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%']);
+                            echo $this->Form->control('author');
 
-                                // A hidden entry to gather the item resources
-                                echo $this->Form->control('resources', ['class' => 'hiddenInput', 'type' => 'hidden']);
-                            ?>
-                            <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
+                            echo $this->Form->control('photo', ['type' => 'file']);
 
-                            <ul class="search_results"></ul>
+                            // A hidden entry to gather the item resources
+                            echo $this->Form->control('resources', ['class' => 'hiddenInput', 'type' => 'hidden']);
+                        ?>
+                        <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
 
-                            <ul class="basket_items"></ul>
-        <!-- 
-                            <label for="fileselect">Images to upload:</label>
-                            <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
-                            <div id="filedrag">or drop files here</div>
-                            <div id="messages"></div> -->
-                        </fieldset>
-                        <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']) ?>
-                        <?= $this->Form->end(); ?>
-                    </form>
+                        <ul class="search_results"></ul>
+
+                        <ul class="basket_items"></ul>
+    <!-- 
+                        <label for="fileselect">Images to upload:</label>
+                        <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+                        <div id="filedrag">or drop files here</div>
+                        <div id="messages"></div> -->
+                    </fieldset>
+                    <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']) ?>
+                    <?= $this->Form->end(); ?>
                 </div>
             </div>
 

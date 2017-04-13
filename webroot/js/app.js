@@ -1,3 +1,11 @@
+/*!
+ * mySetup v1.0.0
+ * https://mysetup.co
+ *
+ * Copyright (c) 2017 Corentin Mors / Samuel Forestier
+ * All rights reserved
+ */
+
 $('.home_slider').slick({
   centerMode: true,
   infinite: true,
