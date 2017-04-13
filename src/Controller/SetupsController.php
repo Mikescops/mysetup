@@ -193,7 +193,7 @@ class SetupsController extends AppController
         {
             if(in_array($this->request->action, ['edit', 'delete']))
             {
-                if($this->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+                if($this->Setups->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
                 {
                     return true;
                 }
