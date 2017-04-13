@@ -9,3 +9,7 @@
     RewriteRule    ^$    webroot/    [L]
     RewriteRule    (.*) webroot/$1    [L]
 </IfModule>
+
+
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz

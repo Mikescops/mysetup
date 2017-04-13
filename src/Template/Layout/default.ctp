@@ -28,7 +28,7 @@
         <div class="row">
             <div class="column column-20">
                 
-                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mysetup_menu.png', array('alt' => 'mySetup')); ?></a>
+                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mySetup')); ?></a>
 
             </div>
             <div class="column column-80">
@@ -168,8 +168,8 @@
                         <li><a href="https://plus.google.com/u/0/+mysetup/posts" target="_blank">Google +</a></li>
                       </ul>
                     </div>
-                    <div class="column column-25">
-                        <?php echo $this->Html->image('mysetup_menu.png', array('alt' => 'mySetup', 'class' => 'float-right')); ?>
+                    <div class="column column-25 logo_footer">
+                        <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mySetup')); ?>
                     </div>
               </div>
 
