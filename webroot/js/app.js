@@ -226,9 +226,22 @@ function searchItem(query) {
 
 function addToBasket(title, url, src) {
 
-$('.hiddenInput').val($('.hiddenInput').val() + title + ','+ url + ',' + src + ';');
+  $('.hiddenInput').val($('.hiddenInput').val() + title + ','+ url + ',' + src + ';');
 
-$( ".search_results" ).html("");
-$( ".liveInput" ).val("");
+  $( ".search_results" ).html("");
+  $( ".liveInput" ).val("");
+
+  decodedTitle = decodeURIComponent(title);
+  decodedSrc = decodeURIComponent(src);
+
+  var list = $('<li></li>');
+  var img = $('<img>');
+  img.attr('src', decodedSrc);
+  list.html('<p>' + decodedTitle + '</p><a onclick="deleteFromBasket('+title+')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>');
+  list.prepend(img);
+  $( ".basket_items" ).append(list);
 
 }
+
+
+function deleteFromBasket(title) {}

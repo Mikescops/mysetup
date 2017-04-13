@@ -81,6 +81,8 @@
                             <input type="text" class="hiddenInput">
 
                             <ul class="search_results"></ul>
+
+                            <ul class="basket_items"></ul>
         <!-- 
                             <label for="fileselect">Images to upload:</label>
                             <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
