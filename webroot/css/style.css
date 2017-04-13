@@ -227,18 +227,28 @@ footer ul{
     z-index: 8;
 }
 
-.item-config{
-	width: 25%;
+.item-config {
+	width: 23%;
 	float: left;
-	padding: 10px;
-	margin: 0;
+	margin: 1%!important;
+  	overflow:hidden;
+  	background-color: #fff;
+  	display: inline-block;
+  	vertical-align: middle;
+}
+
+.item-config:before{
+    content:'';
+    padding-top:100%; /* vertical value as  100% equals width */
+    float:left;
 }
 
 .item-config img{
-	width: 100%;
+	width:100%;
+	vertical-align:middle;
 }
 
-.item-config img:hover{
+.item-config:hover{
 	border: solid 2px #328fea;
 }
 
@@ -262,8 +272,7 @@ footer ul{
 .slick-prev{
 	position: absolute;
 	top: 45%;
-	left: -55px;
-	z-index: 5;
+	left: -50px;
 
 	display: inline-block;
 	font: normal normal normal 25px/1 FontAwesome;
@@ -283,8 +292,7 @@ footer ul{
 .slick-next{
 	position: absolute;
 	top: 45%;
-	right: -55px;
-	z-index: 5;
+	right: -50px;
 
 	display: inline-block;
 	font: normal normal normal 25px/1 FontAwesome;
@@ -801,9 +809,8 @@ nav {
 		margin: 5px 0 5px 0;
 	}
 
-
 	.item-config{
-		width: 50%;
+		width: 48%;
 	}
 
 	.comment-section .column{

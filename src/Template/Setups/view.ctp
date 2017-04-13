@@ -45,23 +45,13 @@
             <h4>My components</h4>
 
             <div class="config-items">
-                <a href="#" target="_blank" class="item-config">
-                    <img src="https://placehold.it/175x175?text=item" alt="">
-                </a>
 
-                <a href="#" class="item-config">
-                    <img src="https://placehold.it/175x175?text=item" alt="">
-                </a>                    <a href="#" class="item-config">
-                    <img src="https://placehold.it/175x175?text=item" alt="">
-                </a>                    <a href="#" class="item-config">
-                    <img src="https://placehold.it/175x175?text=item" alt="">
-                </a>                    <a href="#" class="item-config">
-                    <img src="https://placehold.it/175x175?text=item" alt="">
-                </a>                    <a href="#" class="item-config">
-                    <img src="https://placehold.it/175x175?text=item" alt="">
-                </a>                    <a href="#" class="item-config">
-                    <img src="https://placehold.it/175x175?text=item" alt="">
+            <?php foreach ($products as $item): ?>
+                <a href="#" target="_blank" class="item-config">
+                    <img src="<?= urldecode($item->src) ?>" alt="">
                 </a>
+            <?php endforeach ?>
+
             </div>
 
             <a class="button item-youtube" href="https://www.youtube.com/watch?v=rZQXp_OUp9s" data-lity>Voir la vidéo Youtube</a>
