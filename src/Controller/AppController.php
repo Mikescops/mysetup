@@ -90,6 +90,9 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         $this->Auth->deny();
+
+        // Let's remove the tampering protection on the hidden `resources` field (handles by JS)
+        $this->Security->config('unlockedFields', 'resources');
     }
 
     public function isAuthorized($user)

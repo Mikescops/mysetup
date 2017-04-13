@@ -72,9 +72,6 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        // Let's remove the tampering protection on the hidden `resources` field (handles by JS)
-        $this->Security->config('unlockedFields', 'resources');
-
         $this->Auth->allow(['display']);
     }
 }
