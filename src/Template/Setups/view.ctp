@@ -20,8 +20,15 @@
                 <p>Shared by <?= $userNames['owner'] ?></p>
 
             </div>
-
-            <div class="column column-25"></div>
+                
+                <a class="labeled_button float-right" tabindex="0">
+                  <div class="red_button">
+                    <i class="fa fa-heart"></i> Like
+                  </div>
+                  <span class="pointing_label">
+                    1,048
+                  </span>
+                </a>
 
         </div>
 
