@@ -172,3 +172,63 @@ $('.post_slider').slick({
 
 
 })();
+
+
+/* AMAZON ADD ITEM */
+
+var timer;
+
+function searchItem(query) {
+  clearTimeout(timer);
+    timer=setTimeout(function validate(){
+
+  $.ajax({
+    url: '/mysetup/amazon/index.php',
+    type: 'get',
+    data: { "q": query},
+    success: function(response) { 
+
+      $( ".search_results" ).html("");
+
+      var el = $( '<div></div>' );
+      el.html(response);
+
+      var items = $('item', el);
+
+      $.each(items,function(key, value) {
+        var list = $('<li></li>');
+
+        var mediumimage = $('mediumimage', value);
+        var attributes = $('itemattributes', value);
+        var img = $('<img>');
+        var src = $('url', mediumimage).html();
+      img.attr('src', src);
+
+      var title = $('title', attributes).html();
+      if(title.length > 48){
+          title = title.substring(0,48) + '..';
+      }
+      var url = $('detailpageurl', value).html();
+      var encodedUrl = encodeURIComponent(url);
+      var encodedTitle = encodeURIComponent(title);
+      var encodedSrc = encodeURIComponent(src);
+
+
+      list.html('<p>' + title + '</p><a onclick="addToBasket(\'' +encodedTitle+ '\', \'' +encodedUrl+ '\', \'' +encodedSrc+ '\')"><i class="fa fa-square-o" aria-hidden="true"></i></a>');
+      list.prepend(img);
+      $( ".search_results" ).append(list);
+    });
+
+      var image = $('mediumimage')
+
+    }
+});}, 500);}
+
+function addToBasket(title, url, src) {
+
+$('.hiddenInput').val($('.hiddenInput').val() + title + ','+ url + ',' + src + ';');
+
+$( ".search_results" ).html("");
+$( ".liveInput" ).val("");
+
+}

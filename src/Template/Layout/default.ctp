@@ -72,7 +72,12 @@
                                 // A hidden entry to gather the item resources
                                 echo $this->Form->control('resources', ['id' => 'resourcesInput', 'type' => 'hidden']);
                             ?>
-<!--                             <input type="text" id="myInput" onkeyup="" placeholder="Search for components..">
+                            <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
+
+                            <input type="text" class="hiddenInput">
+
+                            <ul class="search_results"></ul>
+        <!-- 
                             <label for="fileselect">Images to upload:</label>
                             <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
                             <div id="filedrag">or drop files here</div>
