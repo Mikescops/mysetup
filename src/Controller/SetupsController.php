@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Utility\Text;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 
@@ -66,8 +67,8 @@ class SetupsController extends AppController
     {
         $setup = $this->Setups->newEntity();
 
-        if ($this->request->is('post')) {
-
+        if($this->request->is('post'))
+        {
             // Let's get the data from the form
             $data = $this->request->getData();
 
@@ -79,6 +80,7 @@ class SetupsController extends AppController
 
             if($this->Setups->save($setup))
             {
+                /* Here we save each product that has been selected by the user */
                 // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"
                 foreach(explode(',', $data['resources']) as $elements)
                 {
@@ -103,6 +105,34 @@ class SetupsController extends AppController
                             $resource->src      = $elements[2];
 
                             // If the resource does not validate its rule, we rollback and throw an error...
+                            if(!$this->Setups->Resources->save($resource))
+                            {
+                                $this->Setups->delete($setup);
+                                $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
+                                return $this->redirect(['action' => 'add']);
+                            }
+                        }
+                    }
+                }
+
+                /* Here we save each gallery image uploaded */
+                foreach($data['fileselect'] as $file)
+                {
+                    if($file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
+                    {
+                        $tmp = explode('/', $file['type']);  // Thanks PHP...
+                        $destination = 'uploads/files/' . Text::uuid() . '.' . end($tmp);
+
+                        if(move_uploaded_file($file['tmp_name'], $destination))
+                        {
+                            $resource = $this->Setups->Resources->newEntity();
+                            $resource->user_id  = null;
+                            $resource->setup_id = $setup->id;
+                            $resource->type     = 'GALLERY_IMAGE';
+                            $resource->title    = null;
+                            $resource->href     = null;
+                            $resource->src      = $destination;
+
                             if(!$this->Setups->Resources->save($resource))
                             {
                                 $this->Setups->delete($setup);

@@ -98,15 +98,16 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
+        // By default, no page is allowed. Please check special authorizations in the others controller
         $this->Auth->deny();
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS)
-        $this->Security->config('unlockedFields', 'resources');
+        $this->Security->config('unlockedFields', ['resources', 'fileselect']);
     }
 
     public function isAuthorized($user)
     {
-        /* DANGEROUS PART IS JUST BELOW, TAKE THAT WITH PRECAUTION */
+        /* DANGEROUS PART IS JUST BELOW, PLEASE TAKE THAT WITH EXTREME PRECAUTION */
         if(isset($user) && $user['mail'] === 'admin@admin.admin')
         {
             return true;
