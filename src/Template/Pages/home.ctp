@@ -49,6 +49,8 @@ $this->assign('title', 'Home');
                 <a href="#">
                     <img src="https://i.ytimg.com/vi/4kBLJK4FdfQ/maxresdefault.jpg">
                 </a>
+                <div class="red_like"><i class="fa fa-heart"></i> 50</div>
+
                 <div class="fullitem-inner">
 
                     <div class="row">
@@ -62,8 +64,6 @@ $this->assign('title', 'Home');
 
                         </div>
 
-                        <div class="column column-25"></div>
-
                     </div>
                 </div>
             </div>
@@ -72,6 +72,7 @@ $this->assign('title', 'Home');
                 <a href="#">
                     <img src="https://i.ytimg.com/vi/iN_Q5i7J-Vg/maxresdefault.jpg">
                 </a>
+                <div class="red_like"><i class="fa fa-heart"></i> 6</div>
                 <div class="fullitem-inner">
 
                     <div class="row">
@@ -94,6 +95,7 @@ $this->assign('title', 'Home');
                 <a href="#">
                     <img src="https://i.ytimg.com/vi/ZelaJ5ukwGo/maxresdefault.jpg">
                 </a>
+                <div class="red_like"><i class="fa fa-heart"></i> 1684</div>
                 <div class="fullitem-inner">
 
                     <div class="row">
