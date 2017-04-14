@@ -57,6 +57,14 @@ class SetupsTable extends Table
             'dependent' => 'true',
             'cascadeCallbacks' => 'true'
         ]);
+
+         $this->addBehavior('Timestamp', [
+            'events' => [
+                'Model.beforeSave' => [
+                    'creationDate' => 'new'
+                ]
+            ]
+        ]);
     }
 
     /**

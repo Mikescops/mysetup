@@ -44,6 +44,14 @@ class CommentsTable extends Table
             'foreignKey' => 'setup_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->addBehavior('Timestamp', [
+           'events' => [
+               'Model.beforeSave' => [
+                   'dateTime' => 'new'
+               ]
+           ]
+       ]);
     }
 
     /**
