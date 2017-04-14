@@ -227,35 +227,27 @@ footer ul{
     z-index: 8;
 }
 
-.item-config {
-	width: 23%;
-	float: left;
-	margin: 1%!important;
-  	overflow:hidden;
-  	background-color: #fff;
-  	display: inline-block;
-  	vertical-align: middle;
-  	text-align: center;
-  	  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
-.item-config:before{
-    content:'';
-    padding-top:100%; /* vertical value as  100% equals width */
+.item_box {
     float:left;
+    position: relative;
+    width: 23%;
+    padding-bottom : 23%; /* = width for a 1:1 aspect ratio */
+    margin: 1%;
+    border: 3px solid #fff;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:contain; /* you change this to "contain" if you don't want the images to be cropped */
+    background-color: #fff;
 }
 
-.item-config img{
-	vertical-align:middle;
-	position: relative; /* allows repositioning */
-    left: 100%; /* move the whole width of the image to the right */
-    margin-left: -200%; /* magic! */
-}
-
-.item-config:hover{
-	border: solid 2px #328fea;
+.item_box:hover{
+	opacity: 0.9;
+	-webkit-transition: opacity .2s ease-in-out;
+	-moz-transition: opacity .2s ease-in-out;
+	-ms-transition: opacity .2s ease-in-out;
+	-o-transition: opacity .2s ease-in-out;
+	transition: opacity .2s ease-in-out;
 }
 
 .config-post .column-67{
@@ -815,8 +807,9 @@ nav {
 		margin: 5px 0 5px 0;
 	}
 
-	.item-config{
+	.item_box{
 		width: 48%;
+		padding-bottom: 48%; 
 	}
 
 	.comment-section .column{
