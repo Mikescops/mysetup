@@ -116,7 +116,7 @@ class ResourcesTable extends Table
     {
         if($entity['type'] === 'GALLERY_IMAGE')
         {
-            (new File($entity['src']))->delete());
+            (new File($entity['src']))->delete();
         }
     }
 }
