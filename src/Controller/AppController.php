@@ -101,8 +101,8 @@ class AppController extends Controller
         // By default, no page is allowed. Please check special authorizations in the others controller
         $this->Auth->deny();
 
-        // Let's remove the tampering protection on the hidden `resources` field (handled by JS)
-        $this->Security->config('unlockedFields', ['resources', 'fileselect']);
+        // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
+        $this->Security->config('unlockedFields', ['resources', 'featuredImage', 'fileselect']);
     }
 
     public function isAuthorized($user)

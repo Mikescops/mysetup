@@ -73,10 +73,8 @@
                             echo $this->Form->control('title', ['id' => 'title']);
                             echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%']);
                             echo $this->Form->control('author');
-                        ?>
-                        <label for="fileselect">Images to upload (up to 5 MB per image):</label>
-                        <?php
-                            echo $this->Form->input('fileselect. ', ['type' => 'file', 'multiple']);
+                            echo $this->Form->input('featuredImage. ', ['type' => 'file', 'label' => 'Featured image']);
+                            echo $this->Form->input('fileselect. ', ['type' => 'file', 'multiple', 'label' => 'Images to upload (up to 5 items, and 5 MB per image):']);
                         ?>
                         <div id="filedrag">or drop files here</div>
                         <div id="messages"></div>

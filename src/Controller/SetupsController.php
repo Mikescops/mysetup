@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Utility\Text;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 
@@ -84,65 +83,22 @@ class SetupsController extends AppController
             if($this->Setups->save($setup))
             {
                 /* Here we save each product that has been selected by the user */
-                // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"
-                foreach(explode(',', $data['resources']) as $elements)
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup);
+
+                /* Here we get and save the featured image */
+                if(isset($data['featuredImage'][0]))
                 {
-                    $elements = explode(';', $elements);
-                    if(count($elements) == 3)
-                    {
-                        // Let's create a new entity to store these data !
-                        $resource = $this->Setups->Resources->newEntity();
-
-                        // Let's parse the URls provided, in order to check their authenticity
-                        $parsing_2 = parse_url(urldecode($elements[1]));
-                        $parsing_3 = parse_url(urldecode($elements[2]));
-
-                        // Let's check if the resources selected by the user are from Amazon
-                        if(isset($parsing_2['host']) && strstr($parsing_2['host'], "amazon") && isset($parsing_3['host']) && strstr($parsing_3['host'], "amazon"))
-                        {
-                            $resource->user_id  = null;
-                            $resource->setup_id = $setup->id;
-                            $resource->type     = 'SETUP_PRODUCT';
-                            $resource->title    = $elements[0];
-                            $resource->href     = $elements[1];
-                            $resource->src      = $elements[2];
-
-                            // If the resource does not validate its rule, we rollback and throw an error...
-                            if(!$this->Setups->Resources->save($resource))
-                            {
-                                $this->Setups->delete($setup);
-                                $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
-                                return $this->redirect(['action' => 'add']);
-                            }
-                        }
-                    }
+                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'FEATURED_IMAGE');
                 }
 
                 /* Here we save each gallery image uploaded */
+                $i = 0;
                 foreach($data['fileselect'] as $file)
                 {
-                    if($file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
+                    $this->Setups->Resources->saveResourceImage($file, $setup, 'GALLERY_IMAGE');
+                    if(++$i === 5)
                     {
-                        $tmp = explode('/', $file['type']);  // Thanks PHP...
-                        $destination = 'uploads/files/' . Text::uuid() . '.' . end($tmp);
-
-                        if(move_uploaded_file($file['tmp_name'], $destination))
-                        {
-                            $resource = $this->Setups->Resources->newEntity();
-                            $resource->user_id  = null;
-                            $resource->setup_id = $setup->id;
-                            $resource->type     = 'GALLERY_IMAGE';
-                            $resource->title    = null;
-                            $resource->href     = null;
-                            $resource->src      = $destination;
-
-                            if(!$this->Setups->Resources->save($resource))
-                            {
-                                $this->Setups->delete($setup);
-                                $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
-                                return $this->redirect(['action' => 'add']);
-                            }
-                        }
+                        break;
                     }
                 }
 

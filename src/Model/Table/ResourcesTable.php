@@ -8,6 +8,7 @@ use Cake\Validation\Validator;
 use Cake\Filesystem\File;
 use Cake\Event\Event;
 use Cake\Datasource\EntityInterface;
+use Cake\Utility\Text;
 
 /**
  * Resources Model
@@ -117,6 +118,70 @@ class ResourcesTable extends Table
         if($entity['type'] === 'GALLERY_IMAGE')
         {
             (new File($entity['src']))->delete();
+        }
+    }
+
+    public function saveResourceProducts($products, $setup)
+    {
+        // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"
+        foreach(explode(',', $products) as $elements)
+        {
+            $elements = explode(';', $elements);
+            if(count($elements) == 3)
+            {
+                // Let's create a new entity to store these data !
+                $resource = $this->newEntity();
+
+                // Let's parse the URls provided, in order to check their authenticity
+                $parsing_2 = parse_url(urldecode($elements[1]));
+                $parsing_3 = parse_url(urldecode($elements[2]));
+
+                // Let's check if the resources selected by the user are from Amazon
+                if(isset($parsing_2['host']) && strstr($parsing_2['host'], "amazon") && isset($parsing_3['host']) && strstr($parsing_3['host'], "amazon"))
+                {
+                    $resource->user_id  = null;
+                    $resource->setup_id = $setup->id;
+                    $resource->type     = 'SETUP_PRODUCT';
+                    $resource->title    = $elements[0];
+                    $resource->href     = $elements[1];
+                    $resource->src      = $elements[2];
+
+                    // If the resource does not validate its rule, we rollback and throw an error...
+                    if(!$this->save($resource))
+                    {
+                        $this->Setups->delete($setup);
+                        $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
+                        return $this->redirect(['action' => 'add']);
+                    }
+                }
+            }
+        }
+    }
+
+    public function saveResourceImage($file, $setup, $type)
+    {
+        if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
+        {
+            $tmp = explode('/', $file['type']);  // Thanks PHP for that useless variable...
+            $destination = 'uploads/files/' . Text::uuid() . '.' . end($tmp);
+
+            if(move_uploaded_file($file['tmp_name'], $destination))
+            {
+                $resource = $this->newEntity();
+                $resource->user_id  = null;
+                $resource->setup_id = $setup->id;
+                $resource->type     = $type;
+                $resource->title    = null;
+                $resource->href     = null;
+                $resource->src      = $destination;
+
+                if(!$this->save($resource))
+                {
+                    $this->Setups->delete($setup);
+                    $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
+                    return $this->redirect(['action' => 'add']);
+                }
+            }
         }
     }
 }
