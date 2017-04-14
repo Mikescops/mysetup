@@ -60,7 +60,7 @@
 
             <?= $this->Text->autoParagraph(h($setup->description)); ?>
 
-            <p>Created : <?= h($setup->creationDate) ?></p>
+            <p>Published on : <?= h($setup->creationDate) ?><br>Setup owner : <?= $setup->author ?></p>
 
             <div class="social-networks">
                 <a href="#" class="button button-clear"><i class="fa fa-facebook fa-2x"></i></a>
