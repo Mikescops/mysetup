@@ -84,14 +84,23 @@ class AppController extends Controller
         // Before render the view, let's give a new entity for add Setup modal to it
         $this->loadModel('Setups');
         $newSetupEntity = $this->Setups->newEntity();
-        $this->set(compact('newSetupEntity'));
+
+        // We'll pass to the view a big array with setup_id as key, and number of likes as value
+        $likes = null;
+        $this->loadModel('Likes');
+        foreach($this->Setups->find()->all() as $setup)
+        {
+            $likes[$setup['id']] = $this->Likes->find()->where(['setup_id' => $setup['id']])->count();
+        }
+
+        $this->set(compact('newSetupEntity', 'likes'));
     }
 
     public function beforeFilter(Event $event)
     {
         $this->Auth->deny();
 
-        // Let's remove the tampering protection on the hidden `resources` field (handles by JS)
+        // Let's remove the tampering protection on the hidden `resources` field (handled by JS)
         $this->Security->config('unlockedFields', 'resources');
     }
 
