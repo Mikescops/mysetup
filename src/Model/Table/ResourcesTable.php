@@ -5,6 +5,9 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Filesystem\File;
+use Cake\Event\Event;
+use Cake\Datasource\EntityInterface;
 
 /**
  * Resources Model
@@ -107,5 +110,13 @@ class ResourcesTable extends Table
             'foreignKey_rule');
 
         return $rules;
+    }
+
+    public function beforeDelete(Event $event, EntityInterface $entity)
+    {
+        if($entity['type'] === 'GALLERY_IMAGE')
+        {
+            (new File($entity['src']))->delete());
+        }
     }
 }
