@@ -91,6 +91,32 @@ footer ul{
 	color: #328fea;
 }
 
+.hidden{
+	display: none;
+}
+
+.message{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 5px 0px 5px 14px;
+	z-index: 555;
+	cursor: pointer;
+}
+
+.message i{
+	padding: 5px;
+	margin-right: 10px;
+}
+
+.message.success{
+	background-color: #005f84;
+}
+
+.message.error{
+	background-color: #db2828;
+}
+
  /*********** INDEX CSS ***********/
 
 .home_slider .slider-item{

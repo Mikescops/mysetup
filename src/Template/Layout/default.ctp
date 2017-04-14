@@ -24,6 +24,8 @@
     <?= $this->fetch('script') ?>
 </head>
 <body>
+    <?= $this->Flash->render() ?>
+
     <nav class="heavy-nav">
         <div class="row">
             <div class="column column-20">
