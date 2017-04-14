@@ -42,8 +42,6 @@
     <div class="row config-post">
         <div class="column column-67">
 
-            <h4>My components</h4>
-
             <div class="config-items">
 
             <?php foreach ($products as $item): ?>
@@ -56,12 +54,8 @@
 
             </div>
 
-            <a class="button item-youtube" href="https://www.youtube.com/watch?v=rZQXp_OUp9s" data-lity>Voir la vidéo Youtube</a>
-
         </div>
         <div class="column column-33 item-meta">
-
-            <h4>Description</h4>
 
             <?= $this->Text->autoParagraph(h($setup->description)); ?>
 
@@ -73,11 +67,13 @@
                 <a href="#" class="button button-clear"><i class="fa fa-youtube fa-2x"></i></a>
             </div>
 
+            <a class="button item-youtube" href="https://www.youtube.com/watch?v=rZQXp_OUp9s" data-lity>Voir la vidéo Youtube</a>
+
+
         </div>
     </div>
 
-    <br><br><br>
-    <h4>Gallery</h4>
+    <br>
 
     <div class="post_slider">
         
@@ -158,37 +154,4 @@
 
     </div>
 
-</div>
-
-<div class="setups view large-9 medium-8 columns content">
-
-    <div class="related">
-        <h4><?= __('Related Resources') ?></h4>
-        <?php if (!empty($setup->resources)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Setup Id') ?></th>
-                <th scope="col"><?= __('Title') ?></th>
-                <th scope="col"><?= __('Href') ?></th>
-                <th scope="col"><?= __('Type') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($setup->resources as $resources): ?>
-            <tr>
-                <td><?= h($resources->id) ?></td>
-                <td><?= h($resources->setup_id) ?></td>
-                <td><?= h($resources->title) ?></td>
-                <td><?= h($resources->href) ?></td>
-                <td><?= h($resources->type) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Resources', 'action' => 'view', $resources->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Resources', 'action' => 'edit', $resources->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Resources', 'action' => 'delete', $resources->id], ['confirm' => __('Are you sure you want to delete # {0}?', $resources->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
 </div>

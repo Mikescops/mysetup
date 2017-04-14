@@ -9,35 +9,31 @@ $this->assign('title', 'Home');
             
     <div class="slider-item">
         <a href="post.html"><img src="https://i.ytimg.com/vi/iN_Q5i7J-Vg/maxresdefault.jpg"></a>
-        <div class="slider-item-inner">
-                    <a class="featured-user" href="user.html">
-                        <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
-                    </a>
-        </div>
+        <a class="slider-item-inner featured-user" href="user.html">
+            <img src="https://horlogeskynet.github.io/img/portrait.jpg">
+        </a>
+        <div class="red_like"><i class="fa fa-heart"></i> 2</div>
     </div>
     <div class="slider-item">
         <a href="post.html"><img src="https://i.ytimg.com/vi/4kBLJK4FdfQ/maxresdefault.jpg"></a>
-        <div class="slider-item-inner">
-                    <a class="featured-user" href="user.html">
-                        <img src="https://horlogeskynet.github.io/img/portrait.jpg">
-                    </a>
-        </div>
+        <a class="slider-item-inner featured-user" href="user.html">
+            <img src="https://horlogeskynet.github.io/img/portrait.jpg">
+        </a>
+        <div class="red_like"><i class="fa fa-heart"></i> 1553</div>
     </div>
     <div class="slider-item">
         <a href="post.html"><img src="https://i.ytimg.com/vi/ZelaJ5ukwGo/maxresdefault.jpg"></a>
-        <div class="slider-item-inner">
-                    <a class="featured-user" href="user.html">
-                        <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
-                    </a>
-        </div>
+        <a class="slider-item-inner featured-user" href="user.html">
+            <img src="https://horlogeskynet.github.io/img/portrait.jpg">
+        </a>
+        <div class="red_like"><i class="fa fa-heart"></i> 50</div>
     </div>
     <div class="slider-item">
         <a href="post.html"><img src="https://i.ytimg.com/vi/4kBLJK4FdfQ/maxresdefault.jpg"></a>
-        <div class="slider-item-inner">
-                    <a class="featured-user" href="user.html">
-                        <img src="https://horlogeskynet.github.io/img/portrait.jpg">
-                    </a>
-        </div>
+        <a class="slider-item-inner featured-user" href="user.html">
+            <img src="https://horlogeskynet.github.io/img/portrait.jpg">
+        </a>
+        <div class="red_like"><i class="fa fa-heart"></i> 38</div>
     </div>
 
     </div>

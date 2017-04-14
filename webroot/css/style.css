@@ -59,9 +59,7 @@ body{
 }
 
 .maincontainer{
-	margin-top: 50px;
-/*	border-radius: 6px;
-	border: solid 1px #FFF;*/
+	margin-top: 40px;
 }
 
 footer{
@@ -98,7 +96,6 @@ footer ul{
 }
 
 .home_slider .slider-item-inner{
-	height: 80px;
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -112,6 +109,20 @@ footer ul{
 	border-radius: 100%;
 	float: left;
 	border: solid 2px #328fea;
+	box-shadow: 0 0 15px rgba(0,0,0,.55);
+	-moz-box-shadow: 0 0 15px rgba(0,0,0,.55);
+	-webkit-box-shadow: 0 0 15px rgba(0,0,0,.55);
+}
+
+.red_like{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 10px;
+	z-index: 9;
+	background-color: red;
+	border-radius: 4px;
+	padding: 5px 10px 5px 10px;
 	box-shadow: 0 0 15px rgba(0,0,0,.55);
 	-moz-box-shadow: 0 0 15px rgba(0,0,0,.55);
 	-webkit-box-shadow: 0 0 15px rgba(0,0,0,.55);
@@ -250,14 +261,11 @@ footer ul{
 	transition: opacity .2s ease-in-out;
 }
 
-.config-post .column-67{
+.config-post .column{
 	position: relative;
 }
 
 .item-youtube{
-	position: absolute;
-	bottom: -50px;
-	left: 0;
 	width: 100%;
 }
 
@@ -752,6 +760,10 @@ nav {
 
 /* Smaller than mobile screen */
 @media (max-width: 450px) {
+
+	.red_like{
+		display: none;	
+	}
 
 }
 
