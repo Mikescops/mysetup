@@ -17,7 +17,8 @@
                 </a>
 
                 <h3><?= $setup->title ?></h3>
-                <p>Shared by <?= $userNames['owner'] ?> <i class="fa fa-check-square verified_account"></i></p>
+
+                <p>Shared by <?= $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]) ?>  <?php if($additionalData['owner']['verified']): echo '<i class="fa fa-check-square verified_account"></i>'; endif; ?></p>
 
             </div>
                 
@@ -134,7 +135,7 @@
                     <div class="text">
                       <p><?= h($comments->content) ?></p>
                     </div>
-                    <p class="attribution">by <a href="#non"><?= h($userNames[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
+                    <p class="attribution">by <a href="#non"><?= h($additionalData[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
                 </div>
             </article>
 
