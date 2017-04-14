@@ -2,7 +2,7 @@
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
 
-$this->layout = 'error';
+$this->layout = 'default';
 
 if (Configure::read('debug')):
     $this->layout = 'dev_error';
@@ -36,8 +36,13 @@ if (Configure::read('debug')):
     $this->end();
 endif;
 ?>
-<h2><?= __d('cake', 'An Internal Error Has Occurred') ?></h2>
-<p class="error">
-    <strong><?= __d('cake', 'Error') ?>: </strong>
-    <?= h($message) ?>
-</p>
+
+<div class="maincontainer">
+    <h2><?= __d('cake', 'An Internal Error Has Occurred :(') ?></h2>
+    <p class="error">
+        <strong><?= __d('cake', 'Error') ?>: </strong>
+        <?= h($message) ?><br>
+
+        You may cry or call an <a href="mailto:alert@mysetup.co">ambulance</a> !
+    </p>
+</div>
