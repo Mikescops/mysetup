@@ -5,7 +5,7 @@
 ?>
 <div class="featured-container">
 
-    <img width="1120" src="https://i.ytimg.com/vi/4kBLJK4FdfQ/maxresdefault.jpg" alt="">
+    <img width="1120" src="<?= $this->Url->build('/', true)?><?php foreach ($fimage as $key) { echo $key->src;break;} ?>" alt="<?= $setup->title ?>">
 
     <div class="featured-inner">
 
@@ -77,17 +77,15 @@
     <br>
 
     <div class="post_slider">
-        
-        <div class="slider-item">
         <?php foreach ($gallery as $image): ?>
+        <div class="slider-item">
             <div class="slider-item-inner">
                 <a href="<?= $this->Url->build('/', true)?><?= $image->src ?>" data-lity data-lity-desc="Photo of Config'">
                     <img width="1120" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
                 </a>
             </div>
-        <?php endforeach ?>
         </div>
-
+        <?php endforeach ?>
     </div>
 
     <div class="row comment-section">
