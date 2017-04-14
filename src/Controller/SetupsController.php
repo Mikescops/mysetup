@@ -71,6 +71,9 @@ class SetupsController extends AppController
             // Let's get the data from the form
             $data = $this->request->getData();
 
+            // Let's set the id of the current logged in user 
+            $data['user_id'] = $this->request->session()->read('Auth.User.id');
+
             // Classical patch entity operation
             $setup = $this->Setups->patchEntity($setup, $data);
 

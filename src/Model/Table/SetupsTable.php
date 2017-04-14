@@ -41,7 +41,13 @@ class SetupsTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
         ]);
+
         $this->hasMany('Comments', [
+            'foreignKey' => 'setup_id',
+            'dependent' => 'true',
+            'cascadeCallbacks' => 'true'
+        ]);
+        $this->hasMany('Likes', [
             'foreignKey' => 'setup_id',
             'dependent' => 'true',
             'cascadeCallbacks' => 'true'

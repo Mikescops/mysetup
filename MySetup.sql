@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 12, 2017 at 11:56 AM
+-- Generation Time: Apr 14, 2017 at 11:51 AM
 -- Server version: 5.6.30-1
 -- PHP Version: 7.0.16-3
 
@@ -37,6 +37,18 @@ CREATE TABLE `comments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `likes`
+--
+
+CREATE TABLE `likes` (
+  `id` int(11) NOT NULL,
+  `setup_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pages`
 --
 
@@ -57,7 +69,7 @@ CREATE TABLE `resources` (
   `user_id` int(11) DEFAULT NULL,
   `setup_id` int(11) DEFAULT NULL,
   `type` varchar(255) COLLATE utf8_bin NOT NULL,
-  `title` varchar(255) COLLATE utf8_bin NOT NULL,
+  `title` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `href` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `src` varchar(255) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -71,12 +83,11 @@ CREATE TABLE `resources` (
 CREATE TABLE `setups` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_bin NOT NULL,
   `description` text COLLATE utf8_bin,
-  `author` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `counter` int(11) NOT NULL,
+  `author` varchar(255) COLLATE utf8_bin NOT NULL,
   `featured` tinyint(1) NOT NULL,
-  `creationDate` date DEFAULT NULL
+  `creationDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -101,6 +112,12 @@ CREATE TABLE `users` (
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `likes`
+--
+ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -138,6 +155,11 @@ ALTER TABLE `users`
 ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
@@ -151,12 +173,12 @@ ALTER TABLE `resources`
 -- AUTO_INCREMENT for table `setups`
 --
 ALTER TABLE `setups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

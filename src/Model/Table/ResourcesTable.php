@@ -59,16 +59,16 @@ class ResourcesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->notEmpty('title');
-
-        $validator
             ->notEmpty('type');
 
+        $validator
+            ->allowEmpty('title');
+
         $Validator
-            ->notEmpty('href');
+            ->allowEmpty('href');
 
         $validator
-            ->notEmpty('src');
+            ->allowEmpty('src');
 
         return $validator;
     }
