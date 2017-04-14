@@ -79,42 +79,14 @@
     <div class="post_slider">
         
         <div class="slider-item">
+        <?php foreach ($gallery as $image): ?>
             <div class="slider-item-inner">
-                <a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
-                    <img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
+                <a href="<?= $this->Url->build('/', true)?><?= $image->src ?>" data-lity data-lity-desc="Photo of Config'">
+                    <img width="1120" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
                 </a>
             </div>
+        <?php endforeach ?>
         </div>
-
-        <div class="slider-item">
-            <div class="slider-item-inner">
-                <a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
-                    <img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
-                </a>
-            </div>
-        </div>
-        <div class="slider-item">
-            <div class="slider-item-inner">
-                <a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
-                    <img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
-                </a>
-            </div>
-        </div>
-        <div class="slider-item">
-            <div class="slider-item-inner">
-                <a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
-                    <img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
-                </a>
-            </div>
-        </div>
-        <div class="slider-item">
-            <div class="slider-item-inner">
-                <a href="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg" data-lity data-lity-desc="Photo of Config'">
-                    <img width="1120" src="https://i.ytimg.com/vi/GGYlBDdSpvg/maxresdefault.jpg">
-                </a>
-            </div>
-        </div>
-
 
     </div>
 

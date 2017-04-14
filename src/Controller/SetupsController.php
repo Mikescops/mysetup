@@ -46,6 +46,9 @@ class SetupsController extends AppController
         // List of products that we have to send to the View
         $products = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all();
 
+        // List of images that we have to send to the View
+        $gallery = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'GALLERY_IMAGE'])->all();
+
         // Sets an array with the name of the owner as a first entry, and its profile validation status
         $additionalData['owner'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first();
         foreach($setup['comments'] as $comment)
@@ -54,7 +57,7 @@ class SetupsController extends AppController
             $additionalData[$comment->user_id] = $this->Setups->Users->find()->where(['id' => $comment->user_id])->first()['name'];
         }
 
-        $this->set(compact('setup', 'additionalData', 'products'));
+        $this->set(compact('setup', 'additionalData', 'products', 'gallery'));
         $this->set('_serialize', ['setup']);
     }
 
