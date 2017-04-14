@@ -17,7 +17,7 @@
                 </a>
 
                 <h3><?= $setup->title ?></h3>
-                <p>Shared by <?= $userNames['owner'] ?></p>
+                <p>Shared by <?= $userNames['owner'] ?> <i class="fa fa-check-square verified_account"></i></p>
 
             </div>
                 

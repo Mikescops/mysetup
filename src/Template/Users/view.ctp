@@ -3,21 +3,68 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Resources'), ['controller' => 'Resources', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Resource'), ['controller' => 'Resources', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Setups'), ['controller' => 'Setups', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Setup'), ['controller' => 'Setups', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
+
+<div class="maincontainer">
+
+    <div class="row">
+        <div class="column column-75">
+
+            <h3>User's setups</h3>
+
+            <div class="fullitem">
+                <a href="#">
+                    <img src="https://i.ytimg.com/vi/iN_Q5i7J-Vg/maxresdefault.jpg">
+                </a>
+                <div class="red_like"><i class="fa fa-heart"></i> 6</div>
+                <div class="fullitem-inner">
+
+                    <div class="row">
+
+                        <div class="column column-75">
+                            <a class="featured-user" href="#">
+                                <img src="https://horlogeskynet.github.io/img/portrait.jpg">
+                            </a>
+
+                            <a href="post.html"><h3>Un setup de folie !!</h3></a>
+
+                        </div>
+
+                        <div class="column column-25"></div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="column column-25 sidebar">
+
+            <ul class="side-nav">
+                <li class="heading"><?= __('Actions') ?></li>
+                <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id]) ?> </li>
+                <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
+                <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
+                <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
+                <li><?= $this->Html->link(__('List Resources'), ['controller' => 'Resources', 'action' => 'index']) ?> </li>
+                <li><?= $this->Html->link(__('New Resource'), ['controller' => 'Resources', 'action' => 'add']) ?> </li>
+                <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?> </li>
+                <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?> </li>
+                <li><?= $this->Html->link(__('List Setups'), ['controller' => 'Setups', 'action' => 'index']) ?> </li>
+                <li><?= $this->Html->link(__('New Setup'), ['controller' => 'Setups', 'action' => 'add']) ?> </li>
+            </ul>
+
+            <h4>Nos réseaux sociaux</h4>
+
+            <div class="social-networks">
+                <a href="#" class="button button-clear"><i class="fa fa-facebook fa-2x"></i></a>
+                <a href="#" class="button button-clear"><i class="fa fa-twitter fa-2x"></i></a>
+                <a href="#" class="button button-clear"><i class="fa fa-youtube fa-2x"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
 <div class="users view large-9 medium-8 columns content">
     <h3><?= h($user->name) ?></h3>
     <table class="vertical-table">

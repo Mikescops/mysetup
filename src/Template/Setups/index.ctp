@@ -5,60 +5,60 @@
 ?>
 <div class="maincontainer">
 
-            <div class="row">
-                <div class="column column-75">
+    <div class="row">
+        <div class="column column-75">
 
-                    <h3>Latest setups</h3>
+            <h3>Latest setups</h3>
 
-                    <div class="fullitem">
-                        <a href="#">
-                            <img src="https://i.ytimg.com/vi/4kBLJK4FdfQ/maxresdefault.jpg">
-                        </a>
-                        <div class="fullitem-inner">
+            <div class="fullitem">
+                <a href="#">
+                    <img src="https://i.ytimg.com/vi/4kBLJK4FdfQ/maxresdefault.jpg">
+                </a>
+                <div class="fullitem-inner">
 
-                            <div class="row">
+                    <div class="row">
 
-                                <div class="column column-75">
-                                    <a class="featured-user" href="#">
-                                        <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
-                                    </a>
+                        <div class="column column-75">
+                            <a class="featured-user" href="#">
+                                <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
+                            </a>
 
-                                    <a href="post.html"><h3>Ma config perso #1</h3></a>
+                            <a href="post.html"><h3>Ma config perso #1</h3></a>
 
-                                </div>
-
-                                <div class="column column-25"></div>
-
-                            </div>
                         </div>
+
+                        <div class="column column-25"></div>
+
                     </div>
-
-                </div>
-                <div class="column column-25 sidebar">
-
-                        <ul class="side-nav">
-                            <li class="heading"><?= __('Actions') ?></li>
-                            <li><?= $this->Html->link(__('New Setup'), ['action' => 'add']) ?></li>
-                            <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-                            <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-                            <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
-                            <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
-                            <li><?= $this->Html->link(__('List Resources'), ['controller' => 'Resources', 'action' => 'index']) ?></li>
-                            <li><?= $this->Html->link(__('New Resource'), ['controller' => 'Resources', 'action' => 'add']) ?></li>
-                        </ul>
-
-                    <h4>Nos réseaux sociaux</h4>
-
-                    <div class="social-networks">
-                        <a href="#" class="button button-clear"><i class="fa fa-facebook fa-2x"></i></a>
-                        <a href="#" class="button button-clear"><i class="fa fa-twitter fa-2x"></i></a>
-                        <a href="#" class="button button-clear"><i class="fa fa-youtube fa-2x"></i></a>
-                    </div>
-
                 </div>
             </div>
 
         </div>
+        <div class="column column-25 sidebar">
+
+            <ul class="side-nav">
+                <li class="heading"><?= __('Actions') ?></li>
+                <li><?= $this->Html->link(__('New Setup'), ['action' => 'add']) ?></li>
+                <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+                <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+                <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
+                <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
+                <li><?= $this->Html->link(__('List Resources'), ['controller' => 'Resources', 'action' => 'index']) ?></li>
+                <li><?= $this->Html->link(__('New Resource'), ['controller' => 'Resources', 'action' => 'add']) ?></li>
+            </ul>
+
+            <h4>Nos réseaux sociaux</h4>
+
+            <div class="social-networks">
+                <a href="#" class="button button-clear"><i class="fa fa-facebook fa-2x"></i></a>
+                <a href="#" class="button button-clear"><i class="fa fa-twitter fa-2x"></i></a>
+                <a href="#" class="button button-clear"><i class="fa fa-youtube fa-2x"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 <div class="setups index large-9 medium-8 columns content">
     <h3><?= __('Setups') ?></h3>
