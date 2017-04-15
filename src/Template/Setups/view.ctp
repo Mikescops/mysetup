@@ -56,6 +56,7 @@
             </div>
 
         </div>
+        
         <div class="column column-33 item-meta">
 
             <?= $this->Text->autoParagraph(h($setup->description)); ?>
@@ -68,9 +69,7 @@
                 <a href="#" class="button button-clear"><i class="fa fa-youtube fa-2x"></i></a>
             </div>
 
-            <a class="button item-youtube" href="https://www.youtube.com/watch?v=rZQXp_OUp9s" data-lity>Voir la vidéo Youtube</a>
-
-
+            <a class="button item-youtube" href="<?php foreach ($video as $key) { echo $key->src;break;} ?>" data-lity>Voir la vidéo Youtube</a>
         </div>
     </div>
 

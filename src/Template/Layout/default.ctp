@@ -153,24 +153,24 @@
                     <div class="column column-25">
                       <div class="footer-title">About us</div>
                       <ul>
-                        <li><a href="#" target="_blank" class="item">Github</a></li>
-                        <li><a href="#" target="_blank">Bolt CMS</a></li>
-                        <li><a href="#" target="_blank">Uzzy.me</a></li>
+                        <li><a href="#" target="_blank" class="item">Our story</a></li>
+                        <li><a href="#" target="_blank">Our team</a></li>
+                        <li><a href="#" target="_blank">Legals</a></li>
                       </ul>
                     </div>
                     <div class="column column-25">
                       <div class="footer-title">Social</div>
                       <ul>
-                        <li><a href="https://twitter.com/mysetup" target="_blank" class="item">Twitter</a></li>
-                        <li><a href="https://fr.linkedin.com/in/mysetup" target="_blank">LinkedIn</a></li>
-                        <li><a href="https://plus.google.com/u/0/+mysetup/posts" target="_blank">Google +</a></li>
+                        <li><a href="https://twitter.com/mysetup_co" target="_blank" class="item">Twitter</a></li>
+                        <li><a href="https://www.facebook.com/mysetup.co" target="_blank">Facebook</a></li>
+                        <li><a href="https://geeks.one/@mysetup_co" target="_blank">Mastodon</a></li>
                       </ul>
                     </div>
                     <div class="column column-25 logo_footer">
                         <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mySetup')); ?>
+                        <p>All rights reserved mySetup.co © 2017</p>
                     </div>
               </div>
-
           </div>
     </footer>
 
