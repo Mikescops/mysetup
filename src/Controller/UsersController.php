@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Mailer\Email;
 use Cake\Event\Event;
 
 /**
@@ -61,9 +62,11 @@ class UsersController extends AppController
                 if ($this->Users->save($user)) {
                     $this->Flash->success(__('The user has been saved.'));
 
-                    return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['action' => 'login']);
                 }
+
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                return $this->redirect(['action' => 'add']);
             }
 
             else
@@ -165,7 +168,47 @@ class UsersController extends AppController
 
     public function resetPassword()
     {
-        /* TO DO ! */
+        $data = $this->request->getData();
+
+        if($data['mailReset'] !== '')
+        {
+            $user = $this->Users->find()->where(['mail' => $data['mailReset']])->first();
+
+            if($user)
+            {
+                // Let's generate a new random password, and send it to the email address specified
+                $user->password = substr(md5(rand()), 0, 16);
+                if($this->Users->save($user))
+                {
+                    $email = new Email('default');
+                    $email->setFrom(['support@mysetup.co' => 'MySetup.co'])
+                        ->setTo($data['mailReset'])
+                        ->setSubject("You password has been reseted !")
+                        ->send("Your password has been reseted and set to: " . $user->password . "<br />Please log in and change it as soon as possible !");
+
+                    $this->Flash->success(__("An email has been sent to this email address !"));
+                    return $this->redirect(['action' => 'login']);
+                }
+
+                else
+                {
+                    $this->Flash->error(__("Internal error, please try again."));
+                    return $this->redirect(['action' => 'login']);
+                }
+            }
+
+            else
+            {
+                $this->Flash->error(__("This email address does not exist in our database. Are you sure you that you have an account ?"));
+                return $this->redirect(['action' => 'login']);
+            }
+        }
+
+        else
+        {
+            $this->Flash->error(__("Internal error, please try again."));
+            return $this->redirect(['action' => 'login']);
+        }
     }
 
     public function beforeFilter(Event $event)

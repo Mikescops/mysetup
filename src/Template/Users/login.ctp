@@ -62,18 +62,19 @@
         <fieldset>
             <h3>Reset Password</h3>
             <div>
-                To reset your password enter your email and we'll send you a link to reset your password.
+                To reset your password enter your email and we'll send you a new temporary password.
             </div>
             <br>
             <ul>
                 <li>
-                    <?= $this->Form->control('mail', ['placeholder' => 'Email address', 'label' => false, 'type' => 'text']) ?>
+                    <?= $this->Form->control('mailReset', ['placeholder' => 'Email address', 'label' => false, 'type' => 'text', 'required' => true]) ?>
                 </li>
                 <li>
                     <?= $this->Form->button(__('Send'), ['class' => 'button']); ?>
                 </li>
             </ul>
         </fieldset>
+        <?= $this->Form->end() ?>
     </div>
     <!--/#register.form-action-->
 </div>
