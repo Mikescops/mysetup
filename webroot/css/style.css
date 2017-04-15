@@ -117,6 +117,10 @@ footer ul{
 	background-color: #db2828;
 }
 
+.message.warning{
+	background-color: #f05408;
+}
+
  /*********** INDEX CSS ***********/
 
 .home_slider .slider-item{

@@ -117,7 +117,10 @@ class ResourcesTable extends Table
     {
         if($entity['type'] === 'SETUP_GALLERY_IMAGE' or $entity['type'] === 'SETUP_FEATURED_IMAGE')
         {
-            (new File($entity['src']))->delete();
+            if(!(new File($entity['src']))->delete())
+            {
+                $this->Flash->warning(__("An image of your setup could not be removed as well... Please contact an administrator."));
+            }
         }
     }
 
@@ -154,6 +157,11 @@ class ResourcesTable extends Table
                         return $this->redirect(['action' => 'add']);
                     }
                 }
+
+                else
+                {
+                    $this->Flash->warning(__("One of the products you chose does not validate our rules... Please contact an administrator."));
+                }
             }
         }
     }
@@ -183,6 +191,11 @@ class ResourcesTable extends Table
                 }
             }
         }
+
+        else
+        {
+            $this->Flash->warning(__("One of the files you uploaded does not validate our rules... Please contact an administrator."));
+        }
     }
 
     public function saveResourceVideo($video, $setup, $type)
@@ -208,6 +221,11 @@ class ResourcesTable extends Table
                 $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
                 return $this->redirect(['action' => 'add']);
             }
+        }
+
+        else
+        {
+            $this->Flash->warning(__("The video link you chose does not validate our rules... Please contact an administrator."));
         }
     }
 }

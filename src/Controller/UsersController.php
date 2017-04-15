@@ -180,11 +180,11 @@ class UsersController extends AppController
                 $user->password = substr(md5(rand()), 0, 16);
                 if($this->Users->save($user))
                 {
-                    $email = new Email('default');
-                    $email->setFrom(['support@mysetup.co' => 'MySetup.co'])
-                        ->setTo($data['mailReset'])
-                        ->setSubject("You password has been reseted !")
-                        ->send("Your password has been reseted and set to: " . $user->password . "<br />Please log in and change it as soon as possible !");
+                    // $email = new Email('default');
+                    // $email->setFrom(['support@mysetup.co' => 'MySetup.co'])
+                    //     ->setTo($data['mailReset'])
+                    //     ->setSubject("You password has been reseted !")
+                    //     ->send("Your password has been reseted and set to: " . $user->password . "<br />Please log in and change it as soon as possible !");
 
                     $this->Flash->success(__("An email has been sent to this email address !"));
                     return $this->redirect(['action' => 'login']);
@@ -199,7 +199,7 @@ class UsersController extends AppController
 
             else
             {
-                $this->Flash->error(__("This email address does not exist in our database. Are you sure you that you have an account ?"));
+                $this->Flash->warning(__("This email address does not exist in our database. Are you sure you that you have an account ?"));
                 return $this->redirect(['action' => 'login']);
             }
         }
