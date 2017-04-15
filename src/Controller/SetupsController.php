@@ -45,10 +45,14 @@ class SetupsController extends AppController
         // List of products that we have to send to the View
         $products = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all();
 
-        // List of images that we have to send to the View
-        $gallery = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'GALLERY_IMAGE'])->all();
         // Featured Image that we have to send to the View
-        $fimage = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'FEATURED_IMAGE'])->all();
+        $fimage = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->all();
+
+        // List of images that we have to send to the View
+        $gallery = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_GALLERY_IMAGE'])->all();
+
+        // Video link that we have to send to the View
+        $video = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_VIDEO_LINK'])->all();
 
         // Sets an array with the name of the owner as a first entry, and its profile validation status
         $additionalData['owner'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first();
@@ -58,7 +62,7 @@ class SetupsController extends AppController
             $additionalData[$comment->user_id] = $this->Setups->Users->find()->where(['id' => $comment->user_id])->first()['name'];
         }
 
-        $this->set(compact('setup', 'additionalData', 'products', 'gallery', 'fimage'));
+        $this->set(compact('setup', 'additionalData', 'products', 'fimage', 'gallery', 'video'));
         $this->set('_serialize', ['setup']);
     }
 
@@ -90,18 +94,24 @@ class SetupsController extends AppController
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage'][0]))
                 {
-                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'FEATURED_IMAGE');
+                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE');
                 }
 
                 /* Here we save each gallery image uploaded */
                 $i = 0;
                 foreach($data['fileselect'] as $file)
                 {
-                    $this->Setups->Resources->saveResourceImage($file, $setup, 'GALLERY_IMAGE');
+                    $this->Setups->Resources->saveResourceImage($file, $setup, 'SETUP_GALLERY_IMAGE');
                     if(++$i === 5)
                     {
                         break;
                     }
+                }
+
+                /* Here we save the setup video URL */
+                if(isset($data['video']))
+                {
+                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK');
                 }
 
                 $this->Flash->success(__('The setup has been saved.'));

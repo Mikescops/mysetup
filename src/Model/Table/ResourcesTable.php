@@ -115,7 +115,7 @@ class ResourcesTable extends Table
 
     public function beforeDelete(Event $event, EntityInterface $entity)
     {
-        if($entity['type'] === 'GALLERY_IMAGE')
+        if($entity['type'] === 'SETUP_GALLERY_IMAGE' or $entity['type'] === 'SETUP_FEATURED_IMAGE')
         {
             (new File($entity['src']))->delete();
         }
@@ -129,9 +129,6 @@ class ResourcesTable extends Table
             $elements = explode(';', $elements);
             if(count($elements) == 3)
             {
-                // Let's create a new entity to store these data !
-                $resource = $this->newEntity();
-
                 // Let's parse the URls provided, in order to check their authenticity
                 $parsing_2 = parse_url(urldecode($elements[1]));
                 $parsing_3 = parse_url(urldecode($elements[2]));
@@ -139,6 +136,9 @@ class ResourcesTable extends Table
                 // Let's check if the resources selected by the user are from Amazon
                 if(isset($parsing_2['host']) && strstr($parsing_2['host'], "amazon") && isset($parsing_3['host']) && strstr($parsing_3['host'], "amazon"))
                 {
+                    // Let's create a new entity to store these data !
+                    $resource = $this->newEntity();
+
                     $resource->user_id  = null;
                     $resource->setup_id = $setup->id;
                     $resource->type     = 'SETUP_PRODUCT';
@@ -146,7 +146,7 @@ class ResourcesTable extends Table
                     $resource->href     = $elements[1];
                     $resource->src      = $elements[2];
 
-                    // If the resource does not validate its rule, we rollback and throw an error...
+                    // If the resource can't be saved atm, we rollback and throw an error...
                     if(!$this->save($resource))
                     {
                         $this->Setups->delete($setup);
@@ -181,6 +181,32 @@ class ResourcesTable extends Table
                     $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
                     return $this->redirect(['action' => 'add']);
                 }
+            }
+        }
+    }
+
+    public function saveResourceVideo($video, $setup, $type)
+    {
+        $parsing = parse_url($video);
+
+        if(isset($parsing['host']) && in_array($parsing['host'], ['dailymotion.com', 'dai.ly', 'flickr.com', 'flic.kr', 'youtube.com', 'youtu.be', 'vimeo.com', 'rutube.ru']))
+        {
+            // Let's create a new entity to store these data !
+            $resource = $this->newEntity();
+
+            $resource->user_id  = null;
+            $resource->setup_id = $setup->id;
+            $resource->type     = 'SETUP_VIDEO_LINK';
+            $resource->title    = null;
+            $resource->href     = null;
+            $resource->src      = $video;
+
+            // If the resource can't be saved atm, we rollback and throw an error...
+            if(!$this->save($resource))
+            {
+                $this->Setups->delete($setup);
+                $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
+                return $this->redirect(['action' => 'add']);
             }
         }
     }

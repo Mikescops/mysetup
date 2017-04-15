@@ -102,7 +102,7 @@ class AppController extends Controller
         $this->Auth->deny();
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
-        $this->Security->config('unlockedFields', ['resources', 'featuredImage', 'fileselect']);
+        $this->Security->config('unlockedFields', ['resources', 'featuredImage', 'fileselect', 'video']);
     }
 
     public function isAuthorized($user)

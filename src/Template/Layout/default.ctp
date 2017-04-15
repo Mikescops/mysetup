@@ -79,6 +79,8 @@
                         <div id="filedrag">or drop files here</div>
                         <div id="messages"></div>
                         <?php
+                            echo $this->Form->control('video');
+
                             // A hidden entry to gather the item resources
                             echo $this->Form->control('resources', ['class' => 'hiddenInput', 'type' => 'hidden']);
                         ?>
