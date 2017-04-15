@@ -72,21 +72,35 @@
                         <?php
                             echo $this->Form->control('title', ['id' => 'title']);
                             echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%']);
-                            echo $this->Form->control('author');
-                            echo $this->Form->input('featuredImage. ', ['type' => 'file', 'label' => 'Featured image']);
-                            echo $this->Form->input('fileselect. ', ['type' => 'file', 'multiple', 'label' => 'Images to upload (up to 5 items, and 5 MB per image):']);
                         ?>
-                        <div id="filedrag">or drop files here</div>
-                        <div id="messages"></div>
+                        <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
+                        <ul class="search_results"></ul>
+                        <ul class="basket_items"></ul>
+
+                        <br>
+
+                        <?php
+                            echo $this->Form->input('featuredImage. ', ['type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile']);
+                        ?>
+                        <img id="featuredimage_preview">
+                        <?php
+                            echo $this->Form->input('fileselect. ', ['type' => 'file', 'multiple', 'label' => array('class' => 'label_gimage','text' => 'Add up to 5 images (5 Mb / images)'), 'class' => 'inputfile']);
+                        ?>
+                        <!-- <div id="filedrag">or drop files here</div>
+                        <div id="messages"></div> -->
+                        <div id="images_holder"></div>
+
+                        <br>
+
                         <?php
                             echo $this->Form->control('video');
 
                             // A hidden entry to gather the item resources
                             echo $this->Form->control('resources', ['class' => 'hiddenInput', 'type' => 'hidden']);
                         ?>
-                        <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
-                        <ul class="search_results"></ul>
-                        <ul class="basket_items"></ul>
+                        <a class="is_author"><i class="fa fa-square-o"></i> I'm not the owner of this setup !</a>
+
+                        <?php echo $this->Form->control('author', ['class' => 'setup_author', 'value' => 'Insert user id', 'label' => '']); ?>
                     </fieldset>
                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                     <?= $this->Form->end(); ?>

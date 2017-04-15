@@ -90,10 +90,30 @@ $('.post_slider').slick({
   });
 
 
+$(function(){
+   $('.is_author').click(function(){
+      $(this).hide();
+      $('.setup_author').show('fast');
+      return false;
+   });
+});
+
+  /***************** Image preview on modal ****************/
+
+document.getElementById("featuredimage").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("featuredimage_preview").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
 
 
-
-  /***************** DRAG AND DROP *****/
+  /***************** DRAG AND DROP ****************/
 
   // getElementById
   function $id(id) {
@@ -119,9 +139,15 @@ $('.post_slider').slick({
     FileDragHover(e);
     // fetch FileList object
     var files = e.target.files || e.dataTransfer.files;
+
     // process all File objects
     for (var i = 0, f; f = files[i]; i++) {
-      ParseFile(f);
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('<img />').attr('src', e.target.result).appendTo(images_holder);
+        }
+        reader.readAsDataURL(files[i]);
+      //ParseFile(f);
     }
   }
 
@@ -137,19 +163,19 @@ $('.post_slider').slick({
 
   // initialize
   function Init() {
-    var fileselect = $id("fileselect"),
-        filedrag = $id("filedrag");
+    var fileselect = $id("fileselect");
+        //var filedrag = $id("filedrag");
     // file select
     fileselect.addEventListener("change", FileSelectHandler, false);
     // is XHR2 available?
     var xhr = new XMLHttpRequest();
-    if (xhr.upload) {
-      // file drop
-      filedrag.addEventListener("dragover", FileDragHover, false);
-      filedrag.addEventListener("dragleave", FileDragHover, false);
-      filedrag.addEventListener("drop", FileSelectHandler, false);
-      filedrag.style.display = "block";
-    }
+    // if (xhr.upload) {
+    //   // file drop
+    //   filedrag.addEventListener("dragover", FileDragHover, false);
+    //   filedrag.addEventListener("dragleave", FileDragHover, false);
+    //   filedrag.addEventListener("drop", FileSelectHandler, false);
+    //   filedrag.style.display = "block";
+    // }
   }
   // call initialization file
   if (window.File && window.FileList && window.FileReader) {
