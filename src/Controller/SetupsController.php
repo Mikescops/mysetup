@@ -83,25 +83,31 @@ class SetupsController extends AppController
             // Let's set the id of the current logged in user 
             $data['user_id'] = $this->request->session()->read('Auth.User.id');
 
+            // Here we'll assign automatically the owned of the setup to the entity, if in the setup it has not be filled
+            if(!isset($data['author']) or $data['author'] === '')
+            {
+                $data['author'] = $this->Setups->Users->find()->where(['id' => $data['user_id']])->first()['name'];
+            }
+
             // Classical patch entity operation
             $setup = $this->Setups->patchEntity($setup, $data);
 
             if($this->Setups->save($setup))
             {
                 /* Here we save each product that has been selected by the user */
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup);
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash);
 
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage'][0]))
                 {
-                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE');
+                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash);
                 }
 
                 /* Here we save each gallery image uploaded */
                 $i = 0;
                 foreach($data['fileselect'] as $file)
                 {
-                    $this->Setups->Resources->saveResourceImage($file, $setup, 'SETUP_GALLERY_IMAGE');
+                    $this->Setups->Resources->saveResourceImage($file, $setup, 'SETUP_GALLERY_IMAGE', $this->Flash);
                     if(++$i === 5)
                     {
                         break;
@@ -111,7 +117,7 @@ class SetupsController extends AppController
                 /* Here we save the setup video URL */
                 if(isset($data['video']))
                 {
-                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK');
+                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash);
                 }
 
                 $this->Flash->success(__('The setup has been saved.'));

@@ -119,12 +119,12 @@ class ResourcesTable extends Table
         {
             if(!(new File($entity['src']))->delete())
             {
-                $this->Flash->warning(__("An image of your setup could not be removed as well... Please contact an administrator."));
+                $flash->warning(__("An image of your setup could not be removed as well... Please contact an administrator."));
             }
         }
     }
 
-    public function saveResourceProducts($products, $setup)
+    public function saveResourceProducts($products, $setup, $flash)
     {
         // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"
         foreach(explode(',', $products) as $elements)
@@ -153,20 +153,19 @@ class ResourcesTable extends Table
                     if(!$this->save($resource))
                     {
                         $this->Setups->delete($setup);
-                        $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
-                        return $this->redirect(['action' => 'add']);
+                        $flash->error(__('Internal error, we couldn\'t save your setup.'));
                     }
                 }
 
                 else
                 {
-                    $this->Flash->warning(__("One of the products you chose does not validate our rules... Please contact an administrator."));
+                    $flash->warning(__("One of the products you chose does not validate our rules... Please contact an administrator."));
                 }
             }
         }
     }
 
-    public function saveResourceImage($file, $setup, $type)
+    public function saveResourceImage($file, $setup, $type, $flash)
     {
         if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
         {
@@ -186,19 +185,18 @@ class ResourcesTable extends Table
                 if(!$this->save($resource))
                 {
                     $this->Setups->delete($setup);
-                    $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
-                    return $this->redirect(['action' => 'add']);
+                    $flash->error(__('Internal error, we couldn\'t save your setup.'));
                 }
             }
         }
 
         else
         {
-            $this->Flash->warning(__("One of the files you uploaded does not validate our rules... Please contact an administrator."));
+            $flash->warning(__("One of the files you uploaded does not validate our rules... Please contact an administrator."));
         }
     }
 
-    public function saveResourceVideo($video, $setup, $type)
+    public function saveResourceVideo($video, $setup, $type, $flash)
     {
         $parsing = parse_url($video);
 
@@ -218,14 +216,13 @@ class ResourcesTable extends Table
             if(!$this->save($resource))
             {
                 $this->Setups->delete($setup);
-                $this->Flash->error(__('Internal error, we couldn\'t save your setup.'));
-                return $this->redirect(['action' => 'add']);
+                $flash->error(__('Internal error, we couldn\'t save your setup.'));
             }
         }
 
         else
         {
-            $this->Flash->warning(__("The video link you chose does not validate our rules... Please contact an administrator."));
+            $flash->warning(__("The video link you chose does not validate our rules... Please contact an administrator."));
         }
     }
 }

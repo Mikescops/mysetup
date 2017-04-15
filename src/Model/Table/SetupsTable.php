@@ -86,7 +86,7 @@ class SetupsTable extends Table
             ->allowEmpty('description');
 
         $validator
-            ->notEmpty('author');
+            ->allowEmpty('author');
 
         $validator
             ->integer('counter')
