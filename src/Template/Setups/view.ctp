@@ -27,7 +27,7 @@
                     <i class="fa fa-heart"></i> Like
                   </div>
                   <span class="pointing_label">
-                
+                    0
                   </span>
                 </a>
 

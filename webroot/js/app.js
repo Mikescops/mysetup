@@ -309,6 +309,8 @@ function likeSetup(id){
 
   console.log(texte_recu);
 
+  printLikes(id);
+
     // Du code pour gérer le retour de l'appel AJAX.
 
 }
@@ -318,6 +320,8 @@ function likeSetup(id){
   $( ".red_button" ).removeClass( "active" );
 
   console.log(texte_recu);
+
+  printLikes(id);
 
   }
 
