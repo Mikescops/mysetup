@@ -22,14 +22,16 @@
 
             </div>
                 
-                <a class="labeled_button float-right" tabindex="0">
+                <a class="labeled_button float-right" onclick="likeSetup('<?= $setup->id ?>')" tabindex="0">
                   <div class="red_button">
                     <i class="fa fa-heart"></i> Like
                   </div>
                   <span class="pointing_label">
-                    1,048
+                
                   </span>
                 </a>
+
+                <?= $this->Html->scriptBlock('$(document).ready(function() {printLikes("' . $setup->id .'");});', array('block' => 'scriptBottom')); ?>
 
         </div>
 
@@ -56,7 +58,7 @@
             </div>
 
         </div>
-        
+
         <div class="column column-33 item-meta">
 
             <?= $this->Text->autoParagraph(h($setup->description)); ?>

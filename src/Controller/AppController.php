@@ -119,22 +119,25 @@ class AppController extends Controller
     {
         if($this->request->is('get'))
         {
+            //echo $this->request->query('setup_id');
+
             $this->loadModel('Likes');
+
             return new Response([
                 'status' => 200,
-                'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->data['setup_id']])->count())
+                'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->query['setup_id']])->count())
             ]);
         }
     }
 
     public function like()
     {
-        if($this->request->is('post'))
+        if($this->request->is('get'))
         {
             $status = 500;
             $body   = null;
 
-            $setup_id = $this->request->data['setup_id'];
+            $setup_id = $this->request->query['setup_id'];
             $this->loadModel('Likes');
 
             if($this->Likes->Setups->exists(['id' => $setup_id]))
@@ -179,12 +182,12 @@ class AppController extends Controller
 
     public function dislike()
     {
-        if($this->request->is('post'))
+        if($this->request->is('get'))
         {
             $status = 500;
             $body   = null;
 
-            $setup_id = $this->request->data['setup_id'];
+            $setup_id = $this->request->query['setup_id'];
             $this->loadModel('Likes');
 
             if($this->Likes->Setups->exists(['id' => $setup_id]))

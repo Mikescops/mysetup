@@ -196,5 +196,7 @@
 
     <!-- App Js async load -->
     <?= $this->Html->script('app.js') ?>
+
+    <?= $this->fetch('scriptBottom') ?>
 </body>
 </html>

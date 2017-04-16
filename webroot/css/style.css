@@ -394,7 +394,7 @@ footer ul{
 	transition: opacity .2s ease-in-out;
 }
 
-.labeled_button:focus > .red_button,.red_button.active{
+.red_button.active{
 	background-color: #b62121;
 	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 }
