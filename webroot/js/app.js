@@ -273,55 +273,43 @@ function deleteFromBasket(title, parent) {
 function likeSetup(id){
 
   if ($( ".red_button" ).hasClass( "active" )){
-    console.log("des likes");
+    //console.log("des likes");
     $.ajax({
       url: '/mysetup/app/dislike',
       type: 'get',
       data: { "setup_id": id},
       success: answer_dislike,
       error: answer_error 
-
     });
 
 }
 
   else{
-    console.log("Pas de like");
+    //console.log("Pas de like");
+    $.ajax({
+      url: '/mysetup/app/like',
+      type: 'get',
+      data: { "setup_id": id},
+      success: answer_like,
+      error: answer_error 
 
-  $.ajax({
-    url: '/mysetup/app/like',
-    type: 'get',
-    data: { "setup_id": id},
-    success: answer_like,
-    error: answer_error 
+    });}
 
-  });}
-
-     function answer_like(texte_recu){
-
+function answer_like(response){
   $( ".red_button" ).addClass( "active" );
-
-  console.log(texte_recu);
-
+  //console.log(response);
   printLikes(id);
-
-    // Du code pour gérer le retour de l'appel AJAX.
-
 }
 
-    function answer_dislike(texte_recu){
-
+function answer_dislike(response){
   $( ".red_button" ).removeClass( "active" );
-
-  console.log(texte_recu);
-
+  //console.log(response);
   printLikes(id);
+}
 
-  }
-
-  function answer_error(texte_recu){
-    console.log(texte_recu);
-  }
+function answer_error(response){
+  console.log(response);
+}
 
 }
 
@@ -336,6 +324,25 @@ function printLikes(id) {
         success: function (json) {
           console.log(json);
           $(".pointing_label").html(json);
+        }
+            
+    });
+
+}
+
+function doesLike(setup, user) {
+    $.ajax({
+        url: "/mysetup/app/doeslike",
+        data: {
+            setup_id: setup,
+            user_id: user
+        },
+        dataType: 'html',
+        type: 'get',
+        success: function (json) {
+          console.log(json);
+          if(json == "1")
+            $(".red_button").addClass("active");
         }
             
     });

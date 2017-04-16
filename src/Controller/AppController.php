@@ -142,6 +142,21 @@ class AppController extends Controller
         }
     }
 
+    public function doesLike()
+    {
+        if($this->request->is('get'))
+        {
+            //echo $this->request->query('setup_id');
+
+            $this->loadModel('Likes');
+
+            return new Response([
+                'status' => 200,
+                'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->query['setup_id'], 'user_id' => $this->request->query['user_id']])->count())
+            ]);
+        }
+    }
+
     public function like()
     {
         if($this->request->is('get'))
