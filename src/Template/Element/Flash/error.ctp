@@ -4,8 +4,7 @@ if (!isset($params['escape']) || $params['escape'] !== false) {
 }
 ?>
 
-<div class="message error" onclick="this.classList.add('hidden');"><?= $message ?><i class="fa fa-times float-right"></i></div>
-
 <script>
-	setTimeout('$(".error").slideUp()', 5000)
+const toast = new siiimpleToast();
+toast.alert('<?= $message ?>');
 </script>
