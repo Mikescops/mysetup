@@ -15,6 +15,7 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Network\Response;
 use Cake\Event\Event;
 
 /**
@@ -55,7 +56,9 @@ class AppController extends Controller
                     ]
                 ]
             ],
-            'authorize' => ['Controller'],
+            'authorize' => [
+                'Controller'
+            ],
             'loginRedirect' => [
                 'controller' => 'Setups',
                 'action' => 'index'
@@ -84,16 +87,8 @@ class AppController extends Controller
         // Before render the view, let's give a new entity for add Setup modal to it
         $this->loadModel('Setups');
         $newSetupEntity = $this->Setups->newEntity();
+        $this->set('newSetupEntity');
 
-        // We'll pass to the view a big array with setup_id as key, and number of likes as value
-        $likes = null;
-        $this->loadModel('Likes');
-        foreach($this->Setups->find()->all() as $setup)
-        {
-            $likes[$setup['id']] = $this->Likes->find()->where(['setup_id' => $setup['id']])->count();
-        }
-
-        $this->set(compact('newSetupEntity', 'likes'));
     }
 
     public function beforeFilter(Event $event)
@@ -116,6 +111,115 @@ class AppController extends Controller
         else
         {
             return false;
+        }
+    }
+
+    /* AJAX CALLS ? */
+    public function getLikes()
+    {
+        if($this->request->is('get'))
+        {
+            $this->loadModel('Likes');
+            return new Response([
+                'status' => 200,
+                'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->data['setup_id']])->count())
+            ]);
+        }
+    }
+
+    public function like()
+    {
+        if($this->request->is('post'))
+        {
+            $status = 500;
+            $body   = null;
+
+            $setup_id = $this->request->data['setup_id'];
+            $this->loadModel('Likes');
+
+            if($this->Likes->Setups->exists(['id' => $setup_id]))
+            {
+                if(!$this->Likes->find()->where(['setup_id' => $setup_id, 'user_id' => $this->request->session()->read('Auth.User.id')])->first())
+                {
+                    $like = $this->Likes->newEntity();
+
+                    // When an user likes a setup, we just create an entity with its id, and the setup's one
+                    $like['setup_id'] = $setup_id;
+                    $like['user_id']  = $this->request->session()->read('Auth.User.id');
+
+                    if($this->Likes->save($like))
+                    {
+                        $status = 200;
+                        $body   = 'LIKED';
+                    }
+
+                    else
+                    {
+                        $body = 'NOT_LIKED';
+                    }
+                }
+
+                else
+                {
+                    $body = 'ALREADY_LIKED';
+                }
+            }
+
+            else
+            {
+                $body = 'DOES_NOT_EXIST';
+            }
+
+            return new Response([
+                'status' => $status,
+                'body' => $body
+            ]);
+        }
+    }
+
+    public function dislike()
+    {
+        if($this->request->is('post'))
+        {
+            $status = 500;
+            $body   = null;
+
+            $setup_id = $this->request->data['setup_id'];
+            $this->loadModel('Likes');
+
+            if($this->Likes->Setups->exists(['id' => $setup_id]))
+            {
+                $like = $this->Likes->find()->where(['setup_id' => $setup_id, 'user_id' => $this->request->session()->read('Auth.User.id')])->first();
+
+                if($like)
+                {
+                    if($this->Likes->delete($like))
+                    {
+                        $status = 200;
+                        $body   = 'DISLIKED';
+                    }
+
+                    else
+                    {
+                        $body = 'NOT_DISLIKED';
+                    }
+                }
+
+                else
+                {
+                    $body = 'NOT_ALREADY_LIKED';
+                }
+            }
+
+            else
+            {
+                $body = 'DOES_NOT_EXIST';
+            }
+
+            return new Response([
+                'status' => $status,
+                'body' => $body
+            ]);
         }
     }
 }
