@@ -97,7 +97,19 @@ class AppController extends Controller
         $this->Auth->deny();
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
-        $this->Security->config('unlockedFields', ['resources', 'featuredImage', 'fileselect', 'video', 'mailReset']);
+        $this->Security->config('unlockedFields', [
+            'resources',
+            'featuredImage',
+            'fileselect',
+            'video',
+            'mailReset'
+        ]);
+
+        // For AJAX specific calls, if we are about makeing a POST, let's disable the CSRF component
+        if(in_array($this->request->action, ['like', 'dislike']))
+        {
+            $this->eventManager()->off($this->Csrf);
+        }
     }
 
     public function isAuthorized($user)
