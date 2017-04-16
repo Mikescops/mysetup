@@ -274,34 +274,28 @@ function likeSetup(id){
 
   if ($( ".red_button" ).hasClass( "active" )){
     console.log("des likes");
-    $.get(
-        '/mysetup/app/dislike', // Le fichier cible côté serveur.
-        {
-            setup_id : id // Nous supposons que ce formulaire existe dans le DOM.
-        },
-        answer_dislike, // Nous renseignons uniquement le nom de la fonction de retour.
-        'html' // Format des données reçues.
-    );
+    $.ajax({
+      url: '/mysetup/app/dislike',
+      type: 'get',
+      data: { "setup_id": id},
+      success: answer_dislike,
+      error: answer_error 
 
-    // Du code pour gérer le retour de l'appel AJAX.
+    });
 
 }
 
   else{
     console.log("Pas de like");
 
-    $.get(
-        '/mysetup/app/like', // Le fichier cible côté serveur.
-        {
-            setup_id : id // Nous supposons que ce formulaire existe dans le DOM.
-        },
-        answer_like, // Nous renseignons uniquement le nom de la fonction de retour.
-        'html' // Format des données reçues.
-    );
+  $.ajax({
+    url: '/mysetup/app/like',
+    type: 'get',
+    data: { "setup_id": id},
+    success: answer_like,
+    error: answer_error 
 
- 
-
-  }
+  });}
 
      function answer_like(texte_recu){
 
@@ -325,10 +319,13 @@ function likeSetup(id){
 
   }
 
+  function answer_error(texte_recu){
+    console.log(texte_recu);
+  }
+
 }
 
 function printLikes(id) {
-  console.log(id);
     $.ajax({
         url: "/mysetup/app/getlikes",
         data: {
