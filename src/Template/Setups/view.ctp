@@ -31,7 +31,7 @@
                   </span>
                 </a>
 
-                <?= $this->Html->scriptBlock('$(document).ready(function() {printLikes("' . $setup->id .'"); doesLike("' . $setup->id .'", "' . $setup->user_id .'");});', array('block' => 'scriptBottom')); ?>
+                <?= $this->Html->scriptBlock('$(document).ready(function() {printLikes("' . $setup->id .'"); doesLike("' . $setup->id .'");});', array('block' => 'scriptBottom')); ?>
 
         </div>
 

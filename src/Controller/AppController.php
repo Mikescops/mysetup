@@ -152,7 +152,7 @@ class AppController extends Controller
 
             return new Response([
                 'status' => 200,
-                'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->query['setup_id'], 'user_id' => $this->request->query['user_id']])->count())
+                'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->query['setup_id'], 'user_id' => $this->request->session()->read('Auth.User.id')])->count())
             ]);
         }
     }

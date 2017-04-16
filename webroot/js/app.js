@@ -330,12 +330,11 @@ function printLikes(id) {
 
 }
 
-function doesLike(setup, user) {
+function doesLike(setup) {
     $.ajax({
         url: "/mysetup/app/doeslike",
         data: {
-            setup_id: setup,
-            user_id: user
+            setup_id: setup
         },
         dataType: 'html',
         type: 'get',
