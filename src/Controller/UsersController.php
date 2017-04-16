@@ -59,7 +59,10 @@ class UsersController extends AppController
             {
                 $user = $this->Users->patchEntity($user, $data);
 
-                if ($this->Users->save($user)) {
+                if ($this->Users->save($user))
+                {
+                    $this->Users->saveDefaultProfilePicture($user, $this->Flash);
+
                     $this->Flash->success(__('The user has been saved.'));
 
                     return $this->redirect(['action' => 'login']);

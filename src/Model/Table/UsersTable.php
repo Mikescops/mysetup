@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Filesystem\File;
 
 /**
  * Users Model
@@ -107,5 +108,14 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['mail']));
 
         return $rules;
+    }
+
+
+    public function saveDefaultProfilePicture($user, $flash)
+    {
+        if(!(new File('img/profile-default.png'))->copy('uploads/files/profile_picture_' . strval($user->id) . '.png'))
+        {
+            $flash->warning(__("One of the files you uploaded does not validate our rules... Please contact an administrator."));
+        }
     }
 }
