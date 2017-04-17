@@ -261,15 +261,22 @@ class AppController extends Controller
             $order = $this->request->getQuery('o', 'DESC');
             $type = $this->request->getQuery('t', 'date');
             $weeks = $this->request->getQuery('w', '9999');
-            $featured = $this->request->getQuery('f', '0');
+            $featured = $this->request->getQuery('f', false);
 
             $week_start = date('Y-m-d', strtotime("-" . $weeks . "weeks"));
             $week_end = date('Y-m-d');
 
             $this->loadModel('Setups');
 
+            $conditions = array();
+
+            /* Featured ? */
+            if ($featured == true) {
+                array_push($conditions, array("featured" => true));
+            }
+
             if ($type == "date"){
-                $conditions =  array( "creationDate >" => $week_start, "creationDate <=" => $week_end); 
+                array_push($conditions, array("creationDate >" => $week_start, "creationDate <=" => $week_end)); 
                 $results = $this->Setups->find('all', array('conditions' => $conditions, 'order' => ['creationDate' => $order],'limit' => $nbpost));
             }
             elseif ($type == "comment") {
