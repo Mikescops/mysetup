@@ -97,7 +97,7 @@ class SetupsTable extends Table
             ->notEmpty('featured');
 
         $validator
-            ->date('creationDate')
+            ->dateTime('creationDate')
             ->notEmpty('creationDate');
 
         return $validator;

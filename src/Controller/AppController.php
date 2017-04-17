@@ -131,8 +131,6 @@ class AppController extends Controller
     {
         if($this->request->is('get'))
         {
-            //echo $this->request->query('setup_id');
-
             $this->loadModel('Likes');
 
             return new Response([
@@ -146,8 +144,6 @@ class AppController extends Controller
     {
         if($this->request->is('get'))
         {
-            //echo $this->request->query('setup_id');
-
             $this->loadModel('Likes');
 
             return new Response([

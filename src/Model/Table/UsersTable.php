@@ -90,6 +90,9 @@ class UsersTable extends Table
                 'message' => 'The password has to contain more than 8 characters']);
 
         $validator
+            ->notEmpty('preferredStore');
+
+        $validator
             ->boolean('verified')
             ->notEmpty('verified');
 
@@ -109,7 +112,6 @@ class UsersTable extends Table
 
         return $rules;
     }
-
 
     public function saveDefaultProfilePicture($user, $flash)
     {
