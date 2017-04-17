@@ -35,7 +35,7 @@
                 <div class="right-nav">
                     
                     <ul>
-                        <?php if($this->request->session()->read('Auth.User.id') != null): ?>
+                        <?php if($authUser): ?>
                             <li>
                                 <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
                             </li>

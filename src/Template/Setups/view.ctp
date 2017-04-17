@@ -22,7 +22,7 @@
 
             </div>
                 
-                <a class="labeled_button float-right" onclick="likeSetup('<?= $setup->id ?>')" tabindex="0">
+                <a class="labeled_button float-right" <?php if(!$authUser){echo "onclick=\"const toast = new siiimpleToast();toast.message('You must be login to like !');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
                   <div class="red_button">
                     <i class="fa fa-heart"></i> Like
                   </div>
