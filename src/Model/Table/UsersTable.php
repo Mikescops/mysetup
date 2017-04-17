@@ -142,7 +142,7 @@ class UsersTable extends Table
             {
                 // Here we'll check if the picture is in PNG format, and convert it if it's not the case...
                 $tmp = explode('/', $file['type']);
-                if(end($tmp) !== 'png' && !(new Imagick($destination))->setImageFormat('png')
+                if(end($tmp) !== 'png' && !(new Imagick($destination))->setImageFormat('png'))
                 {
                     $flash->warning('Your profile picture could not be converted to PNG format...');
                 }
