@@ -96,6 +96,9 @@ class AppController extends Controller
         // By default, no page is allowed. Please check special authorizations in the others controller
         $this->Auth->deny();
 
+        // Allow GET request on public functions
+        $this->Auth->allow(['getsetups', 'getLikes']);
+
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
         $this->Security->config('unlockedFields', [
             'resources',

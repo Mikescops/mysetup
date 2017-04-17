@@ -43,6 +43,48 @@ $this->assign('title', 'Home');
     <div class="row">
         <div class="column column-75">
 
+<?php
+ 
+////////// PARAMS
+ 
+// Complétez $url avec l'url cible (l'url de la page que vous voulez télécharger)
+$url="localhost/mysetup/app/getsetups"; 
+ 
+// Tableau contenant les options de téléchargement
+$options=array(
+      CURLOPT_URL            => $url,  // Url cible (l'url la page que vous voulez télécharger)
+      CURLOPT_RETURNTRANSFER => true,  // Retourner le contenu téléchargé dans une chaine (au lieu de l'afficher directement)
+      CURLOPT_HEADER         => false, // Ne pas inclure l'entête de réponse du serveur dans la chaine retournée
+      CURLOPT_FAILONERROR    => true   // Gestion des codes d'erreur HTTP supérieurs ou égaux à 400
+);
+ 
+////////// MAIN
+ 
+// Création d'un nouvelle ressource cURL
+$CURL=curl_init();
+// Erreur suffisante pour justifier un die()
+if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponible.");}
+ 
+      // Configuration des options de téléchargement
+      curl_setopt_array($CURL,$options);
+ 
+      // Exécution de la requête
+      $setups=curl_exec($CURL);       // Le contenu téléchargé est enregistré dans la variable $content. Libre à vous de l'afficher.
+ 
+      // Si il s'est produit une erreur lors du téléchargement
+      if(curl_errno($CURL)){
+            // Le message d'erreur correspondant est affiché
+            echo "ERREUR curl_exec : ".curl_error($CURL);
+      }
+
+      print_r($setups);
+ 
+// Fermeture de la session cURL
+curl_close($CURL);
+ 
+?>
+
+
             <h4>Popular this week</h4>
 
             <?php foreach ($setups as $setup): ?>
