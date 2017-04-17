@@ -49,7 +49,7 @@
                             </ul>
                         </li>
                         <li>
-                            <?php if($this->request->session()->read('Auth.User.id') != null): ?>
+                            <?php if($authUser): ?>
                                 <a>Profile <i class="fa fa-caret-down"></i></a>
                                 <ul>
                                     <li><a href="#">My Setups</a></li>
@@ -128,7 +128,7 @@
             <div id="mobile-nav" class="lity-hide">
                 
                 <ul>
-                    <?php if($this->request->session()->read('Auth.User.id') != null): ?>
+                    <?php if($authUser): ?>
                         <li>
                             <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
                         </li>
@@ -142,7 +142,7 @@
                         </ul>
                     </li>
                     <li>
-                        <?php if($this->request->session()->read('Auth.User.id') != null): ?>
+                        <?php if($authUser): ?>
                             <span>Profile</span>
                             <ul>
                                 <li><a href="#">My Setups</a></li>

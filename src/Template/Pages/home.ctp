@@ -78,6 +78,8 @@ if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponib
       }
 
       $setups = json_decode($setups);
+
+      //var_dump($setups);
  
 // Fermeture de la session cURL
 curl_close($CURL);
@@ -90,10 +92,10 @@ curl_close($CURL);
             <?php foreach ($setups as $setup): ?>
 
             <div class="fullitem">
-                <a href="#">
-                    <img src="https://i.ytimg.com/vi/4kBLJK4FdfQ/maxresdefault.jpg">
+                <a href="setups/view/<?= $setup->id ?>">
+                    <img src="<?= $setup->src ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i> 50</div>
+                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->likes ?></div>
 
                 <div class="fullitem-inner">
 
@@ -104,7 +106,7 @@ curl_close($CURL);
                                 <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
                             </a>
 
-                            <a href="post.html"><h3><?= $setup->title ?></h3></a>
+                            <a href="setups/view/<?= $setup->id ?>"><h3><?= $setup->title ?></h3></a>
 
                         </div>
 

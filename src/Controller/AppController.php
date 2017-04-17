@@ -283,6 +283,29 @@ class AppController extends Controller
                 # get by likes
             }
 
+            /* Let's include extra data in our results */
+
+            $results = $results->toArray();
+
+            $this->loadModel('Resources');
+            $this->loadModel('Likes');
+
+            foreach ($results as $setup){
+                $id = $setup->id;
+
+                $fimage = $this->Resources->find('all', ['conditions' => ['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'],'limit' => 1]);
+
+                $likes = $this->Likes->find()->where(['setup_id' => $id])->count();
+
+                $fimage = $fimage->toArray();
+
+                error_reporting(0);
+
+                $setup->src = $fimage[0]['src'];
+                $setup->likes = $likes;
+            }
+
+
             return new Response([
                 'status' => 200,
                 'body' => json_encode($results)
