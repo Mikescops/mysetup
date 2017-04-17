@@ -42,7 +42,7 @@
             <ul>
                 <li>
                     <?= $this->Form->control('mail', ['placeholder' => 'Email', 'label' => false, 'type' => 'text', 'style' => 'width: 75%;float: left;}']) ?>
-                    <?= $this->Form->select('preferredStore', ["US", "UK", "FR", "" => "Other"], ['style' => 'width: 20%; float: right; color: #fff', 'default' => "US"]) ?>
+                    <?= $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "FR" => "FR", "" => "Other"], ['style' => 'width: 20%; float: right; color: #fff', 'default' => "US"]) ?>
                 </li>
                 <li>
                     <?= $this->Form->control('password', ['placeholder' => 'Password', 'label' => false]) ?>

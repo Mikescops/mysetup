@@ -24,4 +24,4 @@ In order to deploy this website on your web server:
 
 8. Configure an user with required rights on this database, and set it up in the `config/app.php` file in the _Datasources_ section.
 
-9. You're done. Go to [http://YOUR_SERVER_IP/GMCalendar/](http://YOUR_SERVER_IP/GMCalendar/), the page would be supposed to appear !
+9. You're done. Go to [http://YOUR_SERVER_IP/mysetup/](http://YOUR_SERVER_IP/mysetup/), the page would be supposed to appear !

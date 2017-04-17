@@ -57,7 +57,7 @@
                                     <li><a href="<?= $this->Url->build('/users/logout'); ?>">Logout</a></li>
                                 </ul>
                             <?php else: ?>
-                                <a href="<?= $this->Url->build('/users/login'); ?>"><i class="fa fa-user"></i> Login</a>
+                                <a href="<?= $this->Url->build('/users/login'); ?>"><i class="fa fa-user"></i> Sign In / Up</a>
                             <?php endif; ?>
                         </li>
                     </ul>
