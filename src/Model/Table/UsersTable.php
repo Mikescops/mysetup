@@ -5,6 +5,8 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Event\Event;
+use Cake\Datasource\EntityInterface;
 use Cake\Filesystem\File;
 
 /**
@@ -113,9 +115,47 @@ class UsersTable extends Table
         return $rules;
     }
 
+    public function afterDelete(Event $event, EntityInterface $entity)
+    {
+        if(!(new File('uploads/files/profile_picture_' . $entity['id'] . '.png'))->delete())
+        {
+            $flash->warning(__("Your profile picture could not be removed as well... Please contact an administrator."));
+        }
+    }
+
     public function saveDefaultProfilePicture($user, $flash)
     {
         if(!(new File('img/profile-default.png'))->copy('uploads/files/profile_picture_' . strval($user->id) . '.png'))
+        {
+            $flash->warning(__("Your default picture could not be set... Please contact an administrator."));
+        }
+    }
+
+    public function saveProfilePicture($file, $user, $type, $flash)
+    {
+        if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
+        {
+            // The result file will be in '*.png' anyway, check below the real conversion...
+            $destination = 'uploads/files/profile_picture_' . strval($user->id) . '.png';
+
+            if(move_uploaded_file($file['tmp_name'], $destination))
+            {
+                // Here we'll check if the picture is in PNG format, and convert it if it's not the case...
+                $tmp = explode('/', $file['type']);
+                if(end($tmp) !== 'png' && !(new Imagick($destination))->setImageFormat('png')
+                {
+                    $flash->warning('Your profile picture could not be converted to PNG format...');
+                }
+
+                if(!$this->save($resource))
+                {
+                    $this->Setups->delete($setup);
+                    $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                }
+            }
+        }
+
+        else
         {
             $flash->warning(__("One of the files you uploaded does not validate our rules... Please contact an administrator."));
         }
