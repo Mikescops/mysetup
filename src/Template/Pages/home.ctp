@@ -44,10 +44,6 @@ $this->assign('title', 'Home');
         <div class="column column-75">
 
 <?php
- 
-////////// PARAMS
- 
-// Complétez $url avec l'url cible (l'url de la page que vous voulez télécharger)
 $url="localhost/mysetup/app/getsetups"; 
  
 // Tableau contenant les options de téléchargement
@@ -55,7 +51,11 @@ $options=array(
       CURLOPT_URL            => $url,  // Url cible (l'url la page que vous voulez télécharger)
       CURLOPT_RETURNTRANSFER => true,  // Retourner le contenu téléchargé dans une chaine (au lieu de l'afficher directement)
       CURLOPT_HEADER         => false, // Ne pas inclure l'entête de réponse du serveur dans la chaine retournée
-      CURLOPT_FAILONERROR    => true   // Gestion des codes d'erreur HTTP supérieurs ou égaux à 400
+      CURLOPT_FAILONERROR    => true,   // Gestion des codes d'erreur HTTP supérieurs ou égaux à 400
+      CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Accept: application/json'
+) // Gestion du json
 );
  
 ////////// MAIN
@@ -69,7 +69,7 @@ if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponib
       curl_setopt_array($CURL,$options);
  
       // Exécution de la requête
-      $setups=curl_exec($CURL);       // Le contenu téléchargé est enregistré dans la variable $content. Libre à vous de l'afficher.
+      $setups=curl_exec($CURL);       // Le contenu téléchargé est enregistré dans la variable $content.
  
       // Si il s'est produit une erreur lors du téléchargement
       if(curl_errno($CURL)){
@@ -77,7 +77,7 @@ if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponib
             echo "ERREUR curl_exec : ".curl_error($CURL);
       }
 
-      print_r($setups);
+      $setups = json_decode($setups);
  
 // Fermeture de la session cURL
 curl_close($CURL);
@@ -104,7 +104,7 @@ curl_close($CURL);
                                 <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
                             </a>
 
-                            <a href="post.html"><h3>Ma config perso #1</h3></a>
+                            <a href="post.html"><h3><?= $setup->title ?></h3></a>
 
                         </div>
 

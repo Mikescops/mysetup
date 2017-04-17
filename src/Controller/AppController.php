@@ -263,7 +263,7 @@ class AppController extends Controller
             $featured = $this->request->getQuery('f', false);
 
             $week_start = date('Y-m-d', strtotime("-" . $weeks . "weeks"));
-            $week_end = date('Y-m-d');
+            $week_end = date('Y-m-d', strtotime("+ 1 day"));
 
             $this->loadModel('Setups');
 
