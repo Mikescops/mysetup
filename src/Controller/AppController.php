@@ -107,12 +107,6 @@ class AppController extends Controller
             'video',
             'mailReset'
         ]);
-
-        // For AJAX specific calls, if we are about makeing a POST, let's disable the CSRF component
-        if(in_array($this->request->action, ['like', 'dislike']))
-        {
-            $this->eventManager()->off($this->Csrf);
-        }
     }
 
     public function isAuthorized($user)
