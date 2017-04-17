@@ -53,9 +53,29 @@
                                 <a>Profile <i class="fa fa-caret-down"></i></a>
                                 <ul>
                                     <li><a href="#">My Setups</a></li>
-                                    <li><a href="#">Edit Profile</a></li>
+                                    <li><a href="#edit_profile_modal" data-lity>Edit Profile</a></li>
                                     <li><a href="<?= $this->Url->build('/users/logout'); ?>">Logout</a></li>
                                 </ul>
+
+                                <div id="edit_profile_modal" class="lity-hide">
+
+                                    <form>
+                                        <input type="text" placeholder="Username" />
+
+                                        <input type="text" placeholder="Mail" />
+
+                                        <input type="file" text="Add profile image" />
+
+                                        <input type="password" placeholder="Password" />
+
+                                        <input type="password" placeholder="Confirm password" />
+
+                                        <input type="submit" value="Edit profile" class="button" />
+                                    </form>
+
+                                </div>
+
+
                             <?php else: ?>
                                 <a href="<?= $this->Url->build('/users/login'); ?>"><i class="fa fa-user"></i> Sign In / Up</a>
                             <?php endif; ?>
