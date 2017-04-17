@@ -252,4 +252,37 @@ class AppController extends Controller
             ]);
         }
     }
+
+    public function getSetups()
+    {
+        if($this->request->is('get'))
+        {
+            $nbpost = $this->request->getQuery('n', '8');
+            $order = $this->request->getQuery('o', 'DESC');
+            $type = $this->request->getQuery('t', 'date');
+            $weeks = $this->request->getQuery('w', '9999');
+            $featured = $this->request->getQuery('f', '0');
+
+            $week_start = date('Y-m-d', strtotime("-" . $weeks . "weeks"));
+            $week_end = date('Y-m-d');
+
+            $this->loadModel('Setups');
+
+            if ($type == "date"){
+                $conditions =  array( "creationDate >" => $week_start, "creationDate <=" => $week_end); 
+                $results = $this->Setups->find('all', array('conditions' => $conditions, 'order' => ['creationDate' => $order],'limit' => $nbpost));
+            }
+            elseif ($type == "comment") {
+                # get by comments
+            }
+            elseif ($type == "like") {
+                # get by likes
+            }
+
+            return new Response([
+                'status' => 200,
+                'body' => json_encode($results)
+            ]);
+        }
+    }
 }
