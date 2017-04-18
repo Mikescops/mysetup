@@ -43,7 +43,7 @@
                         <li>
                             <a>Categories <i class="fa fa-caret-down"></i></a>
                             <ul>
-                                <li><a href="#">Most recent</a></li>
+                                <li><a href="<?= $this->Url->build('/pages/recent'); ?>">Most recent</a></li>
                                 <li><a href="#">Most popular</a></li>
                                 <li><a href="#">Most commented</a></li>
                             </ul>
@@ -136,7 +136,7 @@
                     <li>
                         <span>Categories</span>
                         <ul>
-                            <li><a href="#">Most recent</a></li>
+                            <li><a href="<?= $this->Url->build('/pages/recent'); ?>">Most recent</a></li>
                             <li><a href="#">Most popular</a></li>
                             <li><a href="#">Most commented</a></li>
                         </ul>
@@ -146,7 +146,7 @@
                             <span>Profile</span>
                             <ul>
                                 <li><a href="#">My Setups</a></li>
-                                <li><a href="#">Edit Profile</a></li>
+                                <li><a href="#edit_profile_modal" data-lity>Edit Profile</a></li>
                                 <li><a href="<?= $this->Url->build('/users/logout'); ?>">Logout</a></li>
                             </ul>
                         <?php else: ?>

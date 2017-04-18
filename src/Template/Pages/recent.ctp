@@ -1,55 +1,16 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', 'Home');
+$this->assign('title', 'Most recents');
 
 ?>
-
-<?php
-$url=$this->Url->build('/', true) . "app/getsetups?f=1&n=5"; 
-$options=array(
-      CURLOPT_URL            => $url,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_HEADER         => false,
-      CURLOPT_FAILONERROR    => true, 
-      CURLOPT_HTTPHEADER, array('Content-Type: application/json','Accept: application/json')
-);
-$CURL=curl_init();
-if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponible.");}
-      curl_setopt_array($CURL,$options);
-      $fsetups=curl_exec($CURL);
-      if(curl_errno($CURL)){
-            echo "ERREUR curl_exec : ".curl_error($CURL);
-      }
-      $fsetups = json_decode($fsetups);
-      //var_dump($fsetups);
-curl_close($CURL);
- 
-?>
-
-<div class="home_slider">
-
-<?php foreach ($fsetups as $fsetup): ?>
-            
-    <div class="slider-item">
-        <a href="setups/view/<?= $fsetup->id ?>"><img src="<?= $fsetup->src ?>"></a>
-        <a class="slider-item-inner featured-user" href="user.html">
-            <img src="https://horlogeskynet.github.io/img/portrait.jpg">
-        </a>
-        <div class="red_like"><i class="fa fa-heart"></i> <?= $fsetup->likes ?></div>
-    </div>
-
-<?php endforeach ?>
-
-</div>
-
     <div class="maincontainer">
 
     <div class="row">
         <div class="column column-75">
 
 <?php
-$url="localhost/mysetup/app/getsetups"; 
+$url= $this->Url->build('/', true) . "/app/getsetups?o=DESC"; 
  
 // Tableau contenant les options de téléchargement
 $options=array(
@@ -90,13 +51,13 @@ curl_close($CURL);
 ?>
 
 
-            <h4>Popular this week</h4>
+            <h4>Most recents</h4>
 
             <?php foreach ($setups as $setup): ?>
 
             <div class="fullitem">
-                <a href="setups/view/<?= $setup->id ?>">
-                    <img src="<?= $setup->src ?>">
+                <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>">
+                    <img src="<?= $this->Url->build('/', true)?><?= $setup->src ?>">
                 </a>
                 <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->likes ?></div>
 
@@ -109,7 +70,7 @@ curl_close($CURL);
                                 <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
                             </a>
 
-                            <a href="setups/view/<?= $setup->id ?>"><h3><?= $setup->title ?></h3></a>
+                            <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>"><h3><?= $setup->title ?></h3></a>
 
                         </div>
 
