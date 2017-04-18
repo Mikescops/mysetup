@@ -10,7 +10,7 @@ $this->assign('title', 'Most recents');
         <div class="column column-75">
 
 <?php
-$url= $this->Url->build('/', true) . "/app/getsetups?o=DESC"; 
+$url= $this->Url->build('/', true) . "/app/getsetups?o=DESC&n=6"; 
  
 // Tableau contenant les options de téléchargement
 $options=array(
@@ -53,32 +53,40 @@ curl_close($CURL);
 
             <h4>Most recents</h4>
 
-            <?php foreach ($setups as $setup): ?>
+            <div class="fullitem_holder">
 
-            <div class="fullitem">
-                <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>">
-                    <img src="<?= $this->Url->build('/', true)?><?= $setup->src ?>">
-                </a>
-                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->likes ?></div>
+              <?php foreach ($setups as $setup): ?>
 
-                <div class="fullitem-inner">
+              <div class="fullitem">
+                  <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>">
+                      <img src="<?= $this->Url->build('/', true)?><?= $setup->src ?>">
+                  </a>
+                  <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->likes ?></div>
 
-                    <div class="row">
+                  <div class="fullitem-inner">
 
-                        <div class="column column-75">
-                            <a class="featured-user" href="#">
-                                <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
-                            </a>
+                      <div class="row">
 
-                            <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>"><h3><?= $setup->title ?></h3></a>
+                          <div class="column column-75">
+                              <a class="featured-user" href="#">
+                                  <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
+                              </a>
 
-                        </div>
+                              <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>"><h3><?= $setup->title ?></h3></a>
 
-                    </div>
-                </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <?php endforeach ?>
+
             </div>
 
-            <?php endforeach ?>
+            <p class="no_more_setups"></p>
+
+            <?= $this->Html->scriptBlock('infiniteScroll(6);', array('block' => 'scriptBottom')); ?>
 
 
         </div>

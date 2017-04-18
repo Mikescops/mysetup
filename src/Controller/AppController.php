@@ -259,6 +259,7 @@ class AppController extends Controller
             $type = $this->request->getQuery('t', 'date');
             $weeks = $this->request->getQuery('w', '9999');
             $featured = $this->request->getQuery('f', false);
+            $offset = $this->request->getQuery('p', "0");
 
             $week_start = date('Y-m-d', strtotime("-" . $weeks . "weeks"));
             $week_end = date('Y-m-d', strtotime("+ 1 day"));
@@ -274,7 +275,7 @@ class AppController extends Controller
 
             if ($type == "date"){
                 array_push($conditions, array("creationDate >" => $week_start, "creationDate <=" => $week_end)); 
-                $results = $this->Setups->find('all', array('conditions' => $conditions, 'order' => ['creationDate' => $order],'limit' => $nbpost));
+                $results = $this->Setups->find('all', array('conditions' => $conditions, 'order' => ['creationDate' => $order],'limit' => $nbpost, 'offset' => $offset));
             }
             elseif ($type == "comment") {
                 # get by comments
