@@ -116,7 +116,7 @@ class AppController extends Controller
     public function isAuthorized($user)
     {
         // Authorizes some actions if the user is connected
-        if(isset($user) && in_array($this->request->action, ['like', 'dislike']))
+        if(isset($user) && in_array($this->request->action, ['like', 'dislike', 'doesLike']))
         {
             return true;
         }

@@ -322,7 +322,7 @@ function printLikes(id) {
         dataType: 'html',
         type: 'get',
         success: function (json) {
-          console.log(json);
+          //console.log(json);
           $(".pointing_label").html(json);
         }
             
@@ -332,14 +332,14 @@ function printLikes(id) {
 
 function doesLike(setup) {
     $.ajax({
-        url: "/mysetup/app/doeslike",
+        url: "/mysetup/app/doesLike",
         data: {
             setup_id: setup
         },
         dataType: 'html',
         type: 'get',
         success: function (json) {
-          console.log(json);
+          //console.log(json);
           if(json == "1")
             $(".red_button").addClass("active");
         }
