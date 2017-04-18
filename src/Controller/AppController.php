@@ -84,7 +84,7 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
         //Test if a user is log
-        if(isset($this->Auth)){
+        if(isset($this->Auth)) {
             $this->set('authUser', $this->Auth->user());
         }
 
@@ -101,7 +101,7 @@ class AppController extends Controller
         $this->Auth->deny();
 
         // Allow GET request on public functions
-        $this->Auth->allow(['getsetups', 'getLikes']);
+        $this->Auth->allow(['getSetups', 'getLikes']);
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
         $this->Security->config('unlockedFields', [
@@ -115,6 +115,12 @@ class AppController extends Controller
 
     public function isAuthorized($user)
     {
+        // Authorizes some actions if the user is connected
+        if(isset($user) && in_array($this->request->action, ['like', 'dislike']))
+        {
+            return true;
+        }
+
         /* DANGEROUS PART IS JUST BELOW, PLEASE TAKE THAT WITH EXTREME PRECAUTION */
         if(isset($user) && $user['mail'] === 'admin@admin.admin')
         {
