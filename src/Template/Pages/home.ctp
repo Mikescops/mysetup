@@ -5,38 +5,43 @@ $this->assign('title', 'Home');
 
 ?>
 
+<?php
+$url="localhost/mysetup/app/getsetups?f=1&n=5"; 
+$options=array(
+      CURLOPT_URL            => $url,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_HEADER         => false,
+      CURLOPT_FAILONERROR    => true, 
+      CURLOPT_HTTPHEADER, array('Content-Type: application/json','Accept: application/json')
+);
+$CURL=curl_init();
+if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponible.");}
+      curl_setopt_array($CURL,$options);
+      $fsetups=curl_exec($CURL);
+      if(curl_errno($CURL)){
+            echo "ERREUR curl_exec : ".curl_error($CURL);
+      }
+      $fsetups = json_decode($fsetups);
+      //var_dump($fsetups);
+curl_close($CURL);
+ 
+?>
+
 <div class="home_slider">
+
+<?php foreach ($fsetups as $fsetup): ?>
             
     <div class="slider-item">
-        <a href="post.html"><img src="https://i.ytimg.com/vi/iN_Q5i7J-Vg/maxresdefault.jpg"></a>
+        <a href="setups/view/<?= $fsetup->id ?>"><img src="<?= $fsetup->src ?>"></a>
         <a class="slider-item-inner featured-user" href="user.html">
             <img src="https://horlogeskynet.github.io/img/portrait.jpg">
         </a>
-        <div class="red_like"><i class="fa fa-heart"></i> 2</div>
-    </div>
-    <div class="slider-item">
-        <a href="post.html"><img src="https://i.ytimg.com/vi/4kBLJK4FdfQ/maxresdefault.jpg"></a>
-        <a class="slider-item-inner featured-user" href="user.html">
-            <img src="https://horlogeskynet.github.io/img/portrait.jpg">
-        </a>
-        <div class="red_like"><i class="fa fa-heart"></i> 1553</div>
-    </div>
-    <div class="slider-item">
-        <a href="post.html"><img src="https://i.ytimg.com/vi/ZelaJ5ukwGo/maxresdefault.jpg"></a>
-        <a class="slider-item-inner featured-user" href="user.html">
-            <img src="https://horlogeskynet.github.io/img/portrait.jpg">
-        </a>
-        <div class="red_like"><i class="fa fa-heart"></i> 50</div>
-    </div>
-    <div class="slider-item">
-        <a href="post.html"><img src="https://i.ytimg.com/vi/4kBLJK4FdfQ/maxresdefault.jpg"></a>
-        <a class="slider-item-inner featured-user" href="user.html">
-            <img src="https://horlogeskynet.github.io/img/portrait.jpg">
-        </a>
-        <div class="red_like"><i class="fa fa-heart"></i> 38</div>
+        <div class="red_like"><i class="fa fa-heart"></i> <?= $fsetup->likes ?></div>
     </div>
 
-    </div>
+<?php endforeach ?>
+
+</div>
 
     <div class="maincontainer">
 
@@ -57,8 +62,6 @@ $options=array(
     'Accept: application/json'
 ) // Gestion du json
 );
- 
-////////// MAIN
  
 // Création d'un nouvelle ressource cURL
 $CURL=curl_init();
