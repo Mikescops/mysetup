@@ -274,37 +274,29 @@ class AppController extends Controller
             }
 
             if ($type == "date"){
-                array_push($conditions, array("creationDate >" => $week_start, "creationDate <=" => $week_end)); 
-                $results = $this->Setups->find('all', array('conditions' => $conditions, 'order' => ['creationDate' => $order],'limit' => $nbpost, 'offset' => $offset));
+                $order_method = 'creationDate';
             }
             elseif ($type == "comment") {
-                # get by comments
+                $order_method = 'Comments.total'; // not working yet
             }
             elseif ($type == "like") {
-                # get by likes
+                $order_method = 'Setups.likes.total'; // not working yet
             }
 
-            /* Let's include extra data in our results */
+            array_push($conditions, array("creationDate >" => $week_start, "creationDate <=" => $week_end)); 
+            $results = $this->Setups->find('all', array('conditions' => $conditions, 'order' => [$order_method => $order],'limit' => $nbpost, 'offset' => $offset, 'contain' => array('Likes' => function ($q) {return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);}, 'Comments' => function ($q) {return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Comments.user_id')])->group(['Comments.setup_id']);}, 'Resources' => function ($q) {return $q->autoFields(false)->select(['setup_id','src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);} )));
 
-            $results = $results->toArray();
-
-            $this->loadModel('Resources');
-            $this->loadModel('Likes');
-
-            foreach ($results as $setup){
-                $id = $setup->id;
-
-                $fimage = $this->Resources->find('all', ['conditions' => ['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'],'limit' => 1]);
-
-                $likes = $this->Likes->find()->where(['setup_id' => $id])->count();
-
-                $fimage = $fimage->toArray();
-
-                error_reporting(0);
-
-                $setup->src = $fimage[0]['src'];
-                $setup->likes = $likes;
-            }
+            /* OLD WAY >>> Let's include extra data in our results */
+            //$results = $results->toArray();
+            // foreach ($results as $setup){
+            //     $id = $setup->id;
+            //     $fimage = $this->Resources->find('all', ['conditions' => ['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'],'limit' => 1]);
+            //     $likes = $this->Likes->find()->where(['setup_id' => $id])->count();
+            //     $fimage = $fimage->toArray();
+            //     error_reporting(0);
+            //     $setup->src = $fimage[0]['src'];
+            //     $setup->likes = $likes;
+            // }
 
 
             return new Response([

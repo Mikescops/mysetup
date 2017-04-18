@@ -530,8 +530,15 @@ function infiniteScroll(nbtodisplay) {
           if(setups[0]){
             //console.log(json[0]['title']);
             $.each(setups ,function(key, value) {
-              //console.log(value['title']);
-              $('.fullitem_holder').append('<div class="fullitem"><a href=""><img src="/mysetup/'+value['src']+'"><\/a><div class="red_like"><i class="fa fa-heart"><\/i> '+value['likes']+'<\/div><div class="fullitem-inner"><div class="row"><div class="column column-75"><a class="featured-user" href="#"><img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460"><\/a><a href=""><h3>'+value['title']+'<\/h3><\/a><\/div><\/div><\/div><\/div>');
+              console.log(value['likes']);
+              var nblikes;
+              if(value['likes'][0]){
+                nblikes = value['likes'][0]['total'];
+              }
+              else{
+                nblikes = 0;
+              }
+              $('.fullitem_holder').append('<div class="fullitem"><a href=""><img src="/mysetup/'+value['resources'][0]['src'] +'"><\/a><div class="red_like"><i class="fa fa-heart"><\/i> '+ nblikes +'<\/div><div class="fullitem-inner"><div class="row"><div class="column column-75"><a class="featured-user" href="#"><img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460"><\/a><a href=""><h3>'+value['title']+'<\/h3><\/a><\/div><\/div><\/div><\/div>');
             });
             $(window).data('ajaxready', true);
           }

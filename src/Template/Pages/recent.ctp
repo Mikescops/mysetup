@@ -55,32 +55,32 @@ curl_close($CURL);
 
             <div class="fullitem_holder">
 
-              <?php foreach ($setups as $setup): ?>
+            <?php foreach ($setups as $setup): ?>
 
-              <div class="fullitem">
-                  <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>">
-                      <img src="<?= $this->Url->build('/', true)?><?= $setup->src ?>">
-                  </a>
-                  <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->likes ?></div>
+            <div class="fullitem">
+                <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>">
+                    <img src="<?= $this->Url->build('/', true)?><?= $setup->resources[0]->src ?>">
+                </a>
+                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
 
-                  <div class="fullitem-inner">
+                <div class="fullitem-inner">
 
-                      <div class="row">
+                    <div class="row">
 
-                          <div class="column column-75">
-                              <a class="featured-user" href="#">
-                                  <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
-                              </a>
+                        <div class="column column-75">
+                            <a class="featured-user" href="#">
+                                <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
+                            </a>
 
-                              <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>"><h3><?= $setup->title ?></h3></a>
+                            <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>"><h3><?= $setup->title ?></h3></a>
 
-                          </div>
+                        </div>
 
-                      </div>
-                  </div>
-              </div>
+                    </div>
+                </div>
+            </div>
 
-              <?php endforeach ?>
+            <?php endforeach ?>
 
             </div>
 

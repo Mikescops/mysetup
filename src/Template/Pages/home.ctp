@@ -32,11 +32,11 @@ curl_close($CURL);
 <?php foreach ($fsetups as $fsetup): ?>
             
     <div class="slider-item">
-        <a href="setups/view/<?= $fsetup->id ?>"><img src="<?= $fsetup->src ?>"></a>
+        <a href="setups/view/<?= $fsetup->id ?>"><img src="<?= $fsetup->resources[0]->src ?>"></a>
         <a class="slider-item-inner featured-user" href="user.html">
             <img src="https://horlogeskynet.github.io/img/portrait.jpg">
         </a>
-        <div class="red_like"><i class="fa fa-heart"></i> <?= $fsetup->likes ?></div>
+        <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($fsetup->likes[0])){echo $fsetup->likes[0]->total;}else{echo 0;} ?></div>
     </div>
 
 <?php endforeach ?>
@@ -96,9 +96,9 @@ curl_close($CURL);
 
             <div class="fullitem">
                 <a href="setups/view/<?= $setup->id ?>">
-                    <img src="<?= $setup->src ?>">
+                    <img src="<?= $setup->resources[0]->src ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->likes ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
 
                 <div class="fullitem-inner">
 
