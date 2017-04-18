@@ -273,18 +273,23 @@ class AppController extends Controller
                 array_push($conditions, array("featured" => true));
             }
 
-            if ($type == "date"){
-                $order_method = 'creationDate';
-            }
-            elseif ($type == "comment") {
-                $order_method = 'Comments.total'; // not working yet
-            }
-            elseif ($type == "like") {
-                $order_method = 'Setups.likes.total'; // not working yet
-            }
-
             array_push($conditions, array("creationDate >" => $week_start, "creationDate <=" => $week_end)); 
-            $results = $this->Setups->find('all', array('conditions' => $conditions, 'order' => [$order_method => $order],'limit' => $nbpost, 'offset' => $offset, 'contain' => array('Likes' => function ($q) {return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);}, 'Comments' => function ($q) {return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Comments.user_id')])->group(['Comments.setup_id']);}, 'Resources' => function ($q) {return $q->autoFields(false)->select(['setup_id','src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);} )));
+            $results = $this->Setups->find('all', array('conditions' => $conditions, 'order' => ['creationDate' => $order],'limit' => $nbpost, 'offset' => $offset, 'contain' => array('Likes' => function ($q) {return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);}, 'Comments' => function ($q) {return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Comments.user_id')])->group(['Comments.setup_id']);}, 'Resources' => function ($q) {return $q->autoFields(false)->select(['setup_id','src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);} )));
+
+            $results = $results->toArray();
+
+            if ($type == "like") {
+
+                usort($results, function($a, $b) {
+                    error_reporting(0);
+                    if(empty($a->likes)){$a->likes[0]->total = 0;}
+                    if(empty($b->likes)){$b->likes[0]->total = 0;}
+                    if($a->likes[0]->total == $b->likes[0]->total) {
+                        return 0;
+                    } 
+                    return ($a->likes[0]->total > $b->likes[0]->total) ? -1 : 1;
+                } ); // not working yet
+            }
 
             /* OLD WAY >>> Let's include extra data in our results */
             //$results = $results->toArray();
@@ -305,4 +310,5 @@ class AppController extends Controller
             ]);
         }
     }
+
 }
