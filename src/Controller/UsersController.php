@@ -93,8 +93,7 @@ class UsersController extends AppController
             else
             {
                 $this->Flash->error(__('These passwords do not match. Please try again.'));
-
-                return $this->redirect(['action' => 'add']);
+                return $this->redirect('/');
             }
         }
         $this->set(compact('user'));
@@ -113,15 +112,53 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
 
+        if($this->request->is(['patch', 'post', 'put']))
+        {
+            $data = $this->request->getData();
+
+            if(!isset($data['name']) || $data['name'] === '')
+            {
+                $data['name'] = $user['name'];
+            }
+
+            if(!isset($data['mail']) || $data['mail'] === '')
+            {
+                $data['mail'] = $user['mail'];
+            }
+
+            if(!isset($data['password']) || $data['password'] === '')
+            {
+                $data['password'] = $user['password'];
+            }
+
+            else
+            {
+                if($data['password'] !== $data['password2'])
+                {
+                    $this->Flash->error(__('These passwords do not match. Please try again.'));
+                    return $this->redirect('/');
+                }
+            }
+
+            if(!isset($data['verified']) || $data['verified'] === '' || $this->request->session()->read('Auth.User.mail') !== 'admin@admin.admin')
+            {
+                $data['verified'] = false;
+            }
+
+            $user = $this->Users->patchEntity($user, $data);
+
+            if($this->Users->save($user))
+            {
+                $this->Users->saveProfilePicture($data['picture'][0], $user, $this->Flash);
+
+                $this->Flash->success(__('The user has been updated.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+
+            $this->Flash->error(__('The user could not be updated. Please, try again.'));
         }
+
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }

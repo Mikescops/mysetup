@@ -58,23 +58,20 @@
                                 </ul>
 
                                 <div id="edit_profile_modal" class="lity-hide">
-
-                                    <form>
-                                        <input type="text" placeholder="Username" />
-
-                                        <input type="text" placeholder="Mail" />
-
-                                        <input type="file" text="Add profile image" />
-
-                                        <input type="password" placeholder="Password" />
-
-                                        <input type="password" placeholder="Confirm password" />
-
-                                        <input type="submit" value="Edit profile" class="button" />
-                                    </form>
-
+                                    <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Users', 'action' => 'edit', $authUser['id']]]); ?>
+                                    <fieldset style="border:0;">
+                                    <?php
+                                        echo $this->Form->control('name', ['label' => '', 'placeholder' => 'Name', 'default' => $authUser['name']]);
+                                        echo $this->Form->control('mail', ['label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
+                                        echo $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "FR" => "FR", "" => __("Other")], ['style' => 'width: 20%; float: right;', 'default' => $authUser['preferredStore']]);
+                                        echo $this->Form->input('picture. ', ['label' => __("Change my profile image"), 'type' => 'file', 'class' => 'inputfile']);
+                                        echo $this->Form->control('password', ['placeholder' => "Password", 'label' => __("Change my password")]);
+                                        echo $this->Form->control('password2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'label' => '']);
+                                    ?>
+                                    </fieldset>
+                                    <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
+                                    <?= $this->Form->end(); ?>
                                 </div>
-
 
                             <?php else: ?>
                                 <a href="<?= $this->Url->build('/users/login'); ?>"><i class="fa fa-user"></i> Sign In / Up</a>

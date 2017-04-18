@@ -107,7 +107,8 @@ class AppController extends Controller
             'featuredImage',
             'fileselect',
             'video',
-            'mailReset'
+            'mailReset',
+            'picture'
         ]);
     }
 

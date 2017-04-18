@@ -131,7 +131,7 @@ class UsersTable extends Table
         }
     }
 
-    public function saveProfilePicture($file, $user, $type, $flash)
+    public function saveProfilePicture($file, $user, $flash)
     {
         if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
         {
@@ -142,15 +142,9 @@ class UsersTable extends Table
             {
                 // Here we'll check if the picture is in PNG format, and convert it if it's not the case...
                 $tmp = explode('/', $file['type']);
-                if(end($tmp) !== 'png' && !(new Imagick($destination))->setImageFormat('png'))
+                if(end($tmp) !== 'png' && !(new \Imagick($destination))->setImageFormat('png'))
                 {
                     $flash->warning('Your profile picture could not be converted to PNG format...');
-                }
-
-                if(!$this->save($resource))
-                {
-                    $this->Setups->delete($setup);
-                    $flash->error(__('Internal error, we couldn\'t save your setup.'));
                 }
             }
         }
