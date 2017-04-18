@@ -60,12 +60,10 @@ class AppController extends Controller
                 'Controller'
             ],
             'loginRedirect' => [
-                'controller' => 'Setups',
-                'action' => 'index'
+                'redirect' => '/'
             ],
             'logoutRedirect' => [
-                'controller' => 'Setups',
-                'action' => 'index'
+                'redirect' => '/'
             ]
         ]);
     }
@@ -129,6 +127,7 @@ class AppController extends Controller
 
         else
         {
+            $this->redirect('/');
             return false;
         }
     }
