@@ -181,9 +181,9 @@
                     <div class="column column-25">
                       <div class="footer-title">About us</div>
                       <ul>
-                        <li><a href="#" target="_blank" class="item">Our story</a></li>
-                        <li><a href="#" target="_blank">Our team</a></li>
-                        <li><a href="#" target="_blank">Legals</a></li>
+                        <li><a href="https://medium.com/mysetup-co" target="_blank" class="item">Our stories</a></li>
+                        <li><a href="<?= $this->Url->build('/pages/team'); ?>" target="_blank">Our team</a></li>
+                        <li><a href="<?= $this->Url->build('/pages/legals'); ?>" target="_blank">Legal Mentions</a></li>
                       </ul>
                     </div>
                     <div class="column column-25">
@@ -195,8 +195,8 @@
                       </ul>
                     </div>
                     <div class="column column-25 logo_footer">
-                        <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mySetup')); ?>
-                        <p>All rights reserved mySetup.co © 2017</p>
+                        <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mysetup.co')); ?>
+                        <p>All rights reserved – mysetup.co<br> © 2017</p>
                     </div>
               </div>
           </div>
