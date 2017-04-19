@@ -188,6 +188,11 @@ class ResourcesTable extends Table
                     $flash->error(__('Internal error, we couldn\'t save your setup.'));
                 }
             }
+
+            else
+            {
+                $flash->warning(__('One of the file you uploaded could not be saved.'));
+            }
         }
 
         else

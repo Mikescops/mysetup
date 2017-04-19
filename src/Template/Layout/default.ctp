@@ -60,11 +60,12 @@
                                 <div id="edit_profile_modal" class="lity-hide">
                                     <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Users', 'action' => 'edit', $authUser['id']]]); ?>
                                     <fieldset style="border:0;">
+                                    <h3>Change only what you want !</h3>
                                     <?php
                                         echo $this->Form->control('name', ['label' => '', 'placeholder' => 'Name', 'default' => $authUser['name']]);
                                         echo $this->Form->control('mail', ['label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
                                         echo $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "FR" => "FR", "" => __("Other")], ['style' => 'width: 20%; float: right;', 'default' => $authUser['preferredStore']]);
-                                        echo $this->Form->input('picture. ', ['label' => __("Change my profile image"), 'type' => 'file', 'class' => 'inputfile']);
+                                        echo $this->Form->input('picture. ', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile']);
                                         echo $this->Form->control('password', ['placeholder' => "Password", 'label' => __("Change my password")]);
                                         echo $this->Form->control('password2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'label' => '']);
                                     ?>

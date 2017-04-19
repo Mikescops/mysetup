@@ -76,7 +76,7 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->notEmpty('name');
+            ->allowEmpty('name');
 
         $validator
             ->notEmpty('mail')
@@ -133,25 +133,42 @@ class UsersTable extends Table
 
     public function saveProfilePicture($file, $user, $flash)
     {
+        $tmp = explode('/', $file['type']);  // Still this useless variable...
+        $extension = end($tmp);
+
         if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
         {
             // The result file will be in '*.png' anyway, check below the real conversion...
-            $destination = 'uploads/files/profile_picture_' . strval($user->id) . '.png';
+            $destination = 'uploads/files/profile_picture_' . strval($user->id) . '.';
 
-            if(move_uploaded_file($file['tmp_name'], $destination))
+            if(move_uploaded_file($file['tmp_name'], $destination . $extension))
             {
                 // Here we'll check if the picture is in PNG format, and convert it if it's not the case...
-                $tmp = explode('/', $file['type']);
-                if(end($tmp) !== 'png' && !(new \Imagick($destination))->setImageFormat('png'))
+                if($extension !== 'png')
                 {
-                    $flash->warning('Your profile picture could not be converted to PNG format...');
+                    $image = new \Imagick($destination . $extension);
+
+                    if(!$image || !$image->setImageFormat('png') || !$image->writeImage($destination . 'png'))
+                    {
+                        $flash->warning('Your profile picture could not be converted to PNG format...');
+                    }
+
+                    if(!(new File($destination . $extension))->delete())
+                    {
+                        $flash->warning(_('The original file you uploaded could not be removed from our database.'));
+                    }
                 }
+            }
+
+            else
+            {
+                $flash->warning(__('Your profile picture could not be saved.'));
             }
         }
 
         else
         {
-            $flash->warning(__("One of the files you uploaded does not validate our rules... Please contact an administrator."));
+            $flash->warning(__("The file you uploaded does not validate our rules... Please contact an administrator."));
         }
     }
 }

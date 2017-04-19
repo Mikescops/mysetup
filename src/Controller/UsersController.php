@@ -150,7 +150,10 @@ class UsersController extends AppController
 
             if($this->Users->save($user))
             {
-                $this->Users->saveProfilePicture($data['picture'][0], $user, $this->Flash);
+                if(isset($data['picture'][0]) and $data['picture'][0] !== '')
+                {
+                    $this->Users->saveProfilePicture($data['picture'][0], $user, $this->Flash);
+                }
 
                 $this->Flash->success(__('The user has been updated.'));
                 return $this->redirect(['action' => 'index']);
