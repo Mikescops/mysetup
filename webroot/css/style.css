@@ -12,6 +12,7 @@
 
 html{
 	background: #000;
+	overflow-x: hidden;
 }
 
 *:focus {
@@ -121,6 +122,49 @@ footer ul{
 	-moz-box-shadow: 0 0 15px rgba(0,0,0,.55);
 	-webkit-box-shadow: 0 0 15px rgba(0,0,0,.55);
 }
+/* Search Bar */
+.large_search{
+	margin-bottom: 40px;
+}
+
+#keyword-search{
+	border: none;
+    border-radius: 3px;
+    height: 41px;
+    background: #F6F2F2;
+    padding-left: 17px;
+    color: #585858;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.ac__container{
+	z-index: 1;
+	margin-top: -3px;
+}
+
+/* Words container */
+.ac__inner{
+    background: #f6f6f6;
+    color: #000;
+}
+
+/* Individual word element */
+.ac__word{
+    margin: 0;
+    padding: 5px;
+}
+
+/* Word prefix style. It’s the span containing the search keyword within the word. */
+.ac__prefix{
+    font-weight: bold;
+}
+
+/* Style applied to each words while navigating through the list or on hover */
+.ac__word--selected, .ac__word:hover{
+    background-color: #e3e3e3;
+}
+
 
 .red_like{
 	position: absolute;

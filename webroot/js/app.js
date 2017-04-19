@@ -6,6 +6,8 @@
  * All rights reserved
  */
 
+/** SLIDERS **/
+
 $('.home_slider').slick({
   centerMode: true,
   infinite: true,

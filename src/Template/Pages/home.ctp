@@ -45,6 +45,14 @@ curl_close($CURL);
 
     <div class="maincontainer">
 
+      <div class="large_search">
+        
+        <input type="text" id="keyword-search" placeholder="Search a component... Find a cool setup !" /> 
+        <?= $this->Html->scriptBlock(' let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => console.log(`searching for ${word}...`));', array('block' => 'scriptBottom')); ?>
+
+      </div>
+
+
     <div class="row">
         <div class="column column-75">
 
@@ -88,10 +96,6 @@ if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponib
 curl_close($CURL);
  
 ?>
-
-
-            <h4>Popular this week</h4>
-
             <?php foreach ($setups as $setup): ?>
 
             <div class="fullitem">
@@ -122,8 +126,6 @@ curl_close($CURL);
 
         </div>
         <div class="column column-25 sidebar">
-
-            <h4>Nos réseaux sociaux</h4>
 
             <div class="social-networks">
                 <a href="#" class="button button-clear"><i class="fa fa-facebook fa-2x"></i></a>

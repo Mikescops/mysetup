@@ -210,6 +210,9 @@
     <!-- Lightbox Js async load -->
     <?= $this->Html->script('lity.min.js') ?>
 
+    <!-- Amazon Query Js async load -->
+    <?= $this->Html->script('amazon-autocomplete.js') ?>
+
     <!-- App Js async load -->
     <?= $this->Html->script('app.js') ?>
 
