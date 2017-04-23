@@ -66,9 +66,10 @@
                                         echo $this->Form->control('mail', ['label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
                                         echo $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "FR" => "FR", "" => __("Other")], ['style' => 'width: 20%; float: right;', 'default' => $authUser['preferredStore']]);
                                         echo $this->Form->input('picture. ', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile']);
-                                        echo $this->Form->control('password', ['placeholder' => "Password", 'label' => __("Change my password")]);
+                                        echo $this->Form->control('password', ['placeholder' => "Password", 'class' => 'pwd_field','label' => '']);
                                         echo $this->Form->control('password2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'label' => '']);
                                     ?>
+                                    <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change my password</a>
                                     </fieldset>
                                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                                     <?= $this->Form->end(); ?>

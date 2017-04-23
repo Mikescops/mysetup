@@ -98,6 +98,11 @@ $(function(){
       $('.setup_author').show('fast');
       return false;
    });
+    $('.reset_pwd').click(function(){
+      $(this).hide();
+      $('.pwd_field').show('fast');
+      return false;
+   });
 });
 
   /***************** Image preview on modal ****************/

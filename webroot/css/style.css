@@ -752,6 +752,15 @@ nav {
 	display: none;
 }
 
+.reset_pwd{
+	cursor: pointer;
+}
+
+.pwd_field{
+	display: none;
+}
+
+
 /************** LOGIN / REGISTER CSS ******************/
 
 .login-form {
