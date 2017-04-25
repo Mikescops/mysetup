@@ -218,11 +218,21 @@ class SetupsController extends AppController
 
             $query = $this->request->getQuery('q','');
             $offset = $this->request->getQuery('p', '0');
-        
+
+            $query = urlencode($query);
 
             $this->loadModel('Resources');
 
-            $test = $this->Resources->find('all', array('conditions' => array('Resources.title LIKE' => '%'.$query.'%', 'Resources.type' => 'SETUP_PRODUCT'), 'order' => ['creationDate' => 'DESC'],'limit' => 8, 'offset' => $offset, 'contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title','author']);} ), 'group' => 'setup_id'));
+            $qcond = array();
+
+            foreach (explode("+", $query) as $key => $value) {
+                array_push($qcond, ['CONVERT(Resources.title USING utf8)  COLLATE utf8_general_ci LIKE' => '%'.$value.'%']);
+            }
+
+            $qconditions = array('OR' => $qcond, 'Resources.type' => 'SETUP_PRODUCT'); 
+
+
+            $test = $this->Resources->find('all', array('order' => ['creationDate' => 'DESC'],'limit' => 8, 'offset' => $offset, 'contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title','author']);} ), 'group' => 'setup_id'))->where($qconditions);
 
             $ncond = array();
 
