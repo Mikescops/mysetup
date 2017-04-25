@@ -187,7 +187,7 @@ class SetupsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['view']);
+        $this->Auth->allow(['view', 'search']);
     }
 
     public function isAuthorized($user)
@@ -209,5 +209,39 @@ class SetupsController extends AppController
         }
 
         return parent::isAuthorized($user);
+    }
+
+    public function search()
+    {
+        
+        if (!empty($this->request->getQuery('q'))) {
+
+            $query = $this->request->getQuery('q','');
+            $offset = $this->request->getQuery('p', '0');
+        
+
+            $this->loadModel('Resources');
+
+            $test = $this->Resources->find('all', array('conditions' => array('Resources.title LIKE' => '%'.$query.'%', 'Resources.type' => 'SETUP_PRODUCT'), 'order' => ['creationDate' => 'DESC'],'limit' => 8, 'offset' => $offset, 'contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title','author']);} ), 'group' => 'setup_id'));
+
+            $ncond = array();
+
+            foreach ($test as $key) {
+                array_push($ncond, ['Resources.setup_id' => $key->setup_id]);
+            }
+
+
+            $conditions = array('OR' => $ncond, 'Resources.type' => 'SETUP_FEATURED_IMAGE');
+
+
+            
+            
+
+            $setups = $this->Resources->find('all', array('contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title','author']);} )))->where($conditions);
+
+            $this->set(compact('setups'));
+
+            $this->set('_serialize', ['setups']);
+        }
     }
 }

@@ -265,7 +265,7 @@ class AppController extends Controller
             $type = $this->request->getQuery('t', 'date');
             $weeks = $this->request->getQuery('w', '9999');
             $featured = $this->request->getQuery('f', false);
-            $offset = $this->request->getQuery('p', "0");
+            $offset = $this->request->getQuery('p', '0');
 
             $week_start = date('Y-m-d', strtotime("-" . $weeks . "weeks"));
             $week_end = date('Y-m-d', strtotime("+ 1 day"));
