@@ -214,7 +214,7 @@ class SetupsController extends AppController
     public function search()
     {
         
-        if (!empty($this->request->getQuery('q'))) {
+        if ($this->request->getQuery('q')) {
 
             $query = $this->request->getQuery('q','');
             $offset = $this->request->getQuery('p', '0');
@@ -230,18 +230,25 @@ class SetupsController extends AppController
                 array_push($ncond, ['Resources.setup_id' => $key->setup_id]);
             }
 
+            if(!empty($ncond)){
 
-            $conditions = array('OR' => $ncond, 'Resources.type' => 'SETUP_FEATURED_IMAGE');
+                $conditions = array('OR' => $ncond, 'Resources.type' => 'SETUP_FEATURED_IMAGE');            
 
+                $setups = $this->Resources->find('all', array('contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title','author']);} )))->where($conditions);
 
-            
-            
+            }
 
-            $setups = $this->Resources->find('all', array('contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title','author']);} )))->where($conditions);
+            else{
+                $setups = "noresult";
+            }
 
-            $this->set(compact('setups'));
-
-            $this->set('_serialize', ['setups']);
         }
+        else{
+            $setups = "noquery";
+        }
+
+        $this->set(compact('setups'));
+
+        $this->set('_serialize', ['setups']);
     }
 }
