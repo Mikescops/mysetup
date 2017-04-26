@@ -133,6 +133,8 @@ curl_close($CURL);
                 <a href="#" class="button button-clear"><i class="fa fa-youtube fa-2x"></i></a>
             </div>
 
+            <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co">Tweets by mysetup_co</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
         </div>
     </div>
 
