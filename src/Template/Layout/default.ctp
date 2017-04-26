@@ -17,6 +17,8 @@
     <?= $this->Html->css('font-awesome.min.css') ?>
     <?= $this->Html->css('slick.css') ?>
     <?= $this->Html->css('lity.min.css') ?>
+    <?= $this->Html->css('jssocials.css') ?>
+    <?= $this->Html->css('jssocials-theme-flat.css') ?>
     <?= $this->Html->css('style.css') ?>
 
     <?= $this->fetch('meta') ?>
@@ -213,6 +215,8 @@
 
     <!-- Amazon Query Js async load -->
     <?= $this->Html->script('amazon-autocomplete.js') ?>
+
+    <?= $this->Html->script('jssocials.min.js') ?>
 
     <!-- App Js async load -->
     <?= $this->Html->script('app.js') ?>

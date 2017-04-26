@@ -103,6 +103,14 @@ $(function(){
       $('.pwd_field').show('fast');
       return false;
    });
+    $("#social-networks").jsSocials({
+      shareIn: "popup",
+      showCount: true,
+          showLabel: function(screenWidth) {
+        return (screenWidth > 640);
+      },
+      shares: ["twitter", "facebook", "googleplus", "pinterest", "stumbleupon", "whatsapp"]
+    });
 });
 
   /***************** Image preview on modal ****************/

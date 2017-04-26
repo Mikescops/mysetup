@@ -65,11 +65,7 @@
 
             <p>Published on : <?= h($setup->creationDate) ?><br>Setup owner : <?= $setup->author ?></p>
 
-            <div class="social-networks">
-                <a href="#" class="button button-clear"><i class="fa fa-facebook fa-2x"></i></a>
-                <a href="#" class="button button-clear"><i class="fa fa-twitter fa-2x"></i></a>
-                <a href="#" class="button button-clear"><i class="fa fa-youtube fa-2x"></i></a>
-            </div>
+            <div id="social-networks"></div><br>
 
             <a class="button item-youtube" href="<?php foreach ($video as $key) { echo $key->src;break;} ?>" data-lity>Voir la vidéo Youtube</a>
         </div>
