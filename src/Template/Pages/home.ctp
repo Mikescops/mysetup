@@ -123,7 +123,7 @@ curl_close($CURL);
 
             <?php endforeach ?>
 
-
+          <a class="button float-right" href="<?= $this->Url->build('/pages/recent'); ?>">Need more ? Click to see the latest !</a>
         </div>
         <div class="column column-25 sidebar">
 
