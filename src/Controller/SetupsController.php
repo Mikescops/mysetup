@@ -232,7 +232,7 @@ class SetupsController extends AppController
             $qconditions = array('OR' => $qcond, 'Resources.type' => 'SETUP_PRODUCT'); 
 
 
-            $test = $this->Resources->find('all', array('order' => ['creationDate' => 'DESC'],'limit' => 8, 'offset' => $offset, 'contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title','author']);} ), 'group' => 'setup_id'))->where($qconditions);
+            $test = $this->Resources->find('all', array('limit' => 8, 'offset' => $offset, 'group' => 'setup_id'))->where($qconditions);
 
             $ncond = array();
 
@@ -244,7 +244,7 @@ class SetupsController extends AppController
 
                 $conditions = array('OR' => $ncond, 'Resources.type' => 'SETUP_FEATURED_IMAGE');            
 
-                $setups = $this->Resources->find('all', array('contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title','author']);} )))->where($conditions);
+                $setups = $this->Resources->find('all', array('contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title','user_id']);} )))->where($conditions);
 
             }
 

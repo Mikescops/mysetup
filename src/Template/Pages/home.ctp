@@ -34,7 +34,7 @@ curl_close($CURL);
     <div class="slider-item">
         <a href="setups/view/<?= $fsetup->id ?>"><img src="<?= $fsetup->resources[0]->src ?>"></a>
         <a class="slider-item-inner featured-user" href="user.html">
-            <img src="https://horlogeskynet.github.io/img/portrait.jpg">
+            <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $fsetup->user_id ?>">
         </a>
         <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($fsetup->likes[0])){echo $fsetup->likes[0]->total;}else{echo 0;} ?></div>
     </div>
@@ -109,8 +109,8 @@ curl_close($CURL);
                     <div class="row">
 
                         <div class="column column-75">
-                            <a class="featured-user" href="#">
-                                <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
+                            <a class="featured-user" href="<?= $this->Url->build('/users/view/'); ?><?= $setup->user_id ?>">
+                                <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->user_id ?>.png">
                             </a>
 
                             <a href="setups/view/<?= $setup->id ?>"><h3><?= $setup->title ?></h3></a>

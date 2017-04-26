@@ -13,7 +13,7 @@
 
             <div class="column column-75">
                 <a class="featured-user" href="#">
-                    <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460">
+                    <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->user_id ?>.png">
                 </a>
 
                 <h3><?= $setup->title ?></h3>
