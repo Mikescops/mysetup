@@ -33,7 +33,7 @@ curl_close($CURL);
             
     <div class="slider-item">
         <a href="setups/view/<?= $fsetup->id ?>"><img src="<?= $fsetup->resources[0]->src ?>"></a>
-        <a class="slider-item-inner featured-user" href="user.html">
+        <a class="slider-item-inner featured-user" href="<?= $this->Url->build('/users/view/'); ?><?= $fsetup->user_id ?>">
             <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $fsetup->user_id ?>">
         </a>
         <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($fsetup->likes[0])){echo $fsetup->likes[0]->total;}else{echo 0;} ?></div>

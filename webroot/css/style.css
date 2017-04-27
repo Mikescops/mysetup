@@ -73,6 +73,10 @@ footer ul{
 	list-style-type: none;
 }
 
+footer a{
+	color: #cfcfcf;
+}
+
 .footer-title{
 	font-size: 1.1em;
 	border-bottom: 1px solid #fff;

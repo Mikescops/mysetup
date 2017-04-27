@@ -39,7 +39,9 @@ class UsersController extends AppController
             'contain' => ['Setups', 'Comments', 'Resources']
         ]);
 
-        $this->set('user', $user);
+        $fimage = $this->Users->Resources->find('all')->where(['user_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->toArray();
+
+        $this->set(compact('user', 'fimage'));
         $this->set('_serialize', ['user']);
     }
 
