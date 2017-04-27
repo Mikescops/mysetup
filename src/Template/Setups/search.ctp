@@ -37,8 +37,8 @@
 	                    <div class="row">
 
 	                        <div class="column column-75">
-	                            <a class="featured-user" href="#">
-	                                <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->setup->user_id ?>">
+	                            <a class="featured-user" href="<?= $this->Url->build('/users/view/'); ?><?= $setup->setup->user_id ?>">
+	                                <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->setup->user_id ?>.png">
 	                            </a>
 
 	                            <a href="<?= $this->Url->build('/setups/view/', true)?><?= $setup->setup_id ?>"><h3><?= $setup->setup->title ?></h3></a>

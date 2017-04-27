@@ -12,7 +12,7 @@
         <div class="row">
 
             <div class="column column-75">
-                <a class="featured-user" href="#">
+                <a class="featured-user" href="<?= $this->Url->build('/users/view/'); ?><?= $additionalData['owner']['id'] ?>">
                     <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->user_id ?>.png">
                 </a>
 

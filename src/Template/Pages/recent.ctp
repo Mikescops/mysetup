@@ -68,7 +68,7 @@ curl_close($CURL);
                     <div class="row">
 
                         <div class="column column-75">
-                            <a class="featured-user" href="#">
+                            <a class="featured-user" href="<?= $this->Url->build('/users/view/'); ?><?= $setup->user_id ?>">
                                 <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->user_id ?>.png">
                             </a>
 
