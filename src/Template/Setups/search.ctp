@@ -16,9 +16,17 @@
 	elseif ($setups == "noresult"){
 		echo "<h3>We didn't found any results for this query :(</h3>";
 	}
-	else{
+	else{?>
 
-	foreach ($setups as $setup): ?>
+	   <div class="large_search">
+        
+        <input type="text" id="keyword-search" placeholder="Search a component... Find a cool setup !" /> 
+        <?= $this->Html->scriptBlock(' let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
+
+      </div>
+
+
+	<?php foreach ($setups as $setup): ?>
 
 	            <div class="fullitem">
 	                <a href="<?= $this->Url->build('/setups/view/', true)?><?= $setup->setup_id ?>">
@@ -43,6 +51,10 @@
 
 	<?php endforeach; }?>
 
+	</div>
+
+	<div class="column column-25">
+		<a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co">Tweets by mysetup_co</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </div>
 </div>
