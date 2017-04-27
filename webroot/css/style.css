@@ -295,6 +295,30 @@ footer ul{
     z-index: 8;
 }
 
+.edit_panel{
+	width: 100%;
+	padding: 4px;
+	width: 100%;
+	height: 34px;
+	background: #000;
+}
+
+.edit_panel div{
+	width: 50%;
+	background: #000;
+	float: left;
+	text-align: center;
+}
+
+.edit_panel div:first-child{
+	border-right: solid 1px #fff;
+}
+
+.edit_panel a{
+	text-decoration: none;
+	color: #fff;
+}
+
 
 .item_box {
     float:left;
@@ -966,6 +990,10 @@ nav {
 
 	.featured-inner h3{
 		margin: 5px 0 5px 0;
+	}
+
+	.featured-inner .row .column.column-75 {
+    	max-width: 100%;
 	}
 
 	.item_box{

@@ -39,6 +39,12 @@
 
 </div>
 
+<?php if($authUser['id'] == $setup->user_id): ?>
+    <div class="edit_panel">
+        <div><a href="#"><i class="fa fa-wrench"></i> Edit your setup</a></div>
+        <div><a href="#"><i class="fa fa-twitch"></i> Embed it in Twitch</a></div>
+    </div>
+<?php endif ?>
 
 <div class="maincontainer">
 
