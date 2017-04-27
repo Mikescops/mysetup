@@ -51,7 +51,7 @@ curl_close($CURL);
 ?>
 
 
-            <h3>Most recents</h3>
+            <h3>Latest setups</h3>
 
             <div class="fullitem_holder">
 

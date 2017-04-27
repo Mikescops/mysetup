@@ -12,6 +12,8 @@
     </title>
     <?= $this->Html->meta('icon') ?>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
     <?= $this->Html->css('normalize.css') ?>
     <?= $this->Html->css('milligram.min.css') ?>
     <?= $this->Html->css('font-awesome.min.css') ?>

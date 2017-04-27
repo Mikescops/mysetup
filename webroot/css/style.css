@@ -465,7 +465,14 @@ footer ul{
     -o-transform: rotate(45deg);
 }
 
+.jssocials-shares {
+    margin: 0;
+    text-align: center;
+}
 
+.jssocials-share-link{
+	background: #000 !important;
+}
 
 .comment-section{
 	margin-top: 30px;

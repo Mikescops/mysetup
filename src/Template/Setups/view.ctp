@@ -5,7 +5,7 @@
 ?>
 <div class="featured-container">
 
-    <img width="1120" src="<?= $this->Url->build('/', true)?><?php foreach ($fimage as $key) { echo $key->src;break;} ?>" alt="<?= $setup->title ?>">
+    <img width="1120" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
 
     <div class="featured-inner">
 
@@ -18,7 +18,7 @@
 
                 <h3><?= $setup->title ?></h3>
 
-                <p>Shared by <?= $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]) ?>  <?php if($additionalData['owner']['verified']): echo '<i class="fa fa-check-square verified_account"></i>'; endif; ?></p>
+                <p>Shared by <?= $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]) ?>  <?php if($additionalData['owner']['verified']): echo '<i class="fa fa-check-square verified_account"></i>'; endif; if($additionalData['owner']['name'] != $setup->author): echo ", created by " . $setup->author; endif?></p>
 
             </div>
                 
@@ -69,11 +69,13 @@
 
             <?= $this->Text->autoParagraph(h($setup->description)); ?>
 
-            <p>Published on : <?= h($setup->creationDate) ?><br>Setup owner : <?= $setup->author ?></p>
+            <p>Published on : <?= h($setup->creationDate) ?></p>
 
             <div id="social-networks"></div><br>
 
-            <a class="button item-youtube" href="<?php foreach ($video as $key) { echo $key->src;break;} ?>" data-lity>Voir la vidéo Youtube</a>
+            <?php if(!empty($video->src)): ?>
+                <a class="button item-youtube" href="<?= $video->src ?>" data-lity>Voir la vidéo Youtube</a>
+            <?php endif?>
         </div>
     </div>
 

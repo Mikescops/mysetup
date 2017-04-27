@@ -46,13 +46,13 @@ class SetupsController extends AppController
         $products = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all();
 
         // Featured Image that we have to send to the View
-        $fimage = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->all();
+        $fimage = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first();
 
         // List of images that we have to send to the View
         $gallery = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_GALLERY_IMAGE'])->all();
 
         // Video link that we have to send to the View
-        $video = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_VIDEO_LINK'])->all();
+        $video = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_VIDEO_LINK'])->first();
 
         // Sets an array with the name of the owner as a first entry, and its profile validation status
         $additionalData['owner'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first();
