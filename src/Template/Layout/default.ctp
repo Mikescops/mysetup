@@ -63,15 +63,40 @@
                                     <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Users', 'action' => 'edit', $authUser['id']]]); ?>
                                     <fieldset style="border:0;">
                                     <h3>Change only what you want !</h3>
+                                    <div class="row">
+                                    <div class="column column-25">
+                                    <div class="profile-container">
+                                       <image id="profileImage" src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $authUser['id'] ?>.png" />
+                                    </div>
+
+                                    <div class="profilepicup">
+                                        <?php
+                                        echo $this->Form->input('picture. ', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
+                                        ?>
+                                    </div>
+
+                                    <br>
+
+                                    <?php
+                                        echo $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "FR" => "FR", "" => __("Other")], ['default' => $authUser['preferredStore']]);
+                                        ?>
+                                    </div>
+                                    <div class="column column-75">
                                     <?php
                                         echo $this->Form->control('name', ['label' => '', 'placeholder' => 'Name', 'default' => $authUser['name']]);
                                         echo $this->Form->control('mail', ['label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
-                                        echo $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "FR" => "FR", "" => __("Other")], ['style' => 'width: 20%; float: right;', 'default' => $authUser['preferredStore']]);
-                                        echo $this->Form->input('picture. ', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile']);
+                                    ?>
+
+                                     <?php
                                         echo $this->Form->control('password', ['placeholder' => "Password", 'class' => 'pwd_field','label' => '']);
                                         echo $this->Form->control('password2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'label' => '']);
                                     ?>
                                     <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change my password</a>
+
+                                    </div>
+
+                                    </div>
+                                    
                                     </fieldset>
                                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                                     <?= $this->Form->end(); ?>

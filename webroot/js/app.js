@@ -111,7 +111,22 @@ $(function(){
       },
       shares: ["twitter", "facebook", "googleplus", "pinterest", "stumbleupon", "whatsapp"]
     });
+
+    $("#profileImage").click(function(e) {
+      $("#profileUpload").click();
+    });
+    $("#profileUpload").change(function(){
+      fasterPreview( this );
+    });
 });
+
+/***** Update Profile Picture on Upload *****/
+function fasterPreview( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#profileImage').attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
 
   /***************** Image preview on modal ****************/
 

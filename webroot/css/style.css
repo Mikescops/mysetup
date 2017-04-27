@@ -635,6 +635,34 @@ nav {
 	list-style-type: none;
 }
 
+/* **** PROFILE MODAL **** */
+.profilepicup{
+	display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+
+.profile-container {
+	margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.profile-container img {
+    width: 100px;
+    height: 100px;
+}
+
+
 /* **** ADD MODAL **** */
 
 #add_setup_modal, #edit_profile_modal{
@@ -990,7 +1018,7 @@ nav {
 
 /* Smaller than tablet screen */
 @media (max-width: 880px) { 
-	.row .column.column-75 {
+	.maincontainer .row .column.column-75 {
 	    flex: 0 0 100%;
 	    max-width: 100%;
 	}
