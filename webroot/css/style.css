@@ -782,6 +782,7 @@ nav {
 	display: block;
 	width: 100%;
 	margin-bottom: 10px;
+	margin-top: 10px;
 }
 #images_holder img{
 	display: inline-block;

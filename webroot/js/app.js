@@ -63,9 +63,8 @@ $('.post_slider').slick({
   ]
 });
 
-
-(function() {
-
+/***** Login area tabs *****/
+$(function() {
   // constants
   var SHOW_CLASS = 'show',
       HIDE_CLASS = 'hide',
@@ -91,7 +90,7 @@ $('.post_slider').slick({
         .fadeIn( 550 );
   });
 
-
+/***** On load functions *****/
 $(function(){
    $('.is_author').click(function(){
       $(this).hide();
@@ -118,9 +117,13 @@ $(function(){
     $("#profileUpload").change(function(){
       fasterPreview( this );
     });
+    $("#featuredimage").change(function(){
+      featuredPreview( this );
+    });
 });
 
-/***** Update Profile Picture on Upload *****/
+/********* Update Profile Picture on Upload *********/
+
 function fasterPreview( uploader ) {
     if ( uploader.files && uploader.files[0] ){
           $('#profileImage').attr('src', 
@@ -128,20 +131,14 @@ function fasterPreview( uploader ) {
     }
 }
 
-  /***************** Image preview on modal ****************/
+/***************** Image preview on modal ****************/
 
-document.getElementById("featuredimage").onchange = function () {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-        // get loaded data and render thumbnail.
-        document.getElementById("featuredimage_preview").src = e.target.result;
-    };
-
-    // read the image file as a data URL.
-    reader.readAsDataURL(this.files[0]);
-};
-
+function featuredPreview( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#featuredimage_preview').attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
 
   /***************** DRAG AND DROP ****************/
 
@@ -174,7 +171,7 @@ document.getElementById("featuredimage").onchange = function () {
     for (var i = 0, f; f = files[i]; i++) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('<img />').attr('src', e.target.result).appendTo(images_holder);
+            $('<img />').attr('src',  e.target.result).appendTo(images_holder);
         }
         reader.readAsDataURL(files[i]);
       //ParseFile(f);
