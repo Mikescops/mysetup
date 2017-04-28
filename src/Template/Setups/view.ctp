@@ -139,7 +139,6 @@
         </section>
             
         <form>
-            <label for="commentField">Comment</label>
             <textarea placeholder="Nice config' …" id="commentField"></textarea>
             <input class="button-primary float-right" type="submit" value="Send">
           </fieldset>
