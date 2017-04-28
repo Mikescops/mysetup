@@ -14,7 +14,7 @@
 		echo "<h3>No search query, no results :(</h3>";
 	}
 	elseif ($setups == "noresult"){
-		echo "<h3>We didn't found any results for this query :(</h3>";
+		echo "<h3>We haven't found any results for this query :(</h3>";
 	}
 	else{?>
 
