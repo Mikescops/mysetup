@@ -255,6 +255,7 @@ footer a{
 	position: relative;
 	max-height: 500px;
 	overflow: hidden;
+	margin-top: 25px;
 }
 
 .featured-inner{

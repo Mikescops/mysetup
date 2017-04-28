@@ -86,11 +86,9 @@
 
         <div class="column column-33 item-meta">
 
-            <?= $this->Text->autoParagraph(h($setup->description)); ?>
+            <?= $this->Text->autoParagraph(h($setup->description . " -- " . $setup->creationDate))?> 
 
-            <p>Published on : <?= h($setup->creationDate) ?></p>
-
-            <div id="social-networks"></div><br>
+            <div id="social-networks"></div></br>
 
             <?php if(!empty($video->src)): ?>
                 <a class="button item-youtube" href="<?= $video->src ?>" data-lity>Voir la vidéo Youtube</a>
