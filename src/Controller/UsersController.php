@@ -138,17 +138,22 @@ class UsersController extends AppController
                 $data['mail'] = $user['mail'];
             }
 
-            if(!isset($data['password']) || $data['password'] === '')
+            if(!isset($data['secret']) || $data['secret'] === '')
             {
                 $data['password'] = $user['password'];
             }
 
             else
             {
-                if($data['password'] !== $data['password2'])
+                if($data['secret'] !== $data['secret2'])
                 {
                     $this->Flash->error(__('These passwords do not match. Please try again.'));
                     return $this->redirect('/');
+                }
+
+                else
+                {
+                    $data['password'] = $data['secret'];
                 }
             }
 

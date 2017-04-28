@@ -85,13 +85,13 @@
                                     </div>
                                     <div class="column column-75">
                                     <?php
-                                        echo $this->Form->control('name', ['label' => '', 'placeholder' => 'Name', 'default' => $authUser['name']]);
+                                        echo $this->Form->control('name', ['label' => '', 'placeholder' => __("Name"), 'default' => $authUser['name']]);
                                         echo $this->Form->control('mail', ['label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
                                     ?>
 
                                      <?php
-                                        echo $this->Form->control('password', ['placeholder' => "Password", 'class' => 'pwd_field', 'label' => '']);
-                                        echo $this->Form->control('password2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
+                                        echo $this->Form->control('secret', ['type' => 'password', 'placeholder' => __("Password"), 'class' => 'pwd_field', 'label' => '']);
+                                        echo $this->Form->control('secret2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
                                     ?>
                                     <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change my password</a>
 
