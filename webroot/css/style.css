@@ -112,7 +112,6 @@ footer a{
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	width: 100%;
 	padding: 10px;
 	z-index: 9;
 }
@@ -122,6 +121,7 @@ footer a{
 	border-radius: 100%;
 	float: left;
 	border: solid 2px #328fea;
+	background-color: #000;
 	box-shadow: 0 0 15px rgba(0,0,0,.55);
 	-moz-box-shadow: 0 0 15px rgba(0,0,0,.55);
 	-webkit-box-shadow: 0 0 15px rgba(0,0,0,.55);
@@ -306,6 +306,7 @@ footer a{
 	width: 100%;
 	height: 34px;
 	background: #000;
+	border-radius: 0 0 10px 10px;
 }
 
 .edit_panel div{
@@ -441,8 +442,8 @@ footer a{
 }
 
 .red_button.active{
-	background-color: #b62121;
-	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+	background-color: #cb2525;
+	box-shadow: inset -2px 0px 10px rgba(0,0,0,0.5);
 }
 
 .pointing_label{
@@ -475,7 +476,9 @@ footer a{
 }
 
 .jssocials-share-link{
-	background: #000 !important;
+	background: #121212 !important;
+	border: solid 1px #fff;
+	border-radius: 8px;
 }
 
 .comment-section{
@@ -1072,6 +1075,7 @@ nav {
 
 	.featured-inner{
 		height: 70px;
+		margin-top: -8px;
 	}
 
 	.featured-inner h3{
