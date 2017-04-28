@@ -90,8 +90,8 @@
                                     ?>
 
                                      <?php
-                                        echo $this->Form->control('password', ['placeholder' => "Password", 'class' => 'pwd_field','label' => '']);
-                                        echo $this->Form->control('password2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'label' => '']);
+                                        echo $this->Form->control('password', ['placeholder' => "Password", 'class' => 'pwd_field', 'label' => '']);
+                                        echo $this->Form->control('password2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
                                     ?>
                                     <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change my password</a>
 
