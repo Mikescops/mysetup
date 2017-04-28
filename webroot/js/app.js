@@ -64,7 +64,7 @@ $('.post_slider').slick({
 });
 
 /***** Login area tabs *****/
-$(function() {
+(function() {
   // constants
   var SHOW_CLASS = 'show',
       HIDE_CLASS = 'hide',
