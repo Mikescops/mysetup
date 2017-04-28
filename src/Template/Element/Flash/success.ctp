@@ -5,6 +5,5 @@ if (!isset($params['escape']) || $params['escape'] !== false) {
 ?>
 
 <script>
-const toast = new siiimpleToast();
 toast.success('<?= $message ?>');
 </script>
