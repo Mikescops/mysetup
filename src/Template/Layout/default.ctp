@@ -116,8 +116,8 @@
                     <?= $this->Form->create($newSetupEntity, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'add']]); ?>
                     <fieldset style="border:0;">
                         <?php
-                            echo $this->Form->control('title', ['id' => 'title']);
-                            echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%']);
+                            echo $this->Form->control('title', ['id' => 'title', 'maxLength' => 48]);
+                            echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                         ?>
                         <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
                         <ul class="search_results"></ul>
