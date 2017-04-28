@@ -136,7 +136,7 @@ class UsersTable extends Table
         $tmp = explode('/', $file['type']);  // Still this useless variable...
         $extension = end($tmp);
 
-        if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
+        if($file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
         {
             // The result file will be in '*.png' anyway, check below the real conversion...
             $destination = 'uploads/files/profile_picture_' . strval($user->id) . '.';
