@@ -53,6 +53,7 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
+
         if ($this->request->is('post')) {
 
             $data = $this->request->getData();
@@ -65,6 +66,11 @@ class UsersController extends AppController
                 {
                     $user['preferredStore'] = 'US';
                 }
+
+                // Here we'll assign a random id to this new user
+                do {
+                    $user->id = mt_rand() + 1;
+                } while($this->Users->find()->where(['id' => $user->id])->count() !== 0);
 
                 if($this->Users->save($user))
                 {
@@ -88,8 +94,11 @@ class UsersController extends AppController
                     }
                 }
 
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
-                return $this->redirect(['action' => 'add']);
+                else
+                {
+                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                    return $this->redirect('/');                    
+                }
             }
 
             else
@@ -249,14 +258,25 @@ class UsersController extends AppController
             if($user)
             {
                 // Let's generate a new random password, and send it to the email address specified
-                $user->password = substr(md5(rand()), 0, 16);
+                $user->password = substr(md5(mt_rand()), 0, 16);
                 if($this->Users->save($user))
                 {
-                    // $email = new Email('default');
-                    // $email->setFrom(['support@mysetup.co' => 'MySetup.co'])
-                    //     ->setTo($data['mailReset'])
-                    //     ->setSubject("You password has been reseted !")
-                    //     ->send("Your password has been reseted and set to: " . $user->password . "<br />Please log in and change it as soon as possible !");
+                    Email::setConfigTransport('Zoho', [
+                        'host' => 'smtp.zoho.com',
+                        'port' => 587,
+                        'username' => 'support@mysetup.co',
+                        'password' => 'Lsc\'etb1',
+                        'className' => 'Smtp',
+                        'tls' => true
+                    ]);
+
+                    $email = new Email('default');
+                    $email
+                        ->setTransport('Zoho')
+                        ->setFrom(['support@mysetup.co' => 'MySetup.co'])
+                        ->setTo($data['mailReset'])
+                        ->setSubject("You password has been reseted !")
+                        ->send("Your password has been reseted and set to: " . $user->password . "<br /><br />Please log you in and change it as soon as possible !");
 
                     $this->Flash->success(__("An email has been sent to this email address !"));
                     return $this->redirect(['action' => 'login']);
