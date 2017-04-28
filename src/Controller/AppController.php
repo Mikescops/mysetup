@@ -81,9 +81,11 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
-        //Test if a user is log
+
+        // Test if a user is logged in, and if it's the case, give to the view the user entity linked
         if(isset($this->Auth)) {
-            $this->set('authUser', $this->Auth->user());
+            $this->loadModel('Users');
+            $this->set('authUser', $this->Users->get($this->Auth->user()['id']));
         }
 
         // Before render the view, let's give a new entity for add Setup modal to it
