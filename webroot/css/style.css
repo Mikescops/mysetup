@@ -736,7 +736,7 @@ nav {
 
 /* **** ADD MODAL **** */
 
-#add_setup_modal, #edit_profile_modal{
+#add_setup_modal, #edit_setup_modal, #edit_profile_modal, #embed_twitch_modal{
 	color: #000;
 	overflow:auto;
 	background:#FDFDF6;

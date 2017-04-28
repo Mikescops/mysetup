@@ -64,7 +64,7 @@
                                 <div id="edit_profile_modal" class="lity-hide">
                                     <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Users', 'action' => 'edit', $authUser['id']]]); ?>
                                     <fieldset style="border:0;">
-                                    <h3>Change only what you want !</h3>
+                                    <h4>Change only what you want !</h4>
                                     <div class="row">
                                     <div class="column column-25">
                                     <div class="profile-container">

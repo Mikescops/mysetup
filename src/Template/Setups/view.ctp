@@ -41,8 +41,27 @@
 
 <?php if($authUser['id'] == $setup->user_id): ?>
     <div class="edit_panel">
-        <div><a href="#"><i class="fa fa-wrench"></i> Edit your setup</a></div>
-        <div><a href="#"><i class="fa fa-twitch"></i> Embed it in Twitch</a></div>
+        <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> Edit your setup</a></div>
+        <div><a href="#embed_twitch_modal" data-lity><i class="fa fa-twitch"></i> Embed it in Twitch</a></div>
+    </div>
+
+    <div id="edit_setup_modal" class="lity-hide">
+        <h4>Edit your setup</h4>
+    </div>
+
+    <div id="embed_twitch_modal" class="lity-hide">
+        <h4>How to embed your setup in Twitch ?</h4>
+
+        <p>Go to your Twitch channel and toggle panel edition.</p>
+
+        <?= $this->Html->image('howto_twitch.png', array('alt' => 'Twitch Panel Edition')) ?> <br>
+
+        <p>Copy the following url in the link field :</p>
+
+        <pre><code><?= $this->Url->build('setups/view/', true) . $setup->id?></code></pre>
+
+        <p>You can even configure your Twitch Chat bot to display this link !</p>
+            
     </div>
 <?php endif ?>
 
