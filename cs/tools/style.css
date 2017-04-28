@@ -9,7 +9,7 @@ height: 100%;
 body{
 margin:0;
 padding:0;
-background: #fafafa url(../images/bg.png) left top repeat-x;
+background: #202020 url(../images/bg.png) left top repeat-x;
 font-family:"Helvetica Neue",Helvetica, Arial;
 }
 
@@ -28,6 +28,7 @@ margin: 0 auto;
 clear: both;
 position: relative;
 top: -152px;
+text-align: center;
 
 /* IE4ever Hack: Hide from IE4 **/
 position: static;
@@ -85,7 +86,7 @@ font-size: 18px;
 }
 
 p.links{
-width: 274px;
+width: 179px;
 margin: 0 auto;
 }
 
@@ -153,7 +154,7 @@ color: #3b5998;
 
 
 h2{
-color: #174c79;
+color: #fff;
 font-size: 27px;
 font-weight: 100;
 }
@@ -164,45 +165,3 @@ font-weight: normal;
 }
 
 
-.main_box{
-width: 752px;
-float: left;
-background: #fff;
-height: 93px;	
-padding: 20px 0 0 25px;
-}
-
-ul.info{
-float: left;
-margin-top: 15px;
-}
-
-ul.info li{
-float: left;
-font-size: 12px;
-text-transform: uppercase;
-color: #333;
-margin-right: 12px;
-}
-
-ul.info li span{
-margin-left: 6px;
-}
-
-ul.info li.last{
-float: left;
-font-size: 12px;
-text-transform: uppercase;
-color: #333;
-margin-right: 0;
-}
-
-ul.info li.last a{
-margin: 0 5px;
-color: #333;
-text-decoration: none;
-}
-
-ul.info li.last a:hover{
-text-decoration: underline;
-}
