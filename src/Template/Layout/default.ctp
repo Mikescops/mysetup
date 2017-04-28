@@ -162,7 +162,6 @@
                         </li>
                     <?php endif; ?>
                     <li>
-                        <span>Categories</span>
                         <ul>
                             <li><a href="<?= $this->Url->build('/pages/recent'); ?>">Most recent</a></li>
                             <li><a href="#">Most popular</a></li>
@@ -171,7 +170,6 @@
                     </li>
                     <li>
                         <?php if($authUser): ?>
-                            <span>Profile</span>
                             <ul>
                                 <li><a href="#">My Setups</a></li>
                                 <li><a href="#edit_profile_modal" data-lity>Edit Profile</a></li>
