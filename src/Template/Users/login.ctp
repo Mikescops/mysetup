@@ -19,7 +19,6 @@
     <div id="login" class="form-action show">
         <?= $this->Form->create(null, ['url' => ['controller' => 'Users', 'action' => 'login']]) ?>
         <fieldset>
-            <h3>Login on MySetup.co</h3>
             <ul>
                 <li>
                     <?= $this->Form->control('mail', ['placeholder' => 'Email', 'label' => false, 'type' => 'text']) ?>
@@ -38,7 +37,6 @@
     <div id="register" class="form-action hide">
         <?= $this->Form->create(null, ['url' => ['controller' => 'Users', 'action' => 'add']]) ?>
         <fieldset>
-            <h3>Register</h3>
             <ul>
                 <li>
                     <?= $this->Form->control('mail', ['placeholder' => 'Email', 'label' => false, 'type' => 'text', 'style' => 'width: 75%;float: left;}']) ?>
@@ -61,7 +59,6 @@
     <div id="reset" class="form-action hide">
         <?= $this->Form->create(null, ['url' => ['controller' => 'Users', 'action' => 'resetPassword']]) ?>
         <fieldset>
-            <h3>Reset Password</h3>
             <div>
                 To reset your password enter your email and we'll send you a new temporary password.
             </div>
