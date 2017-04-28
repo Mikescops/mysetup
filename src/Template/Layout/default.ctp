@@ -10,7 +10,8 @@
     <title>
         <?= $this->fetch('title') ?> | MySetup
     </title>
-    <?= $this->Html->meta('icon') ?>
+
+    <?= $this->Html->meta('favicon.ico','img/favicon/favicon.ico',array('type' => 'icon')) ?>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
