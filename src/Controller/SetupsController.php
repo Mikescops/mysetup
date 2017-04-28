@@ -121,13 +121,13 @@ class SetupsController extends AppController
                 }
 
                 $this->Flash->success(__('The setup has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect('/');
             }
 
             else
             {
                 $this->Flash->error(__('The setup could not be saved. Please, try again.'));
-                return $this->redirect(['action' => 'add']);
+                return $this->redirect('/');
             }
         }
 
