@@ -2,6 +2,8 @@
 /**
   * @var \App\View\AppView $this
   */
+
+echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)), null, ['block' => true]);
 ?>
 <div class="featured-container">
 

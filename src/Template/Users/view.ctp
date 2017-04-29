@@ -13,7 +13,7 @@
 
             <?php  if (!empty($user->setups)): $i = 0; foreach ($user->setups as $setups): ?>
             <div class="fullitem">
-                <a href="<?= $this->Url->build('/setups/view/'); ?><?= $setups->id ?>">
+                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img src="<?= $this->Url->build('/'); ?><?= $fimage[$i]->src ?>">
                 </a>
                 <div class="fullitem-inner">
@@ -25,7 +25,7 @@
                                 <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setups->user_id ?>.png">
                             </a>
 
-                            <a href="<?= $this->Url->build('/setups/view/'); ?><?= $setups->id ?>"><h3><?= h($setups->title) ?></h3></a>
+                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setups->title) ?></h3></a>
 
                         </div>
 

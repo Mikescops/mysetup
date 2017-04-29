@@ -32,7 +32,7 @@ curl_close($CURL);
 <?php foreach ($fsetups as $fsetup): ?>
             
     <div class="slider-item">
-        <a href="setups/view/<?= $fsetup->id ?>"><img src="<?= $fsetup->resources[0]->src ?>"></a>
+        <a href="<?= $this->Url->build('/setups/'.$fsetup->id.'-'.$this->Text->slug($fsetup->title)); ?>"><img src="<?= $fsetup->resources[0]->src ?>"></a>
         <a class="slider-item-inner featured-user" href="<?= $this->Url->build('/users/view/'); ?><?= $fsetup->user_id ?>">
             <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $fsetup->user_id ?>">
         </a>
@@ -99,7 +99,7 @@ curl_close($CURL);
             <?php foreach ($setups as $setup): ?>
 
             <div class="fullitem">
-                <a href="setups/view/<?= $setup->id ?>">
+                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img src="<?= $setup->resources[0]->src ?>">
                 </a>
                 <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
@@ -113,7 +113,7 @@ curl_close($CURL);
                                 <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->user_id ?>.png">
                             </a>
 
-                            <a href="setups/view/<?= $setup->id ?>"><h3><?= $setup->title ?></h3></a>
+                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= $setup->title ?></h3></a>
 
                         </div>
 

@@ -58,7 +58,7 @@ curl_close($CURL);
             <?php foreach ($setups as $setup): ?>
 
             <div class="fullitem">
-                <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>">
+                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img src="<?= $this->Url->build('/', true)?><?= $setup->resources[0]->src ?>">
                 </a>
                 <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
@@ -72,7 +72,7 @@ curl_close($CURL);
                                 <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->user_id ?>.png">
                             </a>
 
-                            <a href="<?= $this->Url->build('/', true)?>setups/view/<?= $setup->id ?>"><h3><?= $setup->title ?></h3></a>
+                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= $setup->title ?></h3></a>
 
                         </div>
 
