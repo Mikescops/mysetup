@@ -182,7 +182,7 @@ class SetupsController extends AppController
             $this->Flash->error(__('The setup could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect('/');
     }
 
     public function beforeFilter(Event $event)

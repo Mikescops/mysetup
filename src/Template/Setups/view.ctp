@@ -49,6 +49,9 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
 
     <div id="edit_setup_modal" class="lity-hide">
         <h4>Edit your setup</h4>
+
+
+        <?= $this->Form->postLink('Delete this setup', array('controller' => 'Setups','action' => 'delete', $setup->id),array('confirm' => 'You are going to delete this setup! Are You Sure?')) ?>
     </div>
 
     <div id="embed_twitch_modal" class="lity-hide">
