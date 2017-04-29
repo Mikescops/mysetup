@@ -62,7 +62,9 @@ class SetupsController extends AppController
             $additionalData[$comment->user_id] = $this->Setups->Users->find()->where(['id' => $comment->user_id])->first()['name'];
         }
 
-        $this->set(compact('setup', 'additionalData', 'products', 'fimage', 'gallery', 'video'));
+        $newComment = $this->Setups->Comments->newEntity();
+
+        $this->set(compact('setup', 'additionalData', 'products', 'fimage', 'gallery', 'video', 'newComment'));
         $this->set('_serialize', ['setup']);
     }
 

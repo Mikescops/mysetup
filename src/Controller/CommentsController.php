@@ -50,15 +50,21 @@ class CommentsController extends AppController
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($setup_id = null)
     {
         $comment = $this->Comments->newEntity();
         if ($this->request->is('post')) {
-            $comment = $this->Comments->patchEntity($comment, $this->request->getData());
+            $data = $this->request->getData();
+
+            // Let's set the id of the current logged in user 
+            $data['user_id'] = $this->request->session()->read('Auth.User.id');
+            $data['setup_id'] = $setup_id;
+
+            $comment = $this->Comments->patchEntity($comment, $data);
             if ($this->Comments->save($comment)) {
                 $this->Flash->success(__('The comment has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect($this->referer());
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'));
         }

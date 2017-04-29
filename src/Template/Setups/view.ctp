@@ -121,15 +121,15 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
         <?php if (!empty($setup->comments)): ?>
             <?php foreach ($setup->comments as $comments): ?>
             <article class="comment">
-                <a class="comment-img" href="#non">
-                    <img src="https://avatars1.githubusercontent.com/u/4266283?v=3&s=460" alt="" width="50" height="50" />
+                <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
+                    <img src="<?= $this->Url->build('/uploads/files/profile_picture_'.$comments->user_id.'.png') ?>" alt="" width="50" height="50" />
                 </a>
                     
                 <div class="comment-body">
                     <div class="text">
                       <p><?= h($comments->content) ?></p>
                     </div>
-                    <p class="attribution">by <a href="#non"><?= h($additionalData[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
+                    <p class="attribution">by <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($additionalData[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
                 </div>
             </article>
 
@@ -137,13 +137,21 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
         <?php endif; ?>
 
         </section>
-            
-        <form>
-            <textarea placeholder="Nice config' …" id="commentField"></textarea>
-            <input class="button-primary float-right" type="submit" value="Send">
-          </fieldset>
-        </form>
 
+        <?php if($authUser): ?>
+
+            <?= $this->Form->create($newComment, ['type' => 'file', 'url' => ['controller' => 'Comments', 'action' => 'add', $setup->id]]); ?>
+            <fieldset>
+            <?php echo $this->Form->control('content', ['label'=>'', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => 'Nice config\' …','rows' => 10, 'maxLength' => 500]);?>
+            </fieldset>
+            <?= $this->Form->submit(__('Comment'), ['class' => 'float-right']); ?>
+            <?= $this->Form->end(); ?>
+
+        <?php else: ?>
+
+            You must be login to comment > <a href="<?= $this->Url->build('/login')?>">Log me in !</a>
+
+        <?php endif ?>
         </div>
 
     </div>
