@@ -103,6 +103,8 @@
                                     </fieldset>
                                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                                     <?= $this->Form->end(); ?>
+
+                                    <?= $this->Form->postLink('Delete my account', array('controller' => 'Users','action' => 'delete', $authUser['id']),array('confirm' => 'You are going to delete your account and all his content! Are You Sure?')) ?>
                                 </div>
 
                             <?php else: ?>

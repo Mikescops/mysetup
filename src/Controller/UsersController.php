@@ -212,7 +212,7 @@ class UsersController extends AppController
             $this->Flash->error(__('You just CANNOT delete the admin user of the website...'));
         }
 
-        return $this->redirect('/');
+        return $this->redirect($this->Auth->logout());
     }
 
     public function login()
