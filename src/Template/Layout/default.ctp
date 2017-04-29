@@ -57,7 +57,7 @@
                             <?php if($authUser): ?>
                                 <a>Profile <i class="fa fa-caret-down"></i></a>
                                 <ul>
-                                    <li><a href="#">My Setups</a></li>
+                                    <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>">My Setups</a></li>
                                     <li><a href="#edit_profile_modal" data-lity>Edit Profile</a></li>
                                     <li><a href="<?= $this->Url->build('/users/logout'); ?>">Logout</a></li>
                                 </ul>
@@ -172,7 +172,7 @@
                     <li>
                         <?php if($authUser): ?>
                             <ul>
-                                <li><a href="#">My Setups</a></li>
+                                <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>">My Setups</a></li>
                                 <li><a href="#edit_profile_modal" data-lity>Edit Profile</a></li>
                                 <li><a href="<?= $this->Url->build('/users/logout'); ?>">Logout</a></li>
                             </ul>

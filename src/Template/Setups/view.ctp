@@ -60,7 +60,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
 
         <p>Copy the following url in the link field :</p>
 
-        <pre><code><?= $this->Url->build('setups/view/'.$setup->id, true)?></code></pre>
+        <pre><code><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title), true)?></code></pre>
 
         <p>You can even configure your Twitch Chat bot to display this link !</p>
             
