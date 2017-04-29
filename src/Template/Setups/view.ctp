@@ -14,8 +14,8 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
         <div class="row">
 
             <div class="column column-75">
-                <a class="featured-user" href="<?= $this->Url->build('/users/view/'); ?><?= $additionalData['owner']['id'] ?>">
-                    <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->user_id ?>.png">
+                <a class="featured-user" href="<?= $this->Url->build('/users/'.$additionalData['owner']['id']) ?>">
+                    <img src="<?= $this->Url->build('/uploads/files/profile_picture_'.$setup->user_id.'.png') ?>">
                 </a>
 
                 <h3><?= $setup->title ?></h3>
@@ -24,7 +24,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
 
             </div>
                 
-                <a class="labeled_button float-right" <?php if(!$authUser){echo "onclick=\"const toast = new siiimpleToast();toast.message('You must be login to like !');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
+                <a class="labeled_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('You must be login to like !');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
                   <div class="red_button">
                     <i class="fa fa-heart"></i> Like
                   </div>
@@ -60,7 +60,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
 
         <p>Copy the following url in the link field :</p>
 
-        <pre><code><?= $this->Url->build('setups/view/', true) . $setup->id?></code></pre>
+        <pre><code><?= $this->Url->build('setups/view/'.$setup->id, true)?></code></pre>
 
         <p>You can even configure your Twitch Chat bot to display this link !</p>
             

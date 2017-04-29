@@ -533,6 +533,33 @@ class siiimpleToast {
   }
 }
 
+/**** Convert string to url slug ****/
+function convertToSlug(str)
+{
+    var rExps=[
+   {re:/[\xC0-\xC6]/g, ch:'A'},
+   {re:/[\xE0-\xE6]/g, ch:'a'},
+   {re:/[\xC8-\xCB]/g, ch:'E'},
+   {re:/[\xE8-\xEB]/g, ch:'e'},
+   {re:/[\xCC-\xCF]/g, ch:'I'},
+   {re:/[\xEC-\xEF]/g, ch:'i'},
+   {re:/[\xD2-\xD6]/g, ch:'O'},
+   {re:/[\xF2-\xF6]/g, ch:'o'},
+   {re:/[\xD9-\xDC]/g, ch:'U'},
+   {re:/[\xF9-\xFC]/g, ch:'u'},
+   {re:/[\xC7-\xE7]/g, ch:'c'},
+   {re:/[\xD1]/g, ch:'N'},
+   {re:/[\xF1]/g, ch:'n'} ];
+    var $slug = '';
+    var trimmed = $.trim(str);
+    for(var i=0, len=rExps.length; i<len; i++)
+    trimmed=trimmed.replace(rExps[i].re, rExps[i].ch);
+    $slug = trimmed.replace(/[^a-z0-9-]/gi, '-').
+    replace(/-+/g, '-').
+    replace(/^-|-$/g, '');
+    return $slug;
+}
+
 /**** Infinite Scroll Maison ****/
 
 function infiniteScroll(nbtodisplay) { 
@@ -565,7 +592,7 @@ function infiniteScroll(nbtodisplay) {
               else{
                 nblikes = 0;
               }
-              $('.fullitem_holder').append('<div class="fullitem"><a href=""><img src="/mysetup/'+value['resources'][0]['src'] +'"><\/a><div class="red_like"><i class="fa fa-heart"><\/i> '+ nblikes +'<\/div><div class="fullitem-inner"><div class="row"><div class="column column-75"><a class="featured-user" href="#"><img src="/mysetup/uploads/files/profile_picture_'+value['user_id']+'.png"><\/a><a href=""><h3>'+value['title']+'<\/h3><\/a><\/div><\/div><\/div><\/div>');
+              $('.fullitem_holder').append('<div class="fullitem"><a href="/mysetup/setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><img src="/mysetup/'+value['resources'][0]['src'] +'"><\/a><div class="red_like"><i class="fa fa-heart"><\/i> '+ nblikes +'<\/div><div class="fullitem-inner"><div class="row"><div class="column column-75"><a class="featured-user" href="/mysetup/users/'+value['user_id']+'"><img src="/mysetup/uploads/files/profile_picture_'+value['user_id']+'.png"><\/a><a href="/mysetup/setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><h3>'+value['title']+'<\/h3><\/a><\/div><\/div><\/div><\/div>');
             });
             $(window).data('ajaxready', true);
           }

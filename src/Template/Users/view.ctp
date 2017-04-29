@@ -11,7 +11,7 @@
 
             <h3><?= h($user->name) ?>'s setups <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
 
-            <?php  if (!empty($user->setups)): $i = 0; foreach ($user->setups as $setups): ?>
+            <?php  if (!empty($user->setups)): $i = 0; foreach ($user->setups as $setup): ?>
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img src="<?= $this->Url->build('/'); ?><?= $fimage[$i]->src ?>">
@@ -22,10 +22,10 @@
 
                         <div class="column column-75">
                             <a class="featured-user" href="">
-                                <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setups->user_id ?>.png">
+                                <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->user_id ?>.png">
                             </a>
 
-                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setups->title) ?></h3></a>
+                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
 
                         </div>
 

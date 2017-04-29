@@ -29,7 +29,7 @@
 	<?php foreach ($setups as $setup): ?>
 
 	            <div class="fullitem">
-	                <a href="<?= $this->Url->build('/setups/view/', true)?><?= $setup->setup_id ?>">
+	                <a href="<?= $this->Url->build('/setups/'.$setup->setup_id.'-'.$this->Text->slug($setup->setup->title)); ?>">
 	                    <img src="<?= $this->Url->build('/', true)?><?= $setup->src ?>">
 	                </a>
 	                <div class="fullitem-inner">
@@ -37,11 +37,11 @@
 	                    <div class="row">
 
 	                        <div class="column column-75">
-	                            <a class="featured-user" href="<?= $this->Url->build('/users/view/'); ?><?= $setup->setup->user_id ?>">
+	                            <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->setup->user_id)?>">
 	                                <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->setup->user_id ?>.png">
 	                            </a>
 
-	                            <a href="<?= $this->Url->build('/setups/view/', true)?><?= $setup->setup_id ?>"><h3><?= $setup->setup->title ?></h3></a>
+	                            <a href="<?= $this->Url->build('/setups/'.$setup->setup_id.'-'.$this->Text->slug($setup->setup->title)); ?>"><h3><?= $setup->setup->title ?></h3></a>
 
 	                        </div>
 
