@@ -48,7 +48,7 @@
                         <li>
                             <a>Categories <i class="fa fa-caret-down"></i></a>
                             <ul>
-                                <li><a href="<?= $this->Url->build('/pages/recent'); ?>">Most recent</a></li>
+                                <li><a href="<?= $this->Url->build('/recents'); ?>">Most recent</a></li>
                                 <li><a href="#">Most popular</a></li>
                                 <li><a href="#">Most commented</a></li>
                             </ul>
@@ -59,7 +59,7 @@
                                 <ul>
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>">My Setups</a></li>
                                     <li><a href="#edit_profile_modal" data-lity>Edit Profile</a></li>
-                                    <li><a href="<?= $this->Url->build('/users/logout'); ?>">Logout</a></li>
+                                    <li><a href="<?= $this->Url->build('/logout'); ?>">Logout</a></li>
                                 </ul>
 
                                 <div id="edit_profile_modal" class="lity-hide">
@@ -106,7 +106,7 @@
                                 </div>
 
                             <?php else: ?>
-                                <a href="<?= $this->Url->build('/users/login'); ?>"><i class="fa fa-user"></i> Sign In / Up</a>
+                                <a href="<?= $this->Url->build('/login'); ?>"><i class="fa fa-user"></i> Sign In / Up</a>
                             <?php endif; ?>
                         </li>
                     </ul>
@@ -164,7 +164,7 @@
                     <?php endif; ?>
                     <li>
                         <ul>
-                            <li><a href="<?= $this->Url->build('/pages/recent'); ?>">Most recent</a></li>
+                            <li><a href="<?= $this->Url->build('/recents'); ?>">Most recent</a></li>
                             <li><a href="#">Most popular</a></li>
                             <li><a href="#">Most commented</a></li>
                         </ul>
@@ -174,10 +174,10 @@
                             <ul>
                                 <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>">My Setups</a></li>
                                 <li><a href="#edit_profile_modal" data-lity>Edit Profile</a></li>
-                                <li><a href="<?= $this->Url->build('/users/logout'); ?>">Logout</a></li>
+                                <li><a href="<?= $this->Url->build('/logout'); ?>">Logout</a></li>
                             </ul>
                         <?php else: ?>
-                            <a href="<?= $this->Url->build('/users/login'); ?>">Login</a>
+                            <a href="<?= $this->Url->build('/login'); ?>">Login</a>
                         <?php endif; ?>
                     </li>
                 </ul>

@@ -54,6 +54,10 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/recents', ['controller' => 'Pages', 'action' => 'display', 'recent']);
 
+    /** Handle routes for login and logout **/
+    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

@@ -225,9 +225,7 @@ class UsersController extends AppController
 
         if($this->request->is('post'))
         {
-            $user = $this->Auth->identify();
-
-            if($user)
+            if($user = $this->Auth->identify())
             {
                 $this->Auth->setUser($user);
                 $this->Flash->success(__('You are successfully logged in !'));

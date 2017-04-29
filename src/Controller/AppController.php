@@ -60,10 +60,14 @@ class AppController extends Controller
                 'Controller'
             ],
             'loginRedirect' => [
-                'redirect' => '/'
+                'controller' => 'Pages',
+                'action' => 'display',
+                'home'
             ],
             'logoutRedirect' => [
-                'redirect' => '/'
+                'controller' => 'Pages',
+                'action' => 'display',
+                'home'
             ]
         ]);
     }
