@@ -130,6 +130,8 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
                       <p><?= h($comments->content) ?></p>
                     </div>
                     <p class="attribution">by <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($additionalData[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
+
+                    <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink('Delete', array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are You Sure?')); endif ?>
                 </div>
             </article>
 
