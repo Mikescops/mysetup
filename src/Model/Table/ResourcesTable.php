@@ -90,7 +90,7 @@ class ResourcesTable extends Table
         // Furthermore, the 'id' no-null on the moment has to exist in the DB
         $rules->
             add(function($entity) {
-                if(isset($entity['user_id']) XOR isset($entity['setup_id']))
+                if(isset($entity['user_id']) or isset($entity['setup_id']))
                 {
                     if(isset($entity['user_id']))
                     {
@@ -124,7 +124,7 @@ class ResourcesTable extends Table
         }
     }
 
-    public function saveResourceProducts($products, $setup, $flash)
+    public function saveResourceProducts($products, $setup, $flash, $user_id)
     {
         // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"
         foreach(explode(',', $products) as $elements)
@@ -142,7 +142,7 @@ class ResourcesTable extends Table
                     // Let's create a new entity to store these data !
                     $resource = $this->newEntity();
 
-                    $resource->user_id  = null;
+                    $resource->user_id  = $user_id;
                     $resource->setup_id = $setup->id;
                     $resource->type     = 'SETUP_PRODUCT';
                     $resource->title    = $elements[0];
@@ -165,7 +165,7 @@ class ResourcesTable extends Table
         }
     }
 
-    public function saveResourceImage($file, $setup, $type, $flash)
+    public function saveResourceImage($file, $setup, $type, $flash, $user_id)
     {
         if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
         {
@@ -175,7 +175,7 @@ class ResourcesTable extends Table
             if(move_uploaded_file($file['tmp_name'], $destination))
             {
                 $resource = $this->newEntity();
-                $resource->user_id  = null;
+                $resource->user_id  = $user_id;
                 $resource->setup_id = $setup->id;
                 $resource->type     = $type;
                 $resource->title    = null;
@@ -201,7 +201,7 @@ class ResourcesTable extends Table
         }
     }
 
-    public function saveResourceVideo($video, $setup, $type, $flash)
+    public function saveResourceVideo($video, $setup, $type, $flash, $user_id)
     {
         $parsing = parse_url($video);
 
@@ -210,7 +210,7 @@ class ResourcesTable extends Table
             // Let's create a new entity to store these data !
             $resource = $this->newEntity();
 
-            $resource->user_id  = null;
+            $resource->user_id  = $user_id;
             $resource->setup_id = $setup->id;
             $resource->type     = 'SETUP_VIDEO_LINK';
             $resource->title    = null;
