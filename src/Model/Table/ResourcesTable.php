@@ -90,23 +90,20 @@ class ResourcesTable extends Table
         // Furthermore, the 'id' no-null on the moment has to exist in the DB
         $rules->
             add(function($entity) {
-                if(isset($entity['user_id']) or isset($entity['setup_id']))
-                {
-                    if(isset($entity['user_id']))
-                    {
-                        return $this->Users->find()->where(['id' =>  $entity['user_id']])->first() !== null;
-                    }
 
-                    else
-                    {
-                        return $this->Setups->find()->where(['id' =>  $entity['setup_id']])->first() !== null;
-                    }
+                $flag = true;
+
+                if(isset($entity['user_id']) and $this->Users->find()->where(['id' =>  $entity['user_id']])->count() === 0)
+                {
+                    $flag = false;
                 }
 
-                else
+                if(isset($entity['setup_id']) and $this->Setups->find()->where(['id' =>  $entity['setup_id']])->count() === 0)
                 {
-                    return false;
+                    $flag = false;
                 }
+
+                return $flag;
             },
             'foreignKey_rule');
 
