@@ -91,7 +91,7 @@ class ResourcesTable extends Table
         $rules->
             add(function($entity) {
                 // At least one 'id' has to be set
-                if(isset($entity['user_id']) or isset($entity['setup_id'])
+                if(isset($entity['user_id']) or isset($entity['setup_id']))
                 {
                     // ... and each set one has to correspond to a existing entity in the DB
                     if(isset($entity['user_id']) and $this->Users->find()->where(['id' =>  $entity['user_id']])->count() === 0)
