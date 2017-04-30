@@ -127,7 +127,7 @@
                         <ul class="basket_items add_setup"></ul>
                         <br />
                         <?php
-                            echo $this->Form->input('featuredImage. ', ['type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile']);
+                            echo $this->Form->input('featuredImage. ', ['type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile', 'required' => 'required']);
                         ?>
                         <img id="featuredimage_preview">
                         <?php
