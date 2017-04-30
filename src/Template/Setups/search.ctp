@@ -2,6 +2,8 @@
 /**
   * @var \App\View\AppView $this
   */
+
+$this->assign('title', 'Search for "'. $_GET["q"] .'" | mySetup.co');
 ?>
 
 
@@ -18,6 +20,7 @@
 	}
 	else{?>
 
+
 	   <div class="large_search">
         
         <input type="text" id="keyword-search" placeholder="Search a component... Find a cool setup !" /> 
@@ -25,6 +28,7 @@
 
       </div>
 
+<h3>Search results for "<?= $_GET["q"] ?>" :</h3>
 
 	<?php foreach ($setups as $setup): ?>
 
