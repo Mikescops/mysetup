@@ -248,6 +248,19 @@ footer a{
 	background-color: rgb(0, 0, 0);
 }
 
+/*********** USER CSS ***********/
+img.user-profile{
+	width: 60px;
+	margin-right: 15px;
+	border-radius: 100%;
+	float: left;
+	border: solid 2px #328fea;
+	background-color: rgb(0, 0, 0);
+}
+
+h3.user-profile{
+	line-height: 2.2;
+}
 
  /********** POST CSS **********/
 

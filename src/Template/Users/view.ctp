@@ -9,7 +9,11 @@
     <div class="row">
         <div class="column column-75">
 
-            <h3><?= h($user->name) ?>'s setups <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
+            <img class="user-profile" src="<?= $this->Url->build('/uploads/files/profile_picture_'.$user->id.'.png'); ?>">
+
+            <h3 class="user-profile"><?php if($user->name){echo $user->name;}else{echo "Unknown user";} ?>'s setups <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
+
+            <?php if($authUser['id'] == $user->id and !$user->name){echo "You didn't set your nickname ! Please click the top right menu and edit your profile.";} ?>
 
             <?php  if (!empty($user->setups)): $i = 0; foreach ($user->setups as $setup): ?>
             <div class="fullitem">
@@ -21,8 +25,8 @@
                     <div class="row">
 
                         <div class="column column-75">
-                            <a class="featured-user" href="">
-                                <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->user_id ?>.png">
+                            <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
+                                <img src="<?= $this->Url->build('/uploads/files/profile_picture_'.$setup->user_id.'.png'); ?>">
                             </a>
 
                             <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
@@ -34,7 +38,11 @@
                     </div>
                 </div>
             </div>
-            <?php $i++; endforeach; endif ?>
+            <?php $i++; endforeach; else: ?>
+
+            There is no setup here yet...
+
+            <?php endif ?>
 
         </div>
         <div class="column column-25 sidebar">
