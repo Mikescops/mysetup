@@ -200,7 +200,7 @@
         
             <div class="row">
                     <div class="column column-25">
-                      <div class="footer-title">Partenaires</div>
+                      <div class="footer-title">Partners</div>
                       <ul>
                         <li><a href="https://pixelswap.fr/" target="_blank" class="item">PixelSwap</a></li>
                         <li><a href="https://geek-mexicain.net/" target="_blank">Geek Mexicain</a></li>
