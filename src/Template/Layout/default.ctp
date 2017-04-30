@@ -49,8 +49,7 @@
                             <a>Categories <i class="fa fa-caret-down"></i></a>
                             <ul>
                                 <li><a href="<?= $this->Url->build('/recents'); ?>">Most recent</a></li>
-                                <li><a href="#">Most popular</a></li>
-                                <li><a href="#">Most commented</a></li>
+                                <li><a href="<?= $this->Url->build('/popular'); ?>">Popular this week</a></li>
                             </ul>
                         </li>
                         <li>
@@ -167,8 +166,7 @@
                     <li>
                         <ul>
                             <li><a href="<?= $this->Url->build('/recents'); ?>">Most recent</a></li>
-                            <li><a href="#">Most popular</a></li>
-                            <li><a href="#">Most commented</a></li>
+                            <li><a href="<?= $this->Url->build('/popular'); ?>">Popular this week</a></li>
                         </ul>
                     </li>
                     <li>

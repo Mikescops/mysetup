@@ -1,63 +1,16 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', 'Home');
+$this->assign('title', 'Popular this week');
 
 ?>
-
-<?php
-$url=$this->Url->build('/', true) . "app/getsetups?f=1&n=5"; 
-$options=array(
-      CURLOPT_URL            => $url,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_HEADER         => false,
-      CURLOPT_FAILONERROR    => true, 
-      CURLOPT_HTTPHEADER, array('Content-Type: application/json','Accept: application/json')
-);
-$CURL=curl_init();
-if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponible.");}
-      curl_setopt_array($CURL,$options);
-      $fsetups=curl_exec($CURL);
-      if(curl_errno($CURL)){
-            echo "ERREUR curl_exec : ".curl_error($CURL);
-      }
-      $fsetups = json_decode($fsetups);
-      //var_dump($fsetups);
-curl_close($CURL);
- 
-?>
-
-<div class="home_slider">
-
-<?php foreach ($fsetups as $fsetup): ?>
-            
-    <div class="slider-item">
-        <a href="<?= $this->Url->build('/setups/'.$fsetup->id.'-'.$this->Text->slug($fsetup->title)); ?>"><img src="<?= $fsetup->resources[0]->src ?>"></a>
-        <a class="slider-item-inner featured-user" href="<?=$this->Url->build('/users/'.$fsetup->user_id)?>">
-            <img src="<?= $this->Url->build('/uploads/files/profile_picture_'.$fsetup->user_id); ?>">
-        </a>
-        <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($fsetup->likes[0])){echo $fsetup->likes[0]->total;}else{echo 0;} ?></div>
-    </div>
-
-<?php endforeach ?>
-
-</div>
-
     <div class="maincontainer">
-
-      <div class="large_search">
-        
-        <input type="text" id="keyword-search" placeholder="Search a component... Find a cool setup !" /> 
-        <?= $this->Html->scriptBlock(' let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`setups/search?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
-
-      </div>
-
 
     <div class="row">
         <div class="column column-75">
 
 <?php
-$url="localhost/mysetup/app/getsetups?t=like&n=20"; 
+$url= $this->Url->build('/', true) . "/app/getsetups?o=DESC&t=like&w=1&n=9999"; 
  
 // Tableau contenant les options de téléchargement
 $options=array(
@@ -96,11 +49,17 @@ if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponib
 curl_close($CURL);
  
 ?>
-            <?php $i=0; foreach ($setups as $setup): ?>
+
+
+            <h3>Popular this week</h3>
+
+            <div class="fullitem_holder">
+
+            <?php foreach ($setups as $setup): ?>
 
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                    <img src="<?= $setup->resources[0]->src ?>">
+                    <img src="<?= $this->Url->build('/', true)?><?= $setup->resources[0]->src ?>">
                 </a>
                 <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
 
@@ -110,7 +69,7 @@ curl_close($CURL);
 
                         <div class="column column-75">
                             <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                <img src="<?= $this->Url->build('/uploads/files/profile_picture_'.$setup->user_id.'.png'); ?>">
+                                <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->user_id ?>.png">
                             </a>
 
                             <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= $setup->title ?></h3></a>
@@ -121,9 +80,10 @@ curl_close($CURL);
                 </div>
             </div>
 
-            <?php if (++$i == 8) break; endforeach ?>
+            <?php endforeach ?>
 
-          <a class="button float-right" href="<?= $this->Url->build('/pages/recent'); ?>">Need more ? Click to see the latest !</a>
+            </div>
+
         </div>
         <div class="column column-25 sidebar">
 
