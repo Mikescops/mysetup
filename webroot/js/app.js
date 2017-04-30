@@ -225,14 +225,14 @@ function featuredPreview_edit( uploader ) {
 
 var timer;
 
-function searchItem(query, action) {
+function searchItem(query, region, action) {
   clearTimeout(timer);
     timer=setTimeout(function validate(){
 
   $.ajax({
     url: '/mysetup/amazon/index.php',
     type: 'get',
-    data: { "q": query},
+    data: { "q": query, "lang": region},
     success: function(response) { 
 
       $( ".search_results."+action ).html("");

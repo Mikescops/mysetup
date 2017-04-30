@@ -60,7 +60,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
                 echo $this->Form->control('title', ['id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
                 echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500, 'default' => $setup->description]);
             ?>
-            <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, 'edit_setup');" placeholder="Search for components..">
+            <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="Search for components..">
             <ul class="search_results edit_setup"></ul>
             <ul class="basket_items edit_setup">
 

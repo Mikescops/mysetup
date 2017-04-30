@@ -121,7 +121,7 @@
                             echo $this->Form->control('title', ['id' => 'title', 'maxLength' => 48]);
                             echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                         ?>
-                        <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, 'add_setup');" placeholder="Search for components..">
+                        <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>','add_setup');" placeholder="Search for components..">
                         <ul class="search_results add_setup"></ul>
                         <ul class="basket_items add_setup"></ul>
                         <br />

@@ -11,16 +11,33 @@ session_start();
 
 if($_SESSION['Auth'])
 {
+	$lang = $_GET['lang'];
+	if ($lang == 'FR') {
+		$associate_tag = 'mysetupco-21';
+	}
+	elseif ($lang == 'ES'){
+		$associate_tag = 'mysetupco-21';
+	}
+	elseif ($lang == 'IT'){
+		$associate_tag = 'mysetupco-21';
+	}
+	elseif ($lang == 'DE'){
+		$associate_tag = 'mysetupco-21';
+	}
+	else{ /* This case is for UK and others */
+		$associate_tag = 'mysetupco-21';
+	}
+
 	$conf = new GenericConfiguration();
 	$conf
-	    ->setCountry('fr')
+	    ->setCountry($lang)
 	    ->setAccessKey('AKIAJHOTPBA2YCCGVZUA')
 	    ->setSecretKey('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')
-	    ->setAssociateTag('mysetup-21')
+	    ->setAssociateTag($associate_tag)
 	    ->setRequest((new \ApaiIO\Request\GuzzleRequest((new \GuzzleHttp\Client()))));
 
 	$search = new Search();
-	$search->setCategory('PCHardware');
+	$search->setCategory('All');
 	$search->setKeywords($_GET['q']);
 	$search->setResponsegroup(array('Small', 'Images'));
 
