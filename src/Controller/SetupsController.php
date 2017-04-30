@@ -152,11 +152,41 @@ class SetupsController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $setup = $this->Setups->patchEntity($setup, $this->request->getData());
+            $data = $this->request->getData();
+
+            // Let's set the id of the current logged in user 
+            $data['user_id'] = $this->request->session()->read('Auth.User.id');
+
+            // Here we'll assign automatically the owned of the setup to the entity, if in the setup it has not be filled
+            if(!isset($data['author']) or $data['author'] === '')
+            {
+                $data['author'] = $this->Setups->Users->find()->where(['id' => $data['user_id']])->first()['name'];
+            }
+
+            $setup = $this->Setups->patchEntity($setup, $data);
             if ($this->Setups->save($setup)) {
+
+                /* Here we delete all products then save each product that has been selected by the user */
+                $this->Setups->Resources->deleteAll(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id']);
+
+                /* Here we get and save the featured image */
+                if(isset($data['featuredImage'][0]) and $data['featuredImage'][0] !== '' and (int)$data['featuredImage'][0]['error'] === 0)
+                {
+                    $this->Setups->Resources->deleteAll(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE']);
+                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id']);
+                }
+
+                /* Here we save the setup video URL */
+                if(isset($data['video']))
+                {
+                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id']);
+                }
+
+
                 $this->Flash->success(__('The setup has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect($this->referer());
             }
             $this->Flash->error(__('The setup could not be saved. Please, try again.'));
         }
