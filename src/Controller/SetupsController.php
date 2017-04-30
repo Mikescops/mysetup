@@ -96,40 +96,50 @@ class SetupsController extends AppController
 
             if($this->Setups->save($setup))
             {
-                /* Here we save each product that has been selected by the user */
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id']);
-
                 /* Here we get and save the featured image */
-                if(isset($data['featuredImage'][0]))
+                if(isset($data['featuredImage'][0]) and $data['featuredImage'][0]['tmp_name'] !== '')
                 {
                     $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id']);
                 }
+
+                else
+                {
+                    $this->Setups->delete($setup);
+                    $this->Flash->warning(__("You need a featured image with this setup !"));
+                    return $this->redirect($this->referer());
+                }
+
+                /* Here we save each product that has been selected by the user */
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id']);
 
                 /* Here we save each gallery image uploaded */
                 $i = 0;
                 foreach($data['fileselect'] as $file)
                 {
-                    $this->Setups->Resources->saveResourceImage($file, $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id']);
-                    if(++$i === 5)
+                    if($file['tmp_name'] !== '')
                     {
-                        break;
+                        $this->Setups->Resources->saveResourceImage($file, $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id']);
+                        if(++$i === 5)
+                        {
+                            break;
+                        }
                     }
                 }
 
                 /* Here we save the setup video URL */
-                if(isset($data['video']))
+                if(isset($data['video']) and $data['video'] !== '')
                 {
                     $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id']);
                 }
 
                 $this->Flash->success(__('The setup has been saved.'));
-                return $this->redirect('/');
+                return $this->redirect($this->referer());
             }
 
             else
             {
                 $this->Flash->error(__('The setup could not be saved. Please, try again.'));
-                return $this->redirect('/');
+                return $this->redirect($this->referer());
             }
         }
 
