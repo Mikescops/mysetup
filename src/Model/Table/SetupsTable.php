@@ -66,7 +66,13 @@ class SetupsTable extends Table
             ]
         ]);
 
-         $this->addBehavior('Sitemap.Sitemap');
+        $this->addBehavior('Sitemap.Sitemap', ['changefreq' => 'weekly']);
+    }
+
+
+    /** Let's get the real url of setup **/
+    public function getUrl(\Cake\ORM\Entity $entity) {
+    return \Cake\Routing\Router::url('/setups/'.$entity->id.'-'.\Cake\Utility\Text::slug($entity->title), true);
     }
 
     /**

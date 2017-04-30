@@ -216,8 +216,6 @@ Plugin::load('Sitemap', ['bootstrap' => false, 'routes' => true]);
 
 Configure::write('Sitemap.tables', [
     'Setups',
-    'Pages',
-    'Users',
 ]);
 
 /*
