@@ -65,7 +65,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
                 <li>
                 <img src="<?= urldecode($item->src) ?>">
                 <p><?= urldecode($item->title) ?></p>
-                <a onclick="deleteFromBasket('<?= $item->title ?>',this)"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                <a onclick="deleteFromBasket('<?= $item->title ?>',this,'edit_setup')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
                 </li>
             <?php endforeach ?>
 
