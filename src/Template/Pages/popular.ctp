@@ -1,7 +1,9 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', 'Popular this week');
+$this->assign('title', 'Popular this week | mySetup.co');
+
+echo $this->Html->meta('description', 'The most popular setups of the week on mySetup.co', ['block' => true]);
 
 ?>
     <div class="maincontainer">

@@ -1,8 +1,9 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', 'Latest Setups');
+$this->assign('title', 'Latest Setups | mySetup.co');
 
+echo $this->Html->meta('description', 'See the most recent setups published on mySetup.co', ['block' => true]);
 ?>
     <div class="maincontainer">
 

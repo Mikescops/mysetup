@@ -3,6 +3,10 @@
   * @var \App\View\AppView $this
   */
 
+$this->assign('title', $setup->title.' | mySetup.co');
+
+echo $this->Html->meta('description', $this->Text->truncate($setup->description,150,['ellipsis' => '..','exact' => true]), ['block' => true]);
+
 echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)), null, ['block' => true]);
 ?>
 <div class="featured-container">

@@ -1,7 +1,9 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', 'Legal Mentions');
+$this->assign('title', 'Legal Mentions | mySetup.co');
+
+echo $this->Html->meta('description', 'Legal mentions about your personal data, cookies and credits.', ['block' => true]);
 
 ?>
 

@@ -2,6 +2,9 @@
 /**
   * @var \App\View\AppView $this
   */
+
+$this->assign('title', 'Setups by '.$user->name.' | mySetup.co');
+echo $this->Html->meta('description', 'All the setups shared by '. $user->name, ['block' => true]);
 ?>
 
 <div class="maincontainer">

@@ -1,7 +1,9 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', 'Home');
+$this->assign('title', 'mySetup.co | Share your own setup');
+
+echo $this->Html->meta('description', 'The best place to share your setup with your community !', ['block' => true]);
 
 ?>
 

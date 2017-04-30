@@ -8,7 +8,7 @@
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $this->fetch('title') ?> | MySetup
+        <?= $this->fetch('title') ?>
     </title>
 
     <?= $this->Html->meta('favicon.ico','img/favicon/favicon.ico',array('type' => 'icon')) ?>
