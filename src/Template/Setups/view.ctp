@@ -58,7 +58,18 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
             ?>
             <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
             <ul class="search_results"></ul>
-            <ul class="basket_items"></ul>
+            <ul class="basket_items">
+
+            <?php foreach ($products as $item): ?>
+
+                <li>
+                <img src="<?= urldecode($item->src) ?>">
+                <p><?= urldecode($item->title) ?></p>
+                <a onclick="deleteFromBasket('<?= $item->title ?>',this)"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                </li>
+            <?php endforeach ?>
+
+            </ul>
             <br />
             <?php
                 echo $this->Form->input('featuredImage. ', ['id' => 'featuredImage_edit','type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile']);
@@ -70,11 +81,17 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
             <div id="images_holder"></div>
             <br />
             <?php
-                if(!empty($video->src)){$video_fied = $video->src;}else{$video_fied = '';}
-                echo $this->Form->control('video', ['default' => $video_fied]);
+                /* Fill the video source if exist */
+                if(!empty($video->src)){$video_field = $video->src;}else{$video_field = '';}
+                echo $this->Form->control('video', ['default' => $video_field]);
 
+                /* Fill the current items in the field before edit */
+                $item_field = '';
+                foreach ($products as $item){
+                    $item_field = $item_field.$item->title.';'.$item->href.';'.$item->src.',';
+                }
                 // A hidden entry to gather the item resources
-                echo $this->Form->control('resources', ['class' => 'hiddenInput', 'type' => 'hidden']);
+                echo $this->Form->control('resources', ['class' => 'hiddenInput', 'type' => 'hidden', 'default' => $item_field]);
             ?>
             <a class="is_author"><i class="fa fa-square-o"></i> I'm not the owner of this setup !</a>
             <label for="author" class="setup_author">Author of the setup</label>
