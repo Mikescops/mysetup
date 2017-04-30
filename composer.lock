@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d407ad736a011e58598da0ac6464b673",
-    "content-hash": "e24ee49515744214177eedaf5983a539",
+    "hash": "39fae9c891b08dff32cd15c8cfe792bb",
+    "content-hash": "607cce471bcf0aeba9825a92d91465a5",
     "packages": [
         {
             "name": "aura/intl",
@@ -133,16 +133,16 @@
         },
         {
             "name": "cakephp/chronos",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/chronos.git",
-                "reference": "26385a9a2966350f7c5df34a6a54e641a538131e"
+                "reference": "0621b191334d8dcb56907688986dd24eb8c38234"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/chronos/zipball/26385a9a2966350f7c5df34a6a54e641a538131e",
-                "reference": "26385a9a2966350f7c5df34a6a54e641a538131e",
+                "url": "https://api.github.com/repos/cakephp/chronos/zipball/0621b191334d8dcb56907688986dd24eb8c38234",
+                "reference": "0621b191334d8dcb56907688986dd24eb8c38234",
                 "shasum": ""
             },
             "require": {
@@ -151,6 +151,8 @@
             "require-dev": {
                 "athletic/athletic": "~0.1",
                 "cakephp/cakephp-codesniffer": "~2.3",
+                "phpbench/phpbench": "@dev",
+                "phpstan/phpstan": "^0.6.4",
                 "phpunit/phpunit": "<6.0"
             },
             "type": "library",
@@ -184,7 +186,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2017-03-31 14:53:04"
+            "time": "2017-04-27 01:27:49"
         },
         {
             "name": "cakephp/migrations",
@@ -276,6 +278,120 @@
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
             "time": "2017-03-21 13:48:47"
+        },
+        {
+            "name": "composer/installers",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "79ad876c7498c0bbfe7eed065b8651c93bfd6045"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/79ad876c7498c0bbfe7eed065b8651c93bfd6045",
+                "reference": "79ad876c7498c0bbfe7eed065b8651c93bfd6045",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Composer\\Installers\\Plugin",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Installers\\": "src/Composer/Installers"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "https://composer.github.io/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Eliasis",
+                "Hurad",
+                "ImageCMS",
+                "Kanboard",
+                "MODX Evo",
+                "Mautic",
+                "Maya",
+                "OXID",
+                "Plentymarkets",
+                "Porto",
+                "RadPHP",
+                "SMF",
+                "Thelia",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "attogram",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "cockpit",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "elgg",
+                "expressionengine",
+                "fuelphp",
+                "grav",
+                "installer",
+                "itop",
+                "joomla",
+                "kohana",
+                "laravel",
+                "lavalite",
+                "lithium",
+                "magento",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "moodle",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "reindex",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "sydes",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "yawik",
+                "zend",
+                "zikula"
+            ],
+            "time": "2017-04-24 06:37:16"
         },
         {
             "name": "exeu/apai-io",
@@ -508,6 +624,57 @@
                 "url"
             ],
             "time": "2017-03-20 17:10:46"
+        },
+        {
+            "name": "loadsys/cakephp_sitemap",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loadsys/CakePHP-Sitemap.git",
+                "reference": "8157192b9320dd1789da6975086fd41c876a2a53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loadsys/CakePHP-Sitemap/zipball/8157192b9320dd1789da6975086fd41c876a2a53",
+                "reference": "8157192b9320dd1789da6975086fd41c876a2a53",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.1",
+                "composer-plugin-api": "~1.0",
+                "composer/installers": "~1.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "loadsys/loadsys_codesniffer": "~3.0",
+                "phpunit/phpunit": "~4.8",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Sitemap\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Yost",
+                    "email": "justin@loadsys.com",
+                    "homepage": "https://github.com/jtyost2",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A CakePHP Plugin for adding automatic XML and HTML Sitemaps to an app",
+            "homepage": "https://github.com/loadsys/CakePHP-Sitemap",
+            "keywords": [
+                "Sitemap",
+                "cakephp"
+            ],
+            "time": "2016-05-27 09:36:07"
         },
         {
             "name": "mobiledetect/mobiledetectlib",

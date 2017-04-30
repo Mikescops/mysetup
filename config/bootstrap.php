@@ -212,6 +212,13 @@ Type::build('timestamp')
  * Plugin::load('Migrations'); //Loads a single plugin named Migrations
  *
  */
+Plugin::load('Sitemap', ['bootstrap' => false, 'routes' => true]);
+
+Configure::write('Sitemap.tables', [
+    'Setups',
+    'Pages',
+    'Users',
+]);
 
 /*
  * Only try to load DebugKit in development mode

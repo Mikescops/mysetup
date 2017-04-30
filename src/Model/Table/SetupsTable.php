@@ -65,6 +65,8 @@ class SetupsTable extends Table
                 ]
             ]
         ]);
+
+         $this->addBehavior('Sitemap.Sitemap');
     }
 
     /**

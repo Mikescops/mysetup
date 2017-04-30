@@ -33,6 +33,8 @@ class PagesTable extends Table
         $this->setTable('pages');
         $this->setDisplayField('title');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Sitemap.Sitemap');
     }
 
     /**
