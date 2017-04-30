@@ -126,7 +126,7 @@
                         <ul class="basket_items add_setup"></ul>
                         <br />
                         <?php
-                            echo $this->Form->input('featuredImage. ', ['type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile']);
+                            echo $this->Form->input('featuredImage. ', ['type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile', 'required' => 'required']);
                         ?>
                         <img id="featuredimage_preview">
                         <?php
@@ -198,7 +198,7 @@
         
             <div class="row">
                     <div class="column column-25">
-                      <div class="footer-title">Partenaires</div>
+                      <div class="footer-title">Partners</div>
                       <ul>
                         <li><a href="https://pixelswap.fr/" target="_blank" class="item">PixelSwap</a></li>
                         <li><a href="https://geek-mexicain.net/" target="_blank">Geek Mexicain</a></li>

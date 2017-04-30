@@ -84,7 +84,7 @@ class UsersController extends AppController
                         // This person is new among us, let's log him in ASAP
                         $this->Auth->setUser($user);
                         $this->Flash->success(__('We are so kind, you\'re now logged in ;-)'));
-                        return $this->redirect('/'); 
+                        return $this->redirect($this->Auth->redirectUrl()); 
                     }
 
                     else
@@ -97,14 +97,14 @@ class UsersController extends AppController
                 else
                 {
                     $this->Flash->error(__('The user could not be saved. Please, try again.'));
-                    return $this->redirect('/');                    
+                    return $this->redirect($this->referer());                    
                 }
             }
 
             else
             {
                 $this->Flash->error(__('These passwords do not match. Please try again.'));
-                return $this->redirect('/');
+                return $this->redirect($this->referer());
             }
         }
         $this->set(compact('user'));
@@ -148,7 +148,7 @@ class UsersController extends AppController
                 if($data['secret'] !== $data['secret2'])
                 {
                     $this->Flash->error(__('These passwords do not match. Please try again.'));
-                    return $this->redirect('/');
+                    return $this->redirect($this->referer());
                 }
 
                 else
@@ -179,7 +179,7 @@ class UsersController extends AppController
                 $this->Flash->error(__('The user could not be updated. Please, try again.'));
             }
             
-            return $this->redirect('/');
+            return $this->redirect($this->referer());
         }
 
         $this->set(compact('user'));
@@ -220,7 +220,7 @@ class UsersController extends AppController
         if($this->request->session()->read('Auth.User.id') != null)
         {
             $this->Flash->warning(__('You are already logged in.'));
-            return $this->redirect('/');
+            return $this->redirect($this->referer());
         }
 
         if($this->request->is('post'))
@@ -250,7 +250,7 @@ class UsersController extends AppController
         else
         {
             $this->Flash->warning(__('You can\'t logout because you\'re not connected.'));
-            return $this->redirect('/');
+            return $this->redirect($this->referer());
         }
     }
 
