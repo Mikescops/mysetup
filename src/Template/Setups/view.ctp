@@ -56,9 +56,9 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
                 echo $this->Form->control('title', ['id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
                 echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500, 'default' => $setup->description]);
             ?>
-            <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
-            <ul class="search_results"></ul>
-            <ul class="basket_items">
+            <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, 'edit_setup');" placeholder="Search for components..">
+            <ul class="search_results edit_setup"></ul>
+            <ul class="basket_items edit_setup">
 
             <?php foreach ($products as $item): ?>
 
@@ -91,7 +91,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
                     $item_field = $item_field.$item->title.';'.$item->href.';'.$item->src.',';
                 }
                 // A hidden entry to gather the item resources
-                echo $this->Form->control('resources', ['class' => 'hiddenInput', 'type' => 'hidden', 'default' => $item_field]);
+                echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden', 'default' => $item_field]);
             ?>
             <a class="is_author"><i class="fa fa-square-o"></i> I'm not the owner of this setup !</a>
             <label for="author" class="setup_author">Author of the setup</label>

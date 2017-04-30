@@ -122,9 +122,9 @@
                             echo $this->Form->control('title', ['id' => 'title', 'maxLength' => 48]);
                             echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                         ?>
-                        <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
-                        <ul class="search_results"></ul>
-                        <ul class="basket_items"></ul>
+                        <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, 'add_setup');" placeholder="Search for components..">
+                        <ul class="search_results add_setup"></ul>
+                        <ul class="basket_items add_setup"></ul>
                         <br />
                         <?php
                             echo $this->Form->input('featuredImage. ', ['type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile']);
@@ -139,7 +139,7 @@
                             echo $this->Form->control('video');
 
                             // A hidden entry to gather the item resources
-                            echo $this->Form->control('resources', ['class' => 'hiddenInput', 'type' => 'hidden']);
+                            echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);
                         ?>
                         <a class="is_author"><i class="fa fa-square-o"></i> I'm not the owner of this setup !</a>
                         <label for="author" class="setup_author">Author of the setup</label>

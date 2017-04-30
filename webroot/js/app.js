@@ -225,7 +225,7 @@ function featuredPreview_edit( uploader ) {
 
 var timer;
 
-function searchItem(query) {
+function searchItem(query, action) {
   clearTimeout(timer);
     timer=setTimeout(function validate(){
 
@@ -235,7 +235,7 @@ function searchItem(query) {
     data: { "q": query},
     success: function(response) { 
 
-      $( ".search_results" ).html("");
+      $( ".search_results."+action ).html("");
 
       var el = $( '<div></div>' );
       el.html(response);
@@ -261,9 +261,9 @@ function searchItem(query) {
       var encodedSrc = encodeURIComponent(src);
 
 
-      list.html('<p>' + title + '</p><a onclick="addToBasket(\'' +encodedTitle+ '\', \'' +encodedUrl+ '\', \'' +encodedSrc+ '\')"><i class="fa fa-square-o" aria-hidden="true"></i></a>');
+      list.html('<p>' + title + '</p><a onclick="addToBasket(\'' +encodedTitle+ '\', \'' +encodedUrl+ '\', \'' +encodedSrc+ '\', \'' +action+ '\')"><i class="fa fa-square-o" aria-hidden="true"></i></a>');
       list.prepend(img);
-      $( ".search_results" ).append(list);
+      $( ".search_results."+action ).append(list);
     });
 
       var image = $('mediumimage')
@@ -271,12 +271,12 @@ function searchItem(query) {
     }
 });}, 500);};
 
-function addToBasket(title, url, src) {
+function addToBasket(title, url, src, action) {
 
-  $('.hiddenInput').val($('.hiddenInput').val() + title + ';'+ url + ';' + src + ',');
+  $('.hiddenInput.'+action).val($('.hiddenInput.'+action).val() + title + ';'+ url + ';' + src + ',');
 
-  $( ".search_results" ).html("");
-  $( ".liveInput" ).val("");
+  $( ".search_results."+action ).html("");
+  $( ".liveInput."+action ).val("");
 
   decodedTitle = decodeURIComponent(title);
   decodedSrc = decodeURIComponent(src);
@@ -284,16 +284,16 @@ function addToBasket(title, url, src) {
   var list = $('<li></li>');
   var img = $('<img>');
   img.attr('src', decodedSrc);
-  list.html('<p>' + decodedTitle + '</p><a onclick="deleteFromBasket(\''+title+'\',this)"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>');
+  list.html('<p>' + decodedTitle + '</p><a onclick="deleteFromBasket(\''+title+'\',this,\''+action+'\')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>');
   list.prepend(img);0
-  $( ".basket_items" ).append(list);
+  $( ".basket_items."+action ).append(list);
 }
 
 
-function deleteFromBasket(title, parent) {
+function deleteFromBasket(title, parent, action) {
 
 
-  var ResearchArea = $('.hiddenInput').val();
+  var ResearchArea = $('.hiddenInput.'+action).val();
 
   var splitTextInput = ResearchArea.split(",");
 
@@ -301,7 +301,7 @@ function deleteFromBasket(title, parent) {
     return n.split(";")[0] != title;
   });
 
-  $('.hiddenInput').val(new_arr);
+  $('.hiddenInput.'+action).val(new_arr);
   
   parent.closest('li').remove();
 
