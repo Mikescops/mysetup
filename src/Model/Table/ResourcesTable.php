@@ -86,24 +86,28 @@ class ResourcesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        // Special validation: 'user_id' XOR 'setup_id' has to be set
-        // Furthermore, the 'id' no-null on the moment has to exist in the DB
+        // Special validation: 'user_id' OR 'setup_id' has / have to be set
+        // Furthermore, the 'id' no-null on the moment has / have to exist in the DB
         $rules->
             add(function($entity) {
-
-                $flag = true;
-
-                if(isset($entity['user_id']) and $this->Users->find()->where(['id' =>  $entity['user_id']])->count() === 0)
+                // At least one 'id' has to be set
+                if(isset($entity['user_id']) or isset($entity['setup_id'])
                 {
-                    $flag = false;
+                    // ... and each set one has to correspond to a existing entity in the DB
+                    if(isset($entity['user_id']) and $this->Users->find()->where(['id' =>  $entity['user_id']])->count() === 0)
+                    {
+                        return false;
+                    }
+
+                    if(isset($entity['setup_id']) and $this->Setups->find()->where(['id' =>  $entity['setup_id']])->count() === 0)
+                    {
+                        return false;
+                    }
+
+                    return true;
                 }
 
-                if(isset($entity['setup_id']) and $this->Setups->find()->where(['id' =>  $entity['setup_id']])->count() === 0)
-                {
-                    $flag = false;
-                }
-
-                return $flag;
+                return false;
             },
             'foreignKey_rule');
 
