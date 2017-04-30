@@ -120,6 +120,9 @@ $(function(){
     $("#featuredimage").change(function(){
       featuredPreview( this );
     });
+    $("#featuredImage_edit").change(function(){
+      featuredPreview_edit( this );
+    });
 });
 
 /********* Update Profile Picture on Upload *********/
@@ -136,6 +139,13 @@ function fasterPreview( uploader ) {
 function featuredPreview( uploader ) {
     if ( uploader.files && uploader.files[0] ){
           $('#featuredimage_preview').attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
+
+function featuredPreview_edit( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#featuredimage_preview_edit').attr('src', 
              window.URL.createObjectURL(uploader.files[0]) );
     }
 }

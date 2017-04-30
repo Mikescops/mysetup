@@ -50,6 +50,41 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
     <div id="edit_setup_modal" class="lity-hide">
         <h4>Edit your setup</h4>
 
+        <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'edit', $setup->id]]); ?>
+        <fieldset style="border:0;">
+            <?php
+                echo $this->Form->control('title', ['id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
+                echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500, 'default' => $setup->description]);
+            ?>
+            <input type="text" class="liveInput" onkeyup="searchItem(this.value);" placeholder="Search for components..">
+            <ul class="search_results"></ul>
+            <ul class="basket_items"></ul>
+            <br />
+            <?php
+                echo $this->Form->input('featuredImage. ', ['id' => 'featuredImage_edit','type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile']);
+            ?>
+            <img id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <?php
+                echo $this->Form->input('fileselect. ', ['type' => 'file', 'multiple', 'label' => array('class' => 'label_gimage','text' => 'Add up to 5 images (5 MB / images)'), 'class' => 'inputfile']);
+            ?>
+            <div id="images_holder"></div>
+            <br />
+            <?php
+                if(!empty($video->src)){$video_fied = $video->src;}else{$video_fied = '';}
+                echo $this->Form->control('video', ['default' => $video_fied]);
+
+                // A hidden entry to gather the item resources
+                echo $this->Form->control('resources', ['class' => 'hiddenInput', 'type' => 'hidden']);
+            ?>
+            <a class="is_author"><i class="fa fa-square-o"></i> I'm not the owner of this setup !</a>
+            <label for="author" class="setup_author">Author of the setup</label>
+            <?php
+                echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
+            ?>
+        </fieldset>
+        <?= $this->Form->submit(__('Edit setup'), ['class' => 'float-right']); ?>
+        <?= $this->Form->end(); ?>
+
 
         <?= $this->Form->postLink('Delete this setup', array('controller' => 'Setups','action' => 'delete', $setup->id),array('confirm' => 'You are going to delete this setup! Are You Sure?')) ?>
     </div>
