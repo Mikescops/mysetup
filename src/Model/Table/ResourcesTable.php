@@ -206,23 +206,34 @@ class ResourcesTable extends Table
     {
         $parsing = parse_url($video);
 
-        if(isset($parsing['host']) && in_array($parsing['host'], ['dailymotion.com', 'dai.ly', 'flickr.com', 'flic.kr', 'youtube.com', 'youtu.be', 'vimeo.com', 'rutube.ru']))
+        if(isset($parsing['host']))
         {
-            // Let's create a new entity to store these data !
-            $resource = $this->newEntity();
+            // The host will contain only the DN without 'www.' if present
+            $parsing['host'] = str_replace('www.', '', $parsing['host']);
 
-            $resource->user_id  = $user_id;
-            $resource->setup_id = $setup->id;
-            $resource->type     = 'SETUP_VIDEO_LINK';
-            $resource->title    = null;
-            $resource->href     = null;
-            $resource->src      = $video;
-
-            // If the resource can't be saved atm, we rollback and throw an error...
-            if(!$this->save($resource))
+            if(in_array($parsing['host'], ['dailymotion.com', 'dai.ly', 'flickr.com', 'flic.kr', 'youtube.com', 'youtu.be', 'vimeo.com', 'rutube.ru']))
             {
-                $this->Setups->delete($setup);
-                $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                // Let's create a new entity to store these data !
+                $resource = $this->newEntity();
+
+                $resource->user_id  = $user_id;
+                $resource->setup_id = $setup->id;
+                $resource->type     = 'SETUP_VIDEO_LINK';
+                $resource->title    = null;
+                $resource->href     = null;
+                $resource->src      = $video;
+
+                // If the resource can't be saved atm, we rollback and throw an error...
+                if(!$this->save($resource))
+                {
+                    $this->Setups->delete($setup);
+                    $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                }
+            }
+
+            else
+            {
+                $flash->warning(__("The video link you chose does not validate our rules... Please contact an administrator."));
             }
         }
 
