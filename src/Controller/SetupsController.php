@@ -94,6 +94,11 @@ class SetupsController extends AppController
             // Classical patch entity operation
             $setup = $this->Setups->patchEntity($setup, $data);
 
+            // Here we'll assign a random id to this new user
+            do {
+                $setup->id = mt_rand() + 1;
+            } while($this->Setups->find()->where(['id' => $setup->id])->count() !== 0);
+
             if($this->Setups->save($setup))
             {
                 /* Here we get and save the featured image */
