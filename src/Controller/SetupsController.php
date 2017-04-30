@@ -173,7 +173,8 @@ class SetupsController extends AppController
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage'][0]) and $data['featuredImage'][0] !== '' and (int)$data['featuredImage'][0]['error'] === 0)
                 {
-                    $this->Setups->Resources->deleteAll(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE']);
+                    $img_to_del = $this->Setups->Resources->find()->where(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE'])->first();
+                    $this->Setups->Resources->delete($img_to_del);
                     $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id']);
                 }
 

@@ -72,7 +72,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
             </ul>
             <br />
             <?php
-                echo $this->Form->input('featuredImage. ', ['id' => 'featuredImage_edit','type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile']);
+                echo $this->Form->input('featuredImage. ', ['id' => 'featuredImage_edit','type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Change featured image'), 'class' => 'inputfile']);
             ?>
             <img id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
             <?php
