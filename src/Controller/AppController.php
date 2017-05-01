@@ -114,7 +114,12 @@ class AppController extends Controller
             'fileselect',
             'video',
             'mailReset',
-            'picture'
+            'picture',
+            'gallery0',
+            'gallery1',
+            'gallery2',
+            'gallery3',
+            'gallery4'
         ]);
     }
 

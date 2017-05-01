@@ -79,10 +79,20 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
                 echo $this->Form->input('featuredImage. ', ['id' => 'featuredImage_edit','type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Change featured image'), 'class' => 'inputfile']);
             ?>
             <img id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <?php
-                echo $this->Form->input('fileselect. ', ['type' => 'file', 'multiple', 'label' => array('class' => 'label_gimage','text' => 'Add up to 5 images (5 MB / images)'), 'class' => 'inputfile']);
-            ?>
-            <div id="images_holder"></div>
+            <div class="hidden_five_inputs">
+                <?php
+                    echo $this->Form->input('gallery0. ', ['type' => 'file', 'label' => array('class' => 'label_gimage', 'text' => 'Change this additional image'), 'class' => 'inputfile']);
+                    echo $this->Form->input('gallery1. ', ['type' => 'file', 'label' => array('class' => 'label_gimage', 'text' => 'Change this additional image'), 'class' => 'inputfile']);
+                    echo $this->Form->input('gallery2. ', ['type' => 'file', 'label' => array('class' => 'label_gimage', 'text' => 'Change this additional image'), 'class' => 'inputfile']);
+                    echo $this->Form->input('gallery3. ', ['type' => 'file', 'label' => array('class' => 'label_gimage', 'text' => 'Change this additional image'), 'class' => 'inputfile']);
+                    echo $this->Form->input('gallery4. ', ['type' => 'file', 'label' => array('class' => 'label_gimage', 'text' => 'Change this additional image'), 'class' => 'inputfile']);
+                ?>
+            </div>
+            <img id="gallery0image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <img id="gallery1image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <img id="gallery2image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <img id="gallery3image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <img id="gallery4image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
             <br />
             <?php
                 /* Fill the video source if exist */
@@ -97,8 +107,8 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
                 // A hidden entry to gather the item resources
                 echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden', 'default' => $item_field]);
             ?>
-            <a class="is_author"><i class="fa fa-square-o"></i> I'm not the owner of this setup !</a>
-            <label for="author" class="setup_author">Author of the setup</label>
+            <a class="is_author"><i class="fa fa-square-o"></i> It's not my setup !</a>
+            <label for="author" class="setup_author">Setup's owner</label>
             <?php
                 echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
             ?>

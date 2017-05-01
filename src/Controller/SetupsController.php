@@ -188,9 +188,58 @@ class SetupsController extends AppController
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage'][0]) and $data['featuredImage'][0] !== '' and (int)$data['featuredImage'][0]['error'] === 0)
                 {
-                    $img_to_del = $this->Setups->Resources->find()->where(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE'])->first();
-                    $this->Setups->Resources->delete($img_to_del);
+                    $this->Setups->Resources->delete($this->Setups->Resources->find()->where(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE'])->first());
                     $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], true, true);
+                }
+
+
+                /* Here we'll compare the uploaded images to the new ones (in the 5 hidden inputs) */
+                $existingGalleries = $this->Setups->Resources->find('all', ['order' => 'id' => 'ASC'])->where(['setup_id' => $setup->id, 'user_id' => $data['user_id']])->fetch();
+
+                if(isset($data['gallery0'][0]) and $data['gallery0'][0] !== '' and (int)$data['gallery0'][0]['error'] === 0)
+                {
+                    if(isset($existingGalleries[0]))
+                    {
+                        $this->Setups->Resources->delete($existingGalleries[0]);
+                    }
+
+                    $this->Setups->Resources->saveResourceImage($data['gallery0'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
+                }
+                if(isset($data['gallery1'][0]) and $data['gallery1'][0] !== '' and (int)$data['gallery1'][0]['error'] === 0)
+                {
+                    if(isset($existingGalleries[1]))
+                    {
+                        $this->Setups->Resources->delete($existingGalleries[1]);
+                    }
+
+                    $this->Setups->Resources->saveResourceImage($data['gallery1'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
+                }
+                if(isset($data['gallery2'][0]) and $data['gallery2'][0] !== '' and (int)$data['gallery2'][0]['error'] === 0)
+                {
+                    if(isset($existingGalleries[2]))
+                    {
+                        $this->Setups->Resources->delete($existingGalleries[2]);
+                    }
+
+                    $this->Setups->Resources->saveResourceImage($data['gallery2'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
+                }
+                if(isset($data['gallery3'][0]) and $data['gallery3'][0] !== '' and (int)$data['gallery3'][0]['error'] === 0)
+                {
+                    if(isset($existingGalleries[3]))
+                    {
+                        $this->Setups->Resources->delete($existingGalleries[3]);
+                    }
+
+                    $this->Setups->Resources->saveResourceImage($data['gallery3'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
+                }
+                if(isset($data['gallery4'][0]) and $data['gallery4'][0] !== '' and (int)$data['gallery4'][0]['error'] === 0)
+                {
+                    if(isset($existingGalleries[4]))
+                    {
+                        $this->Setups->Resources->delete($existingGalleries[4]);
+                    }
+
+                    $this->Setups->Resources->saveResourceImage($data['gallery4'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
                 }
 
                 /* Here we save the setup video URL */
