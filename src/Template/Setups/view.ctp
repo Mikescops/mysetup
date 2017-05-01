@@ -88,11 +88,14 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
                     echo $this->Form->input('gallery4. ', ['id'=>'gallery4', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
                 ?>
             </div>
-            <img class="gallery_edit_preview" id="gallery0image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <img class="gallery_edit_preview" id="gallery1image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <img class="gallery_edit_preview" id="gallery2image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <img class="gallery_edit_preview" id="gallery3image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <img class="gallery_edit_preview" id="gallery4image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+
+
+            <?php $i = 0;foreach ($gallery as $image):?>
+            <img class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
+            <?php $i++; endforeach; for(;$i < 5;$i++): ?>
+            <img class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+            <?php endfor ?>
+
             <br />
             <?php
                 /* Fill the video source if exist */
