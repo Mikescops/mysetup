@@ -12,7 +12,7 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
     <div class="row">
         <div class="column column-75">
 
-            <img class="user-profile" src="<?= $this->Url->build('/uploads/files/profile_picture_'.$user->id.'.png'); ?>">
+            <img class="user-profile" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$user->id.'.png'); ?>">
 
             <h3 class="user-profile"><?php if($user->name){echo $user->name;}else{echo "Unknown user";} ?>'s setups <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
 
@@ -29,7 +29,7 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
 
                         <div class="column column-75">
                             <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                <img src="<?= $this->Url->build('/uploads/files/profile_picture_'.$setup->user_id.'.png'); ?>">
+                                <img src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png'); ?>">
                             </a>
 
                             <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>

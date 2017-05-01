@@ -19,7 +19,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
 
             <div class="column column-75">
                 <a class="featured-user" href="<?= $this->Url->build('/users/'.$additionalData['owner']['id']) ?>">
-                    <img src="<?= $this->Url->build('/uploads/files/profile_picture_'.$setup->user_id.'.png') ?>">
+                    <img src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
                 </a>
 
                 <h3><?= $setup->title ?></h3>
@@ -181,7 +181,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
             <?php foreach ($setup->comments as $comments): ?>
             <article class="comment">
                 <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
-                    <img src="<?= $this->Url->build('/uploads/files/profile_picture_'.$comments->user_id.'.png') ?>" alt="" width="50" height="50" />
+                    <img src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$comments->user_id.'.png') ?>" alt="" width="50" height="50" />
                 </a>
                     
                 <div class="comment-body">

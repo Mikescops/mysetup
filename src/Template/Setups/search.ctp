@@ -42,7 +42,7 @@ $this->assign('title', 'Search for "'. $_GET["q"] .'" | mySetup.co');
 
 	                        <div class="column column-75">
 	                            <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->setup->user_id)?>">
-	                                <img src="<?= $this->Url->build('/'); ?>uploads/files/profile_picture_<?= $setup->setup->user_id ?>.png">
+	                                <img src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $setup->setup->user_id ?>.png">
 	                            </a>
 
 	                            <a href="<?= $this->Url->build('/setups/'.$setup->setup_id.'-'.$this->Text->slug($setup->setup->title)); ?>"><h3><?= $setup->setup->title ?></h3></a>
