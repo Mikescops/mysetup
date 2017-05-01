@@ -230,7 +230,7 @@ function searchItem(query, region, action) {
     timer=setTimeout(function validate(){
 
   $.ajax({
-    url: '/mysetup/amazon/index.php',
+    url: webRootJs +'amazon/index.php',
     type: 'get',
     data: { "q": query, "lang": region},
     success: function(response) { 
@@ -312,7 +312,7 @@ function likeSetup(id){
   if ($( ".red_button" ).hasClass( "active" )){
     //console.log("des likes");
     $.ajax({
-      url: '/mysetup/app/dislike',
+      url: webRootJs + 'app/dislike',
       type: 'get',
       data: { "setup_id": id},
       success: answer_dislike,
@@ -324,7 +324,7 @@ function likeSetup(id){
   else{
     //console.log("Pas de like");
     $.ajax({
-      url: '/mysetup/app/like',
+      url: webRootJs + 'app/like',
       type: 'get',
       data: { "setup_id": id},
       success: answer_like,
@@ -352,7 +352,7 @@ function answer_error(response){
 
 function printLikes(id) {
     $.ajax({
-        url: "/mysetup/app/getlikes",
+        url: webRootJs + "app/getlikes",
         data: {
             setup_id: id
         },
@@ -369,7 +369,7 @@ function printLikes(id) {
 
 function doesLike(setup) {
     $.ajax({
-        url: "/mysetup/app/doesLike",
+        url: webRootJs + "app/doesLike",
         data: {
             setup_id: setup
         },
@@ -582,7 +582,7 @@ function infiniteScroll(nbtodisplay) {
       $(window).data('ajaxready', false);
       //console.log(offset);
       $.ajax({
-        url: "/mysetup/app/getSetups",
+        url: webRootJs + "app/getSetups",
         data: {
             p: offset,
             n: nbtodisplay
@@ -602,7 +602,7 @@ function infiniteScroll(nbtodisplay) {
               else{
                 nblikes = 0;
               }
-              $('.fullitem_holder').append('<div class="fullitem"><a href="/mysetup/setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><img src="/mysetup/'+value['resources'][0]['src'] +'"><\/a><div class="red_like"><i class="fa fa-heart"><\/i> '+ nblikes +'<\/div><div class="fullitem-inner"><div class="row"><div class="column column-75"><a class="featured-user" href="/mysetup/users/'+value['user_id']+'"><img src="/mysetup/uploads/files/profile_picture_'+value['user_id']+'.png"><\/a><a href="/mysetup/setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><h3>'+value['title']+'<\/h3><\/a><\/div><\/div><\/div><\/div>');
+              $('.fullitem_holder').append('<div class="fullitem"><a href="'+webRootJs+'setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><img src="'+webRootJs+value['resources'][0]['src'] +'"><\/a><div class="red_like"><i class="fa fa-heart"><\/i> '+ nblikes +'<\/div><div class="fullitem-inner"><div class="row"><div class="column column-75"><a class="featured-user" href="'+webRootJs+'users/'+value['user_id']+'"><img src="'+webRootJs+'uploads/files/profile_picture_'+value['user_id']+'.png"><\/a><a href="'+webRootJs+'setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><h3>'+value['title']+'<\/h3><\/a><\/div><\/div><\/div><\/div>');
             });
             $(window).data('ajaxready', true);
           }

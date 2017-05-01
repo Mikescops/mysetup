@@ -229,6 +229,7 @@
           </div>
     </footer>
 
+    <script>var webRootJs = "<?= $this->Url->build('/'); ?>";</script>
 
     <!-- Jquery async load -->
     <?= $this->Html->script('jquery-3.2.0.min.js') ?>
