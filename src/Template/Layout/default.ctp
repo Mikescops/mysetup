@@ -111,7 +111,7 @@
                     <?= $this->Form->create($newSetupEntity, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'add']]); ?>
                     <fieldset style="border:0;">
                         <?php
-                            echo $this->Form->control('title', ['id' => 'title', 'maxLength' => 48]);
+                            echo $this->Form->control('title', ['id' => 'title', 'maxLength' => 48, 'required' => 'required']);
                             echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                         ?>
                         <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>','add_setup');" placeholder="Search for components..">
