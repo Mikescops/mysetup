@@ -174,7 +174,7 @@ class ResourcesTable extends Table
         }
     }
 
-    public function saveResourceImage($file, $setup, $type, $flash, $user_id, $edition)
+    public function saveResourceImage($file, $setup, $type, $flash, $user_id, $edition, $featured)
     {
         if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
         {
@@ -197,6 +197,13 @@ class ResourcesTable extends Table
 
             if(move_uploaded_file($file['tmp_name'], $destination))
             {
+                $image = new \Imagick($destination);
+
+                if(!$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
+                {
+                    $flash->warning(__("One of your image could not be resized... Please contact an administrator."));
+                }
+
                 $resource = $this->newEntity();
                 $resource->user_id  = $user_id;
                 $resource->setup_id = $setup->id;
