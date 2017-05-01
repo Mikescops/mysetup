@@ -94,9 +94,10 @@ curl_close($CURL);
         <div class="column column-25 sidebar">
 
             <div class="social-networks">
-                <a href="#" class="button button-clear"><i class="fa fa-facebook fa-2x"></i></a>
-                <a href="#" class="button button-clear"><i class="fa fa-twitter fa-2x"></i></a>
-                <a href="#" class="button button-clear"><i class="fa fa-youtube fa-2x"></i></a>
+                <a href="https://www.facebook.com/mysetup.co" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
+                <a href="https://twitter.com/mysetup_co" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+                <a href="https://medium.com/mysetup-co" target="_blank"><i class="fa fa-medium fa-2x"></i></a>
+                <a href="mailto:support@mysetup.co" title="Report a bug !"><i class="fa fa-bug fa-2x"></i></a>
             </div>
 
             <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co">Tweets by mysetup_co</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

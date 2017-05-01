@@ -227,32 +227,32 @@
                     </div>
               </div>
           </div>
+
+        <script>var webRootJs = "<?= $this->Url->build('/'); ?>";</script>
+
+        <!-- Jquery async load -->
+        <?= $this->Html->script('jquery-3.2.0.min.js') ?>
+
+        <!-- Slider Js async load -->
+        <?= $this->Html->script('slick.min.js') ?>
+
+        <!-- Lightbox Js async load -->
+        <?= $this->Html->script('lity.min.js') ?>
+
+        <!-- Amazon Query Js async load -->
+        <?= $this->Html->script('amazon-autocomplete.js') ?>
+
+        <?= $this->Html->script('jssocials.min.js') ?>
+
+        <!-- App Js async load -->
+        <?= $this->Html->script('app.js') ?>
+
+        <script> /* Define toast once */const toast = new siiimpleToast();</script>
+
+        <?= $this->Flash->render() ?>
+
+        <?= $this->fetch('scriptBottom') ?>
     </footer>
-
-    <script>var webRootJs = "<?= $this->Url->build('/'); ?>";</script>
-
-    <!-- Jquery async load -->
-    <?= $this->Html->script('jquery-3.2.0.min.js') ?>
-
-    <!-- Slider Js async load -->
-    <?= $this->Html->script('slick.min.js') ?>
-
-    <!-- Lightbox Js async load -->
-    <?= $this->Html->script('lity.min.js') ?>
-
-    <!-- Amazon Query Js async load -->
-    <?= $this->Html->script('amazon-autocomplete.js') ?>
-
-    <?= $this->Html->script('jssocials.min.js') ?>
-
-    <!-- App Js async load -->
-    <?= $this->Html->script('app.js') ?>
-
-    <script> /* Define toast once */const toast = new siiimpleToast();</script>
-
-    <?= $this->Flash->render() ?>
-
-    <?= $this->fetch('scriptBottom') ?>
 
 </body>
 </html>
