@@ -133,8 +133,8 @@
                             // A hidden entry to gather the item resources
                             echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);
                         ?>
-                        <a class="is_author"><i class="fa fa-square-o"></i> I'm not the owner of this setup !</a>
-                        <label for="author" class="setup_author">Author of the setup</label>
+                        <a class="is_author"><i class="fa fa-square-o"></i> It's not my setup !</a>
+                        <label for="author" class="setup_author">Setup's owner</label>
                         <?php
                             echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '']);
                         ?>
