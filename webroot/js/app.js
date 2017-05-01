@@ -123,6 +123,39 @@ $(function(){
     $("#featuredImage_edit").change(function(){
       featuredPreview_edit( this );
     });
+
+    /***** Preview galery edit *****/
+    $("#gallery0image_preview_edit").click(function(e) {
+      $("#gallery0").click();
+    });
+    $("#gallery1image_preview_edit").click(function(e) {
+      $("#gallery1").click();
+    });
+    $("#gallery2image_preview_edit").click(function(e) {
+      $("#gallery2").click();
+    });
+    $("#gallery3image_preview_edit").click(function(e) {
+      $("#gallery3").click();
+    });
+    $("#gallery4image_preview_edit").click(function(e) {
+      $("#gallery4").click();
+    });
+
+    $("#gallery0").change(function(){
+      galleryPreview_edit( this, 0 );
+    });
+    $("#gallery1").change(function(){
+      galleryPreview_edit( this, 1 );
+    });
+    $("#gallery2").change(function(){
+      galleryPreview_edit( this, 2 );
+    });
+    $("#gallery3").change(function(){
+      galleryPreview_edit( this, 3 );
+    });
+    $("#gallery4").change(function(){
+      galleryPreview_edit( this, 4 );
+    });
 });
 
 /********* Update Profile Picture on Upload *********/
@@ -146,6 +179,13 @@ function featuredPreview( uploader ) {
 function featuredPreview_edit( uploader ) {
     if ( uploader.files && uploader.files[0] ){
           $('#featuredimage_preview_edit').attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
+
+function galleryPreview_edit( uploader, number ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#gallery'+number+'image_preview_edit').attr('src', 
              window.URL.createObjectURL(uploader.files[0]) );
     }
 }

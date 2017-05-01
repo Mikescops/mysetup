@@ -81,18 +81,18 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
             <img id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
             <div class="hidden_five_inputs">
                 <?php
-                    echo $this->Form->input('gallery0. ', ['type' => 'file', 'label' => array('class' => 'label_gimage', 'text' => 'Change this additional image'), 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery1. ', ['type' => 'file', 'label' => array('class' => 'label_gimage', 'text' => 'Change this additional image'), 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery2. ', ['type' => 'file', 'label' => array('class' => 'label_gimage', 'text' => 'Change this additional image'), 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery3. ', ['type' => 'file', 'label' => array('class' => 'label_gimage', 'text' => 'Change this additional image'), 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery4. ', ['type' => 'file', 'label' => array('class' => 'label_gimage', 'text' => 'Change this additional image'), 'class' => 'inputfile']);
+                    echo $this->Form->input('gallery0. ', ['id'=>'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                    echo $this->Form->input('gallery1. ', ['id'=>'gallery1', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                    echo $this->Form->input('gallery2. ', ['id'=>'gallery2', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                    echo $this->Form->input('gallery3. ', ['id'=>'gallery3', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                    echo $this->Form->input('gallery4. ', ['id'=>'gallery4', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
                 ?>
             </div>
-            <img id="gallery0image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <img id="gallery1image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <img id="gallery2image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <img id="gallery3image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <img id="gallery4image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <img class="gallery_edit_preview" id="gallery0image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <img class="gallery_edit_preview" id="gallery1image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <img class="gallery_edit_preview" id="gallery2image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <img class="gallery_edit_preview" id="gallery3image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <img class="gallery_edit_preview" id="gallery4image_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
             <br />
             <?php
                 /* Fill the video source if exist */
