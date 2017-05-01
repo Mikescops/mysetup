@@ -261,7 +261,7 @@ function searchItem(query, region, action) {
       var encodedSrc = encodeURIComponent(src);
 
 
-      list.html('<p>' + title + '</p><a onclick="addToBasket(\'' +encodedTitle+ '\', \'' +encodedUrl+ '\', \'' +encodedSrc+ '\', \'' +action+ '\')"><i class="fa fa-square-o" aria-hidden="true"></i></a>');
+      list.html('<p>' + title + '</p><a onclick="addToBasket(\`' +encodedTitle+ '\`, \'' +encodedUrl+ '\', \'' +encodedSrc+ '\', \'' +action+ '\')"><i class="fa fa-square-o" aria-hidden="true"></i></a>');
       list.prepend(img);
       $( ".search_results."+action ).append(list);
     });
@@ -284,7 +284,7 @@ function addToBasket(title, url, src, action) {
   var list = $('<li></li>');
   var img = $('<img>');
   img.attr('src', decodedSrc);
-  list.html('<p>' + decodedTitle + '</p><a onclick="deleteFromBasket(\''+title+'\',this,\''+action+'\')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>');
+  list.html('<p>' + decodedTitle + '</p><a onclick="deleteFromBasket(\`'+title+'\`,this,\''+action+'\')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>');
   list.prepend(img);0
   $( ".basket_items."+action ).append(list);
 }
