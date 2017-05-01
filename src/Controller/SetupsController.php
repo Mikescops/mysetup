@@ -138,7 +138,7 @@ class SetupsController extends AppController
                 }
 
                 $this->Flash->success(__('The setup has been saved.'));
-                return $this->redirect($this->referer());
+                return $this->redirect(['action' => 'view', $setup->id]);
             }
 
             else
@@ -166,6 +166,7 @@ class SetupsController extends AppController
         $setup = $this->Setups->get($id, [
             'contain' => []
         ]);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
 
@@ -192,51 +193,49 @@ class SetupsController extends AppController
                     $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], true, true);
                 }
 
-
                 /* Here we'll compare the uploaded images to the new ones (in the 5 hidden inputs) */
-                $existingGalleries = $this->Setups->Resources->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $data['user_id']])->fetch();
-
+                $galleries = $this->Setups->Resources->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $data['user_id']])->fetch();
                 if(isset($data['gallery0'][0]) and $data['gallery0'][0] !== '' and (int)$data['gallery0'][0]['error'] === 0)
                 {
-                    if(isset($existingGalleries[0]))
+                    if(isset($galleries[0]))
                     {
-                        $this->Setups->Resources->delete($existingGalleries[0]);
+                        $this->Setups->Resources->delete($galleries[0]);
                     }
 
                     $this->Setups->Resources->saveResourceImage($data['gallery0'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
                 }
                 if(isset($data['gallery1'][0]) and $data['gallery1'][0] !== '' and (int)$data['gallery1'][0]['error'] === 0)
                 {
-                    if(isset($existingGalleries[1]))
+                    if(isset($galleries[1]))
                     {
-                        $this->Setups->Resources->delete($existingGalleries[1]);
+                        $this->Setups->Resources->delete($galleries[1]);
                     }
 
                     $this->Setups->Resources->saveResourceImage($data['gallery1'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
                 }
                 if(isset($data['gallery2'][0]) and $data['gallery2'][0] !== '' and (int)$data['gallery2'][0]['error'] === 0)
                 {
-                    if(isset($existingGalleries[2]))
+                    if(isset($galleries[2]))
                     {
-                        $this->Setups->Resources->delete($existingGalleries[2]);
+                        $this->Setups->Resources->delete($galleries[2]);
                     }
 
                     $this->Setups->Resources->saveResourceImage($data['gallery2'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
                 }
                 if(isset($data['gallery3'][0]) and $data['gallery3'][0] !== '' and (int)$data['gallery3'][0]['error'] === 0)
                 {
-                    if(isset($existingGalleries[3]))
+                    if(isset($galleries[3]))
                     {
-                        $this->Setups->Resources->delete($existingGalleries[3]);
+                        $this->Setups->Resources->delete($galleries[3]);
                     }
 
                     $this->Setups->Resources->saveResourceImage($data['gallery3'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
                 }
                 if(isset($data['gallery4'][0]) and $data['gallery4'][0] !== '' and (int)$data['gallery4'][0]['error'] === 0)
                 {
-                    if(isset($existingGalleries[4]))
+                    if(isset($galleries[4]))
                     {
-                        $this->Setups->Resources->delete($existingGalleries[4]);
+                        $this->Setups->Resources->delete($galleries[4]);
                     }
 
                     $this->Setups->Resources->saveResourceImage($data['gallery4'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
