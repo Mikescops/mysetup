@@ -4,5 +4,8 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-php_value upload_max_filesize 10M
-php_value post_max_size 100M
+php_value upload_max_filesize 5M
+php_value post_max_size 50M
+
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz
