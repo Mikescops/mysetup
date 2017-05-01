@@ -194,8 +194,7 @@ class SetupsController extends AppController
                 }
 
                 /* Here we'll compare the uploaded images to the new ones (in the 5 hidden inputs) */
-
-                $galleries = $this->Setups->Resources->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $data['user_id']])->all();
+                $galleries = $this->Setups->Resources->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $data['user_id'], 'type' => 'SETUP_GALLERY_IMAGE'])->all()->toArray();
                 if(isset($data['gallery0'][0]) and $data['gallery0'][0] !== '' and (int)$data['gallery0'][0]['error'] === 0)
                 {
                     if(isset($galleries[0]))
