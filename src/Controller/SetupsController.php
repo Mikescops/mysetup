@@ -199,7 +199,6 @@ class SetupsController extends AppController
                     $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id']);
                 }
 
-
                 $this->Flash->success(__('The setup has been saved.'));
 
                 return $this->redirect($this->referer());
@@ -228,7 +227,15 @@ class SetupsController extends AppController
             $this->Flash->error(__('The setup could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect($this->referer());
+        if(strpos($this->referer(), $id))
+        {
+            return $this->redirect('/');
+        }
+
+        else
+        {
+            return $this->redirect($this->referer());
+        }
     }
 
     public function beforeFilter(Event $event)

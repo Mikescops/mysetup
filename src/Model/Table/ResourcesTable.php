@@ -120,7 +120,7 @@ class ResourcesTable extends Table
         {
             if(!(new File($entity['src']))->delete())
             {
-                $flash->warning(__("An image of your setup could not be removed as well... Please contact an administrator."));
+                // We've to figure out a way to throw this error to the user...
             }
         }
     }
@@ -170,8 +170,14 @@ class ResourcesTable extends Table
     {
         if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
         {
+            if(!file_exists('uploads/files/' . $user_id) and !mkdir('uploads/files/' . $user_id, 0755))
+            {
+                $this->Setups->delete($setup);
+                $flash->error(__("An internal error occurred while saving your images... Please contact an administrator."));
+            }
+
             $tmp = explode('/', $file['type']);  // Thanks PHP for that useless variable...
-            $destination = 'uploads/files/' . Text::uuid() . '.' . end($tmp);
+            $destination = 'uploads/files/' . $user_id . '/' . Text::uuid() . '.' . end($tmp);
 
             if(move_uploaded_file($file['tmp_name'], $destination))
             {
