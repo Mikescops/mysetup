@@ -194,7 +194,7 @@ class SetupsController extends AppController
                 }
 
                 /* Here we save the setup video URL */
-                if(isset($data['video']))
+                if(isset($data['video']) and $data['video'] !== '')
                 {
                     $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id'], true);
                 }
