@@ -11,7 +11,7 @@ echo $this->Html->meta('description', 'See the most recent setups published on m
         <div class="column column-75">
 
 <?php
-$url= $this->Url->build('/', true) . "/app/getsetups?o=DESC&n=6"; 
+$url= $this->Url->build('/', true) . "app/getsetups?o=DESC&n=6"; 
  
 // Tableau contenant les options de téléchargement
 $options=array(

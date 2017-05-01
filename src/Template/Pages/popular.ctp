@@ -12,7 +12,7 @@ echo $this->Html->meta('description', 'The most popular setups of the week on my
         <div class="column column-75">
 
 <?php
-$url= $this->Url->build('/', true) . "/app/getsetups?o=DESC&t=like&w=1&n=9999"; 
+$url= $this->Url->build('/', true) . "app/getsetups?o=DESC&t=like&w=1&n=9999"; 
  
 // Tableau contenant les options de téléchargement
 $options=array(

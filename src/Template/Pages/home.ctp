@@ -59,7 +59,7 @@ curl_close($CURL);
         <div class="column column-75">
 
 <?php
-$url="localhost/mysetup/app/getsetups?t=like&n=20"; 
+$url= $this->Url->build('/', true) . "app/getsetups?t=like&n=20"; 
  
 // Tableau contenant les options de téléchargement
 $options=array(
