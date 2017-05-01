@@ -8,6 +8,7 @@ use Cake\Validation\Validator;
 use Cake\Event\Event;
 use Cake\Datasource\EntityInterface;
 use Cake\Filesystem\File;
+use Cake\Filesystem\Folder;
 
 /**
  * Users Model
@@ -119,7 +120,12 @@ class UsersTable extends Table
     {
         if(!(new File('uploads/files/pics/profile_picture_' . $entity['id'] . '.png'))->delete())
         {
-            // How inform the user of this error... ?
+            // How can we inform the user about this error... ?
+        }
+
+        if(!(new Folder('uploads/files/' . $entity['id']))->delete())
+        {
+            // How can we inform the user about this error... ?
         }
     }
 
