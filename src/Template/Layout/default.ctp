@@ -73,7 +73,7 @@
                                     <br>
 
                                     <?php
-                                        echo $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "FR" => "FR", "" => __("Other")], ['default' => $authUser['preferredStore']]);
+                                        echo $this->Form->select('preferredStore', ["FR" => "FR"], ['default' => $authUser['preferredStore']]);
                                         ?>
                                     </div>
                                     <div class="column column-75">
