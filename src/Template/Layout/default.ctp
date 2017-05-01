@@ -15,14 +15,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('normalize.css') ?>
-    <?= $this->Html->css('milligram.min.css') ?>
-    <?= $this->Html->css('font-awesome.min.css') ?>
-    <?= $this->Html->css('slick.css') ?>
-    <?= $this->Html->css('lity.min.css') ?>
-    <?= $this->Html->css('jssocials.css') ?>
-    <?= $this->Html->css('jssocials-theme-flat.css') ?>
-    <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('app.min.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -245,7 +238,7 @@
         <?= $this->Html->script('jssocials.min.js') ?>
 
         <!-- App Js async load -->
-        <?= $this->Html->script('app.js') ?>
+        <?= $this->Html->script('app.min.js') ?>
 
         <script> /* Define toast once */const toast = new siiimpleToast();</script>
 
