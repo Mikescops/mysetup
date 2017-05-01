@@ -117,15 +117,21 @@ class UsersTable extends Table
 
     public function afterDelete(Event $event, EntityInterface $entity)
     {
-        if(!(new File('uploads/files/profile_picture_' . $entity['id'] . '.png'))->delete())
+        if(!(new File('uploads/files/pics/profile_picture_' . $entity['id'] . '.png'))->delete())
         {
-            $flash->warning(__("Your profile picture could not be removed as well... Please contact an administrator."));
+            // How inform the user of this error... ?
         }
     }
 
     public function saveDefaultProfilePicture($user, $flash)
     {
-        if(!(new File('img/profile-default.png'))->copy('uploads/files/profile_picture_' . strval($user->id) . '.png'))
+        if(!file_exists('uploads/files/pics') and !mkdir('uploads/files/pics', 0755))
+        {
+            $flash->error(__('An internal error occurred while creating your profile picture. Please contact an administrator.'));
+            return;
+        }
+
+        if(!(new File('img/profile-default.png'))->copy('uploads/files/pics/profile_picture_' . strval($user->id) . '.png'))
         {
             $flash->warning(__("Your default picture could not be set... Please contact an administrator."));
         }
@@ -138,8 +144,14 @@ class UsersTable extends Table
 
         if($file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
         {
+            if(!file_exists('uploads/files/pics') and !mkdir('uploads/files/pics', 0755))
+            {
+                $flash->error(__('An internal error occurred while saving your profile picture. Please contact an administrator.'));
+                return;
+            }
+
             // The result file will be in '*.png' anyway, check below the real conversion...
-            $destination = 'uploads/files/profile_picture_' . strval($user->id) . '.';
+            $destination = 'uploads/files/pics/profile_picture_' . strval($user->id) . '.';
 
             if(move_uploaded_file($file['tmp_name'], $destination . $extension))
             {
