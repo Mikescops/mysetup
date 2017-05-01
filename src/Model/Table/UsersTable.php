@@ -142,7 +142,7 @@ class UsersTable extends Table
         $tmp = explode('/', $file['type']);  // Still this useless variable...
         $extension = end($tmp);
 
-        if($file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
+        if($file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg'))
         {
             if(!file_exists('uploads/files/pics') and !mkdir('uploads/files/pics', 0755))
             {

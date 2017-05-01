@@ -176,7 +176,7 @@ class ResourcesTable extends Table
 
     public function saveResourceImage($file, $setup, $type, $flash, $user_id, $edition, $featured)
     {
-        if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
+        if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg'))
         {
             if(!file_exists('uploads/files/' . $user_id) and !mkdir('uploads/files/' . $user_id, 0755))
             {
