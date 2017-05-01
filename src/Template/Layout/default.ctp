@@ -111,8 +111,8 @@
                     <?= $this->Form->create($newSetupEntity, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'add']]); ?>
                     <fieldset style="border:0;">
                         <?php
-                            echo $this->Form->control(__('title'), ['required' => true, 'id' => 'title', 'maxLength' => 48]);
-                            echo $this->Form->control(__('description'), ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
+                            echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48]);
+                            echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                         ?>
                         <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>','add_setup');" placeholder="Search for components..">
                         <ul class="search_results add_setup"></ul>
@@ -128,7 +128,7 @@
                         <div id="images_holder"></div>
                         <br />
                         <?php
-                            echo $this->Form->control(__('video'), ['label' => 'Video (Youtube, Dailymotion...)']);
+                            echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion...)')]);
 
                             // A hidden entry to gather the item resources
                             echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);

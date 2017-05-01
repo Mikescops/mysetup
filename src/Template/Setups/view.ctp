@@ -57,8 +57,8 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
         <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'edit', $setup->id]]); ?>
         <fieldset style="border:0;">
             <?php
-                echo $this->Form->control('title', ['id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
-                echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500, 'default' => $setup->description]);
+                echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
+                echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500, 'default' => $setup->description]);
             ?>
             <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="Search for components..">
             <ul class="search_results edit_setup"></ul>
@@ -87,7 +87,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
             <?php
                 /* Fill the video source if exist */
                 if(!empty($video->src)){$video_field = $video->src;}else{$video_field = '';}
-                echo $this->Form->control('video', ['default' => $video_field]);
+                echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion...)'), 'default' => $video_field]);
 
                 /* Fill the current items in the field before edit */
                 $item_field = '';
