@@ -22,10 +22,10 @@ $this->assign('title', 'Login | mySetup.co');
         <fieldset>
             <ul>
                 <li>
-                    <?= $this->Form->control('mail', ['placeholder' => 'Email', 'label' => false, 'type' => 'text']) ?>
+                    <?= $this->Form->control('mail', ['required' => true, 'placeholder' => __('Email'), 'label' => false, 'type' => 'email']) ?>
                 </li>
                 <li>
-                    <?= $this->Form->control('password', ['placeholder' => 'Password', 'label' => false]) ?>
+                    <?= $this->Form->control('password', ['required' => true, 'placeholder' => __('Password'), 'label' => false]) ?>
                 </li>
                 <li>
                     <?= $this->Form->button(__('Login'), ['class' => 'button']); ?>
@@ -40,14 +40,14 @@ $this->assign('title', 'Login | mySetup.co');
         <fieldset>
             <ul>
                 <li>
-                    <?= $this->Form->control('mail', ['placeholder' => 'Email', 'label' => false, 'type' => 'text', 'style' => 'width: 75%;float: left;}']) ?>
-                    <?= $this->Form->select('preferredStore', ["FR" => "FR"], ['style' => 'width: 20%; float: right; color: #fff', 'default' => "US"]) ?>
+                    <?= $this->Form->control('mail', ['required' => true, 'placeholder' => __('Email'), 'label' => false, 'type' => 'email', 'style' => 'width: 75%;float: left;}']) ?>
+                    <?= $this->Form->select('preferredStore', ["FR" =>  __("FR")], ['style' => 'width: 20%; float: right; color: #fff', 'default' => "US"]) ?>
                 </li>
                 <li>
-                    <?= $this->Form->control('password', ['placeholder' => 'Password', 'label' => false]) ?>
+                    <?= $this->Form->control('password', ['required' => true, 'placeholder' => __('Password'), 'label' => false]) ?>
                 </li>
                 <li>
-                    <?= $this->Form->control('password2', ['placeholder' => 'Repeat password', 'label' => false, 'type' => 'password']) ?>
+                    <?= $this->Form->control('password2', ['required' => true, 'placeholder' => __('Repeat password'), 'label' => false, 'type' => 'password']) ?>
                 </li>
                 <li>
                     <?= $this->Form->button(__('Sign up'), ['class' => 'button']); ?>
@@ -66,7 +66,7 @@ $this->assign('title', 'Login | mySetup.co');
             <br>
             <ul>
                 <li>
-                    <?= $this->Form->control('mailReset', ['placeholder' => 'Email address', 'label' => false, 'type' => 'text', 'required' => true]) ?>
+                    <?= $this->Form->control('mailReset', ['placeholder' => __('Email address'), 'label' => false, 'type' => 'email', 'required' => true]) ?>
                 </li>
                 <li>
                     <?= $this->Form->button(__('Send'), ['class' => 'button']); ?>
