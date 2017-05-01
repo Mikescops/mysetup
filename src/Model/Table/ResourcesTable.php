@@ -125,7 +125,7 @@ class ResourcesTable extends Table
         }
     }
 
-    public function saveResourceProducts($products, $setup, $flash, $user_id)
+    public function saveResourceProducts($products, $setup, $flash, $user_id, $edition)
     {
         // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"
         foreach(explode(',', $products) as $elements)
@@ -153,8 +153,16 @@ class ResourcesTable extends Table
                     // If the resource can't be saved atm, we rollback and throw an error...
                     if(!$this->save($resource))
                     {
-                        $this->Setups->delete($setup);
-                        $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                        if(!$edition)
+                        {
+                            $this->Setups->delete($setup);
+                            $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                        }
+
+                        else
+                        {
+                            $flash->warning(__("One of your resources could not be saved... Please contact an administrator."));
+                        }
                     }
                 }
 
@@ -166,14 +174,22 @@ class ResourcesTable extends Table
         }
     }
 
-    public function saveResourceImage($file, $setup, $type, $flash, $user_id)
+    public function saveResourceImage($file, $setup, $type, $flash, $user_id, $edition)
     {
         if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/')
         {
             if(!file_exists('uploads/files/' . $user_id) and !mkdir('uploads/files/' . $user_id, 0755))
             {
-                $this->Setups->delete($setup);
-                $flash->error(__("An internal error occurred while saving your images... Please contact an administrator."));
+                if(!$edition)
+                {
+                    $this->Setups->delete($setup);
+                    $flash->error(__("An internal error occurred while saving your images... Please contact an administrator."));
+                }
+
+                else
+                {
+                    $flash->warning(__("One of your resources could not be saved... Please contact an administrator."));
+                }
             }
 
             $tmp = explode('/', $file['type']);  // Thanks PHP for that useless variable...
@@ -191,8 +207,16 @@ class ResourcesTable extends Table
 
                 if(!$this->save($resource))
                 {
-                    $this->Setups->delete($setup);
-                    $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                    if(!$edition)
+                    {
+                        $this->Setups->delete($setup);
+                        $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                    }
+
+                    else
+                    {
+                        $flash->warning(__("One of your resources could not be saved... Please contact an administrator."));
+                    }
                 }
             }
 
@@ -208,7 +232,7 @@ class ResourcesTable extends Table
         }
     }
 
-    public function saveResourceVideo($video, $setup, $type, $flash, $user_id)
+    public function saveResourceVideo($video, $setup, $type, $flash, $user_id, $edition)
     {
         $parsing = parse_url($video);
 
@@ -232,8 +256,16 @@ class ResourcesTable extends Table
                 // If the resource can't be saved atm, we rollback and throw an error...
                 if(!$this->save($resource))
                 {
-                    $this->Setups->delete($setup);
-                    $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                    if(!$edition)
+                    {
+                        $this->Setups->delete($setup);
+                        $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                    }
+
+                    else
+                    {
+                        $flash->warning(__("One of your resources could not be saved... Please contact an administrator."));
+                    }
                 }
             }
 

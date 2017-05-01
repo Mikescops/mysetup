@@ -104,7 +104,7 @@ class SetupsController extends AppController
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage'][0]) and $data['featuredImage'][0]['tmp_name'] !== '')
                 {
-                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id']);
+                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false);
                 }
 
                 else
@@ -115,7 +115,7 @@ class SetupsController extends AppController
                 }
 
                 /* Here we save each product that has been selected by the user */
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id']);
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], false);
 
                 /* Here we save each gallery image uploaded */
                 $i = 0;
@@ -123,7 +123,7 @@ class SetupsController extends AppController
                 {
                     if($file['tmp_name'] !== '')
                     {
-                        $this->Setups->Resources->saveResourceImage($file, $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id']);
+                        $this->Setups->Resources->saveResourceImage($file, $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], false);
                         if(++$i === 5)
                         {
                             break;
@@ -134,7 +134,7 @@ class SetupsController extends AppController
                 /* Here we save the setup video URL */
                 if(isset($data['video']) and $data['video'] !== '')
                 {
-                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id']);
+                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id'], false);
                 }
 
                 $this->Flash->success(__('The setup has been saved.'));
@@ -183,20 +183,20 @@ class SetupsController extends AppController
 
                 /* Here we delete all products then save each product that has been selected by the user */
                 $this->Setups->Resources->deleteAll(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id']);
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], true);
 
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage'][0]) and $data['featuredImage'][0] !== '' and (int)$data['featuredImage'][0]['error'] === 0)
                 {
                     $img_to_del = $this->Setups->Resources->find()->where(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE'])->first();
                     $this->Setups->Resources->delete($img_to_del);
-                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id']);
+                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], true);
                 }
 
                 /* Here we save the setup video URL */
-                if(isset($data['video']))
+                if(isset($data['video']) and $data['video'] !== '')
                 {
-                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id']);
+                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id'], true);
                 }
 
                 $this->Flash->success(__('The setup has been saved.'));
