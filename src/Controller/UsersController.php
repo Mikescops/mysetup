@@ -96,7 +96,7 @@ class UsersController extends AppController
 
                 else
                 {
-                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                    $this->Flash->error(__('The user could not be saved. (Is this address already taken ?)'));
                     return $this->redirect($this->referer());                    
                 }
             }
@@ -212,7 +212,15 @@ class UsersController extends AppController
             $this->Flash->error(__('You just CANNOT delete the admin user of the website...'));
         }
 
-        return $this->redirect($this->Auth->logout());
+        if($this->request->session()->read('Auth.User.mail') !== 'admin@admin.admin')
+        {
+            return $this->redirect($this->Auth->logout());
+        }
+
+        else
+        {
+            return $this->redirect($this->referer());
+        }
     }
 
     public function login()
