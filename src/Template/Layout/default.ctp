@@ -78,8 +78,8 @@
                                     </div>
                                     <div class="column column-75">
                                     <?php
-                                        echo $this->Form->control('name', ['label' => '', 'placeholder' => __("Name"), 'default' => $authUser['name']]);
-                                        echo $this->Form->control('mail', ['label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
+                                        echo $this->Form->control('name', ['required' => true, 'label' => '', 'placeholder' => __("Name"), 'default' => $authUser['name']]);
+                                        echo $this->Form->control('mail', ['required' => true, 'type' => 'email', 'label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
                                     ?>
 
                                      <?php
@@ -111,15 +111,15 @@
                     <?= $this->Form->create($newSetupEntity, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'add']]); ?>
                     <fieldset style="border:0;">
                         <?php
-                            echo $this->Form->control('title', ['id' => 'title', 'maxLength' => 48, 'required' => 'required']);
-                            echo $this->Form->control('description', ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
+                            echo $this->Form->control(__('title'), ['required' => true, 'id' => 'title', 'maxLength' => 48]);
+                            echo $this->Form->control(__('description'), ['id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                         ?>
                         <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>','add_setup');" placeholder="Search for components..">
                         <ul class="search_results add_setup"></ul>
                         <ul class="basket_items add_setup"></ul>
                         <br />
                         <?php
-                            echo $this->Form->input('featuredImage. ', ['type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile', 'required' => 'required']);
+                            echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile']);
                         ?>
                         <img id="featuredimage_preview">
                         <?php
@@ -128,7 +128,7 @@
                         <div id="images_holder"></div>
                         <br />
                         <?php
-                            echo $this->Form->control('video');
+                            echo $this->Form->control(__('video'), ['label' => 'Video (Youtube, Dailymotion...)']);
 
                             // A hidden entry to gather the item resources
                             echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);
@@ -136,7 +136,7 @@
                         <a class="is_author"><i class="fa fa-square-o"></i> It's not my setup !</a>
                         <label for="author" class="setup_author">Setup's owner</label>
                         <?php
-                            echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '']);
+                            echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => '']);
                         ?>
                     </fieldset>
                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
