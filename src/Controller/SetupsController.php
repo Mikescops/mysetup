@@ -242,6 +242,14 @@ class SetupsController extends AppController
                 /* Here we save the setup video URL */
                 if(isset($data['video']) and $data['video'] !== '')
                 {
+                    // Here we get the current video link, if present
+                    $video_to_delete = $this->Setups->Resources->find()->where(['setup_id' => $setup->id, 'type' => 'SETUP_VIDEO_LINK'])->first();
+
+                    if($video_to_delete && $video_to_delete !== $data['video'])
+                    {
+                        $this->Setups->Resources->delete($video_to_delete);
+                    }
+
                     $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id'], true);
                 }
 
