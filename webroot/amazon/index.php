@@ -16,16 +16,17 @@ if($_SESSION['Auth'])
 		$associate_tag = 'mysetupco-21';
 	}
 	elseif ($lang == 'ES'){
-		$associate_tag = 'mysetupco-21';
+		$associate_tag = 'mysetup0b-21';
 	}
 	elseif ($lang == 'IT'){
-		$associate_tag = 'mysetupco-21';
+		$associate_tag = 'mysetup02e-21';
 	}
 	elseif ($lang == 'DE'){
-		$associate_tag = 'mysetupco-21';
+		$associate_tag = 'mysetup09-21';
 	}
 	else{ /* This case is for UK and others */
-		$associate_tag = 'mysetupco-21';
+		$lang = "UK";
+		$associate_tag = 'mysetup01f-21';
 	}
 
 	$conf = new GenericConfiguration();
