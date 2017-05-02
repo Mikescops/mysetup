@@ -38,7 +38,7 @@ if($_SESSION['Auth'])
 	    ->setRequest((new \ApaiIO\Request\GuzzleRequest((new \GuzzleHttp\Client()))));
 
 	$search = new Search();
-	$search->setCategory('All');
+	$search->setCategory('Blended');
 	$search->setKeywords($_GET['q']);
 	$search->setResponsegroup(array('Small', 'Images'));
 
