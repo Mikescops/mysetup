@@ -11,8 +11,6 @@
         <?= $this->fetch('title') ?>
     </title>
 
-    <?= $this->Html->meta('favicon.ico','img/favicon/favicon.ico',array('type' => 'icon')) ?>
-
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <?= $this->Html->css('app.min.css') ?>
@@ -20,6 +18,15 @@
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= $this->Url->build('/'); ?>img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="<?= $this->Url->build('/'); ?>img/favicon/manifest.json">
+    <link rel="mask-icon" href="<?= $this->Url->build('/'); ?>img/favicon/safari-pinned-tab.svg" color="#328fea">
+    <link rel="shortcut icon" href="<?= $this->Url->build('/'); ?>img/favicon/favicon.ico">
+    <meta name="msapplication-config" content="<?= $this->Url->build('/'); ?>img/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#151515">
 
     <meta name="google-site-verification" content="8eCzlQ585iC5IG3a4-fENYChl1AaEUaW7VeBj2NiFJQ" />
 </head>
