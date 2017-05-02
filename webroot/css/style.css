@@ -960,6 +960,15 @@ nav {
   outline: none;
 }
 
+.login-form form select{
+	background-color: #fff;
+	color: #000;
+}
+
+.login-form form option{
+	color: #000;
+}
+
 .login-form form ul{
 	list-style: none;
 }
