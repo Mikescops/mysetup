@@ -41,7 +41,7 @@ $this->assign('title', 'Login | mySetup.co');
             <ul>
                 <li>
                     <?= $this->Form->control('mail', ['required' => true, 'placeholder' => __('Email'), 'label' => false, 'type' => 'email', 'style' => 'width: 75%;float: left;}']) ?>
-                    <?= $this->Form->select('preferredStore', ["UK" => "UK", "ES" => "ES", "IT" => "IT", "FR" => "FR", "DE" => "DE"], ['style' => 'width: 20%; float: right', 'default' => "US"]) ?>
+                    <?= $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "ES" => "ES", "IT" => "IT", "FR" => "FR", "DE" => "DE"], ['style' => 'width: 20%; float: right', 'default' => "US"]) ?>
                 </li>
                 <li>
                     <?= $this->Form->control('password', ['required' => true, 'placeholder' => __('Password'), 'label' => false]) ?>

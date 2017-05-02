@@ -15,6 +15,10 @@ if($_SESSION['Auth'])
 	if ($lang == 'FR') {
 		$associate_tag = 'mysetupco-21';
 	}
+	elseif ($lang == 'UK') {
+		$lang = "CO.UK";
+		$associate_tag = 'mysetup01f-21';
+	}
 	elseif ($lang == 'ES'){
 		$associate_tag = 'mysetupco00-21';
 	}
@@ -25,8 +29,8 @@ if($_SESSION['Auth'])
 		$associate_tag = 'mysetup09-21';
 	}
 	else{ /* This case is for UK and others */
-		$lang = "CO.UK";
-		$associate_tag = 'mysetup01f-21';
+		$lang = "COM";
+		$associate_tag = 'mysetupco-20';
 	}
 
 	$conf = new GenericConfiguration();
