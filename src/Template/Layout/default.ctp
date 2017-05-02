@@ -113,7 +113,7 @@
                     <?= $this->Form->create($newSetupEntity, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'add']]); ?>
                     <fieldset style="border:0;">
                         <?php
-                            echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48]);
+                            echo $this->Form->control('title', ['label' => __('Title *'), 'required' => true, 'id' => 'title', 'maxLength' => 48]);
                             echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                         ?>
                         <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>','add_setup');" placeholder="Search for components..">
@@ -121,7 +121,7 @@
                         <ul class="basket_items add_setup"></ul>
                         <br />
                         <?php
-                            echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage','text' => 'Add featured image'), 'class' => 'inputfile']);
+                            echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage','text' => __('Add featured image *')), 'class' => 'inputfile']);
                         ?>
                         <img id="featuredimage_preview">
                         <?php
@@ -136,6 +136,7 @@
                             echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);
                         ?>
                         <a class="is_author"><i class="fa fa-square-o"></i> It's not my setup !</a>
+                        <p class="float-right">* required fields</p>
                         <label for="author" class="setup_author">Setup's owner</label>
                         <?php
                             echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => '']);
