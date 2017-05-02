@@ -255,7 +255,7 @@ class ResourcesTable extends Table
             // The host will contain only the DN without 'www.' if present
             $parsing['host'] = str_replace('www.', '', $parsing['host']);
 
-            if(in_array($parsing['host'], ['dailymotion.com', 'dai.ly', 'flickr.com', 'flic.kr', 'youtube.com', 'youtu.be', 'vimeo.com', 'rutube.ru']))
+            if(in_array($parsing['host'], ['dailymotion.com', 'dai.ly', 'flickr.com', 'flic.kr', 'twitch.tv', 'youtube.com', 'youtu.be', 'vimeo.com', 'rutube.ru']))
             {
                 // Let's create a new entity to store these data !
                 $resource = $this->newEntity();
