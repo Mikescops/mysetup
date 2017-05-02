@@ -16,7 +16,7 @@ if($_SESSION['Auth'])
 		$associate_tag = 'mysetupco-21';
 	}
 	elseif ($lang == 'ES'){
-		$associate_tag = 'mysetup0b-21';
+		$associate_tag = 'mysetupco00-21';
 	}
 	elseif ($lang == 'IT'){
 		$associate_tag = 'mysetup02e-21';
@@ -25,7 +25,7 @@ if($_SESSION['Auth'])
 		$associate_tag = 'mysetup09-21';
 	}
 	else{ /* This case is for UK and others */
-		$lang = "UK";
+		$lang = "CO.UK";
 		$associate_tag = 'mysetup01f-21';
 	}
 
