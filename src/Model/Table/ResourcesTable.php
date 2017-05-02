@@ -176,7 +176,7 @@ class ResourcesTable extends Table
 
     public function saveResourceImage($file, $setup, $type, $flash, $user_id, $edition, $featured)
     {
-        if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg'))
+        if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg') && !strpos($file['type'], 'gif'))
         {
             if(!file_exists('uploads/files/' . $user_id) and !mkdir('uploads/files/' . $user_id, 0755))
             {
@@ -225,6 +225,11 @@ class ResourcesTable extends Table
                         $flash->warning(__("One of your resources could not be saved... Please contact an administrator."));
                     }
                 }
+
+                else
+                {
+                    return true;
+                }
             }
 
             else
@@ -237,6 +242,8 @@ class ResourcesTable extends Table
         {
             $flash->warning(__("One of the files you uploaded does not validate our rules... Please contact an administrator."));
         }
+
+        return false;
     }
 
     public function saveResourceVideo($video, $setup, $type, $flash, $user_id, $edition)

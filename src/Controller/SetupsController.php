@@ -102,12 +102,7 @@ class SetupsController extends AppController
             if($this->Setups->save($setup))
             {
                 /* Here we get and save the featured image */
-                if(isset($data['featuredImage'][0]) and $data['featuredImage'][0]['tmp_name'] !== '')
-                {
-                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false, true);
-                }
-
-                else
+                if(!isset($data['featuredImage'][0]) or $data['featuredImage'][0]['tmp_name'] === '' or !$this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false, true))
                 {
                     $this->Setups->delete($setup);
                     $this->Flash->warning(__("You need a featured image with this setup !"));
@@ -189,8 +184,11 @@ class SetupsController extends AppController
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage'][0]) and $data['featuredImage'][0] !== '' and (int)$data['featuredImage'][0]['error'] === 0)
                 {
-                    $this->Setups->Resources->delete($this->Setups->Resources->find()->where(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE'])->first());
-                    $this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], true, true);
+                    $image_to_delete = $this->Setups->Resources->find()->where(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE'])->first();
+                    if($this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], true, true))
+                    {
+                        $this->Setups->Resources->delete($image_to_delete);
+                    }
                 }
 
                 /* Here we'll compare the uploaded images to the new ones (in the 5 hidden inputs) */
