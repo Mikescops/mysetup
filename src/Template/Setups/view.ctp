@@ -24,7 +24,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
 
                 <h3><?= $setup->title ?></h3>
 
-                <p>Shared by <?= $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]) ?>  <?php if($additionalData['owner']['verified']): echo '<i class="fa fa-check-square verified_account"></i>'; endif; if($additionalData['owner']['name'] != $setup->author): echo ", created by " . $setup->author; endif?></p>
+                <p>Shared by <?php if($additionalData['owner']['name']){echo $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]);}else{echo "Unknown";} ?> <?php if($additionalData['owner']['verified']): echo '<i class="fa fa-check-square verified_account"></i>'; endif; if($additionalData['owner']['name'] != $setup->author): echo ", created by " . $setup->author; endif?></p>
 
             </div>
                 
