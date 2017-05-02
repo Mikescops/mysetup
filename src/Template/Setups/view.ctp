@@ -165,7 +165,7 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
             <div id="social-networks"></div></br>
 
             <?php if(!empty($video->src)): ?>
-                <a class="button item-youtube" href="<?= $video->src ?>" data-lity>Voir la vidéo Youtube</a>
+                <a class="button item-youtube" href="<?= $video->src ?>" data-lity>Watch it in video</a>
             <?php endif?>
         </div>
     </div>
