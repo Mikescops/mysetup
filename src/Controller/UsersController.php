@@ -273,11 +273,12 @@ class UsersController extends AppController
             if($user)
             {
                 // Let's generate a new random password, and send it to the email address specified
-                $user->password = substr(md5(mt_rand()), 0, 16);
+                $temp = substr(md5(mt_rand()), 0, 16);
+                $user->password = $temp;
                 if($this->Users->save($user))
                 {
                     Email::setConfigTransport('Zoho', [
-                        'host' => 'smtp.zoho.com',
+                        'host' => 'smtp.zoho.eu',
                         'port' => 587,
                         'username' => 'support@mysetup.co',
                         'password' => 'Lsc\'etb1',
@@ -291,7 +292,20 @@ class UsersController extends AppController
                         ->setFrom(['support@mysetup.co' => 'MySetup.co'])
                         ->setTo($data['mailReset'])
                         ->setSubject("You password has been reseted !")
-                        ->send("Your password has been reseted and set to: " . $user->password . "<br /><br />Please log you in and change it as soon as possible !");
+                        ->setEmailFormat('html')
+                        ->send("
+                            Hello " . ($user->name !== '' ? $user->name . ' ' : '') . "!
+                            <br />
+                            <br />
+                            Your password has been reseted and set to: <span style=\"font-weight: bold;\">" . $temp . "</span>
+                            <br />
+                            <br />
+                            Please <a href=\"https://mysetup.co/login\" target=\"_blank\">log you in</a> and change it as soon as possible !
+                            <br />
+                            <br />
+                            <br />
+                            <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"MySetup.co's Support\" style=\"height: 80px\">
+                        ");
 
                     $this->Flash->success(__("An email has been sent to this email address !"));
                     return $this->redirect(['action' => 'login']);
