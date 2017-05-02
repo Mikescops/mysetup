@@ -289,9 +289,12 @@ function searchItem(query, region, action) {
         var attributes = $('itemattributes', value);
         var img = $('<img>');
         var src = $('url', mediumimage).html();
-      img.attr('src', src);
+
+        img.attr('src', src);
 
       var title = $('title', attributes).html();
+      img.attr('title', title);
+      
       if(title.length > 48){
           title = title.substring(0,48) + '..';
       }
