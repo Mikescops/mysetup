@@ -420,7 +420,7 @@ function doesLike(setup) {
         type: 'get',
         success: function (json) {
           //console.log(json);
-          if(json == "1")
+          if(json == 'true')
             $(".red_button").addClass("active");
         }
             

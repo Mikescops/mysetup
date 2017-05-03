@@ -230,7 +230,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <?= $this->Form->create($newComment, ['type' => 'file', 'url' => ['controller' => 'Comments', 'action' => 'add', $setup->id]]); ?>
             <fieldset>
-            <?php echo $this->Form->control('content', ['label'=>'', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => 'Nice config\' …','rows' => 10, 'maxLength' => 500]);?>
+            <?php echo $this->Form->control('content', ['label'=>'', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => 'Nice config\'…','rows' => 10, 'maxLength' => 500]);?>
             </fieldset>
             <?= $this->Form->submit(__('Comment'), ['class' => 'float-right']); ?>
             <?= $this->Form->end(); ?>

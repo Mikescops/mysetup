@@ -59,10 +59,6 @@ class LikesTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->boolean('checked')
-            ->notEmpty('checked');
-
         return $validator;
     }
 

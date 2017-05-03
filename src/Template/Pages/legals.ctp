@@ -16,8 +16,9 @@ echo $this->Html->meta('description', 'Legal mentions about your personal data, 
 	contact(at)mysetup.co</p>
 
 	<h3>Head of Publication</h3>
-	<p>Corentin Mors - Co-founder<br>
-	Samuel Forestier - Co-founder
+	<p>
+		Corentin Mors - Co-founder<br />
+		Samuel Forestier - Co-founder
 	</p>
 
 	<h2>Personal Data</h2>
