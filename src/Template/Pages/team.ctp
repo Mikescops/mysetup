@@ -3,7 +3,7 @@
 $this->layout = 'default';
 $this->assign('title', 'Our Team | mySetup.co');
 
-echo $this->Html->meta('description', 'Who is behind mySetup.co ?', ['block' => true]);
+echo $this->Html->meta('description', 'Who is behind MySetup.co ?', ['block' => true]);
 
 ?>
 
@@ -11,6 +11,6 @@ echo $this->Html->meta('description', 'Who is behind mySetup.co ?', ['block' => 
 
 	<h1>About us</h1>
 
-	<p>A project by Samuel Forestier and Corentin Mors. Let's describe us a bit...</p>
+	<p>A project made by Samuel Forestier and Corentin Mors. Let's describe us a bit...</p>
 
 </div>

@@ -278,9 +278,6 @@ class AppController extends Controller
             $featured = $this->request->getQuery('f', false);
             $offset = $this->request->getQuery('p', '0');
 
-            $week_start = date('Y-m-d', strtotime("-" . $weeks . "weeks"));
-            $week_end = date('Y-m-d', strtotime("+ 1 day"));
-
             $this->loadModel('Setups');
 
             $conditions = array();
@@ -290,13 +287,29 @@ class AppController extends Controller
                 array_push($conditions, array("featured" => true));
             }
 
-            array_push($conditions, array("creationDate >" => $week_start, "creationDate <=" => $week_end)); 
-            $results = $this->Setups->find('all', array('conditions' => $conditions, 'order' => ['creationDate' => $order],'limit' => $nbpost, 'offset' => $offset, 'contain' => array('Likes' => function ($q) {return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);}, 'Comments' => function ($q) {return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Comments.user_id')])->group(['Comments.setup_id']);}, 'Resources' => function ($q) {return $q->autoFields(false)->select(['setup_id','src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);} )));
+            array_push($conditions, ['creationDate >' => date('Y-m-d', strtotime("-" . $weeks . "weeks")), 'creationDate <=' => date('Y-m-d', strtotime("+ 1 day"))]);
 
-            $results = $results->toArray();
+            $results = $this->Setups->find('all', [
+                'conditions' => $conditions,
+                'order' => [
+                    'creationDate' => $order
+                ],
+                'limit' => $nbpost,
+                'offset' => $offset,
+                'contain' => [
+                    'Likes' => function ($q) {
+                        return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
+                    },
+                    'Comments' => function ($q) {
+                        return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Comments.user_id')])->group(['Comments.setup_id']);
+                    },
+                    'Resources' => function ($q) {
+                        return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);
+                    }
+                ]
+            ])->toArray();
 
             if ($type == "like") {
-
                 usort($results, function($a, $b) {
                     error_reporting(0);
                     if(empty($a->likes)){$a->likes[0]->total = 0;}
@@ -305,21 +318,8 @@ class AppController extends Controller
                         return 0;
                     } 
                     return ($a->likes[0]->total > $b->likes[0]->total) ? -1 : 1;
-                } ); // not working yet
+                }); // not working yet
             }
-
-            /* OLD WAY >>> Let's include extra data in our results */
-            //$results = $results->toArray();
-            // foreach ($results as $setup){
-            //     $id = $setup->id;
-            //     $fimage = $this->Resources->find('all', ['conditions' => ['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'],'limit' => 1]);
-            //     $likes = $this->Likes->find()->where(['setup_id' => $id])->count();
-            //     $fimage = $fimage->toArray();
-            //     error_reporting(0);
-            //     $setup->src = $fimage[0]['src'];
-            //     $setup->likes = $likes;
-            // }
-
 
             return new Response([
                 'status' => 200,
@@ -327,5 +327,4 @@ class AppController extends Controller
             ]);
         }
     }
-
 }
