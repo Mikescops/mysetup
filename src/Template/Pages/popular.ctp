@@ -5,6 +5,15 @@ $this->assign('title', 'Popular this week | mySetup.co');
 
 echo $this->Html->meta('description', 'The most popular setups of the week on mySetup.co', ['block' => true]);
 
+
+echo $this->Html->meta(['property' => 'og:title', 'content' => 'Popular this week | mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => 'The most popular setups of the week on mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'The most popular setups of the week on mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/popular', true)], null ,['block' => true]);
+
+
 ?>
     <div class="maincontainer">
 

@@ -4,6 +4,14 @@ $this->layout = 'default';
 $this->assign('title', 'Latest Setups | mySetup.co');
 
 echo $this->Html->meta('description', 'See the most recent setups published on mySetup.co', ['block' => true]);
+
+echo $this->Html->meta(['property' => 'og:title', 'content' => 'Latest Setups | mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => 'See the most recent setups published on mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'See the most recent setups published on mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/recents', true)], null ,['block' => true]);
+
 ?>
     <div class="maincontainer">
 

@@ -8,10 +8,22 @@ $this->assign('title', $setup->title.' | mySetup.co');
 echo $this->Html->meta('description', $this->Text->truncate($setup->description,150,['ellipsis' => '..','exact' => true]), ['block' => true]);
 
 echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)), null, ['block' => true]);
+
+
+echo $this->Html->meta('description', 'See the most recent setups published on mySetup.co', ['block' => true]);
+
+echo $this->Html->meta(['property' => 'og:title', 'content' => $setup->title.' | mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text->truncate($setup->description,150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => $this->Text->truncate($setup->description,150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/'.$fimage->src, true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/'.$fimage->src, true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)], null ,['block' => true]);
+
+
 ?>
 <div class="featured-container">
 
-    <img width="1120" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+    <img width="1120" src="<?= $this->Url->build('/'.$fimage->src, true) ?>" alt="<?= $setup->title ?>">
 
     <div class="featured-inner">
 
