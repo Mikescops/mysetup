@@ -29,23 +29,6 @@ class CommentsController extends AppController
     }
 
     /**
-     * View method
-     *
-     * @param string|null $id Comment id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $comment = $this->Comments->get($id, [
-            'contain' => ['Users', 'Setups']
-        ]);
-
-        $this->set('comment', $comment);
-        $this->set('_serialize', ['comment']);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
@@ -68,9 +51,7 @@ class CommentsController extends AppController
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'));
         }
-        $users = $this->Comments->Users->find('list', ['limit' => 200]);
-        $setups = $this->Comments->Setups->find('list', ['limit' => 200]);
-        $this->set(compact('comment', 'users', 'setups'));
+        $this->set(compact('comment'));
         $this->set('_serialize', ['comment']);
     }
 
@@ -95,9 +76,7 @@ class CommentsController extends AppController
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'));
         }
-        $users = $this->Comments->Users->find('list', ['limit' => 200]);
-        $setups = $this->Comments->Setups->find('list', ['limit' => 200]);
-        $this->set(compact('comment', 'users', 'setups'));
+        $this->set(compact('comment'));
         $this->set('_serialize', ['comment']);
     }
 
