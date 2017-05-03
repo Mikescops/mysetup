@@ -49,7 +49,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                   </span>
                 </a>
 
-                <?= $this->Html->scriptBlock('$(document).ready(function() {printLikes("' . $setup->id .'"); doesLike("' . $setup->id .'");});', array('block' => 'scriptBottom')); ?>
+                <?= $this->Html->scriptBlock('$(document).ready(function() {printLikes("' . $setup->id .'");});', array('block' => 'scriptBottom')); ?>
+
+                <?php if($authUser): echo $this->Html->scriptBlock('$(document).ready(function() {doesLike("' . $setup->id .'");});', array('block' => 'scriptBottom'));endif; ?>
 
         </div>
 
