@@ -6,11 +6,8 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Resource'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Setups'), ['controller' => 'Setups', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Setup'), ['controller' => 'Setups', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="resources index large-9 medium-8 columns content">
@@ -23,6 +20,7 @@
                 <th scope="col"><?= $this->Paginator->sort('setup_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('title') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('href') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('src') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -34,10 +32,9 @@
                 <td><?= $resource->has('setup') ? $this->Html->link($resource->setup->title, ['controller' => 'Setups', 'action' => 'view', $resource->setup->id]) : '' ?></td>
                 <td><?= h($resource->title) ?></td>
                 <td><?= h($resource->href) ?></td>
+                <td><?= h($resource->src) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $resource->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $resource->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $resource->id], ['confirm' => __('Are you sure you want to delete # {0}?', $resource->id)]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $resource->id], ['confirm' => __('Are you sure you want to delete this resource ?', $resource->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
