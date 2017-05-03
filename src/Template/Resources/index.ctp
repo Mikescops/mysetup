@@ -34,7 +34,7 @@
                 <td><?= h($resource->href) ?></td>
                 <td><?= h($resource->src) ?></td>
                 <td class="actions">
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $resource->id], ['confirm' => __('Are you sure you want to delete this resource ?', $resource->id)]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $resource->id], ['confirm' => __('Are you sure you want to delete this resource ?')]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

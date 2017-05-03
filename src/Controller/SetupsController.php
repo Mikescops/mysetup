@@ -322,9 +322,8 @@ class SetupsController extends AppController
 
     public function search()
     {
-        
-        if ($this->request->getQuery('q')) {
-
+        if($this->request->getQuery('q'))
+        {
             $query = $this->request->getQuery('q','');
             $offset = $this->request->getQuery('p', '0');
 
@@ -335,11 +334,10 @@ class SetupsController extends AppController
             $qcond = array();
 
             foreach (explode("+", $query) as $key => $value) {
-                array_push($qcond, ['CONVERT(Resources.title USING utf8)  COLLATE utf8_general_ci LIKE' => '%'.$value.'%']);
+                array_push($qcond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%'.$value.'%']);
             }
 
             $qconditions = array('OR' => $qcond, 'Resources.type' => 'SETUP_PRODUCT'); 
-
 
             $test = $this->Resources->find('all', array('limit' => 8, 'offset' => $offset, 'group' => 'setup_id'))->where($qconditions);
 
@@ -350,24 +348,21 @@ class SetupsController extends AppController
             }
 
             if(!empty($ncond)){
-
                 $conditions = array('OR' => $ncond, 'Resources.type' => 'SETUP_FEATURED_IMAGE');            
 
-                $setups = $this->Resources->find('all', array('contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title','user_id']);} )))->where($conditions);
-
+                $setups = $this->Resources->find('all', array('contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title', 'user_id']);})))->where($conditions);
             }
 
             else{
                 $setups = "noresult";
             }
-
         }
+
         else{
             $setups = "noquery";
         }
 
         $this->set(compact('setups'));
-
         $this->set('_serialize', ['setups']);
     }
 }
