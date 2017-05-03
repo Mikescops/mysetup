@@ -8,7 +8,6 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
 ?>
 
 <div class="maincontainer">
-
     <div class="row">
         <div class="column column-75">
 
@@ -53,5 +52,4 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
             <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co">Tweets by mysetup_co</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>
-
 </div>
