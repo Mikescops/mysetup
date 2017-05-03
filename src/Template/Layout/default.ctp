@@ -143,7 +143,7 @@
                         <div id="images_holder"></div>
                         <br />
                         <?php
-                            echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion...)')]);
+                            echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)')]);
 
                             // A hidden entry to gather the item resources
                             echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);

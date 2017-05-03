@@ -113,15 +113,21 @@ class SetupsController extends AppController
                 $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], false);
 
                 /* Here we save each gallery image uploaded */
-                $i = 0;
+                $i = 1;
                 foreach($data['fileselect'] as $file)
                 {
                     if($file['tmp_name'] !== '')
                     {
-                        $this->Setups->Resources->saveResourceImage($file, $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], false, false);
-                        if(++$i === 5)
+                        if($this->Setups->Resources->saveResourceImage($file, $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], false, false))
                         {
-                            break;
+                            if(++$i >= 5)
+                            {
+                                if(count($data['fileselect']) > 5)
+                                {
+                                    $this->Flash->warning(__("You've chosen too many images, unfortunately we kept only the 5 among them."));
+                                }
+                                break;
+                            }
                         }
                     }
                 }
@@ -143,9 +149,7 @@ class SetupsController extends AppController
             }
         }
 
-        $users = $this->Setups->Users->find('list', ['limit' => 200]);
-
-        $this->set(compact('setup', 'users'));
+        $this->set(compact('setup'));
         $this->set('_serialize', ['setup']);
     }
 
@@ -162,7 +166,9 @@ class SetupsController extends AppController
             'contain' => []
         ]);
 
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        if ($this->request->is(['patch', 'post', 'put']))
+        {
+            // Let's fetch the form's data
             $data = $this->request->getData();
 
             // Let's set the id of the current logged in user 
@@ -175,8 +181,8 @@ class SetupsController extends AppController
             }
 
             $setup = $this->Setups->patchEntity($setup, $data);
-            if ($this->Setups->save($setup)) {
-
+            if ($this->Setups->save($setup))
+            {
                 /* Here we delete all products then save each product that has been selected by the user */
                 $this->Setups->Resources->deleteAll(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
                 $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], true);
@@ -191,53 +197,7 @@ class SetupsController extends AppController
                     }
                 }
 
-                /* Here we'll compare the uploaded images to the new ones (in the 5 hidden inputs) */
-                $galleries = $this->Setups->Resources->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $data['user_id'], 'type' => 'SETUP_GALLERY_IMAGE'])->all()->toArray();
-                if(isset($data['gallery0'][0]) and $data['gallery0'][0] !== '' and (int)$data['gallery0'][0]['error'] === 0)
-                {
-                    if(isset($galleries[0]))
-                    {
-                        $this->Setups->Resources->delete($galleries[0]);
-                    }
-
-                    $this->Setups->Resources->saveResourceImage($data['gallery0'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
-                }
-                if(isset($data['gallery1'][0]) and $data['gallery1'][0] !== '' and (int)$data['gallery1'][0]['error'] === 0)
-                {
-                    if(isset($galleries[1]))
-                    {
-                        $this->Setups->Resources->delete($galleries[1]);
-                    }
-
-                    $this->Setups->Resources->saveResourceImage($data['gallery1'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
-                }
-                if(isset($data['gallery2'][0]) and $data['gallery2'][0] !== '' and (int)$data['gallery2'][0]['error'] === 0)
-                {
-                    if(isset($galleries[2]))
-                    {
-                        $this->Setups->Resources->delete($galleries[2]);
-                    }
-
-                    $this->Setups->Resources->saveResourceImage($data['gallery2'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
-                }
-                if(isset($data['gallery3'][0]) and $data['gallery3'][0] !== '' and (int)$data['gallery3'][0]['error'] === 0)
-                {
-                    if(isset($galleries[3]))
-                    {
-                        $this->Setups->Resources->delete($galleries[3]);
-                    }
-
-                    $this->Setups->Resources->saveResourceImage($data['gallery3'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
-                }
-                if(isset($data['gallery4'][0]) and $data['gallery4'][0] !== '' and (int)$data['gallery4'][0]['error'] === 0)
-                {
-                    if(isset($galleries[4]))
-                    {
-                        $this->Setups->Resources->delete($galleries[4]);
-                    }
-
-                    $this->Setups->Resources->saveResourceImage($data['gallery4'][0], $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], true, false);
-                }
+                $this->Setups->Resources->saveGalleryImages($setup, $data, $this->Flash);
 
                 /* Here we save the setup video URL */
                 if(isset($data['video']) and $data['video'] !== '')
