@@ -32,7 +32,7 @@
     <meta property="og:type" content="article" />
     <meta name="twitter:site" content="@mysetup_co">
     <meta property="og:site_name" content="mySetup.co" />
-    <meta property="fb:admins" content="1912097312403661" /> 
+    <meta property="fb:admins" content="1912097312403661" />
 
     <meta name="google-site-verification" content="8eCzlQ585iC5IG3a4-fENYChl1AaEUaW7VeBj2NiFJQ" />
 </head>
@@ -98,7 +98,7 @@
                                     ?>
 
                                      <?php
-                                        echo $this->Form->control('secret', ['type' => 'password', 'placeholder' => __("Password"), 'class' => 'pwd_field', 'label' => '']);
+                                        echo $this->Form->control('secret', ['pattern' => '.{8,}', 'type' => 'password', 'placeholder' => __("Password"), 'class' => 'pwd_field', 'label' => '']);
                                         echo $this->Form->control('secret2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
                                     ?>
                                     <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change my password</a>

@@ -44,10 +44,11 @@ $this->assign('title', 'Login | mySetup.co');
                     <?= $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "ES" => "ES", "IT" => "IT", "FR" => "FR", "DE" => "DE"], ['style' => 'width: 20%; float: right', 'default' => "US"]) ?>
                 </li>
                 <li>
-                    <?= $this->Form->control('password', ['required' => true, 'placeholder' => __('Password'), 'label' => false]) ?>
+                    <?= $this->Form->control('password', [ 'pattern' => '.{8,}', 'required' => true, 'placeholder' => __('Password'), 'label' => false]) ?>
                 </li>
                 <li>
                     <?= $this->Form->control('password2', ['required' => true, 'placeholder' => __('Repeat password'), 'label' => false, 'type' => 'password']) ?>
+                    Password should be at least 8 characters.
                 </li>
                 <li>
                     <?= $this->Form->button(__('Sign up'), ['class' => 'button']); ?>
