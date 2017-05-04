@@ -96,8 +96,11 @@ class UsersTable extends Table
             ->notEmpty('preferredStore');
 
         $validator
-            ->boolean('verified')
+            ->integer('verified')
             ->notEmpty('verified');
+
+        $validator
+            ->allowEmpty('mailVerification');
 
         return $validator;
     }

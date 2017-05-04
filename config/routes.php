@@ -70,6 +70,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
 
+    $routes->connect('/verify/:id/:token', ['controller' => 'Users', 'action' => 'verifyAccount'], ['id' => '\d+', 'pass' => ['id', 'token']]);
+
     /**
      * Connect catchall routes for all controllers.
      *

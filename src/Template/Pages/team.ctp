@@ -3,7 +3,7 @@
 $this->layout = 'default';
 $this->assign('title', 'Our Team | mySetup.co');
 
-echo $this->Html->meta('description', 'Who is behind MySetup.co ?', ['block' => true]);
+echo $this->Html->meta('description', 'Who is behind mySetup.co ?', ['block' => true]);
 
 ?>
 

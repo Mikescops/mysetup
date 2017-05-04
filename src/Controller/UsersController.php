@@ -72,19 +72,45 @@ class UsersController extends AppController
                     $user->id = mt_rand() + 1;
                 } while($this->Users->find()->where(['id' => $user->id])->count() !== 0);
 
+                $user->mailVerification = substr(md5(mt_rand()), 0, 32);
+
                 if($this->Users->save($user))
                 {
                     $this->Users->saveDefaultProfilePicture($user, $this->Flash);
 
-                    $this->Flash->success(__('The user has been saved.'));
+                    Email::setConfigTransport('Zoho', [
+                        'host' => 'smtp.zoho.eu',
+                        'port' => 587,
+                        'username' => 'support@mysetup.co',
+                        'password' => 'Lsc\'etb1',
+                        'className' => 'Smtp',
+                        'tls' => true
+                    ]);
+
+                    $email = new Email('default');
+                    $email
+                        ->setTransport('Zoho')
+                        ->setFrom(['support@mysetup.co' => 'mySetup.co | Support'])
+                        ->setTo($user->mail)
+                        ->setSubject("mySetup.co | Verify your account !")
+                        ->setEmailFormat('html')
+                        ->send("
+                            Hello !
+                            <br />
+                            <br />
+                            Please in order to activate your account, click the following link : <a href=\"https://mysetup.co/verify/" . $user->id . '/' . $user->mailVerification . "\" target=\"_blank\">Activate my account</a> !
+                            <br />
+                            <br />
+                            <br />
+                            <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
+                        ");
+
+                    $this->Flash->success(__('Your account has been created, check your email to verify your account'));
 
                     // Let's check if the person that has just created this user is connected (admin one ?), or not
                     if($this->request->session()->read('Auth.User.id') == null)
                     {
-                        // This person is new among us, let's log him in ASAP
-                        $this->Auth->setUser($user);
-                        $this->Flash->success(__('We are so kind, you\'re now logged in ;-)'));
-                        return $this->redirect($this->Auth->redirectUrl()); 
+                        return $this->redirect('/');
                     }
 
                     else
@@ -235,9 +261,18 @@ class UsersController extends AppController
         {
             if($user = $this->Auth->identify())
             {
-                $this->Auth->setUser($user);
-                $this->Flash->success(__('You are successfully logged in !'));
-                return $this->redirect($this->Auth->redirectUrl());
+                if($user['mailVerification'])
+                {
+                    $this->Flash->warning(__('Your account is not verified, check your emails !'));
+                    return $this->redirect($this->referer());
+                }
+
+                else
+                {
+                    $this->Auth->setUser($user);
+                    $this->Flash->success(__('You are successfully logged in !'));
+                    return $this->redirect($this->Auth->redirectUrl());
+                }
             }
 
             else
@@ -289,9 +324,9 @@ class UsersController extends AppController
                     $email = new Email('default');
                     $email
                         ->setTransport('Zoho')
-                        ->setFrom(['support@mysetup.co' => 'MySetup.co'])
+                        ->setFrom(['support@mysetup.co' => 'mySetup.co | Support'])
                         ->setTo($data['mailReset'])
-                        ->setSubject("You password has been reseted !")
+                        ->setSubject("mySetup.co | You password has been reseted !")
                         ->setEmailFormat('html')
                         ->send("
                             Hello " . ($user->name !== '' ? $user->name . ' ' : '') . "!
@@ -304,7 +339,7 @@ class UsersController extends AppController
                             <br />
                             <br />
                             <br />
-                            <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"MySetup.co's Support\" style=\"height: 80px\">
+                            <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
                         ");
 
                     $this->Flash->success(__("An email has been sent to this email address !"));
@@ -332,11 +367,46 @@ class UsersController extends AppController
         }
     }
 
+    public function verifyAccount($id = null, $token = null)
+    {
+        if($this->request->is('get'))
+        {
+            $user = $this->Users->find()->where(['id' => $id])->first();
+
+            if($user)
+            {
+                if($user['mailVerification'] == $token)
+                {
+                    $user['mailVerification'] = null;
+
+                    $this->Users->save($user);
+
+                    // This person is new among us, let's log him in ASAP
+                    $this->Auth->setUser($user);
+                    $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
+                    return $this->redirect($this->Auth->redirectUrl()); 
+                }
+
+                else
+                {
+                    $this->Flash->error(__('Your token is invalid'));
+                    return $this->redirect('/');
+                }
+            }
+
+            else
+            {
+                $this->Flash->error(__('This request is invalid'));
+                return $this->redirect('/');
+            }
+        }
+    }
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['logout', 'add', 'resetPassword', 'view']);
+        $this->Auth->allow(['logout', 'add', 'resetPassword', 'view', 'verifyAccount']);
     }
 
     public function isAuthorized($user)
