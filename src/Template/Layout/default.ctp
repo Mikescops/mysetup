@@ -52,6 +52,16 @@
                             <li>
                                 <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
                             </li>
+                            <?php if(isset($authUser['admin']) and $authUser['admin']): ?>
+                                <li>
+                                    <a>Administration <i class="fa fa-caret-down"></i></a>
+                                    <ul>
+                                        <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>">Setups index</a></li>
+                                        <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">Users index</a></li>
+                                        <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>">Resources index</a></li>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
                         <?php endif; ?>
                         <li>
                             <a>Categories <i class="fa fa-caret-down"></i></a>
@@ -171,6 +181,15 @@
                         <li>
                             <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
                         </li>
+                        <?php if(isset($authUser['admin']) and $authUser['admin']): ?>
+                            <li>
+                                <ul>
+                                    <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>">Setups index</a></li>
+                                    <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">Users index</a></li>
+                                    <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>">Resources index</a></li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
                     <?php endif; ?>
                     <li>
                         <ul>
