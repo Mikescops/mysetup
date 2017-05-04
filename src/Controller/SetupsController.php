@@ -85,7 +85,7 @@ class SetupsController extends AppController
             // Let's set the id of the current logged in user 
             $data['user_id'] = $this->request->session()->read('Auth.User.id');
 
-            // Here we'll assign automatically the owned of the setup to the entity, if in the setup it has not be filled
+            // Here we'll assign automatically the owner of the setup to the entity
             if(!isset($data['author']) or $data['author'] === '')
             {
                 $data['author'] = $this->Setups->Users->find()->where(['id' => $data['user_id']])->first()['name'];
@@ -105,32 +105,15 @@ class SetupsController extends AppController
                 if(!isset($data['featuredImage'][0]) or $data['featuredImage'][0]['tmp_name'] === '' or !$this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false, true))
                 {
                     $this->Setups->delete($setup);
-                    $this->Flash->warning(__("You need a featured image with this setup !"));
+                    $this->Flash->warning(__('You need a featured image with this setup !'));
                     return $this->redirect($this->referer());
                 }
 
+                /* Let's save the gallery images with the adapted function */
+                $this->Setups->Resources->saveGalleryImages($setup, $data, $this->Flash);
+
                 /* Here we save each product that has been selected by the user */
                 $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], false);
-
-                /* Here we save each gallery image uploaded */
-                $i = 1;
-                foreach($data['fileselect'] as $file)
-                {
-                    if($file['tmp_name'] !== '')
-                    {
-                        if($this->Setups->Resources->saveResourceImage($file, $setup, 'SETUP_GALLERY_IMAGE', $this->Flash, $data['user_id'], false, false))
-                        {
-                            if(++$i >= 5)
-                            {
-                                if(count($data['fileselect']) > 5)
-                                {
-                                    $this->Flash->warning(__("You've chosen too many images, unfortunately we kept only 5 among them."));
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
 
                 /* Here we save the setup video URL */
                 if(isset($data['video']) and $data['video'] !== '')

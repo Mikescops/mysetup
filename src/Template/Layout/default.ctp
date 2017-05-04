@@ -151,10 +151,20 @@
                             echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage','text' => __('Add featured image *')), 'class' => 'inputfile']);
                         ?>
                         <img id="featuredimage_preview">
-                        <?php
-                            echo $this->Form->input('fileselect. ', ['type' => 'file', 'multiple', 'label' => array('class' => 'label_gimage','text' => 'Add up to 5 images (5 MB / images)'), 'class' => 'inputfile']);
-                        ?>
-                        <div id="images_holder"></div>
+                        <div class="hidden_five_inputs">
+                            <?php
+                                echo $this->Form->input('gallery0. ', ['id'=>'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                echo $this->Form->input('gallery1. ', ['id'=>'gallery1add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                echo $this->Form->input('gallery2. ', ['id'=>'gallery2add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                echo $this->Form->input('gallery3. ', ['id'=>'gallery3add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                echo $this->Form->input('gallery4. ', ['id'=>'gallery4add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                            ?>
+                        </div>
+
+                        <?php for($i = 0; $i < 5; $i++): ?>
+                            <img class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+                        <?php endfor ?>
+
                         <br />
                         <?php
                             echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)')]);

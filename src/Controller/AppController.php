@@ -116,7 +116,6 @@ class AppController extends Controller
         $this->Security->config('unlockedFields', [
             'resources',
             'featuredImage',
-            'fileselect',
             'video',
             'mailReset',
             'picture',
