@@ -112,12 +112,6 @@
                                             echo $this->Form->control('secret2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
                                         ?>
                                         <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change my password</a>
-                                        <?php
-                                            if($authUser['admin'])
-                                            {
-                                                echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => 'Verify your own account ?', 'default' => $authUser['verified']]);
-                                            }
-                                        ?>
                                     </div>
                                     </div>
                                     

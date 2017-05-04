@@ -98,7 +98,7 @@ class UsersController extends AppController
                             Hello !
                             <br />
                             <br />
-                            Please in order to activate your account, click the following link : <a href=\"https://mysetup.co/verify/" . $user->id . '/' . $user->mailVerification . "\" target=\"_blank\">Activate my account</a> !
+                            Please, in order to activate your account, click the following link : <a href=\"https://mysetup.co/verify/" . $user->id . '/' . $user->mailVerification . "\" target=\"_blank\">Activate my account</a> !
                             <br />
                             <br />
                             <br />
