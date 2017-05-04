@@ -173,10 +173,10 @@
                             echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);
                         ?>
                         <a class="is_author"><i class="fa fa-square-o"></i> It's not my setup !</a>
-                        <p class="float-right">* required fields</p>
+                        <span class="float-right">* required fields</span>
                         <label for="author" class="setup_author">Setup's owner</label>
                         <?php
-                            echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => '']);
+                            echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => false]);
                         ?>
                     </fieldset>
                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
