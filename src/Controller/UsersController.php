@@ -238,7 +238,7 @@ class UsersController extends AppController
             $this->Flash->error(__('You just CANNOT delete the admin user of the website...'));
         }
 
-        if(parent::isAdminBySession($this->request->session()))
+        if(!parent::isAdminBySession($this->request->session()))
         {
             return $this->redirect($this->Auth->logout());
         }
