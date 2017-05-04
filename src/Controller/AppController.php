@@ -165,7 +165,7 @@ class AppController extends Controller
 
     protected function isAdminBySession($session)
     {
-        if($session->read('Auth.user.mail') === 'admin@admin.admin')
+        if($session->read('Auth.User.mail') === 'admin@admin.admin')
         {
             return true;
         }
