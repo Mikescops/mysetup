@@ -252,6 +252,10 @@ function searchItem(query, region, action) {
 
       var items = $('item', el);
 
+      if(items[0] == null){
+        $( ".search_results."+action ).append("No items found...");
+      }
+
       $.each(items,function(key, value) {
         var list = $('<li></li>');
 

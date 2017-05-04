@@ -96,7 +96,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <img class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
             <?php endfor ?>
 
-            <br />
+            <br /><br />
             <?php
                 /* Fill the video source if exist */
                 if(!empty($video->src)){$video_field = $video->src;}else{$video_field = '';}

@@ -165,7 +165,7 @@
                             <img class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
                         <?php endfor ?>
 
-                        <br />
+                        <br /><br />
                         <?php
                             echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)')]);
 
