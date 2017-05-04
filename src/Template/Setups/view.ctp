@@ -47,14 +47,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     </div>
 </div>
 
-<?php if($authUser['id'] == $setup->user_id): ?>
+<?php if($authUser['id'] == $setup->user_id or $authUser['admin']): ?>
     <div class="edit_panel">
-        <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> Edit your setup</a></div>
+        <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> Edit <?php echo ($authUser['id'] == $setup->user_id ? "your" : "this") ?> setup</a></div>
         <div><a href="#embed_twitch_modal" data-lity><i class="fa fa-twitch"></i> Embed it in Twitch</a></div>
     </div>
 
     <div id="edit_setup_modal" class="lity-hide">
-        <h4>Edit your setup</h4>
+        <h4>Edit <?php echo ($authUser['id'] == $setup->user_id ? "your" : "this") ?> setup</h4>
 
         <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'edit', $setup->id]]); ?>
         <fieldset style="border:0;">
@@ -114,6 +114,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <label for="author" class="setup_author">Setup's owner</label>
             <?php
                 echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
+            ?>
+            <?php
+                if($authUser['admin'])
+                {
+                    echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !']);
+                }
             ?>
         </fieldset>
         <?= $this->Form->submit(__('Edit setup'), ['class' => 'float-right']); ?>

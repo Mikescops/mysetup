@@ -157,9 +157,9 @@ class UsersController extends AppController
                 }
             }
 
-            if(!isset($data['verified']) || $data['verified'] === '' || parent::isAdminBySession($this->request->session()))
+            if(!isset($data['verified']) or !parent::isAdminBySession($this->request->session()))
             {
-                $data['verified'] = false;
+                $data['verified'] = $user['verified'];
             }
 
             $user = $this->Users->patchEntity($user, $data);

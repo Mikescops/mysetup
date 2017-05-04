@@ -52,9 +52,9 @@
                             <li>
                                 <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
                             </li>
-                            <?php if(isset($authUser['admin']) and $authUser['admin']): ?>
+                            <?php if($authUser['admin']): ?>
                                 <li>
-                                    <a>Administration <i class="fa fa-caret-down"></i></a>
+                                    <a>Admin <i class="fa fa-caret-down"></i></a>
                                     <ul>
                                         <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>">Setups index</a></li>
                                         <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">Users index</a></li>
@@ -102,26 +102,30 @@
                                         ?>
                                     </div>
                                     <div class="column column-75">
-                                    <?php
-                                        echo $this->Form->control('name', ['required' => true, 'label' => '', 'placeholder' => __("Name"), 'default' => $authUser['name']]);
-                                        echo $this->Form->control('mail', ['required' => true, 'type' => 'email', 'label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
-                                    ?>
+                                        <?php
+                                            echo $this->Form->control('name', ['required' => true, 'label' => '', 'placeholder' => __("Name"), 'default' => $authUser['name']]);
+                                            echo $this->Form->control('mail', ['required' => true, 'type' => 'email', 'label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
+                                        ?>
 
-                                     <?php
-                                        echo $this->Form->control('secret', ['pattern' => '.{8,}', 'type' => 'password', 'placeholder' => __("Password"), 'class' => 'pwd_field', 'label' => '']);
-                                        echo $this->Form->control('secret2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
-                                    ?>
-                                    <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change my password</a>
-
+                                        <?php
+                                            echo $this->Form->control('secret', ['pattern' => '.{8,}', 'type' => 'password', 'placeholder' => __("Password"), 'class' => 'pwd_field', 'label' => '']);
+                                            echo $this->Form->control('secret2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
+                                        ?>
+                                        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change my password</a>
+                                        <?php
+                                            if($authUser['admin'])
+                                            {
+                                                echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => 'This user has been verified', 'default' => $authUser['verified']]);
+                                            }
+                                        ?>
                                     </div>
-
                                     </div>
                                     
                                     </fieldset>
                                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                                     <?= $this->Form->end(); ?>
 
-                                    <?= $this->Form->postLink('Delete my account', array('controller' => 'Users','action' => 'delete', $authUser['id']),array('confirm' => 'You are going to delete your account and all his content! Are You Sure?')) ?>
+                                    <?= $this->Form->postLink('Delete my account', array('controller' => 'Users','action' => 'delete', $authUser['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
                                 </div>
 
                             <?php else: ?>
@@ -181,7 +185,7 @@
                         <li>
                             <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
                         </li>
-                        <?php if(isset($authUser['admin']) and $authUser['admin']): ?>
+                        <?php if($authUser['admin']): ?>
                             <li>
                                 <ul>
                                     <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>">Setups index</a></li>

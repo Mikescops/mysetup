@@ -180,6 +180,11 @@ class SetupsController extends AppController
                 $data['author'] = $this->Setups->Users->find()->where(['id' => $data['user_id']])->first()['name'];
             }
 
+            if(!isset($data['featured']) or !parent::isAdminBySession($this->request->session()))
+            {
+                $data['featured'] = $user['featured'];
+            }
+
             $setup = $this->Setups->patchEntity($setup, $data);
             if ($this->Setups->save($setup))
             {
