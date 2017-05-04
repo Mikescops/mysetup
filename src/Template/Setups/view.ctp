@@ -118,14 +118,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?php
                 if($authUser['admin'])
                 {
-                    echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !']);
+                    echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
                 }
             ?>
         </fieldset>
         <?= $this->Form->submit(__('Edit setup'), ['class' => 'float-right']); ?>
         <?= $this->Form->end(); ?>
 
-        <?= $this->Form->postLink('Delete this setup', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are You Sure ?')]) ?>
+        <?= $this->Form->postLink('Delete this setup', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?')]) ?>
     </div>
 
     <div id="embed_twitch_modal" class="lity-hide">
