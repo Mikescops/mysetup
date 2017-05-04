@@ -803,7 +803,7 @@ nav {
 	padding: 5px 0 5px 0;
 }
 
-.gallery_edit_preview{
+.gallery_edit_preview, .gallery_add_preview{
 	display: inline-block;
 	width: 18%;
 	margin: 0.666%;
@@ -811,7 +811,7 @@ nav {
 	cursor: pointer;
 }
 
-.gallery_edit_preview:hover{
+.gallery_edit_preview:hover, .gallery_add_preview:hover{
 	opacity: 0.7;
 }
 
