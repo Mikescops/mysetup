@@ -803,27 +803,6 @@ nav {
 	padding: 5px 0 5px 0;
 }
 
-#filedrag
-{
-	display: none;
-	font-weight: bold;
-	text-align: center;
-	padding: 1em 0;
-	margin: 1em 0;
-	color: #555;
-	border: 2px dashed #555;
-	border-radius: 7px;
-	cursor: default;
-}
-
-#filedrag.hover
-{
-	color: #328fea;
-	border-color: #328fea;
-	border-style: solid;
-	box-shadow: inset 0 3px 4px #888;
-}
-
 .gallery_edit_preview{
 	display: inline-block;
 	width: 18%;
@@ -836,7 +815,7 @@ nav {
 	opacity: 0.7;
 }
 
-#add_setup_modal .inputfile, #add_setup_modal #fileselect, #edit_setup_modal .inputfile, #edit_setup_modal #fileselect {
+#add_setup_modal .inputfile, #edit_setup_modal .inputfile {
 	width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
@@ -863,12 +842,6 @@ nav {
 	width: 100%;
 	margin-bottom: 10px;
 	margin-top: 10px;
-}
-#images_holder img{
-	display: inline-block;
-	width: 23%;
-	margin: 1%;
-	max-height: 100px;
 }
 
 .label_gimage {
