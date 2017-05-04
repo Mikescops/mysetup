@@ -49,15 +49,55 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
         </div>
         <div class="column column-25 sidebar">
 
-            <?php if(isset($authUser['admin']) and $authUser['admin']): ?>
+            <?php if($authUser['admin']): ?>
 
-            <a class="button" href="#edit_user_admin" data-lity>Edit this user</a>
+                <a class="button" href="#edit_user_admin" data-lity>Edit this user</a>
 
-            <div id="edit_user_admin" class="lity-hide">
-                <h4>Edit <?= $user->name ?> profile</h4>
+                <div id="edit_user_admin" class="lity-hide">
+                    <?= $this->Form->create($user, ['type' => 'file', 'url' => ['controller' => 'Users', 'action' => 'edit', $user->id]]); ?>
+                    <fieldset style="border:0;">
+                    <h4>Change only what you want !</h4>
+                    <div class="row">
+                    <div class="column column-25">
+                    <div class="profile-container">
+                       <image id="profileImage" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $user['id'] ?>.png" />
+                    </div>
 
+                    <div class="profilepicup">
+                        <?php
+                        echo $this->Form->input('picture. ', ['label' => __("Change the profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
+                        ?>
+                    </div>
 
-            </div>
+                    <br>
+
+                    <?php
+                        echo $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "ES" => "ES", "IT" => "IT", "FR" => "FR", "DE" => "DE"], ['default' => $user['preferredStore']]);
+                        ?>
+                    </div>
+                    <div class="column column-75">
+                        <?php
+                            echo $this->Form->control('name', ['required' => true, 'label' => '', 'placeholder' => __("Name"), 'default' => $user['name']]);
+                            echo $this->Form->control('mail', ['required' => true, 'type' => 'email', 'label' => '', 'placeholder' => __("Email address"), 'default' => $user['mail']]);
+                        ?>
+
+                        <?php
+                            echo $this->Form->control('secret', ['pattern' => '.{8,}', 'type' => 'password', 'placeholder' => __("Password"), 'class' => 'pwd_field', 'label' => '']);
+                            echo $this->Form->control('secret2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
+                        ?>
+                        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change the user password</a>
+                        <?php
+                            echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => 'User verified', 'default' => $user['verified']]);
+                        ?>
+                    </div>
+                    </div>
+                    
+                    </fieldset>
+                    <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
+                    <?= $this->Form->end(); ?>
+
+                    <?= $this->Form->postLink('Delete this account', array('controller' => 'Users','action' => 'delete', $user['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
+                </div>
 
             <?php endif ?>
 

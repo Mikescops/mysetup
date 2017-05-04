@@ -115,7 +115,7 @@
                                         <?php
                                             if($authUser['admin'])
                                             {
-                                                echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => 'This user has been verified', 'default' => $authUser['verified']]);
+                                                echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => 'Verify your own account ?', 'default' => $authUser['verified']]);
                                             }
                                         ?>
                                     </div>

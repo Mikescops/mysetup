@@ -30,7 +30,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 </a>
                 <h3><?= $setup->title ?></h3>
                 <p>
-                    Shared by <?php if($additionalData['owner']['name']){echo $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]);}else{echo "Unknown";} ?> <?php if($additionalData['owner']['verified']): echo '<i class="fa fa-check-square verified_account"></i>'; endif; if($additionalData['owner']['name'] != $setup->author): echo ", created by " . $setup->author; endif?>
+                    Shared by <?php if($additionalData['owner']['name']){echo $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]);}else{echo "Unknown";} ?><?php if($additionalData['owner']['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($additionalData['owner']['name'] != $setup->author and $setup->author !== ''): echo ", created by " . $setup->author ; endif?>
                 </p>
             </div>
             <a class="labeled_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('You must be login to like !');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
