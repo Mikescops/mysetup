@@ -124,7 +124,7 @@ class SetupsController extends AppController
                             {
                                 if(count($data['fileselect']) > 5)
                                 {
-                                    $this->Flash->warning(__("You've chosen too many images, unfortunately we kept only the 5 among them."));
+                                    $this->Flash->warning(__("You've chosen too many images, unfortunately we kept only 5 among them."));
                                 }
                                 break;
                             }

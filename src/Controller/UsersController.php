@@ -157,7 +157,7 @@ class UsersController extends AppController
                 }
             }
 
-            if(!isset($data['verified']) || $data['verified'] === '' || $this->request->session()->read('Auth.User.mail') !== 'admin@admin.admin')
+            if(!isset($data['verified']) || $data['verified'] === '' || parent::isAdminBySession($this->request->session()))
             {
                 $data['verified'] = false;
             }
@@ -198,7 +198,7 @@ class UsersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         
-        if($user and $user['mail'] !== 'admin@admin.admin')
+        if($user and !parent::isAdmin($user))
         {
             if($this->Users->delete($user)) {
                 $this->Flash->success(__('The user has been deleted.'));
@@ -212,7 +212,7 @@ class UsersController extends AppController
             $this->Flash->error(__('You just CANNOT delete the admin user of the website...'));
         }
 
-        if($this->request->session()->read('Auth.User.mail') !== 'admin@admin.admin')
+        if(parent::isAdminBySession($this->request->session()))
         {
             return $this->redirect($this->Auth->logout());
         }

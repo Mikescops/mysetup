@@ -132,7 +132,7 @@ class AppController extends Controller
         }
 
         /* DANGEROUS PART IS JUST BELOW, PLEASE TAKE THAT WITH EXTREME PRECAUTION */
-        if(isset($user) && $user['mail'] === 'admin@admin.admin')
+        if(isset($user) && $this->isAdmin($user))
         {
             return true;
         }
@@ -143,6 +143,34 @@ class AppController extends Controller
             return false;
         }
     }
+
+    /* DANGEROUS PART */
+    protected function isAdmin($user)
+    {
+        if($user['mail'] === 'admin@admin.admin')
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+
+    protected function isAdminBySession($session)
+    {
+        if($session->read('Auth.user.mail') === 'admin@admin.admin')
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+    /* _______________*/
 
     /* AJAX CALLS ? */
     public function getLikes()
