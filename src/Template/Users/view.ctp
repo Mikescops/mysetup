@@ -48,6 +48,19 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
 
         </div>
         <div class="column column-25 sidebar">
+
+            <?php if(isset($authUser['admin']) and $authUser['admin']): ?>
+
+            <a class="button" href="#edit_user_admin" data-lity>Edit this user</a>
+
+            <div id="edit_user_admin" class="lity-hide">
+                <h4>Edit <?= $user->name ?> profile</h4>
+
+
+            </div>
+
+            <?php endif ?>
+
             <br><br>
             <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co">Tweets by mysetup_co</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
