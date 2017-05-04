@@ -169,7 +169,7 @@ class UsersTable extends Table
                 {
                     $image = new \Imagick($destination . $extension);
 
-                    if(!$image || !$image->setImageFormat('png') || !$image->cropThumbnailImage(400, 400) || !$image->writeImage($destination . 'png'))
+                    if(!$image || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination . 'png'))
                     {
                         $flash->warning('Your profile picture could not be converted to PNG format...');
                     }
