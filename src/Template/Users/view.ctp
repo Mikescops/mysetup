@@ -87,7 +87,7 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
                         ?>
                         <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change the user password</a>
                         <?php
-                            echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => 'User verified', 'default' => $user['verified']]);
+                            echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => 'User verified', 'default' => $user['verified'], 'required' => false]);
                         ?>
                     </div>
                     </div>
