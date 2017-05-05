@@ -11,6 +11,8 @@ session_start();
 
 if($_SESSION['Auth'])
 {
+	$accesskey = 'AKIAJHOTPBA2YCCGVZUA';
+	$secretkey = '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';
 	$lang = $_GET['lang'];
 	if ($lang == 'FR') {
 		$associate_tag = 'mysetupco-21';
@@ -20,15 +22,19 @@ if($_SESSION['Auth'])
 		$associate_tag = 'mysetup01f-21';
 	}
 	elseif ($lang == 'ES'){
-		$associate_tag = 'mysetupco00-21';
+		$associate_tag = 'mysetupco0a-21';
+		$accesskey = 'AKIAIBGLG5HKO65NOAVA';
+		$secretkey = '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';
 	}
 	elseif ($lang == 'IT'){
-		$associate_tag = 'mysetup02e-21';
+		$associate_tag = 'mysetup01s-21';
+		$accesskey = 'AKIAIBGLG5HKO65NOAVA';
+		$secretkey = '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';
 	}
 	elseif ($lang == 'DE'){
 		$associate_tag = 'mysetup09-21';
 	}
-	else{ /* This case is for UK and others */
+	else{ /* This case is for US and others */
 		$lang = "COM";
 		$associate_tag = 'mysetupco-20';
 	}
@@ -36,8 +42,8 @@ if($_SESSION['Auth'])
 	$conf = new GenericConfiguration();
 	$conf
 	    ->setCountry($lang)
-	    ->setAccessKey('AKIAJHOTPBA2YCCGVZUA')
-	    ->setSecretKey('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')
+	    ->setAccessKey($accesskey)
+	    ->setSecretKey($secretkey)
 	    ->setAssociateTag($associate_tag)
 	    ->setRequest((new \ApaiIO\Request\GuzzleRequest((new \GuzzleHttp\Client()))));
 
