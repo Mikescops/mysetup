@@ -254,7 +254,7 @@ class UsersController extends AppController
         if($this->request->session()->read('Auth.User.id') != null)
         {
             $this->Flash->warning(__('You are already logged in.'));
-            return $this->redirect($this->referer());
+            return $this->redirect('/');
         }
 
         if($this->request->is('post'))
