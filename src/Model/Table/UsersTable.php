@@ -62,6 +62,8 @@ class UsersTable extends Table
             'dependent' => 'true',
             'cascadeCallbacks' => 'true'
         ]);
+
+        $this->addBehavior('Sitemap.Sitemap', ['changefreq' => 'daily']);
     }
 
     /**

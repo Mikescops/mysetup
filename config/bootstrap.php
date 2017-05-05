@@ -215,7 +215,7 @@ Type::build('timestamp')
 Plugin::load('Sitemap', ['bootstrap' => false, 'routes' => true]);
 
 Configure::write('Sitemap.tables', [
-    'Setups',
+    'Setups', 'Users'
 ]);
 
 /*
