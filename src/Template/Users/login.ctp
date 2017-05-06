@@ -8,13 +8,13 @@ $this->assign('title', 'Login | mySetup.co');
 <div class="login-form">
     <ul class="tabs">
         <li>
-            <a href="#login" class="active"><?= ('Login') ?></a>
+            <a href="#login" class="active"><?= __('Login') ?></a>
         </li>
         <li>
-            <a href="#register"><?= ('Register') ?></a>
+            <a href="#register"><?= __('Register') ?></a>
         </li>
         <li>
-            <a href="#reset"><?= ('Reset Password') ?></a>
+            <a href="#reset"><?= __('Reset Password') ?></a>
         </li>
     </ul>
     <div id="login" class="form-action show">
@@ -48,7 +48,7 @@ $this->assign('title', 'Login | mySetup.co');
                 </li>
                 <li>
                     <?= $this->Form->control('password2', ['required' => true, 'placeholder' => __('Repeat password'), 'label' => false, 'type' => 'password']) ?>
-                    <?= ('Password should be at least 8 characters.') ?>
+                    <?= __('Password should be at least 8 characters.') ?>
                 </li>
                 <li>
                     <?= $this->Form->button(__('Sign up'), ['class' => 'button']); ?>

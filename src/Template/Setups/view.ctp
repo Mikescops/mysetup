@@ -49,8 +49,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 <?php if($authUser['id'] == $setup->user_id or $authUser['admin']): ?>
     <div class="edit_panel">
-        <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> <?= ('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? "your" : "this") ?> setup</a></div>
-        <div><a href="#embed_twitch_modal" data-lity><i class="fa fa-twitch"></i> <?= ('Embed it in Twitch') ?></a></div>
+        <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> <?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? "your" : "this") ?> setup</a></div>
+        <div><a href="#embed_twitch_modal" data-lity><i class="fa fa-twitch"></i> <?= __('Embed it in Twitch') ?></a></div>
     </div>
 
     <div id="edit_setup_modal" class="lity-hide">
@@ -129,12 +129,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     </div>
 
     <div id="embed_twitch_modal" class="lity-hide">
-        <h4><?= ('How to embed your setup in Twitch ?') ?></h4>
-        <p><?= ('Go to your Twitch channel and toggle panel edition.') ?></p>
+        <h4><?= __('How to embed your setup in Twitch ?') ?></h4>
+        <p><?= __('Go to your Twitch channel and toggle panel edition.') ?></p>
         <?= $this->Html->image('howto_twitch.png', array('alt' => 'Twitch Panel Edition')) ?> <br>
-        <p><?= ('Copy the following url in the link field') ?> :</p>
+        <p><?= __('Copy the following url in the link field') ?> :</p>
         <pre><code><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title), true)?></code></pre>
-        <p><?= ('You can even configure your Twitch Chat bot to display this link !') ?></p>
+        <p><?= __('You can even configure your Twitch Chat bot to display this link !') ?></p>
     </div>
 <?php endif ?>
 
@@ -164,7 +164,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div id="social-networks"></div></br>
 
             <?php if(!empty($video->src)): ?>
-                <a class="button item-youtube" href="<?= $video->src ?>" data-lity><?= ('Watch it in video') ?></a>
+                <a class="button item-youtube" href="<?= $video->src ?>" data-lity><?= __('Watch it in video') ?></a>
             <?php endif?>
         </div>
     </div>
@@ -186,7 +186,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     <div class="row comment-section">
         
         <div class="column column-50 column-offset-25">
-            <h4><?= ('Wanna share your opinion ?') ?></h4>
+            <h4><?= __('Wanna share your opinion ?') ?></h4>
 
             <section class="comments">
             <?php if (!empty($setup->comments)): ?>
@@ -222,7 +222,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <?php else: ?>
 
-                <?= ('You must be logged in to comment') ?> > <a href="<?= $this->Url->build('/login')?>"><?= ('Log me in !') ?></a>
+                <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build('/login')?>"><?= __('Log me in !') ?></a>
 
             <?php endif ?>
         </div>

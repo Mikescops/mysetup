@@ -9,9 +9,9 @@ echo $this->Html->meta('description', 'Who is behind mySetup.co ?', ['block' => 
 
 <div class="maincontainer">
 
-	<h1><?= ('About us') ?></h1>
+	<h1><?= __('About us') ?></h1>
 
-	<p><?= ('A project made by Samuel Forestier and Corentin Mors.') ?></p>
+	<p><?= __('A project made by Samuel Forestier and Corentin Mors.') ?></p>
 
 	<br/>
 
@@ -19,6 +19,6 @@ echo $this->Html->meta('description', 'Who is behind mySetup.co ?', ['block' => 
 
 	<br/>
 
-	<p><strong>Samuel Forestier</strong> : <?= ('Trésorier et rédacteur chez Geek Mexicain, je tiens un blog personnel depuis maintenant quelques années qui, de plus, recense mes activités de développement sur des projets. Étudiant INSA également !') ?></p>
+	<p><strong>Samuel Forestier</strong> : <?= __('Trésorier et rédacteur chez Geek Mexicain, je tiens un blog personnel depuis maintenant quelques années qui, de plus, recense mes activités de développement sur des projets. Étudiant INSA également !') ?></p>
 
 </div>
