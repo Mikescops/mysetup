@@ -35,6 +35,27 @@
     <meta property="fb:admins" content="1912097312403661" />
 
     <meta name="google-site-verification" content="8eCzlQ585iC5IG3a4-fENYChl1AaEUaW7VeBj2NiFJQ" />
+
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+    window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#000"
+        },
+        "button": {
+          "background": "#328fea"
+        }
+      },
+      "theme": "classic",
+      "position": "bottom-left",
+      "content": {
+        "href": "https://mysetup.co/pages/legals"
+      }
+    })});
+    </script>
 </head>
 <body>
     <nav class="heavy-nav">
