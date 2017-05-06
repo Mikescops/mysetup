@@ -3,7 +3,7 @@
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="fr-FR"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="fr-FR"> <![endif]-->
 <!--[if gt IE 8]><!--> 
-<html lang="fr_FR">
+<html lang="<?= ($authUser && strtolower($authUser['preferredStore']) != "us" ? strtolower($authUser['preferredStore']) : "en") ?>">
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,15 +71,15 @@
                     <ul>
                         <?php if($authUser): ?>
                             <li>
-                                <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
+                                <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> <?= ('Add Setup') ?></a>
                             </li>
                             <?php if($authUser['admin']): ?>
                                 <li>
                                     <a>Admin <i class="fa fa-caret-down"></i></a>
                                     <ul>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>">Setups index</a></li>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">Users index</a></li>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>">Resources index</a></li>
+                                        <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= ('Setups index') ?></a></li>
+                                        <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>"><?= ('Users index') ?></a></li>
+                                        <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>"><?= ('Resources index') ?></a></li>
                                     </ul>
                                 </li>
                             <?php endif; ?>
@@ -87,23 +87,23 @@
                         <li>
                             <a>Categories <i class="fa fa-caret-down"></i></a>
                             <ul>
-                                <li><a href="<?= $this->Url->build('/recents'); ?>">Most recent</a></li>
-                                <li><a href="<?= $this->Url->build('/popular'); ?>">Popular this week</a></li>
+                                <li><a href="<?= $this->Url->build('/recents'); ?>"><?= ('Most recent') ?></a></li>
+                                <li><a href="<?= $this->Url->build('/popular'); ?>"><?= ('Popular this week') ?></a></li>
                             </ul>
                         </li>
                         <li>
                             <?php if($authUser): ?>
-                                <a>Profile <i class="fa fa-caret-down"></i></a>
+                                <a><?= ('Profile') ?> <i class="fa fa-caret-down"></i></a>
                                 <ul>
-                                    <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>">My Setups</a></li>
-                                    <li><a href="#edit_profile_modal" data-lity>Edit Profile</a></li>
-                                    <li><a href="<?= $this->Url->build('/logout'); ?>">Logout</a></li>
+                                    <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= ('My Setups') ?></a></li>
+                                    <li><a href="#edit_profile_modal" data-lity><?= ('Edit Profile') ?></a></li>
+                                    <li><a href="<?= $this->Url->build('/logout'); ?>"><?= ('Logout') ?></a></li>
                                 </ul>
 
                                 <div id="edit_profile_modal" class="lity-hide">
                                     <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Users', 'action' => 'edit', $authUser['id']]]); ?>
                                     <fieldset style="border:0;">
-                                    <h4>Change only what you want !</h4>
+                                    <h4><?= ('Change only what you want !') ?></h4>
                                     <div class="row">
                                     <div class="column column-25">
                                     <div class="profile-container">
@@ -132,7 +132,7 @@
                                             echo $this->Form->control('secret', ['pattern' => '.{8,}', 'type' => 'password', 'placeholder' => __("Password"), 'class' => 'pwd_field', 'label' => '']);
                                             echo $this->Form->control('secret2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
                                         ?>
-                                        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change my password</a>
+                                        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> <?= ('Change my password') ?></a>
                                     </div>
                                     </div>
                                     
@@ -144,7 +144,7 @@
                                 </div>
 
                             <?php else: ?>
-                                <a href="<?= $this->Url->build('/login'); ?>"><i class="fa fa-user"></i> Sign In / Up</a>
+                                <a href="<?= $this->Url->build('/login'); ?>"><i class="fa fa-user"></i> <?= ('Sign In / Up') ?></a>
                             <?php endif; ?>
                         </li>
                     </ul>
@@ -187,9 +187,9 @@
                             // A hidden entry to gather the item resources
                             echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);
                         ?>
-                        <a class="is_author"><i class="fa fa-square-o"></i> It's not my setup !</a>
-                        <span class="float-right">* required fields</span>
-                        <label for="author" class="setup_author">Setup's owner</label>
+                        <a class="is_author"><i class="fa fa-square-o"></i> <?= ("It's not my setup !") ?></a>
+                        <span class="float-right">* <?= ('required fields') ?></span>
+                        <label for="author" class="setup_author"><?= ("Setup's owner") ?></label>
                         <?php
                             echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => false]);
                         ?>
@@ -208,33 +208,33 @@
                 <ul>
                     <?php if($authUser): ?>
                         <li>
-                            <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> Add Setup</a>
+                            <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> <?= ('Add Setup') ?></a>
                         </li>
                         <?php if($authUser['admin']): ?>
                             <li>
                                 <ul>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>">Setups index</a></li>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">Users index</a></li>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>">Resources index</a></li>
+                                    <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= ('Setups index') ?></a></li>
+                                    <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>"><?= ('Users index') ?></a></li>
+                                    <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>"><?= ('Resources index') ?></a></li>
                                 </ul>
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>
                     <li>
                         <ul>
-                            <li><a href="<?= $this->Url->build('/recents'); ?>">Most recent</a></li>
-                            <li><a href="<?= $this->Url->build('/popular'); ?>">Popular this week</a></li>
+                            <li><a href="<?= $this->Url->build('/recents'); ?>"><?= ('Most recent') ?></a></li>
+                            <li><a href="<?= $this->Url->build('/popular'); ?>"><?= ('Popular this week') ?></a></li>
                         </ul>
                     </li>
                     <li>
                         <?php if($authUser): ?>
                             <ul>
-                                <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>">My Setups</a></li>
-                                <li><a href="#edit_profile_modal" data-lity>Edit Profile</a></li>
-                                <li><a href="<?= $this->Url->build('/logout'); ?>">Logout</a></li>
+                                <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= ('My Setups') ?></a></li>
+                                <li><a href="#edit_profile_modal" data-lity><?= ('Edit Profile') ?></a></li>
+                                <li><a href="<?= $this->Url->build('/logout'); ?>"><?= ('Logout') ?></a></li>
                             </ul>
                         <?php else: ?>
-                            <a href="<?= $this->Url->build('/login'); ?>">Login</a>
+                            <a href="<?= $this->Url->build('/login'); ?>"><?= ('Login') ?></a>
                         <?php endif; ?>
                     </li>
                 </ul>
@@ -255,7 +255,7 @@
         
             <div class="row">
                     <div class="column column-25">
-                      <div class="footer-title">Partners</div>
+                      <div class="footer-title"><?= ('Partners') ?></div>
                       <ul>
                         <li><a href="https://pixelswap.fr/" target="_blank" class="item">PixelSwap</a></li>
                         <li><a href="https://geek-mexicain.net/" target="_blank">Geek Mexicain</a></li>
@@ -263,15 +263,15 @@
                       </ul>
                     </div>
                     <div class="column column-25">
-                      <div class="footer-title">About us</div>
+                      <div class="footer-title"><?= ('About us') ?></div>
                       <ul>
-                        <li><a href="https://medium.com/mysetup-co" target="_blank" class="item">Our stories</a></li>
-                        <li><a href="<?= $this->Url->build('/pages/team'); ?>" target="_blank">Our team</a></li>
-                        <li><a href="<?= $this->Url->build('/pages/legals'); ?>" target="_blank">Legal Mentions</a></li>
+                        <li><a href="https://medium.com/mysetup-co" target="_blank" class="item"><?= ('Our stories') ?></a></li>
+                        <li><a href="<?= $this->Url->build('/pages/team'); ?>" target="_blank"><?= ('Our team') ?></a></li>
+                        <li><a href="<?= $this->Url->build('/pages/legals'); ?>" target="_blank"><?= ('Legal Mentions') ?></a></li>
                       </ul>
                     </div>
                     <div class="column column-25">
-                      <div class="footer-title">Social</div>
+                      <div class="footer-title"><?= ('Social') ?></div>
                       <ul>
                         <li><a href="https://twitter.com/mysetup_co" target="_blank" class="item">Twitter</a></li>
                         <li><a href="https://www.facebook.com/mysetup.co" target="_blank">Facebook</a></li>
@@ -280,7 +280,7 @@
                     </div>
                     <div class="column column-25 logo_footer">
                         <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mysetup.co')); ?>
-                        <p>All rights reserved – mysetup.co<br> © 2017</p>
+                        <p><?= ('All rights reserved') ?> – mysetup.co<br> © 2017</p>
                     </div>
               </div>
           </div>

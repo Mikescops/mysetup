@@ -42,7 +42,7 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
             </div>
             <?php $i++; endforeach; else: ?>
 
-            There is no setup here yet...
+            <?= ('There is no setup here yet...') ?>
 
             <?php endif ?>
 
@@ -51,12 +51,12 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
 
             <?php if($authUser['admin']): ?>
 
-                <a class="button" href="#edit_user_admin" data-lity>Edit this user</a>
+                <a class="button" href="#edit_user_admin" data-lity><?= ('Edit this user') ?></a>
 
                 <div id="edit_user_admin" class="lity-hide">
                     <?= $this->Form->create($user, ['type' => 'file', 'url' => ['controller' => 'Users', 'action' => 'edit', $user->id]]); ?>
                     <fieldset style="border:0;">
-                    <h4>Change only what you want !</h4>
+                    <h4><?= ('Change only what you want !') ?></h4>
                     <div class="row">
                     <div class="column column-25">
                     <div class="profile-container">
@@ -85,7 +85,7 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
                             echo $this->Form->control('secret', ['pattern' => '.{8,}', 'type' => 'password', 'placeholder' => __("Password"), 'class' => 'pwd_field', 'label' => '']);
                             echo $this->Form->control('secret2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
                         ?>
-                        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change the user password</a>
+                        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> <?= ('Change the user password') ?></a>
                         <?php
                             echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => 'User verified', 'default' => $user['verified'], 'required' => false]);
                         ?>
@@ -102,7 +102,7 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
             <?php endif ?>
 
             <br><br>
-            <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co">Tweets by mysetup_co</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= ('Tweets by mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>
 </div>

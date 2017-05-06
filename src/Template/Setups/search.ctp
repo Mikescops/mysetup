@@ -29,7 +29,7 @@ $this->assign('title', 'Search for "'. $_GET["q"] .'" | mySetup.co');
 				<?= $this->Html->scriptBlock('let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
 			</div>
 
-			<h3>Search results for "<?= $_GET["q"] ?>" :</h3>
+			<h3><?= ('Search results for') ?> "<?= $_GET["q"] ?>" :</h3>
 
 			<?php foreach ($setups as $setup): ?>
 
