@@ -1,0 +1,420 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2017-05-06 10:50+0200\n"
+"PO-Revision-Date: 2017-05-06 11:24+0200\n"
+"Language-Team: EMAIL@ADDRESS\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+"Last-Translator: \n"
+"Language: fr\n"
+
+#: Controller/CommentsController.php:48;73
+msgid "The comment has been saved."
+msgstr "Le commentaire a été publié"
+
+#: Controller/CommentsController.php:52;77
+msgid "The comment could not be saved. Please, try again."
+msgstr "Le commentaire n'a pas pu être publié. Ré-essayez"
+
+#: Controller/CommentsController.php:95
+msgid "The comment has been deleted."
+msgstr "Le commentaire a bien été supprimé"
+
+#: Controller/CommentsController.php:97
+msgid "The comment could not be deleted. Please, try again."
+msgstr "Le commentaire n'a pas pu être supprimé. Ré-essayez"
+
+#: Controller/SetupsController.php:108
+msgid "You need a featured image with this setup !"
+msgstr "Vous avez besoin d'une image d'en-tête avec cette setup !"
+
+#: Controller/SetupsController.php:124;204
+msgid "The setup has been saved."
+msgstr "La setup a bien été créée"
+
+#: Controller/SetupsController.php:130;208
+msgid "The setup could not be saved. Please, try again."
+msgstr "Votre setup n'a pas pu être créée"
+
+#: Controller/SetupsController.php:227
+msgid "The setup has been deleted."
+msgstr "La setup a correctement été supprimée"
+
+#: Controller/SetupsController.php:229
+msgid "The setup could not be deleted. Please, try again."
+msgstr "La setup n'a pas pu être supprimée. Ré-essayez"
+
+#: Controller/UsersController.php:108
+msgid "Your account has been created, check your email to verify your account"
+msgstr ""
+"Votre compte a bien été créé, merci de consulter vos emails pour l'activer !"
+
+#: Controller/UsersController.php:125
+msgid "The user could not be saved. (Is this address already taken ?)"
+msgstr ""
+"Votre compte n'a pas pu être créé (cette adresse email est peut-être déjà "
+"utilisée...)"
+
+#: Controller/UsersController.php:132;176
+msgid "These passwords do not match. Please try again."
+msgstr "Les mots de passe renseignés ne sont pas identiques"
+
+#: Controller/UsersController.php:200
+msgid "The user has been updated."
+msgstr "Le compte a été mis à jour"
+
+#: Controller/UsersController.php:205
+msgid "The user could not be updated. Please, try again."
+msgstr "Le compte n'a pas pu être mis à jour. Ré-essayez"
+
+#: Controller/UsersController.php:230
+msgid "The user has been deleted."
+msgstr "Le compte a bien été supprimé"
+
+#: Controller/UsersController.php:232
+msgid "The user could not be deleted. Please, try again."
+msgstr "Le compte n'a pas pu être supprimé. Ré-essayez"
+
+#: Controller/UsersController.php:238
+msgid "You just CANNOT delete the admin user of the website..."
+msgstr "Vous n'êtes pas autorisé(e) à supprimer le master-compte de ce site..."
+
+#: Controller/UsersController.php:256
+msgid "You are already logged in."
+msgstr "Vous êtes déjà connecté(e), nous vous avons redirigé(e)"
+
+#: Controller/UsersController.php:266
+msgid "Your account is not verified, check your emails !"
+msgstr ""
+"Votre compte n'a pas encore été activé ! Vérifiez vos mails, ou veuillez "
+"contacter un administrateur"
+
+#: Controller/UsersController.php:273
+msgid "You are successfully logged in !"
+msgstr "Vous êtes maintenant connecté(e) !"
+
+#: Controller/UsersController.php:280
+msgid "Username or password is incorrect"
+msgstr "Ces identifiants sont invalides"
+
+#: Controller/UsersController.php:289
+msgid "You are now logged out, see you soon !"
+msgstr "Vous êtes maintenant déconnecté(e), à bientôt !"
+
+#: Controller/UsersController.php:295
+msgid "You can't logout because you're not connected."
+msgstr "Vous êtes déjà déconnecté(e), nous vous avons redirigé(e)"
+
+#: Controller/UsersController.php:345
+msgid "An email has been sent to this email address !"
+msgstr "Un email a été envoyé à cette adresse !"
+
+#: Controller/UsersController.php:351;365
+msgid "Internal error, please try again."
+msgstr "Erreur interne. Ré-essayez, ou veuillez contacter un administrateur"
+
+#: Controller/UsersController.php:358
+msgid ""
+"This email address does not exist in our database. Are you sure you that you "
+"have an account ?"
+msgstr ""
+"Cette adresse mail n'existe pas dans notre base de données. Avez-vous déjà "
+"créé un compte ?"
+
+#: Controller/UsersController.php:386
+msgid "Your account is now activated, you're now logged in ;)"
+msgstr "Votre compte vient d'être activé, vous êtes maintenant connecté(e) ;)"
+
+#: Controller/UsersController.php:392
+msgid "Your token is invalid"
+msgstr "Votre jeton est invalide"
+
+#: Controller/UsersController.php:399
+msgid "This request is invalid"
+msgstr "Cette requête est invalide"
+
+#: Model/Table/ResourcesTable.php:159;220;276
+msgid "Internal error, we couldn't save your setup."
+msgstr "Erreur interne, nous n'avons pas pu enregistrer votre setup"
+
+#: Model/Table/ResourcesTable.php:164;191;225;281
+msgid ""
+"One of your resources could not be saved... Please contact an administrator."
+msgstr ""
+"Une de vos ressources n'a pas pu être enregistrée. Veuillez contacter un "
+"administrateur"
+
+#: Model/Table/ResourcesTable.php:171
+msgid ""
+"One of the products you chose does not validate our rules... Please contact "
+"an administrator."
+msgstr ""
+"Un de vos produits ne valident pas nos exigences. Veuillez contacter un "
+"administrateur"
+
+#: Model/Table/ResourcesTable.php:186
+msgid ""
+"An internal error occurred while saving your images... Please contact an "
+"administrator."
+msgstr ""
+"Une erreur interne est survenue pendant que nous sauvegardions vos images. "
+"Veuillez contacter un administrateur"
+
+#: Model/Table/ResourcesTable.php:204
+msgid ""
+"One of your image could not be resized... Please contact an administrator."
+msgstr ""
+"Une de vos images n'a pas pu être redimensionnée. Veuillez contacter un "
+"administrateur"
+
+#: Model/Table/ResourcesTable.php:237
+msgid "One of the file you uploaded could not be saved."
+msgstr ""
+"Un des fichiers que vous avez chargé n'a pas pu être enregistré. Veuillez "
+"contacter un administrateur"
+
+#: Model/Table/ResourcesTable.php:243
+msgid ""
+"One of the files you uploaded does not validate our rules... Please contact "
+"an administrator."
+msgstr ""
+"Un des fichiers que vous avez chargé ne valide pas nos exigences. Veuillez "
+"contacter un administrateur"
+
+#: Model/Table/ResourcesTable.php:288;294
+msgid ""
+"The video link you chose does not validate our rules... Please contact an "
+"administrator."
+msgstr ""
+"Votre lien vidéo ne valide pas nos exigences. Veuillez contacter un "
+"administrateur"
+
+#: Model/Table/UsersTable.php:141
+msgid ""
+"An internal error occurred while creating your profile picture. Please "
+"contact an administrator."
+msgstr ""
+"Une erreur interne est survenue pendant que nous créions votre image de "
+"profil. Veuillez contacter un administrateur"
+
+#: Model/Table/UsersTable.php:147
+msgid ""
+"Your default picture could not be set... Please contact an administrator."
+msgstr ""
+"Votre image de profil n'a pas pu être mise en place. Veuillez contacter un "
+"administrateur"
+
+#: Model/Table/UsersTable.php:160
+msgid ""
+"An internal error occurred while saving your profile picture. Please contact "
+"an administrator."
+msgstr ""
+"Une erreur interne est survenue pendant que nous enregistrions votre image "
+"de profil. Veuillez contacter un administrateur"
+
+#: Model/Table/UsersTable.php:188
+msgid "Your profile picture could not be saved."
+msgstr "Votre image de profil n'a pas pu être enregistrée"
+
+#: Model/Table/UsersTable.php:194
+msgid ""
+"The file you uploaded does not validate our rules... Please contact an "
+"administrator."
+msgstr ""
+"Le fichier que vous avez sélectionné ne valide pas nos exigences. Veuillez "
+"contacter un administrateur"
+
+#: Template/Comments/index.ctp:9;24 Template/Resources/index.ctp:8;24
+#: Template/Setups/index.ctp:9;26 Template/Users/index.ctp:10;25
+msgid "Actions"
+msgstr "Actions"
+
+#: Template/Comments/index.ctp:10 Template/Resources/index.ctp:10
+#: Template/Setups/index.ctp:10
+msgid "List Users"
+msgstr "Liste des utilisateurs"
+
+#: Template/Comments/index.ctp:11 Template/Resources/index.ctp:9
+#: Template/Users/index.ctp:13
+msgid "List Setups"
+msgstr "Liste des setups"
+
+#: Template/Comments/index.ctp:15
+msgid "Comments"
+msgstr "Commentaires"
+
+#: Template/Comments/index.ctp:36 Template/Setups/index.ctp:39
+#: Template/Users/index.ctp:36
+msgid "View"
+msgstr "Voir"
+
+#: Template/Comments/index.ctp:37 Template/Resources/index.ctp:37
+#: Template/Setups/index.ctp:40 Template/Users/index.ctp:37
+msgid "Delete"
+msgstr "Supprimer"
+
+#: Template/Comments/index.ctp:37
+msgid "Are you sure you want to delete this comment ?"
+msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer ce commentaire ?"
+
+#: Template/Comments/index.ctp:45 Template/Resources/index.ctp:45
+#: Template/Setups/index.ctp:48 Template/Users/index.ctp:45
+msgid "first"
+msgstr "Première"
+
+#: Template/Comments/index.ctp:46 Template/Resources/index.ctp:46
+#: Template/Setups/index.ctp:49 Template/Users/index.ctp:46
+msgid "previous"
+msgstr "Précédente"
+
+#: Template/Comments/index.ctp:48 Template/Resources/index.ctp:48
+#: Template/Setups/index.ctp:51 Template/Users/index.ctp:48
+msgid "next"
+msgstr "Suivante"
+
+#: Template/Comments/index.ctp:49 Template/Resources/index.ctp:49
+#: Template/Setups/index.ctp:52 Template/Users/index.ctp:49
+msgid "last"
+msgstr "Dernière"
+
+#: Template/Comments/index.ctp:51 Template/Resources/index.ctp:51
+#: Template/Setups/index.ctp:54 Template/Users/index.ctp:51
+msgid ""
+"Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
+"total"
+msgstr ""
+"Page {{page}} sur {{pages}}, présentant {{current}} entrée(s) sur un total "
+"de {{count}}"
+
+#: Template/Layout/default.ctp:96
+msgid "Change my profile picture"
+msgstr "Changer mon image de profil"
+
+#: Template/Layout/default.ctp:108 Template/Users/view.ctp:80
+msgid "Name"
+msgstr "Nom"
+
+#: Template/Layout/default.ctp:109 Template/Users/login.ctp:70
+#: Template/Users/view.ctp:81
+msgid "Email address"
+msgstr "Adresse email"
+
+#: Template/Layout/default.ctp:113 Template/Users/login.ctp:28;47
+#: Template/Users/view.ctp:85
+msgid "Password"
+msgstr "Mot de passe"
+
+#: Template/Layout/default.ctp:114 Template/Users/view.ctp:86
+msgid "Confirm password"
+msgstr "Confirmer le mot de passe"
+
+#: Template/Layout/default.ctp:121;178 Template/Users/view.ctp:96
+msgid "Submit"
+msgstr "Soumettre"
+
+#: Template/Layout/default.ctp:139
+msgid "Title *"
+msgstr "Titre"
+
+#: Template/Layout/default.ctp:140 Template/Setups/view.ctp:63
+msgid "Description"
+msgstr "Description"
+
+#: Template/Layout/default.ctp:147
+msgid "Add featured image *"
+msgstr "Ajouter une image d'en-tête *"
+
+#: Template/Layout/default.ctp:166 Template/Setups/view.ctp:103
+msgid "Video (Youtube, Dailymotion, Twitch, ...)"
+msgstr "Vidéo (Youtube, Dailymotion, Twitch, ...)"
+
+#: Template/Layout/default.ctp:175
+msgid "author"
+msgstr "auteur"
+
+#: Template/Layout/error.ctp:35
+msgid "Error"
+msgstr "Erreur"
+
+#: Template/Layout/error.ctp:43
+msgid "Back"
+msgstr "Retour"
+
+#: Template/Resources/index.ctp:14
+msgid "Resources"
+msgstr "Ressources"
+
+#: Template/Resources/index.ctp:37
+msgid "Are you sure you want to delete this resource ?"
+msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer cette ressource ?"
+
+#: Template/Setups/index.ctp:11 Template/Users/index.ctp:12
+msgid "List Comments"
+msgstr "Liste des commentaires"
+
+#: Template/Setups/index.ctp:12 Template/Users/index.ctp:11
+msgid "List Resources"
+msgstr "Liste des ressources"
+
+#: Template/Setups/index.ctp:16
+msgid "Setups"
+msgstr "Setups"
+
+#: Template/Setups/index.ctp:40
+msgid "Are you sure you want to delete this setup ?"
+msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer cette setup ?"
+
+#: Template/Setups/view.ctp:62
+msgid "Title"
+msgstr "Titre"
+
+#: Template/Setups/view.ctp:125
+msgid "Edit setup"
+msgstr "Éditer cette setup"
+
+#: Template/Setups/view.ctp:128
+msgid "You are going to delete this setup ! Are you sure ?"
+msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer cette setup ?"
+
+#: Template/Setups/view.ctp:220
+msgid "Comment"
+msgstr "Commentaire"
+
+#: Template/Users/index.ctp:17
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: Template/Users/index.ctp:37
+msgid "Are you sure you want to delete this user ?"
+msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer cet utilisateur ?"
+
+#: Template/Users/login.ctp:25;43
+msgid "Email"
+msgstr "Email"
+
+#: Template/Users/login.ctp:31
+msgid "Login"
+msgstr "Se connecter"
+
+#: Template/Users/login.ctp:50
+msgid "Repeat password"
+msgstr "Répéter le mot de passe"
+
+#: Template/Users/login.ctp:54
+msgid "Sign up"
+msgstr "S'enregistrer"
+
+#: Template/Users/login.ctp:73
+msgid "Send"
+msgstr "Soumettre"
+
+#: Template/Users/view.ctp:68
+msgid "Change the profile picture"
+msgstr "Modifier votre image de profil"

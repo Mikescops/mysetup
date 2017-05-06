@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Network\Response;
 use Cake\Event\Event;
+use Cake\I18n\I18n;
 
 /**
  * Application Controller
@@ -70,6 +71,9 @@ class AppController extends Controller
                 'home'
             ]
         ]);
+
+        // Here let's adapt the website language !
+        I18n::locale($this->request->session()->read('Config.language'));
     }
 
     /**
