@@ -217,9 +217,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <fieldset>
                 <?php echo $this->Form->control('content', ['label'=>'', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => 'Nice config\'…','rows' => 10, 'maxLength' => 500]);?>
                 </fieldset>
-                <?= $this->Form->submit(__('Comment'), ['class' => 'float-right']); ?>
+                <?= $this->Form->submit(__('Comment'), ['class' => 'float-right', 'g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy', 'data-callback' => 'YourOnSubmitFn']); ?>
                 <?= $this->Form->end(); ?>
-
             <?php else: ?>
 
                 You must be logged in to comment > <a href="<?= $this->Url->build('/login')?>">Log me in !</a>
