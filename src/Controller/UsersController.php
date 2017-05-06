@@ -270,6 +270,7 @@ class UsersController extends AppController
                 else
                 {
                     $this->Auth->setUser($user);
+                    $this->request->session()->write('Config.language', strtolower($user['preferredStore']). '_' . $user['preferredStore']);
                     $this->Flash->success(__('You are successfully logged in !'));
                     return $this->redirect($this->Auth->redirectUrl());
                 }
