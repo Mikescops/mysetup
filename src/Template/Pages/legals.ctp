@@ -9,16 +9,16 @@ echo $this->Html->meta('description', 'Legal mentions about your personal data, 
 
 <div class="maincontainer">
 
-	<h3>Site Publisher</h3>
+	<h3><?= __('Site Publisher') ?></h3>
 	<p>GEEK MEXICAIN<br>
 	88 boulevard Lahitolle<br>
 	18000 BOURGES<br>
 	contact(at)mysetup.co</p>
 
-	<h3>Head of Publication</h3>
+	<h3><?= __('Head of Publication') ?></h3>
 	<p>
-		Corentin Mors - Co-founder<br />
-		Samuel Forestier - Co-founder
+		Corentin Mors - <?= __('Co-founder') ?><br />
+		Samuel Forestier - <?= __('Co-founder') ?>
 	</p>
 
 	<h2><?= __('Personal Data') ?></h2>
