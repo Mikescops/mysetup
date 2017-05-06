@@ -3,8 +3,8 @@
   * @var \App\View\AppView $this
   */
 
-$this->assign('title', 'Setups by '.$user->name.' | mySetup.co');
-echo $this->Html->meta('description', 'All the setups shared by '. $user->name, ['block' => true]);
+$this->assign('title', __('Setups by ') . $user->name . ' | mySetup.co');
+echo $this->Html->meta('description', __('All the setups shared by ') . $user->name, ['block' => true]);
 ?>
 
 <div class="maincontainer">
@@ -13,9 +13,9 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
 
             <img class="user-profile" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$user->id.'.png'); ?>">
 
-            <h3 class="user-profile"><?php if($user->name){echo $user->name;}else{echo "Unknown user";} ?>'s setups <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
+            <h3 class="user-profile"><?php if($user->name){echo $user->name;}else{echo __("Unknown user");} ?><?= __('\'s setups') ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
 
-            <?php if($authUser['id'] == $user->id and !$user->name){echo "You didn't set your nickname ! Please click the top right menu and edit your profile.";} ?>
+            <?php if($authUser['id'] == $user->id and !$user->name){echo __("You didn't set your nickname ! Please click the top right menu and edit your profile.");} ?>
 
             <?php  if (!empty($user->setups)): $i = 0; foreach ($user->setups as $setup): ?>
             <div class="fullitem">
@@ -96,7 +96,7 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                     <?= $this->Form->end(); ?>
 
-                    <?= $this->Form->postLink('Delete this account', array('controller' => 'Users','action' => 'delete', $user['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
+                    <?= $this->Form->postLink(__('Delete this account'), array('controller' => 'Users','action' => 'delete', $user['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
                 </div>
 
             <?php endif ?>

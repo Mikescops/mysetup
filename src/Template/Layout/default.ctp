@@ -140,7 +140,7 @@
                                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                                     <?= $this->Form->end(); ?>
 
-                                    <?= $this->Form->postLink('Delete my account', array('controller' => 'Users','action' => 'delete', $authUser['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
+                                    <?= $this->Form->postLink(__('Delete my account'), array('controller' => 'Users','action' => 'delete', $authUser['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
                                 </div>
 
                             <?php else: ?>
@@ -158,7 +158,7 @@
                             echo $this->Form->control('title', ['label' => __('Title *'), 'required' => true, 'id' => 'title', 'maxLength' => 48]);
                             echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                         ?>
-                        <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>','add_setup');" placeholder="Search for components..">
+                        <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>','add_setup');" placeholder="<?= __('Search for components...') ?>">
                         <ul class="search_results add_setup"></ul>
                         <ul class="basket_items add_setup"></ul>
                         <br />
@@ -187,9 +187,9 @@
                             // A hidden entry to gather the item resources
                             echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);
                         ?>
-                        <a class="is_author"><i class="fa fa-square-o"></i> <?= ("It's not my setup !") ?></a>
+                        <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
                         <span class="float-right">* <?= __('required fields') ?></span>
-                        <label for="author" class="setup_author"><?= ("Setup's owner") ?></label>
+                        <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
                         <?php
                             echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => false]);
                         ?>

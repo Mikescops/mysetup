@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-05-06 08:47+0000\n"
+"POT-Creation-Date: 2017-05-06 15:24+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -62,71 +62,71 @@ msgstr ""
 msgid "These passwords do not match. Please try again."
 msgstr ""
 
-#: Controller/UsersController.php:200
+#: Controller/UsersController.php:203
 msgid "The user has been updated."
 msgstr ""
 
-#: Controller/UsersController.php:205
+#: Controller/UsersController.php:208
 msgid "The user could not be updated. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:230
+#: Controller/UsersController.php:233
 msgid "The user has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:232
+#: Controller/UsersController.php:235
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:238
+#: Controller/UsersController.php:241
 msgid "You just CANNOT delete the admin user of the website..."
 msgstr ""
 
-#: Controller/UsersController.php:256
+#: Controller/UsersController.php:259
 msgid "You are already logged in."
 msgstr ""
 
-#: Controller/UsersController.php:266
+#: Controller/UsersController.php:269
 msgid "Your account is not verified, check your emails !"
 msgstr ""
 
-#: Controller/UsersController.php:273
+#: Controller/UsersController.php:277
 msgid "You are successfully logged in !"
 msgstr ""
 
-#: Controller/UsersController.php:280
+#: Controller/UsersController.php:284
 msgid "Username or password is incorrect"
 msgstr ""
 
-#: Controller/UsersController.php:289
+#: Controller/UsersController.php:293
 msgid "You are now logged out, see you soon !"
 msgstr ""
 
-#: Controller/UsersController.php:295
+#: Controller/UsersController.php:299
 msgid "You can't logout because you're not connected."
 msgstr ""
 
-#: Controller/UsersController.php:345
+#: Controller/UsersController.php:349
 msgid "An email has been sent to this email address !"
 msgstr ""
 
-#: Controller/UsersController.php:351;365
+#: Controller/UsersController.php:355;369
 msgid "Internal error, please try again."
 msgstr ""
 
-#: Controller/UsersController.php:358
+#: Controller/UsersController.php:362
 msgid "This email address does not exist in our database. Are you sure you that you have an account ?"
 msgstr ""
 
-#: Controller/UsersController.php:386
+#: Controller/UsersController.php:390
 msgid "Your account is now activated, you're now logged in ;)"
 msgstr ""
 
-#: Controller/UsersController.php:392
+#: Controller/UsersController.php:396
 msgid "Your token is invalid"
 msgstr ""
 
-#: Controller/UsersController.php:399
+#: Controller/UsersController.php:403
 msgid "This request is invalid"
 msgstr ""
 
@@ -214,6 +214,7 @@ msgstr ""
 #: Template/Comments/index.ctp:37
 #: Template/Resources/index.ctp:37
 #: Template/Setups/index.ctp:40
+#: Template/Setups/view.ctp:205
 #: Template/Users/index.ctp:37
 msgid "Delete"
 msgstr ""
@@ -257,57 +258,168 @@ msgstr ""
 msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
 msgstr ""
 
+#: Template/Layout/default.ctp:74;211
+msgid "Add Setup"
+msgstr ""
+
+#: Template/Layout/default.ctp:80;216
+msgid "Setups index"
+msgstr ""
+
+#: Template/Layout/default.ctp:81;217
+msgid "Users index"
+msgstr ""
+
+#: Template/Layout/default.ctp:82;218
+msgid "Resources index"
+msgstr ""
+
+#: Template/Layout/default.ctp:90;225
+msgid "Most recent"
+msgstr ""
+
+#: Template/Layout/default.ctp:91;226
+#: Template/Pages/popular.ctp:65
+msgid "Popular this week"
+msgstr ""
+
 #: Template/Layout/default.ctp:96
+msgid "Profile"
+msgstr ""
+
+#: Template/Layout/default.ctp:98;232
+msgid "My Setups"
+msgstr ""
+
+#: Template/Layout/default.ctp:99;233
+msgid "Edit Profile"
+msgstr ""
+
+#: Template/Layout/default.ctp:100;234
+msgid "Logout"
+msgstr ""
+
+#: Template/Layout/default.ctp:106
+#: Template/Users/view.ctp:59
+msgid "Change only what you want !"
+msgstr ""
+
+#: Template/Layout/default.ctp:115
 msgid "Change my profile picture"
 msgstr ""
 
-#: Template/Layout/default.ctp:108
+#: Template/Layout/default.ctp:127
 #: Template/Users/view.ctp:80
 msgid "Name"
 msgstr ""
 
-#: Template/Layout/default.ctp:109
+#: Template/Layout/default.ctp:128
 #: Template/Users/login.ctp:70
 #: Template/Users/view.ctp:81
 msgid "Email address"
 msgstr ""
 
-#: Template/Layout/default.ctp:113
+#: Template/Layout/default.ctp:132
 #: Template/Users/login.ctp:28;47
 #: Template/Users/view.ctp:85
 msgid "Password"
 msgstr ""
 
-#: Template/Layout/default.ctp:114
+#: Template/Layout/default.ctp:133
 #: Template/Users/view.ctp:86
 msgid "Confirm password"
 msgstr ""
 
-#: Template/Layout/default.ctp:121;178
+#: Template/Layout/default.ctp:135
+msgid "Change my password"
+msgstr ""
+
+#: Template/Layout/default.ctp:140;197
 #: Template/Users/view.ctp:96
 msgid "Submit"
 msgstr ""
 
-#: Template/Layout/default.ctp:139
+#: Template/Layout/default.ctp:143
+msgid "Delete my account"
+msgstr ""
+
+#: Template/Layout/default.ctp:147
+msgid "Sign In / Up"
+msgstr ""
+
+#: Template/Layout/default.ctp:158
 msgid "Title *"
 msgstr ""
 
-#: Template/Layout/default.ctp:140
+#: Template/Layout/default.ctp:159
 #: Template/Setups/view.ctp:63
 msgid "Description"
 msgstr ""
 
-#: Template/Layout/default.ctp:147
-msgid "Add featured image *"
+#: Template/Layout/default.ctp:161
+#: Template/Setups/view.ctp:65
+msgid "Search for components..."
 msgstr ""
 
 #: Template/Layout/default.ctp:166
+msgid "Add featured image *"
+msgstr ""
+
+#: Template/Layout/default.ctp:185
 #: Template/Setups/view.ctp:103
 msgid "Video (Youtube, Dailymotion, Twitch, ...)"
 msgstr ""
 
-#: Template/Layout/default.ctp:175
+#: Template/Layout/default.ctp:190
+#: Template/Setups/view.ctp:113
+msgid "It's not my setup !"
+msgstr ""
+
+#: Template/Layout/default.ctp:191
+msgid "required fields"
+msgstr ""
+
+#: Template/Layout/default.ctp:192
+#: Template/Setups/view.ctp:114
+msgid "Setup's owner"
+msgstr ""
+
+#: Template/Layout/default.ctp:194
 msgid "author"
+msgstr ""
+
+#: Template/Layout/default.ctp:237
+#: Template/Users/login.ctp:11;31
+msgid "Login"
+msgstr ""
+
+#: Template/Layout/default.ctp:258
+msgid "Partners"
+msgstr ""
+
+#: Template/Layout/default.ctp:266
+#: Template/Pages/team.ctp:12
+msgid "About us"
+msgstr ""
+
+#: Template/Layout/default.ctp:268
+msgid "Our stories"
+msgstr ""
+
+#: Template/Layout/default.ctp:269
+msgid "Our team"
+msgstr ""
+
+#: Template/Layout/default.ctp:270
+msgid "Legal Mentions"
+msgstr ""
+
+#: Template/Layout/default.ctp:274
+msgid "Social"
+msgstr ""
+
+#: Template/Layout/default.ctp:283
+msgid "All rights reserved"
 msgstr ""
 
 #: Template/Layout/error.ctp:35
@@ -316,6 +428,70 @@ msgstr ""
 
 #: Template/Layout/error.ctp:43
 msgid "Back"
+msgstr ""
+
+#: Template/Pages/home.ctp:60
+#: Template/Setups/search.ctp:28
+msgid "Search a component... Find a cool setup !"
+msgstr ""
+
+#: Template/Pages/home.ctp:136
+msgid "Need more ? Click to see the latest !"
+msgstr ""
+
+#: Template/Pages/home.ctp:147
+#: Template/Pages/popular.ctp:108
+#: Template/Pages/recent.ctp:111
+#: Template/Users/view.ctp:105
+msgid "Tweets by mysetup_co"
+msgstr ""
+
+#: Template/Pages/legals.ctp:12
+msgid "Site Publisher"
+msgstr ""
+
+#: Template/Pages/legals.ctp:18
+msgid "Head of Publication"
+msgstr ""
+
+#: Template/Pages/legals.ctp:20;21
+msgid "Co-founder"
+msgstr ""
+
+#: Template/Pages/legals.ctp:24
+msgid "Personal Data"
+msgstr ""
+
+#: Template/Pages/legals.ctp:26
+msgid "Your personal data may be collected when browsing this website. Emails sent to mysetup.co and the email addresses used to send information may also be stored. Pursuant to France’s Data Protection Act modified on 6 January 1978, you have the right to access and rectify your personal data. You also have the right to object the use of this information provided you have legitimate reason. You can exercise this right and obtain information concerning your personal data by writing to the Head of Publication."
+msgstr ""
+
+#: Template/Pages/legals.ctp:28
+msgid "Use of Cookies"
+msgstr ""
+
+#: Template/Pages/legals.ctp:30
+msgid "The user is informed that during his visits to the site, a cookie can be installed automatically on his navigator software. A cookie is a file containing data that record information relating to the navigation of the user on the site but which do not permit to identify it."
+msgstr ""
+
+#: Template/Pages/legals.ctp:33
+msgid "Credits"
+msgstr ""
+
+#: Template/Pages/legals.ctp:35
+msgid "© 2017 mysetup.co – All rights reserved. Total or partial production or imitation of said documents without the express prior written consent of mysetup.co is strictly prohibited and constitutes a punishable violation under France’s Intellectual Property Code. All brands and trademarks on mysetup.co belongs to their respective owners."
+msgstr ""
+
+#: Template/Pages/recent.ctp:63
+msgid "Latest setups"
+msgstr ""
+
+#: Template/Pages/team.ctp:14
+msgid "A project made by Samuel Forestier and Corentin Mors."
+msgstr ""
+
+#: Template/Pages/team.ctp:22
+msgid "Trésorier et rédacteur chez Geek Mexicain, je tiens un blog personnel depuis maintenant quelques années qui, de plus, recense mes activités de développement sur des projets. Étudiant INSA également !"
 msgstr ""
 
 #: Template/Resources/index.ctp:14
@@ -344,6 +520,34 @@ msgstr ""
 msgid "Are you sure you want to delete this setup ?"
 msgstr ""
 
+#: Template/Setups/search.ctp:6
+msgid "Search for \""
+msgstr ""
+
+#: Template/Setups/search.ctp:32
+msgid "Search results for"
+msgstr ""
+
+#: Template/Setups/view.ctp:33
+msgid "Shared by"
+msgstr ""
+
+#: Template/Setups/view.ctp:52
+msgid "Edit"
+msgstr ""
+
+#: Template/Setups/view.ctp:53
+msgid "Embed it in Twitch"
+msgstr ""
+
+#: Template/Setups/view.ctp:57
+msgid "your"
+msgstr ""
+
+#: Template/Setups/view.ctp:57
+msgid "this"
+msgstr ""
+
 #: Template/Setups/view.ctp:62
 msgid "Title"
 msgstr ""
@@ -353,11 +557,51 @@ msgid "Edit setup"
 msgstr ""
 
 #: Template/Setups/view.ctp:128
+msgid "Delete this setup"
+msgstr ""
+
+#: Template/Setups/view.ctp:128
 msgid "You are going to delete this setup ! Are you sure ?"
+msgstr ""
+
+#: Template/Setups/view.ctp:132
+msgid "How to embed your setup in Twitch ?"
+msgstr ""
+
+#: Template/Setups/view.ctp:133
+msgid "Go to your Twitch channel and toggle panel edition."
+msgstr ""
+
+#: Template/Setups/view.ctp:135
+msgid "Copy the following url in the link field"
+msgstr ""
+
+#: Template/Setups/view.ctp:137
+msgid "You can even configure your Twitch Chat bot to display this link !"
+msgstr ""
+
+#: Template/Setups/view.ctp:167
+msgid "Watch it in video"
+msgstr ""
+
+#: Template/Setups/view.ctp:189
+msgid "Wanna share your opinion ?"
+msgstr ""
+
+#: Template/Setups/view.ctp:218
+msgid "Nice config'…"
 msgstr ""
 
 #: Template/Setups/view.ctp:220
 msgid "Comment"
+msgstr ""
+
+#: Template/Setups/view.ctp:225
+msgid "You must be logged in to comment"
+msgstr ""
+
+#: Template/Setups/view.ctp:225
+msgid "Log me in !"
 msgstr ""
 
 #: Template/Users/index.ctp:17
@@ -368,16 +612,24 @@ msgstr ""
 msgid "Are you sure you want to delete this user ?"
 msgstr ""
 
+#: Template/Users/login.ctp:14
+msgid "Register"
+msgstr ""
+
+#: Template/Users/login.ctp:17
+msgid "Reset Password"
+msgstr ""
+
 #: Template/Users/login.ctp:25;43
 msgid "Email"
 msgstr ""
 
-#: Template/Users/login.ctp:31
-msgid "Login"
-msgstr ""
-
 #: Template/Users/login.ctp:50
 msgid "Repeat password"
+msgstr ""
+
+#: Template/Users/login.ctp:51
+msgid "Password should be at least 8 characters."
 msgstr ""
 
 #: Template/Users/login.ctp:54
@@ -388,7 +640,43 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
+#: Template/Users/view.ctp:6
+msgid "Setups by "
+msgstr ""
+
+#: Template/Users/view.ctp:7
+msgid "All the setups shared by "
+msgstr ""
+
+#: Template/Users/view.ctp:16
+msgid "Unknown user"
+msgstr ""
+
+#: Template/Users/view.ctp:16
+msgid "'s setups"
+msgstr ""
+
+#: Template/Users/view.ctp:18
+msgid "You didn't set your nickname ! Please click the top right menu and edit your profile."
+msgstr ""
+
+#: Template/Users/view.ctp:45
+msgid "There is no setup here yet..."
+msgstr ""
+
+#: Template/Users/view.ctp:54
+msgid "Edit this user"
+msgstr ""
+
 #: Template/Users/view.ctp:68
 msgid "Change the profile picture"
+msgstr ""
+
+#: Template/Users/view.ctp:88
+msgid "Change the user password"
+msgstr ""
+
+#: Template/Users/view.ctp:99
+msgid "Delete this account"
 msgstr ""
 
