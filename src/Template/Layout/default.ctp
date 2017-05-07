@@ -94,7 +94,7 @@
                         <li>
                             <?php if($authUser): ?>
                                 <a><?= __('Profile') ?> <i class="fa fa-caret-down"></i></a>
-                                <ul>
+                                <ul style="right: 0px;left: auto;width:150px">
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
                                     <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
