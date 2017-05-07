@@ -57,7 +57,7 @@ curl_close($CURL);
 
       <div class="large_search">
         
-        <input type="text" id="keyword-search" placeholder="Search a component... Find a cool setup !" /> 
+        <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" /> 
         <?= $this->Html->scriptBlock(' let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`setups/search?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
 
       </div>
@@ -133,7 +133,7 @@ curl_close($CURL);
 
             <?php if (++$i == 8) break; endforeach ?>
 
-          <a class="button float-right" href="<?= $this->Url->build('/pages/recent'); ?>">Need more ? Click to see the latest !</a>
+          <a class="button home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('Need more ? Click to see the latest !') ?></a>
         </div>
         <div class="column column-25 sidebar">
 
@@ -144,7 +144,7 @@ curl_close($CURL);
                 <a href="mailto:support@mysetup.co" title="Report a bug !"><i class="fa fa-bug fa-2x"></i></a>
             </div>
 
-            <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co">Tweets by mysetup_co</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
         </div>
     </div>

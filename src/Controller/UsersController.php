@@ -197,6 +197,9 @@ class UsersController extends AppController
                     $this->Users->saveProfilePicture($data['picture'][0], $user, $this->Flash);
                 }
 
+                // The user may have changed its preferred store / language, let's update this into the server's session
+                $this->request->session()->write('Config.language', strtolower($user['preferredStore']). '_' . $user['preferredStore']);
+
                 $this->Flash->success(__('The user has been updated.'));
             }
 
@@ -270,6 +273,7 @@ class UsersController extends AppController
                 else
                 {
                     $this->Auth->setUser($user);
+                    $this->request->session()->write('Config.language', strtolower($user['preferredStore']). '_' . $user['preferredStore']);
                     $this->Flash->success(__('You are successfully logged in !'));
                     return $this->redirect($this->Auth->redirectUrl());
                 }

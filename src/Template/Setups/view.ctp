@@ -30,7 +30,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 </a>
                 <h3><?= $setup->title ?></h3>
                 <p>
-                    Shared by <?php if($additionalData['owner']['name']){echo $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]);}else{echo "Unknown";} ?><?php if($additionalData['owner']['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($additionalData['owner']['name'] != $setup->author and $setup->author !== ''): echo ", created by " . $setup->author ; endif?>
+                    <?= __('Shared by') ?> <?php if($additionalData['owner']['name']){echo $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]);}else{echo "Unknown";} ?><?php if($additionalData['owner']['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($additionalData['owner']['name'] != $setup->author and $setup->author !== ''): echo ", created by " . $setup->author ; endif?>
                 </p>
             </div>
             <a class="labeled_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('You must be login to like !');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
@@ -49,12 +49,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 <?php if($authUser['id'] == $setup->user_id or $authUser['admin']): ?>
     <div class="edit_panel">
-        <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> Edit <?php echo ($authUser['id'] == $setup->user_id ? "your" : "this") ?> setup</a></div>
-        <div><a href="#embed_twitch_modal" data-lity><i class="fa fa-twitch"></i> Embed it in Twitch</a></div>
+        <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> <?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? "your" : "this") ?> setup</a></div>
+        <div><a href="#embed_twitch_modal" data-lity><i class="fa fa-twitch"></i> <?= __('Embed it in Twitch') ?></a></div>
     </div>
 
     <div id="edit_setup_modal" class="lity-hide">
-        <h4>Edit <?php echo ($authUser['id'] == $setup->user_id ? "your" : "this") ?> setup</h4>
+        <h4>Edit <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup</h4>
 
         <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'edit', $setup->id]]); ?>
         <fieldset style="border:0;">
@@ -62,7 +62,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
                 echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500, 'default' => $setup->description]);
             ?>
-            <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="Search for components..">
+            <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
             <ul class="search_results edit_setup"></ul>
             <ul class="basket_items edit_setup">
                 <?php foreach ($products as $item): ?>
@@ -110,8 +110,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 // A hidden entry to gather the item resources
                 echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden', 'default' => $item_field]);
             ?>
-            <a class="is_author"><i class="fa fa-square-o"></i> It's not my setup !</a>
-            <label for="author" class="setup_author">Setup's owner</label>
+            <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
+            <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
             <?php
                 echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
             ?>
@@ -125,16 +125,16 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <?= $this->Form->submit(__('Edit setup'), ['class' => 'float-right']); ?>
         <?= $this->Form->end(); ?>
 
-        <?= $this->Form->postLink('Delete this setup', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?')]) ?>
+        <?= $this->Form->postLink(__('Delete this setup'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?')]) ?>
     </div>
 
     <div id="embed_twitch_modal" class="lity-hide">
-        <h4>How to embed your setup in Twitch ?</h4>
-        <p>Go to your Twitch channel and toggle panel edition.</p>
+        <h4><?= __('How to embed your setup in Twitch ?') ?></h4>
+        <p><?= __('Go to your Twitch channel and toggle panel edition.') ?></p>
         <?= $this->Html->image('howto_twitch.png', array('alt' => 'Twitch Panel Edition')) ?> <br>
-        <p>Copy the following url in the link field :</p>
+        <p><?= __('Copy the following url in the link field') ?> :</p>
         <pre><code><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title), true)?></code></pre>
-        <p>You can even configure your Twitch Chat bot to display this link !</p>
+        <p><?= __('You can even configure your Twitch Chat bot to display this link !') ?></p>
     </div>
 <?php endif ?>
 
@@ -164,7 +164,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div id="social-networks"></div></br>
 
             <?php if(!empty($video->src)): ?>
-                <a class="button item-youtube" href="<?= $video->src ?>" data-lity>Watch it in video</a>
+                <a class="button item-youtube" href="<?= $video->src ?>" data-lity><?= __('Watch it in video') ?></a>
             <?php endif?>
         </div>
     </div>
@@ -186,7 +186,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     <div class="row comment-section">
         
         <div class="column column-50 column-offset-25">
-            <h4>Wanna share your opinion ?</h4>
+            <h4><?= __('Wanna share your opinion ?') ?></h4>
 
             <section class="comments">
             <?php if (!empty($setup->comments)): ?>
@@ -202,7 +202,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                         </div>
                         <p class="attribution">by <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($additionalData[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
 
-                        <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink('Delete', array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are you sure ?')); endif ?>
+                        <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are you sure ?')); endif ?>
                     </div>
                 </article>
 
@@ -215,14 +215,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                 <?= $this->Form->create($newComment, ['type' => 'file', 'url' => ['controller' => 'Comments', 'action' => 'add', $setup->id]]); ?>
                 <fieldset>
-                <?php echo $this->Form->control('content', ['label'=>'', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => 'Nice config\'…','rows' => 10, 'maxLength' => 500]);?>
+                <?php echo $this->Form->control('content', ['label'=>'', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'),'rows' => 10, 'maxLength' => 500]);?>
                 </fieldset>
                 <?= $this->Form->submit(__('Comment'), ['class' => 'float-right']); ?>
                 <?= $this->Form->end(); ?>
 
             <?php else: ?>
 
-                You must be logged in to comment > <a href="<?= $this->Url->build('/login')?>">Log me in !</a>
+                <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build('/login')?>"><?= __('Log me in !') ?></a>
 
             <?php endif ?>
         </div>

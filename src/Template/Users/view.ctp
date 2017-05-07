@@ -3,8 +3,8 @@
   * @var \App\View\AppView $this
   */
 
-$this->assign('title', 'Setups by '.$user->name.' | mySetup.co');
-echo $this->Html->meta('description', 'All the setups shared by '. $user->name, ['block' => true]);
+$this->assign('title', __('Setups by ') . $user->name . ' | mySetup.co');
+echo $this->Html->meta('description', __('All the setups shared by ') . $user->name, ['block' => true]);
 ?>
 
 <div class="maincontainer">
@@ -13,9 +13,9 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
 
             <img class="user-profile" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$user->id.'.png'); ?>">
 
-            <h3 class="user-profile"><?php if($user->name){echo $user->name;}else{echo "Unknown user";} ?>'s setups <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
+            <h3 class="user-profile"><?php if($user->name){echo $user->name;}else{echo __("Unknown user");} ?><?= __('\'s setups') ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
 
-            <?php if($authUser['id'] == $user->id and !$user->name){echo "You didn't set your nickname ! Please click the top right menu and edit your profile.";} ?>
+            <?php if($authUser['id'] == $user->id and !$user->name){echo __("You didn't set your nickname ! Please click the top right menu and edit your profile.");} ?>
 
             <?php  if (!empty($user->setups)): $i = 0; foreach ($user->setups as $setup): ?>
             <div class="fullitem">
@@ -42,7 +42,7 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
             </div>
             <?php $i++; endforeach; else: ?>
 
-            There is no setup here yet...
+            <?= __('There is no setup here yet...') ?>
 
             <?php endif ?>
 
@@ -51,12 +51,12 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
 
             <?php if($authUser['admin']): ?>
 
-                <a class="button" href="#edit_user_admin" data-lity>Edit this user</a>
+                <a class="button" href="#edit_user_admin" data-lity><?= __('Edit this user') ?></a>
 
                 <div id="edit_user_admin" class="lity-hide">
                     <?= $this->Form->create($user, ['type' => 'file', 'url' => ['controller' => 'Users', 'action' => 'edit', $user->id]]); ?>
                     <fieldset style="border:0;">
-                    <h4>Change only what you want !</h4>
+                    <h4><?= __('Change only what you want !') ?></h4>
                     <div class="row">
                     <div class="column column-25">
                     <div class="profile-container">
@@ -85,7 +85,7 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
                             echo $this->Form->control('secret', ['pattern' => '.{8,}', 'type' => 'password', 'placeholder' => __("Password"), 'class' => 'pwd_field', 'label' => '']);
                             echo $this->Form->control('secret2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
                         ?>
-                        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> Change the user password</a>
+                        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> <?= __('Change the user password') ?></a>
                         <?php
                             echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => 'User verified', 'default' => $user['verified'], 'required' => false]);
                         ?>
@@ -96,13 +96,13 @@ echo $this->Html->meta('description', 'All the setups shared by '. $user->name, 
                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                     <?= $this->Form->end(); ?>
 
-                    <?= $this->Form->postLink('Delete this account', array('controller' => 'Users','action' => 'delete', $user['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
+                    <?= $this->Form->postLink(__('Delete this account'), array('controller' => 'Users','action' => 'delete', $user['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
                 </div>
 
             <?php endif ?>
 
             <br><br>
-            <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co">Tweets by mysetup_co</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>
 </div>

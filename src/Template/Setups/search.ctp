@@ -3,7 +3,7 @@
   * @var \App\View\AppView $this
   */
 
-$this->assign('title', 'Search for "'. $_GET["q"] .'" | mySetup.co');
+$this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
 ?>
 
 <div class="maincontainer">
@@ -25,11 +25,11 @@ $this->assign('title', 'Search for "'. $_GET["q"] .'" | mySetup.co');
 			?>
 
 			<div class="large_search">
-				<input type="text" id="keyword-search" placeholder="Search a component... Find a cool setup !" /> 
+				<input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" /> 
 				<?= $this->Html->scriptBlock('let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
 			</div>
 
-			<h3>Search results for "<?= $_GET["q"] ?>" :</h3>
+			<h3><?= __('Search results for') ?> "<?= $_GET["q"] ?>" :</h3>
 
 			<?php foreach ($setups as $setup): ?>
 

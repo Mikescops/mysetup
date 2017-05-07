@@ -138,6 +138,14 @@ footer a{
 	-moz-box-shadow: 0 0 15px rgba(0,0,0,.55);
 	-webkit-box-shadow: 0 0 15px rgba(0,0,0,.55);
 }
+
+.home_more{
+	max-width: 100%;
+	white-space: normal;
+	height: auto;
+}
+
+
 /* Search Bar */
 .large_search{
 	margin: 45px 0;
