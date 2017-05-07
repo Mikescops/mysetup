@@ -123,7 +123,8 @@ class AppController extends Controller
             'gallery1',
             'gallery2',
             'gallery3',
-            'gallery4'
+            'gallery4',
+            'g-recaptcha-response'
         ]);
     }
 

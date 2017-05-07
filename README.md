@@ -30,3 +30,5 @@ In order to deploy this website on your web server:
 * Will be 'administrator' the users having a `verified` value equal to `125`, and the account with an email address as `admin@admin.admin` (which cannot be verified...).
 
 * During development, you may get an error into the console: `TypeError: a.result is undefined`. Don't bother, this is due to the JS social module.
+
+* During development, you won't be able to add a comment to a setup (Google's invisible CAPTCHA checks the domain name environment).

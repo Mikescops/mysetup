@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Network\Http\Client;
 
 /**
  * Comments Controller
@@ -36,21 +37,44 @@ class CommentsController extends AppController
     public function add($setup_id = null)
     {
         $comment = $this->Comments->newEntity();
-        if ($this->request->is('post')) {
+
+        if($this->request->is('post'))
+        {
             $data = $this->request->getData();
 
-            // Let's set the id of the current logged in user 
-            $data['user_id'] = $this->request->session()->read('Auth.User.id');
-            $data['setup_id'] = $setup_id;
+            // We know that's a POST request with data, BUT: Is this user authorized by Google invisible CAPTCHA ?
+            $response = (new Client())->post('https://www.google.com/recaptcha/api/siteverify', [
+                'secret' => '6LcLKx0UAAAAACDyDI7Jtmkm0IX9ni3cWN5amwx3',
+                'response' => $data['g-recaptcha-response']
+            ]);
 
-            $comment = $this->Comments->patchEntity($comment, $data);
-            if ($this->Comments->save($comment)) {
-                $this->Flash->success(__('The comment has been saved.'));
+            if($response->json['success'])
+            {
+                // Let's set the id of the current logged in user 
+                $data['user_id'] = $this->request->session()->read('Auth.User.id');
+                $data['setup_id'] = $setup_id;
 
-                return $this->redirect($this->referer());
+                $comment = $this->Comments->patchEntity($comment, $data);
+
+                if($this->Comments->save($comment))
+                {
+                    $this->Flash->success(__('The comment has been saved.'));
+                }
+
+                else
+                {
+                    $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+                }
             }
-            $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+
+            else
+            {
+                $this->Flash->warning(__('Our invisible CAPTCHA has detected you as a bot, sorry ! If you\'re a real human, please re-try'));
+            }
+
+            return $this->redirect($this->referer());
         }
+
         $this->set(compact('comment'));
         $this->set('_serialize', ['comment']);
     }

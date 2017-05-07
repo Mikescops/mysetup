@@ -213,11 +213,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <?php if($authUser): ?>
 
-                <?= $this->Form->create($newComment, ['type' => 'file', 'url' => ['controller' => 'Comments', 'action' => 'add', $setup->id]]); ?>
+                <?= $this->Form->create($newComment, ['type' => 'file', 'url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
                 <fieldset>
                 <?php echo $this->Form->control('content', ['label'=>'', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => 'Nice config\'…','rows' => 10, 'maxLength' => 500]);?>
                 </fieldset>
-                <?= $this->Form->submit(__('Comment'), ['class' => 'float-right', 'g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy', 'data-callback' => 'YourOnSubmitFn']); ?>
+                <?= $this->Form->submit(__('Comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit']); ?>
                 <?= $this->Form->end(); ?>
             <?php else: ?>
 
@@ -229,3 +229,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     </div>
 
 </div>
+
+<script>
+    function onSubmit(token) {
+        document.getElementById("comment-form").submit();
+    }
+</script>
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
