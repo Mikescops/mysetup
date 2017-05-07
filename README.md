@@ -34,3 +34,5 @@ In order to deploy this website on your web server:
 * The plugin _loadsys/cakephp\_sitemap_ has been re-coded by @Mike Scops. **/!\ If you clone and install this repository, please take care of having the correct sources. /!\\**
 
 * If you wanna add a translation for a foreign language, just add _default.po_ / _default.mo_ files into `src/Locale/xx_XX/`, and authorize this new locale in `src/Application.php`.
+
+* During development, you won't be able to add a comment to a setup (Google's invisible CAPTCHA checks the domain name environment).
