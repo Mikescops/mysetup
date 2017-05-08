@@ -527,6 +527,10 @@ h3.user-profile{
     -o-transform: rotate(45deg);
 }
 
+.setup-date{
+	text-align: center;
+}
+
 .jssocials-shares {
     margin: 0;
     text-align: center;
@@ -576,6 +580,8 @@ h3.user-profile{
 .comment-img img { display: block }
 
 .comment-body { overflow: hidden }
+
+.comment-body a { font-size: 14px; }
 
 .comment .text {
     padding: 8px 15px;

@@ -159,7 +159,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
         <div class="column column-33 item-meta">
 
-            <?= $this->Text->autoParagraph(h($setup->description . " -- " . $setup->creationDate))?> 
+            <?= $this->Text->autoParagraph(h($setup->description))?>
+
+            <p class="setup-date"><i class='fa fa-clock-o'></i>  <?= $setup->creationDate ?></p>
 
             <div id="social-networks"></div></br>
 
