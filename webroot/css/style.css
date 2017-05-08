@@ -541,6 +541,9 @@ h3.user-profile{
 	background: #3E3E3E !important;
 }
 
+.comment-section-title{
+	margin-left: 70px;
+}
 
 .comment-section{
 	margin-top: 30px;
