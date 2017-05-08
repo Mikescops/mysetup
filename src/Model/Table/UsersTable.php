@@ -86,13 +86,13 @@ class UsersTable extends Table
             ->add('mail', 'unique', ['rule' => 'validateUnique', 'provider' => 'table'])
             ->add('mail', 'validFormat', [
                 'rule' => 'email',
-                'message' => 'We need a valid E-mail address']);
+                'message' => __('We need a valid E-mail address')]);
 
         $validator
             ->notEmpty('password')
             ->add('password', 'length', [
                 'rule' => ['minLength', 8],
-                'message' => 'The password has to contain more than 8 characters']);
+                'message' => __('The password has to contain more than 8 characters')]);
 
         $validator
             ->notEmpty('preferredStore');
@@ -161,25 +161,23 @@ class UsersTable extends Table
                 return;
             }
 
-            // The result file will be in '*.png' anyway, check below the real conversion...
+            // A temporary path to the image, an extension will be enforced below
             $destination = 'uploads/files/pics/profile_picture_' . strval($user->id) . '.';
 
             if(move_uploaded_file($file['tmp_name'], $destination . $extension))
             {
-                // Here we'll check if the picture is in PNG format, and convert it if it's not the case...
-                if($extension !== 'png')
+                $image = new \Imagick($destination . $extension);
+
+                // This is the scenario: we compress the image, apply a Gaussian blur, and fall back to a PNG format before cropping & storing it...
+                if(!$image || !$image->setImageCompressionQuality(85) || !$image->gaussianBlurImage(0.8, 10) || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination . 'png'))
                 {
-                    $image = new \Imagick($destination . $extension);
+                    $flash->warning(__('Your profile picture could not be compressed, resized, converted to a PNG format or saved... Please contact an administrator.'));
+                }
 
-                    if(!$image || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination . 'png'))
-                    {
-                        $flash->warning('Your profile picture could not be converted to PNG format...');
-                    }
-
-                    if(!(new File($destination . $extension))->delete())
-                    {
-                        $flash->warning(_('The original file you uploaded could not be removed from our database.'));
-                    }
+                // If the user uploaded a file in a different format, let's delete it
+                if($extension !== 'png' && !(new File($destination . $extension))->delete())
+                {
+                    $flash->warning(__('The original file you uploaded could not be removed from our database.'));
                 }
             }
 

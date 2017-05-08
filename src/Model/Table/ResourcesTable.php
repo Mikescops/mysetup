@@ -199,9 +199,9 @@ class ResourcesTable extends Table
             {
                 $image = new \Imagick($destination);
 
-                if(!$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
+                if(!$image->setImageCompressionQuality(85) || !$image->gaussianBlurImage(0.8, 10) || !$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
                 {
-                    $flash->warning(__("One of your image could not be resized... Please contact an administrator."));
+                    $flash->warning(__("One of your image could not be compressed, resized or saved... Please contact an administrator."));
                 }
 
                 $resource = $this->newEntity();
