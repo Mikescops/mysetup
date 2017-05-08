@@ -185,7 +185,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
     <div class="row comment-section">
         
-        <div class="column column-50 column-offset-25">
+        <div class="column column-60 column-offset-20">
             <h4><?= __('Wanna share your opinion ?') ?></h4>
 
             <section class="comments">
