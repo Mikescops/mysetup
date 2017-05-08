@@ -266,8 +266,8 @@
                       <div class="footer-title"><?= __('About us') ?></div>
                       <ul>
                         <li><a href="https://medium.com/mysetup-co" target="_blank" class="item"><?= __('Our stories') ?></a></li>
-                        <li><a href="<?= $this->Url->build('/pages/team'); ?>" target="_blank"><?= __('Our team') ?></a></li>
-                        <li><a href="<?= $this->Url->build('/pages/legals'); ?>" target="_blank"><?= __('Legal Mentions') ?></a></li>
+                        <li><a href="<?= $this->Url->build('/pages/team'); ?>"><?= __('Our team') ?></a></li>
+                        <li><a href="<?= $this->Url->build('/pages/legals'); ?>"><?= __('Legal Mentions') ?></a></li>
                       </ul>
                     </div>
                     <div class="column column-25">
