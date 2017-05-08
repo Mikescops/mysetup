@@ -105,9 +105,7 @@ $(function(){
     $("#social-networks").jsSocials({
       shareIn: "popup",
       showCount: false,
-          showLabel: function(screenWidth) {
-        return (screenWidth > 640);
-      },
+      showLabel: false,
       shares: ["twitter", "facebook", "googleplus", "pinterest", "whatsapp"]
     });
 
