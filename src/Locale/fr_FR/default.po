@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-05-06 17:18+0200\n"
-"PO-Revision-Date: 2017-05-06 17:19+0200\n"
+"POT-Creation-Date: 2017-05-08 10:38+0200\n"
+"PO-Revision-Date: 2017-05-08 10:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -15,19 +15,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: Controller/CommentsController.php:48;73
+#: Controller/CommentsController.php:61;97
 msgid "The comment has been saved."
 msgstr "Le commentaire a été publié"
 
-#: Controller/CommentsController.php:52;77
+#: Controller/CommentsController.php:66;101
 msgid "The comment could not be saved. Please, try again."
 msgstr "Le commentaire n'a pas pu être publié. Ré-essayez"
 
-#: Controller/CommentsController.php:95
+#: Controller/CommentsController.php:72
+msgid ""
+"Google's CAPTCHA has detected you as a bot, sorry ! If you're a REAL human, "
+"please re-try :)"
+msgstr ""
+"Le CAPTCHA de Google vous a détecté comme un robot, désolé ! Si vous êtes "
+"réellement un humain, ré-essayez"
+
+#: Controller/CommentsController.php:119
 msgid "The comment has been deleted."
 msgstr "Le commentaire a bien été supprimé"
 
-#: Controller/CommentsController.php:97
+#: Controller/CommentsController.php:121
 msgid "The comment could not be deleted. Please, try again."
 msgstr "Le commentaire n'a pas pu être supprimé. Ré-essayez"
 
@@ -310,6 +318,10 @@ msgstr "Index des utilisateurs"
 msgid "Resources index"
 msgstr "Index des ressources"
 
+#: Template/Layout/default.ctp:88
+msgid "Categories"
+msgstr "Catégories"
+
 #: Template/Layout/default.ctp:90;225
 msgid "Most recent"
 msgstr "Les plus récentes"
@@ -461,9 +473,10 @@ msgid "Need more ? Click to see the latest !"
 msgstr "Vous voulez en voir plus ? Cliquez ici pour afficher les dernières !"
 
 #: Template/Pages/home.ctp:147 Template/Pages/popular.ctp:108
-#: Template/Pages/recent.ctp:111 Template/Users/view.ctp:105
-msgid "Tweets by mysetup_co"
-msgstr "Tweets de mysetup_co"
+#: Template/Pages/recent.ctp:111 Template/Setups/search.ctp:58
+#: Template/Users/view.ctp:105
+msgid "Tweets by @mysetup_co"
+msgstr "Tweets de @mysetup_co"
 
 #: Template/Pages/legals.ctp:12
 msgid "Site Publisher"
@@ -657,11 +670,11 @@ msgstr "Jolie config'..."
 msgid "Comment"
 msgstr "Commentaire"
 
-#: Template/Setups/view.ctp:225
+#: Template/Setups/view.ctp:224
 msgid "You must be logged in to comment"
 msgstr "Vous devez être connecté(e) pour commenter cette setup"
 
-#: Template/Setups/view.ctp:225
+#: Template/Setups/view.ctp:224
 msgid "Log me in !"
 msgstr "Se connecter !"
 
@@ -679,7 +692,7 @@ msgstr "S'inscrire"
 
 #: Template/Users/login.ctp:17
 msgid "Reset Password"
-msgstr "Réinitialiser mot de passe"
+msgstr "Mot de passe perdu"
 
 #: Template/Users/login.ctp:25;43
 msgid "Email"
@@ -695,7 +708,15 @@ msgstr "Le mot de passe doit contenir au moins 8 caractères"
 
 #: Template/Users/login.ctp:54
 msgid "Sign up"
-msgstr "S'enregistrer"
+msgstr "S'inscrire"
+
+#: Template/Users/login.ctp:65
+msgid ""
+"To reset your password enter your email and we'll send you a new temporary "
+"password."
+msgstr ""
+"Pour réinitialiser votre mot de passe, entrez votre adresse email et nous "
+"vous enverrons un code temporaire pour vous connecter et le modifier"
 
 #: Template/Users/login.ctp:73
 msgid "Send"

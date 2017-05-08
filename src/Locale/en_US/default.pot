@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-05-06 15:24+0000\n"
+"POT-Creation-Date: 2017-05-08 08:38+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,19 +14,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/CommentsController.php:48;73
+#: Controller/CommentsController.php:61;97
 msgid "The comment has been saved."
 msgstr ""
 
-#: Controller/CommentsController.php:52;77
+#: Controller/CommentsController.php:66;101
 msgid "The comment could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/CommentsController.php:95
+#: Controller/CommentsController.php:72
+msgid "Google's CAPTCHA has detected you as a bot, sorry ! If you're a REAL human, please re-try :)"
+msgstr ""
+
+#: Controller/CommentsController.php:119
 msgid "The comment has been deleted."
 msgstr ""
 
-#: Controller/CommentsController.php:97
+#: Controller/CommentsController.php:121
 msgid "The comment could not be deleted. Please, try again."
 msgstr ""
 
@@ -274,6 +278,10 @@ msgstr ""
 msgid "Resources index"
 msgstr ""
 
+#: Template/Layout/default.ctp:88
+msgid "Categories"
+msgstr ""
+
 #: Template/Layout/default.ctp:90;225
 msgid "Most recent"
 msgstr ""
@@ -442,8 +450,9 @@ msgstr ""
 #: Template/Pages/home.ctp:147
 #: Template/Pages/popular.ctp:108
 #: Template/Pages/recent.ctp:111
+#: Template/Setups/search.ctp:58
 #: Template/Users/view.ctp:105
-msgid "Tweets by mysetup_co"
+msgid "Tweets by @mysetup_co"
 msgstr ""
 
 #: Template/Pages/legals.ctp:12
@@ -596,11 +605,11 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
-#: Template/Setups/view.ctp:225
+#: Template/Setups/view.ctp:224
 msgid "You must be logged in to comment"
 msgstr ""
 
-#: Template/Setups/view.ctp:225
+#: Template/Setups/view.ctp:224
 msgid "Log me in !"
 msgstr ""
 
@@ -634,6 +643,10 @@ msgstr ""
 
 #: Template/Users/login.ctp:54
 msgid "Sign up"
+msgstr ""
+
+#: Template/Users/login.ctp:65
+msgid "To reset your password enter your email and we'll send you a new temporary password."
 msgstr ""
 
 #: Template/Users/login.ctp:73

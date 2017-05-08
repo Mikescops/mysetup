@@ -55,7 +55,7 @@ $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
 		</div>
 
 		<div class="column column-25">
-			<a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co">Tweets by mysetup_co</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+			<a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by @mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
 	</div>
 </div>

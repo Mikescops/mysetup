@@ -85,7 +85,7 @@
                             <?php endif; ?>
                         <?php endif; ?>
                         <li>
-                            <a>Categories <i class="fa fa-caret-down"></i></a>
+                            <a><?= __('Categories') ?> <i class="fa fa-caret-down"></i></a>
                             <ul>
                                 <li><a href="<?= $this->Url->build('/recents'); ?>"><?= __('Most recent') ?></a></li>
                                 <li><a href="<?= $this->Url->build('/popular'); ?>"><?= __('Popular this week') ?></a></li>
