@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2017-05-08 10:38+0200\n"
-"PO-Revision-Date: 2017-05-08 11:22+0200\n"
+"PO-Revision-Date: 2017-05-08 12:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -41,23 +41,23 @@ msgstr "Le commentaire n'a pas pu être supprimé. Ré-essayez"
 
 #: Controller/SetupsController.php:108
 msgid "You need a featured image with this setup !"
-msgstr "Vous avez besoin d'une image d'en-tête avec cette setup !"
+msgstr "Vous avez besoin d'une image d'en-tête avec ce setup !"
 
 #: Controller/SetupsController.php:124;204
 msgid "The setup has been saved."
-msgstr "La setup a bien été créée"
+msgstr "Le setup a bien été créé"
 
 #: Controller/SetupsController.php:130;208
 msgid "The setup could not be saved. Please, try again."
-msgstr "Votre setup n'a pas pu être créée"
+msgstr "Votre setup n'a pas pu être créé"
 
 #: Controller/SetupsController.php:227
 msgid "The setup has been deleted."
-msgstr "La setup a correctement été supprimée"
+msgstr "Le setup a correctement été supprimé"
 
 #: Controller/SetupsController.php:229
 msgid "The setup could not be deleted. Please, try again."
-msgstr "La setup n'a pas pu être supprimée. Ré-essayez"
+msgstr "Le setup n'a pas pu être supprimé. Ré-essayez"
 
 #: Controller/UsersController.php:108
 msgid "Your account has been created, check your email to verify your account"
@@ -304,7 +304,7 @@ msgstr ""
 
 #: Template/Layout/default.ctp:74;211
 msgid "Add Setup"
-msgstr "Créer une setup"
+msgstr "Créer un setup"
 
 #: Template/Layout/default.ctp:80;216
 msgid "Setups index"
@@ -410,7 +410,7 @@ msgstr "Vidéo (Youtube, Dailymotion, Twitch, ...)"
 
 #: Template/Layout/default.ctp:190 Template/Setups/view.ctp:113
 msgid "It's not my setup !"
-msgstr "Ce n'est pas ma setup !"
+msgstr "Ce n'est pas mon setup !"
 
 #: Template/Layout/default.ctp:191
 msgid "required fields"
@@ -418,7 +418,7 @@ msgstr "Champs requis"
 
 #: Template/Layout/default.ctp:192 Template/Setups/view.ctp:114
 msgid "Setup's owner"
-msgstr "Propriétaire de la setup"
+msgstr "Propriétaire du setup"
 
 #: Template/Layout/default.ctp:194
 msgid "author"
@@ -589,7 +589,7 @@ msgstr "Setups"
 
 #: Template/Setups/index.ctp:40
 msgid "Are you sure you want to delete this setup ?"
-msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer cette setup ?"
+msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer ce setup ?"
 
 #: Template/Setups/search.ctp:6
 msgid "Search for \""
@@ -617,7 +617,7 @@ msgstr "votre"
 
 #: Template/Setups/view.ctp:57
 msgid "this"
-msgstr "cette"
+msgstr "ce"
 
 #: Template/Setups/view.ctp:62
 msgid "Title"
@@ -625,19 +625,19 @@ msgstr "Titre"
 
 #: Template/Setups/view.ctp:125
 msgid "Edit setup"
-msgstr "Éditer cette setup"
+msgstr "Éditer ce setup"
 
 #: Template/Setups/view.ctp:128
 msgid "Delete this setup"
-msgstr "Supprimer cette setup"
+msgstr "Supprimer ce setup"
 
 #: Template/Setups/view.ctp:128
 msgid "You are going to delete this setup ! Are you sure ?"
-msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer cette setup ?"
+msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer ce setup ?"
 
 #: Template/Setups/view.ctp:132
 msgid "How to embed your setup in Twitch ?"
-msgstr "Comment intégrer cette setup à Twitch ?"
+msgstr "Comment intégrer ce setup à Twitch ?"
 
 #: Template/Setups/view.ctp:133
 msgid "Go to your Twitch channel and toggle panel edition."
@@ -656,11 +656,11 @@ msgstr ""
 
 #: Template/Setups/view.ctp:167
 msgid "Watch it in video"
-msgstr "Regarder cette setup en vidéo"
+msgstr "Regarder ce setup en vidéo"
 
 #: Template/Setups/view.ctp:189
 msgid "Wanna share your opinion ?"
-msgstr "Vous voulez partager ce que vous en pensez ?"
+msgstr "Une remarque ? Commentez ce setup !"
 
 #: Template/Setups/view.ctp:218
 msgid "Nice config'…"
@@ -672,7 +672,7 @@ msgstr "Commentaire"
 
 #: Template/Setups/view.ctp:224
 msgid "You must be logged in to comment"
-msgstr "Vous devez être connecté(e) pour commenter cette setup"
+msgstr "Vous devez être connecté(e) pour commenter ce setup"
 
 #: Template/Setups/view.ctp:224
 msgid "Log me in !"
@@ -724,11 +724,11 @@ msgstr "Soumettre"
 
 #: Template/Users/view.ctp:6
 msgid "Setups by "
-msgstr "Setups proposées par "
+msgstr "Setups proposés par "
 
 #: Template/Users/view.ctp:7
 msgid "All the setups shared by "
-msgstr "Toutes les setups partagées par "
+msgstr "Tous les setups partagés par "
 
 #: Template/Users/view.ctp:16
 msgid "Unknown user"
@@ -736,7 +736,7 @@ msgstr "Utilisateur inconnu"
 
 #: Template/Users/view.ctp:16
 msgid "'s setups"
-msgstr " : ses setups partagées"
+msgstr " : ses setups partagés"
 
 #: Template/Users/view.ctp:18
 msgid ""
