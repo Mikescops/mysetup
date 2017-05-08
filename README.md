@@ -33,6 +33,50 @@ In order to deploy this website on your web server:
 
 * The plugin _loadsys/cakephp\_sitemap_ has been re-coded by @Mike Scops. **/!\ If you clone and install this repository, please take care of having the correct sources. /!\\**
 
-* If you wanna add a translation for a foreign language, just add _default.po_ / _default.mo_ files into `src/Locale/xx_XX/`, and authorize this new locale in `src/Application.php`.
+* If you wanna add a translation for a foreign language, just add _default.po_ / _default.mo_ files into `src/Locale/xx_XX/`, and authorize this new locale in `src/Application.php`. In order to extract the strings from the source code, and edit them with _Poedit_, just follow this scenario :
+	
+	> [user@localhost:/var/www/html/mysetup]$ bin/cake i18n extract  
+	>  
+	> Welcome to CakePHP v3.4.6 Console  
+	> \---------------------------------------------------------------  
+	> App : src  
+	> Path: /var/www/html/mysetup/src/  
+	> PHP : 7.0.16-3  
+	> \---------------------------------------------------------------  
+	> Current paths: None  
+	> What is the path you would like to extract?  
+	> [Q]uit [D]one  
+	> [/var/www/html/mysetup/src/] >   
+	>  
+	> Current paths: /var/www/html/mysetup/src/  
+	> What is the path you would like to extract?  
+	> [Q]uit [D]one  
+	> [D] >   
+	>
+	> Would you like to extract the messages from the CakePHP core? (y/n)  
+	> [n] > __y__  
+	> What is the path you would like to output?  
+	> [Q]uit  
+	> [/var/www/html/mysetup/src/Locale] > __/var/www/html/mysetup/src/Locale/en_US/__  
+	>  
+	> Would you like to merge all domain strings into the default.pot file? (y/n)  
+	> [n] >   
+	>  
+	>  
+	> Extracting...  
+	> \---------------------------------------------------------------  
+	> Paths:  
+	   > /var/www/html/mysetup/src/  
+	   > /var/www/html/mysetup/vendor/cakephp/cakephp/src/  
+	> Output Directory: /var/www/html/mysetup/src/Locale/en_US/  
+	> \---------------------------------------------------------------  
+	> ==========================================================================> 100%  
+	> Error: default.pot already exists in this location. Overwrite? [Y]es, [N]o, [A]ll (y/n/a)  
+	> [y] > __y__  
+	>
+	> Error: cake.pot already exists in this location. Overwrite? [Y]es, [N]o, [A]ll (y/n/a)  
+	> [y] > __y__  
+	>  
+	> Done.
 
 * During development, you won't be able to add a comment to a setup (Google's invisible CAPTCHA checks the domain name environment).

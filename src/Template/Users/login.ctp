@@ -62,7 +62,7 @@ $this->assign('title', 'Login | mySetup.co');
         <?= $this->Form->create(null, ['url' => ['controller' => 'Users', 'action' => 'resetPassword']]) ?>
         <fieldset>
             <div>
-                <?= ("To reset your password enter your email and we'll send you a new temporary password.") ?>
+                <?= __("To reset your password enter your email and we'll send you a new temporary password.") ?>
             </div>
             <br>
             <ul>

@@ -69,7 +69,7 @@ class CommentsController extends AppController
 
             else
             {
-                $this->Flash->warning(__('Our invisible CAPTCHA has detected you as a bot, sorry ! If you\'re a real human, please re-try'));
+                $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
             }
 
             return $this->redirect($this->referer());
