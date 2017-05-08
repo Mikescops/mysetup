@@ -125,6 +125,7 @@ footer a{
 
 .home_slider .slider-item{
 	margin: 13px;
+	border-radius: 4px;
 	max-height: 310px;
 	overflow: hidden;
 }
@@ -300,6 +301,7 @@ h3.user-profile{
 	max-height: 500px;
 	overflow: hidden;
 	margin-top: 25px;
+	border-radius: 6px 6px 0 0;
 }
 
 .featured-inner{
@@ -386,6 +388,7 @@ h3.user-profile{
     padding-bottom : 23%; /* = width for a 1:1 aspect ratio */
     margin: 1%;
     border: 3px solid #fff;
+    border-radius: 4px;
     background-position:center center;
     background-repeat:no-repeat;
     background-size:contain; /* you change this to "contain" if you don't want the images to be cropped */
@@ -411,6 +414,7 @@ h3.user-profile{
 
 .post_slider .slider-item{
 	margin: 13px;
+	border-radius: 4px;
 	max-height: 250px;
 	overflow: hidden;
 }
@@ -530,7 +534,7 @@ h3.user-profile{
 
 .jssocials-share-link{
 	background: #303030 !important;
-	border-radius: 6px;
+	border-radius: 4px;
 }
 
 .jssocials-share-link:hover{
@@ -559,7 +563,7 @@ h3.user-profile{
 .comment-img {
     float: left;
     margin-right: 20px;
-    border-radius: 5px;
+    border-radius: 4px;
     overflow: hidden;
 }
 
