@@ -719,6 +719,14 @@ nav {
 	font-size: 1.9em;
 }
 
+.mobile-nav a:first-child{
+	color: #fff;
+}
+
+.mobile-nav a:focus, .mobile-nav a:hover{
+	color: #fff;
+}
+
 #mobile-nav ul{
 	position:relative;
 	background:#fff;
