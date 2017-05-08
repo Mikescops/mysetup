@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2017-05-08 10:38+0200\n"
-"PO-Revision-Date: 2017-05-08 10:39+0200\n"
+"PO-Revision-Date: 2017-05-08 11:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -593,11 +593,11 @@ msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer cette setup ?"
 
 #: Template/Setups/search.ctp:6
 msgid "Search for \""
-msgstr "Chercher \""
+msgstr "Recherche de \""
 
 #: Template/Setups/search.ctp:32
 msgid "Search results for"
-msgstr "Chercher des résultats pour"
+msgstr "Résultats de la recherche pour"
 
 #: Template/Setups/view.ctp:33
 msgid "Shared by"
