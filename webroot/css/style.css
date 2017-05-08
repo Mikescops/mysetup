@@ -222,7 +222,13 @@ footer a{
 	position: relative;
 	margin-bottom: 20px;
 	max-height: 380px;
+	border-radius: 4px;
 	overflow: hidden;
+}
+
+.fullitem a:first-child{
+	line-height: 0;
+	display: block;
 }
 
 .fullitem-inner{
@@ -1002,6 +1008,10 @@ nav {
 
 	.red_like{
 		display: none;	
+	}
+
+	.fullitem-inner{
+		height: 80px;
 	}
 
 }
