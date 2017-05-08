@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-05-08 10:38+0200\n"
-"PO-Revision-Date: 2017-05-08 12:56+0200\n"
+"POT-Creation-Date: 2017-05-08 21:49+0200\n"
+"PO-Revision-Date: 2017-05-08 21:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -177,10 +177,11 @@ msgstr ""
 
 #: Model/Table/ResourcesTable.php:204
 msgid ""
-"One of your image could not be resized... Please contact an administrator."
+"One of your image could not be compressed, resized or saved... Please "
+"contact an administrator."
 msgstr ""
-"Une de vos images n'a pas pu être redimensionnée. Veuillez contacter un "
-"administrateur"
+"Une de vos images n'a pas pu être compressée, redimensionnée, ou bien "
+"enregistrée. Veuillez contacter un administrateur"
 
 #: Model/Table/ResourcesTable.php:237
 msgid "One of the file you uploaded could not be saved."
@@ -203,6 +204,22 @@ msgid ""
 msgstr ""
 "Votre lien vidéo ne valide pas nos exigences. Veuillez contacter un "
 "administrateur"
+
+#: Model/Table/SetupsTable.php:94
+msgid "This title is too long (more than 48 characters)"
+msgstr "Ce titre est trop long (plus de 48 caractères en tout cas)"
+
+#: Model/Table/SetupsTable.php:100
+msgid "This description is too long (more than 500 characters)"
+msgstr "Cette description est trop longue (plus de 500 caractères en tout cas)"
+
+#: Model/Table/UsersTable.php:89
+msgid "We need a valid E-mail address"
+msgstr "Nous avons besoin d'une adresse email valide"
+
+#: Model/Table/UsersTable.php:95
+msgid "The password has to contain more than 8 characters"
+msgstr "Votre mot de passe doit contenir 8 caractères ou plus"
 
 #: Model/Table/UsersTable.php:141
 msgid ""
@@ -227,11 +244,25 @@ msgstr ""
 "Une erreur interne est survenue pendant que nous enregistrions votre image "
 "de profil. Veuillez contacter un administrateur"
 
-#: Model/Table/UsersTable.php:188
+#: Model/Table/UsersTable.php:174
+msgid ""
+"Your profile picture could not be compressed, resized, converted to a PNG "
+"format or saved... Please contact an administrator."
+msgstr ""
+"Votre image n'a pas pu être compressée, redimensionnée, convertie en .png ou "
+"bien enregistrée. Veuillez contacter un administrateur"
+
+#: Model/Table/UsersTable.php:180
+msgid "The original file you uploaded could not be removed from our database."
+msgstr ""
+"L'image originale que vous avez uploadée n'a pas pu être supprimée de notre "
+"base de données. Veuillez contacter un administrateur"
+
+#: Model/Table/UsersTable.php:186
 msgid "Your profile picture could not be saved."
 msgstr "Votre image de profil n'a pas pu être enregistrée"
 
-#: Model/Table/UsersTable.php:194
+#: Model/Table/UsersTable.php:192
 msgid ""
 "The file you uploaded does not validate our rules... Please contact an "
 "administrator."
@@ -765,6 +796,12 @@ msgstr "Changer le mot de passe de l'utilisateur"
 #: Template/Users/view.ctp:99
 msgid "Delete this account"
 msgstr "Supprimer ce compte"
+
+#~ msgid ""
+#~ "One of your image could not be resized... Please contact an administrator."
+#~ msgstr ""
+#~ "Une de vos images n'a pas pu être redimensionnée. Veuillez contacter un "
+#~ "administrateur"
 
 #~ msgid "The {0} was not found :( Maybe your friend sent you the wrong link !"
 #~ msgstr ""

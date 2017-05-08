@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-05-08 08:38+0000\n"
+"POT-Creation-Date: 2017-05-08 19:49+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -151,7 +151,7 @@ msgid "An internal error occurred while saving your images... Please contact an 
 msgstr ""
 
 #: Model/Table/ResourcesTable.php:204
-msgid "One of your image could not be resized... Please contact an administrator."
+msgid "One of your image could not be compressed, resized or saved... Please contact an administrator."
 msgstr ""
 
 #: Model/Table/ResourcesTable.php:237
@@ -166,6 +166,22 @@ msgstr ""
 msgid "The video link you chose does not validate our rules... Please contact an administrator."
 msgstr ""
 
+#: Model/Table/SetupsTable.php:94
+msgid "This title is too long (more than 48 characters)"
+msgstr ""
+
+#: Model/Table/SetupsTable.php:100
+msgid "This description is too long (more than 500 characters)"
+msgstr ""
+
+#: Model/Table/UsersTable.php:89
+msgid "We need a valid E-mail address"
+msgstr ""
+
+#: Model/Table/UsersTable.php:95
+msgid "The password has to contain more than 8 characters"
+msgstr ""
+
 #: Model/Table/UsersTable.php:141
 msgid "An internal error occurred while creating your profile picture. Please contact an administrator."
 msgstr ""
@@ -178,11 +194,19 @@ msgstr ""
 msgid "An internal error occurred while saving your profile picture. Please contact an administrator."
 msgstr ""
 
-#: Model/Table/UsersTable.php:188
+#: Model/Table/UsersTable.php:174
+msgid "Your profile picture could not be compressed, resized, converted to a PNG format or saved... Please contact an administrator."
+msgstr ""
+
+#: Model/Table/UsersTable.php:180
+msgid "The original file you uploaded could not be removed from our database."
+msgstr ""
+
+#: Model/Table/UsersTable.php:186
 msgid "Your profile picture could not be saved."
 msgstr ""
 
-#: Model/Table/UsersTable.php:194
+#: Model/Table/UsersTable.php:192
 msgid "The file you uploaded does not validate our rules... Please contact an administrator."
 msgstr ""
 
