@@ -1,11 +1,12 @@
 <?php
 // Print two names on the picture, which accepted by query string parameters.
 
-$name = "Partagé par " . $_GET['name'];
+$name = "Shared by " . $_GET['name'];
 $setup = $_GET['setup'];
 $id = $_GET['id'];
 
 Header ("Content-type: image/jpeg");
+Header ('Content-Disposition: inline; filename="' . $setup . '"');
 $image = imageCreateFromJPEG("partner_banner.jpg");
 
 $pfile = '../uploads/files/pics/profile_picture_'.$id.'.png';
@@ -21,7 +22,7 @@ imagecopyresampled($image, $profile, 0, 239, 0, 0, 80, 80, $pwidth, $pheight);
 
 // Write names.
 if(strlen($setup) > 20){
-	$setup = substr($setup, 0, 40);
+	$setup = substr($setup, 0, 38);
 	$setup1 = wordwrap($setup, 20, "\n");	
 	imagettftext($image, 15, 0, 88, 260, $color, 'corbel.ttf', $setup1);
 	imagettftext($image, 11, 0, 88, 308, $color, 'corbel.ttf', $name);

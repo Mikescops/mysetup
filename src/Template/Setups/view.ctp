@@ -133,8 +133,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <p><?= __('Go to your Twitch channel and toggle panel edition.') ?></p>
         <?= $this->Html->image('howto_twitch.png', array('alt' => 'Twitch Panel Edition')) ?> <br>
         <p><?= __('Copy the following url in the link field') ?> :</p>
-        <pre><code><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title), true)?></code></pre>
-        <p><?= __('You can even configure your Twitch Chat bot to display this link !') ?></p>
+        <pre><code><span><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title).'?ref='.urlencode($additionalData['owner']['name']), true)?></span></code></pre>
+        <p><?= __('And add your personal mySetup.co banner image !') ?></p>
+        <p style="text-align: center;"><img alt="Advert - Setup by <?= $additionalData['owner']['name'] ?>" src="<?= $this->Url->build('/imgeneration/twitch-promote.php?id='. $setup->user_id . '&name=' . $additionalData['owner']['name'] . '&setup=' . $setup->title)?>"></p>
+        
+        <p><?= __('You can even configure your Twitch Chat bot to display your link or image.') ?></p>
     </div>
 <?php endif ?>
 

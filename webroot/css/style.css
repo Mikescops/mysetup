@@ -19,9 +19,10 @@ html{
 	outline: none;
 }
 
-pre{
+/*Only for debug*/
+/*pre{
 	background: #000;
-}
+}*/
 
 body{
 	color: #fff;
