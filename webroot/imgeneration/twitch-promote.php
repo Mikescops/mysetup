@@ -6,7 +6,7 @@ $setup = $_GET['setup'];
 $id = $_GET['id'];
 
 Header ("Content-type: image/jpeg");
-Header ('Content-Disposition: inline; filename="' . $setup . '"');
+Header ('Content-Disposition: inline; filename="' . $setup . '.jpeg"');
 $image = imageCreateFromJPEG("partner_banner.jpg");
 
 $pfile = '../uploads/files/pics/profile_picture_'.$id.'.png';
