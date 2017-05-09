@@ -192,16 +192,28 @@ class ResourcesTable extends Table
                 }
             }
 
-            $tmp = explode('/', $file['type']);  // Thanks PHP for that useless variable...
-            $destination = 'uploads/files/' . $user_id . '/' . Text::uuid() . '.' . end($tmp);
+            /*
+                Note to developers: The following is a bit tricky, be careful to read this to understand everything.
+
+                As Imagick library has many problems with PNG images (compression is none, even worst sometimes, with wide images), we decided to convert then into JPG format. This is the scenario:
+
+                * Whatever the file format is, we move the image into the owner's directory, and renamed it as 'UUID.jpg' (even if it's a PNG !!) ;
+                * We convert the image into a JPG format ;
+                * We compress it ;
+                * We apply a little Gaussian blur to optimize a little more without much lost ;
+                * We crop the image into featured / gallery format (depends on the case) ;
+                * We save the new obtained image.
+            */
+
+            $destination = 'uploads/files/' . $user_id . '/' . Text::uuid() . '.jpg';
 
             if(move_uploaded_file($file['tmp_name'], $destination))
             {
                 $image = new \Imagick($destination);
 
-                if(!$image->setImageCompressionQuality(85) || !$image->gaussianBlurImage(0.8, 10) || !$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
+                if(!$image->setImageFormat('jpg') || !$image->setImageCompressionQuality(85) || !$image->gaussianBlurImage(0.8, 10) || !$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
                 {
-                    $flash->warning(__("One of your image could not be compressed, resized or saved... Please contact an administrator."));
+                    $flash->warning(__("One of your image could not be converted to JPG, compressed, resized or saved... Please contact an administrator."));
                 }
 
                 $resource = $this->newEntity();
