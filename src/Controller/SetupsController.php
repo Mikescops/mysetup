@@ -154,9 +154,6 @@ class SetupsController extends AppController
             // Let's fetch the form's data
             $data = $this->request->getData();
 
-            // Let's set the id of the current logged in user 
-            $data['user_id'] = $this->request->session()->read('Auth.User.id');
-
             // Here we'll assign automatically the owned of the setup to the entity, if in the setup it has not be filled
             if(!isset($data['author']) or $data['author'] === '')
             {
