@@ -336,8 +336,7 @@ class UsersController extends AppController
                             Hello " . ($user->name !== '' ? $user->name . ' ' : '') . "!
                             <br />
                             <br />
-                            Your password has been reseted and set to: <span style=\"font-weight: bold;\">" . $temp . "</span>
-                            <br />
+                            Your password has been reseted and set to: <span style=\"font-weight: bold;\">" . $temp . "</span><br />
                             <br />
                             Please <a href=\"https://mysetup.co/login\" target=\"_blank\">log you in</a> and change it as soon as possible !
                             <br />
