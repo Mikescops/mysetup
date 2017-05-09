@@ -311,7 +311,7 @@ class ResourcesTable extends Table
     public function saveGalleryImages($setup, $data, $flash)
     {
         /* Here we'll compare the uploaded images to the new ones (in the 5 hidden inputs) */
-        $galleries = $this->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $data['user_id'], 'type' => 'SETUP_GALLERY_IMAGE'])->all()->toArray();
+        $galleries = $this->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $setup->user_id, 'type' => 'SETUP_GALLERY_IMAGE'])->all()->toArray();
 
         if(isset($data['gallery0'][0]) and $data['gallery0'][0] !== '' and (int)$data['gallery0'][0]['error'] === 0)
         {
@@ -320,7 +320,7 @@ class ResourcesTable extends Table
                 $this->delete($galleries[0]);
             }
 
-            $this->saveResourceImage($data['gallery0'][0], $setup, 'SETUP_GALLERY_IMAGE', $flash, $data['user_id'], true, false);
+            $this->saveResourceImage($data['gallery0'][0], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
         }
         if(isset($data['gallery1'][0]) and $data['gallery1'][0] !== '' and (int)$data['gallery1'][0]['error'] === 0)
         {
@@ -329,7 +329,7 @@ class ResourcesTable extends Table
                 $this->delete($galleries[1]);
             }
 
-            $this->saveResourceImage($data['gallery1'][0], $setup, 'SETUP_GALLERY_IMAGE', $flash, $data['user_id'], true, false);
+            $this->saveResourceImage($data['gallery1'][0], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
         }
         if(isset($data['gallery2'][0]) and $data['gallery2'][0] !== '' and (int)$data['gallery2'][0]['error'] === 0)
         {
@@ -338,7 +338,7 @@ class ResourcesTable extends Table
                 $this->delete($galleries[2]);
             }
 
-            $this->saveResourceImage($data['gallery2'][0], $setup, 'SETUP_GALLERY_IMAGE', $flash, $data['user_id'], true, false);
+            $this->saveResourceImage($data['gallery2'][0], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
         }
         if(isset($data['gallery3'][0]) and $data['gallery3'][0] !== '' and (int)$data['gallery3'][0]['error'] === 0)
         {
@@ -347,7 +347,7 @@ class ResourcesTable extends Table
                 $this->delete($galleries[3]);
             }
 
-            $this->saveResourceImage($data['gallery3'][0], $setup, 'SETUP_GALLERY_IMAGE', $flash, $data['user_id'], true, false);
+            $this->saveResourceImage($data['gallery3'][0], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
         }
         if(isset($data['gallery4'][0]) and $data['gallery4'][0] !== '' and (int)$data['gallery4'][0]['error'] === 0)
         {
@@ -356,7 +356,7 @@ class ResourcesTable extends Table
                 $this->delete($galleries[4]);
             }
 
-            $this->saveResourceImage($data['gallery4'][0], $setup, 'SETUP_GALLERY_IMAGE', $flash, $data['user_id'], true, false);
+            $this->saveResourceImage($data['gallery4'][0], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
         }
     }
 }

@@ -157,7 +157,7 @@ class SetupsController extends AppController
             // Here we'll assign automatically the owned of the setup to the entity, if in the setup it has not be filled
             if(!isset($data['author']) or $data['author'] === '')
             {
-                $data['author'] = $this->Setups->Users->find()->where(['id' => $data['user_id']])->first()['name'];
+                $data['author'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first()['name'];
             }
 
             if(!isset($data['featured']) or !parent::isAdminBySession($this->request->session()))
@@ -169,14 +169,14 @@ class SetupsController extends AppController
             if ($this->Setups->save($setup))
             {
                 /* Here we delete all products then save each product that has been selected by the user */
-                $this->Setups->Resources->deleteAll(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], true);
+                $this->Setups->Resources->deleteAll(['Resources.user_id' => $setup->user_id, 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $setup->user_id, true);
 
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage'][0]) and $data['featuredImage'][0] !== '' and (int)$data['featuredImage'][0]['error'] === 0)
                 {
-                    $image_to_delete = $this->Setups->Resources->find()->where(['Resources.user_id' => $data['user_id'], 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE'])->first();
-                    if($this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], true, true))
+                    $image_to_delete = $this->Setups->Resources->find()->where(['Resources.user_id' => $setup->user_id, 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE'])->first();
+                    if($this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $setup->user_id, true, true))
                     {
                         $this->Setups->Resources->delete($image_to_delete);
                     }
@@ -195,7 +195,7 @@ class SetupsController extends AppController
                         $this->Setups->Resources->delete($video_to_delete);
                     }
 
-                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id'], true);
+                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $setup->user_id, true);
                 }
 
                 $this->Flash->success(__('The setup has been saved.'));
