@@ -18,7 +18,7 @@ $color = ImageColorAllocate($image, 255, 255, 255);
 imagealphablending($image, true);
 imagesavealpha($image, true);
 
-imagecopyresampled($image, $profile, 0, 239, 0, 0, 80, 80, $pwidth, $pheight);
+imagecopyresampled($image, $profile, 0, 239, 0, 0, 81, 81, $pwidth, $pheight);
 
 // Write names.
 if(strlen($setup) > 20){
