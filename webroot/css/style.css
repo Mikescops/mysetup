@@ -1030,6 +1030,11 @@ nav {
 /* Smaller than mobile screen */
 @media (max-width: 450px) {
 
+	/* Hide captcha badge on mobile */
+	.grecaptcha-badge{
+		display: none;
+	}
+
 	.red_like{
 		display: none;	
 	}

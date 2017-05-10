@@ -222,7 +222,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <fieldset>
                 <?php echo $this->Form->control('content', ['label'=>'', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'),'rows' => 10, 'maxLength' => 500]);?>
                 </fieldset>
-                <?= $this->Form->submit(__('Comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit']); ?>
+                <?= $this->Form->submit(__('Comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
                 <?= $this->Form->end(); ?>
             <?php else: ?>
 
