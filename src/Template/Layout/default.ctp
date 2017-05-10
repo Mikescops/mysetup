@@ -3,7 +3,7 @@
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="fr-FR"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="fr-FR"> <![endif]-->
 <!--[if gt IE 8]><!--> 
-<html lang="<?= ($authUser && strtolower($authUser['preferredStore']) != "us" ? strtolower($authUser['preferredStore']) : "en") ?>">
+<html lang="<?= ($authUser && $authUser['preferredStore'] !== "US" && $authUser['preferredStore'] !== "UK" ? strtolower($authUser['preferredStore']) : "en") ?>">
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
