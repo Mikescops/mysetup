@@ -28,8 +28,8 @@
             <?php foreach ($resources as $resource): ?>
             <tr>
                 <td><?= $this->Number->format($resource->id) ?></td>
-                <td><?= $resource->has('user') ? $this->Html->link($resource->user->name, ['controller' => 'Users', 'action' => 'view', $resource->user->id]) : '' ?></td>
-                <td><?= $resource->has('setup') ? $this->Html->link($resource->setup->title, ['controller' => 'Setups', 'action' => 'view', $resource->setup->id]) : '' ?></td>
+                <td><?= $this->Html->link($resource->user_id, ['controller' => 'Users', 'action' => 'view', $resource->user_id]) ?></td>
+                <td><?= $this->Html->link($resource->setup_id, ['controller' => 'Setups', 'action' => 'view', $resource->setup_id]) ?></td>
                 <td><?= h($resource->title) ?></td>
                 <td><?= h($resource->href) ?></td>
                 <td><?= h($resource->src) ?></td>
