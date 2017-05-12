@@ -21,12 +21,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 ?>
 
 <div class="featured-container">
-    <img width="1120" src="<?= $this->Url->build('/'.$fimage->src, true) ?>" alt="<?= $setup->title ?>">
+    <img alt="<?= $setup->title ?>" width="1120" src="<?= $this->Url->build('/'.$fimage->src, true) ?>" alt="<?= $setup->title ?>">
     <div class="featured-inner">
         <div class="row">
             <div class="column column-75">
                 <a class="featured-user" href="<?= $this->Url->build('/users/'.$additionalData['owner']['id']) ?>">
-                    <img src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
+                    <img alt="Profile picture of <?= $additionalData['owner']['name'] ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
                 </a>
                 <h3><?= $setup->title ?></h3>
                 <p>
@@ -181,7 +181,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div class="slider-item">
                 <div class="slider-item-inner">
                     <a href="<?= $this->Url->build('/', true)?><?= $image->src ?>" data-lity data-lity-desc="Photo of Config'">
-                        <img width="1120" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
+                        <img alt="Gallery image of <?= $setup->title ?>" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
                     </a>
                 </div>
             </div>
@@ -198,7 +198,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?php foreach ($setup->comments as $comments): ?>
                 <article class="comment">
                     <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
-                        <img src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$comments->user_id.'.png') ?>" alt="" width="50" height="50" />
+                        <img alt="Profile picture of #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$comments->user_id.'.png') ?>" alt="" width="50" height="50" />
                     </a>
                         
                     <div class="comment-body">
