@@ -162,7 +162,7 @@ class SetupsController extends AppController
 
             if(!isset($data['featured']) or !parent::isAdminBySession($this->request->session()))
             {
-                $data['featured'] = $user['featured'];
+                $data['featured'] = $setup['featured'];
             }
 
             $setup = $this->Setups->patchEntity($setup, $data);
