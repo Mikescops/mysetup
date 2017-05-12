@@ -79,7 +79,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?php
                 echo $this->Form->input('featuredImage. ', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
             ?>
-            <img id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+            <img alt="Featured Preview" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
             <div class="hidden_five_inputs">
                 <?php
                     echo $this->Form->input('gallery0. ', ['id'=>'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
@@ -91,9 +91,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             </div>
 
             <?php $i = 0;foreach ($gallery as $image):?>
-            <img class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
+            <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
             <?php $i++; endforeach; for(;$i < 5;$i++): ?>
-            <img class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+            <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
             <?php endfor ?>
 
             <br /><br />

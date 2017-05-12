@@ -165,7 +165,7 @@
                         <?php
                             echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage','text' => __('Add featured image *')), 'class' => 'inputfile']);
                         ?>
-                        <img id="featuredimage_preview">
+                        <img alt="Featured Preview" id="featuredimage_preview">
                         <div class="hidden_five_inputs">
                             <?php
                                 echo $this->Form->input('gallery0. ', ['id'=>'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
@@ -177,7 +177,7 @@
                         </div>
 
                         <?php for($i = 0; $i < 5; $i++): ?>
-                            <img class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+                            <img alt="Gallery Preview" class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
                         <?php endfor ?>
 
                         <br /><br />
