@@ -166,7 +166,7 @@ class SetupsController extends AppController
             }
 
             $setup = $this->Setups->patchEntity($setup, $data);
-            if ($this->Setups->save($setup))
+            if($this->Setups->save($setup))
             {
                 /* Here we delete all products then save each product that has been selected by the user */
                 $this->Setups->Resources->deleteAll(['Resources.user_id' => $setup->user_id, 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
@@ -199,11 +199,16 @@ class SetupsController extends AppController
                 }
 
                 $this->Flash->success(__('The setup has been saved.'));
-
-                return $this->redirect($this->referer());
             }
-            $this->Flash->error(__('The setup could not be saved. Please, try again.'));
+
+            else
+            {
+                $this->Flash->error(__('The setup could not be saved. Please, try again.'));
+            }
+
+            return $this->redirect($this->referer());
         }
+
         $users = $this->Setups->Users->find('list', ['limit' => 200]);
         $this->set(compact('setup', 'users'));
         $this->set('_serialize', ['setup']);
