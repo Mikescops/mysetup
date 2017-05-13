@@ -7,8 +7,8 @@
 php_value upload_max_filesize 5M
 php_value post_max_size 50M
 
-AddType image/svg+xml svg svgz
-AddEncoding gzip svgz
+AddType image/svg+xml .svg
+AddOutputFilterByType DEFLATE image/svg+xml
 
 ## EXPIRES CACHING ##
 <IfModule mod_expires.c>
@@ -20,6 +20,7 @@ ExpiresByType image/png "access plus 1 year"
 ExpiresByType text/css "access plus 1 month"
 ExpiresByType application/pdf "access plus 1 month"
 ExpiresByType text/x-javascript "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
 ExpiresByType application/x-shockwave-flash "access plus 1 month"
 ExpiresByType image/x-icon "access plus 1 year"
 ExpiresDefault "access plus 2 days"
