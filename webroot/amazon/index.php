@@ -57,5 +57,5 @@ if($_SESSION['Auth'])
 
 else
 {
-	header('location: ../../');
+	header('location: ../');
 }
