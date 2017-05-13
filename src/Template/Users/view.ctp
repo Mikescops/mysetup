@@ -61,13 +61,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                     <div class="column column-25">
                     <div class="profile-container">
                        <image id="profileImage" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $user['id'] ?>.png" />
-                    </div>
-
-                    <div class="profilepicup">
-                        <?php
-                        echo $this->Form->input('picture. ', ['label' => __("Change the profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
-                        ?>
-                    </div>
+                    </div>                    
 
                     <br>
 
@@ -79,6 +73,10 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                         <?php
                             echo $this->Form->control('name', ['required' => true, 'label' => '', 'placeholder' => __("Name"), 'default' => $user['name']]);
                             echo $this->Form->control('mail', ['required' => true, 'type' => 'email', 'label' => '', 'placeholder' => __("Email address"), 'default' => $user['mail']]);
+                        ?>
+
+                        <?php
+                        echo $this->Form->input('picture. ', ['label' => __("Change the profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
                         ?>
 
                         <?php
