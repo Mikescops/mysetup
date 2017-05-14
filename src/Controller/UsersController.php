@@ -106,18 +106,7 @@ class UsersController extends AppController
                         ");
 
                     $this->Flash->success(__('Your account has been created, check your email to verify your account'));
-
-                    // Let's check if the person that has just created this user is connected (admin one ?), or not
-                    if($this->request->session()->read('Auth.User.id') == null)
-                    {
-                        return $this->redirect('/');
-                    }
-
-                    else
-                    {
-                        // This is an admin, "Hey you !". Where will we set you ?
-                        return $this->redirect(['action' => 'add']);
-                    }
+                    return $this->redirect('/');
                 }
 
                 else
