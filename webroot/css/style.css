@@ -1036,11 +1036,19 @@ nav {
 	}
 
 	.red_like{
-		display: none;	
+		top: 0;
+		bottom: auto;
+		margin: 0;
+		border-radius: 0 0 0 4px;
 	}
 
 	.fullitem-inner{
-		height: 80px;
+		height: 70px;
+		padding: 5px;
+	}
+
+	.fullitem:hover > .fullitem-inner {
+	    height: 70px!important;
 	}
 
 }
