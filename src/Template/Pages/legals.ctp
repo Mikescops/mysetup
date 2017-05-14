@@ -25,6 +25,10 @@ echo $this->Html->meta('description', 'Legal mentions about your personal data, 
 
 	<p><?= __('Your personal data may be collected when browsing this website. Emails sent to mysetup.co and the email addresses used to send information may also be stored. Pursuant to France’s Data Protection Act modified on 6 January 1978, you have the right to access and rectify your personal data. You also have the right to object the use of this information provided you have legitimate reason. You can exercise this right and obtain information concerning your personal data by writing to the Head of Publication.') ?></p>
 
+	<h2><?= __('Publishing Policy') ?></h2>
+
+	<p><?= __('By registering on mysetup.co, you agree with the following rules. Content published on this website must be related with setups. Any content judge not appropriate will be moderated without warning.Users who do not respect the pre-established rules several times will see their account banned.') ?></p>
+
 	<h2><?= __('Use of Cookies') ?></h2>
 
 	<p><?= __('The user is informed that during his visits to the site, a cookie can be installed automatically on his navigator software. A cookie is a file containing data that record information relating to the navigation of the user on the site but which do not permit to identify it.') ?>
