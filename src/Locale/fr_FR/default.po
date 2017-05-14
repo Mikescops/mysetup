@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-05-14 16:33+0200\n"
-"PO-Revision-Date: 2017-05-14 16:37+0200\n"
+"POT-Creation-Date: 2017-05-14 19:50+0200\n"
+"PO-Revision-Date: 2017-05-14 20:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -545,10 +545,28 @@ msgstr ""
 "Publication."
 
 #: Template/Pages/legals.ctp:28
+msgid "Publishing Policy"
+msgstr "Politique de Publication"
+
+#: Template/Pages/legals.ctp:30
+msgid ""
+"By registering on mysetup.co, you agree with the following rules. Content "
+"published on this website must be related with setups. Any content judged "
+"not appropriate will be moderated without warning. Users who do not respect "
+"the pre-established rules several times will see their account banned."
+msgstr ""
+"En vous inscrivant sur mysetup.co, vous acceptez les règles suivantes. Le "
+"contenu publié sur ce site doit être en relation avec un ou des \"setups"
+"\" (installations technologiques). Tout contenu jugé non-approprié sera "
+"modéré sans aucun avertissement. Les utilisateurs ne respectant pas les "
+"règles pré-établies de manière consécutive recevront un bannisement "
+"définitif de leur compte."
+
+#: Template/Pages/legals.ctp:32
 msgid "Use of Cookies"
 msgstr "Utilisation des cookies"
 
-#: Template/Pages/legals.ctp:30
+#: Template/Pages/legals.ctp:34
 msgid ""
 "The user is informed that during his visits to the site, a cookie can be "
 "installed automatically on his navigator software. A cookie is a file "
@@ -561,11 +579,11 @@ msgstr ""
 "l’utilisateur mais servant à enregistrer des informations relatives à la "
 "navigation de celui-ci sur le site."
 
-#: Template/Pages/legals.ctp:33
+#: Template/Pages/legals.ctp:37
 msgid "Credits"
 msgstr "Crédits"
 
-#: Template/Pages/legals.ctp:35
+#: Template/Pages/legals.ctp:39
 msgid ""
 "© 2017 mysetup.co – All rights reserved. Total or partial production or "
 "imitation of said documents without the express prior written consent of "

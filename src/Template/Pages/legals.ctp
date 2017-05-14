@@ -27,7 +27,7 @@ echo $this->Html->meta('description', 'Legal mentions about your personal data, 
 
 	<h2><?= __('Publishing Policy') ?></h2>
 
-	<p><?= __('By registering on mysetup.co, you agree with the following rules. Content published on this website must be related with setups. Any content judge not appropriate will be moderated without warning.Users who do not respect the pre-established rules several times will see their account banned.') ?></p>
+	<p><?= __('By registering on mysetup.co, you agree with the following rules. Content published on this website must be related with setups. Any content judged not appropriate will be moderated without warning. Users who do not respect the pre-established rules several times will see their account banned.') ?></p>
 
 	<h2><?= __('Use of Cookies') ?></h2>
 
