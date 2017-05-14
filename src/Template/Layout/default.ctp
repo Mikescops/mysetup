@@ -80,6 +80,7 @@
                                         <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Setups index') ?></a></li>
                                         <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>"><?= __('Users index') ?></a></li>
                                         <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>"><?= __('Resources index') ?></a></li>
+                                        <li><a href="<?= $this->Url->build(['controller' => 'Comments', 'action' => 'index']); ?>"><?= __('Comments index') ?></a></li>
                                     </ul>
                                 </li>
                             <?php endif; ?>
@@ -216,6 +217,7 @@
                                     <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Setups index') ?></a></li>
                                     <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>"><?= __('Users index') ?></a></li>
                                     <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>"><?= __('Resources index') ?></a></li>
+                                    <li><a href="<?= $this->Url->build(['controller' => 'Comments', 'action' => 'index']); ?>"><?= __('Comments index') ?></a></li>
                                 </ul>
                             </li>
                         <?php endif; ?>
