@@ -55,7 +55,7 @@ curl_close($CURL);
 
     <div class="maincontainer">
 
-      <div class="large_search">
+      <div class="large_search"> <i class="fa fa-search"></i>
         
         <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" /> 
         <?= $this->Html->scriptBlock(' let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`setups/search?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
