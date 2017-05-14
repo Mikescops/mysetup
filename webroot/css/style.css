@@ -1055,6 +1055,10 @@ nav {
 	    height: 70px!important;
 	}
 
+	.fullitem-inner h3 {
+		margin-left: 7px;
+	}
+
 }
 
 
