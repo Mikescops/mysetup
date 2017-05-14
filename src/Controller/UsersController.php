@@ -95,7 +95,7 @@ class UsersController extends AppController
                         ->setSubject("mySetup.co | Verify your account !")
                         ->setEmailFormat('html')
                         ->send("
-                            Hello !
+                            Hello " . $data['name'] . " !
                             <br />
                             <br />
                             Please, in order to activate your account, click the following link : <a href=\"https://mysetup.co/verify/" . $user->id . '/' . $user->mailVerification . "\" target=\"_blank\">Activate my account</a> !
@@ -322,7 +322,7 @@ class UsersController extends AppController
                         ->setSubject("mySetup.co | You password has been reseted !")
                         ->setEmailFormat('html')
                         ->send("
-                            Hello " . ($user->name !== '' ? $user->name . ' ' : '') . "!
+                            Hello " . $user->name . " !
                             <br />
                             <br />
                             Your password has been reseted and set to: <span style=\"font-weight: bold;\">" . $temp . "</span><br />
