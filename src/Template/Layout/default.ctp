@@ -165,7 +165,7 @@
                         <?php
                             echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage','text' => __('Add featured image *')), 'class' => 'inputfile']);
                         ?>
-                        <img alt="Featured Preview" id="featuredimage_preview">
+                        <img id="featuredimage_preview">
                         <div class="hidden_five_inputs">
                             <?php
                                 echo $this->Form->input('gallery0. ', ['id'=>'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
