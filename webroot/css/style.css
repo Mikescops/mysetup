@@ -1051,7 +1051,7 @@ nav {
 		top: 0;
 		bottom: auto;
 		margin: 0;
-		border-radius: 0 0 0 4px;
+		border-radius: 0 4px 0 4px;
 	}
 
 	.fullitem-inner{
