@@ -42,11 +42,10 @@ $this->assign('title', 'Login | mySetup.co');
                 <li>
                     <?= $this->Form->control('mail', ['required' => true, 'placeholder' => __('Email'), 'label' => false, 'type' => 'email', 'style' => 'width: 75%;float: left;}']) ?>
                     <?= $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "ES" => "ES", "IT" => "IT", "FR" => "FR", "DE" => "DE"], ['style' => 'width: 20%; float: right', 'default' => "US"]) ?>
+                    <?= $this->Form->control('name', ['required' => true, 'placeholder' => __('Name'), 'label' => false, 'type' => 'text', 'style' => 'width: 75%;float: left;}']) ?>
                 </li>
                 <li>
                     <?= $this->Form->control('password', [ 'pattern' => '.{8,}', 'required' => true, 'placeholder' => __('Password'), 'label' => false]) ?>
-                </li>
-                <li>
                     <?= $this->Form->control('password2', ['required' => true, 'placeholder' => __('Repeat password'), 'label' => false, 'type' => 'password']) ?>
                     <?= __('Password should be at least 8 characters.') ?>
                 </li>

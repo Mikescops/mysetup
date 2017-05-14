@@ -79,7 +79,7 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('name');
+            ->notEmpty('name');
 
         $validator
             ->notEmpty('mail')

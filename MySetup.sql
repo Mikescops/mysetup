@@ -98,7 +98,7 @@ CREATE TABLE `setups` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
   `mail` varchar(255) COLLATE utf8_bin NOT NULL,
   `password` varchar(255) COLLATE utf8_bin NOT NULL,
   `preferredStore` varchar(16) COLLATE utf8_bin NOT NULL,
