@@ -1035,6 +1035,10 @@ nav {
 		display: none;
 	}
 
+	.slider-item .red_like{
+		display: none;
+	}
+
 	.red_like{
 		top: 0;
 		bottom: auto;
