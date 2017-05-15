@@ -721,7 +721,7 @@ nav {
 	border-radius: 50%;
 	border: 2px solid rgb(50, 143, 234);
 	top: 3px;
-	margin-left: 9px;
+	right: -22px;
 }
 
 .lity-hide {
