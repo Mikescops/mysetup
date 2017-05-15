@@ -175,7 +175,7 @@
                                 echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                             ?>
                             <?php
-                                echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage','text' => __('Add featured image *')), 'class' => 'inputfile']);
+                                echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile']);
                             ?>
                             <img id="featuredimage_preview">
                             <div class="hidden_five_inputs">

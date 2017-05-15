@@ -862,7 +862,7 @@ nav {
 .gallery_edit_preview, .gallery_add_preview{
 	display: inline-block;
 	width: 18%;
-	margin: 0.666%;
+	margin: 0.555%;
 	max-height: 100px;
 	cursor: pointer;
 }
@@ -881,12 +881,14 @@ nav {
 }
 
 .label_fimage {
-    color: white;
-    background-color: #2167bd;
+    color: #328fea;
+    border: 3px dashed #328fea;
     display: inline-block;
     cursor: pointer; /* "hand" cursor */
     border-radius: 5px;
 	padding: 5px;
+	width: 100%;
+	text-align: center;
 }
 
 .label_fimage:hover{
@@ -898,6 +900,11 @@ nav {
 	width: 100%;
 	margin-bottom: 10px;
 	margin-top: 10px;
+	cursor: pointer;
+}
+
+#featuredimage_preview:hover, #featuredimage_preview_edit:hover{
+	opacity: 0.9;
 }
 
 .label_gimage {
@@ -958,7 +965,7 @@ nav {
   color: #000;
   font-size: 16px;
   padding: 8px 18px 8px 18px;
-  border-bottom: solid 1px #fff;
+  border-bottom: solid 1px #FDFDF6;
 }
 .add-form .tabs a.active {
   border-bottom: solid 1px #000;

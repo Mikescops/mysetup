@@ -144,6 +144,10 @@ $(function(){
       featuredPreview_edit( this );
     });
 
+    $("#featuredimage_preview").click(function(e) {
+      $(".label_fimage").click();
+    });
+
     /***** Preview galery edit *****/
     $("#gallery0image_preview_edit").click(function(e) {
       $("#gallery0").click();
@@ -227,6 +231,7 @@ function featuredPreview( uploader ) {
           $('#featuredimage_preview').attr('src', 
              window.URL.createObjectURL(uploader.files[0]) );
     }
+    $(".label_fimage_add").hide();
 }
 
 function featuredPreview_edit( uploader ) {
