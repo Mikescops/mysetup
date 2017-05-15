@@ -633,7 +633,7 @@ nav {
 	top: 0;
 }
 
-.heavy-nav img{
+.heavy-nav .ms-logo{
 	height: 50px;
 }
 
@@ -646,6 +646,7 @@ nav {
 	list-style:none;
 	margin:0;
 	padding:0;
+	margin-right: 15px;
 }
 .right-nav ul:before,.right-nav ul:after {
 	content:"";
@@ -712,6 +713,15 @@ nav {
 
 .right-nav ul > li:hover ul li{
 	height: 35px;
+}
+
+.right-nav .current-profile-user{
+	height: 32px;
+	position: absolute;
+	border-radius: 50%;
+	border: 2px solid rgb(50, 143, 234);
+	top: 3px;
+	margin-left: 5px;
 }
 
 .lity-hide {

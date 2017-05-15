@@ -62,7 +62,7 @@
         <div class="row">
             <div class="column column-20">
                 
-                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mySetup')); ?></a>
+                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mySetup', 'class' => 'ms-logo')); ?></a>
 
             </div>
             <div class="column column-80">
@@ -94,8 +94,8 @@
                         </li>
                         <li>
                             <?php if($authUser): ?>
-                                <a><?= __('Profile') ?> <i class="fa fa-caret-down"></i></a>
-                                <ul style="right: 0px;left: auto;width:150px">
+                                <a><?= $authUser['name'] ?> <img class="current-profile-user" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser['id'].'.png') ?>"></a>
+                                <ul style="right: -44px;left: auto;width:150px">
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
                                     <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
