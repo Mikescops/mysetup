@@ -352,7 +352,7 @@
         <?= $this->Html->script('jssocials.min.js') ?>
 
         <!-- App Js async load -->
-        <?= $this->Html->script('app.min.js') ?>
+        <?= $this->Html->script('app.min.js?v=2') ?>
 
         <script> /* Define toast once */const toast = new siiimpleToast();</script>
 
