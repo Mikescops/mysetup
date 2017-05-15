@@ -958,6 +958,7 @@ nav {
   color: #000;
   font-size: 16px;
   padding: 8px 18px 8px 18px;
+  border-bottom: solid 1px #fff;
 }
 .add-form .tabs a.active {
   border-bottom: solid 1px #000;

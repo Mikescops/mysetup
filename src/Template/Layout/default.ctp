@@ -205,8 +205,6 @@
                             <ul class="search_results add_setup"></ul>
                             <ul class="basket_items add_setup"></ul>
 
-                            <hr>
-
                             <div class="modal-footer">
 
                                 <a href="#infos" class="button next float-right"><?= __('Next step') ?></a>
@@ -232,8 +230,8 @@
 
                             <div class="modal-footer">
 
-                                <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
-                                <a href="#infos" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+                                <?= $this->Form->submit(__('Submit'), ['class' => 'float-right button']); ?>
+                                <a href="#components" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
                                 
                             </div>
 
