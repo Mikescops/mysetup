@@ -2,18 +2,13 @@
 /**
   * @var \App\View\AppView $this
   */
+
+    $this->layout = 'admin';
 ?>
 <div class="row">
-    <nav class="column column-25">
-        <ul class="side-nav">
-            <li class="heading"><?= __('Actions') ?></li>
-            <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('List Setups'), ['controller' => 'Setups', 'action' => 'index']) ?></li>
-        </ul>
-    </nav>
-    <div class="column column-75">
+    <div class="col-sm-12">
         <h3><?= __('Comments') ?></h3>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-striped" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
                     <th scope="col"><?= $this->Paginator->sort('id') ?></th>
