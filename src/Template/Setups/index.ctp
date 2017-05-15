@@ -148,7 +148,7 @@
     </script>
 
     <div class="col-sm-12">
-        <h3><?= __('Setups') ?></h3>
+        <h3><?= __('Setups') ?> - <?= $this->Paginator->counter(['format' => __('{{count}}')]) ?></h3>
         <table class="table table-striped table-responsive" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>

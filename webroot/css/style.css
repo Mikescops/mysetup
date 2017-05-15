@@ -646,7 +646,7 @@ nav {
 	list-style:none;
 	margin:0;
 	padding:0;
-	margin-right: 15px;
+	margin-right: 19px;
 }
 .right-nav ul:before,.right-nav ul:after {
 	content:"";
@@ -721,7 +721,7 @@ nav {
 	border-radius: 50%;
 	border: 2px solid rgb(50, 143, 234);
 	top: 3px;
-	margin-left: 5px;
+	margin-left: 9px;
 }
 
 .lity-hide {
