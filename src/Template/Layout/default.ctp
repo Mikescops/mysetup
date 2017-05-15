@@ -159,13 +159,13 @@
                         <div class="add-form">
                         <ul class="tabs">
                             <li>
-                                <a href="#basics" class="active"><div class="numberCircle">1</div> <?= __('Basics') ?></a>
+                                <a id="basics-tab" href="#basics" class="active"><div class="numberCircle">1</div> <?= __('Basics') ?></a>
                             </li>
                             <li>
-                                <a href="#components"><div class="numberCircle">2</div> <?= __('Components') ?></a>
+                                <a id="components-tab" href="#components"><div class="numberCircle">2</div> <?= __('Components') ?></a>
                             </li>
                             <li>
-                                <a href="#infos"><div class="numberCircle">3</div> <?= __('More infos') ?></a>
+                                <a id="infos-tab" href="#infos"><div class="numberCircle">3</div> <?= __('More infos') ?></a>
                             </li>
                         </ul>
                         <div id="basics" class="form-action show">

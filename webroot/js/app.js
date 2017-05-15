@@ -90,9 +90,10 @@ $(function() {
         .fadeIn( 550 );
   });
   $( '.form-action' ).on( 'click', '.next', function(e){
-    e.preventDefault();
-    var $tab = $( this ),
-         href = $tab.attr( 'href' );
+    e.preventDefault(); 
+    var $next = $( this ),
+         href = $next.attr( 'href' ),
+         $tab = $( href + '-tab' );
   
      $( '.active' ).removeClass( ACTIVE_CLASS );
      $tab.addClass( ACTIVE_CLASS );
