@@ -13,7 +13,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css?v=1') ?>
+    <?= $this->Html->css('app.min.css?v=2') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
