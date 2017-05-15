@@ -155,45 +155,72 @@
                 <div id="add_setup_modal" class="lity-hide">
                     <?= $this->Form->create($newSetupEntity, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'add']]); ?>
                     <fieldset style="border:0;">
-                        <?php
-                            echo $this->Form->control('title', ['label' => __('Title *'), 'required' => true, 'id' => 'title', 'maxLength' => 48]);
-                            echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
-                        ?>
-                        <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>','add_setup');" placeholder="<?= __('Search for components...') ?>">
-                        <ul class="search_results add_setup"></ul>
-                        <ul class="basket_items add_setup"></ul>
-                        <br />
-                        <?php
-                            echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage','text' => __('Add featured image *')), 'class' => 'inputfile']);
-                        ?>
-                        <img id="featuredimage_preview">
-                        <div class="hidden_five_inputs">
+
+                        <div class="add-form">
+                        <ul class="tabs">
+                            <li>
+                                <a href="#basics" class="active"><div class="numberCircle">1</div> <?= __('Basics') ?></a>
+                            </li>
+                            <li>
+                                <a href="#components"><div class="numberCircle">2</div> <?= __('Components') ?></a>
+                            </li>
+                            <li>
+                                <a href="#infos"><div class="numberCircle">3</div> <?= __('More infos') ?></a>
+                            </li>
+                        </ul>
+                        <div id="basics" class="form-action show">
+
                             <?php
-                                echo $this->Form->input('gallery0. ', ['id'=>'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                echo $this->Form->input('gallery1. ', ['id'=>'gallery1add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                echo $this->Form->input('gallery2. ', ['id'=>'gallery2add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                echo $this->Form->input('gallery3. ', ['id'=>'gallery3add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                echo $this->Form->input('gallery4. ', ['id'=>'gallery4add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                echo $this->Form->control('title', ['label' => __('Title *'), 'required' => true, 'id' => 'title', 'maxLength' => 48]);
+                                echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                             ?>
+                            <?php
+                                echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage','text' => __('Add featured image *')), 'class' => 'inputfile']);
+                            ?>
+                            <img id="featuredimage_preview">
+                            <div class="hidden_five_inputs">
+                                <?php
+                                    echo $this->Form->input('gallery0. ', ['id'=>'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                    echo $this->Form->input('gallery1. ', ['id'=>'gallery1add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                    echo $this->Form->input('gallery2. ', ['id'=>'gallery2add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                    echo $this->Form->input('gallery3. ', ['id'=>'gallery3add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                    echo $this->Form->input('gallery4. ', ['id'=>'gallery4add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                ?>
+                            </div>
+
+                            <?php for($i = 0; $i < 5; $i++): ?>
+                                <img alt="Gallery Preview" class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+                            <?php endfor ?>
+
+                            <span class="float-right">* <?= __('required fields') ?></span>
+
                         </div>
 
-                        <?php for($i = 0; $i < 5; $i++): ?>
-                            <img alt="Gallery Preview" class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
-                        <?php endfor ?>
+                        <div id="components" class="form-action hide">
 
-                        <br /><br />
-                        <?php
-                            echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)')]);
+                            <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>','add_setup');" placeholder="<?= __('Search for components...') ?>">
+                            <ul class="search_results add_setup"></ul>
+                            <ul class="basket_items add_setup"></ul>
 
-                            // A hidden entry to gather the item resources
-                            echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);
-                        ?>
-                        <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
-                        <span class="float-right">* <?= __('required fields') ?></span>
-                        <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
-                        <?php
-                            echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => false]);
-                        ?>
+                        </div>
+                        
+                        <div id="infos" class="form-action hide">
+
+                            <?php
+                                echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)')]);
+
+                                // A hidden entry to gather the item resources
+                                echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);
+                            ?>
+                            <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
+                            <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
+                            <?php
+                                echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => false]);
+                            ?>
+
+                        </div>
+
+                        </div>
                     </fieldset>
                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                     <?= $this->Form->end(); ?>
