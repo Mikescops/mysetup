@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-05-14 19:50+0200\n"
-"PO-Revision-Date: 2017-05-14 20:04+0200\n"
+"POT-Creation-Date: 2017-05-15 10:46+0200\n"
+"PO-Revision-Date: 2017-05-15 10:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -651,21 +651,29 @@ msgstr "Résultats de la recherche pour"
 msgid "Shared by"
 msgstr "Partagée par"
 
+#: Template/Setups/view.ctp:33
+msgid ", created by "
+msgstr ", créé par "
+
+#: Template/Setups/view.ctp:36
+msgid "You must be logged in to like !"
+msgstr "Vous devez être connecté(e) pour aimer ce setup"
+
 #: Template/Setups/view.ctp:52
 msgid "Edit"
 msgstr "Éditer"
 
-#: Template/Setups/view.ctp:53
-msgid "Embed it in Twitch"
-msgstr "Intégrer à Twitch"
-
-#: Template/Setups/view.ctp:57
+#: Template/Setups/view.ctp:52;57
 msgid "your"
 msgstr "votre"
 
-#: Template/Setups/view.ctp:57
+#: Template/Setups/view.ctp:52;57
 msgid "this"
 msgstr "ce"
+
+#: Template/Setups/view.ctp:53
+msgid "Embed it in Twitch"
+msgstr "Intégrer à Twitch"
 
 #: Template/Setups/view.ctp:62
 msgid "Title"
@@ -721,8 +729,8 @@ msgid "Nice config'…"
 msgstr "Jolie config'..."
 
 #: Template/Setups/view.ctp:225
-msgid "Comment"
-msgstr "Commentaire"
+msgid "Post this comment"
+msgstr "Publier ce commentaire"
 
 #: Template/Setups/view.ctp:229
 msgid "You must be logged in to comment"
@@ -819,6 +827,9 @@ msgstr "Changer le mot de passe de l'utilisateur"
 #: Template/Users/view.ctp:97
 msgid "Delete this account"
 msgstr "Supprimer ce compte"
+
+#~ msgid "Comment"
+#~ msgstr "Commentaire"
 
 #~ msgid ""
 #~ "One of your image could not be compressed, resized or saved... Please "

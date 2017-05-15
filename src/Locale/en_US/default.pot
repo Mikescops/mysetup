@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-05-14 17:50+0000\n"
+"POT-Creation-Date: 2017-05-15 08:46+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -574,20 +574,28 @@ msgstr ""
 msgid "Shared by"
 msgstr ""
 
+#: Template/Setups/view.ctp:33
+msgid ", created by "
+msgstr ""
+
+#: Template/Setups/view.ctp:36
+msgid "You must be logged in to like !"
+msgstr ""
+
 #: Template/Setups/view.ctp:52
 msgid "Edit"
 msgstr ""
 
-#: Template/Setups/view.ctp:53
-msgid "Embed it in Twitch"
-msgstr ""
-
-#: Template/Setups/view.ctp:57
+#: Template/Setups/view.ctp:52;57
 msgid "your"
 msgstr ""
 
-#: Template/Setups/view.ctp:57
+#: Template/Setups/view.ctp:52;57
 msgid "this"
+msgstr ""
+
+#: Template/Setups/view.ctp:53
+msgid "Embed it in Twitch"
 msgstr ""
 
 #: Template/Setups/view.ctp:62
@@ -639,7 +647,7 @@ msgid "Nice config'…"
 msgstr ""
 
 #: Template/Setups/view.ctp:225
-msgid "Comment"
+msgid "Post this comment"
 msgstr ""
 
 #: Template/Setups/view.ctp:229

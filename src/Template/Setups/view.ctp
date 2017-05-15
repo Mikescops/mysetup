@@ -30,10 +30,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 </a>
                 <h3><?= $setup->title ?></h3>
                 <p>
-                    <?= __('Shared by') ?> <?php if($additionalData['owner']['name']){echo $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]);}else{echo "Unknown";} ?><?php if($additionalData['owner']['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($additionalData['owner']['name'] != $setup->author and $setup->author !== ''): echo ", created by " . $setup->author ; endif?>
+                    <?= __('Shared by') ?> <?php if($additionalData['owner']['name']){echo $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]);}else{echo "Unknown";} ?><?php if($additionalData['owner']['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($additionalData['owner']['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . $setup->author ; endif?>
                 </p>
             </div>
-            <a class="labeled_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('You must be login to like !');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
+            <a class="labeled_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('" . __('You must be logged in to like !') . "');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
               <div class="red_button">
                 <i class="fa fa-heart"></i> Like
               </div>
@@ -49,7 +49,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 <?php if($authUser['id'] == $setup->user_id or $authUser['admin']): ?>
     <div class="edit_panel">
-        <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> <?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? "your" : "this") ?> setup</a></div>
+        <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> <?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup</a></div>
         <div><a href="#embed_twitch_modal" data-lity><i class="fa fa-twitch"></i> <?= __('Embed it in Twitch') ?></a></div>
     </div>
 
@@ -222,7 +222,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <fieldset>
                 <?php echo $this->Form->control('content', ['label'=>'', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'),'rows' => 10, 'maxLength' => 500]);?>
                 </fieldset>
-                <?= $this->Form->submit(__('Comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
+                <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
                 <?= $this->Form->end(); ?>
             <?php else: ?>
 
