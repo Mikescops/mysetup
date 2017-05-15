@@ -194,6 +194,9 @@
 
                             <span class="float-right">* <?= __('required fields') ?></span>
 
+                            <div class="modal-footer"><a href="#components" class="button next float-right"><?= __('Next step') ?></a></div>
+                            
+
                         </div>
 
                         <div id="components" class="form-action hide">
@@ -201,6 +204,15 @@
                             <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>','add_setup');" placeholder="<?= __('Search for components...') ?>">
                             <ul class="search_results add_setup"></ul>
                             <ul class="basket_items add_setup"></ul>
+
+                            <hr>
+
+                            <div class="modal-footer">
+
+                                <a href="#infos" class="button next float-right"><?= __('Next step') ?></a>
+                                <a href="#basics" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+
+                            </div>
 
                         </div>
                         
@@ -218,12 +230,23 @@
                                 echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => false]);
                             ?>
 
+                            <div class="modal-footer">
+
+                                <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
+                                <a href="#infos" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+                                
+                            </div>
+
                         </div>
 
                         </div>
+
                     </fieldset>
-                    <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
+                    
                     <?= $this->Form->end(); ?>
+
+
+
                 </div>
             </div>
 

@@ -88,7 +88,29 @@ $(function() {
         .addClass( SHOW_CLASS )
         .hide()
         .fadeIn( 550 );
-  });});
+  });
+  $( '.form-action' ).on( 'click', '.next', function(e){
+    e.preventDefault();
+    var $tab = $( this ),
+         href = $tab.attr( 'href' );
+  
+     $( '.active' ).removeClass( ACTIVE_CLASS );
+     $tab.addClass( ACTIVE_CLASS );
+  
+     $( '.show' )
+        .removeClass( SHOW_CLASS )
+        .addClass( HIDE_CLASS )
+        .hide();
+    
+      $(href)
+        .removeClass( HIDE_CLASS )
+        .addClass( SHOW_CLASS )
+        .hide()
+        .fadeIn( 550 );
+  });
+
+
+});
 
 /***** On load functions *****/
 $(function(){
