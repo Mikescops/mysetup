@@ -18,6 +18,7 @@ use Cake\Controller\Controller;
 use Cake\Network\Response;
 use Cake\Event\Event;
 use Cake\I18n\I18n;
+use Cake\Network\Http\Client;
 
 /**
  * Application Controller
@@ -180,6 +181,27 @@ class AppController extends Controller
         }
     }
     /* _______________*/
+
+    /* GOOGLE'S CAPTCHA VERIFICATION */
+    protected function captchaValidation($data)
+    {
+        // Is this user authorized by Google invisible CAPTCHA ?
+        $response = (new Client())->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => '6LcLKx0UAAAAACDyDI7Jtmkm0IX9ni3cWN5amwx3',
+            'response' => $data['g-recaptcha-response']
+        ]);
+
+        if(!$response or !$response->json or !$response->json['success'])
+        {
+            return false;
+        }
+
+        else
+        {
+            return true;
+        }
+    }
+    /* _____________________________ */
 
     /* AJAX CALLS ? */
     public function getLikes()

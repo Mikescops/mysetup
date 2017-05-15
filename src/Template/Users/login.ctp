@@ -36,7 +36,7 @@ $this->assign('title', 'Login | mySetup.co');
     </div>
     <!--/#login.form-action-->
     <div id="register" class="form-action hide">
-        <?= $this->Form->create(null, ['url' => ['controller' => 'Users', 'action' => 'add']]) ?>
+        <?= $this->Form->create(null, ['url' => ['controller' => 'Users', 'action' => 'add'], 'id' => 'register-form']) ?>
         <fieldset>
             <ul>
                 <li>
@@ -45,16 +45,23 @@ $this->assign('title', 'Login | mySetup.co');
                     <?= $this->Form->control('name', ['required' => true, 'placeholder' => __('Name'), 'label' => false, 'type' => 'text', 'style' => 'width: 75%;float: left;}']) ?>
                 </li>
                 <li>
-                    <?= $this->Form->control('password', [ 'pattern' => '.{8,}', 'required' => true, 'placeholder' => __('Password'), 'label' => false]) ?>
+                    <?= $this->Form->control('password', ['pattern' => '.{8,}', 'required' => true, 'placeholder' => __('Password'), 'label' => false]) ?>
                     <?= $this->Form->control('password2', ['required' => true, 'placeholder' => __('Repeat password'), 'label' => false, 'type' => 'password']) ?>
                     <?= __('Password should be at least 8 characters.') ?>
                 </li>
                 <li>
-                    <?= $this->Form->button(__('Sign up'), ['class' => 'button']); ?>
+                    <?= $this->Form->submit(__('Sign up'), ['class' => 'g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
                 </li>
             </ul>
         </fieldset>
         <?= $this->Form->end() ?>
+
+        <script>
+            function onSubmit(token) {
+                document.getElementById("register-form").submit();
+            }
+        </script>
+        <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     </div>
     <!--/#register.form-action-->
     <div id="reset" class="form-action hide">
@@ -75,5 +82,5 @@ $this->assign('title', 'Login | mySetup.co');
         </fieldset>
         <?= $this->Form->end() ?>
     </div>
-    <!--/#register.form-action-->
+    <!--/#reset.form-action-->
 </div>

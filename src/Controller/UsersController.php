@@ -58,6 +58,12 @@ class UsersController extends AppController
 
             $data = $this->request->getData();
 
+            if(parent::captchaValidation($data))
+            {
+                $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
+                return $this->redirect('/');
+            }
+
             if($data['password'] === $data['password2'])
             {
                 $user = $this->Users->patchEntity($user, $data);
