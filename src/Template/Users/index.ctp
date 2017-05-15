@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-sm-12">
         <h3><?= __('Users') ?></h3>
-        <table class="table table-striped" cellpadding="0" cellspacing="0">
+        <table class="table table-striped table-responsive" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
                     <th scope="col"><?= $this->Paginator->sort('id') ?></th>

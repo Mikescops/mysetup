@@ -66,7 +66,7 @@
       </div>
     </nav>
 
-    <div class="container"><?= $this->fetch('content') ?></div>
+    <div class="container pt-4"><?= $this->fetch('content') ?></div>
     
 
 

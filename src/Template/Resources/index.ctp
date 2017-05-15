@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-sm-12">
         <h3><?= __('Resources') ?></h3>
-        <table class="table table-striped" cellpadding="0" cellspacing="0">
+        <table class="table table-striped table-responsive" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
                     <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -26,9 +26,9 @@
                     <td><?= $this->Number->format($resource->id) ?></td>
                     <td><?= $this->Html->link($resource->user_id, ['controller' => 'Users', 'action' => 'view', $resource->user_id]) ?></td>
                     <td><?= $this->Html->link($resource->setup_id, ['controller' => 'Setups', 'action' => 'view', $resource->setup_id]) ?></td>
-                    <td><?= h($resource->title) ?></td>
-                    <td><?= h($resource->href) ?></td>
-                    <td><?= h($resource->src) ?></td>
+                    <td><?= urldecode(h($resource->title)) ?></td>
+                    <td><?= urldecode(h($resource->href)) ?></td>
+                    <td><?= urldecode(h($resource->src)) ?></td>
                     <td class="actions">
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $resource->id], ['confirm' => __('Are you sure you want to delete this resource ?')]) ?>
                     </td>
@@ -37,7 +37,7 @@
             </tbody>
         </table>
         <div class="paginator">
-            <ul class="pagination">
+            <ul class="pagination pagination-large">
                 <?= $this->Paginator->first('<< ' . __('first')) ?>
                 <?= $this->Paginator->prev('< ' . __('previous')) ?>
                 <?= $this->Paginator->numbers() ?>
