@@ -222,10 +222,9 @@ $(function(){
       var $oldvalue = $('#' + $place + '> p').text(),
         $id = $place.replace(/[^0-9]/g, '');
 
-        var $code = '<form enctype="multipart/form-data" method="post" accept-charset="utf-8" action="/mysetup/comments/edit/'+ $id +'"><div class="input textarea required"><textarea name="content" maxlengh="500" required="required" rows="5">'+ $oldvalue +'</textarea></div></form>';
-        console.log($code);
-
-        $('#' + $place).replaceWith($code);
+        console.log($oldvalue);
+        $('.textarea-edit-comment').text($oldvalue);
+        $('#edit-comment-hidden > form').attr( 'action',  '/mysetup/comments/edit/' + $id); 
 
 
     });

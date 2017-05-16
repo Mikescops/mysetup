@@ -208,7 +208,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                         <p class="attribution">by <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($additionalData[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
 
                         <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are you sure ?')); 
-                            echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#comment-'.$comments->id.'"> Edit </a>';
+                            echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> Edit </a>';
                         endif ?>
                     </div>
                 </article>
@@ -227,12 +227,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
                 <?= $this->Form->end(); ?>
 
-                <div class="hidden">
+                <div class="lity-hide" id="edit-comment-hidden">
                     <?=
                         /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
-                        $this->Form->create(null, ['url' => [/* THIS HAS TO BE AS : `/comments/edit/$COMMENT_ID` */]]);
-                        echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
-                        echo $this->Form->submit('test ??', ['id' => 'editCommentButton' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
+                        $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'edit']]);
+                        echo $this->Form->control('content', ['label' => '', 'class' => 'textarea-edit-comment','id' => 'commentField', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
+                        echo $this->Form->submit(__('Edit'), ['id' => 'editCommentButton', 'class' => 'float-right' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
                         $this->Form->end();
                     ?>
                 </div>
