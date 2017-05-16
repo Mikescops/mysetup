@@ -16,6 +16,8 @@
                     <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('mail') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('verified') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('creationDate') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('lastLogginDate') ?></th>
                     <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -26,6 +28,8 @@
                     <td><?= h($user->name) ?></td>
                     <td><?= h($user->mail) ?></td>
                     <td><?= h($user->verified) ?></td>
+                    <td><?= h($user->creationDate) ?></td>
+                    <td><?= h($user->lastLogginDate) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete this user ?')]) ?>
