@@ -78,5 +78,3 @@ In order to deploy this website on your web server:
 	> [y] > __y__  
 	>  
 	> Done.
-
-* During development, you won't be able to add a comment to a setup (Google's invisible CAPTCHA checks the domain name environment).

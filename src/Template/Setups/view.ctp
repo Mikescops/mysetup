@@ -54,7 +54,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     </div>
 
     <div id="edit_setup_modal" class="lity-hide">
-        <h4>Edit <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup</h4>
+        <h4><?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup</h4>
 
         <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'edit', $setup->id]]); ?>
         <fieldset style="border:0;">
