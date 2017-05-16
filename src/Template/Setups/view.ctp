@@ -202,12 +202,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     </a>
                         
                     <div class="comment-body">
-                        <div class="text">
+                        <div class="text" id="comment-<?= $comments->id ?>">
                           <p><?= h($comments->content) ?></p>
                         </div>
                         <p class="attribution">by <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($additionalData[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
 
-                        <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are you sure ?')); endif ?>
+                        <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are you sure ?')); 
+                            echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#comment-'.$comments->id.'"> Edit </a>';
+                        endif ?>
                     </div>
                 </article>
 

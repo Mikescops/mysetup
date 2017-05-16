@@ -214,6 +214,21 @@ $(function(){
     $("#gallery4add").change(function(){
       galleryPreview_add( this, 4 );
     });
+
+
+    $(".edit-comment").click(function(e) {
+      var $comment = $( this ),
+        $place = $comment.attr( 'source' );
+      var $oldvalue = $('#' + $place + '> p').text(),
+        $id = $place.replace(/[^0-9]/g, '');
+
+        var $code = '<form enctype="multipart/form-data" method="post" accept-charset="utf-8" action="/mysetup/comments/edit/'+ $id +'"><div class="input textarea required"><textarea name="content" maxlengh="500" required="required" rows="5">'+ $oldvalue +'</textarea></div></form>';
+        console.log($code);
+
+        $('#' + $place).replaceWith($code);
+
+
+    });
 });
 
 /********* Update Profile Picture on Upload *********/
