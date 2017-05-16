@@ -62,8 +62,8 @@
               query: {
                 metrics: 'ga:sessions',
                 dimensions: 'ga:date',
-                'start-date': '15daysAgo',
-                'end-date': 'yesterday'
+                'start-date': '30daysAgo',
+                'end-date': 'today'
               },
               chart: {
                 container: 'chart-container',
