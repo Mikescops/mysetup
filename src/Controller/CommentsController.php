@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\Network\Http\Client;
 
 /**
  * Comments Controller
@@ -42,13 +41,7 @@ class CommentsController extends AppController
         {
             $data = $this->request->getData();
 
-            // We know that's a POST request with data, BUT: Is this user authorized by Google invisible CAPTCHA ?
-            $response = (new Client())->post('https://www.google.com/recaptcha/api/siteverify', [
-                'secret' => '6LcLKx0UAAAAACDyDI7Jtmkm0IX9ni3cWN5amwx3',
-                'response' => $data['g-recaptcha-response']
-            ]);
-
-            if($response->json['success'])
+            if(parent::captchaValidation($data))
             {
                 // Let's set the id of the current logged in user 
                 $data['user_id'] = $this->request->session()->read('Auth.User.id');

@@ -224,6 +224,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 </fieldset>
                 <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
                 <?= $this->Form->end(); ?>
+
             <?php else: ?>
 
                 <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build('/login')?>"><?= __('Log me in !') ?></a>
