@@ -84,15 +84,24 @@ class CommentsController extends AppController
         $comment = $this->Comments->get($id, [
             'contain' => []
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $comment = $this->Comments->patchEntity($comment, $this->request->getData());
-            if ($this->Comments->save($comment)) {
-                $this->Flash->success(__('The comment has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+        if($this->request->is(['patch', 'post', 'put']))
+        {
+            $comment = $this->Comments->patchEntity($comment, $this->request->getData());
+
+            if($this->Comments->save($comment))
+            {
+                $this->Flash->success(__('The comment has been saved.'));
             }
-            $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+
+            else
+            {
+                $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+            }
+
+            return $this->redirect($this->referer());
         }
+
         $this->set(compact('comment'));
         $this->set('_serialize', ['comment']);
     }
@@ -115,6 +124,14 @@ class CommentsController extends AppController
         }
 
         return $this->redirect($this->referer());
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        // We've to disable security stuff on comments edition because the form concerned is just totally unpredictable
+        $this->Security->config('unlockedActions', ['edit']);
     }
 
     public function isAuthorized($user)
