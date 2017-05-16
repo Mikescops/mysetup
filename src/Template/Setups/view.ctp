@@ -220,12 +220,22 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <?php if($authUser): ?>
 
-                <?= $this->Form->create($newComment, ['type' => 'file', 'url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
+                <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
                 <fieldset>
-                <?php echo $this->Form->control('content', ['label'=>'', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'),'rows' => 10, 'maxLength' => 500]);?>
+                <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'), 'rows' => 10, 'maxLength' => 500]); ?>
                 </fieldset>
                 <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
                 <?= $this->Form->end(); ?>
+
+                <div class="hidden">
+                    <?=
+                        /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
+                        $this->Form->create(null, ['url' => [/* THIS HAS TO BE AS : `/comments/edit/$COMMENT_ID` */]]);
+                        echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
+                        echo $this->Form->submit('test ??', ['id' => 'editCommentButton' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
+                        $this->Form->end();
+                    ?>
+                </div>
 
             <?php else: ?>
 
