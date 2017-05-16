@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Mailer\Email;
 use Cake\Event\Event;
+use Cake\I18n\Time;
 
 /**
  * Users Controller
@@ -58,7 +59,7 @@ class UsersController extends AppController
 
             $data = $this->request->getData();
 
-            if(parent::captchaValidation($data))
+            if(!parent::captchaValidation($data))
             {
                 $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
                 return $this->redirect('/');
@@ -268,7 +269,14 @@ class UsersController extends AppController
                 else
                 {
                     $this->Auth->setUser($user);
+
+                    // Let's save the current date / time in the DB...
+                    $user = $this->Users->get($user['id']);
+                    $user->lastLogginDate = Time::now();
+                    $this->Users->save($user);
+
                     $this->request->session()->write('Config.language', strtolower($user['preferredStore']). '_' . $user['preferredStore']);
+
                     $this->Flash->success(__('You are successfully logged in !'));
                     return $this->redirect($this->Auth->redirectUrl());
                 }
@@ -376,6 +384,9 @@ class UsersController extends AppController
                 if($user['mailVerification'] == $token)
                 {
                     $user['mailVerification'] = null;
+
+                    // Let's set his first loggin date btw
+                    $user['lastLogginDate'] = Time::now();
 
                     $this->Users->save($user);
 

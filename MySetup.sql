@@ -103,7 +103,9 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8_bin NOT NULL,
   `preferredStore` varchar(16) COLLATE utf8_bin NOT NULL,
   `verified` int(1) NOT NULL,
-  `mailVerification` varchar(32) COLLATE utf8_bin DEFAULT NULL
+  `mailVerification` varchar(32) COLLATE utf8_bin DEFAULT NULL,
+  `creationDate` datetime NOT NULL,
+  `lastLogginDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --

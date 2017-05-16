@@ -63,6 +63,15 @@ class UsersTable extends Table
             'cascadeCallbacks' => 'true'
         ]);
 
+
+         $this->addBehavior('Timestamp', [
+            'events' => [
+                'Model.beforeSave' => [
+                    'creationDate' => 'new'
+                ]
+            ]
+        ]);
+
         $this->addBehavior('Sitemap.Sitemap', ['changefreq' => 'daily']);
     }
 
@@ -103,6 +112,14 @@ class UsersTable extends Table
 
         $validator
             ->allowEmpty('mailVerification');
+
+        $validator
+            ->dateTime('creationDate')
+            ->notEmpty('creationDate');
+
+        $validator
+            ->dateTime('lastLogginDate')
+            ->allowEmpty('lastLogginDate');
 
         return $validator;
     }
