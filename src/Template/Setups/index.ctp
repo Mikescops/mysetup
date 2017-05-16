@@ -80,9 +80,9 @@
             /**
              * Render the dataChart on the page whenever a new view is selected.
              */
-            viewSelector.on('change', function(ids) {
-              dataChart.set({query: {ids: ids}}).execute();
-            });
+            // viewSelector.on('change', function(ids) {
+            //   dataChart.set({query: {ids: ids}}).execute();
+            // });
 
           });
         </script>
