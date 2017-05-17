@@ -13,8 +13,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css?v=2') ?>
-    <?= $this->Html->css('emoji.min.css?v=2') ?>
+    <?= $this->Html->css('app.min.css?v=3') ?>
+    <?= $this->Html->css('emoji.min.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -352,10 +352,12 @@
 
         <?= $this->Html->script('jssocials.min.js') ?>
 
+        <?php if($authUser): ?>
         <?= $this->Html->script('emoji.min.js') ?>
+        <?php endif; ?>
 
         <!-- App Js async load -->
-        <?= $this->Html->script('app.js?v=2') ?>
+        <?= $this->Html->script('app.min.js?v=3') ?>
 
         <script> /* Define toast once */const toast = new siiimpleToast();</script>
 
