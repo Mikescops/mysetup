@@ -613,6 +613,11 @@ h3.user-profile{
 	margin-left: 70px;
 }
 
+#edit-comment-hidden{
+	width: 550px;
+	max-width: 100%;
+}
+
 
  /*********** MENU CSS ***********/
 
