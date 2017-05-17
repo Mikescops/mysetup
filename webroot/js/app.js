@@ -651,7 +651,7 @@ function infiniteScroll(nbtodisplay) {
           if(setups[0]){
             //console.log(json[0]['title']);
             $.each(setups ,function(key, value) {
-              console.log(value['likes']);
+              //console.log(value['likes']);
               var nblikes;
               if(value['likes'][0]){
                 nblikes = value['likes'][0]['total'];
