@@ -223,7 +223,7 @@ $(function(){
         $id = $place.replace(/[^0-9]/g, '');
 
         console.log($oldvalue);
-        $('.textarea-edit-comment').text($oldvalue);
+        $('.textarea-edit-comment > .emojionearea-editor').text($oldvalue);
         $('#edit-comment-hidden > form').attr( 'action',  '/mysetup/comments/edit/' + $id); 
 
 

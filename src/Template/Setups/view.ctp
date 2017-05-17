@@ -233,10 +233,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <?=
                         /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
                         $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'edit']]);
-                        echo $this->Form->control('content', ['label' => '', 'class' => 'textarea-edit-comment','id' => 'commentField', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
+                        echo $this->Form->control('content', ['label' => '', 'class' => 'textarea-edit-comment','id' => 'textarea-edit', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
                         echo $this->Form->submit(__('Edit'), ['id' => 'editCommentButton', 'class' => 'float-right' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
                         $this->Form->end();
                     ?>
+
+                    <?= $this->Html->scriptBlock('$(document).ready(function() {$("#textarea-edit").emojioneArea({pickerPosition: "top"});});', array('block' => 'scriptBottom')) ?>
                 </div>
 
             <?php else: ?>
