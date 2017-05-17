@@ -224,7 +224,7 @@ $(function(){
 
         // console.log($oldvalue);
         $('.textarea-edit-comment > .emojionearea-editor').html(emojione.toImage($oldvalue));
-        $('#edit-comment-hidden > form').attr( 'action',  '/mysetup/comments/edit/' + $id); 
+        $('#edit-comment-hidden > form').attr( 'action',  $('#edit-comment-hidden > form').attr( 'action' ) + '/' + $id); 
 
 
     });
