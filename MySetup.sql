@@ -30,9 +30,9 @@ CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `setup_id` int(11) NOT NULL,
-  `content` text COLLATE utf8_bin NOT NULL,
+  `content` text COLLATE utf8mb4_bin NOT NULL,
   `dateTime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
 
