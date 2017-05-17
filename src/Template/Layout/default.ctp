@@ -356,6 +356,8 @@
         <?= $this->Html->script('emoji.min.js') ?>
         <?php endif; ?>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
+
         <!-- App Js async load -->
         <?= $this->Html->script('app.min.js?v=3') ?>
 

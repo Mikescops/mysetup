@@ -219,7 +219,7 @@ $(function(){
     $(".edit-comment").click(function(e) {
       var $comment = $( this ),
         $place = $comment.attr( 'source' );
-      var $oldvalue = $('#' + $place + '> p').text(),
+      var $oldvalue = $('#' + $place + '> p').attr('content'),
         $id = $place.replace(/[^0-9]/g, '');
 
         console.log($oldvalue);

@@ -203,7 +203,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                         
                     <div class="comment-body">
                         <div class="text" id="comment-<?= $comments->id ?>">
-                          <p><?= h($comments->content) ?></p>
+                          <p content="<?= h($comments->content) ?>"><?= h($comments->content) ?></p>
+                          <?= $this->Html->scriptBlock("$(function(){ $('#comment-".  $comments->id ." > p').html(emojione.toImage(`".$comments->content."`)); });", array('block' => 'scriptBottom')) ?>
                         </div>
                         <p class="attribution">by <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($additionalData[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
 
@@ -217,6 +218,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?php endif; ?>
 
             </section>
+
 
             <?php if($authUser): ?>
 
