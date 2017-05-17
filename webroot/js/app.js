@@ -222,8 +222,8 @@ $(function(){
       var $oldvalue = $('#' + $place + '> p').attr('content'),
         $id = $place.replace(/[^0-9]/g, '');
 
-        console.log($oldvalue);
-        $('.textarea-edit-comment > .emojionearea-editor').text($oldvalue);
+        // console.log($oldvalue);
+        $('.textarea-edit-comment > .emojionearea-editor').html(emojione.toImage($oldvalue));
         $('#edit-comment-hidden > form').attr( 'action',  '/mysetup/comments/edit/' + $id); 
 
 
