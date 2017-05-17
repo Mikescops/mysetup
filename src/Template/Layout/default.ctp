@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <?= $this->Html->css('app.min.css?v=2') ?>
+    <?= $this->Html->css('emoji.min.css?v=2') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -350,6 +351,8 @@
         <?= $this->Html->script('amazon-autocomplete.js') ?>
 
         <?= $this->Html->script('jssocials.min.js') ?>
+
+        <?= $this->Html->script('emoji.min.js') ?>
 
         <!-- App Js async load -->
         <?= $this->Html->script('app.js?v=2') ?>

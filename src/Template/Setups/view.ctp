@@ -227,6 +227,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
                 <?= $this->Form->end(); ?>
 
+                <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
+
                 <div class="lity-hide" id="edit-comment-hidden">
                     <?=
                         /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
