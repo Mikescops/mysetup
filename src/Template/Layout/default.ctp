@@ -13,7 +13,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css?v=3') ?>
+    <?= $this->Html->css('app.min.css?v=4') ?>
     <?= $this->Html->css('emoji.min.css') ?>
 
     <?= $this->fetch('meta') ?>
@@ -359,7 +359,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
         <!-- App Js async load -->
-        <?= $this->Html->script('app.min.js?v=3') ?>
+        <?= $this->Html->script('app.min.js?v=4') ?>
 
         <script> /* Define toast once */const toast = new siiimpleToast();</script>
 
