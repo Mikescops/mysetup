@@ -115,7 +115,7 @@ class AppController extends Controller
         $this->Auth->deny();
 
         // Allow GET request on public functions
-        $this->Auth->allow(['getSetups', 'getLikes']);
+        $this->Auth->allow(['getSetups', 'getLikes', 'getNotifications']);
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
         $this->Security->config('unlockedFields', [
@@ -379,6 +379,28 @@ class AppController extends Controller
                     return ($a->likes[0]->total > $b->likes[0]->total) ? -1 : 1;
                 }); // not working yet
             }
+
+            return new Response([
+                'status' => 200,
+                'body' => json_encode($results)
+            ]);
+        }
+    }
+
+    public function getNotifications()
+    {
+        if($this->request->is('get'))
+        {
+            $results = $this->Notifications->find('all', [
+                'conditions' => [
+                    'user_id' => $this->request->session()->read('Auth.User.id'),
+                    'new' => 1
+                ],
+                'order' => [
+                    'dateTime' => 'DESC'
+                ],
+                'limit' => $this->request->getQuery('n', 4)
+            ]);
 
             return new Response([
                 'status' => 200,
