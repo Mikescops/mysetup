@@ -32,7 +32,7 @@ CREATE TABLE `comments` (
   `setup_id` int(11) NOT NULL,
   `content` text COLLATE utf8mb4_bin NOT NULL,
   `dateTime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
 
@@ -108,6 +108,20 @@ CREATE TABLE `users` (
   `lastLogginDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `content` TEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `new` TINYINT(1) NOT NULL,
+  `dateTime` datetime NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 --
 -- Dumping data for table `users`
 --
@@ -157,6 +171,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `mail` (`mail`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -164,7 +184,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `likes`
 --
@@ -189,6 +209,11 @@ ALTER TABLE `setups`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
