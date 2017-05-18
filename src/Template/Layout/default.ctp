@@ -37,29 +37,6 @@
     <meta name="twitter:site" content="@mysetup_co">
     <meta property="og:site_name" content="mySetup.co" />
     <meta property="fb:admins" content="1912097312403661" />
-
-    <meta name="google-site-verification" content="8eCzlQ585iC5IG3a4-fENYChl1AaEUaW7VeBj2NiFJQ" />
-
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-    <script>
-    window.addEventListener("load", function(){
-    window.cookieconsent.initialise({
-      "palette": {
-        "popup": {
-          "background": "#000"
-        },
-        "button": {
-          "background": "#328fea"
-        }
-      },
-      "theme": "classic",
-      "position": "bottom-left",
-      "content": {
-        "href": "https://mysetup.co/pages/legals"
-      }
-    })});
-    </script>
 </head>
 <body>
     <nav class="heavy-nav">
@@ -112,7 +89,7 @@
                                     <div class="row">
                                     <div class="column column-25">
                                     <div class="profile-container">
-                                       <image id="profileImage" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $authUser['id'] ?>.png" />
+                                       <img id="profileImage" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $authUser['id'] ?>.png" />
                                     </div>
 
                                     <div class="profilepicup">
@@ -338,49 +315,30 @@
                     </div>
               </div>
           </div>
-
-        <script>var webRootJs = "<?= $this->Url->build('/'); ?>";</script>
-
-        <!-- Jquery async load -->
-        <?= $this->Html->script('jquery-3.2.0.min.js') ?>
-
-        <!-- Slider Js async load -->
-        <?= $this->Html->script('slick.min.js') ?>
-
-        <!-- Lightbox Js async load -->
-        <?= $this->Html->script('lity.min.js') ?>
-
-        <!-- Amazon Query Js async load -->
-        <?= $this->Html->script('amazon-autocomplete.js') ?>
-
-        <?= $this->Html->script('jssocials.min.js') ?>
-
-        <?php if($authUser): ?>
-        <?= $this->Html->script('emoji.min.js') ?>
-        <?php endif; ?>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
-
-        <!-- App Js async load -->
-        <?= $this->Html->script('app.min.js?v=5') ?>
-
-        <script> /* Define toast once */const toast = new siiimpleToast();</script>
-
-        <?= $this->Flash->render() ?>
-
-        <?= $this->fetch('scriptBottom') ?>
-
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-98637133-1', 'auto');
-          ga('send', 'pageview');
-
-        </script>
     </footer>
-
 </body>
+
+<script>var webRootJs = "<?= $this->Url->build('/'); ?>";</script>
+
+<!-- Jquery async load -->
+<?= $this->Html->script('jquery-3.2.0.min.js') ?>
+<?= $this->Html->script('lib.min.js') ?>
+
+<?php if($authUser): ?>
+<?= $this->Html->script('emoji.min.js') ?>
+<?php endif; ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
+
+<!-- App Js async load -->
+<?= $this->Html->script('app.min.js?v=5') ?>
+<script>const toast = new siiimpleToast();</script>
+
+<?= $this->Flash->render() ?>
+
+<?= $this->fetch('scriptBottom') ?>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>window.addEventListener("load",function(){window.cookieconsent.initialise({"palette":{"popup":{"background":"#000"},"button":{"background":"#328fea"}},"theme":"classic","position":"bottom-left","content":{"href":"https://mysetup.co/pages/legals"}})});</script>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-98637133-1','auto');ga('send','pageview');</script>
 </html>
