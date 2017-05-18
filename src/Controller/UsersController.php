@@ -37,10 +37,10 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Setups', 'Comments', 'Resources']
+            'contain' => ['Setups' => ['sort' => ['Setups.id' => 'DESC']], 'Comments', 'Resources']
         ]);
 
-        $fimage = $this->Users->Resources->find('all')->where(['user_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->toArray();
+        $fimage = $this->Users->Resources->find('all', ['order' => ['Resources.setup_id' => 'DESC']])->where(['user_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->toArray();
 
         $this->set(compact('user', 'fimage'));
         $this->set('_serialize', ['user']);
