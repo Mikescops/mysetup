@@ -254,6 +254,15 @@ class AppController extends Controller
                     {
                         $status = 200;
                         $body   = 'LIKED';
+
+                        // If it's not him, let's inform the setup owner of this new like
+                        $this->loadModel('Setups');
+                        $owner_id = $this->Setups->get($setup_id)['user_id'];
+                        if($like['user_id'] !== $owner_id)
+                        {
+                            $this->loadModel('Notifications');
+                            $this->Notifications->createNotification($owner_id, __('One of your setup has been liked by someone !'));
+                        }
                     }
 
                     else
