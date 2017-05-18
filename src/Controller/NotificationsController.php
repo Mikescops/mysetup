@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Notifications Controller
@@ -15,7 +16,7 @@ class NotificationsController extends AppController
         With this very entity, we'll only allow 'index per user' method.
         The `$id` will represent the user id, NOT A NOTIFICATION ONE.
     */
-    public function index($id)
+    public function index()
     {
         if($this->request->is('get'))
         {
@@ -123,7 +124,7 @@ class NotificationsController extends AppController
                 }
             }
 
-            elseif($this->request->action === 'index' && (int)$this->request->params['pass'][0] === $user['id'])
+            else if($this->request->action === 'index')
             {
                 return true;
             }
