@@ -415,8 +415,7 @@
                   data: { "notification_id": id},
                 });
 
-                $('.notifnb-'+id).hide();
-
+                $('.notifnb-'+id).remove();
             }
         </script>
         <?php endif ?>
