@@ -813,6 +813,11 @@ nav {
 }
 
 /**** Notifications ****/
+
+#notifications-trigger{
+	cursor: pointer;
+}
+
 .notif-trigger{
 	animation: swing 0.5s ease infinite alternate;
 }

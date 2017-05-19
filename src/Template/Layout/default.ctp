@@ -354,7 +354,7 @@
                 notifs = $.parseJSON(json);
                 if(notifs[0]) {
                 $.each(notifs, function(key, value) {
-                    $('#notif-container').append('<div class="notif notifnb-'+ value['id'] +'">'+ value['content'] +'<div class="notif-close"><span onclick="markasread('+ value['id'] +')">×</span></div></div>');
+                    $('#notif-container').append('<div onclick="markasread('+ value['id'] +')" class="notif notifnb-'+ value['id'] +'">'+ value['content'] +'<div class="notif-close"><span onclick="markasread('+ value['id'] +')">×</span></div></div>');
                     });
 
                     $('#notifications-trigger').addClass('notif-trigger');
