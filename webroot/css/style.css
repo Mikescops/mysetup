@@ -835,11 +835,14 @@ nav {
 }
 
 .tippy-tooltip[data-template-id="#notifications-pop"] .notif{
-	padding: 18px 0;
+	padding: 16px 0;
 	max-width: 400px;
 	height: 83px;
 	border-bottom: solid 1px #3B3B3B;
 	position: relative;
+	text-align: left;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 .notif-close{
@@ -890,7 +893,7 @@ nav {
 	margin-right: 15px;
 }
 
-.notif span{
+.notif a span:last-child{
 	display: block;
 }
 
