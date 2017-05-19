@@ -393,6 +393,8 @@ class UsersController extends AppController
                     // This person is new among us, let's log him in ASAP
                     $this->Auth->setUser($user);
                     $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
+                    $this->Flash->warning(__('We advise you to edit your profile (use the panel at the top)...'));
+                    $this->Flash->error(__('... in order to add a profile picture ! You\'d look better :P'));
                     return $this->redirect($this->Auth->redirectUrl()); 
                 }
 
