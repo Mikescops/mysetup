@@ -1,6 +1,6 @@
 <?php
     $this->layout = 'default';
-    $this->assign('title', 'Notifications | mySetup;co');
+    $this->assign('title', 'Notifications | mySetup.co');
 ?>
 
 <div class="row">
