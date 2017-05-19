@@ -73,17 +73,21 @@ class NotificationsTable extends Table
 
     public function createNotification($user_id, $content)
     {
-        $notification = $this->newEntity();
+        // Before saving this new notification, we'll check if its content is not yet existing in the DB #floodDetection
+        if($this->find()->where(['content' => $content])->count() === 0)
+        {
+            $notification = $this->newEntity();
 
-        // Here we'll assign a random id to this new notification
-        do {
-            $notification->id = mt_rand() + 1;
-        } while($this->find()->where(['id' => $notification->id])->count() !== 0);
+            // Here we'll assign a random id to this new notification
+            do {
+                $notification->id = mt_rand() + 1;
+            } while($this->find()->where(['id' => $notification->id])->count() !== 0);
 
-        $notification->user_id = $user_id;
-        $notification->content = $content;
-        $notification->new     = 1;
+            $notification->user_id = $user_id;
+            $notification->content = $content;
+            $notification->new     = 1;
 
-        $this->save($notification);
+            $this->save($notification);
+        }
     }
 }
