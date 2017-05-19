@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Routing\Router;
 
 /**
  * Comments Controller
@@ -52,6 +53,14 @@ class CommentsController extends AppController
                 if($this->Comments->save($comment))
                 {
                     $this->Flash->success(__('The comment has been saved.'));
+
+                    // If it's not him, let's inform the setup owner of this new comment
+                    $setup = $this->Comments->Setups->get($setup_id);
+                    if($data['user_id'] !== $setup['user_id'])
+                    {
+                        $this->loadModel('Notifications');
+                        $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $data['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $data['user_id'] . '.png" alt="Liker\'s profile picture">  <span><strong>' . $this->Comments->Users->get($data['user_id'])['name'] . '</strong> '. __('commented your setup') . ' <strong>' . $setup['title'] . '</strong></span></a>');
+                    }
                 }
 
                 else

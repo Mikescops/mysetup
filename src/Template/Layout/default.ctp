@@ -18,6 +18,7 @@
 
     <?= $this->Html->css('app.min.css?v=4') ?>
     <?= $this->Html->css('emoji.min.css') ?>
+    <?= $this->Html->css('tippy.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -52,7 +53,10 @@
                     <ul>
                         <?php if($authUser): ?>
                             <li>
-                                <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> <?= __('Add Setup') ?></a>
+                                <a id="notifications-trigger"><i class="fa fa-bell-o fa-fw" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="#add_setup_modal" data-lity><?= __('Add Setup') ?></a>
                             </li>
                             <?php if($authUser['admin']): ?>
                                 <li>
@@ -320,18 +324,71 @@
 
 <script>var webRootJs = "<?= $this->Url->build('/'); ?>";</script>
 
+<div id="notifications-pop" style="display: none;"><div id="notif-container"></div><div id="no-notif">You have no notifications.</div></div>
+
 <!-- Jquery async load -->
 <?= $this->Html->script('jquery-3.2.0.min.js') ?>
 <?= $this->Html->script('lib.min.js') ?>
 
+<?= $this->Html->script('tippy.min.js') ?>
+
 <?php if($authUser): ?>
-<?= $this->Html->script('emoji.min.js') ?>
+    <?= $this->Html->script('emoji.min.js') ?>
 <?php endif; ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
 <!-- App Js async load -->
 <?= $this->Html->script('app.min.js?v=5') ?>
 <script>const toast = new siiimpleToast();</script>
+
+<?php if($authUser): ?>
+    <script>
+        $.ajax({
+            url: webRootJs + "app/getnotifications",
+            data: {
+            n: '8'
+            },
+            dataType: 'html',
+            type: 'get',
+            success: function (json) {
+                notifs = $.parseJSON(json);
+                if(notifs[0]) {
+                $.each(notifs, function(key, value) {
+                    $('#notif-container').append('<div class="notif notifnb-'+ value['id'] +'">'+ value['content'] +'<div class="notif-close"><span onclick="markasread('+ value['id'] +')">×</span></div></div>');
+                    });
+
+                    $('#notifications-trigger').addClass('notif-trigger');
+                    $('#no-notif').hide();
+                }
+
+                new Tippy('#notifications-trigger', {
+                    html: '#notifications-pop', // or document.querySelector('#my-template-id')
+                    arrow: true,
+                    trigger: 'mouseenter focus click',
+                    interactive: true,
+                    animation: 'fade',
+                    hideOnClick: 'persistent'
+                });
+            }
+        });
+
+        function markasread(id) {
+        $.ajax({
+            url: webRootJs + 'notifications/markAsRead',
+            type: 'get',
+            data: {
+                "notification_id": id
+            },
+        });
+
+        $('.notifnb-'+id).remove();
+
+        if(!$.trim( $('#notif-container').html() ).length){
+            $('#notifications-trigger').removeClass('notif-trigger');
+        }
+    }
+    </script>
+<?php endif ?>
 
 <?= $this->Flash->render() ?>
 

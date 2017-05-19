@@ -812,6 +812,91 @@ nav {
 	background:#efefef;
 }
 
+/**** Notifications ****/
+.notif-trigger{
+	animation: swing 0.5s ease infinite alternate;
+}
+
+@-moz-keyframes swing{
+    0%{-moz-transform:rotate(-4deg)}
+    50%{-moz-transform:rotate(4deg)}
+    100%{-moz-transform:rotate(-4deg)}
+}
+@-webkit-keyframes swing{
+    0%{-webkit-transform:rotate(-4deg)}
+    50%{-webkit-transform:rotate(4deg)}
+    100%{-webkit-transform:rotate(-4deg)}
+}
+
+.tippy-tooltip[data-template-id="#notifications-pop"] {
+  padding: 0 2rem;
+  font-size: inherit;
+  position: relative;
+}
+
+.tippy-tooltip[data-template-id="#notifications-pop"] .notif{
+	padding: 16px 0;
+	max-width: 400px;
+	height: 83px;
+	border-bottom: solid 1px #3B3B3B;
+	position: relative;
+	text-align: left;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.notif-close{
+	position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    right: 0;
+    top: 0;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translate3d(18px,0,0);
+    transform: translate3d(18px,0,0);
+    transition: all .25s ease;
+    padding-left: 35px;
+    background: linear-gradient(90deg,transparent,#393939 60%,#393939);
+}
+
+.notif-close span{
+	align-self: center;
+    font-size: 23px;
+    padding: 8px;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.notif-close span:hover{
+	color: #328fea;
+}
+
+.notif:hover > .notif-close{
+	visibility: visible;
+	opacity: 1;
+}
+
+.notif a{
+	text-decoration: none;
+	color: #fff;
+}
+
+.notif img{
+	width: 50px;
+	height: 50px;
+	background-color: #fff;
+	float: left;
+	border-radius: 4px;
+	margin-right: 15px;
+}
+
+.notif a span:last-child{
+	display: block;
+}
+
 /* **** PROFILE MODAL **** */
 .profilepicup{
 	display: none;

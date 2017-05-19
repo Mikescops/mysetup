@@ -19,6 +19,8 @@ use Cake\Network\Response;
 use Cake\Event\Event;
 use Cake\I18n\I18n;
 use Cake\Network\Http\Client;
+use Cake\Routing\Router;
+use Cake\I18n\Time;
 
 /**
  * Application Controller
@@ -136,7 +138,7 @@ class AppController extends Controller
     public function isAuthorized($user)
     {
         // Authorizes some actions if the user is connected
-        if(isset($user) && in_array($this->request->action, ['like', 'dislike', 'doesLike']))
+        if(isset($user) && in_array($this->request->action, ['like', 'dislike', 'doesLike', 'getNotifications']))
         {
             return true;
         }
@@ -254,6 +256,16 @@ class AppController extends Controller
                     {
                         $status = 200;
                         $body   = 'LIKED';
+
+                        // If it's not him, let's inform the setup owner of this new like
+                        $this->loadModel('Setups');
+                        $setup = $this->Setups->get($setup_id);
+                        if($like['user_id'] !== $setup['user_id'])
+                        {
+                            $this->loadModel('Users');
+                            $this->loadModel('Notifications');
+                            $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $like['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $like['user_id'] . '.png" alt="Liker\'s profile picture">  <span><strong>' . $this->Users->get($like['user_id'])['name'] . '</strong> '. __('liked your setup') . ' <strong>' . $setup['title'] . '</strong></span></a>');
+                        }
                     }
 
                     else
@@ -378,6 +390,35 @@ class AppController extends Controller
                     } 
                     return ($a->likes[0]->total > $b->likes[0]->total) ? -1 : 1;
                 }); // not working yet
+            }
+
+            return new Response([
+                'status' => 200,
+                'body' => json_encode($results)
+            ]);
+        }
+    }
+
+    public function getNotifications()
+    {
+        if($this->request->is('get'))
+        {
+            $this->loadModel('Notifications');
+            $results = $this->Notifications->find('all', [
+                'conditions' => [
+                    'user_id' => $this->request->session()->read('Auth.User.id'),
+                    'new' => 1
+                ],
+                'order' => [
+                    'dateTime' => 'DESC'
+                ],
+                'limit' => $this->request->getQuery('n', 4)
+            ]);
+
+            // Here we'll concatenate 'on-th-go' a "time ago with words" to the notifications content
+            foreach($results as $result)
+            {
+                $result['content'] = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
             }
 
             return new Response([

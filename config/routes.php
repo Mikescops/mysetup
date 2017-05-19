@@ -72,6 +72,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/verify/:id/:token', ['controller' => 'Users', 'action' => 'verifyAccount'], ['id' => '\d+', 'pass' => ['id', 'token']]);
 
+    $routes->connect('/notifications', ['controller' => 'Notifications', 'action' => 'index']);
+
     /**
      * Connect catchall routes for all controllers.
      *
