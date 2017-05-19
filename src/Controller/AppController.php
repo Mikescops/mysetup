@@ -19,6 +19,7 @@ use Cake\Network\Response;
 use Cake\Event\Event;
 use Cake\I18n\I18n;
 use Cake\Network\Http\Client;
+use Cake\Routing\Router;
 
 /**
  * Application Controller
@@ -260,9 +261,9 @@ class AppController extends Controller
                         $setup = $this->Setups->get($setup_id);
                         if($like['user_id'] !== $setup['user_id'])
                         {
-                            $this->loadModel('Notifications');
                             $this->loadModel('Users');
-                            $this->Notifications->createNotification($setup['user_id'], '<a href="/setups/' . $like['setup_id'] . '">' . $setup['title'] . '</a>' . __(' has been liked by ') . '<a href="/users/' . $like['user_id'] . '">' . $this->Users->get($like['user_id'])['name'] . '</a>');
+                            $this->loadModel('Notifications');
+                            $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $like['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $like['user_id'] . '.png" alt="Liker\'s profile picture">  <span><strong>' . $this->Users->get($like['user_id'])['name'] . '</strong> '. __('has liked your setup') . ' <strong>' . $setup['title'] . '</strong></span></a>');
                         }
                     }
 
