@@ -817,20 +817,48 @@ nav {
 .tippy-tooltip[data-template-id="#notifications-pop"] {
   padding: 0 2rem;
   font-size: inherit;
+  position: relative;
 }
 
 .tippy-tooltip[data-template-id="#notifications-pop"] .notif{
 	padding: 18px 0;
 	max-width: 350px;
 	border-bottom: solid 1px #3B3B3B;
+	position: relative;
 }
 
 .notif-close{
-	display: none;
+	position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    right: 0;
+    top: 0;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translate3d(18px,0,0);
+    transform: translate3d(18px,0,0);
+    transition: all .25s ease;
+    padding-left: 35px;
+    background: linear-gradient(90deg,transparent,#393939 60%,#393939);
+}
+
+.notif-close span{
+	align-self: center;
+    font-size: 23px;
+    padding: 10px;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.notif-close span:hover{
+	color: #328fea;
 }
 
 .notif:hover > .notif-close{
-	display: block;
+	visibility: visible;
+	opacity: 1;
 }
 
 /* **** PROFILE MODAL **** */
