@@ -39,7 +39,7 @@ class NotificationsController extends AppController
 
             if($this->Notifications->exists(['id' => $notification_id]))
             {
-                $notification = $this->Notifications->find()->where(['user_id' => $this->request->session()->read('Auth.User.id')])->first();
+                $notification = $this->Notifications->find()->where(['id' => $notification_id])->first();
                 $notification->new = 0;
 
                 if($this->Notifications->save($notification))

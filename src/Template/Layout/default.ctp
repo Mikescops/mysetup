@@ -392,7 +392,7 @@
                   if(notifs[0]){
                     
                     $.each(notifs ,function(key, value) {
-                        $('#notif-container').append('<div class="notif">'+ value['content'] +'<div class="notif-close"><span>×</span></div></div>');
+                        $('#notif-container').append('<div class="notif notifnb-'+ value['id'] +'">'+ value['content'] +'<div class="notif-close"><span onclick="markasread('+ value['id'] +')">×</span></div></div>');
                     });
                   }
                   else{
@@ -407,6 +407,17 @@
                     });
 
               }});
+
+            function markasread(id){
+                $.ajax({
+                  url: webRootJs + 'notifications/markAsRead',
+                  type: 'get',
+                  data: { "notification_id": id},
+                });
+
+                $('.notifnb-'+id).hide();
+
+            }
         </script>
         <?php endif ?>
 
