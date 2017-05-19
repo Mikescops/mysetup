@@ -59,7 +59,7 @@ class CommentsController extends AppController
                     if($data['user_id'] !== $setup['user_id'])
                     {
                         $this->loadModel('Notifications');
-                        $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $data['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $data['user_id'] . '.png" alt="Liker\'s profile picture">  <span><strong>' . $this->Comments->Users->get($data['user_id'])['name'] . '</strong> '. __('has commented your setup') . ' <strong>' . $setup['title'] . '</strong></span></a>');
+                        $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $data['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $data['user_id'] . '.png" alt="Liker\'s profile picture">  <span><strong>' . $this->Comments->Users->get($data['user_id'])['name'] . '</strong> '. __('commented your setup') . ' <strong>' . $setup['title'] . '</strong></span></a>');
                     }
                 }
 

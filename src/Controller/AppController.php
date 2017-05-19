@@ -20,6 +20,7 @@ use Cake\Event\Event;
 use Cake\I18n\I18n;
 use Cake\Network\Http\Client;
 use Cake\Routing\Router;
+use Cake\I18n\Time;
 
 /**
  * Application Controller
@@ -263,7 +264,7 @@ class AppController extends Controller
                         {
                             $this->loadModel('Users');
                             $this->loadModel('Notifications');
-                            $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $like['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $like['user_id'] . '.png" alt="Liker\'s profile picture">  <span><strong>' . $this->Users->get($like['user_id'])['name'] . '</strong> '. __('has liked your setup') . ' <strong>' . $setup['title'] . '</strong></span></a>');
+                            $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $like['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $like['user_id'] . '.png" alt="Liker\'s profile picture">  <span><strong>' . $this->Users->get($like['user_id'])['name'] . '</strong> '. __('liked your setup') . ' <strong>' . $setup['title'] . '</strong></span></a>');
                         }
                     }
 
@@ -413,6 +414,12 @@ class AppController extends Controller
                 ],
                 'limit' => $this->request->getQuery('n', 4)
             ]);
+
+            // Here we'll concatenate 'on-th-go' a "time ago with words" to the notifications content
+            foreach($results as $result)
+            {
+                $result['content'] = str_replace('</a>', ' <span>' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
+            }
 
             return new Response([
                 'status' => 200,
