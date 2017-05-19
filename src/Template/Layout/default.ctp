@@ -76,10 +76,10 @@
                     <ul>
                         <?php if($authUser): ?>
                             <li>
-                                <a id="notifications-trigger"><i class="fa fa-bell-o"></i></a>
+                                <a id="notifications-trigger"><i class="fa fa-bell-o fa-fw" aria-hidden="true"></i></a>
                             </li>
                             <li>
-                                <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> <?= __('Add Setup') ?></a>
+                                <a href="#add_setup_modal" data-lity><?= __('Add Setup') ?></a>
                             </li>
                             <?php if($authUser['admin']): ?>
                                 <li>
@@ -343,7 +343,7 @@
               </div>
           </div>
 
-        <div id="notifications-pop" style="display: none;"><div id="notif-container"></div></div>
+        <div id="notifications-pop" style="display: none;"><div id="notif-container"></div><div id="no-notif">You have no notifications.</div></div>
 
         <script>var webRootJs = "<?= $this->Url->build('/'); ?>";</script>
 
@@ -394,16 +394,18 @@
                     $.each(notifs ,function(key, value) {
                         $('#notif-container').append('<div class="notif notifnb-'+ value['id'] +'">'+ value['content'] +'<div class="notif-close"><span onclick="markasread('+ value['id'] +')">×</span></div></div>');
                     });
-                  }
-                  else{
-                    $('#notif-container').append('You have no notifications.');
+
+                    $('#notifications-trigger').addClass('notif-trigger');
+                    $('#no-notif').hide();
                   }
 
                   new Tippy('#notifications-trigger', {
                       html: '#notifications-pop', // or document.querySelector('#my-template-id')
                       arrow: true,
+                      trigger: 'mouseenter focus click',
                       interactive: true,
-                      animation: 'fade'
+                      animation: 'fade',
+                      hideOnClick: 'persistent'
                     });
 
               }});
@@ -416,6 +418,10 @@
                 });
 
                 $('.notifnb-'+id).remove();
+
+                if(!$.trim( $('#notif-container').html() ).length){
+                    $('#notifications-trigger').removeClass('notif-trigger');
+                }
             }
         </script>
         <?php endif ?>
