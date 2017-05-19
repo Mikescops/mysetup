@@ -418,7 +418,7 @@ class AppController extends Controller
             // Here we'll concatenate 'on-th-go' a "time ago with words" to the notifications content
             foreach($results as $result)
             {
-                $result['content'] = str_replace('</a>', ' <span>' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
+                $result['content'] = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
             }
 
             return new Response([
