@@ -343,20 +343,7 @@
               </div>
           </div>
 
-        <div id="notifications-pop" style="display: none;">
-            <div class="notif"><i class="fa fa-comment-o"></i> One of your setup has been liked by someone ! 
-
-                <div class="notif-close"><span>×</span></div>
-            </div>
-            <div class="notif"><i class="fa fa-comment-o"></i> One of your setup has been liked by someone ! <a href="#">Here it's a link man !</a> And more text right here too
-
-                <div class="notif-close"><span>×</span></div>
-            </div>
-            <div class="notif"><i class="fa fa-heart-o"></i> One of your setup has been liked by someone !
-
-                <div class="notif-close"><span>×</span></div>
-            </div>
-        </div>
+        <div id="notifications-pop" style="display: none;"><div id="notif-container"></div></div>
 
         <script>var webRootJs = "<?= $this->Url->build('/'); ?>";</script>
 
@@ -376,14 +363,6 @@
 
         <?= $this->Html->script('tippy.min.js') ?>
 
-        <script>new Tippy('#notifications-trigger', {
-              html: '#notifications-pop', // or document.querySelector('#my-template-id')
-              arrow: true,
-              interactive: true,
-              animation: 'fade'
-            });
-        </script>
-
         <?php if($authUser): ?>
         <?= $this->Html->script('emoji.min.js') ?>
         <?php endif; ?>
@@ -398,6 +377,38 @@
         <?= $this->Flash->render() ?>
 
         <?= $this->fetch('scriptBottom') ?>
+
+        <?php if($authUser): ?>
+        <script>
+        $.ajax({
+                url: webRootJs + "app/getnotifications",
+                data: {
+                    n: '8'
+                },
+                dataType: 'html',
+                type: 'get',
+                success: function (json) {
+                  notifs = $.parseJSON(json);
+                  if(notifs[0]){
+                    
+                    $.each(notifs ,function(key, value) {
+                        $('#notif-container').append('<div class="notif">'+ value['content'] +'<div class="notif-close"><span>×</span></div></div>');
+                    });
+                  }
+                  else{
+                    $('#notif-container').append('You have no notifications.');
+                  }
+
+                  new Tippy('#notifications-trigger', {
+                      html: '#notifications-pop', // or document.querySelector('#my-template-id')
+                      arrow: true,
+                      interactive: true,
+                      animation: 'fade'
+                    });
+
+              }});
+        </script>
+        <?php endif ?>
 
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

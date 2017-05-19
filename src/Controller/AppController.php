@@ -115,7 +115,7 @@ class AppController extends Controller
         $this->Auth->deny();
 
         // Allow GET request on public functions
-        $this->Auth->allow(['getSetups', 'getLikes', 'getNotifications']);
+        $this->Auth->allow(['getSetups', 'getLikes']);
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
         $this->Security->config('unlockedFields', [
@@ -136,7 +136,7 @@ class AppController extends Controller
     public function isAuthorized($user)
     {
         // Authorizes some actions if the user is connected
-        if(isset($user) && in_array($this->request->action, ['like', 'dislike', 'doesLike']))
+        if(isset($user) && in_array($this->request->action, ['like', 'dislike', 'doesLike', 'getNotifications']))
         {
             return true;
         }
@@ -400,6 +400,7 @@ class AppController extends Controller
     {
         if($this->request->is('get'))
         {
+            $this->loadModel('Notifications');
             $results = $this->Notifications->find('all', [
                 'conditions' => [
                     'user_id' => $this->request->session()->read('Auth.User.id'),
