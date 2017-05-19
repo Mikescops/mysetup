@@ -257,11 +257,12 @@ class AppController extends Controller
 
                         // If it's not him, let's inform the setup owner of this new like
                         $this->loadModel('Setups');
-                        $owner_id = $this->Setups->get($setup_id)['user_id'];
-                        if($like['user_id'] !== $owner_id)
+                        $setup = $this->Setups->get($setup_id);
+                        if($like['user_id'] !== $setup['user_id'])
                         {
                             $this->loadModel('Notifications');
-                            $this->Notifications->createNotification($owner_id, __('One of your setup has been liked by someone !'));
+                            $this->loadModel('Users');
+                            $this->Notifications->createNotification($setup['user_id'], '<a href="/setups/' . $like['setup_id'] . '">' . $setup['title'] . '</a>' . __(' has been liked by ') . '<a href="/users/' . $like['user_id'] . '">' . $this->Users->get($like['user_id'])['name'] . '</a>');
                         }
                     }
 

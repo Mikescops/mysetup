@@ -39,7 +39,7 @@ class NotificationsController extends AppController
 
             if($this->Notifications->exists(['id' => $notification_id]))
             {
-                $notification = $this->Notifications->find()->where(['id' => $notification_id])->first();
+                $notification = $this->Notifications->get($notification_id);
                 $notification->new = 0;
 
                 if($this->Notifications->save($notification))
@@ -77,7 +77,7 @@ class NotificationsController extends AppController
 
             if($this->Notifications->exists(['id' => $notification_id]))
             {
-                $notification = $this->Notifications->find()->where(['user_id' => $this->request->session()->read('Auth.User.id')])->first();
+                $notification = $this->Notifications->get($notification_id);
                 $notification->new = 1;
 
                 if($this->Notifications->save($notification))
@@ -89,6 +89,41 @@ class NotificationsController extends AppController
                 else
                 {
                     $body = 'NOT_MARKED';
+                }
+            }
+
+            else
+            {
+                $body = 'DOES_NOT_EXIST';
+            }
+
+            return new Response([
+                'status' => $status,
+                'body' => $body
+            ]);
+        }
+    }
+
+    public function deleteNotification()
+    {
+        if($this->request->is('get'))
+        {
+            $status = 500;
+            $body   = null;
+
+            $notification_id = $this->request->query['notification_id'];
+
+            if($this->Notifications->exists(['id' => $notification_id]))
+            {
+                if($this->Notifications->delete($this->Notifications->get($notification_id)))
+                {
+                    $status = 200;
+                    $body   = 'DELETED';
+                }
+
+                else
+                {
+                    $body = 'NOT_DELETED';
                 }
             }
 
@@ -116,7 +151,7 @@ class NotificationsController extends AppController
     {
         if(isset($user))
         {
-            if(in_array($this->request->action, ['markAsRead', 'markAsNonRead']))
+            if(in_array($this->request->action, ['markAsRead', 'markAsNonRead', 'deleteNotification']))
             {
                 if($this->Notifications->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
                 {

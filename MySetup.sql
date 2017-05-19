@@ -117,10 +117,10 @@ CREATE TABLE `users` (
 CREATE TABLE `notifications` (
   `id` INT(11) NOT NULL,
   `user_id` INT(11) NOT NULL,
-  `content` TEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `content` TEXT CHARACTER COLLATE utf8mb4_bin NOT NULL,
   `new` TINYINT(1) NOT NULL,
   `dateTime` datetime NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `users`
