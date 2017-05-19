@@ -39,7 +39,7 @@ class NotificationsController extends AppController
 
             if($this->Notifications->exists(['id' => $notification_id]))
             {
-                $notification = $this->Notifications->find()->where(['user_id' => $this->request->session()->read('Auth.User.id')])->first();
+                $notification = $this->Notifications->get($notification_id);
                 $notification->new = 0;
 
                 if($this->Notifications->save($notification))
@@ -77,7 +77,7 @@ class NotificationsController extends AppController
 
             if($this->Notifications->exists(['id' => $notification_id]))
             {
-                $notification = $this->Notifications->find()->where(['user_id' => $this->request->session()->read('Auth.User.id')])->first();
+                $notification = $this->Notifications->get($notification_id);
                 $notification->new = 1;
 
                 if($this->Notifications->save($notification))
@@ -115,7 +115,7 @@ class NotificationsController extends AppController
 
             if($this->Notifications->exists(['id' => $notification_id]))
             {
-                if($this->Notifications->delete($this->Notifications->find()->where(['user_id' => $this->request->session()->read('Auth.User.id')])->first()))
+                if($this->Notifications->delete($this->Notifications->get($notification_id)))
                 {
                     $status = 200;
                     $body   = 'DELETED';
