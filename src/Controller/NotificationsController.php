@@ -103,6 +103,41 @@ class NotificationsController extends AppController
             ]);
         }
     }
+
+    public function deleteNotification()
+    {
+        if($this->request->is('get'))
+        {
+            $status = 500;
+            $body   = null;
+
+            $notification_id = $this->request->query['notification_id'];
+
+            if($this->Notifications->exists(['id' => $notification_id]))
+            {
+                if($this->Notifications->delete($this->Notifications->find()->where(['user_id' => $this->request->session()->read('Auth.User.id')])->first()))
+                {
+                    $status = 200;
+                    $body   = 'DELETED';
+                }
+
+                else
+                {
+                    $body = 'NOT_DELETED';
+                }
+            }
+
+            else
+            {
+                $body = 'DOES_NOT_EXIST';
+            }
+
+            return new Response([
+                'status' => $status,
+                'body' => $body
+            ]);
+        }
+    }
     /* ____________ */
 
     public function beforeFilter(Event $event)
@@ -116,7 +151,7 @@ class NotificationsController extends AppController
     {
         if(isset($user))
         {
-            if(in_array($this->request->action, ['markAsRead', 'markAsNonRead']))
+            if(in_array($this->request->action, ['markAsRead', 'markAsNonRead', 'deleteNotification']))
             {
                 if($this->Notifications->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
                 {
