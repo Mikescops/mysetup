@@ -18,6 +18,7 @@
 
     <?= $this->Html->css('app.min.css?v=4') ?>
     <?= $this->Html->css('emoji.min.css') ?>
+    <?= $this->Html->css('tippy.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -74,6 +75,9 @@
                     
                     <ul>
                         <?php if($authUser): ?>
+                            <li>
+                                <a id="notifications-trigger"><i class="fa fa-bell-o"></i></a>
+                            </li>
                             <li>
                                 <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> <?= __('Add Setup') ?></a>
                             </li>
@@ -339,6 +343,21 @@
               </div>
           </div>
 
+        <div id="notifications-pop" style="display: none;">
+            <div class="notif"><i class="fa fa-comment-o"></i> One of your setup has been liked by someone ! 
+
+                <div class="notif-close"><span>×</span></div>
+            </div>
+            <div class="notif"><i class="fa fa-comment-o"></i> One of your setup has been liked by someone ! <a href="#">Here it's a link man !</a> And more text right here too
+
+                <div class="notif-close"><span>×</span></div>
+            </div>
+            <div class="notif"><i class="fa fa-heart-o"></i> One of your setup has been liked by someone !
+
+                <div class="notif-close"><span>×</span></div>
+            </div>
+        </div>
+
         <script>var webRootJs = "<?= $this->Url->build('/'); ?>";</script>
 
         <!-- Jquery async load -->
@@ -354,6 +373,16 @@
         <?= $this->Html->script('amazon-autocomplete.js') ?>
 
         <?= $this->Html->script('jssocials.min.js') ?>
+
+        <?= $this->Html->script('tippy.min.js') ?>
+
+        <script>new Tippy('#notifications-trigger', {
+              html: '#notifications-pop', // or document.querySelector('#my-template-id')
+              arrow: true,
+              interactive: true,
+              animation: 'fade'
+            });
+        </script>
 
         <?php if($authUser): ?>
         <?= $this->Html->script('emoji.min.js') ?>

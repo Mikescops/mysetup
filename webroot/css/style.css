@@ -812,6 +812,27 @@ nav {
 	background:#efefef;
 }
 
+/**** Notifications ****/
+
+.tippy-tooltip[data-template-id="#notifications-pop"] {
+  padding: 0 2rem;
+  font-size: inherit;
+}
+
+.tippy-tooltip[data-template-id="#notifications-pop"] .notif{
+	padding: 18px 0;
+	max-width: 350px;
+	border-bottom: solid 1px #3B3B3B;
+}
+
+.notif-close{
+	display: none;
+}
+
+.notif:hover > .notif-close{
+	display: block;
+}
+
 /* **** PROFILE MODAL **** */
 .profilepicup{
 	display: none;
