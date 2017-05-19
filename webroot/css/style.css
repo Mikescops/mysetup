@@ -836,7 +836,8 @@ nav {
 
 .tippy-tooltip[data-template-id="#notifications-pop"] .notif{
 	padding: 18px 0;
-	max-width: 350px;
+	max-width: 400px;
+	height: 83px;
 	border-bottom: solid 1px #3B3B3B;
 	position: relative;
 }
@@ -873,6 +874,24 @@ nav {
 .notif:hover > .notif-close{
 	visibility: visible;
 	opacity: 1;
+}
+
+.notif a{
+	text-decoration: none;
+	color: #fff;
+}
+
+.notif img{
+	width: 50px;
+	height: 50px;
+	background-color: #fff;
+	float: left;
+	border-radius: 4px;
+	margin-right: 15px;
+}
+
+.notif span{
+	display: block;
 }
 
 /* **** PROFILE MODAL **** */

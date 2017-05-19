@@ -402,7 +402,7 @@
                   new Tippy('#notifications-trigger', {
                       html: '#notifications-pop', // or document.querySelector('#my-template-id')
                       arrow: true,
-                      trigger: 'mouseenter focus click',
+                      trigger: 'mouseenter focus',
                       interactive: true,
                       animation: 'fade',
                       hideOnClick: 'persistent'
