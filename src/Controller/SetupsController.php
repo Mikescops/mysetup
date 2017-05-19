@@ -55,11 +55,11 @@ class SetupsController extends AppController
         $video = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_VIDEO_LINK'])->first();
 
         // Sets an array with the name of the owner as a first entry, and its profile validation status
-        $additionalData['owner'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first();
+        $additionalData['owner'] = $this->Setups->Users->get($setup->user_id);
         foreach($setup['comments'] as $comment)
         {
-            // Let's complete that array with the name of each person who postes a comment on this setup
-            $additionalData[$comment->user_id] = $this->Setups->Users->find()->where(['id' => $comment->user_id])->first()['name'];
+            // Let's complete that array with the name of each person who posted a comment on this setup
+            $additionalData[$comment->user_id] = $this->Setups->Users->get($comment->user_id)['name'];
         }
 
         $newComment = $this->Setups->Comments->newEntity();
@@ -88,7 +88,7 @@ class SetupsController extends AppController
             // Here we'll assign automatically the owner of the setup to the entity
             if(!isset($data['author']) or $data['author'] === '')
             {
-                $data['author'] = $this->Setups->Users->find()->where(['id' => $data['user_id']])->first()['name'];
+                $data['author'] = $this->Setups->Users->get($data['user_id'])['name'];
             }
 
             // Classical patch entity operation

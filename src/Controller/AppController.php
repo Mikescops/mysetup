@@ -242,7 +242,7 @@ class AppController extends Controller
 
             if($this->Likes->Setups->exists(['id' => $setup_id]))
             {
-                if(!$this->Likes->find()->where(['setup_id' => $setup_id, 'user_id' => $this->request->session()->read('Auth.User.id')])->first())
+                if(!$this->Likes->exists(['setup_id' => $setup_id, 'user_id' => $this->request->session()->read('Auth.User.id')]))
                 {
                     $like = $this->Likes->newEntity();
 
