@@ -344,7 +344,7 @@
 <?php if($authUser): ?>
     <script>
         $.ajax({
-            url: webRootJs + "app/getnotifications",
+            url: webRootJs + "app/getNotifications",
             data: {
             n: '8'
             },
