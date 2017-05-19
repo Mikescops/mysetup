@@ -140,13 +140,6 @@ class NotificationsController extends AppController
     }
     /* ____________ */
 
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-
-        $this->Auth->allow(['markAsRead', 'markAsNonRead']);
-    }
-
     public function isAuthorized($user)
     {
         if(isset($user))
