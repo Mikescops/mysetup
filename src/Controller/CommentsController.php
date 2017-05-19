@@ -54,11 +54,11 @@ class CommentsController extends AppController
                     $this->Flash->success(__('The comment has been saved.'));
 
                     // If it's not him, let's inform the setup owner of this new comment
-                    $owner_id = $this->Comments->Setups->get($setup_id)['user_id'];
-                    if($data['user_id'] !== $owner_id)
+                    $setup = $this->Comments->Setups->get($setup_id);
+                    if($data['user_id'] !== $setup['user_id'])
                     {
                         $this->loadModel('Notifications');
-                        $this->Notifications->createNotification($owner_id, __('One of your setup has received a new comment !'));
+                        $this->Notifications->createNotification($setup['user_id'], '<a href="/setups/' . $data['setup_id'] . '">' . $setup['title'] . '</a>' . __(' has been commented by ') . '<a href="/users/' . $data['user_id'] . '">' . $this->Comments->Users->get($data['user_id'])['name'] . '</a>');
                     }
                 }
 
