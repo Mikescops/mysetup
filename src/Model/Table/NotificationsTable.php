@@ -71,6 +71,13 @@ class NotificationsTable extends Table
         return $this->exists(['id' => $notification_id, 'user_id' => $user_id]);
     }
 
+    public function beforeSave()
+    {
+        // Well well, why not take the opportunity to "purge" old notifications not yet deleted by users ?
+        // - Yeah, that's a good idea, let's get the notifications which had been created a long time ago !
+        $this->deleteAll(['new' => 0, 'dateTime <' => new \DateTime('-30 days')]);
+    }
+
     public function createNotification($user_id, $content)
     {
         // Before saving this new notification, we'll check if its content is not yet existing in the DB #floodDetection
