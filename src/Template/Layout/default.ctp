@@ -16,7 +16,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css?v=4') ?>
+    <?= $this->Html->css('app.min.css?v=5') ?>
     <?= $this->Html->css('emoji.min.css') ?>
     <?= $this->Html->css('tippy.css') ?>
 
@@ -338,7 +338,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
 <!-- App Js async load -->
-<?= $this->Html->script('app.min.js?v=5') ?>
+<?= $this->Html->script('app.min.js?v=6') ?>
 <script>const toast = new siiimpleToast();</script>
 
 <?php if($authUser): ?>
