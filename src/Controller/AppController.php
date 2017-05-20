@@ -208,7 +208,7 @@ class AppController extends Controller
     /* AJAX CALLS ? */
     public function getLikes()
     {
-        if($this->request->is('get'))
+        if($this->request->is('ajax'))
         {
             $this->loadModel('Likes');
 
@@ -221,7 +221,7 @@ class AppController extends Controller
 
     public function doesLike()
     {
-        if($this->request->is('get'))
+        if($this->request->is('ajax'))
         {
             $this->loadModel('Likes');
 
@@ -234,7 +234,7 @@ class AppController extends Controller
 
     public function like()
     {
-        if($this->request->is('get'))
+        if($this->request->is('ajax'))
         {
             $status = 500;
             $body   = null;
@@ -294,7 +294,7 @@ class AppController extends Controller
 
     public function dislike()
     {
-        if($this->request->is('get'))
+        if($this->request->is('ajax'))
         {
             $status = 500;
             $body   = null;
@@ -337,6 +337,36 @@ class AppController extends Controller
             ]);
         }
     }
+
+    public function getNotifications()
+    {
+        if($this->request->is('ajax'))
+        {
+            $this->loadModel('Notifications');
+            $results = $this->Notifications->find('all', [
+                'conditions' => [
+                    'user_id' => $this->request->session()->read('Auth.User.id'),
+                    'new' => 1
+                ],
+                'order' => [
+                    'dateTime' => 'DESC'
+                ],
+                'limit' => $this->request->getQuery('n', 4)
+            ]);
+
+            // Here we'll concatenate 'on-th-go' a "time ago with words" to the notifications content
+            foreach($results as $result)
+            {
+                $result['content'] = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
+            }
+
+            return new Response([
+                'status' => 200,
+                'body' => json_encode($results)
+            ]);
+        }
+    }
+    /* ____________ */
 
     public function getSetups()
     {
@@ -390,35 +420,6 @@ class AppController extends Controller
                     } 
                     return ($a->likes[0]->total > $b->likes[0]->total) ? -1 : 1;
                 }); // not working yet
-            }
-
-            return new Response([
-                'status' => 200,
-                'body' => json_encode($results)
-            ]);
-        }
-    }
-
-    public function getNotifications()
-    {
-        if($this->request->is('get'))
-        {
-            $this->loadModel('Notifications');
-            $results = $this->Notifications->find('all', [
-                'conditions' => [
-                    'user_id' => $this->request->session()->read('Auth.User.id'),
-                    'new' => 1
-                ],
-                'order' => [
-                    'dateTime' => 'DESC'
-                ],
-                'limit' => $this->request->getQuery('n', 4)
-            ]);
-
-            // Here we'll concatenate 'on-th-go' a "time ago with words" to the notifications content
-            foreach($results as $result)
-            {
-                $result['content'] = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
             }
 
             return new Response([
