@@ -63,8 +63,7 @@ class UsersTable extends Table
             'cascadeCallbacks' => 'true'
         ]);
 
-
-         $this->addBehavior('Timestamp', [
+        $this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => [
                     'creationDate' => 'new'
@@ -121,6 +120,9 @@ class UsersTable extends Table
             ->dateTime('lastLogginDate')
             ->allowEmpty('lastLogginDate');
 
+        $validator
+            ->allowEmpty('twitchToken');
+
         return $validator;
     }
 
@@ -133,7 +135,7 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['mail']));
+        $rules->add($rules->isUnique(['mail', 'twitchToken']));
 
         return $rules;
     }
@@ -199,5 +201,22 @@ class UsersTable extends Table
         {
             $flash->warning(__("The file you uploaded does not validate our rules... Please contact an administrator."));
         }
+    }
+
+    private function getNewRandomID()
+    {
+        $id = null;
+
+        // Here we'll assign a random id to this new user
+        do {
+            $id = mt_rand() + 1;
+        } while($this->find()->where(['id' => $user->id])->count() !== 0);
+
+        return $id;
+    }
+
+    private function getRandomPassword()
+    {
+        return substr(md5(mt_rand()), 0, 16);
     }
 }

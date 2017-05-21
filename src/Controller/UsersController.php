@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Network\Http\Client;
+use Cake\Routing\Router;
 use Cake\Mailer\Email;
 use Cake\Event\Event;
 use Cake\I18n\Time;
@@ -315,7 +317,7 @@ class UsersController extends AppController
             if($user)
             {
                 // Let's generate a new random password, and send it to the email address specified
-                $temp = substr(md5(mt_rand()), 0, 16);
+                $temp = $this->Users->getRandomPassword();
                 $user->password = $temp;
                 if($this->Users->save($user))
                 {
@@ -399,7 +401,7 @@ class UsersController extends AppController
                     $this->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
                     $this->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
 
-                    return $this->redirect($this->Auth->redirectUrl()); 
+                    return $this->redirect($this->Auth->redirectUrl());
                 }
 
                 else
@@ -417,11 +419,88 @@ class UsersController extends AppController
         }
     }
 
+    public function twitch($code = null, $scope = null, $state = null)
+    {
+        $client_id = 'zym0nr99v74zljmo6z96st25rj6rzz';
+
+        $http = new Client();
+        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=tqe9hcuzts7z3np7rbxld89phz8k4e&grant_type=user_read&redirect_uri=' . Router::url('/') . '&code=' . $code . '&state=' . $state);
+
+        if($response and $response->json and $response->json['scope'] === 'user_read')
+        {
+            $token = $response->json['access_token'];
+
+            // We just got a token from Twitch, two cases : This user has already created an account here OR We've to create its account :P
+            if(!$this->Users->exists(['twitchToken' => $token]))
+            {
+                $response = $http->get('https://api.twitch.tv/kraken/user', ['q' => 'widget'], [
+                    'headers' => [
+                        'Accept' => 'application/vnd.twitchtv.v5+json',
+                        'Client-ID' => $client_id,
+                        'Authorization' => $token
+                    ]
+                ]);
+
+                if($response and $response->json)
+                {
+                    $user = $this->Users->newEntity();
+
+                    $user->id             = $this->Users->getNewRandomID();
+                    $user->name           = $response->json['display_name'];
+                    $user->email          = $response->json['email'];
+                    $user->password       = $this->Users->getRandomPassword();
+                    $user->lastLogginDate = Time::now();
+                    $user->twitchToken    = $token;
+
+                    if($this->Users->save($user))
+                    {
+                        // This new user has been created and saved, let's keep a local copy of its profile picture
+                        $curl = curl_init();
+                        curl_setopt($curl, CURLOPT_URL, $response['logo']);
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+                        curl_setopt($curl, CURLOPT_SSLVERSION, 3);
+                        $data = curl_exec($curl);
+                        curl_close($curl);
+
+                        $file = fopen('uploads/files/pics/profile_picture_' . $user->id . '.png', "w+");
+                        fputs($file, $data);
+                        fclose($file);
+                        // ________________________________________________________________________________________
+
+                        $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
+
+                        // Let's add some notifications to this new user
+                        $this->loadModel('Notifications');
+                        $this->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
+                        $this->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
+                    }
+
+                    else
+                    {
+                        $this->Flash->error(__('Your account could not be saved. (Is this address already taken ?)'));
+                        return $this->redirect('/');
+                    }
+                }
+            }
+
+            else
+            {
+                $user = $this->Users->get(['twitchToken' => $token]);
+
+                $this->Flash->success(__('You are successfully logged in !'));
+            }
+
+            // Let's log this user ASAP !
+            $this->Auth->setUser($user);
+            return $this->redirect($this->Auth->redirectUrl()); 
+        }
+    }
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['logout', 'add', 'resetPassword', 'view', 'verifyAccount']);
+        $this->Auth->allow(['logout', 'add', 'resetPassword', 'view', 'verifyAccount', 'twitch']);
     }
 
     public function isAuthorized($user)
