@@ -215,8 +215,8 @@ class UsersTable extends Table
         return $id;
     }
 
-    private function getRandomPassword()
+    private function getRandomString($length = 16)
     {
-        return substr(md5(mt_rand()), 0, 16);
+        return substr(md5(mt_rand()), 0, $length);
     }
 }
