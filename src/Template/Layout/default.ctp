@@ -131,7 +131,7 @@
                                 </li>
                             <?php else: ?>
                                 <a href="<?= $this->Url->build('/login'); ?>"><i class="fa fa-user"></i> <?= __('Sign In / Up') ?></a></li>
-                                <li> <a onclick="logTwitch()">Twitch auth <i class="fa fa-twitch"></i> </a></li>
+                                <li> <a onclick="logTwitch('<?= $lang ?>')">Twitch auth <i class="fa fa-twitch"></i> </a></li>
 
                             <?php endif; ?>
                         

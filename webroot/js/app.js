@@ -675,9 +675,9 @@ function infiniteScroll(nbtodisplay) {
 }
 
 /************ TWITCH LOGIN **************/
-function logTwitch(){
+function logTwitch(lang){
   var rand_state = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
   console.log(rand_state);
 
-    window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?client_id=zym0nr99v74zljmo6z96st25rj6rzz&redirect_uri=http://localhost/mysetup/twitch/&response_type=code&scope=user_read&state='+rand_state;
+    window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?client_id=zym0nr99v74zljmo6z96st25rj6rzz&redirect_uri=http://localhost/mysetup/twitch/&response_type=code&scope=user_read&state='+lang+rand_state;
 }
