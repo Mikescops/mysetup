@@ -77,11 +77,10 @@ class UsersController extends AppController
                 }
 
                 // Here we'll assign a random id to this new user
-                do {
-                    $user->id = mt_rand() + 1;
-                } while($this->Users->find()->where(['id' => $user->id])->count() !== 0);
+                $user->id = $this->Users->getNewRandomID();
 
-                $user->mailVerification = substr(md5(mt_rand()), 0, 32);
+                // ... and generate a token to verify its mail address =)
+                $user->mailVerification = $this->Users->getRandomString(32);
 
                 if($this->Users->save($user))
                 {
@@ -317,7 +316,7 @@ class UsersController extends AppController
             if($user)
             {
                 // Let's generate a new random password, and send it to the email address specified
-                $temp = $this->Users->getRandomPassword();
+                $temp = $this->Users->getRandomString();
                 $user->password = $temp;
                 if($this->Users->save($user))
                 {
@@ -448,7 +447,7 @@ class UsersController extends AppController
                     $user->id             = $this->Users->getNewRandomID();
                     $user->name           = $response->json['display_name'];
                     $user->email          = $response->json['email'];
-                    $user->password       = $this->Users->getRandomPassword();
+                    $user->password       = $this->Users->getRandomString();
                     $user->lastLogginDate = Time::now();
                     $user->twitchToken    = $token;
 
