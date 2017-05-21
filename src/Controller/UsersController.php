@@ -448,6 +448,7 @@ class UsersController extends AppController
                     $user->name           = $response->json['display_name'];
                     $user->email          = $response->json['email'];
                     $user->password       = $this->Users->getRandomString();
+                    $user->preferredStore = strtoupper((substr($this->request->params['?']['state'], 0, 2)));
                     $user->lastLogginDate = Time::now();
                     $user->twitchToken    = $token;
 
