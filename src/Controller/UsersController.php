@@ -423,9 +423,10 @@ class UsersController extends AppController
         $client_id = 'zym0nr99v74zljmo6z96st25rj6rzz';
 
         $http = new Client();
-        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=tqe9hcuzts7z3np7rbxld89phz8k4e&grant_type=user_read&redirect_uri=' . Router::url('/') . '&code=' . $this->request->params['?']['code'] . '&state=' . $this->request->params['?']['state']);
 
-        if($response and isset($response->json['scope']) and $response->json['scope'] === 'user_read')
+        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=b8mrbqfd9vsyjciyec560j44lh1muk&grant_type=authorization_code&redirect_uri=' . 'http://localhost/mysetup/twitch/' . '&code=' . $this->request->params['?']['code'] . '&state=' . $this->request->params['?']['state']);
+
+        if($response and isset($response->json['scope'][0]) and $response->json['scope'][0] === 'user_read')
         {
             $token = $response->json['access_token'];
 
@@ -436,7 +437,7 @@ class UsersController extends AppController
                     'headers' => [
                         'Accept' => 'application/vnd.twitchtv.v5+json',
                         'Client-ID' => $client_id,
-                        'Authorization' => $token
+                        'Authorization' => 'OAuth ' . $token
                     ]
                 ]);
 
@@ -446,7 +447,7 @@ class UsersController extends AppController
 
                     $user->id             = $this->Users->getNewRandomID();
                     $user->name           = $response->json['display_name'];
-                    $user->email          = $response->json['email'];
+                    $user->mail          = $response->json['email'];
                     $user->password       = $this->Users->getRandomString();
                     $user->preferredStore = strtoupper((substr($this->request->params['?']['state'], 0, 2)));
                     $user->lastLogginDate = Time::now();
@@ -455,16 +456,20 @@ class UsersController extends AppController
                     if($this->Users->save($user))
                     {
                         // This new user has been created and saved, let's keep a local copy of its profile picture
-                        $curl = curl_init();
-                        curl_setopt($curl, CURLOPT_URL, $response['logo']);
-                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-                        curl_setopt($curl, CURLOPT_SSLVERSION, 3);
-                        $data = curl_exec($curl);
-                        curl_close($curl);
 
-                        $file = fopen('uploads/files/pics/profile_picture_' . $user->id . '.png', "w+");
-                        fputs($file, $data);
-                        fclose($file);
+                        $fp = fopen ('uploads/files/pics/profile_picture_' . $user->id . '.png', 'w+');              // open file handle
+
+                        $ch = curl_init($response->json['logo']);
+                        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // enable if you want
+                        curl_setopt($ch, CURLOPT_FILE, $fp);          // output to file
+                        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                        curl_setopt($ch, CURLOPT_TIMEOUT, 1000);      // some large value to allow curl to run for a long time
+                        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
+                        // curl_setopt($ch, CURLOPT_VERBOSE, true);   // Enable this line to see debug prints
+                        curl_exec($ch);
+
+                        curl_close($ch);                              // closing curl handle
+                        fclose($fp);                                  // closing file handle
                         // ________________________________________________________________________________________
 
                         $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));

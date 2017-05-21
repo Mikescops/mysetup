@@ -203,19 +203,19 @@ class UsersTable extends Table
         }
     }
 
-    private function getNewRandomID()
+    public function getNewRandomID()
     {
         $id = null;
 
         // Here we'll assign a random id to this new user
         do {
             $id = mt_rand() + 1;
-        } while($this->find()->where(['id' => $user->id])->count() !== 0);
+        } while($this->find()->where(['id' => $id])->count() !== 0);
 
         return $id;
     }
 
-    private function getRandomString($length = 16)
+    public function getRandomString($length = 16)
     {
         return substr(md5(mt_rand()), 0, $length);
     }
