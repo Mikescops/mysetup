@@ -418,14 +418,14 @@ class UsersController extends AppController
         }
     }
 
-    public function twitch($code = null, $scope = null, $state = null)
+    public function twitch()
     {
         $client_id = 'zym0nr99v74zljmo6z96st25rj6rzz';
 
         $http = new Client();
-        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=tqe9hcuzts7z3np7rbxld89phz8k4e&grant_type=user_read&redirect_uri=' . Router::url('/') . '&code=' . $code . '&state=' . $state);
+        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=tqe9hcuzts7z3np7rbxld89phz8k4e&grant_type=user_read&redirect_uri=' . Router::url('/') . '&code=' . $this->request->params['?']['code'] . '&state=' . $this->request->params['?']['state']);
 
-        if($response and $response->json and $response->json['scope'] === 'user_read')
+        if($response and isset($response->json['scope']) and $response->json['scope'] === 'user_read')
         {
             $token = $response->json['access_token'];
 
