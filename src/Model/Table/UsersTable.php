@@ -10,6 +10,7 @@ use Cake\Datasource\EntityInterface;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
 use Cake\Mailer\Email;
+use Cake\Network\Http\Client;
 
 /**
  * Users Model
@@ -151,6 +152,12 @@ class UsersTable extends Table
         if(!(new Folder('uploads/files/' . $entity['id']))->delete())
         {
             // How can we inform the user about this error... ?
+        }
+
+        // Let's revoke the Twitch token access !
+        if($entity['twitchToken'])
+        {
+            (new Client())->post('https://api.twitch.tv/kraken/oauth2/revoke?client_id=zym0nr99v74zljmo6z96st25rj6rzz&client_secret=b8mrbqfd9vsyjciyec560j44lh1muk&token=' . $entity['twitchToken']);
         }
     }
 
