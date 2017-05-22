@@ -9,6 +9,7 @@ use Cake\Event\Event;
 use Cake\Datasource\EntityInterface;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
+use Cake\Mailer\Email;
 
 /**
  * Users Model
@@ -151,6 +152,27 @@ class UsersTable extends Table
         {
             // How can we inform the user about this error... ?
         }
+    }
+
+    public function sendEmail($receiver, $subject, $content)
+    {
+        Email::setConfigTransport('Zoho', [
+            'host' => 'smtp.zoho.eu',
+            'port' => 587,
+            'username' => 'support@mysetup.co',
+            'password' => 'Lsc\'etb1',
+            'className' => 'Smtp',
+            'tls' => true
+        ]);
+
+        $email = new Email('default');
+        $email
+            ->setTransport('Zoho')
+            ->setFrom(['support@mysetup.co' => 'mySetup.co | Support'])
+            ->setTo($receiver)
+            ->setSubject("mySetup.co | " . $subject)
+            ->setEmailFormat('html')
+            ->send($content);
     }
 
     public function saveDefaultProfilePicture($user, $flash)

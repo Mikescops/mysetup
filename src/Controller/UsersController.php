@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Network\Http\Client;
 use Cake\Routing\Router;
-use Cake\Mailer\Email;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 
@@ -86,32 +85,16 @@ class UsersController extends AppController
                 {
                     $this->Users->saveDefaultProfilePicture($user, $this->Flash);
 
-                    Email::setConfigTransport('Zoho', [
-                        'host' => 'smtp.zoho.eu',
-                        'port' => 587,
-                        'username' => 'support@mysetup.co',
-                        'password' => 'Lsc\'etb1',
-                        'className' => 'Smtp',
-                        'tls' => true
-                    ]);
-
-                    $email = new Email('default');
-                    $email
-                        ->setTransport('Zoho')
-                        ->setFrom(['support@mysetup.co' => 'mySetup.co | Support'])
-                        ->setTo($user->mail)
-                        ->setSubject("mySetup.co | Verify your account !")
-                        ->setEmailFormat('html')
-                        ->send("
-                            Hello " . $data['name'] . " !
-                            <br />
-                            <br />
-                            Please, in order to activate your account, click the following link : <a href=\"https://mysetup.co/verify/" . $user->id . '/' . $user->mailVerification . "\" target=\"_blank\">Activate my account</a> !
-                            <br />
-                            <br />
-                            <br />
-                            <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
-                        ");
+                    $this->Users->sendEmail($user->mail, 'Verify your account !', "
+                        Hello " . $data['name'] . " !
+                        <br />
+                        <br />
+                        Please, in order to activate your account, click the following link : <a href=\"https://mysetup.co/verify/" . $user->id . '/' . $user->mailVerification . "\" target=\"_blank\">Activate my account</a> !
+                        <br />
+                        <br />
+                        <br />
+                        <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
+                    ");
 
                     $this->Flash->success(__('Your account has been created, check your email to verify your account'));
                     return $this->redirect('/');
@@ -320,34 +303,18 @@ class UsersController extends AppController
                 $user->password = $temp;
                 if($this->Users->save($user))
                 {
-                    Email::setConfigTransport('Zoho', [
-                        'host' => 'smtp.zoho.eu',
-                        'port' => 587,
-                        'username' => 'support@mysetup.co',
-                        'password' => 'Lsc\'etb1',
-                        'className' => 'Smtp',
-                        'tls' => true
-                    ]);
-
-                    $email = new Email('default');
-                    $email
-                        ->setTransport('Zoho')
-                        ->setFrom(['support@mysetup.co' => 'mySetup.co | Support'])
-                        ->setTo($data['mailReset'])
-                        ->setSubject("mySetup.co | You password has been reseted !")
-                        ->setEmailFormat('html')
-                        ->send("
-                            Hello " . $user->name . " !
-                            <br />
-                            <br />
-                            Your password has been reseted and set to: <span style=\"font-weight: bold;\">" . $temp . "</span><br />
-                            <br />
-                            Please <a href=\"https://mysetup.co/login\" target=\"_blank\">log you in</a> and change it as soon as possible !
-                            <br />
-                            <br />
-                            <br />
-                            <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
-                        ");
+                    $this->Users->sendEmail($data['mailReset'], 'Your password has been reseted !', "
+                        Hello " . $user->name . " !
+                        <br />
+                        <br />
+                        Your password has been reseted and set to: <span style=\"font-weight: bold;\">" . $temp . "</span><br />
+                        <br />
+                        Please <a href=\"https://mysetup.co/login\" target=\"_blank\">log you in</a> and change it as soon as possible !
+                        <br />
+                        <br />
+                        <br />
+                        <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
+                    ");
 
                     $this->Flash->success(__("An email has been sent to this email address !"));
                     return $this->redirect(['action' => 'login']);
@@ -512,6 +479,18 @@ class UsersController extends AppController
                         $flash->warning(__('Your profile picture could not be resized, converted to a PNG format or saved... Please contact an administrator.'));
                     }
                     // ________________________________________________________________________________________
+
+                    $this->Users->sendEmail($user->mail, 'Your account has been created !', "
+                        Hello " . $user->name . " !
+                        <br />
+                        <br />
+                        Your account has just been created on <a href=\"https://mysetup.co/\" target=\"_blank\">mySetup.co</a> !
+                        <br />
+                        We're so glad you joined us, come on and create your first setup ;)
+                        <br />
+                        <br />
+                        <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
+                    ");
 
                     $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
 
