@@ -473,6 +473,12 @@ class UsersController extends AppController
             // At this time, there is two cases: This user has already a mySetup.co account OR He does not have one (we have to create it thus)
             if(!$this->Users->exists(['mail' => $response->json['email']]))
             {
+                if(!$response->json['email_verified'])
+                {
+                    $this->Flash->warning(__('The email address of your Twitch account has not been verified. We can\'t register yourself yet'));
+                    return $this->redirect($this->referer());
+                }
+
                 $user = $this->Users->newEntity();
 
                 $user->id             = $this->Users->getNewRandomID();
