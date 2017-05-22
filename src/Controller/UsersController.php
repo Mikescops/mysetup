@@ -416,100 +416,39 @@ class UsersController extends AppController
         // The very token, super-sensitive data !
         $token = $response->json['access_token'];
 
-        // The user entity which should contain the user information in some steps !
-        $user = null;
+        // We run a query through Twitch's API, in order to gather some information about this user
+        $response = $http->get('https://api.twitch.tv/kraken/user', ['q' => 'widget'], [
+            'headers' => [
+                'Accept' => 'application/vnd.twitchtv.v5+json',
+                'Client-ID' => $client_id,
+                'Authorization' => 'OAuth ' . $token
+            ]
+        ]);
 
-        // We just got a token from Twitch, let's check if this user is already into our DB
-        if(!$this->Users->exists(['twitchToken' => $token]))
+        if(!$response or !$response->json)
         {
-            // We run a query through Twitch's API, in order to gather some information about this user
-            $response = $http->get('https://api.twitch.tv/kraken/user', ['q' => 'widget'], [
-                'headers' => [
-                    'Accept' => 'application/vnd.twitchtv.v5+json',
-                    'Client-ID' => $client_id,
-                    'Authorization' => 'OAuth ' . $token
-                ]
-            ]);
+            $this->Flash->warning(__('We could not access Twitch\'s data'));
+            return $this->redirect('/');
+        }
 
-            if(!$response or !$response->json)
+        // Let's try to get an user entity linked to the Twitch address email of this user
+        $user = $this->Users->find()->where(['mail' => $response->json['email']])->first();
+        
+        if($user)
+        {
+            // The user has been found, is this a connection procedure, or a Twitch account update ?
+            if($user->twitchToken)
             {
-                $this->Flash->warning(__('We could not access Twitch\'s data'));
-                return $this->redirect('/');
-            }
+                // Connection procedure
+                $this->Flash->success(__('You are successfully logged in !'));
 
-            // At this time, there is two cases: This user has already a mySetup.co account OR He does not have one (we have to create it thus)
-            if(!$this->Users->exists(['mail' => $response->json['email']]))
-            {
-                if(!$response->json['email_verified'])
-                {
-                    $this->Flash->warning(__('The email address of your Twitch account has not been verified. We can\'t register yourself yet'));
-                    return $this->redirect($this->referer());
-                }
-
-                $user = $this->Users->newEntity();
-
-                $user->id             = $this->Users->getNewRandomID();
-                $user->name           = $response->json['display_name'];
-                $user->mail           = $response->json['email'];
-                $user->password       = $this->Users->getRandomString();
-                $user->preferredStore = strtoupper((substr($_GET['state'], 0, 2)));
-                $user->lastLogginDate = Time::now();
-                $user->twitchToken    = $token;
-
-                if($this->Users->save($user))
-                {
-                    // This new user has been created and saved, let's keep a local copy of its profile picture
-                    $destination = 'uploads/files/pics/profile_picture_' . $user->id . '.png';
-                    $file = fopen($destination, 'w+');
-                    $curl = curl_init($response->json['logo']);
-                    /* curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); */
-                    curl_setopt($curl, CURLOPT_FILE, $file);
-                    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-                    curl_setopt($curl, CURLOPT_TIMEOUT, 1000);
-                    curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0');
-                    /* curl_setopt($curl, CURLOPT_VERBOSE, true); */
-                    curl_exec($curl);
-                    curl_close($curl);
-                    fclose($file);
-
-                    // Let's resize (and convert ?) this new image
-                    $image = new \Imagick($destination);
-                    if(!$image || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination))
-                    {
-                        $flash->warning(__('Your profile picture could not be resized, converted to a PNG format or saved... Please contact an administrator.'));
-                    }
-                    // ________________________________________________________________________________________
-
-                    $this->Users->sendEmail($user->mail, 'Your account has been created !', "
-                        Hello " . $user->name . " !
-                        <br />
-                        <br />
-                        Your account has just been created on <a href=\"https://mysetup.co/\" target=\"_blank\">mySetup.co</a> !
-                        <br />
-                        We're so glad you joined us, come on and create your first setup ;)
-                        <br />
-                        <br />
-                        <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
-                    ");
-
-                    $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
-
-                    // Let's add some notifications to this new user
-                    $this->loadModel('Notifications');
-                    $this->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
-                    $this->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
-                }
-
-                else
-                {
-                    $this->Flash->error(__('An error occurred while saving your account'));
-                    return $this->redirect('/');
-                }
+                // We identified this user, we don't need the additional token generated by Twitch
+                $http->post('https://api.twitch.tv/kraken/oauth2/revoke?client_id=' . $client_id . '&client_secret=' . $client_secret . '&token=' . $token);
             }
 
             else
             {
-                $user = $this->Users->find('all')->where(['mail' => $response->json['email']])->first();
+                // Account update (let's add the Twitch token to the user entity previously got from DB)
                 $user->twitchToken = $token;
                 if($this->Users->save($user))
                 {
@@ -527,9 +466,72 @@ class UsersController extends AppController
 
         else
         {
-            // We just get the user entity bounded to this token, and log him in
-            $user = $this->Users->get(['twitchToken' => $token]);
-            $this->Flash->success(__('You are successfully logged in !'));
+            // The user has not been found, let's create a new account for him (if its Twitch email address has been verified of course)  !
+            if(!$response->json['email_verified'])
+            {
+                $this->Flash->warning(__('The email address of your Twitch account has not been verified. We can\'t register yourself yet'));
+                return $this->redirect($this->referer());
+            }
+
+            $user = $this->Users->newEntity();
+
+            $user->id             = $this->Users->getNewRandomID();
+            $user->name           = $response->json['display_name'];
+            $user->mail           = $response->json['email'];
+            $user->password       = $this->Users->getRandomString();
+            $user->preferredStore = strtoupper((substr($_GET['state'], 0, 2)));
+            $user->lastLogginDate = Time::now();
+            $user->twitchToken    = $token;
+
+            if($this->Users->save($user))
+            {
+                // This new user has been created and saved, let's keep a local copy of its profile picture
+                $destination = 'uploads/files/pics/profile_picture_' . $user->id . '.png';
+                $file = fopen($destination, 'w+');
+                $curl = curl_init($response->json['logo']);
+                /* curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); */
+                curl_setopt($curl, CURLOPT_FILE, $file);
+                curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+                curl_setopt($curl, CURLOPT_TIMEOUT, 1000);
+                curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0');
+                /* curl_setopt($curl, CURLOPT_VERBOSE, true); */
+                curl_exec($curl);
+                curl_close($curl);
+                fclose($file);
+
+                // Let's resize (and convert ?) this new image
+                $image = new \Imagick($destination);
+                if(!$image || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination))
+                {
+                    $flash->warning(__('Your profile picture could not be resized, converted to a PNG format or saved... Please contact an administrator.'));
+                }
+                // ________________________________________________________________________________________
+
+                $this->Users->sendEmail($user->mail, 'Your account has been created !', "
+                    Hello " . $user->name . " !
+                    <br />
+                    <br />
+                    Your account has just been created on <a href=\"https://mysetup.co/\" target=\"_blank\">mySetup.co</a> !
+                    <br />
+                    We're so glad you joined us, come on and create your first setup ;)
+                    <br />
+                    <br />
+                    <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
+                ");
+
+                $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
+
+                // Let's add some notifications to this new user
+                $this->loadModel('Notifications');
+                $this->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
+                $this->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
+            }
+
+            else
+            {
+                $this->Flash->error(__('An error occurred while saving your account'));
+                return $this->redirect('/');
+            }
         }
 
         // Let's log this user in !
