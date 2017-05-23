@@ -34,6 +34,10 @@ echo $this->Html->meta('description', 'Legal mentions about your personal data, 
 	<p><?= __('The user is informed that during his visits to the site, a cookie can be installed automatically on his navigator software. A cookie is a file containing data that record information relating to the navigation of the user on the site but which do not permit to identify it.') ?>
 	</p>
 
+	<h2><?= __('Partnership Disclaimer') ?></h2>
+	<p><?= __('mySetup.co is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program. In other terms, links to Amazon Stores use an affiliate identification.') ?>
+	</p>
+
 	<h2><?= __('Credits') ?></h2>
 
 	<p><?= __('© 2017 mysetup.co – All rights reserved. Total or partial production or imitation of said documents without the express prior written consent of mysetup.co is strictly prohibited and constitutes a punishable violation under France’s Intellectual Property Code. All brands and trademarks on mysetup.co belongs to their respective owners.') ?></p>
