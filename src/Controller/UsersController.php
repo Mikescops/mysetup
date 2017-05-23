@@ -480,7 +480,6 @@ class UsersController extends AppController
             $user->mail           = $response->json['email'];
             $user->password       = $this->Users->getRandomString();
             $user->preferredStore = strtoupper((substr($_GET['state'], 0, 2)));
-            $user->lastLogginDate = Time::now();
             $user->twitchToken    = $token;
 
             if($this->Users->save($user))
@@ -533,6 +532,10 @@ class UsersController extends AppController
                 return $this->redirect('/');
             }
         }
+
+        // Just before log this user in, let's save the current date time into the DB
+        $user->lastLogginDate = Time::now();
+        $this->Users->save($user);
 
         // Let's log this user in !
         $this->Auth->setUser($user);
