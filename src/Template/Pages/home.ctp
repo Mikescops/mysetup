@@ -5,9 +5,9 @@ $this->assign('title', 'mySetup | Share your own setup');
 
 echo $this->Html->meta('description', 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...', ['block' => true]);
 
-echo $this->Html->meta(['property' => 'og:title', 'content' => 'mySetup.co | Share your own setup'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:description', 'content' => 'The best place to share your setup with your community !'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'The best place to share your setup with your community !'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:title', 'content' => 'mySetup | Share your own setup'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/', true)], null ,['block' => true]);
