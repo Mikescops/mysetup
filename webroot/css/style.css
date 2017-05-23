@@ -737,6 +737,10 @@ nav {
 	height: 35px;
 }
 
+.right-nav ul li:last-child a{
+	cursor: pointer;
+}
+
 .right-nav .current-profile-user{
 	height: 32px;
 	position: absolute;

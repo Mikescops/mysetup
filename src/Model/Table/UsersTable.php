@@ -9,6 +9,8 @@ use Cake\Event\Event;
 use Cake\Datasource\EntityInterface;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
+use Cake\Mailer\Email;
+use Cake\Network\Http\Client;
 
 /**
  * Users Model
@@ -63,8 +65,7 @@ class UsersTable extends Table
             'cascadeCallbacks' => 'true'
         ]);
 
-
-         $this->addBehavior('Timestamp', [
+        $this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => [
                     'creationDate' => 'new'
@@ -121,6 +122,9 @@ class UsersTable extends Table
             ->dateTime('lastLogginDate')
             ->allowEmpty('lastLogginDate');
 
+        $validator
+            ->allowEmpty('twitchToken');
+
         return $validator;
     }
 
@@ -133,7 +137,7 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['mail']));
+        $rules->add($rules->isUnique(['mail', 'twitchToken']));
 
         return $rules;
     }
@@ -149,6 +153,33 @@ class UsersTable extends Table
         {
             // How can we inform the user about this error... ?
         }
+
+        // Let's revoke the Twitch token access !
+        if($entity['twitchToken'])
+        {
+            (new Client())->post('https://api.twitch.tv/kraken/oauth2/revoke?client_id=zym0nr99v74zljmo6z96st25rj6rzz&client_secret=b8mrbqfd9vsyjciyec560j44lh1muk&token=' . $entity['twitchToken']);
+        }
+    }
+
+    public function sendEmail($receiver, $subject, $content)
+    {
+        Email::setConfigTransport('Zoho', [
+            'host' => 'smtp.zoho.eu',
+            'port' => 587,
+            'username' => 'support@mysetup.co',
+            'password' => 'Lsc\'etb1',
+            'className' => 'Smtp',
+            'tls' => true
+        ]);
+
+        $email = new Email('default');
+        $email
+            ->setTransport('Zoho')
+            ->setFrom(['support@mysetup.co' => 'mySetup.co | Support'])
+            ->setTo($receiver)
+            ->setSubject("mySetup.co | " . $subject)
+            ->setEmailFormat('html')
+            ->send($content);
     }
 
     public function saveDefaultProfilePicture($user, $flash)
@@ -199,5 +230,22 @@ class UsersTable extends Table
         {
             $flash->warning(__("The file you uploaded does not validate our rules... Please contact an administrator."));
         }
+    }
+
+    public function getNewRandomID()
+    {
+        $id = null;
+
+        // Here we'll assign a random id to this new user
+        do {
+            $id = mt_rand() + 1;
+        } while($this->find()->where(['id' => $id])->count() !== 0);
+
+        return $id;
+    }
+
+    public function getRandomString($length = 16)
+    {
+        return substr(md5(mt_rand()), 0, $length);
     }
 }

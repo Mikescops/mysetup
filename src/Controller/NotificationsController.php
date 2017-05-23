@@ -31,7 +31,7 @@ class NotificationsController extends AppController
     /* AJAX CALLS ? */
     public function markAsRead()
     {
-        if($this->request->is('get'))
+        if($this->request->is('ajax'))
         {
             $status = 500;
             $body   = null;
@@ -78,7 +78,7 @@ class NotificationsController extends AppController
 
     public function markAsNonRead()
     {
-        if($this->request->is('get'))
+        if($this->request->is('ajax'))
         {
             $status = 500;
             $body   = null;
@@ -125,7 +125,7 @@ class NotificationsController extends AppController
 
     public function deleteNotification()
     {
-        if($this->request->is('get'))
+        if($this->request->is('ajax'))
         {
             $status = 500;
             $body   = null;
