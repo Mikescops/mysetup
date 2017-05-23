@@ -364,7 +364,7 @@
                 new Tippy('#notifications-trigger', {
                     html: '#notifications-pop', // or document.querySelector('#my-template-id')
                     arrow: true,
-                    trigger: 'mouseenter click',
+                    trigger: 'click',
                     interactive: true,
                     animation: 'fade',
                     hideOnClick: false
