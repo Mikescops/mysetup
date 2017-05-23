@@ -74,6 +74,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/notifications', ['controller' => 'Notifications', 'action' => 'index']);
 
+    $routes->connect('/twitch/*', ['controller' => 'Users', 'action' => 'twitch']);
+
     /**
      * Connect catchall routes for all controllers.
      *

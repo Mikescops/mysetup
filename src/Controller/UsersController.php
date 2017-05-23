@@ -2,7 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Mailer\Email;
+use Cake\Network\Http\Client;
+use Cake\Routing\Router;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 
@@ -75,42 +76,25 @@ class UsersController extends AppController
                 }
 
                 // Here we'll assign a random id to this new user
-                do {
-                    $user->id = mt_rand() + 1;
-                } while($this->Users->find()->where(['id' => $user->id])->count() !== 0);
+                $user->id = $this->Users->getNewRandomID();
 
-                $user->mailVerification = substr(md5(mt_rand()), 0, 32);
+                // ... and generate a token to verify its mail address =)
+                $user->mailVerification = $this->Users->getRandomString(32);
 
                 if($this->Users->save($user))
                 {
                     $this->Users->saveDefaultProfilePicture($user, $this->Flash);
 
-                    Email::setConfigTransport('Zoho', [
-                        'host' => 'smtp.zoho.eu',
-                        'port' => 587,
-                        'username' => 'support@mysetup.co',
-                        'password' => 'Lsc\'etb1',
-                        'className' => 'Smtp',
-                        'tls' => true
-                    ]);
-
-                    $email = new Email('default');
-                    $email
-                        ->setTransport('Zoho')
-                        ->setFrom(['support@mysetup.co' => 'mySetup.co | Support'])
-                        ->setTo($user->mail)
-                        ->setSubject("mySetup.co | Verify your account !")
-                        ->setEmailFormat('html')
-                        ->send("
-                            Hello " . $data['name'] . " !
-                            <br />
-                            <br />
-                            Please, in order to activate your account, click the following link : <a href=\"https://mysetup.co/verify/" . $user->id . '/' . $user->mailVerification . "\" target=\"_blank\">Activate my account</a> !
-                            <br />
-                            <br />
-                            <br />
-                            <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
-                        ");
+                    $this->Users->sendEmail($user->mail, 'Verify your account !', "
+                        Hello " . $data['name'] . " !
+                        <br />
+                        <br />
+                        Please, in order to activate your account, click the following link : <a href=\"https://mysetup.co/verify/" . $user->id . '/' . $user->mailVerification . "\" target=\"_blank\">Activate my account</a> !
+                        <br />
+                        <br />
+                        <br />
+                        <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
+                    ");
 
                     $this->Flash->success(__('Your account has been created, check your email to verify your account'));
                     return $this->redirect('/');
@@ -315,38 +299,22 @@ class UsersController extends AppController
             if($user)
             {
                 // Let's generate a new random password, and send it to the email address specified
-                $temp = substr(md5(mt_rand()), 0, 16);
+                $temp = $this->Users->getRandomString();
                 $user->password = $temp;
                 if($this->Users->save($user))
                 {
-                    Email::setConfigTransport('Zoho', [
-                        'host' => 'smtp.zoho.eu',
-                        'port' => 587,
-                        'username' => 'support@mysetup.co',
-                        'password' => 'Lsc\'etb1',
-                        'className' => 'Smtp',
-                        'tls' => true
-                    ]);
-
-                    $email = new Email('default');
-                    $email
-                        ->setTransport('Zoho')
-                        ->setFrom(['support@mysetup.co' => 'mySetup.co | Support'])
-                        ->setTo($data['mailReset'])
-                        ->setSubject("mySetup.co | You password has been reseted !")
-                        ->setEmailFormat('html')
-                        ->send("
-                            Hello " . $user->name . " !
-                            <br />
-                            <br />
-                            Your password has been reseted and set to: <span style=\"font-weight: bold;\">" . $temp . "</span><br />
-                            <br />
-                            Please <a href=\"https://mysetup.co/login\" target=\"_blank\">log you in</a> and change it as soon as possible !
-                            <br />
-                            <br />
-                            <br />
-                            <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
-                        ");
+                    $this->Users->sendEmail($data['mailReset'], 'Your password has been reseted !', "
+                        Hello " . $user->name . " !
+                        <br />
+                        <br />
+                        Your password has been reseted and set to: <span style=\"font-weight: bold;\">" . $temp . "</span><br />
+                        <br />
+                        Please <a href=\"https://mysetup.co/login\" target=\"_blank\">log you in</a> and change it as soon as possible !
+                        <br />
+                        <br />
+                        <br />
+                        <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
+                    ");
 
                     $this->Flash->success(__("An email has been sent to this email address !"));
                     return $this->redirect(['action' => 'login']);
@@ -399,7 +367,7 @@ class UsersController extends AppController
                     $this->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
                     $this->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
 
-                    return $this->redirect($this->Auth->redirectUrl()); 
+                    return $this->redirect($this->Auth->redirectUrl());
                 }
 
                 else
@@ -417,11 +385,165 @@ class UsersController extends AppController
         }
     }
 
+    public function twitch()
+    {
+        // Our Twitch's API IDs
+        $client_id     = 'zym0nr99v74zljmo6z96st25rj6rzz';
+        $client_secret = 'b8mrbqfd9vsyjciyec560j44lh1muk';
+
+        // The Twitch's API authorization we want
+        $scope = 'user_read';
+
+        // A simple test to check the URL validity (still : "F*CK Twitch's API")
+        if(!$_GET or !isset($_GET['code']) or (!isset($_GET['scope']) or $_GET['scope'] !== $scope) or !isset($_GET['state']))
+        {
+            // This bastard only deserves to `die()`
+            die();
+        }
+
+        $http = new Client();
+
+        // Let's ask Twitch for this client's token
+        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=' . $client_secret . '&grant_type=authorization_code&redirect_uri=' . 'https://mysetup.co/twitch/' . '&code=' . $_GET['code'] . '&state=' . $_GET['state']);
+
+        // Here we check if the response fit what we expect, and if we're allowed to get the user data
+        if(!$response or !isset($response->json['scope'][0]) or !$response->json['scope'][0] === $scope)
+        {
+            $this->Flash->warning(__('We could not access Twitch\'s data'));
+            return $this->redirect('/');
+        }
+
+        // The very token, super-sensitive data !
+        $token = $response->json['access_token'];
+
+        // We run a query through Twitch's API, in order to gather some information about this user
+        $response = $http->get('https://api.twitch.tv/kraken/user', ['q' => 'widget'], [
+            'headers' => [
+                'Accept' => 'application/vnd.twitchtv.v5+json',
+                'Client-ID' => $client_id,
+                'Authorization' => 'OAuth ' . $token
+            ]
+        ]);
+
+        if(!$response or !$response->json)
+        {
+            $this->Flash->warning(__('We could not access Twitch\'s data'));
+            return $this->redirect('/');
+        }
+
+        // Let's try to get an user entity linked to the Twitch address email of this user
+        $user = $this->Users->find()->where(['mail' => $response->json['email']])->first();
+        
+        if($user)
+        {
+            // The user has been found, is this a connection procedure, or a Twitch account update ?
+            if($user->twitchToken)
+            {
+                // Connection procedure
+                $this->Flash->success(__('You are successfully logged in !'));
+
+                // We identified this user, we don't need the additional token generated by Twitch
+                $http->post('https://api.twitch.tv/kraken/oauth2/revoke?client_id=' . $client_id . '&client_secret=' . $client_secret . '&token=' . $token);
+            }
+
+            else
+            {
+                // Account update (let's add the Twitch token to the user entity previously got from DB)
+                $user->twitchToken = $token;
+                if($this->Users->save($user))
+                {
+                    // Let's show a piece of information, and leave the end of the function logs this user in
+                    $this->Flash->success(__('Your account has just been linked to your Twitch one !'));
+                }
+
+                else
+                {
+                    $this->Flash->error(__('An error occurred while updating your account'));
+                    return $this->redirect('/');
+                }
+            }
+        }
+
+        else
+        {
+            // The user has not been found, let's create a new account for him (if its Twitch email address has been verified of course)  !
+            if(!$response->json['email_verified'])
+            {
+                $this->Flash->warning(__('The email address of your Twitch account has not been verified. We can\'t create your account yet'));
+                return $this->redirect($this->referer());
+            }
+
+            $user = $this->Users->newEntity();
+
+            $user->id             = $this->Users->getNewRandomID();
+            $user->name           = $response->json['display_name'];
+            $user->mail           = $response->json['email'];
+            $user->password       = $this->Users->getRandomString();
+            $user->preferredStore = strtoupper((substr($_GET['state'], 0, 2)));
+            $user->lastLogginDate = Time::now();
+            $user->twitchToken    = $token;
+
+            if($this->Users->save($user))
+            {
+                // This new user has been created and saved, let's keep a local copy of its profile picture
+                $destination = 'uploads/files/pics/profile_picture_' . $user->id . '.png';
+                $file = fopen($destination, 'w+');
+                $curl = curl_init($response->json['logo']);
+                /* curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); */
+                curl_setopt($curl, CURLOPT_FILE, $file);
+                curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+                curl_setopt($curl, CURLOPT_TIMEOUT, 1000);
+                curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0');
+                /* curl_setopt($curl, CURLOPT_VERBOSE, true); */
+                curl_exec($curl);
+                curl_close($curl);
+                fclose($file);
+
+                // Let's resize (and convert ?) this new image
+                $image = new \Imagick($destination);
+                if(!$image || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination))
+                {
+                    $flash->warning(__('Your profile picture could not be resized, converted to a PNG format or saved... Please contact an administrator.'));
+                }
+                // ________________________________________________________________________________________
+
+                $this->Users->sendEmail($user->mail, 'Your account has been created !', "
+                    Hello " . $user->name . " !
+                    <br />
+                    <br />
+                    Your account has just been created on <a href=\"https://mysetup.co/\" target=\"_blank\">mySetup.co</a> !
+                    <br />
+                    We're so glad you joined us, come on and create your first setup ;)
+                    <br />
+                    <br />
+                    <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
+                ");
+
+                $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
+
+                // Let's add some notifications to this new user
+                $this->loadModel('Notifications');
+                $this->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
+                $this->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
+            }
+
+            else
+            {
+                $this->Flash->error(__('An error occurred while saving your account'));
+                return $this->redirect('/');
+            }
+        }
+
+        // Let's log this user in !
+        $this->Auth->setUser($user);
+        return $this->redirect($this->Auth->redirectUrl()); 
+    }
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['logout', 'add', 'resetPassword', 'view', 'verifyAccount']);
+        $this->Auth->allow(['logout', 'add', 'resetPassword', 'view', 'verifyAccount', 'twitch']);
     }
 
     public function isAuthorized($user)

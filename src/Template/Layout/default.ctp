@@ -16,7 +16,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css?v=5') ?>
+    <?= $this->Html->css('app.min.css?v=6') ?>
     <?= $this->Html->css('emoji.min.css') ?>
     <?= $this->Html->css('tippy.css') ?>
 
@@ -128,11 +128,12 @@
 
                                     <?= $this->Form->postLink(__('Delete my account'), array('controller' => 'Users','action' => 'delete', $authUser['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
                                 </div>
-
+                                </li>
                             <?php else: ?>
-                                <a href="<?= $this->Url->build('/login'); ?>"><i class="fa fa-user"></i> <?= __('Sign In / Up') ?></a>
+                                <a href="<?= $this->Url->build('/login'); ?>"><i class="fa fa-user"></i> <?= __('Sign In / Up') ?></a></li>
+                                <li> <a onclick="logTwitch('<?= $lang ?>')"><?= __('Log in with') ?> <i class="fa fa-twitch"></i> </a></li>
                             <?php endif; ?>
-                        </li>
+                        
                     </ul>
 
                 </div>
@@ -269,7 +270,8 @@
                                 <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
                             </ul>
                         <?php else: ?>
-                            <a href="<?= $this->Url->build('/login'); ?>"><?= __('Login') ?></a>
+                            <a href="<?= $this->Url->build('/login'); ?>"><?= __('Log in') ?></a>
+                            <a onclick="logTwitch('<?= $lang ?>')"><?= __('Log in with') ?><i class="fa fa-twitch"></i> </a>
                         <?php endif; ?>
                     </li>
                 </ul>
@@ -338,7 +340,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
 <!-- App Js async load -->
-<?= $this->Html->script('app.min.js?v=6') ?>
+<?= $this->Html->script('app.min.js?v=7') ?>
 <script>const toast = new siiimpleToast();</script>
 
 <?php if($authUser): ?>
