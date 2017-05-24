@@ -413,6 +413,29 @@ h3.user-profile{
 	transition: opacity .2s ease-in-out;
 }
 
+.about-inner{
+	width: 250px;
+}
+
+.button.brelated{
+	width: 100%;
+	display: block;
+	background-color: #2fa184;
+	border: .1rem solid #1a841f;
+}
+
+.button.brelated:hover{
+	background-color: #606c76;
+	border-color: #606c76;
+	color: #fff;
+	outline: 0;
+}
+
+.button.amazon-buy{
+	width: 100%;
+	display: block;
+}
+
 .config-post .column{
 	position: relative;
 }

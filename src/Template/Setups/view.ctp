@@ -148,13 +148,21 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <div class="config-items">
 
-            <?php foreach ($products as $item): ?>
+            <?php $i=0; foreach ($products as $item): ?>
 
-                        <a href="<?= urldecode($item->href) ?>" target="_blank">
-                            <div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
-                        </a>
+                        <div id="item-trigger-<?= $i ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
 
-            <?php endforeach ?>
+                        <div id="item-about-<?= $i ?>" style="display: none;">
+                            <div class="about-inner">
+                              <h5><?= urldecode($item->title) ?></h5>
+                              <a href="<?=  $this->Url->build('/setups/search?q='.urldecode($item->title)); ?>" class="button brelated"><i class="fa fa-search"></i> Find related setups</a>
+                              <a href="<?= urldecode($item->href) ?>" traget="_blank" class="button amazon-buy">More info on <i class="fa fa-amazon"></i></a>
+                            </div>
+                        </div>
+
+                        <?= $this->Html->scriptBlock("new Tippy('#item-trigger-$i', {html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true, trigger: 'click'});", array('block' => 'scriptBottom')) ?>
+
+            <?php $i++; endforeach ?>
 
             </div>
 
