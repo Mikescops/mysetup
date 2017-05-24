@@ -310,7 +310,7 @@ function searchItem(query, region, action) {
       img.attr('title', title);
       
       if(title.length > 48){
-          title = title.substring(0,48) + '..';
+          var shorttitle = title.substring(0,48) + '..';
       }
       var url = $('detailpageurl', value).html();
       var encodedUrl = encodeURIComponent(url);

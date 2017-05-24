@@ -160,7 +160,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                             </div>
                         </div>
 
-                        <?= $this->Html->scriptBlock("new Tippy('#item-trigger-$i', {html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true, trigger: 'click'});", array('block' => 'scriptBottom')) ?>
+                        <?= $this->Html->scriptBlock("new Tippy('#item-trigger-$i', {html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
 
             <?php $i++; endforeach ?>
 
