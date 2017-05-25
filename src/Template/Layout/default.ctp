@@ -77,9 +77,9 @@
                                 <li><a href="<?= $this->Url->build('/popular'); ?>"><?= __('Popular this week') ?></a></li>
                             </ul>
                         </li>
-                        <li>
-                            <?php if($authUser): ?>
-                                <a><?= $authUser['name'] ?> <img class="current-profile-user" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser['id'].'.png') ?>"></a>
+                        <?php if($authUser): ?>
+                        <li style="margin-right: 19px;">
+                                <a class="navbar-user"><?= $authUser['name'] ?> <img class="current-profile-user" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser['id'].'.png') ?>"></a>
                                 <ul style="right: -44px;left: auto;width:150px">
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
@@ -128,10 +128,16 @@
 
                                     <?= $this->Form->postLink(__('Delete my account'), array('controller' => 'Users','action' => 'delete', $authUser['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
                                 </div>
-                                </li>
+                            </li>
                             <?php else: ?>
-                                <a href="<?= $this->Url->build('/login'); ?>"><i class="fa fa-user"></i> <?= __('Sign In / Up') ?></a></li>
-                                <li> <a onclick="logTwitch('<?= $lang ?>')"><?= __('Log in with') ?> <i class="fa fa-twitch"></i> </a></li>
+                            <li>
+                                <a class="twitch-login" onclick="logTwitch('<?= $lang ?>')"><?= __('Log in with') ?> <i class="fa fa-twitch"></i> </a></li>
+                                <li>
+                                    <a><i class="fa fa-user"></i> <i class="fa fa-caret-down"></i></a>
+                                    <ul style="right: 0;left: auto;width:210px;text-align: right;">
+                                        <li><a href="<?= $this->Url->build('/login'); ?>"><?= __('Sign In / Up') ?></a></li>
+                                    </ul>
+                            </li>
                             <?php endif; ?>
                         
                     </ul>
