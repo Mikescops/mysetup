@@ -16,7 +16,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css?v=6') ?>
+    <?= $this->Html->css('app.min.css?v=7') ?>
     <?= $this->Html->css('emoji.min.css') ?>
     <?= $this->Html->css('tippy.css') ?>
 
@@ -346,56 +346,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
 <!-- App Js async load -->
-<?= $this->Html->script('app.min.js?v=7') ?>
+<?= $this->Html->script('app.min.js?v=8') ?>
 <script>const toast = new siiimpleToast();</script>
-
 <?php if($authUser): ?>
-    <script>
-        $.ajax({
-            url: webRootJs + "app/getNotifications",
-            data: {
-            n: '8'
-            },
-            dataType: 'html',
-            type: 'get',
-            success: function (json) {
-                notifs = $.parseJSON(json);
-                if(notifs[0]) {
-                $.each(notifs, function(key, value) {
-                    $('#notif-container').append('<div onclick="markasread('+ value['id'] +')" class="notif notifnb-'+ value['id'] +'">'+ value['content'] +'<div class="notif-close"><span onclick="markasread('+ value['id'] +')">×</span></div></div>');
-                    });
-
-                    $('#notifications-trigger').addClass('notif-trigger');
-                    $('#no-notif').hide();
-                }
-
-                new Tippy('#notifications-trigger', {
-                    html: '#notifications-pop', // or document.querySelector('#my-template-id')
-                    arrow: true,
-                    trigger: 'click',
-                    interactive: true,
-                    animation: 'fade',
-                    hideOnClick: false
-                });
-            }
-        });
-
-        function markasread(id) {
-        $.ajax({
-            url: webRootJs + 'notifications/markAsRead',
-            type: 'get',
-            data: {
-                "notification_id": id
-            },
-        });
-
-        $('.notifnb-'+id).remove();
-
-        if(!$.trim( $('#notif-container').html() ).length){
-            $('#notifications-trigger').removeClass('notif-trigger');
-        }
-    }
-    </script>
+    <script>const instance = new Tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification();</script>
 <?php endif ?>
 
 <?= $this->Flash->render() ?>

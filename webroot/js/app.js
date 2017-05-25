@@ -681,3 +681,53 @@ function logTwitch(lang){
 
     window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?client_id=zym0nr99v74zljmo6z96st25rj6rzz&redirect_uri=https://mysetup.co/twitch/&response_type=code&scope=user_read&state='+lang+rand_state;
 }
+
+/********** Notification refresh and read ************/
+
+function checknotification(){
+    $.ajax({
+        url: webRootJs + "app/getNotifications",
+        data: {
+        n: '8'
+        },
+        dataType: 'html',
+        type: 'get',
+        success: function (json) {
+            notifs = $.parseJSON(json);
+            $('#notif-container').html('');
+            if(notifs[0]) {
+            $.each(notifs, function(key, value) {
+                $('#notif-container').append('<div onclick="markasread('+ value['id'] +')" class="notif notifnb-'+ value['id'] +'">'+ value['content'] +'<div class="notif-close"><span onclick="markasread('+ value['id'] +')">×</span></div></div>');
+                });
+
+                $('#notifications-trigger').addClass('notif-trigger');
+                $('#no-notif').hide();
+                instance.update(popper);
+            }
+            else{
+                $('#notifications-trigger').removeClass('notif-trigger');
+                $('#no-notif').show();
+                instance.update(popper);
+            }
+        }
+    });
+    setTimeout(function(){checknotification();}, 20000);
+}
+
+function markasread(id) {
+    $.ajax({
+        url: webRootJs + 'notifications/markAsRead',
+        type: 'get',
+        data: {
+            "notification_id": id
+        },
+    });
+
+    $('.notifnb-'+id).remove();
+
+    if(!$.trim( $('#notif-container').html() ).length){
+        $('#notifications-trigger').removeClass('notif-trigger');
+        $('#no-notif').show();
+        instance.update(popper);
+    }
+}
