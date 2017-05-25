@@ -1111,6 +1111,7 @@ nav {
 	border-radius: 6px 6px 0 0;
 	height: 44px;
 	padding: 11px;
+	z-index: 10;
 }
 .add-form .tabs li {
   display: inline-block;
