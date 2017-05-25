@@ -66,7 +66,7 @@ img{
 }
 
 .sitecontainer{
-	padding-top: 70px;
+	padding-top: 50px;
 }
 
 .maincontainer{
@@ -664,7 +664,7 @@ h3.user-profile{
  /*********** MENU CSS ***********/
 
 nav {
-	background: linear-gradient(to bottom, #121212 0%, rgba(18, 18, 18, 0.75) 65%, rgba(18, 18, 18, 0) 100%);
+	background: #151515;
 }
 
 .heavy-nav{
@@ -674,14 +674,24 @@ nav {
 	position: fixed;
 	width: 100%;
 	margin: 0;
-	z-index: 1000;
-	height: 70px;
+	z-index: 500;
+	height: 60px;
 	padding: 10px 15px 0px 15px;
 	top: 0;
 }
 
+.heavy-nav .row{
+	margin: 0 auto!important;
+	padding: 0 2rem;
+	height: 40px;
+}
+
+.heavy-nav .column{
+	padding: 0!important;
+}
+
 .heavy-nav .ms-logo{
-	height: 50px;
+	height: 40px;
 }
 
 .right-nav{
@@ -708,7 +718,7 @@ nav {
 }
 .right-nav a {
 	display:block;
-	padding:10px 20px;
+	padding:10px 17px;
 	line-height:1.2em;
 	color:#fff;
 	/*border-left:1px solid #595959;*/
@@ -726,6 +736,7 @@ nav {
 }
 
 .right-nav li ul {
+	width:200px;
 	position:absolute;
 	left:0;
 	background: rgba(21, 21, 21, 0.85);
@@ -744,7 +755,7 @@ nav {
 
 }
 .right-nav li ul li {
-	width:200px;
+	width: 100%;
 	overflow:hidden;
 
 	height: 0px;
@@ -764,6 +775,7 @@ nav {
 
 .right-nav ul li:last-child a{
 	cursor: pointer;
+	margin-right: 5px;
 }
 
 .right-nav .current-profile-user{
@@ -772,7 +784,7 @@ nav {
 	border-radius: 50%;
 	border: 2px solid rgb(50, 143, 234);
 	top: 3px;
-	right: -22px;
+	right: -18px;
 }
 
 .lity-hide {
@@ -1395,6 +1407,10 @@ nav {
 	}
 	.row .column.column-25.sidebar {
 	    display: none;
+	}
+
+	.heavy-nav .row{
+		padding: 0 2rem 0 0!important;
 	}
 
 
