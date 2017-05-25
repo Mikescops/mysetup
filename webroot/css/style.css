@@ -739,7 +739,7 @@ nav {
 	width:200px;
 	position:absolute;
 	left:0;
-	background: rgba(21, 21, 21, 0.85);
+	background: rgba(21, 21, 21, 0.95);
 	top:36px;
 	z-index:1;
 	box-shadow: 0 0 30px rgba(0,0,0,.35);
@@ -794,9 +794,9 @@ nav {
 .mobile-nav{
 	display: none;
 	position: fixed;
-	top: 10px;
+	top: 6px;
 	right: 20px;
-	font-size: 1.9em;
+	font-size: 30px;
 }
 
 .mobile-nav a:first-child{
