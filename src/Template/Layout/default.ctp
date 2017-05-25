@@ -151,13 +151,13 @@
                         <div class="add-form">
                         <ul class="tabs">
                             <li>
-                                <a id="basics-tab" href="#basics" class="active"><div class="numberCircle">1</div> <?= __('Basics') ?></a>
+                                <a id="basics-tab" href="#basics" class="active"><?= __('Basics') ?></a>
                             </li>
                             <li>
-                                <a id="components-tab" href="#components"><div class="numberCircle">2</div> <?= __('Components') ?></a>
+                                <a id="components-tab" href="#components"><?= __('Components') ?></a>
                             </li>
                             <li>
-                                <a id="infos-tab" href="#infos"><div class="numberCircle">3</div> <?= __('More infos') ?></a>
+                                <a id="infos-tab" href="#infos"><?= __('More infos') ?></a>
                             </li>
                         </ul>
                         <div id="basics" class="form-action show">
