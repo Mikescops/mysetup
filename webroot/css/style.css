@@ -742,9 +742,9 @@ nav {
 	background: rgba(21, 21, 21, 0.95);
 	top:42px;
 	z-index:1;
-	box-shadow: 0 0 30px rgba(0,0,0,.35);
+/*	box-shadow: 0 0 30px rgba(0,0,0,.35);
 	-moz-box-shadow: 0 0 30px rgba(0,0,0,.35);
-	-webkit-box-shadow: 0 0 30px rgba(0,0,0,.35);
+	-webkit-box-shadow: 0 0 30px rgba(0,0,0,.35);*/
 
 	opacity: 0;
 	-webkit-transition: opacity .30s ease-in-out;
@@ -1091,6 +1091,7 @@ nav {
 
 .add-form{
 	min-height: 450px;
+	margin-bottom: 40px;
 }
 
 .add-form .hide {
@@ -1141,9 +1142,12 @@ nav {
 	bottom: 0;
 	width: 100%;
 	right: 0;
-	padding: 0 25px;
-	height: 20px;
+	padding: 10px 20px;
+	height: 59px;
 	position: absolute;
+	background: #fff;
+	border-top: 1px solid #D5D5D5;
+	border-radius: 0 0 6px 6px;
 }
 
 .modal-footer .button{
