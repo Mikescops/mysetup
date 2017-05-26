@@ -162,7 +162,7 @@ footer a{
     align-items: center;
 	width: 100%;
 	text-align: center;
-	height: 380px;
+	height: 372.68px;
 	border-radius: 4px;
 	padding: 10px;
 	margin-bottom: 20px;
@@ -214,7 +214,7 @@ footer a{
 	position: relative;
 	width: 100%;
 	text-align: center;
-	height: 380px;
+	height: 372.68px;
 	border-radius: 4px;
 	padding: 10px;
 	margin-bottom: 20px;
@@ -271,10 +271,22 @@ footer a{
 }
 
 .twitter-feed{
-	height: 780px;
+	height: 765.36px;
 	border-radius: 4px;
 	overflow: hidden;
 	margin-bottom: 20px;
+}
+
+.sidebar-user{
+	margin-top: 81px;
+}
+
+.sidebar-search{
+	margin-top: 130px;
+}
+
+.sidebar-feed{
+	margin-top: 56.4px;
 }
 
 /* Search Bar */
@@ -360,7 +372,7 @@ footer a{
 .fullitem{
 	position: relative;
 	margin-bottom: 20px;
-	max-height: 380px;
+	max-height: 372.68px;
 	border-radius: 4px;
 	overflow: hidden;
 }
@@ -1526,6 +1538,9 @@ nav {
 	    max-width: 100%;
 	}
 	.row .column.column-25.sidebar {
+	    display: none;
+	}
+	.row .column.column-25.sidebar-home {
 	    display: none;
 	}
 

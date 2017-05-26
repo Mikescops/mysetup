@@ -13,9 +13,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
             <img class="user-profile" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$user->id.'.png'); ?>">
 
-            <h3 class="user-profile"><?php if($user->name){echo $user->name;}else{echo __("Unknown user");} ?><?= __('\'s setups') ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
-
-            <?php if($authUser['id'] == $user->id and !$user->name){echo __("You didn't set your nickname ! Please click the top right menu and edit your profile.");} ?>
+            <h3 class="user-profile"><?= $user->name ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
 
             <?php  if (!empty($user->setups)): $i = 0; foreach ($user->setups as $setup): ?>
             <div class="fullitem">
@@ -47,7 +45,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
             <?php endif ?>
 
         </div>
-        <div class="column column-25 sidebar">
+        <div class="column column-25 sidebar sidebar-user">
 
             <?php if($authUser['admin']): ?>
 
@@ -97,9 +95,16 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                     <?= $this->Form->postLink(__('Delete this account'), array('controller' => 'Users','action' => 'delete', $user['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
                 </div>
 
+            <br><br>
+
             <?php endif ?>
 
-            <br><br>
+            <div class="blog-advert">
+            <a href="https://medium.com/mysetup-co">
+              <h5><i class="fa fa-newspaper-o"></i><br>Read our latest news</h5>
+            </a>
+            </div>
+
             <div class="twitter-feed">
               <a class="twitter-timeline" data-chrome="noscrollbar nofooter noboders" data-height="781" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by @mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>

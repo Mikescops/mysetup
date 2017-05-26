@@ -134,7 +134,7 @@ curl_close($CURL);
 
           <a class="button home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('Need more ? Click to see the latest !') ?></a>
         </div>
-        <div class="column column-25 sidebar">
+        <div class="column column-25 sidebar-home">
 
             <?php
                 $lang = ($authUser && $authUser['preferredStore'] !== "US" && $authUser['preferredStore'] !== "UK" ? strtolower($authUser['preferredStore']) : "en")
@@ -147,9 +147,9 @@ curl_close($CURL);
             <?php endif ?>
 
             <div class="blog-advert">
-            <a href="https://medium.com/mysetup-co">
-              <h5><i class="fa fa-newspaper-o"></i><br>Read our latest news</h5>
-            </a>
+              <a href="https://medium.com/mysetup-co">
+                <h5><i class="fa fa-newspaper-o"></i><br>Read our latest news</h5>
+              </a>
             </div>
 
             <div class="twitter-feed">
