@@ -136,14 +136,28 @@ curl_close($CURL);
         </div>
         <div class="column column-25 sidebar">
 
+            <?php
+                $lang = ($authUser && $authUser['preferredStore'] !== "US" && $authUser['preferredStore'] !== "UK" ? strtolower($authUser['preferredStore']) : "en")
+            ?>
+
+            <?php if(!$authUser): ?>
+              <div class="twitch-advert" onclick="logTwitch('<?= $lang ?>')">
+                <h4><i class="fa fa-twitch"></i><br>Login with Twitch and create my Setup !</h4>
+              </div>
+            <?php endif ?>
+
+            <div class="twitter-feed">
+              <a class="twitter-timeline" data-chrome="noscrollbar nofooter noboders" data-height="781" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by @mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+
+
+
             <div class="social-networks">
                 <a href="https://www.facebook.com/mysetup.co" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
                 <a href="https://twitter.com/mysetup_co" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
                 <a href="https://medium.com/mysetup-co" target="_blank"><i class="fa fa-medium fa-2x"></i></a>
                 <a href="mailto:support@mysetup.co" title="Report a bug !"><i class="fa fa-bug fa-2x"></i></a>
             </div>
-
-            <a class="twitter-timeline" data-chrome="noscrollbar nofooter noboders" data-height="766" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by @mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
         </div>
     </div>
