@@ -142,7 +142,7 @@ curl_close($CURL);
 
             <?php if(!$authUser): ?>
               <div class="twitch-advert" onclick="logTwitch('<?= $lang ?>')">
-                <h4><i class="fa fa-twitch"></i><br>Login with Twitch and create my Setup !</h4>
+                <h4><i class="fa fa-twitch"></i><br><?= __('Login with Twitch and create my Setup !') ?></h4>
               </div>
             <?php endif ?>
 
