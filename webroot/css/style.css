@@ -525,8 +525,8 @@ h3.user-profile{
 .item_box {
     float:left;
     position: relative;
-    width: 23%;
-    padding-bottom : 23%; /* = width for a 1:1 aspect ratio */
+    width: 18%;
+    padding-bottom : 18%; /* = width for a 1:1 aspect ratio */
     margin: 1%;
     border: 3px solid #fff;
     border-radius: 4px;
@@ -693,6 +693,10 @@ h3.user-profile{
     -o-transform: rotate(45deg);
 }
 
+.item-meta{
+	margin-top: 20px;
+}
+
 .setup-date{
 	text-align: center;
 }
@@ -712,20 +716,20 @@ h3.user-profile{
 }
 
 .comment-section-title{
-	margin-left: 70px;
 }
 
 .comment-section{
-	margin-top: 30px;
+	margin-top: 15px;
 }
 
 #commentField{
 	border-radius: 4px;
-    background-color: #fff;
-    padding: 10px;
-    font-family: inherit;
-    font-size: inherit;
-    margin: 0;
+	background-color: #fff;
+	padding: 7px;
+	height: 34px;
+	font-family: inherit;
+	margin: 0;
+	min-height: auto;
 }
 
 .comment {
@@ -745,7 +749,10 @@ h3.user-profile{
 
 .comment-img img { display: block }
 
-.comment-body { overflow: hidden }
+.comment-body{ 
+	overflow: hidden;
+	margin-top: 6px;
+}
 
 .comment-body a { font-size: 14px; }
 
@@ -782,6 +789,7 @@ h3.user-profile{
 
 #comment-form{
 	margin-left: 70px;
+	padding-top: 8px;
 }
 
 #edit-comment-hidden{
@@ -1603,7 +1611,7 @@ nav {
 		padding: .58571429em 0.8em .58571429em;
 	}
 
-	.comment-section .column{
+	.comment-section .column, .description-section .column{
 		flex: 0 0 100%!important;
 		max-width: 100%!important;
 		margin-left: 0!important;

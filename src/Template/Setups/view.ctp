@@ -144,7 +144,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 <div class="maincontainer">
 
     <div class="row config-post">
-        <div class="column column-67">
+        <div class="column">
 
             <div class="config-items">
 
@@ -168,18 +168,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
         </div>
 
-        <div class="column column-33 item-meta">
-
-            <?= $this->Text->autoParagraph(h($setup->description))?>
-
-            <p class="setup-date"><i class='fa fa-clock-o'></i>  <?= $setup->creationDate ?></p>
-
-            <div id="social-networks"></div></br>
-
-            <?php if(!empty($video->src)): ?>
-                <a class="button item-youtube" href="<?= $video->src ?>" data-lity><?= __('Watch it in video') ?></a>
-            <?php endif?>
-        </div>
     </div>
 
     <br>
@@ -194,6 +182,23 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 </div>
             </div>
         <?php endforeach ?>
+    </div>
+
+    <div class="row description-section">
+        
+        <div class="column column-60 column-offset-20 item-meta">
+
+            <?= $this->Text->autoParagraph(h($setup->description))?>
+
+            <p class="setup-date"><i class='fa fa-clock-o'></i>  <?= $setup->creationDate ?></p>
+
+            <div id="social-networks"></div></br>
+
+            <?php if(!empty($video->src)): ?>
+                <a class="button item-youtube" href="<?= $video->src ?>" data-lity><?= __('Watch it in video') ?></a>
+            <?php endif?>
+        </div>
+
     </div>
 
     <div class="row comment-section">
@@ -230,9 +235,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <?php if($authUser): ?>
 
+                <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
+                    <img alt="Profile picture of #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser->id.'.png') ?>" alt="" width="50" height="50" />
+                </a>
+
                 <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
                 <fieldset>
-                <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'), 'rows' => 10, 'maxLength' => 500]); ?>
+                <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'), 'rows' => "1", 'maxLength' => 500]); ?>
                 </fieldset>
                 <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
                 <?= $this->Form->end(); ?>
