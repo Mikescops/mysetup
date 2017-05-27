@@ -1108,7 +1108,7 @@ nav {
 #add_setup_modal, #edit_setup_modal, #edit_profile_modal, #embed_twitch_modal, #edit_user_admin{
 	color: #000;
 	overflow:auto;
-	background:#FDFDF6;
+	background:#fff;
 	padding: 20px 20px 0 20px;
 	width:600px;
 	max-width:100%;
@@ -1118,30 +1118,36 @@ nav {
 .search_results, .basket_items{
 	list-style: none;
 	margin: 0;
+	-moz-column-count: 2;
+	-moz-column-gap: 10px;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 10px;
+	column-count: 2;
+	column-gap: 10px;
 }
 
 .search_results img, .basket_items img{
-	max-height: 60px;
-	max-width: 60px;
-	float: left;
+	max-width: 100%;
 }
 
 .search_results p, .basket_items p{
-	min-height: 60px;
-	margin: 0 30px 0 75px;
+	margin: 0;
+	line-height: 20px;
 }
 
 .search_results a, .basket_items a{
 	font-size: 25px;
-	right: 0;
-	position: absolute;
-	top: 15px;
 	cursor: pointer;
 }
 .search_results li, .basket_items li{
 	position: relative;
-	border-bottom: 1px solid #000;
-	padding: 5px 0 5px 0;
+	border: 1px solid #d1d1d1;
+	text-align: center;
+	width: 100%;
+	display: inline-block;
+	border-radius: 4px;
+	padding: 10px 10px 0px 10px;
+	margin-bottom: 15px;
 }
 
 .gallery_edit_preview, .gallery_add_preview{
