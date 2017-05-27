@@ -1153,8 +1153,8 @@ nav {
 .gallery_edit_preview, .gallery_add_preview{
 	display: inline-block;
 	width: 18%;
-	margin: 0.555%;
-	max-height: 100px;
+	margin: 1%;
+	float: left;
 	cursor: pointer;
 }
 
@@ -1421,6 +1421,12 @@ nav {
 		bottom: auto;
 		margin: 0;
 		border-radius: 0 4px 0 4px;
+	}
+
+	.search_results, .basket_items{
+		-moz-column-count: 1;
+		-webkit-column-count: 1;
+		column-count: 1;
 	}
 
 	.fullitem-inner{
