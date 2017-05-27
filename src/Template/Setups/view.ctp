@@ -188,9 +188,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         
         <div class="column column-60 column-offset-20 item-meta">
 
-            <?= $this->Text->autoParagraph(h($setup->description))?>
+            <h4>About this setup</h4>
 
-            <p class="setup-date"><i class='fa fa-clock-o'></i>  <?= $setup->creationDate ?></p>
+            <?= $this->Text->autoParagraph(h($setup->description))?>
 
             <div id="social-networks"></div></br>
 
@@ -268,6 +268,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         </div>
 
     </div>
+
+    <br>
+
+    <p class="setup-date"><i class='fa fa-clock-o'></i> Published on <?= $setup->creationDate ?></p>
 
 </div>
 
