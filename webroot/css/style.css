@@ -1175,6 +1175,10 @@ nav {
 	margin-bottom: 15px;
 }
 
+.gallery-holder{
+	overflow: auto;
+}
+
 .gallery_edit_preview, .gallery_add_preview{
 	display: inline-block;
 	width: 18%;
@@ -1295,6 +1299,10 @@ nav {
   -webkit-transition: all 0.5s linear;
 	-moz-transition: all 0.5s linear;
 	transition: all 0.5s linear;
+}
+
+.link-marksupp{
+	margin-top: -18px;
 }
 
 .modal-footer{

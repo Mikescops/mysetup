@@ -166,6 +166,8 @@
                                 echo $this->Form->control('title', ['label' => __('Title *'), 'required' => true, 'id' => 'title', 'maxLength' => 48]);
                                 echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 500]);
                             ?>
+                            <span class="float-right link-marksupp"><a href="<?=$this->Url->build('/pages/q&a')?>"><i class="fa fa-info-circle"></i> Markdown supported</a></span>
+                            <br>
                             <?php
                                 echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile']);
                             ?>
@@ -180,11 +182,14 @@
                                 ?>
                             </div>
 
+                            <div class="gallery-holder">
                             <?php for($i = 0; $i < 5; $i++): ?>
                                 <img alt="Gallery Preview" class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
                             <?php endfor ?>
+                            </div>
 
                             <span class="float-right">* <?= __('required fields') ?></span>
+                            <br/>
 
                             <div class="modal-footer"><a href="#components" class="button next float-right"><?= __('Next step') ?></a></div>
                             
