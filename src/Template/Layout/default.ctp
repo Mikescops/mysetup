@@ -83,6 +83,7 @@
                                 <ul style="right: -44px;left: auto;width:150px">
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
+                                    <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
                                     <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
                                 </ul>
 
@@ -131,11 +132,12 @@
                             </li>
                             <?php else: ?>
                             <li>
-                                <a class="twitch-login" onclick="logTwitch('<?= $lang ?>')"><?= __('Log in with') ?> <i class="fa fa-twitch"></i> </a></li>
+                                <a class="twitch-login" onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i> </a></li>
                                 <li>
                                     <a><i class="fa fa-user"></i> <i class="fa fa-caret-down"></i></a>
                                     <ul style="right: 0;left: auto;width:210px;text-align: right;">
                                         <li><a href="<?= $this->Url->build('/login'); ?>"><?= __('Sign In / Up') ?></a></li>
+                                        <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
                                     </ul>
                             </li>
                             <?php endif; ?>
@@ -278,11 +280,13 @@
                             <ul>
                                 <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                 <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
+                                <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
                                 <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
                             </ul>
                         <?php else: ?>
                             <a href="<?= $this->Url->build('/login'); ?>"><?= __('Log in') ?></a>
-                            <a onclick="logTwitch('<?= $lang ?>')"><?= __('Log in with') ?><i class="fa fa-twitch"></i> </a>
+                            <a onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i></a>
+                            <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
                         <?php endif; ?>
                     </li>
                 </ul>
