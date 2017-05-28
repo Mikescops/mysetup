@@ -525,8 +525,8 @@ h3.user-profile{
 .item_box {
     float:left;
     position: relative;
-    width: 18%;
-    padding-bottom : 18%; /* = width for a 1:1 aspect ratio */
+    width: 14.666%;
+    padding-bottom : 14.666%; /* = width for a 1:1 aspect ratio */
     margin: 1%;
     border: 3px solid #fff;
     border-radius: 4px;
@@ -1462,6 +1462,11 @@ nav {
 		column-count: 1;
 	}
 
+	.item_box{
+		width: 48%!important;
+		padding-bottom: 48%!important; 
+	}
+
 	.fullitem-inner{
 		height: 70px;
 		padding: 5px;
@@ -1533,11 +1538,6 @@ nav {
     	max-width: 100%;
 	}
 
-	.item_box{
-		width: 48%;
-		padding-bottom: 48%; 
-	}
-
 	.description-section{
 		padding: 0;
 	}
@@ -1600,6 +1600,11 @@ nav {
 
 
 	/* POST PAGE RESPONSIVE */
+
+	.item_box{
+		width: 23%;
+		padding-bottom: 23%; 
+	}
 
 	.config-post{
 		display: block;
