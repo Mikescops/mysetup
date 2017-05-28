@@ -192,7 +192,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <?= $this->Markdown->transform(h($setup->description))?>
 
-            <div id="social-networks"></div></br>
+            <div id="social-networks"></div>
 
             <?php if(!empty($video->src)): ?>
                 <a class="button item-youtube" href="<?= $video->src ?>" data-lity><?= __('Watch it in video') ?></a>
