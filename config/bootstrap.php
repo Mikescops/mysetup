@@ -213,6 +213,7 @@ Type::build('timestamp')
  *
  */
 Plugin::load('Sitemap', ['bootstrap' => false, 'routes' => true]);
+Plugin::load('Tanuck/Markdown');
 
 Configure::write('Sitemap.tables', [
     'Setups', 'Users'

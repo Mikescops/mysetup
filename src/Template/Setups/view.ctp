@@ -190,7 +190,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <h4>About this setup</h4>
 
-            <?= $this->Text->autoParagraph(h($setup->description))?>
+            <?= $this->Markdown->transform(h($setup->description))?>
 
             <div id="social-networks"></div></br>
 

@@ -29,6 +29,9 @@ class SetupsController extends AppController
         $this->set('_serialize', ['setups']);
     }
 
+    /*Add markdown support*/
+    public $helpers = ['Tanuck/Markdown.Markdown' => ['parser' => 'GithubMarkdown']];
+
     /**
      * View method
      *
