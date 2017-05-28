@@ -702,7 +702,7 @@ h3.user-profile{
 }
 
 .description-section{
-	padding: 0px 2rem;
+	padding: 2rem;
 }
 
 .description-section h4:first-child{
@@ -1537,6 +1537,11 @@ nav {
 		width: 48%;
 		padding-bottom: 48%; 
 	}
+
+	.description-section{
+		padding: 0;
+	}
+
 
 	/* MENU RESPONSIVE */
 	.right-nav{
