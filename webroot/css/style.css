@@ -277,10 +277,6 @@ footer a{
 	margin-bottom: 20px;
 }
 
-.sidebar-user{
-	margin-top: 81px;
-}
-
 .sidebar-search{
 	margin-top: 130px;
 }
@@ -422,18 +418,72 @@ footer a{
 }
 
 /*********** USER CSS ***********/
-img.user-profile{
-	width: 60px;
-	margin-right: 15px;
+
+.user-profile{
+	overflow: auto;
+	margin-bottom: 15px;
+}
+
+.user-profile img{
+	display: block;
+	width: 100px;
+	margin: 10px 25px 10px 0;
 	border-radius: 100%;
 	float: left;
 	border: solid 2px #328fea;
 	background-color: rgb(0, 0, 0);
 }
 
-h3.user-profile{
-	line-height: 2.2;
+.user-profile .column:first-child{
+	align-items: center;
+	display: flex;
 }
+
+.user-profile .column:last-child{
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.user-profile h2{
+	margin-bottom: 0;
+	font-size: 3.4rem;
+}
+
+.user-profile ul{
+	margin: 0;
+	list-style: none;
+}
+
+.user-profile li{
+	margin-bottom: 0;
+}
+
+.user-stats{
+	text-align: center;
+	margin-top: 25px;
+}
+
+.user-stats li{
+	width: 125px;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.user-stats span{
+  font-weight:bold;
+  font-size:4em;
+  
+  display:block;
+  line-height:1em;
+}
+
+/*.sidebar-user{
+	margin-top: 81px;
+}*/
 
  /********** POST CSS **********/
 
@@ -1480,6 +1530,21 @@ nav {
 		margin-left: 7px;
 	}
 
+	.user-profile .column:first-child{
+		display: block;
+	}
+
+	.user-profile img{
+		float: none;
+		margin: 0 auto;
+	}
+
+	.user-profile h2{
+		text-align: center;
+		margin: 15px 0;
+		font-size: 2.9rem;
+	}
+
 }
 
 
@@ -1650,5 +1715,16 @@ nav {
 		flex: 0 0 100%!important;
 		max-width: 100%!important;
 		margin-left: 0!important;
+	}
+
+	/* USER PROFILE */
+
+	.user-profile .column{
+		flex: 0 0 100%!important;
+		max-width: 100%!important;
+	}
+
+	.user-profile .column:last-child{
+		display: none;
 	}
 }

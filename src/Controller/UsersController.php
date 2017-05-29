@@ -43,7 +43,13 @@ class UsersController extends AppController
 
         $fimage = $this->Users->Resources->find('all', ['order' => ['Resources.setup_id' => 'DESC']])->where(['user_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->toArray();
 
-        $this->set(compact('user', 'fimage'));
+        $nbsetup = $this->Users->Setups->find('all')->where(['user_id' => $id])->count();
+
+        $nblike = $this->Users->Likes->find('all')->where(['user_id' => $id])->count();
+
+        $nbcomment = $this->Users->Comments->find('all')->where(['user_id' => $id])->count();
+
+        $this->set(compact('user', 'fimage', 'nbsetup', 'nbcomment', 'nblike'));
         $this->set('_serialize', ['user']);
     }
 

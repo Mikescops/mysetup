@@ -8,12 +8,35 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 ?>
 
 <div class="maincontainer">
+
+    <div class="row user-profile">
+
+        <div class="column column-50">
+            <img src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$user->id.'.png'); ?>">
+
+            <div><h2><?= $user->name ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
+                <ul>
+                    <?php if($user->uwebsite): ?><li><i class="fa fa-globe"></i> <?= $user->uwebsite ?></li><?php endif ?>
+                    <?php if($user->ufacebook): ?><li><i class="fa fa-twitter"></i> <?= $user->utwitter ?></li><?php endif ?>
+                    <?php if($user->utwitter): ?><li><i class="fa fa-facebook"></i> <?= $user->ufacebook ?></li><?php endif ?>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="column column-50">
+            <ul class="user-stats">
+                <li><span><?= $nbsetup ?></span> setups</li>
+                <li><span><?= $nblike ?></span> likes</li>
+                <li><span><?= $nbcomment ?></span> comments</li>
+            </ul>
+        </div>
+
+    </div>
+
     <div class="row">
         <div class="column column-75">
-
-            <img class="user-profile" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$user->id.'.png'); ?>">
-
-            <h3 class="user-profile"><?= $user->name ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h3>
 
             <?php  if (!empty($user->setups)): $i = 0; foreach ($user->setups as $setup): ?>
             <div class="fullitem">
