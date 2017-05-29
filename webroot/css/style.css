@@ -485,6 +485,24 @@ footer a{
 	margin-top: 81px;
 }*/
 
+/********** TEAM PAGE *********/
+
+.team-page img{
+	float: left;
+	margin-right: 15px;
+	height: 100px;
+	border-radius: 4px;
+}
+
+.team-page p{
+	margin-bottom: 5px;
+}
+
+.team-page .member{
+	margin-bottom: 5px;
+	overflow: auto;
+}
+
  /********** POST CSS **********/
 
 .featured-container{
