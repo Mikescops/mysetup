@@ -1332,7 +1332,7 @@ nav {
 }
 
 .add-form .hide {
-  display: none;
+	display: none;
 }
 .add-form .tabs {
 	width: 100%;
@@ -1351,22 +1351,23 @@ nav {
 	z-index: 10;
 }
 .add-form .tabs li {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
 }
 .add-form .tabs a {
-  display: block;
-  float: left;
-  text-decoration: none;
-  color: #000;
-  font-size: 16px;
-  padding: 0px 10% 6px 10%;
-  border-bottom: solid 1px #D5D5D5;
+	display: block;
+	float: left;
+	text-decoration: none;
+	color: #000;
+	font-size: 16px;
+	padding: 0 10px 6px 10px;
+	border-bottom: solid 1px #D5D5D5;
+	height: 32.6px;
 }
 .add-form .tabs a.active {
-  border-bottom: solid 1px #328FEA;
-  -webkit-transition: all 0.5s linear;
+	border-bottom: solid 1px #328FEA;
+	-webkit-transition: all 0.5s linear;
 	-moz-transition: all 0.5s linear;
 	transition: all 0.5s linear;
 }
