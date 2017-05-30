@@ -1642,6 +1642,9 @@ nav {
 	    max-width: 100%;
 	}
 
+	.row .column.column-75, .row .column.column-25{
+		max-width: 100%;
+	}
 
 
 	/* FOOTER RESPONSIVE */
