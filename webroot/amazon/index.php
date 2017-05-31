@@ -36,7 +36,7 @@ if($_SESSION['Auth'])
 	}
 	else{ /* This case is for US and others */
 		$lang = "COM";
-		$associate_tag = 'mysetupco-20';
+		$associate_tag = 'mysetupco0c-20';
 	}
 
 	$conf = new GenericConfiguration();
