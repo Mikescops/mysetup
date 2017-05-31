@@ -68,7 +68,10 @@ class CommentsTable extends Table
 
         $validator
             ->requirePresence('content', 'create')
-            ->notEmpty('content');
+            ->notEmpty('content')
+            ->add('content', 'length', [
+                'rule' => ['maxLength', 500],
+                'message' => __('The comment is too long (more than 500 characters)')]);
 
         $validator
             ->dateTime('dateTime')
