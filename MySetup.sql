@@ -123,6 +123,23 @@ CREATE TABLE `notifications` (
   `dateTime` datetime NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `articles`
+--
+
+
+CREATE TABLE `articles` (
+  `id` INT(11) NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
+  `content` TEXT NOT NULL,
+  `dateTime` DATETIME NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `categories` VARCHAR(255) NOT NULL,
+  `tags` VARCHAR(255) NOT NULL ,
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
 --
 -- Dumping data for table `users`
 --
@@ -172,9 +189,15 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `mail` (`mail`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `articles`
+--
+ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -215,6 +238,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `articles`
+--
+ALTER TABLE `articles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
