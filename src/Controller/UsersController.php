@@ -369,7 +369,6 @@ class UsersController extends AppController
                     $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
 
                     // Let's add some notifications to this new user
-                    $this->loadModel('Notifications');
                     $this->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
                     $this->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
 
@@ -526,7 +525,6 @@ class UsersController extends AppController
                 $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
 
                 // Let's add some notifications to this new user
-                $this->loadModel('Notifications');
                 $this->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
                 $this->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
             }
