@@ -1024,9 +1024,10 @@ nav {
 .mobile-nav{
 	display: none;
 	position: fixed;
-	top: 16px;
+	top: 6px;
 	right: 20px;
 	font-size: 30px;
+	margin-top: 10px;
 }
 
 .mobile-nav a:first-child{
