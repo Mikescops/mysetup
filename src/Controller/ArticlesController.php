@@ -30,6 +30,11 @@ class ArticlesController extends AppController
         $this->set('_serialize', ['articles']);
     }
 
+
+    /*Add markdown support*/
+    public $helpers = ['Tanuck/Markdown.Markdown' => ['parser' => 'GithubMarkdown']];
+
+    
     /**
      * View method
      *
