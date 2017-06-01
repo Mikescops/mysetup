@@ -278,43 +278,72 @@ class SetupsController extends AppController
         if($this->request->getQuery('q'))
         {
             /* Get query */
-            $query = $this->request->getQuery('q','');
+            $query  = $this->request->getQuery('q', '');
             $offset = $this->request->getQuery('p', '0');
-
-            $query = urlencode($query);
-
-            $this->loadModel('Resources');
 
             /* Add each word divided by + in request "like"*/
             $qcond = array();
 
-            foreach (explode("+", $query) as $key => $value) {
+            foreach(explode("+", urlencode($query)) as $key => $value)
+            {
                 array_push($qcond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%'.$value.'%']);
             }
 
-            $qconditions = array('OR' => $qcond, 'Resources.type' => 'SETUP_PRODUCT'); 
-
             /* Fetch corresponding setups */
-            $test = $this->Resources->find('all', array('limit' => 10, 'offset' => $offset, 'group' => 'setup_id'))->where($qconditions);
+            $this->loadModel('Resources');
+            $test = $this->Resources->find('all', [
+                'limit' => 10,
+                'offset' => $offset,
+                'group' => 'setup_id'
+            ])->where([
+                'OR' => $qcond,
+                'Resources.type' => 'SETUP_PRODUCT'
+            ]);
 
             /* Query featured image and infos for each setup found */
             $ncond = array();
-            foreach ($test as $key) {
+            foreach($test as $key)
+            {
                 array_push($ncond, ['Resources.setup_id' => $key->setup_id]);
             }
 
-            if(!empty($ncond)){
-                $conditions = array('OR' => $ncond, 'Resources.type' => 'SETUP_FEATURED_IMAGE');            
+            if(!empty($ncond))
+            {
+                // To avoid a additional loop, we fetched here only the published setups
+                $setups = $this->Resources->find('all', [
+                    'contain' => [
+                        'Setups' => function($q) {
+                            return $q->autoFields(false)
+                            ->select([
+                                'title',
+                                'user_id',
+                                'creationDate'
+                            ])->where([
+                                'status' => 'PUBLISHED'
+                            ]);
+                        }
+                    ]
+                ])->where([
+                    'OR' => $ncond,
+                    'Resources.type' => 'SETUP_FEATURED_IMAGE'
+                ])->order([
+                    'Setups.creationDate' => 'DESC'
+                ])->all()->toArray();
 
-                $setups = $this->Resources->find('all', array('contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title', 'user_id', 'creationDate']);})))->where($conditions)->order(['Setups.creationDate' => 'DESC']);
+                if(sizeof($setups) == 0)
+                {
+                    $setups = "noresult";
+                }
             }
 
-            else{
+            else
+            {
                 $setups = "noresult";
             }
         }
 
-        else{
+        else
+        {
             $setups = "noquery";
         }
 
