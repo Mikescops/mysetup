@@ -388,7 +388,7 @@ class AppController extends Controller
                 array_push($conditions, array("featured" => true));
             }
 
-            array_push($conditions, ['creationDate >' => date('Y-m-d', strtotime("-" . $weeks . "weeks")), 'creationDate <=' => date('Y-m-d', strtotime("+ 1 day"))]);
+            array_push($conditions, ['creationDate >' => date('Y-m-d', strtotime("-" . $weeks . "weeks")), 'creationDate <=' => date('Y-m-d', strtotime("+ 1 day")), 'status' => 'PUBLISHED']);
 
             $results = $this->Setups->find('all', [
                 'conditions' => $conditions,
