@@ -66,7 +66,7 @@ img{
 }
 
 .sitecontainer{
-	padding-top: 50px;
+	padding-top: 60px;
 }
 
 .maincontainer{
@@ -901,7 +901,7 @@ nav {
 	width: 100%;
 	margin: 0;
 	z-index: 500;
-	height: 60px;
+	height: 80px;
 	padding: 10px 15px 0px 15px;
 	top: 0;
 }
@@ -909,7 +909,7 @@ nav {
 .heavy-nav .row{
 	margin: 0 auto!important;
 	padding: 0 2rem;
-	height: 40px;
+	height: 60px;
 }
 
 .heavy-nav .column{
@@ -917,11 +917,12 @@ nav {
 }
 
 .heavy-nav .ms-logo{
-	height: 40px;
+	height: 60px;
 }
 
 .right-nav{
 	float: right;
+	margin-top: 10px;
 }
 
 .right-nav ul {
@@ -1020,7 +1021,7 @@ nav {
 .mobile-nav{
 	display: none;
 	position: fixed;
-	top: 6px;
+	top: 16px;
 	right: 20px;
 	font-size: 30px;
 }
