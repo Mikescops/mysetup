@@ -24,13 +24,15 @@
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= $this->Url->build('/'); ?>img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="<?= $this->Url->build('/'); ?>img/favicon/manifest.json">
-    <link rel="mask-icon" href="<?= $this->Url->build('/'); ?>img/favicon/safari-pinned-tab.svg" color="#328fea">
-    <link rel="shortcut icon" href="<?= $this->Url->build('/'); ?>img/favicon/favicon.ico">
-    <meta name="msapplication-config" content="<?= $this->Url->build('/'); ?>img/favicon/browserconfig.xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= $this->Url->build('/'); ?>img/favicon/apple-touch-icon.png?v=LbGvygO5bN">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-32x32.png?v=LbGvygO5bN">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-16x16.png?v=LbGvygO5bN">
+    <link rel="manifest" href="<?= $this->Url->build('/'); ?>img/favicon/manifest.json?v=LbGvygO5bN">
+    <link rel="mask-icon" href="<?= $this->Url->build('/'); ?>img/favicon/safari-pinned-tab.svg?v=LbGvygO5bN" color="#151515">
+    <link rel="shortcut icon" href="<?= $this->Url->build('/'); ?>img/favicon/favicon.ico?v=LbGvygO5bN">
+    <meta name="apple-mobile-web-app-title" content="mySetup.co">
+    <meta name="application-name" content="mySetup.co">
+    <meta name="msapplication-config" content="<?= $this->Url->build('/'); ?>img/favicon/browserconfig.xml?v=LbGvygO5bN">
     <meta name="theme-color" content="#151515">
 
     <meta name="twitter:card" value="summary"> 
