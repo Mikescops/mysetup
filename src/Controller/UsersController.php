@@ -37,8 +37,24 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        $conditions = null;
+
+        if($id != $this->request->session()->read('Auth.User.id'))
+        {
+            $conditions = ['Setups.status' => 'PUBLISHED'];
+        }
+
         $user = $this->Users->get($id, [
-            'contain' => ['Setups' => ['sort' => ['Setups.id' => 'DESC']], 'Comments', 'Resources']
+            'contain' => [
+                'Setups' => [
+                    'sort' => [
+                        'Setups.id' => 'DESC'
+                    ],
+                    'conditions' => $conditions
+                ],
+                'Comments',
+                'Resources'
+            ]
         ]);
 
         $fimage = $this->Users->Resources->find('all', ['order' => ['Resources.setup_id' => 'DESC']])->where(['user_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->toArray();
