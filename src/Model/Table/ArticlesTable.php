@@ -45,6 +45,10 @@ class ArticlesTable extends Table
             ->notEmpty('content');
 
         $validator
+            ->requirePresence('src', 'create')
+            ->notEmpty('src');
+
+        $validator
             ->dateTime('dateTime')
             ->notEmpty('dateTime');
 
