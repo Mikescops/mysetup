@@ -114,6 +114,9 @@ class SetupsTable extends Table
             ->dateTime('creationDate')
             ->notEmpty('creationDate');
 
+        $validator
+            ->notEmpty('status');
+
         return $validator;
     }
 
