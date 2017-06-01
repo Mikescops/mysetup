@@ -46,7 +46,7 @@
         <div class="row container">
             <div class="column column-20">
                 
-                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mySetup', 'class' => 'ms-logo')); ?></a>
+                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.png', array('alt' => 'mySetup', 'class' => 'ms-logo')); ?></a>
 
             </div>
             <div class="column column-80">
