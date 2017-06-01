@@ -94,6 +94,14 @@ class SetupsController extends AppController
                 $data['author'] = $this->Setups->Users->get($data['user_id'])['name'];
             }
 
+            if(!isset($data['status']) or (($data['status'] !== 'PUBLISHED' or $data['status'] !== 'DRAFT') and !parent::isAdminBySession($this->request->session())))
+            {
+                $data['status'] = 'PUBLISHED';
+            }
+
+            // On Setups.add, `featured` is impossible
+            $data['featured'] = false;
+
             // Classical patch entity operation
             $setup = $this->Setups->patchEntity($setup, $data);
 
@@ -161,6 +169,11 @@ class SetupsController extends AppController
             if(!isset($data['author']) or $data['author'] === '')
             {
                 $data['author'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first()['name'];
+            }
+
+            if(!isset($data['status']) or (($data['status'] !== 'PUBLISHED' or $data['status'] !== 'DRAFT') and !parent::isAdminBySession($this->request->session())))
+            {
+                $data['status'] = 'PUBLISHED';
             }
 
             if(!isset($data['featured']) or !parent::isAdminBySession($this->request->session()))
