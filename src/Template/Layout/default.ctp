@@ -16,7 +16,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css?v=9') ?>
+    <?= $this->Html->css('app.min.css?v=10') ?>
     <?= $this->Html->css('emoji.min.css') ?>
     <?= $this->Html->css('tippy.css') ?>
 
@@ -357,7 +357,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
 <!-- App Js async load -->
-<?= $this->Html->script('app.min.js?v=9') ?>
+<?= $this->Html->script('app.min.js?v=10') ?>
 <script>const toast = new siiimpleToast();</script>
 <?php if($authUser): ?>
     <script>const instance = new Tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification();</script>
