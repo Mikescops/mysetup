@@ -15,6 +15,8 @@ function getplaintextintrofromhtml($html) {
 
 echo $this->Html->meta('description', $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true]), ['block' => true]);
 
+echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("/blog/".$article->id."-".$this->Text->slug($article->title), true)), null, ['block' => true]);
+
 
 echo $this->Html->meta(['property' => 'og:title', 'content' =>  $article->title. ' | mySetup.co'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
@@ -49,7 +51,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         </div>
         <div class="column column-25 sidebar">
 
-            <a class="button" href="<?= $this->Url->build('/articles/') ?>">Go back to list</a>
+            <a class="button" href="<?= $this->Url->build('/blog/') ?>">Go back to list</a>
 
             <div class="twitter-feed">
               <a class="twitter-timeline" data-chrome="noscrollbar nofooter noboders" data-height="781" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by @mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

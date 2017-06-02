@@ -22,7 +22,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
         <?php foreach ($articles as $article): ?>
 
-            <a href="<?= $this->Url->build('/articles/view/'. $article->id) ?>">
+            <a href="<?= $this->Url->build('/blog/'. $article->id . '-' . $this->Text->slug($article->title)) ?>">
 
                 <div class="article-img">
 
