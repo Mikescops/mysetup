@@ -35,7 +35,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
         <div class="post-image">
 
-            <img src="<?= $article->src ?>" alt="<?= $article->src ?>">
+            <img src="<?= $this->Url->build('/') . $article->picture ?>" alt="<?= $article->title ?>">
 
         </div>
 

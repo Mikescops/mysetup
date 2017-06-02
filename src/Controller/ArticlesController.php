@@ -63,13 +63,33 @@ class ArticlesController extends AppController
 
         if($this->request->is('post'))
         {
+            $data = $this->request->getData();
+
+            // Before anything else, let's check and save the article's picture
+            if(isset($data['picture']) and $data['picture']['tmp_name'] !== '')
+            {
+                $data['picture'] = $this->Articles->savePicture($data['picture'], $this->Flash);
+
+                if(!$data['picture'])
+                {
+                    return $this->redirect($this->referer());
+                }
+            }
+
+            else
+            {
+                $this->Flash->warning(__('You need a featured image with this article !'));
+                return $this->redirect($this->referer());
+            }
+
+            $article = $this->Articles->patchEntity($article, $data);
+
             // Set the owner here
             $article['user_id'] = $this->request->session()->read('Auth.User.id');
 
-            $article = $this->Articles->patchEntity($article, $this->request->getData());
-
             if($this->Articles->save($article))
             {
+
                 $this->Flash->success(__('The article has been saved.'));
 
                 return $this->redirect(['action' => 'index']);

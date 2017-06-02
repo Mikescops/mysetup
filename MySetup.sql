@@ -134,7 +134,7 @@ CREATE TABLE `articles` (
   `id` INT(11) NOT NULL,
   `title` VARCHAR(255) NOT NULL,
   `content` TEXT NOT NULL,
-  `src` VARCHAR(255) NOT NULL,
+  `picture` VARCHAR(255) NOT NULL,
   `dateTime` DATETIME NOT NULL,
   `user_id` INT(11) NOT NULL,
   `categories` VARCHAR(255) NOT NULL,

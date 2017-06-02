@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Text;
 
 
 class ArticlesTable extends Table
@@ -45,8 +46,8 @@ class ArticlesTable extends Table
             ->notEmpty('content');
 
         $validator
-            ->requirePresence('src', 'create')
-            ->notEmpty('src');
+            ->requirePresence('picture', 'create')
+            ->notEmpty('picture');
 
         $validator
             ->dateTime('dateTime')
@@ -58,5 +59,51 @@ class ArticlesTable extends Table
     public function isOwnedBy($article_id, $user_id)
     {
         return $this->exists(['id' => $article_id, 'user_id' => $user_id]);
+    }
+
+    public function savePicture($file, $flash)
+    {
+        if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg') && !strpos($file['type'], 'gif'))
+        {
+            $path = 'uploads/files/articles';
+
+            if(!file_exists($path) and !mkdir($path, 0755))
+            {
+                $flash->error(__("An internal error occurred while saving your image... Please contact an administrator."));
+            }
+
+            else
+            {
+                $path .= '/' . Text::uuid() . '.jpg';
+
+                if(move_uploaded_file($file['tmp_name'], $path))
+                {
+                    $image = new \Imagick($path);
+
+                    if(!$image->setImageFormat('jpg') || !$image->setImageCompressionQuality(85) /*|| !$image->gaussianBlurImage(0.8, 10) */|| !$image->cropThumbnailImage(1080, 500) || !$image->writeImage($path))
+                    {
+                        $flash->warning(__("Your image could not be converted to JPG, compressed, resized or saved... Please contact an administrator."));
+                    }
+
+                    else
+                    {
+                        return $path;
+                    }
+                }
+
+                else
+                {
+                    $flash->warning(__('Your image could not be saved.'));
+                }
+            }
+
+        }
+
+        else
+        {
+            $flash->warning(__("Your image does not validate our rules... Please contact an administrator."));
+        }
+
+        return null;
     }
 }
