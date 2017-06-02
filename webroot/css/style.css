@@ -1405,21 +1405,25 @@ nav {
 }
 
 .article-list h3{
-	background: rgb(246, 246, 246) none repeat scroll 0% 0%;
+	background: rgb(46, 50, 53) none repeat scroll 0% 0%;
 	padding: 5px 10px;
-	color: rgb(21, 21, 21);
+	color: #fff;
 	border-bottom: 2px solid rgb(180, 178, 178);
 	border-radius: 0px 0px 5px 5px;
 }
 
+.article-list h3:hover{
+	background: rgb(20, 21, 23) none repeat scroll 0% 0%;
+}
+
 .article-img{
-	height: 250px;
+	max-height: 250px;
 	overflow: hidden;
 	display: block;
 }
 
 .post-image{
-	height: 350px;
+	max-height: 350px;
 	overflow: hidden;
 	display: block;
 	margin-bottom: 10px;
@@ -1597,6 +1601,11 @@ nav {
 		text-align: center;
 		margin: 15px 0;
 		font-size: 2.9rem;
+	}
+
+	.article-list h3{
+		font-size: 1.8rem;
+		line-height: 1.0;
 	}
 
 }
