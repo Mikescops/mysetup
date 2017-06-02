@@ -60,17 +60,25 @@ class ArticlesController extends AppController
     public function add()
     {
         $article = $this->Articles->newEntity();
-        if ($this->request->is('post')) {
+
+        if($this->request->is('post'))
+        {
+            // Set the owner here
+            $article['user_id'] = $this->request->session()->read('Auth.User.id');
+
             $article = $this->Articles->patchEntity($article, $this->request->getData());
-            if ($this->Articles->save($article)) {
+
+            if($this->Articles->save($article))
+            {
                 $this->Flash->success(__('The article has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
-        $users = $this->Articles->Users->find('list', ['limit' => 200]);
-        $this->set(compact('article', 'users'));
+
+        $this->set(compact('article'));
         $this->set('_serialize', ['article']);
     }
 
@@ -86,17 +94,21 @@ class ArticlesController extends AppController
         $article = $this->Articles->get($id, [
             'contain' => []
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $article = $this->Articles->patchEntity($article, $this->request->getData());
-            if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
 
+        if($this->request->is(['patch', 'post', 'put']))
+        {
+            $article = $this->Articles->patchEntity($article, $this->request->getData());
+
+            if($this->Articles->save($article))
+            {
+                $this->Flash->success(__('The article has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
+
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
-        $users = $this->Articles->Users->find('list', ['limit' => 200]);
-        $this->set(compact('article', 'users'));
+
+        $this->set(compact('article'));
         $this->set('_serialize', ['article']);
     }
 
@@ -143,6 +155,11 @@ class ArticlesController extends AppController
             else if($this->request->action === 'add')
             {
                 return true;
+            }
+
+            else
+            {
+                return false;
             }
         }
 
