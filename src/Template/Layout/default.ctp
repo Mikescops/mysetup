@@ -62,13 +62,7 @@
                             </li>
                             <?php if($authUser['admin']): ?>
                                 <li>
-                                    <a>Admin <i class="fa fa-caret-down"></i></a>
-                                    <ul>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Setups index') ?></a></li>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>"><?= __('Users index') ?></a></li>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>"><?= __('Resources index') ?></a></li>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Comments', 'action' => 'index']); ?>"><?= __('Comments index') ?></a></li>
-                                    </ul>
+                                    <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Admin Panel') ?></a>
                                 </li>
                             <?php endif; ?>
                         <?php endif; ?>
@@ -262,12 +256,7 @@
                         </li>
                         <?php if($authUser['admin']): ?>
                             <li>
-                                <ul>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Setups index') ?></a></li>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>"><?= __('Users index') ?></a></li>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>"><?= __('Resources index') ?></a></li>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Comments', 'action' => 'index']); ?>"><?= __('Comments index') ?></a></li>
-                                </ul>
+                                <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Admin Panel') ?></a>
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>
