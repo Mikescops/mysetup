@@ -6,24 +6,25 @@
     $this->layout = 'admin';
 ?>
 
-<div class="row">
-    <div class="col-sm-12">
+<div class="row justify-content-md-center">
+    <div class="col-12 col-md-auto">
         <h3><?= __('Add post') ?></h3>
 
         <?= $this->Form->create($article) ?>
-        <fieldset>
-            <legend><?= __('Add Article') ?></legend>
+
+        <fieldset>            
             <?php
-                echo $this->Form->control('title');
-                echo $this->Form->control('content');
-                echo $this->Form->control('src');
-                echo $this->Form->control('dateTime');
-                echo $this->Form->control('user_id');
-                echo $this->Form->control('categories');
-                echo $this->Form->control('tags');
+                echo '<div class="form-group">' . $this->Form->control('title', ['class' => 'form-control']) . '</div>';
+                echo '<div class="form-group">' . $this->Form->control('content', ['class' => 'form-control']) . '</div>';
+                echo '<div class="form-group">' . $this->Form->control('src', ['class' => 'form-control']) . '</div>';
+                echo '<div class="form-group">' . $this->Form->control('dateTime', ['class' => 'form-control']) . '</div>';
+                echo '<div class="form-group">' . $this->Form->control('user_id', ['class' => 'form-control']) . '</div>';
+                echo '<div class="form-group">' . $this->Form->control('categories', ['class' => 'form-control']) . '</div>';
+                echo '<div class="form-group">' . $this->Form->control('tags', ['class' => 'form-control']) . '</div>';
             ?>
         </fieldset>
-        <?= $this->Form->button(__('Submit')) ?>
+        <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary']) ?>
+
         <?= $this->Form->end() ?>
 
     </div>
