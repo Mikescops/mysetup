@@ -82,3 +82,11 @@
     <div class="container pt-4"><?= $this->fetch('content') ?></div>
 
 </body>
+
+<?= $this->Html->script('lib.min.js') ?>
+<?= $this->Html->script('app.min.js') ?>
+
+<script>const toast = new siiimpleToast();</script>
+<?= $this->Flash->render() ?>
+
+</html>
