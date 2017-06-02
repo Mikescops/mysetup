@@ -1397,6 +1397,27 @@ nav {
 	margin-left: 5px;
 }
 
+/********* ARTICLES CSS ********/
+
+.article-list img{
+	width: 100%;
+	border-radius: 5px 5px 0px 0px ;
+}
+
+.article-list h3{
+	background: rgb(246, 246, 246) none repeat scroll 0% 0%;
+	padding: 5px 10px;
+	color: rgb(21, 21, 21);
+	border-bottom: 2px solid rgb(180, 178, 178);
+	border-radius: 0px 0px 5px 5px;
+}
+
+.article-img{
+	height: 250px;
+	overflow: hidden;
+	display: block;
+}
+
 
 /************** LOGIN / REGISTER CSS ******************/
 
