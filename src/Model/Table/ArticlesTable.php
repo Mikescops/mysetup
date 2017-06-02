@@ -5,7 +5,10 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\Event;
 use Cake\Utility\Text;
+use Cake\Filesystem\File;
 
 
 class ArticlesTable extends Table
@@ -61,6 +64,12 @@ class ArticlesTable extends Table
         return $this->exists(['id' => $article_id, 'user_id' => $user_id]);
     }
 
+    public function afterDelete(Event $event, EntityInterface $entity)
+    {
+        // Once the article has been deleted, let's remove the image associated
+        $this->deletePicture($entity['picture']);
+    }
+
     public function savePicture($file, $flash)
     {
         if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg') && !strpos($file['type'], 'gif'))
@@ -105,5 +114,13 @@ class ArticlesTable extends Table
         }
 
         return null;
+    }
+
+    public function deletePicture($path)
+    {
+        if(!(new File($path))->delete())
+        {
+            // We've to figure out a way to throw this error to the user...
+        }
     }
 }

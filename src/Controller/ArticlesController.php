@@ -117,7 +117,33 @@ class ArticlesController extends AppController
 
         if($this->request->is(['patch', 'post', 'put']))
         {
-            $article = $this->Articles->patchEntity($article, $this->request->getData());
+            $data = $this->request->getData();
+
+            if(isset($data['picture']) and $data['picture']['tmp_name'] !== '')
+            {
+                // Here we save the path to the current picture
+                $path = $article['picture'];
+
+                // We save here the new picture
+                $data['picture'] = $this->Articles->savePicture($data['picture'], $this->Flash);
+
+                if(!$data['picture'])
+                {
+                    return $this->redirect($this->referer());
+                }
+
+                else
+                {
+                    $this->Articles->deletePicture($path);
+                }
+            }
+
+            else
+            {
+                $data['picture'] = $article['picture'];
+            }
+
+            $article = $this->Articles->patchEntity($article, $data);
 
             if($this->Articles->save($article))
             {

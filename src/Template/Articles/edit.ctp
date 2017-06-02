@@ -10,14 +10,13 @@
     <div class="col-12 col-md-auto">
         <h3><?= __('Edit post') ?></h3>
 
-        <?= $this->Form->create($article) ?>
+        <?= $this->Form->create($article, ['type' => 'file']) ?>
 
         <fieldset>            
             <?php
                 echo '<div class="form-group">' . $this->Form->control('title', ['class' => 'form-control']) . '</div>';
                 echo '<div class="form-group">' . $this->Form->control('content', ['class' => 'form-control']) . '</div>';
-                echo '<div class="form-group">' . $this->Form->control('src', ['class' => 'form-control']) . '</div>';
-                echo '<div class="form-group">' . $this->Form->control('dateTime', ['class' => 'form-control']) . '</div>';
+                echo '<div class="form-group">' . $this->Form->input('picture', ['type' => 'file', 'class' => 'form-control inputfile', 'required' => 'false']) . '</div>';
                 echo '<div class="form-group">' . $this->Form->control('categories', ['class' => 'form-control']) . '</div>';
                 echo '<div class="form-group">' . $this->Form->control('tags', ['class' => 'form-control']) . '</div>';
             ?>
