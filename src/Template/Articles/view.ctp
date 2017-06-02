@@ -51,7 +51,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         </div>
         <div class="column column-25 sidebar">
 
-            <a class="button" href="<?= $this->Url->build('/blog/') ?>">Go back to list</a>
+        <?php if($authUser['id'] == $article->user_id): ?>
+            <a class="button" href="<?= $this->Url->build(['action' => 'edit', $article->id]) ?>"><?= __('Edit this article') ?></a>
+        <?php endif; ?>
+
+            <a class="button" href="<?= $this->Url->build('/blog/') ?>"><?= __('Go back to list') ?></a>
 
             <div class="twitter-feed">
               <a class="twitter-timeline" data-chrome="noscrollbar nofooter noboders" data-height="781" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by @mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
