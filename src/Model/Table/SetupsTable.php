@@ -5,6 +5,9 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Setups Model
@@ -71,8 +74,9 @@ class SetupsTable extends Table
 
 
     /** Let's get the real url of setup **/
-    public function getUrl(\Cake\ORM\Entity $entity) {
-    return \Cake\Routing\Router::url('/setups/'.$entity->id.'-'.\Cake\Utility\Text::slug($entity->title), true);
+    public function getUrl(\Cake\ORM\Entity $entity)
+    {
+        return \Cake\Routing\Router::url('/setups/'.$entity->id.'-'.\Cake\Utility\Text::slug($entity->title), true);
     }
 
     /**
@@ -130,5 +134,11 @@ class SetupsTable extends Table
     public function isOwnedBy($setup_id, $user_id)
     {
         return $this->exists(['id' => $setup_id, 'user_id' => $user_id]);
+    }
+
+    public function afterDelete(Event $event, EntityInterface $entity)
+    {
+        // Read or not, we just get rid of each notification referencing this (deleted) setup
+        TableRegistry::get('Notifications')->deleteAll(['content LIKE' => '%' . $entity['id'] . '%']);
     }
 }

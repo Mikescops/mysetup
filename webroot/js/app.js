@@ -6,6 +6,27 @@
  * All rights reserved
  */
 
+/** MAIN MENU **/
+
+$(window).scroll(function(){
+  var scrollTop = $(window).scrollTop();
+  if(scrollTop < 110){
+    height = 60;
+    margin = 10;
+  }else{
+    height = 40;
+    margin = 0;
+  }
+  heavyheight = height + 20;
+  $('.heavy-nav').stop().animate({'height': heavyheight+"px"}, 300);
+  $('.heavy-nav .row').stop().animate({'height': height+"px"}, 300);
+  $('.heavy-nav .ms-logo').stop().animate({'height': height+"px"}, 300);
+  $('.right-nav').stop().animate({'margin-top': margin+"px"}, 300);
+  $('.mobile-nav').stop().animate({'margin-top': margin+"px"}, 300);
+})
+
+
+
 /** SLIDERS **/
 
 $('.home_slider').slick({
