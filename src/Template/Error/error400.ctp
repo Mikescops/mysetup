@@ -34,9 +34,9 @@ endif;
 
 <div class="maincontainer">
 
-    <h2><?= h($message) ?></h2>
-    <p class="error">
-        <?= __d('cake', 'The {0} was not found :( Maybe your friend sent you the wrong link !', "<strong>'{$url}'</strong>") ?>
-    </p>
+    <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('404_page.png', array('alt' => '404 page', 'width' => '100%')); ?></a>
+
+    <br>
+    <p>Wrong page, wrong link ? You're not where you wanted.</p>
 
 </div>
