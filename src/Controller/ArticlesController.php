@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Utility\Text;
 use Cake\Event\Event;
 
 /**
@@ -92,7 +93,7 @@ class ArticlesController extends AppController
 
                 $this->Flash->success(__('The article has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect('/blog/' . $article->id . '-' . Text::slug($article->title));
             }
 
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
@@ -148,7 +149,8 @@ class ArticlesController extends AppController
             if($this->Articles->save($article))
             {
                 $this->Flash->success(__('The article has been saved.'));
-                return $this->redirect(['action' => 'index']);
+
+                return $this->redirect('/blog/' . $article->id . '-' . Text::slug($article->title));
             }
 
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
