@@ -1330,16 +1330,16 @@ nav {
 	display: none;
 }
 
-.add-form{
+.add-form, .edit-form{
 	min-height: 450px;
 	margin-bottom: 40px;
 	padding-top: 40px;
 }
 
-.add-form .hide {
+.add-form .hide , .edit-form .hide{
 	display: none;
 }
-.add-form .tabs {
+.add-form .tabs , .edit-form .tabs{
 	width: 100%;
 	list-style-type: none;
 	display: block;
@@ -1355,12 +1355,12 @@ nav {
 	white-space:nowrap;
 	z-index: 10;
 }
-.add-form .tabs li {
+.add-form .tabs li , .edit-form .tabs li{
 	display: inline-block;
 	margin: 0;
 	padding: 0;
 }
-.add-form .tabs a {
+.add-form .tabs a , .edit-form .tabs a{
 	display: block;
 	float: left;
 	text-decoration: none;
@@ -1370,7 +1370,7 @@ nav {
 	border-bottom: solid 1px #D5D5D5;
 	height: 32.6px;
 }
-.add-form .tabs a.active {
+.add-form .tabs a.active , .edit-form .tabs a.active{
 	border-bottom: solid 1px #328FEA;
 	-webkit-transition: all 0.5s linear;
 	-moz-transition: all 0.5s linear;
