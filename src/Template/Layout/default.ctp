@@ -40,6 +40,7 @@
     <meta name="twitter:site" content="@mysetup_co">
     <meta property="og:site_name" content="mySetup.co" />
     <meta property="fb:admins" content="1912097312403661" />
+    <meta name="google-site-verification" content="8eCzlQ585iC5IG3a4-fENYChl1AaEUaW7VeBj2NiFJQ" />
 </head>
 <body>
     <nav class="heavy-nav">
