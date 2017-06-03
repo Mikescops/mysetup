@@ -99,7 +99,9 @@ class ArticlesController extends AppController
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
 
-        $this->set(compact('article'));
+        $categories = $this->Articles->categories;
+
+        $this->set(compact('article', 'categories'));
         $this->set('_serialize', ['article']);
     }
 
@@ -156,7 +158,9 @@ class ArticlesController extends AppController
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
 
-        $this->set(compact('article'));
+        $categories = $this->Articles->categories;
+
+        $this->set(compact('article', 'categories'));
         $this->set('_serialize', ['article']);
     }
 

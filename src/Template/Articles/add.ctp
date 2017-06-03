@@ -17,7 +17,7 @@
                 echo '<div class="form-group">' . $this->Form->control('title', ['class' => 'form-control']) . '</div>';
                 echo '<div class="form-group">' . $this->Form->control('content', ['class' => 'form-control']) . '</div>';
                 echo '<div class="form-group">' . $this->Form->input('picture', ['type' => 'file', 'class' => 'form-control inputfile', 'required' => 'true']) . '</div>';
-                echo '<div class="form-group">' . $this->Form->control('categories', ['class' => 'form-control']) . '</div>';
+                echo '<div class="form-group">' . $this->Form->select('category', $categories, ['class' => 'form-control']) . '</div>';
                 echo '<div class="form-group">' . $this->Form->control('tags', ['class' => 'form-control']) . '</div>';
             ?>
         </fieldset>

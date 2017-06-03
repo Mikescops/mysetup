@@ -137,7 +137,7 @@ CREATE TABLE `articles` (
   `picture` VARCHAR(255) NOT NULL,
   `dateTime` DATETIME NOT NULL,
   `user_id` INT(11) NOT NULL,
-  `categories` VARCHAR(255) NOT NULL,
+  `category` VARCHAR(255) NOT NULL,
   `tags` VARCHAR(255) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 

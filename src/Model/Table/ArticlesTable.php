@@ -13,6 +13,8 @@ use Cake\Filesystem\File;
 
 class ArticlesTable extends Table
 {
+    public $categories = ['dev' => 'Development', 'edito' => 'Editorial',  'event' => 'Event', 'interview' => 'Interview', 'news' => 'News'];
+
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -56,7 +58,30 @@ class ArticlesTable extends Table
             ->dateTime('dateTime')
             ->notEmpty('dateTime');
 
+        $validator
+            ->requirePresence('category', 'create')
+            ->notEmpty('category');
+
         return $validator;
+    }
+
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->
+            add(function($entity) {
+                if(isset($entity['category']) and array_key_exists($entity['category'], $this->categories))
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+            },
+            'categoryIntegrity_rule');
+
+        return $rules;
     }
 
     public function isOwnedBy($article_id, $user_id)
