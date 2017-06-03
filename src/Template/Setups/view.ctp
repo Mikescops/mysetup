@@ -80,36 +80,35 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             
             <div id="basics-edit" class="form-action show">
 
-
-            <?php
-                echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
-                echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 2500, 'default' => $setup->description]);
-            ?>
-            <br />
-            <?php
-                echo $this->Form->input('featuredImage. ', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
-            ?>
-            <img alt="Featured Preview" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <div class="hidden_five_inputs">
                 <?php
-                    echo $this->Form->input('gallery0. ', ['id'=>'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery1. ', ['id'=>'gallery1', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery2. ', ['id'=>'gallery2', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery3. ', ['id'=>'gallery3', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery4. ', ['id'=>'gallery4', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                    echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
+                    echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 2500, 'default' => $setup->description]);
                 ?>
-            </div>
-
-            <?php $i = 0;foreach ($gallery as $image):?>
-            <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
-            <?php $i++; endforeach; for(;$i < 5;$i++): ?>
-            <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
-            <?php endfor ?>
-
-                <div class="modal-footer">
-                    <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'class' => 'button float-right']) ?>
+                <br />
+                <?php
+                    echo $this->Form->input('featuredImage. ', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
+                ?>
+                <img alt="Featured Preview" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+                <div class="hidden_five_inputs">
+                    <?php
+                        echo $this->Form->input('gallery0. ', ['id'=>'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                        echo $this->Form->input('gallery1. ', ['id'=>'gallery1', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                        echo $this->Form->input('gallery2. ', ['id'=>'gallery2', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                        echo $this->Form->input('gallery3. ', ['id'=>'gallery3', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                        echo $this->Form->input('gallery4. ', ['id'=>'gallery4', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                    ?>
                 </div>
+
+                <?php $i = 0;foreach ($gallery as $image):?>
+                <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
+                <?php $i++; endforeach; for(;$i < 5;$i++): ?>
+                <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+                <?php endfor ?>
+
+                    <div class="modal-footer">
+                        <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
+                        <?= $this->Form->postLink(__('Delete'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'class' => 'button float-right']) ?>
+                    </div>
 
             </div>
 
@@ -213,7 +212,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                             </div>
                         </div>
 
-                        <?= $this->Html->scriptBlock("new Tippy('#item-trigger-$i', {html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
+                        <?= $this->Html->scriptBlock("new Tippy('#item-trigger-$i', {zIndex: 20, html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
 
             <?php $i++; endforeach ?>
 

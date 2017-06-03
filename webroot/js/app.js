@@ -84,7 +84,7 @@ $('.post_slider').slick({
   ]
 });
 
-/***** Login area tabs *****/
+/***** Login ADD EDIT area tabs *****/
 $(function() {
   // constants
   var SHOW_CLASS = 'show',
