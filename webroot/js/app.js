@@ -19,7 +19,7 @@ $(window).scroll(function(){
   }
   heavyheight = height + 20;
   $('.heavy-nav').stop().animate({'height': heavyheight+"px"}, 300);
-  $('.heavy-nav .row').stop().animate({'height': height+"px"}, 300);
+  $('.heavy-nav .row:first-child').stop().animate({'height': height+"px"}, 300);
   $('.heavy-nav .ms-logo').stop().animate({'height': height+"px"}, 300);
   $('.right-nav').stop().animate({'margin-top': margin+"px"}, 300);
   $('.mobile-nav').stop().animate({'margin-top': margin+"px"}, 300);
