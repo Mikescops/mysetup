@@ -51,8 +51,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         </div>
         <div class="column column-25 sidebar">
 
-        <?php if($authUser['id'] == $article->user_id): ?>
+        <?php if($authUser['admin']): ?>
             <a class="button" href="<?= $this->Url->build(['action' => 'edit', $article->id]) ?>"><?= __('Edit this article') ?></a>
+            <?php if($authUser['id'] == $article->user_id): ?>
+                <?= $this->Form->postLink(__('Delete this article'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete this article ?'), 'class' => 'button']) ?>
+            <?php endif; ?>
         <?php endif; ?>
 
             <a class="button" href="<?= $this->Url->build('/blog/') ?>"><?= __('Go back to list') ?></a>
