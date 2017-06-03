@@ -960,13 +960,13 @@ nav {
 
 .right-nav li ul a {
 	border:none;
+	white-space: nowrap;
 }
 .right-nav li ul a:hover {
 	background:rgba(0,0,0,0.2);
 }
 
 .right-nav li ul {
-	width:200px;
 	position:absolute;
 	left:0;
 	background: rgba(21, 21, 21, 0.95);

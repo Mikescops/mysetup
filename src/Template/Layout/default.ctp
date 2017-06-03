@@ -76,7 +76,7 @@
                         <?php if($authUser): ?>
                         <li style="margin-right: 19px;">
                                 <a class="navbar-user"><?= $authUser['name'] ?> <img class="current-profile-user" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser['id'].'.png') ?>"></a>
-                                <ul style="right: -44px;left: auto;width:150px">
+                                <ul style="left: auto;right: -20px;">
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
                                     <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
@@ -131,7 +131,7 @@
                                 <a class="twitch-login" onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i> </a></li>
                                 <li>
                                     <a><i class="fa fa-user"></i> <i class="fa fa-caret-down"></i></a>
-                                    <ul style="right: 0;left: auto;width:210px;text-align: right;">
+                                    <ul style="right: 0;left: auto;text-align: right;">
                                         <li><a href="<?= $this->Url->build('/login'); ?>"><?= __('Sign In / Up') ?></a></li>
                                         <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
                                     </ul>
