@@ -192,15 +192,22 @@ class ArticlesController extends AppController
     {
         if(isset($user) && parent::isAdmin($user))
         {
-            if(in_array($this->request->action, ['edit', 'delete']))
+            // Only the owner can delete his articles
+            if($this->request->action === 'delete')
             {
                 if($this->Articles->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
                 {
                     return true;
                 }
+
+                else
+                {
+                    return false;
+                }
             }
 
-            else if($this->request->action === 'add')
+            // Each admin can add a new article, or edit the existing ones
+            else if(in_array($this->request->action, ['add', 'edit']))
             {
                 return true;
             }
