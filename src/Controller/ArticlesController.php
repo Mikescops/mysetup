@@ -25,6 +25,7 @@ class ArticlesController extends AppController
         $this->paginate = [
             'contain' => ['Users']
         ];
+
         $articles = $this->paginate($this->Articles);
 
         $this->set(compact('articles'));
@@ -35,7 +36,7 @@ class ArticlesController extends AppController
     /*Add markdown support*/
     public $helpers = ['Tanuck/Markdown.Markdown' => ['parser' => 'GithubMarkdown']];
 
-    
+
     /**
      * View method
      *
@@ -73,7 +74,7 @@ class ArticlesController extends AppController
 
                 if(!$data['picture'])
                 {
-                    return $this->redirect($this->referer());
+                    return $this->redirect(['action' => 'add']);
                 }
             }
 
@@ -90,13 +91,19 @@ class ArticlesController extends AppController
 
             if($this->Articles->save($article))
             {
-
                 $this->Flash->success(__('The article has been saved.'));
 
                 return $this->redirect('/blog/' . $article->id . '-' . Text::slug($article->title));
             }
 
-            $this->Flash->error(__('The article could not be saved. Please, try again.'));
+            else
+            {
+                $this->Articles->deletePicture($article['picture']);
+                $this->Flash->error(__('The article could not be saved. Please, try again.'));
+
+                return $this->redirect(['action' => 'add']);
+            }
+
         }
 
         $categories = $this->Articles->categories;
@@ -122,22 +129,19 @@ class ArticlesController extends AppController
         {
             $data = $this->request->getData();
 
+            $pictureToDelete = null;
+
             if(isset($data['picture']) and $data['picture']['tmp_name'] !== '')
             {
                 // Here we save the path to the current picture
-                $path = $article['picture'];
+                $pictureToDelete = $article['picture'];
 
-                // We save here the new picture
+                // We save here the path to the new picture, returned by our dear function
                 $data['picture'] = $this->Articles->savePicture($data['picture'], $this->Flash);
 
                 if(!$data['picture'])
                 {
-                    return $this->redirect($this->referer());
-                }
-
-                else
-                {
-                    $this->Articles->deletePicture($path);
+                    return $this->redirect(['action' => 'add']);
                 }
             }
 
@@ -150,12 +154,29 @@ class ArticlesController extends AppController
 
             if($this->Articles->save($article))
             {
+                // If this path is non-null, we've to delete the old picture !
+                if($pictureToDelete)
+                {
+                    $this->Articles->deletePicture($pictureToDelete);
+                }
+
                 $this->Flash->success(__('The article has been saved.'));
 
                 return $this->redirect('/blog/' . $article->id . '-' . Text::slug($article->title));
             }
 
-            $this->Flash->error(__('The article could not be saved. Please, try again.'));
+            else
+            {
+                // If the user uploaded a new image (different path), we've to delete it now !
+                if($pictureToDelete != $data['picture'])
+                {
+                    $this->Articles->deletePicture($data['picture']);
+                }
+
+                $this->Flash->error(__('The article could not be saved. Please, try again.'));
+
+                return $this->redirect($this->referer());
+            }
         }
 
         $categories = $this->Articles->categories;
@@ -174,14 +195,20 @@ class ArticlesController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
+
         $article = $this->Articles->get($id);
-        if ($this->Articles->delete($article)) {
+
+        if($this->Articles->delete($article))
+        {
             $this->Flash->success(__('The article has been deleted.'));
-        } else {
-            $this->Flash->error(__('The article could not be deleted. Please, try again.'));
+            return $this->redirect(['action' => 'index']);
         }
 
-        return $this->redirect(['action' => 'index']);
+        else
+        {
+            $this->Flash->error(__('The article could not be deleted. Please, try again.'));
+            return $this->redirect(['action' => 'view', $id]);
+        }
     }
 
 
