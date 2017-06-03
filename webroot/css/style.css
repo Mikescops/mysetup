@@ -1397,6 +1397,10 @@ nav {
 	margin-left: 5px;
 }
 
+.button.delete{
+	background-color: #ef1919;
+	border: .1rem solid #b30b0b;
+}
 
 /************** LOGIN / REGISTER CSS ******************/
 
