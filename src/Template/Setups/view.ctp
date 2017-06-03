@@ -86,16 +86,16 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 ?>
                 <br />
                 <?php
-                    echo $this->Form->input('featuredImage. ', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
+                    echo $this->Form->input('featuredImage', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
                 ?>
                 <img alt="Featured Preview" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
                 <div class="hidden_five_inputs">
                     <?php
-                        echo $this->Form->input('gallery0. ', ['id'=>'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                        echo $this->Form->input('gallery1. ', ['id'=>'gallery1', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                        echo $this->Form->input('gallery2. ', ['id'=>'gallery2', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                        echo $this->Form->input('gallery3. ', ['id'=>'gallery3', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                        echo $this->Form->input('gallery4. ', ['id'=>'gallery4', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                        echo $this->Form->input('gallery0', ['id' => 'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                        echo $this->Form->input('gallery1', ['id' => 'gallery1', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                        echo $this->Form->input('gallery2', ['id' => 'gallery2', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                        echo $this->Form->input('gallery3', ['id' => 'gallery3', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                        echo $this->Form->input('gallery4', ['id' => 'gallery4', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
                     ?>
                 </div>
 

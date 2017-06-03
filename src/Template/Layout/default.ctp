@@ -96,7 +96,7 @@
 
                                     <div class="profilepicup">
                                         <?php
-                                        echo $this->Form->input('picture. ', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
+                                        echo $this->Form->input('picture', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
                                         ?>
                                     </div>
 
@@ -168,16 +168,16 @@
                             <span class="float-right link-marksupp"><a href="<?=$this->Url->build('/pages/q&a')?>"><i class="fa fa-info-circle"></i> Markdown supported</a></span>
                             <br>
                             <?php
-                                echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile']);
+                                echo $this->Form->input('featuredImage', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile']);
                             ?>
                             <img id="featuredimage_preview">
                             <div class="hidden_five_inputs">
                                 <?php
-                                    echo $this->Form->input('gallery0. ', ['id'=>'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                    echo $this->Form->input('gallery1. ', ['id'=>'gallery1add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                    echo $this->Form->input('gallery2. ', ['id'=>'gallery2add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                    echo $this->Form->input('gallery3. ', ['id'=>'gallery3add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                    echo $this->Form->input('gallery4. ', ['id'=>'gallery4add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                    echo $this->Form->input('gallery0', ['id' => 'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->input('gallery1', ['id' => 'gallery1add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->input('gallery2', ['id' => 'gallery2add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->input('gallery3', ['id' => 'gallery3add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->input('gallery4', ['id' => 'gallery4add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
                                 ?>
                             </div>
 

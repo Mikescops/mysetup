@@ -105,7 +105,7 @@ class SetupsController extends AppController
             if($this->Setups->save($setup))
             {
                 /* Here we get and save the featured image */
-                if(!isset($data['featuredImage'][0]) or $data['featuredImage'][0]['tmp_name'] === '' or !$this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false, true))
+                if(!isset($data['featuredImage']) or $data['featuredImage']['tmp_name'] === '' or !$this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false, true))
                 {
                     $this->Setups->delete($setup);
                     $this->Flash->warning(__('You need a featured image with this setup !'));
@@ -176,10 +176,10 @@ class SetupsController extends AppController
                 $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $setup->user_id, true);
 
                 /* Here we get and save the featured image */
-                if(isset($data['featuredImage'][0]) and $data['featuredImage'][0] !== '' and (int)$data['featuredImage'][0]['error'] === 0)
+                if(isset($data['featuredImage']) and $data['featuredImage'] !== '' and (int)$data['featuredImage']['error'] === 0)
                 {
                     $image_to_delete = $this->Setups->Resources->find()->where(['Resources.user_id' => $setup->user_id, 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE'])->first();
-                    if($this->Setups->Resources->saveResourceImage($data['featuredImage'][0], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $setup->user_id, true, true))
+                    if($this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $setup->user_id, true, true))
                     {
                         $this->Setups->Resources->delete($image_to_delete);
                     }
