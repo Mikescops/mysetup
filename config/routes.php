@@ -68,6 +68,12 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/setups/:id-:slug', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
 
+    $routes->connect('/blog/', ['controller' => 'Articles', 'action' => 'index']);
+
+    $routes->connect('/blog/:id', ['controller' => 'Articles', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+
+    $routes->connect('/blog/:id-:slug', ['controller' => 'Articles', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+
     $routes->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
 
     $routes->connect('/verify/:id/:token', ['controller' => 'Users', 'action' => 'verifyAccount'], ['id' => '\d+', 'pass' => ['id', 'token']]);

@@ -1402,6 +1402,40 @@ nav {
 	border: .1rem solid #b30b0b;
 }
 
+
+/********* ARTICLES CSS ********/
+
+.article-list img{
+	width: 100%;
+	border-radius: 5px 5px 0px 0px ;
+}
+
+.article-list h3{
+	background: rgb(46, 50, 53) none repeat scroll 0% 0%;
+	padding: 5px 10px;
+	color: #fff;
+	border-bottom: 2px solid rgb(180, 178, 178);
+	border-radius: 0px 0px 5px 5px;
+}
+
+.article-list h3:hover{
+	background: rgb(20, 21, 23) none repeat scroll 0% 0%;
+}
+
+.article-img{
+	max-height: 250px;
+	overflow: hidden;
+	display: block;
+}
+
+.post-image{
+	max-height: 350px;
+	overflow: hidden;
+	display: block;
+	margin-bottom: 10px;
+}
+
+
 /************** LOGIN / REGISTER CSS ******************/
 
 .login-form {
@@ -1573,6 +1607,11 @@ nav {
 		text-align: center;
 		margin: 15px 0;
 		font-size: 2.9rem;
+	}
+
+	.article-list h3{
+		font-size: 1.8rem;
+		line-height: 1.0;
 	}
 
 }

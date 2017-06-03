@@ -67,6 +67,9 @@
           <li class="nav-item">
             <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>"><i class="fa fa-database"></i> Resources</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'add']); ?>"><i class="fa fa-pencil-square-o"></i> Add Article</a>
+          </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
           <li class="nav-item">
@@ -79,3 +82,11 @@
     <div class="container pt-4"><?= $this->fetch('content') ?></div>
 
 </body>
+
+<?= $this->Html->script('lib.min.js') ?>
+<?= $this->Html->script('app.min.js') ?>
+
+<script>const toast = new siiimpleToast();</script>
+<?= $this->Flash->render() ?>
+
+</html>
