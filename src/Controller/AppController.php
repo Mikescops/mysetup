@@ -107,8 +107,11 @@ class AppController extends Controller
         // Before render the view, let's give a new entity for add Setup modal to it
         $this->loadModel('Setups');
         $newSetupEntity = $this->Setups->newEntity();
-        $this->set('newSetupEntity');
 
+        // We'll need also the setups available status
+        $status = $this->Setups->status;
+
+        $this->set(compact('newSetupEntity', 'status'));
     }
 
     public function beforeFilter(Event $event)

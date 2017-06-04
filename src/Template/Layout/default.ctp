@@ -225,6 +225,7 @@
                             <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
                             <?php
                                 echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => false]);
+                                echo $this->Form->select('status', $status, ['type' => 'hidden']);
                             ?>
 
                             <div class="modal-footer">
