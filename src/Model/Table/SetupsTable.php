@@ -100,8 +100,8 @@ class SetupsTable extends Table
         $validator
             ->allowEmpty('description')
             ->add('description', 'length', [
-                'rule' => ['maxLength', 2500],
-                'message' => __('This description is too long (more than 2500 characters)')]);
+                'rule' => ['maxLength', 5000],
+                'message' => __('This description is too long (more than 5000 characters)')]);
 
         $validator
             ->allowEmpty('author');

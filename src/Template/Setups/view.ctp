@@ -82,7 +82,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                 <?php
                     echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
-                    echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 2500, 'default' => $setup->description]);
+                    echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 5000, 'default' => $setup->description]);
                 ?>
                 <br />
                 <?php
