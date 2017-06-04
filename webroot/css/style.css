@@ -1400,6 +1400,7 @@ nav {
 .button.delete{
 	background-color: #ef1919;
 	border: .1rem solid #b30b0b;
+	padding: 9px;
 }
 
 
