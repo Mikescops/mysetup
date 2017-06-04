@@ -93,7 +93,7 @@ class SetupsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->notEmpty('title')
+            ->allowEmpty('title')
             ->add('title', 'length', [
                 'rule' => ['maxLength', 48],
                 'message' => __('This title is too long (more than 48 characters)')]);
@@ -131,6 +131,20 @@ class SetupsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
+
+        $rules->
+            add(function($entity) {
+                if(isset($entity['status']) and array_key_exists($entity['status'], $this->status))
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+            },
+            'statusIntegrity_rule');
 
         return $rules;
     }

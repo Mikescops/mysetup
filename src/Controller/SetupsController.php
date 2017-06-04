@@ -83,7 +83,7 @@ class SetupsController extends AppController
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add($status = null)
+    public function add()
     {
         $setup = $this->Setups->newEntity();
 
@@ -101,15 +101,10 @@ class SetupsController extends AppController
                 $data['author'] = $this->Setups->Users->get($data['user_id'])['name'];
             }
 
-            // See the `edIt` method for the explanations of the below statements
+            // See the `edit` method for the explanations of the below statements
             if(!isset($data['status']) or (($data['status'] !== 'PUBLISHED' or $data['status'] !== 'DRAFT') and !parent::isAdminBySession($this->request->session())))
             {
                 $data['status'] = 'PUBLISHED';
-            }
-
-            if($status and $status === 'draft')
-            {
-                $data['status'] = 'DRAFT';
             }
 
             // On Setups.add, `featured` is impossible
@@ -126,7 +121,7 @@ class SetupsController extends AppController
             if($this->Setups->save($setup))
             {
                 /* Here we get and save the featured image */
-                if(!isset($data['featuredImage']) or $data['featuredImage']['tmp_name'] === '' or !$this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false, true))
+                if($data['status'] === 'PUBLISHED' and (!isset($data['featuredImage']) or $data['featuredImage']['tmp_name'] === '' or !$this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false, true)))
                 {
                     $this->Setups->delete($setup);
                     $this->Flash->warning(__('You need a featured image with this setup !'));
@@ -167,7 +162,7 @@ class SetupsController extends AppController
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null, $status = null)
+    public function edit($id = null)
     {
         $setup = $this->Setups->get($id, [
             'contain' => []
@@ -184,16 +179,10 @@ class SetupsController extends AppController
                 $data['author'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first()['name'];
             }
 
-            // A regular user should have the right to submit its setups with PUBLISHED and DRAFT status
+            // A regular user should have the right to submit its setups with PUBLISHED and DRAFT status values
             if(!isset($data['status']) or (($data['status'] !== 'PUBLISHED' or $data['status'] !== 'DRAFT') and !parent::isAdminBySession($this->request->session())))
             {
                 $data['status'] = 'PUBLISHED';
-            }
-
-            // Once this status is set, let's proceed with the URL parameter (it has the priority)
-            if($status and $status === 'draft')
-            {
-                $data['status'] = 'DRAFT';
             }
 
             if(!isset($data['featured']) or !parent::isAdminBySession($this->request->session()))
@@ -201,7 +190,14 @@ class SetupsController extends AppController
                 $data['featured'] = $setup['featured'];
             }
 
+            // If the setup was not published, but now this will be the case, let's change its creation date
+            if($setup['status'] !== 'PUBLISHED' and $data['status'] === 'PUBLISHED')
+            {
+                $data['creationDate'] = Time::now();
+            }
+
             $setup = $this->Setups->patchEntity($setup, $data);
+
             if($this->Setups->save($setup))
             {
                 /* Here we delete all products then save each product that has been selected by the user */
