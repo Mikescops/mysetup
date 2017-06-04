@@ -81,7 +81,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div id="basics-edit" class="form-action-edit show-edit">
 
                 <?php
-                    echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
+                    echo $this->Form->control('title', ['label' => __('Title'), 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
                     echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 5000, 'default' => $setup->description]);
                 ?>
                 <br />
@@ -107,7 +107,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <div class="modal-footer">
                         <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
-                        <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft (this will unpublished this setup')]) ?>
+                        <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'edit', $setup->id, 'draft'], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft (this will unpublished this setup')]) ?>
                     </div>
 
             </div>
@@ -133,7 +133,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <a href="#infos-edit" class="button next float-right"><?= __('Next step') ?></a>
                     <a href="#basics-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                    <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft (this will unpublished this setup')]) ?>
+                    <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'edit', $setup->id, 'draft'], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft (this will unpublished this setup')]) ?>
 
                 </div>
 
@@ -174,7 +174,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <?= $this->Form->end(); ?>
                     <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
                     <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
-                    <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft (this will unpublished this setup')]) ?>
+                    <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'edit', $setup->id, 'draft'], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft (this will unpublished this setup')]) ?>
                     
                 </div>
             </div>

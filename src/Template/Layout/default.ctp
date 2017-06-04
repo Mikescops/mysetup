@@ -162,13 +162,13 @@
                         <div id="basics" class="form-action show">
 
                             <?php
-                                echo $this->Form->control('title', ['label' => __('Title *'), 'required' => true, 'id' => 'title', 'maxLength' => 48]);
+                                echo $this->Form->control('title', ['label' => __('Title *'), 'id' => 'title', 'maxLength' => 48]);
                                 echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 5000, 'placeholder'=> 'What is the purpose of your setup ? Tell us your setup\'s story...']);
                             ?>
                             <span class="float-right link-marksupp"><a href="<?=$this->Url->build('/pages/q&a')?>"><i class="fa fa-info-circle"></i> Markdown supported</a></span>
                             <br>
                             <?php
-                                echo $this->Form->input('featuredImage', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile']);
+                                echo $this->Form->input('featuredImage', ['type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile']);
                             ?>
                             <img id="featuredimage_preview">
                             <div class="hidden_five_inputs">
@@ -192,7 +192,7 @@
 
                             <div class="modal-footer">
                                 <a href="#components" class="button next float-right"><?= __('Next step') ?></a>
-                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
+                                <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'add', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
                                 </div>
 
                         </div>
@@ -207,7 +207,7 @@
 
                                 <a href="#infos" class="button next float-right"><?= __('Next step') ?></a>
                                 <a href="#basics" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
+                                <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'add', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
 
                             </div>
 
@@ -231,7 +231,7 @@
 
                                 <?= $this->Form->submit(__('Submit'), ['class' => 'float-right button']); ?>
                                 <a href="#components" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
+                                <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'add', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
                                 
                             </div>
 

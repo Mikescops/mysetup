@@ -83,7 +83,7 @@ class SetupsController extends AppController
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($status = null)
     {
         $setup = $this->Setups->newEntity();
 
@@ -101,9 +101,15 @@ class SetupsController extends AppController
                 $data['author'] = $this->Setups->Users->get($data['user_id'])['name'];
             }
 
+            // See the `edIt` method for the explanations of the below statements
             if(!isset($data['status']) or (($data['status'] !== 'PUBLISHED' or $data['status'] !== 'DRAFT') and !parent::isAdminBySession($this->request->session())))
             {
                 $data['status'] = 'PUBLISHED';
+            }
+
+            if($status and $status === 'draft')
+            {
+                $data['status'] = 'DRAFT';
             }
 
             // On Setups.add, `featured` is impossible
@@ -112,7 +118,7 @@ class SetupsController extends AppController
             // Classical patch entity operation
             $setup = $this->Setups->patchEntity($setup, $data);
 
-            // Here we'll assign a random id to this new user
+            // Here we'll assign a random id to this new setup
             do {
                 $setup->id = mt_rand() + 1;
             } while($this->Setups->find()->where(['id' => $setup->id])->count() !== 0);
@@ -161,13 +167,13 @@ class SetupsController extends AppController
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($id = null, $status = null)
     {
         $setup = $this->Setups->get($id, [
             'contain' => []
         ]);
 
-        if ($this->request->is(['patch', 'post', 'put']))
+        if($this->request->is(['patch', 'post', 'put']))
         {
             // Let's fetch the form's data
             $data = $this->request->getData();
@@ -178,9 +184,16 @@ class SetupsController extends AppController
                 $data['author'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first()['name'];
             }
 
+            // A regular user should have the right to submit its setups with PUBLISHED and DRAFT status
             if(!isset($data['status']) or (($data['status'] !== 'PUBLISHED' or $data['status'] !== 'DRAFT') and !parent::isAdminBySession($this->request->session())))
             {
                 $data['status'] = 'PUBLISHED';
+            }
+
+            // Once this status is set, let's proceed with the URL parameter (it has the priority)
+            if($status and $status === 'draft')
+            {
+                $data['status'] = 'DRAFT';
             }
 
             if(!isset($data['featured']) or !parent::isAdminBySession($this->request->session()))
