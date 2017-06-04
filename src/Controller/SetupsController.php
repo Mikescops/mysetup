@@ -67,14 +67,7 @@ class SetupsController extends AppController
 
         $newComment = $this->Setups->Comments->newEntity();
 
-        $status = null;
-        // If an admin is visiting this page, we've to give him these values
-        if(parent::isAdminBySession($this->request->session()))
-        {
-            $status = $this->Setups->status;
-        }
-
-        $this->set(compact('setup', 'additionalData', 'products', 'fimage', 'gallery', 'video', 'newComment', 'status'));
+        $this->set(compact('setup', 'additionalData', 'products', 'fimage', 'gallery', 'video', 'newComment'));
         $this->set('_serialize', ['setup']);
     }
 
