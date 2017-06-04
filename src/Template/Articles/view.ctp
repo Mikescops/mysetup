@@ -39,6 +39,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
         </div>
 
+        <em class="float-right">#<?= $article->category ?></em>
+
         <h2><?= $article->title ?></h2>
 
 
