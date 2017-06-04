@@ -26,6 +26,7 @@ use Cake\ORM\TableRegistry;
  */
 class SetupsTable extends Table
 {
+    public $status = ['PUBLISHED' => 'Public', 'DRAFT' => 'Private', 'REJECTED' => 'Rejected'];
 
     /**
      * Initialize method
