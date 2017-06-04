@@ -41,7 +41,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
             <?php  if (!empty($user->setups)): $i = 0; foreach ($user->setups as $setup): ?>
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                    <img src="<?= $this->Url->build('/'); ?><?= $fimage[$i]->src ?>">
+                    <img src="<?= $this->Url->build('/'); ?><?= $fimage[$i] ?>">
                 </a>
                 <div class="fullitem-inner">
 
