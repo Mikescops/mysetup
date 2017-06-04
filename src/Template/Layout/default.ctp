@@ -192,7 +192,7 @@
 
                             <div class="modal-footer">
                                 <a href="#components" class="button next float-right"><?= __('Next step') ?></a>
-                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o']) ?>
+                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
                                 </div>
 
                         </div>
@@ -207,7 +207,7 @@
 
                                 <a href="#infos" class="button next float-right"><?= __('Next step') ?></a>
                                 <a href="#basics" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o']) ?>
+                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
 
                             </div>
 
@@ -231,7 +231,7 @@
 
                                 <?= $this->Form->submit(__('Submit'), ['class' => 'float-right button']); ?>
                                 <a href="#components" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o']) ?>
+                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
                                 
                             </div>
 
@@ -354,7 +354,7 @@
 <?= $this->Html->script('app.min.js?v=12') ?>
 <script>const toast = new siiimpleToast();</script>
 <?php if($authUser): ?>
-    <script>const instance = new Tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification();</script>
+    <script>const instance = new Tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification(); Tippy('.button.draft');</script>
 <?php endif ?>
 
 <?= $this->Flash->render() ?>

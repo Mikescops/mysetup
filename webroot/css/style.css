@@ -121,6 +121,10 @@ footer a{
 	padding: 8px;
 }
 
+.tippy-tooltip{
+	font-size: 14px!important;
+}
+
  /*********** INDEX CSS ***********/
 
 .home_slider{
