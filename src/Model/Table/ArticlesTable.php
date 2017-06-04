@@ -41,7 +41,7 @@ class ArticlesTable extends Table
     /** Let's get the real url of article **/
     public function getUrl(\Cake\ORM\Entity $entity)
     {
-        return \Cake\Routing\Router::url('/setups/'.$entity->id.'-'.\Cake\Utility\Text::slug($entity->title), true);
+        return \Cake\Routing\Router::url('/blog/'.$entity->id.'-'.\Cake\Utility\Text::slug($entity->title), true);
     }
 
     public function validationDefault(Validator $validator)
