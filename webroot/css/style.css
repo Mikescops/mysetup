@@ -1403,6 +1403,16 @@ nav {
 	padding: 9px;
 }
 
+.button.draft{
+	background-color: #ef5d19;
+	border: .1rem solid #e6822e;
+	padding: 9px;
+}
+
+.button.next{
+	padding: 0 10px;
+}
+
 
 /********* ARTICLES CSS ********/
 

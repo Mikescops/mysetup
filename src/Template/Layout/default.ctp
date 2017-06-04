@@ -190,8 +190,10 @@
                             <span class="float-right">* <?= __('required fields') ?></span>
                             <br/>
 
-                            <div class="modal-footer"><a href="#components" class="button next float-right"><?= __('Next step') ?></a></div>
-                            
+                            <div class="modal-footer">
+                                <a href="#components" class="button next float-right"><?= __('Next step') ?></a>
+                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o']) ?>
+                                </div>
 
                         </div>
 
@@ -205,6 +207,7 @@
 
                                 <a href="#infos" class="button next float-right"><?= __('Next step') ?></a>
                                 <a href="#basics" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o']) ?>
 
                             </div>
 
@@ -228,6 +231,7 @@
 
                                 <?= $this->Form->submit(__('Submit'), ['class' => 'float-right button']); ?>
                                 <a href="#components" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+                                <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o']) ?>
                                 
                             </div>
 

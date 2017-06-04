@@ -108,6 +108,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <div class="modal-footer">
                         <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
                         <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                        <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o']) ?>
                     </div>
 
             </div>
@@ -134,6 +135,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <a href="#infos-edit" class="button next float-right"><?= __('Next step') ?></a>
                     <a href="#basics-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
                     <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                    <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o']) ?>
 
                 </div>
 
@@ -172,6 +174,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <?= $this->Form->submit(__('Edit'), ['class' => 'float-right button']); ?>
                     <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
                     <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                    <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o']) ?>
                     
                 </div>
 
