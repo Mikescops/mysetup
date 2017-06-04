@@ -347,7 +347,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
 <!-- App Js async load -->
-<?= $this->Html->script('app.min.js?v=11') ?>
+<?= $this->Html->script('app.min.js?v=12') ?>
 <script>const toast = new siiimpleToast();</script>
 <?php if($authUser): ?>
     <script>const instance = new Tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification();</script>

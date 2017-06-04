@@ -134,6 +134,55 @@ $(function() {
 
 });
 
+$(function() {
+  // constants
+  var SHOW_CLASS = 'show-edit',
+      HIDE_CLASS = 'hide-edit',
+      ACTIVE_CLASS = 'active-edit';
+  
+  $( '.tabs-edit' ).on( 'click', 'li a', function(e){
+    e.preventDefault();
+    var $tab = $( this ),
+         href = $tab.attr( 'href' );
+  
+     $( '.active-edit' ).removeClass( ACTIVE_CLASS );
+     $tab.addClass( ACTIVE_CLASS );
+  
+     $( '.show-edit' )
+        .removeClass( SHOW_CLASS )
+        .addClass( HIDE_CLASS )
+        .hide();
+    
+      $(href)
+        .removeClass( HIDE_CLASS )
+        .addClass( SHOW_CLASS )
+        .hide()
+        .fadeIn( 550 );
+  });
+  $( '.form-action-edit' ).on( 'click', '.next', function(e){
+    e.preventDefault(); 
+    var $next = $( this ),
+         href = $next.attr( 'href' ),
+         $tab = $( href + '-tab' );
+  
+     $( '.active-edit' ).removeClass( ACTIVE_CLASS );
+     $tab.addClass( ACTIVE_CLASS );
+  
+     $( '.show-edit' )
+        .removeClass( SHOW_CLASS )
+        .addClass( HIDE_CLASS )
+        .hide();
+    
+      $(href)
+        .removeClass( HIDE_CLASS )
+        .addClass( SHOW_CLASS )
+        .hide()
+        .fadeIn( 550 );
+  });
+
+
+});
+
 /***** On load functions *****/
 $(function(){
    $('.is_author').click(function(){

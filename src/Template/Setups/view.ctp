@@ -66,19 +66,19 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <fieldset style="border:0;">
 
         <div class="edit-form">
-                <ul class="tabs">
+                <ul class="tabs-edit">
                     <li>
-                        <a id="basics-tab-edit" href="#basics-edit" class="active"><?= __('Basics') ?></a>
+                        <a id="basics-edit-tab" href="#basics-edit" class="active-edit"><?= __('Basics') ?></a>
                     </li>
                     <li>
-                        <a id="components-tab-edit" href="#components-edit"><?= __('Components') ?></a>
+                        <a id="components-edit-tab" href="#components-edit"><?= __('Components') ?></a>
                     </li>
                     <li>
-                        <a id="infos-tab-edit" href="#infos-edit"><?= __('More infos') ?></a>
+                        <a id="infos-edit-tab" href="#infos-edit"><?= __('More infos') ?></a>
                     </li>
                 </ul>
             
-            <div id="basics-edit" class="form-action show">
+            <div id="basics-edit" class="form-action-edit show-edit">
 
                 <?php
                     echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
@@ -113,7 +113,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             </div>
 
 
-            <div id="components-edit" class="form-action hide">
+            <div id="components-edit" class="form-action-edit hide-edit">
   
                 <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
                 <ul class="search_results edit_setup"></ul>
@@ -139,7 +139,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             </div>
 
-            <div id="infos-edit" class="form-action hide">
+            <div id="infos-edit" class="form-action-edit hide-edit">
 
             <?php
                 /* Fill the video source if exist */
