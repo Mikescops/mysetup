@@ -107,8 +107,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <div class="modal-footer">
                         <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
-                        <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
-                        <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
+                        <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft (this will unpublished this setup')]) ?>
                     </div>
 
             </div>
@@ -134,8 +133,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <a href="#infos-edit" class="button next float-right"><?= __('Next step') ?></a>
                     <a href="#basics-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                    <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
-                    <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
+                    <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft (this will unpublished this setup')]) ?>
 
                 </div>
 
@@ -165,6 +163,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 if($authUser['admin'])
                 {
                     echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
+                    echo $this->Form->select('status', $status, ['default' => $setup->status]);
                 }
             ?>
 
@@ -172,15 +171,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <div class="modal-footer">
 
                     <?= $this->Form->submit(__('Edit'), ['class' => 'float-right button']); ?>
+                    <?= $this->Form->end(); ?>
                     <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                    <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
-                    <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
+                    <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                    <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'draft', $setup->id], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft (this will unpublished this setup')]) ?>
                     
                 </div>
-
             </div>
         </fieldset>
-        <?= $this->Form->end(); ?>
     </div>
 
     <div id="embed_twitch_modal" class="lity-hide">
