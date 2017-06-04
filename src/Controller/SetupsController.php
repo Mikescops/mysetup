@@ -102,7 +102,7 @@ class SetupsController extends AppController
             }
 
             // See the `edit` method for the explanations of the below statements
-            if(!isset($data['status']) or (($data['status'] !== 'PUBLISHED' or $data['status'] !== 'DRAFT') and !parent::isAdminBySession($this->request->session())))
+            if(!isset($data['status']) or ($data['status'] !== 'PUBLISHED' and $data['status'] !== 'DRAFT' and !parent::isAdminBySession($this->request->session())))
             {
                 $data['status'] = 'PUBLISHED';
             }
@@ -118,10 +118,11 @@ class SetupsController extends AppController
                 $setup->id = mt_rand() + 1;
             } while($this->Setups->find()->where(['id' => $setup->id])->count() !== 0);
 
+
             if($this->Setups->save($setup))
             {
                 /* Here we get and save the featured image */
-                if($data['status'] === 'PUBLISHED' and (!isset($data['featuredImage']) or $data['featuredImage']['tmp_name'] === '' or !$this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false, true)))
+                if(!isset($data['featuredImage']) or $data['featuredImage']['tmp_name'] === '' or !$this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false, true))
                 {
                     $this->Setups->delete($setup);
                     $this->Flash->warning(__('You need a featured image with this setup !'));
@@ -180,7 +181,7 @@ class SetupsController extends AppController
             }
 
             // A regular user should have the right to submit its setups with PUBLISHED and DRAFT status values
-            if(!isset($data['status']) or (($data['status'] !== 'PUBLISHED' or $data['status'] !== 'DRAFT') and !parent::isAdminBySession($this->request->session())))
+            if(!isset($data['status']) or ($data['status'] !== 'PUBLISHED' and $data['status'] !== 'DRAFT' and !parent::isAdminBySession($this->request->session())))
             {
                 $data['status'] = 'PUBLISHED';
             }

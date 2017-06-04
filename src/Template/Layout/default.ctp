@@ -162,13 +162,13 @@
                         <div id="basics" class="form-action show">
 
                             <?php
-                                echo $this->Form->control('title', ['label' => __('Title *'), 'id' => 'title', 'maxLength' => 48]);
+                                echo $this->Form->control('title', ['label' => __('Title *'), 'id' => 'title', 'maxLength' => 48, 'required' => 'true']);
                                 echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 5000, 'placeholder'=> 'What is the purpose of your setup ? Tell us your setup\'s story...']);
                             ?>
                             <span class="float-right link-marksupp"><a href="<?=$this->Url->build('/pages/q&a')?>"><i class="fa fa-info-circle"></i> Markdown supported</a></span>
                             <br>
                             <?php
-                                echo $this->Form->input('featuredImage', ['type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile']);
+                                echo $this->Form->input('featuredImage', ['type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile', 'required' => 'true']);
                             ?>
                             <img id="featuredimage_preview">
                             <div class="hidden_five_inputs">
@@ -225,7 +225,7 @@
                             <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
                             <?php
                                 echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => false]);
-                                echo $this->Form->select('status', $status, ['type' => 'hidden']);
+                                echo $this->Form->select('status', $status);
                             ?>
 
                             <div class="modal-footer">
@@ -243,8 +243,6 @@
                     </fieldset>
                     
                     <?= $this->Form->end(); ?>
-
-
 
                 </div>
             </div>

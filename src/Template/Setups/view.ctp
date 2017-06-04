@@ -81,7 +81,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div id="basics-edit" class="form-action-edit show-edit">
 
                 <?php
-                    echo $this->Form->control('title', ['label' => __('Title'), 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
+                    echo $this->Form->control('title', ['label' => __('Title'), 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title, 'required' => 'true']);
                     echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 5000, 'default' => $setup->description]);
                 ?>
                 <br />
@@ -163,10 +163,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 if($authUser['admin'])
                 {
                     echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
-                    echo $this->Form->select('status', $status, ['default' => $setup->status]);
                 }
+                
+                echo $this->Form->select('status', $status, ['default' => $setup->status]);
             ?>
-
 
                 <div class="modal-footer">
 

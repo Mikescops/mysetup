@@ -93,7 +93,7 @@ class SetupsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('title')
+            ->notEmpty('title')
             ->add('title', 'length', [
                 'rule' => ['maxLength', 48],
                 'message' => __('This title is too long (more than 48 characters)')]);
