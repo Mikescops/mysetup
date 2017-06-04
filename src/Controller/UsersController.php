@@ -194,9 +194,9 @@ class UsersController extends AppController
 
             if($this->Users->save($user))
             {
-                if(isset($data['picture'][0]) and $data['picture'][0] !== '' and (int)$data['picture'][0]['error'] === 0)
+                if(isset($data['picture']) and $data['picture'] !== '' and (int)$data['picture']['error'] === 0)
                 {
-                    $this->Users->saveProfilePicture($data['picture'][0], $user, $this->Flash);
+                    $this->Users->saveProfilePicture($data['picture'], $user, $this->Flash);
                 }
 
                 // The user may have changed its preferred store / language, let's update this into the server's session

@@ -102,7 +102,7 @@ curl_close($CURL);
         <div class="column column-25 sidebar sidebar-feed">
 
             <div class="blog-advert">
-              <a href="https://medium.com/mysetup-co">
+              <a href="<?=$this->Url->build('/blog/')?>">
                 <h5><i class="fa fa-newspaper-o"></i><br>Read our latest news</h5>
               </a>
             </div>

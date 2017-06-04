@@ -16,7 +16,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css?v=9') ?>
+    <?= $this->Html->css('app.min.css?v=11') ?>
     <?= $this->Html->css('emoji.min.css') ?>
     <?= $this->Html->css('tippy.css') ?>
 
@@ -24,13 +24,15 @@
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= $this->Url->build('/'); ?>img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="<?= $this->Url->build('/'); ?>img/favicon/manifest.json">
-    <link rel="mask-icon" href="<?= $this->Url->build('/'); ?>img/favicon/safari-pinned-tab.svg" color="#328fea">
-    <link rel="shortcut icon" href="<?= $this->Url->build('/'); ?>img/favicon/favicon.ico">
-    <meta name="msapplication-config" content="<?= $this->Url->build('/'); ?>img/favicon/browserconfig.xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= $this->Url->build('/'); ?>img/favicon/apple-touch-icon.png?v=LbGvygO5bN">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-32x32.png?v=LbGvygO5bN">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-16x16.png?v=LbGvygO5bN">
+    <link rel="manifest" href="<?= $this->Url->build('/'); ?>img/favicon/manifest.json?v=LbGvygO5bN">
+    <link rel="mask-icon" href="<?= $this->Url->build('/'); ?>img/favicon/safari-pinned-tab.svg?v=LbGvygO5bN" color="#151515">
+    <link rel="shortcut icon" href="<?= $this->Url->build('/'); ?>img/favicon/favicon.ico?v=LbGvygO5bN">
+    <meta name="apple-mobile-web-app-title" content="mySetup.co">
+    <meta name="application-name" content="mySetup.co">
+    <meta name="msapplication-config" content="<?= $this->Url->build('/'); ?>img/favicon/browserconfig.xml?v=LbGvygO5bN">
     <meta name="theme-color" content="#151515">
 
     <meta name="twitter:card" value="summary"> 
@@ -38,13 +40,14 @@
     <meta name="twitter:site" content="@mysetup_co">
     <meta property="og:site_name" content="mySetup.co" />
     <meta property="fb:admins" content="1912097312403661" />
+    <meta name="google-site-verification" content="8eCzlQ585iC5IG3a4-fENYChl1AaEUaW7VeBj2NiFJQ" />
 </head>
 <body>
     <nav class="heavy-nav">
         <div class="row container">
             <div class="column column-20">
                 
-                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mySetup', 'class' => 'ms-logo')); ?></a>
+                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg?v=2', array('alt' => 'mySetup', 'class' => 'ms-logo')); ?></a>
 
             </div>
             <div class="column column-80">
@@ -60,13 +63,7 @@
                             </li>
                             <?php if($authUser['admin']): ?>
                                 <li>
-                                    <a>Admin <i class="fa fa-caret-down"></i></a>
-                                    <ul>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Setups index') ?></a></li>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>"><?= __('Users index') ?></a></li>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>"><?= __('Resources index') ?></a></li>
-                                        <li><a href="<?= $this->Url->build(['controller' => 'Comments', 'action' => 'index']); ?>"><?= __('Comments index') ?></a></li>
-                                    </ul>
+                                    <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Admin Panel') ?></a>
                                 </li>
                             <?php endif; ?>
                         <?php endif; ?>
@@ -80,7 +77,7 @@
                         <?php if($authUser): ?>
                         <li style="margin-right: 19px;">
                                 <a class="navbar-user"><?= $authUser['name'] ?> <img class="current-profile-user" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser['id'].'.png') ?>"></a>
-                                <ul style="right: -44px;left: auto;width:150px">
+                                <ul style="left: auto;right: -20px;">
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
                                     <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
@@ -99,7 +96,7 @@
 
                                     <div class="profilepicup">
                                         <?php
-                                        echo $this->Form->input('picture. ', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
+                                        echo $this->Form->input('picture', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
                                         ?>
                                     </div>
 
@@ -135,7 +132,7 @@
                                 <a class="twitch-login" onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i> </a></li>
                                 <li>
                                     <a><i class="fa fa-user"></i> <i class="fa fa-caret-down"></i></a>
-                                    <ul style="right: 0;left: auto;width:210px;text-align: right;">
+                                    <ul style="right: 0;left: auto;text-align: right;">
                                         <li><a href="<?= $this->Url->build('/login'); ?>"><?= __('Sign In / Up') ?></a></li>
                                         <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
                                     </ul>
@@ -166,21 +163,21 @@
 
                             <?php
                                 echo $this->Form->control('title', ['label' => __('Title *'), 'required' => true, 'id' => 'title', 'maxLength' => 48]);
-                                echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 2500]);
+                                echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 5000, 'placeholder'=> 'What is the purpose of your setup ? Tell us your setup\'s story...']);
                             ?>
                             <span class="float-right link-marksupp"><a href="<?=$this->Url->build('/pages/q&a')?>"><i class="fa fa-info-circle"></i> Markdown supported</a></span>
                             <br>
                             <?php
-                                echo $this->Form->input('featuredImage. ', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile']);
+                                echo $this->Form->input('featuredImage', ['required' => true, 'type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile']);
                             ?>
                             <img id="featuredimage_preview">
                             <div class="hidden_five_inputs">
                                 <?php
-                                    echo $this->Form->input('gallery0. ', ['id'=>'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                    echo $this->Form->input('gallery1. ', ['id'=>'gallery1add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                    echo $this->Form->input('gallery2. ', ['id'=>'gallery2add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                    echo $this->Form->input('gallery3. ', ['id'=>'gallery3add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                                    echo $this->Form->input('gallery4. ', ['id'=>'gallery4add', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                                    echo $this->Form->input('gallery0', ['id' => 'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->input('gallery1', ['id' => 'gallery1add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->input('gallery2', ['id' => 'gallery2add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->input('gallery3', ['id' => 'gallery3add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->input('gallery4', ['id' => 'gallery4add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
                                 ?>
                             </div>
 
@@ -260,12 +257,7 @@
                         </li>
                         <?php if($authUser['admin']): ?>
                             <li>
-                                <ul>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Setups index') ?></a></li>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>"><?= __('Users index') ?></a></li>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>"><?= __('Resources index') ?></a></li>
-                                    <li><a href="<?= $this->Url->build(['controller' => 'Comments', 'action' => 'index']); ?>"><?= __('Comments index') ?></a></li>
-                                </ul>
+                                <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Admin Panel') ?></a>
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>
@@ -317,7 +309,7 @@
                     <div class="column column-25">
                       <div class="footer-title"><?= __('About us') ?></div>
                       <ul>
-                        <li><a href="https://medium.com/mysetup-co" target="_blank" class="item"><?= __('Our stories') ?></a></li>
+                        <li><a href="<?=$this->Url->build('/blog/')?>" target="_blank" class="item"><?= __('Our stories') ?></a></li>
                         <li><a href="<?= $this->Url->build('/pages/team'); ?>"><?= __('Our team') ?></a></li>
                         <li><a href="<?= $this->Url->build('/pages/legals'); ?>"><?= __('Legal Mentions') ?></a></li>
                       </ul>
@@ -355,7 +347,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
 <!-- App Js async load -->
-<?= $this->Html->script('app.min.js?v=9') ?>
+<?= $this->Html->script('app.min.js?v=12') ?>
 <script>const toast = new siiimpleToast();</script>
 <?php if($authUser): ?>
     <script>const instance = new Tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification();</script>

@@ -97,7 +97,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                         ?>
 
                         <?php
-                        echo $this->Form->input('picture. ', ['label' => __("Change the profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
+                        echo $this->Form->input('picture', ['label' => __("Change the profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
                         ?>
 
                         <?php
@@ -123,7 +123,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
             <?php endif ?>
 
             <div class="blog-advert">
-            <a href="https://medium.com/mysetup-co">
+            <a href="<?=$this->Url->build('/blog/')?>">
               <h5><i class="fa fa-newspaper-o"></i><br>Read our latest news</h5>
             </a>
             </div>

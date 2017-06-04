@@ -61,49 +61,86 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     </div>
 
     <div id="edit_setup_modal" class="lity-hide">
-        <h4><?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup</h4>
 
         <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'edit', $setup->id]]); ?>
         <fieldset style="border:0;">
-            <?php
-                echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
-                echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 2500, 'default' => $setup->description]);
-            ?>
-            <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
-            <ul class="search_results edit_setup"></ul>
-            <ul class="basket_items edit_setup">
-                <?php foreach ($products as $item): ?>
 
+        <div class="edit-form">
+                <ul class="tabs-edit">
                     <li>
-                        <img src="<?= urldecode($item->src) ?>">
-                        <p><?= urldecode($item->title) ?></p>
-                        <a onclick="deleteFromBasket('<?= $item->title ?>',this,'edit_setup')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                        <a id="basics-edit-tab" href="#basics-edit" class="active-edit"><?= __('Basics') ?></a>
                     </li>
+                    <li>
+                        <a id="components-edit-tab" href="#components-edit"><?= __('Components') ?></a>
+                    </li>
+                    <li>
+                        <a id="infos-edit-tab" href="#infos-edit"><?= __('More infos') ?></a>
+                    </li>
+                </ul>
+            
+            <div id="basics-edit" class="form-action-edit show-edit">
 
-                <?php endforeach ?>
-            </ul>
-            <br />
-            <?php
-                echo $this->Form->input('featuredImage. ', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
-            ?>
-            <img alt="Featured Preview" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
-            <div class="hidden_five_inputs">
                 <?php
-                    echo $this->Form->input('gallery0. ', ['id'=>'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery1. ', ['id'=>'gallery1', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery2. ', ['id'=>'gallery2', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery3. ', ['id'=>'gallery3', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
-                    echo $this->Form->input('gallery4. ', ['id'=>'gallery4', 'type' => 'file', 'hidden', 'class' => 'inputfile']);
+                    echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
+                    echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 5000, 'default' => $setup->description]);
                 ?>
+                <br />
+                <?php
+                    echo $this->Form->input('featuredImage', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
+                ?>
+                <img alt="Featured Preview" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+                <div class="hidden_five_inputs">
+                    <?php
+                        echo $this->Form->input('gallery0', ['id' => 'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                        echo $this->Form->input('gallery1', ['id' => 'gallery1', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                        echo $this->Form->input('gallery2', ['id' => 'gallery2', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                        echo $this->Form->input('gallery3', ['id' => 'gallery3', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                        echo $this->Form->input('gallery4', ['id' => 'gallery4', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                    ?>
+                </div>
+
+                <?php $i = 0;foreach ($gallery as $image):?>
+                <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
+                <?php $i++; endforeach; for(;$i < 5;$i++): ?>
+                <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+                <?php endfor ?>
+
+                    <div class="modal-footer">
+                        <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
+                        <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                    </div>
+
             </div>
 
-            <?php $i = 0;foreach ($gallery as $image):?>
-            <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
-            <?php $i++; endforeach; for(;$i < 5;$i++): ?>
-            <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
-            <?php endfor ?>
 
-            <br /><br />
+            <div id="components-edit" class="form-action-edit hide-edit">
+  
+                <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
+                <ul class="search_results edit_setup"></ul>
+                <ul class="basket_items edit_setup">
+                    <?php foreach ($products as $item): ?>
+
+                        <li>
+                            <img src="<?= urldecode($item->src) ?>">
+                            <p><?= urldecode($item->title) ?></p>
+                            <a onclick="deleteFromBasket('<?= $item->title ?>',this,'edit_setup')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                        </li>
+
+                    <?php endforeach ?>
+                </ul>
+
+                <div class="modal-footer">
+
+                    <a href="#infos-edit" class="button next float-right"><?= __('Next step') ?></a>
+                    <a href="#basics-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+                    <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+
+                </div>
+
+            </div>
+
+            <div id="infos-edit" class="form-action-edit hide-edit">
+
             <?php
                 /* Fill the video source if exist */
                 if(!empty($video->src)){$video_field = $video->src;}else{$video_field = '';}
@@ -128,11 +165,19 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
                 }
             ?>
-        </fieldset>
-        <?= $this->Form->submit(__('Edit setup'), ['class' => 'float-right']); ?>
-        <?= $this->Form->end(); ?>
 
-        <?= $this->Form->postLink(__('Delete this setup'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?')]) ?>
+
+                <div class="modal-footer">
+
+                    <?= $this->Form->submit(__('Edit'), ['class' => 'float-right button']); ?>
+                    <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+                    <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                    
+                </div>
+
+            </div>
+        </fieldset>
+        <?= $this->Form->end(); ?>
     </div>
 
     <div id="embed_twitch_modal" class="lity-hide">
@@ -167,7 +212,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                             </div>
                         </div>
 
-                        <?= $this->Html->scriptBlock("new Tippy('#item-trigger-$i', {html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
+                        <?= $this->Html->scriptBlock("new Tippy('#item-trigger-$i', {zIndex: 20, html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
 
             <?php $i++; endforeach ?>
 

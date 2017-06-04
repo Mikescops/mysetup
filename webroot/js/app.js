@@ -6,6 +6,27 @@
  * All rights reserved
  */
 
+/** MAIN MENU **/
+
+$(window).scroll(function(){
+  var scrollTop = $(window).scrollTop();
+  if(scrollTop < 110){
+    height = 60;
+    margin = 10;
+  }else{
+    height = 40;
+    margin = 0;
+  }
+  heavyheight = height + 20;
+  $('.heavy-nav').stop().animate({'height': heavyheight+"px"}, 300);
+  $('.heavy-nav .row:first-child').stop().animate({'height': height+"px"}, 300);
+  $('.heavy-nav .ms-logo').stop().animate({'height': height+"px"}, 300);
+  $('.right-nav').stop().animate({'margin-top': margin+"px"}, 300);
+  $('.mobile-nav').stop().animate({'margin-top': margin+"px"}, 300);
+})
+
+
+
 /** SLIDERS **/
 
 $('.home_slider').slick({
@@ -63,7 +84,7 @@ $('.post_slider').slick({
   ]
 });
 
-/***** Login area tabs *****/
+/***** Login ADD EDIT area tabs *****/
 $(function() {
   // constants
   var SHOW_CLASS = 'show',
@@ -99,6 +120,55 @@ $(function() {
      $tab.addClass( ACTIVE_CLASS );
   
      $( '.show' )
+        .removeClass( SHOW_CLASS )
+        .addClass( HIDE_CLASS )
+        .hide();
+    
+      $(href)
+        .removeClass( HIDE_CLASS )
+        .addClass( SHOW_CLASS )
+        .hide()
+        .fadeIn( 550 );
+  });
+
+
+});
+
+$(function() {
+  // constants
+  var SHOW_CLASS = 'show-edit',
+      HIDE_CLASS = 'hide-edit',
+      ACTIVE_CLASS = 'active-edit';
+  
+  $( '.tabs-edit' ).on( 'click', 'li a', function(e){
+    e.preventDefault();
+    var $tab = $( this ),
+         href = $tab.attr( 'href' );
+  
+     $( '.active-edit' ).removeClass( ACTIVE_CLASS );
+     $tab.addClass( ACTIVE_CLASS );
+  
+     $( '.show-edit' )
+        .removeClass( SHOW_CLASS )
+        .addClass( HIDE_CLASS )
+        .hide();
+    
+      $(href)
+        .removeClass( HIDE_CLASS )
+        .addClass( SHOW_CLASS )
+        .hide()
+        .fadeIn( 550 );
+  });
+  $( '.form-action-edit' ).on( 'click', '.next', function(e){
+    e.preventDefault(); 
+    var $next = $( this ),
+         href = $next.attr( 'href' ),
+         $tab = $( href + '-tab' );
+  
+     $( '.active-edit' ).removeClass( ACTIVE_CLASS );
+     $tab.addClass( ACTIVE_CLASS );
+  
+     $( '.show-edit' )
         .removeClass( SHOW_CLASS )
         .addClass( HIDE_CLASS )
         .hide();

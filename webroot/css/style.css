@@ -66,7 +66,7 @@ img{
 }
 
 .sitecontainer{
-	padding-top: 50px;
+	padding-top: 60px;
 }
 
 .maincontainer{
@@ -100,6 +100,9 @@ footer a{
 
 .logo_footer img{
 	height: 80px;
+	background: #fff;
+	padding: 5px;
+	border-radius: 50%;
 }
 
 .verified_account{
@@ -901,7 +904,7 @@ nav {
 	width: 100%;
 	margin: 0;
 	z-index: 500;
-	height: 60px;
+	height: 80px;
 	padding: 10px 15px 0px 15px;
 	top: 0;
 }
@@ -909,7 +912,7 @@ nav {
 .heavy-nav .row{
 	margin: 0 auto!important;
 	padding: 0 2rem;
-	height: 40px;
+	height: 60px;
 }
 
 .heavy-nav .column{
@@ -917,11 +920,12 @@ nav {
 }
 
 .heavy-nav .ms-logo{
-	height: 40px;
+	height: 60px;
 }
 
 .right-nav{
 	float: right;
+	margin-top: 10px;
 }
 
 .right-nav ul {
@@ -956,13 +960,13 @@ nav {
 
 .right-nav li ul a {
 	border:none;
+	white-space: nowrap;
 }
 .right-nav li ul a:hover {
 	background:rgba(0,0,0,0.2);
 }
 
 .right-nav li ul {
-	width:200px;
 	position:absolute;
 	left:0;
 	background: rgba(21, 21, 21, 0.95);
@@ -1023,6 +1027,7 @@ nav {
 	top: 6px;
 	right: 20px;
 	font-size: 30px;
+	margin-top: 10px;
 }
 
 .mobile-nav a:first-child{
@@ -1325,16 +1330,16 @@ nav {
 	display: none;
 }
 
-.add-form{
+.add-form, .edit-form{
 	min-height: 450px;
 	margin-bottom: 40px;
 	padding-top: 40px;
 }
 
-.add-form .hide {
+.add-form .hide , .edit-form .hide-edit{
 	display: none;
 }
-.add-form .tabs {
+.add-form .tabs , .edit-form .tabs-edit{
 	width: 100%;
 	list-style-type: none;
 	display: block;
@@ -1350,12 +1355,12 @@ nav {
 	white-space:nowrap;
 	z-index: 10;
 }
-.add-form .tabs li {
+.add-form .tabs li , .edit-form .tabs-edit li{
 	display: inline-block;
 	margin: 0;
 	padding: 0;
 }
-.add-form .tabs a {
+.add-form .tabs a , .edit-form .tabs-edit a{
 	display: block;
 	float: left;
 	text-decoration: none;
@@ -1365,7 +1370,7 @@ nav {
 	border-bottom: solid 1px #D5D5D5;
 	height: 32.6px;
 }
-.add-form .tabs a.active {
+.add-form .tabs a.active , .edit-form .tabs-edit a.active-edit{
 	border-bottom: solid 1px #328FEA;
 	-webkit-transition: all 0.5s linear;
 	-moz-transition: all 0.5s linear;
@@ -1390,6 +1395,45 @@ nav {
 
 .modal-footer .button{
 	margin-left: 5px;
+}
+
+.button.delete{
+	background-color: #ef1919;
+	border: .1rem solid #b30b0b;
+	padding: 9px;
+}
+
+
+/********* ARTICLES CSS ********/
+
+.article-list img{
+	width: 100%;
+	border-radius: 5px 5px 0px 0px ;
+}
+
+.article-list h3{
+	background: rgb(46, 50, 53) none repeat scroll 0% 0%;
+	padding: 5px 10px;
+	color: #fff;
+	border-bottom: 2px solid rgb(180, 178, 178);
+	border-radius: 0px 0px 5px 5px;
+}
+
+.article-list h3:hover{
+	background: rgb(20, 21, 23) none repeat scroll 0% 0%;
+}
+
+.article-img{
+	max-height: 250px;
+	overflow: hidden;
+	display: block;
+}
+
+.post-image{
+	max-height: 350px;
+	overflow: hidden;
+	display: block;
+	margin-bottom: 10px;
 }
 
 
@@ -1564,6 +1608,11 @@ nav {
 		text-align: center;
 		margin: 15px 0;
 		font-size: 2.9rem;
+	}
+
+	.article-list h3{
+		font-size: 1.8rem;
+		line-height: 1.0;
 	}
 
 }

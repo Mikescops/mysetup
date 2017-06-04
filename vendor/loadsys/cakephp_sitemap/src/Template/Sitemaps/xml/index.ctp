@@ -29,4 +29,14 @@
 		<changefreq>daily</changefreq>
 		<priority>0.9</priority>
 	</url>
+	<url>
+		<loc>https://mysetup.co/blog</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.9</priority>
+	</url>
+	<url>
+		<loc>https://mysetup.co/pages/team</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.9</priority>
+	</url>
 </urlset>
