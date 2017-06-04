@@ -39,7 +39,8 @@ class UsersController extends AppController
     {
         $conditions = null;
 
-        if($id != $this->request->session()->read('Auth.User.id'))
+        // If the visitor is not the owner (nor an admin), let's only send to the View the PUBLISHED setups
+        if($id != $this->request->session()->read('Auth.User.id') and !parent::isAdminBySession($this->request->session()))
         {
             $conditions = ['Setups.status' => 'PUBLISHED'];
         }
