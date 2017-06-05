@@ -192,8 +192,9 @@
 
                             <div class="modal-footer">
                                 <a href="#components" class="button next float-right"><?= __('Next step') ?></a>
-                                <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'add'], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
-                                </div>
+
+                                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
+                            </div>
 
                         </div>
 
@@ -207,7 +208,7 @@
 
                                 <a href="#infos" class="button next float-right"><?= __('Next step') ?></a>
                                 <a href="#basics" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                                <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'add'], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
+                                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
 
                             </div>
 
@@ -225,14 +226,14 @@
                             <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
                             <?php
                                 echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => false]);
-                                echo $this->Form->select('status', $status);
+                                echo $this->Form->select('status', $status, ['id' => 'status-add']);
                             ?>
 
                             <div class="modal-footer">
 
-                                <?= $this->Form->submit(__('Submit'), ['class' => 'float-right button']); ?>
+                                <?= $this->Form->submit(__('Submit'), ['class' => 'float-right button', 'id' => 'publish-add']); ?>
                                 <a href="#components" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                                <?= $this->Html->link('<i></i>', ['controller' => 'Setups', 'action' => 'add'], ['escape' => false, 'class' => 'button draft float-left fa fa-file-text-o', 'title' => __('Save as draft')]) ?>
+                                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
                                 
                             </div>
 
@@ -350,7 +351,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
 <!-- App Js async load -->
-<?= $this->Html->script('app.min.js?v=12') ?>
+<?= $this->Html->script('app.min.js?v=13') ?>
 <script>const toast = new siiimpleToast();</script>
 <?php if($authUser): ?>
     <script>const instance = new Tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification(); Tippy('.button.draft');</script>
