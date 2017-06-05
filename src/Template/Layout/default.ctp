@@ -226,12 +226,13 @@
                             <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
                             <?php
                                 echo $this->Form->control(__('author'), ['class' => 'setup_author', 'label' => false]);
-                                echo $this->Form->select('status', $status, ['id' => 'status-add']);
+
+                                echo $this->Form->select('status', $status, ['id' => 'status-add', 'class' => 'hidden']);
                             ?>
 
                             <div class="modal-footer">
 
-                                <?= $this->Form->submit(__('Submit'), ['class' => 'float-right button', 'id' => 'publish-add']); ?>
+                                <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-add']); ?>
                                 <a href="#components" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
                                 <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
                                 

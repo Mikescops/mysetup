@@ -165,12 +165,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
                 }
                 
-                echo $this->Form->select('status', $status, ['default' => $setup->status, 'id' => 'status-edit']);
+                echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit', 'class' => 'hidden']);
             ?>
 
                 <div class="modal-footer">
 
-                    <?= $this->Form->submit(__('Edit'), ['class' => 'float-right button', 'id' => 'publish-edit']); ?>
+                    <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-edit']); ?>
                     <?= $this->Form->end(); ?>
                     <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
                     <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
