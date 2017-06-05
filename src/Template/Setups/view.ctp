@@ -35,7 +35,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <a class="featured-user" href="<?= $this->Url->build('/users/'.$additionalData['owner']['id']) ?>">
                     <img alt="Profile picture of <?= $additionalData['owner']['name'] ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
                 </a>
-                <h3><?= $setup->title ?> <?php if($setup->status == 'DRAFT'): ?><i title="Only you can see this setup" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
+                <h3><?= $setup->title ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
                 <p>
                     <?= __('Shared by') ?> <?php if($additionalData['owner']['name']){echo $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]);}else{echo "Unknown";} ?><?php if($additionalData['owner']['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($additionalData['owner']['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . $setup->author ; endif?>
                 </p>
