@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-05-15 08:46+0000\n"
+"POT-Creation-Date: 2017-06-05 21:03+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -13,10 +13,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-
-#: Template/Error/error400.ctp:39
-msgid "The {0} was not found :( Maybe your friend sent you the wrong link !"
-msgstr ""
 
 #: Template/Error/error500.ctp:41
 msgid "An Internal Error Has Occurred :("
@@ -230,19 +226,19 @@ msgstr ""
 msgid "This field cannot be left empty"
 msgstr ""
 
-#: Validation/Validator.php:1782
+#: Validation/Validator.php:1801
 msgid "The provided value is invalid"
 msgstr ""
 
-#: View/Helper/FormHelper.php:1010
+#: View/Helper/FormHelper.php:1016
 msgid "New %s"
 msgstr ""
 
-#: View/Helper/FormHelper.php:1013
+#: View/Helper/FormHelper.php:1019
 msgid "Edit %s"
 msgstr ""
 
-#: View/Helper/FormHelper.php:1889
+#: View/Helper/FormHelper.php:1895
 msgid "Submit"
 msgstr ""
 
