@@ -94,13 +94,23 @@ class SetupsController extends AppController
                 $data['author'] = $this->Setups->Users->get($data['user_id'])['name'];
             }
 
+            // See the `edit` method for the explanations of the below statements
+            if(!isset($data['status']) or ($data['status'] !== 'PUBLISHED' and $data['status'] !== 'DRAFT' and !parent::isAdminBySession($this->request->session())))
+            {
+                $data['status'] = 'PUBLISHED';
+            }
+
+            // On Setups.add, `featured` is impossible
+            $data['featured'] = false;
+
             // Classical patch entity operation
             $setup = $this->Setups->patchEntity($setup, $data);
 
-            // Here we'll assign a random id to this new user
+            // Here we'll assign a random id to this new setup
             do {
                 $setup->id = mt_rand() + 1;
             } while($this->Setups->find()->where(['id' => $setup->id])->count() !== 0);
+
 
             if($this->Setups->save($setup))
             {
@@ -152,7 +162,7 @@ class SetupsController extends AppController
             'contain' => []
         ]);
 
-        if ($this->request->is(['patch', 'post', 'put']))
+        if($this->request->is(['patch', 'post', 'put']))
         {
             // Let's fetch the form's data
             $data = $this->request->getData();
@@ -163,12 +173,25 @@ class SetupsController extends AppController
                 $data['author'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first()['name'];
             }
 
+            // A regular user should have the right to submit its setups with PUBLISHED and DRAFT status values
+            if(!isset($data['status']) or ($data['status'] !== 'PUBLISHED' and $data['status'] !== 'DRAFT' and !parent::isAdminBySession($this->request->session())))
+            {
+                $data['status'] = 'PUBLISHED';
+            }
+
             if(!isset($data['featured']) or !parent::isAdminBySession($this->request->session()))
             {
                 $data['featured'] = $setup['featured'];
             }
 
+            // If the setup was not published, but now this will be the case, let's change its creation date
+            if($setup['status'] !== 'PUBLISHED' and $data['status'] === 'PUBLISHED')
+            {
+                $data['creationDate'] = Time::now();
+            }
+
             $setup = $this->Setups->patchEntity($setup, $data);
+
             if($this->Setups->save($setup))
             {
                 /* Here we delete all products then save each product that has been selected by the user */
@@ -201,7 +224,7 @@ class SetupsController extends AppController
                     $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $setup->user_id, true);
                 }
 
-                $this->Flash->success(__('The setup has been saved.'));
+                $this->Flash->success(__('The setup has been updated.'));
             }
 
             else
@@ -249,11 +272,25 @@ class SetupsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['view', 'search']);
+        $this->Auth->allow(['search']);
     }
 
     public function isAuthorized($user)
     {
+        if($this->request->action === 'view')
+        {
+            // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner...
+            if(!$this->Setups->isPublic((int)$this->request->params['pass'][0]) and !$this->Setups->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+            {
+                return false;
+            }
+
+            else
+            {
+                return true;
+            }
+        }
+
         if(isset($user))
         {
             if(in_array($this->request->action, ['edit', 'delete']))
@@ -278,43 +315,72 @@ class SetupsController extends AppController
         if($this->request->getQuery('q'))
         {
             /* Get query */
-            $query = $this->request->getQuery('q','');
+            $query  = $this->request->getQuery('q', '');
             $offset = $this->request->getQuery('p', '0');
-
-            $query = urlencode($query);
-
-            $this->loadModel('Resources');
 
             /* Add each word divided by + in request "like"*/
             $qcond = array();
 
-            foreach (explode("+", $query) as $key => $value) {
+            foreach(explode("+", urlencode($query)) as $key => $value)
+            {
                 array_push($qcond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%'.$value.'%']);
             }
 
-            $qconditions = array('OR' => $qcond, 'Resources.type' => 'SETUP_PRODUCT'); 
-
             /* Fetch corresponding setups */
-            $test = $this->Resources->find('all', array('limit' => 10, 'offset' => $offset, 'group' => 'setup_id'))->where($qconditions);
+            $this->loadModel('Resources');
+            $test = $this->Resources->find('all', [
+                'limit' => 10,
+                'offset' => $offset,
+                'group' => 'setup_id'
+            ])->where([
+                'OR' => $qcond,
+                'Resources.type' => 'SETUP_PRODUCT'
+            ]);
 
             /* Query featured image and infos for each setup found */
             $ncond = array();
-            foreach ($test as $key) {
+            foreach($test as $key)
+            {
                 array_push($ncond, ['Resources.setup_id' => $key->setup_id]);
             }
 
-            if(!empty($ncond)){
-                $conditions = array('OR' => $ncond, 'Resources.type' => 'SETUP_FEATURED_IMAGE');            
+            if(!empty($ncond))
+            {
+                // To avoid a additional loop, we fetched here only the published setups
+                $setups = $this->Resources->find('all', [
+                    'contain' => [
+                        'Setups' => function($q) {
+                            return $q->autoFields(false)
+                            ->select([
+                                'title',
+                                'user_id',
+                                'creationDate'
+                            ])->where([
+                                'status' => 'PUBLISHED'
+                            ]);
+                        }
+                    ]
+                ])->where([
+                    'OR' => $ncond,
+                    'Resources.type' => 'SETUP_FEATURED_IMAGE'
+                ])->order([
+                    'Setups.creationDate' => 'DESC'
+                ])->all()->toArray();
 
-                $setups = $this->Resources->find('all', array('contain' => array('Setups' => function ($q) {return $q->autoFields(false)->select(['title', 'user_id', 'creationDate']);})))->where($conditions)->order(['Setups.creationDate' => 'DESC']);
+                if(sizeof($setups) == 0)
+                {
+                    $setups = "noresult";
+                }
             }
 
-            else{
+            else
+            {
                 $setups = "noresult";
             }
         }
 
-        else{
+        else
+        {
             $setups = "noquery";
         }
 

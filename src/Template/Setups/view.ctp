@@ -35,7 +35,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <a class="featured-user" href="<?= $this->Url->build('/users/'.$additionalData['owner']['id']) ?>">
                     <img alt="Profile picture of <?= $additionalData['owner']['name'] ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
                 </a>
-                <h3><?= $setup->title ?></h3>
+                <h3><?= $setup->title ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
                 <p>
                     <?= __('Shared by') ?> <?php if($additionalData['owner']['name']){echo $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]);}else{echo "Unknown";} ?><?php if($additionalData['owner']['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($additionalData['owner']['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . $setup->author ; endif?>
                 </p>
@@ -81,7 +81,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div id="basics-edit" class="form-action-edit show-edit">
 
                 <?php
-                    echo $this->Form->control('title', ['label' => __('Title'), 'required' => true, 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title]);
+                    echo $this->Form->control('title', ['label' => __('Title'), 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title, 'required' => 'true']);
                     echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 5000, 'default' => $setup->description]);
                 ?>
                 <br />
@@ -107,7 +107,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <div class="modal-footer">
                         <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
-                        <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                        <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
                     </div>
 
             </div>
@@ -133,7 +133,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <a href="#infos-edit" class="button next float-right"><?= __('Next step') ?></a>
                     <a href="#basics-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                    <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                    <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
 
                 </div>
 
@@ -164,20 +164,21 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 {
                     echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
                 }
+                
+                echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit', 'class' => 'hidden']);
             ?>
-
 
                 <div class="modal-footer">
 
-                    <?= $this->Form->submit(__('Edit'), ['class' => 'float-right button']); ?>
+                    <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-edit']); ?>
+                    <?= $this->Form->end(); ?>
                     <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                    <?= $this->Html->link(__('<i></i>'), ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                    <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                    <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
                     
                 </div>
-
             </div>
         </fieldset>
-        <?= $this->Form->end(); ?>
     </div>
 
     <div id="embed_twitch_modal" class="lity-hide">

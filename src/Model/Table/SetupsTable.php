@@ -26,6 +26,7 @@ use Cake\ORM\TableRegistry;
  */
 class SetupsTable extends Table
 {
+    public $status = ['PUBLISHED' => 'Public', 'DRAFT' => 'Private', 'REJECTED' => 'Rejected'];
 
     /**
      * Initialize method
@@ -114,6 +115,9 @@ class SetupsTable extends Table
             ->dateTime('creationDate')
             ->notEmpty('creationDate');
 
+        $validator
+            ->notEmpty('status');
+
         return $validator;
     }
 
@@ -128,12 +132,31 @@ class SetupsTable extends Table
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
+        $rules->
+            add(function($entity) {
+                if(isset($entity['status']) and array_key_exists($entity['status'], $this->status))
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+            },
+            'statusIntegrity_rule');
+
         return $rules;
     }
 
     public function isOwnedBy($setup_id, $user_id)
     {
         return $this->exists(['id' => $setup_id, 'user_id' => $user_id]);
+    }
+
+    public function isPublic($setup_id)
+    {
+        return $this->exists(['id' => $setup_id, 'status' => 'PUBLISHED']);
     }
 
     public function afterDelete(Event $event, EntityInterface $entity)

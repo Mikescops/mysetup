@@ -801,3 +801,17 @@ function markasread(id) {
         instance.update(popper);
     }
 }
+
+
+/*** DRAFT ADD MODAL ***/
+
+function saveasdraftadd(){
+  $("#status-add").val('DRAFT');
+   $('#publish-add').click();
+}
+
+
+function saveasdraftedit(){
+  $("#status-edit").val('DRAFT');
+   $('#publish-edit').click();
+}

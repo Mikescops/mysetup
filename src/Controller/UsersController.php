@@ -37,8 +37,25 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        $conditions = null;
+
+        // If the visitor is not the owner (nor an admin), let's only send to the View the PUBLISHED setups
+        if($id != $this->request->session()->read('Auth.User.id') and !parent::isAdminBySession($this->request->session()))
+        {
+            $conditions = ['Setups.status' => 'PUBLISHED'];
+        }
+
         $user = $this->Users->get($id, [
-            'contain' => ['Setups' => ['sort' => ['Setups.creationDate' => 'DESC']], 'Comments', 'Resources']
+            'contain' => [
+                'Setups' => [
+                    'sort' => [
+                        'Setups.creationDate' => 'DESC'
+                    ],
+                    'conditions' => $conditions
+                ],
+                'Comments',
+                'Resources'
+            ]
         ]);
 
         $fimage = [];

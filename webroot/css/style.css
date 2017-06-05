@@ -121,6 +121,10 @@ footer a{
 	padding: 8px;
 }
 
+.tippy-tooltip{
+	font-size: 14px!important;
+}
+
  /*********** INDEX CSS ***********/
 
 .home_slider{
@@ -1401,6 +1405,16 @@ nav {
 	background-color: #ef1919;
 	border: .1rem solid #b30b0b;
 	padding: 9px;
+}
+
+.button.draft{
+	background-color: #ef5d19;
+	border: .1rem solid #e6822e;
+	padding: 9px;
+}
+
+.button.next{
+	padding: 0 10px;
 }
 
 
