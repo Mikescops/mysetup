@@ -224,7 +224,7 @@ class SetupsController extends AppController
                     $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $setup->user_id, true);
                 }
 
-                $this->Flash->success(__('The setup has been saved.'));
+                $this->Flash->success(__('The setup has been updated.'));
             }
 
             else
@@ -272,11 +272,25 @@ class SetupsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['view', 'search']);
+        $this->Auth->allow(['search']);
     }
 
     public function isAuthorized($user)
     {
+        if($this->request->action === 'view')
+        {
+            // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner...
+            if(!$this->Setups->isPublic((int)$this->request->params['pass'][0]) and !$this->Setups->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+            {
+                return false;
+            }
+
+            else
+            {
+                return true;
+            }
+        }
+
         if(isset($user))
         {
             if(in_array($this->request->action, ['edit', 'delete']))

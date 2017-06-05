@@ -154,6 +154,11 @@ class SetupsTable extends Table
         return $this->exists(['id' => $setup_id, 'user_id' => $user_id]);
     }
 
+    public function isPublic($setup_id)
+    {
+        return $this->exists(['id' => $setup_id, 'status' => 'PUBLISHED']);
+    }
+
     public function afterDelete(Event $event, EntityInterface $entity)
     {
         // Read or not, we just get rid of each notification referencing this (deleted) setup
