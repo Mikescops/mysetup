@@ -1,0 +1,1118 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2017-06-06 22:47+0200\n"
+"PO-Revision-Date: 2017-06-06 23:03+0200\n"
+"Last-Translator: \n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+
+#: Controller/AppController.php:270
+msgid "liked your setup"
+msgstr "ha amado tu configuración"
+
+#: Controller/ArticlesController.php:83
+msgid "You need a featured image with this article !"
+msgstr "¡ Necesitas una imagen con este artículo !"
+
+#: Controller/ArticlesController.php:94;163
+msgid "The article has been saved."
+msgstr "El artículo ha sido guardado."
+
+#: Controller/ArticlesController.php:102;176
+msgid "The article could not be saved. Please, try again."
+msgstr "El artículo no pudo ser guardado."
+
+#: Controller/ArticlesController.php:203
+msgid "The article has been deleted."
+msgstr "El artículo ha sido eliminado."
+
+#: Controller/ArticlesController.php:209
+msgid "The article could not be deleted. Please, try again."
+msgstr "El artículo no pudo ser eliminado."
+
+#: Controller/CommentsController.php:55;103
+msgid "The comment has been saved."
+msgstr "El comentario ha sido guardado "
+
+#: Controller/CommentsController.php:62
+msgid "commented your setup"
+msgstr "ha comentado tu configuración"
+
+#: Controller/CommentsController.php:68;108
+msgid "The comment could not be saved. Please, try again."
+msgstr "El comentario no pudo ser guardado. Por favor, intenta de nuevo."
+
+#: Controller/CommentsController.php:74 Controller/UsersController.php:92
+msgid ""
+"Google's CAPTCHA has detected you as a bot, sorry ! If you're a REAL human, "
+"please re-try :)"
+msgstr ""
+"¡ Lo sentimos, el CAPTCHA de Google te ha detectado como un robot ! Si de "
+"verdad eres humano, intentalo otra vez por favor :)"
+
+#: Controller/CommentsController.php:130
+msgid "The comment has been deleted."
+msgstr "El comentario ha sido borrado."
+
+#: Controller/CommentsController.php:132
+msgid "The comment could not be deleted. Please, try again."
+msgstr "El comentario no pudo ser borrado. Por favor, intenta de nuevo. "
+
+#: Controller/SetupsController.php:121
+msgid "You need a featured image with this setup !"
+msgstr "¡ Necesitas una imagen con tu configuración !"
+
+#: Controller/SetupsController.php:137
+msgid "The setup has been saved."
+msgstr "La configuración ha sido guardada."
+
+#: Controller/SetupsController.php:143;232
+msgid "The setup could not be saved. Please, try again."
+msgstr "No se pudo guardar la configuración. Por favor, intenta de nuevo."
+
+#: Controller/SetupsController.php:227
+msgid "The setup has been updated."
+msgstr "La configuración ha sido actualizada."
+
+#: Controller/SetupsController.php:255
+msgid "The setup has been deleted."
+msgstr "La configuración ha sido eliminada."
+
+#: Controller/SetupsController.php:257
+msgid "The setup could not be deleted. Please, try again."
+msgstr "No se pudo eliminar la configuración. Por favor, intenta de nuevo."
+
+#: Controller/UsersController.php:126
+msgid "Your account has been created, check your email to verify your account"
+msgstr "Tu cuenta ha sido creada, comprueba tu buzón para validar tu cuenta."
+
+#: Controller/UsersController.php:132
+msgid "The user could not be saved. (Is this address already taken ?)"
+msgstr ""
+"El usuario no pudo ser guardado. (¿ Quizá esta dirección ya sea utilizada ?)"
+
+#: Controller/UsersController.php:139;183
+msgid "These passwords do not match. Please try again."
+msgstr "Las contraseñas no corresponden. Por favor, intenta de nuevo."
+
+#: Controller/UsersController.php:210
+msgid "The user has been updated."
+msgstr "El usuario ha sido actualizado."
+
+#: Controller/UsersController.php:215
+msgid "The user could not be updated. Please, try again."
+msgstr "El usuario no pudo ser actualizado. Por favor, intenta de nuevo."
+
+#: Controller/UsersController.php:240
+msgid "The user has been deleted."
+msgstr "El usuario ha sido eliminado."
+
+#: Controller/UsersController.php:242
+msgid "The user could not be deleted. Please, try again."
+msgstr "El usuario no pudo ser eliminado. Por favor, intenta de nuevo."
+
+#: Controller/UsersController.php:248
+msgid "You just CANNOT delete the admin user of the website..."
+msgstr "Es IMPOSIBLE eliminar el administrador del sitio..."
+
+#: Controller/UsersController.php:266
+msgid "You are already logged in."
+msgstr "Ya estás conectado."
+
+#: Controller/UsersController.php:276
+msgid "Your account is not verified, check your emails !"
+msgstr ""
+"¡ Tu cuenta no está autentificada, por favor comprueba tu buzón electrónico !"
+
+#: Controller/UsersController.php:291;470
+msgid "You are successfully logged in !"
+msgstr "¡ Tu conexión es un éxito !"
+
+#: Controller/UsersController.php:298
+msgid "Username or password is incorrect"
+msgstr "El nombre de usuario o la contraseña es incorrecta"
+
+#: Controller/UsersController.php:307
+msgid "You are now logged out, see you soon !"
+msgstr "Estás desconectado, hasta pronto !"
+
+#: Controller/UsersController.php:313
+msgid "You can't logout because you're not connected."
+msgstr "No puedes desconectarte porque no estás conectado."
+
+#: Controller/UsersController.php:346
+msgid "An email has been sent to this email address !"
+msgstr "Un correo electronico ha sido mandado a tu direccion"
+
+#: Controller/UsersController.php:352;366
+msgid "Internal error, please try again."
+msgstr "Error interna, intenta de nuevo"
+
+#: Controller/UsersController.php:359
+msgid ""
+"This email address does not exist in our database. Are you sure you that you "
+"have an account ?"
+msgstr ""
+"Esta dirección no existe en nuestra base de datos. Estás seguro que tienes "
+"una cuenta ?"
+
+#: Controller/UsersController.php:390;546
+msgid "Your account is now activated, you're now logged in ;)"
+msgstr "Tu cuenta ya esta activada, ahora estás conectado ;)"
+
+#: Controller/UsersController.php:393;549
+msgid "We advise you to edit your profile (use the panel at the top)..."
+msgstr ""
+"Te recomendamos que modifique su perfil (utilice el panel en la parte "
+"superior)..."
+
+#: Controller/UsersController.php:394;550
+msgid "... in order to add a profile picture ! You'd look better :P"
+msgstr "... para añadir una foto de perfil ! Te verías mejor: P"
+
+#: Controller/UsersController.php:401
+msgid "Your token is invalid"
+msgstr "Tu sesión es invalida"
+
+#: Controller/UsersController.php:408
+msgid "This request is invalid"
+msgstr "Esta recuesta es invalida"
+
+#: Controller/UsersController.php:438;456
+msgid "We could not access Twitch's data"
+msgstr "No pudimos acceder a los datos de Twitch"
+
+#: Controller/UsersController.php:480
+msgid "Your account has just been linked to your Twitch one !"
+msgstr "Tu cuenta acaba de ser vinculada a tu Twitch !"
+
+#: Controller/UsersController.php:487
+msgid "An error occurred while logging you in"
+msgstr "Se ha producido un error al iniciar sesión"
+
+#: Controller/UsersController.php:497
+msgid ""
+"The email address of your Twitch account has not been verified. We can't "
+"create your account yet"
+msgstr ""
+"Tu correo electrónico de tu cuenta de Twitch no se ha verificado. No podemos "
+"crear tu cuenta todavía"
+
+#: Controller/UsersController.php:530
+msgid ""
+"Your profile picture could not be resized, converted to a PNG format or "
+"saved... Please contact an administrator."
+msgstr ""
+"Una de tus imágenes no pudo ser convertida en PNG, ajustada o guardada... "
+"Por favor, contacta con un administrador."
+
+#: Controller/UsersController.php:555
+msgid "An error occurred while saving your account"
+msgstr "Se ha producido un error al guardar tu cuenta"
+
+#: Model/Table/ArticlesTable.php:114
+msgid ""
+"An internal error occurred while saving your image... Please contact an "
+"administrator."
+msgstr "Se produjo un error... Por favor, contacta con un administrador."
+
+#: Model/Table/ArticlesTable.php:127
+msgid ""
+"Your image could not be converted to JPG, compressed, resized or saved... "
+"Please contact an administrator."
+msgstr ""
+"Tu imagen no pudo ser convertida en JPG, comprimida, ajustada o guardada... "
+"Por favor, contacta con un administrador."
+
+#: Model/Table/ArticlesTable.php:138
+msgid "Your image could not be saved."
+msgstr "No se pudo guardar la imagen"
+
+#: Model/Table/ArticlesTable.php:146
+msgid ""
+"Your image does not validate our rules... Please contact an administrator."
+msgstr ""
+"Tu imagen no es conforme con nuestras reglas... Por favor, contacta un con "
+"administrador."
+
+#: Model/Table/CommentsTable.php:74
+msgid "The comment is too long (more than 500 characters)"
+msgstr "Este comento es demasiado largo (más de 500 caracteres)"
+
+#: Model/Table/ResourcesTable.php:159;232;288
+msgid "Internal error, we couldn't save your setup."
+msgstr "Error interna, no pudimos guardar tu configuracion"
+
+#: Model/Table/ResourcesTable.php:164;191;237;293
+msgid ""
+"One of your resources could not be saved... Please contact an administrator."
+msgstr "Uno de tus datos no pudo ser guardado... Por favor, intenta de nuevo."
+
+#: Model/Table/ResourcesTable.php:171
+msgid ""
+"One of the products you chose does not validate our rules... Please contact "
+"an administrator."
+msgstr ""
+"Uno de los productos que elegiste no valida nuestras reglas... Por favor, "
+"contacta con un administrador."
+
+#: Model/Table/ResourcesTable.php:186
+msgid ""
+"An internal error occurred while saving your images... Please contact an "
+"administrator."
+msgstr "Se produjo un error... Por favor, contacta con un administrador."
+
+#: Model/Table/ResourcesTable.php:216
+msgid ""
+"One of your image could not be converted to JPG, compressed, resized or "
+"saved... Please contact an administrator."
+msgstr ""
+"Una de tus imágenes no pudo ser convertida en JPG, comprimida, ajustada o "
+"guardada... Por favor, contacta con un administrador."
+
+#: Model/Table/ResourcesTable.php:249
+msgid "One of the file you uploaded could not be saved."
+msgstr "Uno de los archivos que subiste no pudo ser guardado."
+
+#: Model/Table/ResourcesTable.php:255
+msgid ""
+"One of the files you uploaded does not validate our rules... Please contact "
+"an administrator."
+msgstr ""
+"Uno de los archivos que subiste no es conforme con nuestras reglas... Por "
+"favor, contacta un con administrador."
+
+#: Model/Table/ResourcesTable.php:300;306
+msgid ""
+"The video link you chose does not validate our rules... Please contact an "
+"administrator."
+msgstr ""
+"El enlace vídeo que elegiste no es conforme con nuestras normas... Por "
+"favor, contacta con un administrador."
+
+#: Model/Table/SetupsTable.php:99
+msgid "This title is too long (more than 48 characters)"
+msgstr "Este título es demasiado largo (más de 48 caracteres)"
+
+#: Model/Table/SetupsTable.php:105
+msgid "This description is too long (more than 5000 characters)"
+msgstr "Esta descripción es demasiada larga (más de 5000 caracteres)"
+
+#: Model/Table/UsersTable.php:104
+msgid "We need a valid E-mail address"
+msgstr "Necesitamos una dirección electrónica valida."
+
+#: Model/Table/UsersTable.php:110
+msgid "The password has to contain more than 8 characters"
+msgstr "La contraseña debe tener más de 8 carácteres."
+
+#: Model/Table/UsersTable.php:194
+msgid ""
+"An internal error occurred while creating your profile picture. Please "
+"contact an administrator."
+msgstr ""
+"Un error interno occurió durante la creación de tu foto de perfil. Por "
+"favor, contacta con un administrador."
+
+#: Model/Table/UsersTable.php:200
+msgid ""
+"Your default picture could not be set... Please contact an administrator."
+msgstr ""
+"Tu imagen por defecto no pudo ser establecida... Por favor, contacta con un "
+"administrador."
+
+#: Model/Table/UsersTable.php:210
+msgid ""
+"An internal error occurred while saving your profile picture. Please contact "
+"an administrator."
+msgstr ""
+"Un error interno occurió al guardar tu foto de perfil. Por favor, contacta "
+"con un administrador."
+
+#: Model/Table/UsersTable.php:224
+msgid ""
+"Your profile picture could not be compressed, resized, converted to a PNG "
+"format or saved... Please contact an administrator."
+msgstr ""
+"Una de tus imágenes no pudo ser convertida en PNG, comprimida, ajustada o "
+"guardada... Por favor, contacta con un administrador."
+
+#: Model/Table/UsersTable.php:230
+msgid "Your profile picture could not be saved."
+msgstr "No se pudo guardar tu foto de perfil."
+
+#: Model/Table/UsersTable.php:236
+msgid ""
+"The file you uploaded does not validate our rules... Please contact an "
+"administrator."
+msgstr ""
+"El archivo que subiste no es conforme con nuestras normas... Por favor, "
+"contacta con un administrador."
+
+#: Template/Articles/add.ctp:11
+msgid "Add post"
+msgstr "Añadir publicación"
+
+#: Template/Articles/add.ctp:24 Template/Layout/default.ctp:124
+#: Template/Users/view.ctp:115
+msgid "Submit"
+msgstr "Subir"
+
+#: Template/Articles/edit.ctp:11
+msgid "Edit post"
+msgstr "Editar publicación"
+
+#: Template/Articles/edit.ctp:24 Template/Setups/view.ctp:59;309
+msgid "Edit"
+msgstr "Editar"
+
+#: Template/Articles/index.ctp:42 Template/Articles/view.ctp:66
+#: Template/Pages/home.ctp:156 Template/Pages/popular.ctp:108
+#: Template/Pages/recent.ctp:111 Template/Setups/search.ctp:64
+#: Template/Users/view.ctp:132
+msgid "Tweets by @mysetup_co"
+msgstr "Tweets de @mysetup_co"
+
+#: Template/Articles/view.ctp:57
+msgid "Edit this article"
+msgstr "Editar esta publicación"
+
+#: Template/Articles/view.ctp:59
+msgid "Delete this article"
+msgstr "Eliminar esta publicación"
+
+#: Template/Articles/view.ctp:59
+msgid "Are you sure you want to delete this article ?"
+msgstr "¿ Estás seguro que quieres eliminar este publicacion ?"
+
+#: Template/Articles/view.ctp:63
+msgid "Go back to list"
+msgstr "Volver a la lista"
+
+#: Template/Comments/index.ctp:10
+msgid "Comments"
+msgstr "Comentarios"
+
+#: Template/Comments/index.ctp:19 Template/Notifications/index.ctp:14
+#: Template/Resources/index.ctp:20 Template/Setups/index.ctp:101
+#: Template/Users/index.ctp:21
+msgid "Actions"
+msgstr "Acciónes"
+
+#: Template/Comments/index.ctp:31 Template/Setups/index.ctp:114
+#: Template/Users/index.ctp:34
+msgid "View"
+msgstr "Ver"
+
+#: Template/Comments/index.ctp:32 Template/Resources/index.ctp:33
+#: Template/Setups/index.ctp:115 Template/Setups/view.ctp:277
+#: Template/Users/index.ctp:35
+msgid "Delete"
+msgstr "Eliminar"
+
+#: Template/Comments/index.ctp:32
+msgid "Are you sure you want to delete this comment ?"
+msgstr "¿ Estás seguro que quieres eliminar este comentario ?"
+
+#: Template/Comments/index.ctp:49 Template/Notifications/index.ctp:42
+#: Template/Resources/index.ctp:50 Template/Setups/index.ctp:132
+#: Template/Users/index.ctp:52
+msgid "first"
+msgstr "Primero"
+
+#: Template/Comments/index.ctp:50 Template/Notifications/index.ctp:43
+#: Template/Resources/index.ctp:51 Template/Setups/index.ctp:133
+#: Template/Users/index.ctp:53
+msgid "previous"
+msgstr "precedente"
+
+#: Template/Comments/index.ctp:52 Template/Notifications/index.ctp:45
+#: Template/Resources/index.ctp:53 Template/Setups/index.ctp:135
+#: Template/Users/index.ctp:55
+msgid "next"
+msgstr "siguiente"
+
+#: Template/Comments/index.ctp:53 Template/Notifications/index.ctp:46
+#: Template/Resources/index.ctp:54 Template/Setups/index.ctp:136
+#: Template/Users/index.ctp:56
+msgid "last"
+msgstr "último"
+
+#: Template/Comments/index.ctp:55 Template/Notifications/index.ctp:48
+#: Template/Resources/index.ctp:56 Template/Setups/index.ctp:138
+#: Template/Users/index.ctp:58
+msgid ""
+"Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
+"total"
+msgstr ""
+"Pagina {{page}} de {{pages}}, mostrando {{current}} elemento(s) entre un "
+"total de {{count}}"
+
+#: Template/Layout/default.ctp:62;261
+msgid "Add Setup"
+msgstr "Añadir una configuración"
+
+#: Template/Layout/default.ctp:66;265
+msgid "Admin Panel"
+msgstr "Panel de Administración"
+
+#: Template/Layout/default.ctp:71
+msgid "Categories"
+msgstr "Categorías"
+
+#: Template/Layout/default.ctp:73;271
+msgid "Most recent"
+msgstr "Lo más reciente"
+
+#: Template/Layout/default.ctp:74;272 Template/Pages/popular.ctp:65
+msgid "Popular this week"
+msgstr "Populares esta semana"
+
+#: Template/Layout/default.ctp:81;278
+msgid "My Setups"
+msgstr "Mis Configuraciónes"
+
+#: Template/Layout/default.ctp:82;279
+msgid "Edit Profile"
+msgstr "Editar el perfil"
+
+#: Template/Layout/default.ctp:84;281
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: Template/Layout/default.ctp:90 Template/Users/view.ctp:80
+msgid "Change only what you want !"
+msgstr "¡ Puedes editar lo que quieras !"
+
+#: Template/Layout/default.ctp:99
+msgid "Change my profile picture"
+msgstr "Cambiar mi foto del perfil"
+
+#: Template/Layout/default.ctp:111 Template/Users/login.ctp:45
+#: Template/Users/view.ctp:95
+msgid "Name"
+msgstr "Apellido"
+
+#: Template/Layout/default.ctp:112 Template/Users/login.ctp:76
+#: Template/Users/view.ctp:96
+msgid "Email address"
+msgstr "Dirección electrónica"
+
+#: Template/Layout/default.ctp:116 Template/Users/login.ctp:28;48
+#: Template/Users/view.ctp:104
+msgid "Password"
+msgstr "Contraseña"
+
+#: Template/Layout/default.ctp:117 Template/Users/view.ctp:105
+msgid "Confirm password"
+msgstr "Confirmar la contraseña"
+
+#: Template/Layout/default.ctp:119
+msgid "Change my password"
+msgstr "Cambiar la contraseña"
+
+#: Template/Layout/default.ctp:127
+msgid "Delete my account"
+msgstr "Eliminar mi cuenta"
+
+#: Template/Layout/default.ctp:132;285
+msgid "Connect with"
+msgstr "Se conectar con"
+
+#: Template/Layout/default.ctp:136
+msgid "Sign In / Up"
+msgstr "Registro / Entrar"
+
+#: Template/Layout/default.ctp:153 Template/Setups/view.ctp:71
+msgid "Basics"
+msgstr "Lo Esencial"
+
+#: Template/Layout/default.ctp:156 Template/Setups/view.ctp:74
+msgid "Components"
+msgstr "Componentes"
+
+#: Template/Layout/default.ctp:159 Template/Setups/view.ctp:77
+msgid "More infos"
+msgstr "Más Información"
+
+#: Template/Layout/default.ctp:165
+msgid "Title *"
+msgstr "Título *"
+
+#: Template/Layout/default.ctp:166 Template/Setups/view.ctp:85
+msgid "Description"
+msgstr "Descripción"
+
+#: Template/Layout/default.ctp:171
+msgid "Click to add a featured image *"
+msgstr "Haz clic para agregar una imagen *"
+
+#: Template/Layout/default.ctp:190
+msgid "required fields"
+msgstr "campos requeridos"
+
+#: Template/Layout/default.ctp:194;209 Template/Setups/view.ctp:109;134
+msgid "Next step"
+msgstr "Siguiente paso"
+
+#: Template/Layout/default.ctp:196;211;237
+msgid "Save as draft"
+msgstr "Guardar como borrador"
+
+#: Template/Layout/default.ctp:203 Template/Setups/view.ctp:118
+msgid "Search for components..."
+msgstr "Buscar componentes..."
+
+#: Template/Layout/default.ctp:220 Template/Setups/view.ctp:147
+msgid "Video (Youtube, Dailymotion, Twitch, ...)"
+msgstr "Vídeo (YouTube, Dailymotion, Twitch, ...)"
+
+#: Template/Layout/default.ctp:225 Template/Setups/view.ctp:157
+msgid "It's not my setup !"
+msgstr "¡ Esta no es mi configuración !"
+
+#: Template/Layout/default.ctp:226 Template/Setups/view.ctp:158
+msgid "Setup's owner"
+msgstr "Propietario de la configuración"
+
+#: Template/Layout/default.ctp:228
+msgid "author"
+msgstr "autor"
+
+#: Template/Layout/default.ctp:235 Template/Setups/view.ctp:173
+msgid "Publish"
+msgstr "Publicar"
+
+#: Template/Layout/default.ctp:284
+msgid "Log in"
+msgstr "Iniciar sesión"
+
+#: Template/Layout/default.ctp:307
+msgid "Partners"
+msgstr "Socios "
+
+#: Template/Layout/default.ctp:315
+msgid "About us"
+msgstr "Nosotros "
+
+#: Template/Layout/default.ctp:317
+msgid "Our Stories"
+msgstr "Nuestro Blog"
+
+#: Template/Layout/default.ctp:318 Template/Pages/team.ctp:12
+msgid "Our Team"
+msgstr "Nuestro Equipo"
+
+#: Template/Layout/default.ctp:319
+msgid "Legal Mentions"
+msgstr "Aviso legal"
+
+#: Template/Layout/default.ctp:323
+msgid "Social"
+msgstr "Social"
+
+#: Template/Layout/default.ctp:332
+msgid "All rights reserved"
+msgstr "Todos los derechos reservados"
+
+#: Template/Layout/error.ctp:35
+msgid "Error"
+msgstr "Error"
+
+#: Template/Layout/error.ctp:43
+msgid "Back"
+msgstr "Atrás"
+
+#: Template/Notifications/index.ctp:8
+msgid "Notifications"
+msgstr "Notificaciones"
+
+#: Template/Pages/home.ctp:59
+msgid "Search a component... Find a cool setup !"
+msgstr "Buscar un componente... ¡ Encontrar una configuración que mola !"
+
+#: Template/Pages/home.ctp:135
+msgid "Need more ? Click to see the latest !"
+msgstr "¿ Quieres más ? ¡ Haz click para ver lo último !"
+
+#: Template/Pages/home.ctp:145
+msgid "Login with Twitch and create my Setup !"
+msgstr "¡ Inicia sesión con Twitch y crea mi programa de configuración !"
+
+#: Template/Pages/legals.ctp:12
+msgid "Site Publisher"
+msgstr "Editor del sitio"
+
+#: Template/Pages/legals.ctp:18
+msgid "Head of Publication"
+msgstr "Jefe de la publicación"
+
+#: Template/Pages/legals.ctp:20;21
+msgid "Co-founder"
+msgstr "cofundador"
+
+#: Template/Pages/legals.ctp:24
+msgid "Personal Data"
+msgstr "Datos personales"
+
+#: Template/Pages/legals.ctp:26
+msgid ""
+"Your personal data may be collected when browsing this website. Emails sent "
+"to mysetup.co and the email addresses used to send information may also be "
+"stored. Pursuant to France’s Data Protection Act modified on 6 January 1978, "
+"you have the right to access and rectify your personal data. You also have "
+"the right to object the use of this information provided you have legitimate "
+"reason. You can exercise this right and obtain information concerning your "
+"personal data by writing to the Head of Publication."
+msgstr ""
+"Puede ser que tus datos personales sean recabados cuando estás navegando en "
+"esta web. Los correos electrónicos y las direcciónes electrónicas que "
+"utilizas para mandar informaciónes también pueden ser recabados. Conforme a "
+"la ley francesa de protección de datos personales enmendada el 6 de enero de "
+"1978, tienes derecho a rectificar y a acceder a tus datos personales. "
+"También tienes derecho a rechazar el uso de estas informaciónes, si tienes "
+"una razón justa. Puedes ejercer este derecho y obtener las informaciónes que "
+"tratan de tus datos personales escribiendo al Jefe de la publicación. "
+
+#: Template/Pages/legals.ctp:28
+msgid "Publishing Policy"
+msgstr "Política editorial"
+
+#: Template/Pages/legals.ctp:30
+msgid ""
+"By registering on mysetup.co, you agree with the following rules. Content "
+"published on this website must be related with setups. Any content judged "
+"not appropriate will be moderated without warning. Users who do not respect "
+"the pre-established rules several times will see their account banned."
+msgstr ""
+"Al registrarse en mysetup.co, tú aceptas las siguientes reglas. Contenidos "
+"publicados en este sitio web deben estar relacionados con configuraciones. "
+"Cualquier contenido no juzgado adecuado será moderado sin previo aviso. Los "
+"usuarios que no respetan  varias veces las reglas previamente establecidas "
+"verán su cuenta proscribido."
+
+#: Template/Pages/legals.ctp:32
+msgid "Use of Cookies"
+msgstr "Uso de cookies"
+
+#: Template/Pages/legals.ctp:34
+msgid ""
+"The user is informed that during his visits to the site, a cookie can be "
+"installed automatically on his navigator software. A cookie is a file "
+"containing data that record information relating to the navigation of the "
+"user on the site but which do not permit to identify it."
+msgstr ""
+"El usuario está informado que durante sus visitas al sitio, una cookie puede "
+"instalarse automáticamente en su navegador. Una cookie es un archivo que "
+"contiene datos que tratan de la navegación del usuario en el sitio pero sin "
+"permitir su indentificación."
+
+#: Template/Pages/legals.ctp:37
+msgid "Partnership Disclaimer"
+msgstr "Descargo de Responsabilidad de la Asociación"
+
+#: Template/Pages/legals.ctp:38
+msgid ""
+"mySetup.co is a participant in the Amazon Services LLC Associates Program, "
+"an affiliate advertising program. In other terms, links to Amazon Stores use "
+"an affiliate identification."
+msgstr ""
+"MySetup.co es un participante en el \"Programa de Asociados de Amazon "
+"Services LLC\", un programa de publicidad de afiliados. En otros términos, "
+"los enlaces a tiendas de Amazon utilizan una identificación de afiliado."
+
+#: Template/Pages/legals.ctp:41
+msgid "Credits"
+msgstr "Créditos "
+
+#: Template/Pages/legals.ctp:43
+msgid ""
+"© 2017 mysetup.co – All rights reserved. Total or partial production or "
+"imitation of said documents without the express prior written consent of "
+"mysetup.co is strictly prohibited and constitutes a punishable violation "
+"under France’s Intellectual Property Code. All brands and trademarks on "
+"mysetup.co belongs to their respective owners."
+msgstr ""
+"© 2017 mysetup.co – Todos los derechos reservados. La reproducción completa "
+"o parcial o la imitación de los mismos sin en consentimiento previo por "
+"escrito de mysetup.co está estrictamente prohibida y constituye una "
+"violación punible bajo el Código de Propiedad Intelectual de Francia. Todas "
+"las marcas y marcas registradas de mysetup.co pertenecen a sus respectivos "
+"propietarios."
+
+#: Template/Pages/q&a.ctp:4
+msgid "Q&A"
+msgstr "P&R"
+
+#: Template/Pages/q&a.ctp:12
+msgid "Q&A - We answer common questions"
+msgstr "P&R - Respondemos a preguntas comunes"
+
+#: Template/Pages/q&a.ctp:15;27
+msgid "I didn't receive the verification mail"
+msgstr "No recibí el correo de verificación"
+
+#: Template/Pages/q&a.ctp:16;32
+msgid "I can't find a product with the product search"
+msgstr "No encuentro un producto con la búsqueda de productos"
+
+#: Template/Pages/q&a.ctp:17;37
+msgid "The product search is not responding"
+msgstr "La búsqueda de productos no responde"
+
+#: Template/Pages/q&a.ctp:18;42
+msgid "My setup was not created due to the images I uploaded"
+msgstr "Mi configuración no se creó a causa de las imágenes que subí"
+
+#: Template/Pages/q&a.ctp:19;47
+msgid "I can't add a Youtube / Twitch video on my setup"
+msgstr "No puedo añadir un video de Youtube / Twitch en mi configuración"
+
+#: Template/Pages/q&a.ctp:20;52
+msgid "How to use the Markdown"
+msgstr "Cómo usar el Markdown"
+
+#: Template/Pages/q&a.ctp:21;57
+msgid "My setup has been refused, why ?"
+msgstr "Mi configuración se ha rechazado, ¿ por qué ?"
+
+#: Template/Pages/q&a.ctp:28
+msgid ""
+"Check your spam folder, your mailbox may have dropped it there. If you "
+"didn't receive it within 10 minutes please contact us on our social networks."
+msgstr ""
+"Compruebe su carpeta de correo no deseado. Si no lo recibió en 10 minutos, "
+"póngase en contacto con nosotros en nuestras redes sociales."
+
+#: Template/Pages/q&a.ctp:33
+msgid ""
+"Some products does not exist in our database, because it is a special "
+"edition or it is too old. Try to find a replacement available."
+msgstr ""
+"Algunos productos no existen en nuestra base de datos, ya que es una edición "
+"especial o es demasiado antiguo. Trate de encontrar un reemplazo disponible."
+
+#: Template/Pages/q&a.ctp:38
+msgid ""
+"Sometimes the product search is busy with lot of request, please wait few "
+"moments and retry your search."
+msgstr ""
+"A veces, la búsqueda de productos está ocupada con mucha solicitud, espere "
+"unos momentos y vuelva a intentar su búsqueda."
+
+#: Template/Pages/q&a.ctp:43
+msgid ""
+"We use some rules on images to prevent abuses. Images are limited to 5Mo per "
+"image and the format should be jpg, jpeg or png."
+msgstr ""
+"Utilizamos algunas reglas sobre las imágenes para evitar abusos. Las "
+"imágenes están limitadas a 5 Mo por imagen y el formato debe ser jpg, jpeg o "
+"png."
+
+#: Template/Pages/q&a.ctp:48
+msgid ""
+"Video links must be full URI links like : \"https://www.youtube.com/watch?"
+"v=dQw4w9WgXcQ\" or \"https://player.twitch.tv/?channel=mikescops\""
+msgstr ""
+"Los enlaces de vídeo deben tener vínculos URI completos como: \"https://www."
+"youtube.com/watch?v=dQw4w9WgXcQ\" o \"https://player.twitch.tv/?"
+"channel=mikescops\""
+
+#: Template/Pages/q&a.ctp:53
+msgid "The Markdown system is similar to Github's one, please read more at : "
+msgstr "El sistema Markdown es similar al de Github, leas más en :"
+
+#: Template/Pages/q&a.ctp:58
+msgid ""
+"If your setup has been moderated and refused, you can read why in your setup "
+"description. Please create another setup and follow the moderators "
+"guidelines."
+msgstr ""
+"Si tu configuración ha sido moderada y rechazada, puedes leer por qué en su "
+"descripción de configuración. Por favor, cree otra configuración y siga las "
+"directrices de los moderadores."
+
+#: Template/Pages/recent.ctp:63
+msgid "Latest setups"
+msgstr "Ultimas configuraciones"
+
+#: Template/Resources/index.ctp:10
+msgid "Resources"
+msgstr "Recursos"
+
+#: Template/Resources/index.ctp:33
+msgid "Are you sure you want to delete this resource ?"
+msgstr "¿ Estás seguro que quieres eliminar este dato ?"
+
+#: Template/Setups/index.ctp:91
+msgid "Setups"
+msgstr "Configuraciones "
+
+#: Template/Setups/index.ctp:115
+msgid "Are you sure you want to delete this setup ?"
+msgstr "¿ Estás seguro que quieres eliminar esta configuración ?"
+
+#: Template/Setups/search.ctp:6
+msgid "Search for \""
+msgstr "Buscar \""
+
+#: Template/Setups/search.ctp:21
+msgid "No search query, no results :("
+msgstr "Sin consulta de búsqueda, no resultados :("
+
+#: Template/Setups/search.ctp:26
+msgid "We haven't found any results for this query :("
+msgstr "No se han encontrado resultados para esta consulta :("
+
+#: Template/Setups/view.ctp:38 Template/Users/view.ctp:55
+msgid "Only you can see this setup"
+msgstr "Sólo tu puede ver esta configuración"
+
+#: Template/Setups/view.ctp:40
+msgid "Shared by"
+msgstr "Compartido por"
+
+#: Template/Setups/view.ctp:40
+msgid ", created by "
+msgstr ", creado por"
+
+#: Template/Setups/view.ctp:43
+msgid "You must be logged in to like !"
+msgstr "¡ Tienes que estar conectado para darle \"me gusta\" !"
+
+#: Template/Setups/view.ctp:59
+msgid "your"
+msgstr "el tuyo"
+
+#: Template/Setups/view.ctp:59
+msgid "this"
+msgstr "esto"
+
+#: Template/Setups/view.ctp:60
+msgid "Embed it in Twitch"
+msgstr "Compartirlo en Twitch"
+
+#: Template/Setups/view.ctp:84
+msgid "Title"
+msgstr "Título"
+
+#: Template/Setups/view.ctp:110;136;177
+msgid "Save as draft (the setup will not be visible)"
+msgstr "Guardar como borrador (la configuración no será visible)"
+
+#: Template/Setups/view.ctp:176
+msgid "You are going to delete this setup ! Are you sure ?"
+msgstr "¡ Vas a eliminar esta configuración ! ¿ Estás seguro ?"
+
+#: Template/Setups/view.ctp:185
+msgid "How to embed your setup in Twitch ?"
+msgstr "¿ Cómo compartir tu configuración en Twitch ?"
+
+#: Template/Setups/view.ctp:186
+msgid "Go to your Twitch channel and toggle panel edition."
+msgstr "Ve a tu canal Twitch y después al \"panel edition\"."
+
+#: Template/Setups/view.ctp:188
+msgid "Copy the following url in the link field"
+msgstr "Pon la siguiente URL en el campo de enlace "
+
+#: Template/Setups/view.ctp:190
+msgid "And add your personal mySetup.co banner image !"
+msgstr "¡ Y añade tu foto de portada personal de mySetup.co !"
+
+#: Template/Setups/view.ctp:193
+msgid ""
+"You can even configure your Twitch Chat bot to display your link or image."
+msgstr ""
+"También puedes configurar tu robot de Twitch Chat para fijar tu enlace o tu "
+"foto."
+
+#: Template/Setups/view.ctp:251
+msgid "Watch it in video"
+msgstr "Mirarlo en vídeo"
+
+#: Template/Setups/view.ctp:260
+msgid "Wanna share your opinion ?"
+msgstr "¿ Quieres compartir tu opinión ?"
+
+#: Template/Setups/view.ctp:297
+msgid "Nice config'…"
+msgstr "Buena config'..."
+
+#: Template/Setups/view.ctp:299
+msgid "Post this comment"
+msgstr "Postear este comentario"
+
+#: Template/Setups/view.ctp:318
+msgid "You must be logged in to comment"
+msgstr "Tienes que estar conectado para comentar"
+
+#: Template/Setups/view.ctp:318
+msgid "Log me in !"
+msgstr "¡ Quiero conectarme ! "
+
+#: Template/Users/index.ctp:11
+msgid "Users"
+msgstr "Usuarios"
+
+#: Template/Users/index.ctp:35
+msgid "Are you sure you want to delete this user ?"
+msgstr "¿ Estás seguro que quieres eliminar este usuario ?"
+
+#: Template/Users/login.ctp:11;31
+msgid "Login"
+msgstr "Nombre de usuario"
+
+#: Template/Users/login.ctp:14
+msgid "Register"
+msgstr "Registro"
+
+#: Template/Users/login.ctp:17
+msgid "Reset Password"
+msgstr "Reinicializar contraseña"
+
+#: Template/Users/login.ctp:25;43
+msgid "Email"
+msgstr "Dirección electrónica"
+
+#: Template/Users/login.ctp:49
+msgid "Repeat password"
+msgstr "Confirmar contraseña"
+
+#: Template/Users/login.ctp:50
+msgid "Password should be at least 8 characters."
+msgstr "La contraseña debe tener más de 8 carácteres."
+
+#: Template/Users/login.ctp:53
+msgid "Sign up"
+msgstr "Entrar"
+
+#: Template/Users/login.ctp:71
+msgid ""
+"To reset your password enter your email and we'll send you a new temporary "
+"password."
+msgstr ""
+"Para reinicializar tu contraseña, debes entrar tu dirección electrónica y te "
+"mandaremos una nueva contraseña temporal."
+
+#: Template/Users/login.ctp:79
+msgid "Send"
+msgstr "Mandar"
+
+#: Template/Users/view.ctp:6
+msgid "Setups by "
+msgstr "Configuraciones de"
+
+#: Template/Users/view.ctp:7
+msgid "All the setups shared by "
+msgstr "Todas las configuraciones compartidas por"
+
+#: Template/Users/view.ctp:66
+msgid "There is no setup here yet..."
+msgstr "Todavia no hay configuración en esta cuenta... "
+
+#: Template/Users/view.ctp:75
+msgid "Edit this user"
+msgstr "Editar este usuario"
+
+#: Template/Users/view.ctp:100
+msgid "Change the profile picture"
+msgstr "Cambiar la foto del perfil."
+
+#: Template/Users/view.ctp:107
+msgid "Change the user password"
+msgstr "Cambiar la contraseña"
+
+#: Template/Users/view.ctp:118
+msgid "Delete this account"
+msgstr "Eliminar esta cuenta"
+
+#~ msgid ""
+#~ "Check your spam folder, your mailbox may have dropped it there. If you "
+#~ "didn't received it within 10 minutes please contact us on our social "
+#~ "networks."
+#~ msgstr ""
+#~ "Compruebe su carpeta de correo no deseado. Si no lo recibió en 10 "
+#~ "minutos, póngase en contacto con nosotros en nuestras redes sociales."
+
+#~ msgid "Our stories"
+#~ msgstr "Nuestras historias"
+
+#~ msgid "Our team"
+#~ msgstr "Nuestro equipo"
+
+#~ msgid "This description is too long (more than 500 characters)"
+#~ msgstr "Esta descripción es demasiada larga (más de 500 caractères)"
+
+#~ msgid "List Users"
+#~ msgstr "Listar usuarios"
+
+#~ msgid "List Setups"
+#~ msgstr "Listar configuraciones"
+
+#~ msgid "Setups index"
+#~ msgstr "Indice de las configuraciones"
+
+#~ msgid "Users index"
+#~ msgstr "Indice de los usuarios"
+
+#~ msgid "Resources index"
+#~ msgstr "Indice de los recursos"
+
+#~ msgid "Comments index"
+#~ msgstr "Indice de los comentarios"
+
+#~ msgid "Profile"
+#~ msgstr "Perfil"
+
+#~ msgid "Add featured image *"
+#~ msgstr "Añadir imagen."
+
+#~ msgid "A project made by Samuel Forestier and Corentin Mors."
+#~ msgstr "Un proyecto realizado por Samuel Forestier y Corentin Mors."
+
+#~ msgid ""
+#~ "Trésorier et rédacteur chez Geek Mexicain, je tiens un blog personnel "
+#~ "depuis maintenant quelques années qui, de plus, recense mes activités de "
+#~ "développement sur des projets. Étudiant INSA également !"
+#~ msgstr ""
+#~ "Tesorero y redactor en Geek Mexicain, tengo un blog personal desde hace "
+#~ "varios años y donde inventario mis actividades de desarrollo en "
+#~ "proyectos. ¡ Estudiante INSA también !"
+
+#~ msgid "List Comments"
+#~ msgstr "Listar comentarios"
+
+#~ msgid "List Resources"
+#~ msgstr "Recursos"
+
+#~ msgid "Search results for"
+#~ msgstr "Resultados de búsqueda para \""
+
+#~ msgid "Edit setup"
+#~ msgstr "Editar configuración"
+
+#~ msgid "Delete this setup"
+#~ msgstr "Eliminar esta configuración"
+
+#~ msgid "Unknown user"
+#~ msgstr "Usuario desconocido"
+
+#~ msgid "'s setups"
+#~ msgstr ": sus configuraciones"
+
+#~ msgid ""
+#~ "You didn't set your nickname ! Please click the top right menu and edit "
+#~ "your profile."
+#~ msgstr ""
+#~ "¡ No tienes apodo ! Por favor, haz click en el menú ahí arriba a la "
+#~ "derecha y edita tu perfil."
