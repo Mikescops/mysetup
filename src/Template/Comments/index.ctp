@@ -7,7 +7,7 @@
 ?>
 <div class="row">
     <div class="col-sm-12">
-        <h3><?= __('Comments') ?> - <?= $this->Paginator->counter(['format' => {{count}}]) ?></h3>
+        <h3><?= __('Comments') ?> - <?= $this->Paginator->counter(['format' => '{{count}}']) ?></h3>
         <table class="table table-striped table-responsive" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
