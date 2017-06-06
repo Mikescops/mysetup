@@ -12,7 +12,7 @@ echo $this->Html->meta('description', 'We answer common questions and issues abo
 	<h3><?= __('Q&A - We answer common questions') ?></h3>
 
 	<ol>
-		<li><a href="#q-1"><?= __("I didn't received the verification mail") ?></a></li>
+		<li><a href="#q-1"><?= __("I didn't receive the verification mail") ?></a></li>
 		<li><a href="#q-2"><?= __("I can't find a product with the product search") ?></a></li>
 		<li><a href="#q-3"><?= __("The product search is not responding") ?></a></li>
 		<li><a href="#q-4"><?= __("My setup was not created due to the images I uploaded") ?></a></li>
@@ -24,8 +24,8 @@ echo $this->Html->meta('description', 'We answer common questions and issues abo
 	<hr>
 	<br>
 
-	<h4 id="q-1"><?= __("I didn't received the verification mail") ?></h4>
-	<p><?= __("Check your spam folder, your mailbox may have dropped it there. If you didn't received it within 10 minutes please contact us on our social networks.") ?></p>
+	<h4 id="q-1"><?= __("I didn't receive the verification mail") ?></h4>
+	<p><?= __("Check your spam folder, your mailbox may have dropped it there. If you didn't receive it within 10 minutes please contact us on our social networks.") ?></p>
 
 	<br>
 

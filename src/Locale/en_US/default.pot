@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-06-05 21:03+0000\n"
+"POT-Creation-Date: 2017-06-06 20:46+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -675,7 +675,7 @@ msgid "Q&A - We answer common questions"
 msgstr ""
 
 #: Template/Pages/q&a.ctp:15;27
-msgid "I didn't received the verification mail"
+msgid "I didn't receive the verification mail"
 msgstr ""
 
 #: Template/Pages/q&a.ctp:16;32
@@ -703,7 +703,7 @@ msgid "My setup has been refused, why ?"
 msgstr ""
 
 #: Template/Pages/q&a.ctp:28
-msgid "Check your spam folder, your mailbox may have dropped it there. If you didn't received it within 10 minutes please contact us on our social networks."
+msgid "Check your spam folder, your mailbox may have dropped it there. If you didn't receive it within 10 minutes please contact us on our social networks."
 msgstr ""
 
 #: Template/Pages/q&a.ctp:33

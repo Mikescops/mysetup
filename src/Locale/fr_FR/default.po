@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-06-05 23:03+0200\n"
-"PO-Revision-Date: 2017-06-05 23:53+0200\n"
+"POT-Creation-Date: 2017-06-06 23:00+0200\n"
+"PO-Revision-Date: 2017-06-06 23:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -773,7 +773,7 @@ msgid "Q&A - We answer common questions"
 msgstr "FAQ - Nous répondons aux question courantes"
 
 #: Template/Pages/q&a.ctp:15;27
-msgid "I didn't received the verification mail"
+msgid "I didn't receive the verification mail"
 msgstr "Je n'ai pas reçu le mail de vérification"
 
 #: Template/Pages/q&a.ctp:16;32
@@ -803,12 +803,11 @@ msgstr "Mon setup a été refusé, pourquoi ?"
 #: Template/Pages/q&a.ctp:28
 msgid ""
 "Check your spam folder, your mailbox may have dropped it there. If you "
-"didn't received it within 10 minutes please contact us on our social "
-"networks."
+"didn't receive it within 10 minutes please contact us on our social networks."
 msgstr ""
-"Vérifiez votre dossier de spams, votre client mails vous l'a peut-être "
-"laissé dedans. Si vous n'avez rien reçu nul part au bout de 10 minutes, "
-"contactez-nous grâce aux réseaux sociaux."
+"Vérifiez votre dossier de spams, votre client mails l'a peut-être déplacé "
+"dedans. Si au bout de 10 minutes vous n'avez rien reçu nul part, contactez "
+"nous à l'aide des réseaux sociaux."
 
 #: Template/Pages/q&a.ctp:33
 msgid ""
@@ -1059,6 +1058,18 @@ msgstr "Changer le mot de passe de l'utilisateur"
 #: Template/Users/view.ctp:118
 msgid "Delete this account"
 msgstr "Supprimer ce compte"
+
+#~ msgid "I didn't received the verification mail"
+#~ msgstr "Je n'ai pas reçu le mail de vérification"
+
+#~ msgid ""
+#~ "Check your spam folder, your mailbox may have dropped it there. If you "
+#~ "didn't received it within 10 minutes please contact us on our social "
+#~ "networks."
+#~ msgstr ""
+#~ "Vérifiez votre dossier de spams, votre client mails vous l'a peut-être "
+#~ "laissé dedans. Si vous n'avez rien reçu nul part au bout de 10 minutes, "
+#~ "contactez-nous grâce aux réseaux sociaux."
 
 #~ msgid "An Internal Error Has Occurred :("
 #~ msgstr "Une erreur interne est survenue :("
