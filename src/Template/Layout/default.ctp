@@ -80,7 +80,6 @@
                                 <ul style="left: auto;right: -20px;">
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
-                                    <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
                                     <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
                                 </ul>
 
@@ -277,7 +276,6 @@
                             <ul>
                                 <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                 <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
-                                <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
                                 <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
                             </ul>
                         <?php else: ?>
@@ -314,17 +312,16 @@
                     <div class="column column-25">
                       <div class="footer-title"><?= __('About us') ?></div>
                       <ul>
-                        <li><a href="<?=$this->Url->build('/blog/')?>" target="_blank" class="item"><?= __('Our Stories') ?></a></li>
+                        <li><a href="<?=$this->Url->build('/blog/')?>" target="_blank" class="item"><?= __('Our Blog') ?></a></li>
                         <li><a href="<?= $this->Url->build('/pages/team'); ?>"><?= __('Our Team') ?></a></li>
                         <li><a href="<?= $this->Url->build('/pages/legals'); ?>"><?= __('Legal Mentions') ?></a></li>
                       </ul>
                     </div>
                     <div class="column column-25">
-                      <div class="footer-title"><?= __('Social') ?></div>
+                      <div class="footer-title"><?= __('Support') ?></div>
                       <ul>
-                        <li><a href="https://twitter.com/mysetup_co" target="_blank" class="item">Twitter</a></li>
-                        <li><a href="https://www.facebook.com/mysetup.co" target="_blank">Facebook</a></li>
-                        <li><a href="https://geeks.one/@mysetup_co" target="_blank">Mastodon</a></li>
+                        <li><a href="<?=$this->Url->build('/pages/q&a')?>">__('Help - Q&A')</a></li>
+                        <li><a href="mailto:support@mysetup.co">__('Report a bug')</a></li>
                       </ul>
                     </div>
                     <div class="column column-25 logo_footer">

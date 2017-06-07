@@ -111,7 +111,6 @@ curl_close($CURL);
             <div class="social-networks">
                 <a href="https://www.facebook.com/mysetup.co" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
                 <a href="https://twitter.com/mysetup_co" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
-                <a href="https://medium.com/mysetup-co" target="_blank"><i class="fa fa-medium fa-2x"></i></a>
                 <a href="mailto:support@mysetup.co" title="Report a bug !"><i class="fa fa-bug fa-2x"></i></a>
             </div>
 
