@@ -148,6 +148,32 @@ class UsersTable extends Table
     {
         $rules->add($rules->isUnique(['mail', 'twitchToken']));
 
+        $rules->
+            add(function($entity) {
+                if(isset($entity['timeZone']) and array_key_exists($entity['timeZone'], $this->timezones))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            },
+            'timeZoneIntegrity_rule');
+
+        $rules->
+            add(function($entity) {
+                if(isset($entity['preferredStore']) and in_array($entity['preferredStore'], ['US', 'UK', 'ES', 'IT', 'FR', 'DE']))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            },
+            'preferredStoreIntegrity_rule');
+
         return $rules;
     }
 
