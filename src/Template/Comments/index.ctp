@@ -26,7 +26,7 @@
                     <td><?= h($comment->content) ?></td>
                     <td><?= $comment->has('user') ? $this->Html->link($comment->user->name, ['controller' => 'Users', 'action' => 'view', $comment->user->id]) : '' ?></td>
                     <td><?= $comment->has('setup') ? $this->Html->link($comment->setup->title, ['controller' => 'Setups', 'action' => 'view', $comment->setup->id]) : '' ?></td>
-                    <td><?= h($comment->dateTime) ?></td>
+                    <td><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']); ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['controller' => 'Setups', 'action' => 'view', $comment->setup->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete this comment ?')]) ?>

@@ -109,7 +109,7 @@
                     <td><?= h($setup->title) ?></td>
                     <td><?= h($setup->author) ?></td>
                     <td><?= h($setup->featured) ?></td>
-                    <td><?= h($setup->creationDate) ?></td>
+                    <td><?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $setup->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $setup->id], ['confirm' => __('Are you sure you want to delete this setup ?')]) ?>

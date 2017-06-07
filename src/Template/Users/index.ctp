@@ -28,8 +28,8 @@
                     <td><?= h($user->name) ?></td>
                     <td><?= h($user->mail) ?></td>
                     <td><?= h($user->verified) ?></td>
-                    <td><?= h($user->creationDate) ?></td>
-                    <td><?= h($user->lastLogginDate) ?></td>
+                    <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']); ?></td>
+                    <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete this user ?')]) ?>

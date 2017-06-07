@@ -272,7 +272,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                           <p content="<?= h($comments->content) ?>"><?= h($comments->content) ?></p>
                           <?= $this->Html->scriptBlock("$(function(){ $('#comment-".  $comments->id ." > p').html(emojione.toImage(`".$comments->content."`)); });", array('block' => 'scriptBottom')) ?>
                         </div>
-                        <p class="attribution">by <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($additionalData[$comments->user_id]) ?></a> at <?= h($comments->dateTime) ?></p>
+                        <p class="attribution"><?= __('by') ?> <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($additionalData[$comments->user_id]) ?></a> <?= __('at') ?> <?= $this->Time->format($comments->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comments->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></p>
 
                         <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are you sure ?')); 
                             echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> Edit </a>';
@@ -324,7 +324,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
     <br>
 
-    <p class="setup-date"><i class='fa fa-clock-o'></i> Published on <?= $setup->creationDate ?></p>
+    <p class="setup-date">
+        <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
+    </p>
 
 </div>
 
