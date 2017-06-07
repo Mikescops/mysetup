@@ -41,9 +41,19 @@ class SetupsController extends AppController
      */
     public function view($id = null)
     {
+        // This should be below, but we wanna throw a 404 on the production if the user tries to have access to a non-existing setup...
         $setup = $this->Setups->get($id, [
             'contain' => ['Users', 'Resources', 'Comments']
         ]);
+
+        // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner, nor an administrator...
+        $session = $this->request->session();
+        if(!$this->Setups->isPublic($id) and (!$session->read('Auth.User.id') or !$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and !parent::isAdminBySession($session))
+        {
+            $this->Flash->error(__('You are not authorized to access that location.'));
+            return $this->redirect('/');
+        }
+        // ________________________________________________
 
         // List of products that we have to send to the View
         $products = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all();
@@ -272,25 +282,11 @@ class SetupsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['search']);
+        $this->Auth->allow(['search', 'view']);
     }
 
     public function isAuthorized($user)
     {
-        if($this->request->action === 'view')
-        {
-            // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner...
-            if(!$this->Setups->isPublic((int)$this->request->params['pass'][0]) and !$this->Setups->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
-            {
-                return false;
-            }
-
-            else
-            {
-                return true;
-            }
-        }
-
         if(isset($user))
         {
             if(in_array($this->request->action, ['edit', 'delete']))
