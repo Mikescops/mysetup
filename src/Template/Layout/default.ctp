@@ -321,8 +321,8 @@
                     <div class="column column-25">
                       <div class="footer-title"><?= __('Support') ?></div>
                       <ul>
-                        <li><a href="<?=$this->Url->build('/pages/q&a')?>">__('Help - Q&A')</a></li>
-                        <li><a href="mailto:support@mysetup.co">__('Report a bug')</a></li>
+                        <li><a href="<?=$this->Url->build('/pages/q&a')?>"><?= __('Help - Q&A') ?></a></li>
+                        <li><a href="mailto:support@mysetup.co"><?= __('Report a bug') ?></a></li>
                       </ul>
                     </div>
                     <div class="column column-25 logo_footer">

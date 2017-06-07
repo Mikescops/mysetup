@@ -76,8 +76,5 @@ In order to deploy this website on your web server:
 	> ==========================================================================> 100%  
 	> Error: default.pot already exists in this location. Overwrite? [Y]es, [N]o, [A]ll (y/n/a)  
 	> [y] > __y__  
-	>
-	> Error: cake.pot already exists in this location. Overwrite? [Y]es, [N]o, [A]ll (y/n/a)  
-	> [y] > __y__  
-	>  
+	>   
 	> Done.

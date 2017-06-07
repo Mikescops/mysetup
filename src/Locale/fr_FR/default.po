@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-06-06 23:00+0200\n"
-"PO-Revision-Date: 2017-06-06 23:02+0200\n"
+"POT-Creation-Date: 2017-06-07 22:41+0200\n"
+"PO-Revision-Date: 2017-06-07 22:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: Controller/AppController.php:270
+#: Controller/AppController.php:273
 msgid "liked your setup"
 msgstr "a aimé votre setup"
 
@@ -67,100 +67,104 @@ msgstr "Le commentaire a bien été supprimé"
 msgid "The comment could not be deleted. Please, try again."
 msgstr "Le commentaire n'a pas pu être supprimé. Ré-essayez"
 
-#: Controller/SetupsController.php:121
+#: Controller/SetupsController.php:53
+msgid "You are not authorized to access that location."
+msgstr "Vous n'êtes pas autorisé à accéder à cette page."
+
+#: Controller/SetupsController.php:131
 msgid "You need a featured image with this setup !"
 msgstr "Vous avez besoin d'une image d'en-tête avec ce setup !"
 
-#: Controller/SetupsController.php:137
+#: Controller/SetupsController.php:147
 msgid "The setup has been saved."
 msgstr "Le setup a bien été créé"
 
-#: Controller/SetupsController.php:143;232
+#: Controller/SetupsController.php:153;242
 msgid "The setup could not be saved. Please, try again."
 msgstr "Votre setup n'a pas pu être créé"
 
-#: Controller/SetupsController.php:227
+#: Controller/SetupsController.php:237
 msgid "The setup has been updated."
 msgstr "Le setup a bien été mis à jour"
 
-#: Controller/SetupsController.php:255
+#: Controller/SetupsController.php:265
 msgid "The setup has been deleted."
 msgstr "Le setup a correctement été supprimé"
 
-#: Controller/SetupsController.php:257
+#: Controller/SetupsController.php:267
 msgid "The setup could not be deleted. Please, try again."
 msgstr "Le setup n'a pas pu être supprimé. Ré-essayez"
 
-#: Controller/UsersController.php:126
+#: Controller/UsersController.php:129
 msgid "Your account has been created, check your email to verify your account"
 msgstr ""
 "Votre compte a bien été créé, merci de consulter vos emails pour l'activer !"
 
-#: Controller/UsersController.php:132
+#: Controller/UsersController.php:135
 msgid "The user could not be saved. (Is this address already taken ?)"
 msgstr ""
 "Votre compte n'a pas pu être créé (cette adresse email est peut-être déjà "
 "utilisée...)"
 
-#: Controller/UsersController.php:139;183
+#: Controller/UsersController.php:142;186
 msgid "These passwords do not match. Please try again."
 msgstr "Les mots de passe renseignés ne sont pas identiques"
 
-#: Controller/UsersController.php:210
+#: Controller/UsersController.php:213
 msgid "The user has been updated."
 msgstr "Le compte a été mis à jour"
 
-#: Controller/UsersController.php:215
+#: Controller/UsersController.php:218
 msgid "The user could not be updated. Please, try again."
 msgstr "Le compte n'a pas pu être mis à jour. Ré-essayez"
 
-#: Controller/UsersController.php:240
+#: Controller/UsersController.php:243
 msgid "The user has been deleted."
 msgstr "Le compte a bien été supprimé"
 
-#: Controller/UsersController.php:242
+#: Controller/UsersController.php:245
 msgid "The user could not be deleted. Please, try again."
 msgstr "Le compte n'a pas pu être supprimé. Ré-essayez"
 
-#: Controller/UsersController.php:248
+#: Controller/UsersController.php:251
 msgid "You just CANNOT delete the admin user of the website..."
 msgstr "Vous n'êtes pas autorisé(e) à supprimer le master-compte de ce site..."
 
-#: Controller/UsersController.php:266
+#: Controller/UsersController.php:269
 msgid "You are already logged in."
 msgstr "Vous êtes déjà connecté(e), nous vous avons redirigé(e)"
 
-#: Controller/UsersController.php:276
+#: Controller/UsersController.php:279
 msgid "Your account is not verified, check your emails !"
 msgstr ""
 "Votre compte n'a pas encore été activé ! Vérifiez vos mails, ou veuillez "
 "contacter un administrateur"
 
-#: Controller/UsersController.php:291;470
+#: Controller/UsersController.php:290;474
 msgid "You are successfully logged in !"
 msgstr "Vous êtes maintenant connecté(e) !"
 
-#: Controller/UsersController.php:298
+#: Controller/UsersController.php:301
 msgid "Username or password is incorrect"
 msgstr "Ces identifiants sont invalides"
 
-#: Controller/UsersController.php:307
+#: Controller/UsersController.php:310
 msgid "You are now logged out, see you soon !"
 msgstr "Vous êtes maintenant déconnecté(e), à bientôt !"
 
-#: Controller/UsersController.php:313
+#: Controller/UsersController.php:316
 msgid "You can't logout because you're not connected."
 msgstr "Vous êtes déjà déconnecté(e), nous vous avons redirigé(e)"
 
-#: Controller/UsersController.php:346
+#: Controller/UsersController.php:349
 msgid "An email has been sent to this email address !"
 msgstr "Un email a été envoyé à cette adresse !"
 
-#: Controller/UsersController.php:352;366
+#: Controller/UsersController.php:355;369
 msgid "Internal error, please try again."
 msgstr "Erreur interne. Ré-essayez, ou veuillez contacter un administrateur"
 
-#: Controller/UsersController.php:359
+#: Controller/UsersController.php:362
 msgid ""
 "This email address does not exist in our database. Are you sure you that you "
 "have an account ?"
@@ -168,42 +172,42 @@ msgstr ""
 "Cette adresse mail n'existe pas dans notre base de données. Avez-vous déjà "
 "créé un compte ?"
 
-#: Controller/UsersController.php:390;546
-msgid "Your account is now activated, you're now logged in ;)"
-msgstr "Votre compte vient d'être activé, vous êtes maintenant connecté(e) ;)"
-
-#: Controller/UsersController.php:393;549
+#: Controller/UsersController.php:392;554
 msgid "We advise you to edit your profile (use the panel at the top)..."
 msgstr ""
 "Nous vous conseillons d'éditer votre profil (utilisez le menu situé en tête "
 "de page)"
 
-#: Controller/UsersController.php:394;550
+#: Controller/UsersController.php:393;555
 msgid "... in order to add a profile picture ! You'd look better :P"
 msgstr ""
 "... de façon à ajouter une image de profil ! Vous aurez une meilleure tête :P"
 
-#: Controller/UsersController.php:401
+#: Controller/UsersController.php:395;551
+msgid "Your account is now activated, you're now logged in ;)"
+msgstr "Votre compte vient d'être activé, vous êtes maintenant connecté(e) ;)"
+
+#: Controller/UsersController.php:405
 msgid "Your token is invalid"
 msgstr "Votre jeton est invalide"
 
-#: Controller/UsersController.php:408
+#: Controller/UsersController.php:412
 msgid "This request is invalid"
 msgstr "Cette requête est invalide"
 
-#: Controller/UsersController.php:438;456
+#: Controller/UsersController.php:442;460
 msgid "We could not access Twitch's data"
 msgstr "Nous n'avons pas pu accéder aux informations de Twitch"
 
-#: Controller/UsersController.php:480
+#: Controller/UsersController.php:484
 msgid "Your account has just been linked to your Twitch one !"
 msgstr "Votre compte mySetup.co est maintenant lié à votre compte Twitch !"
 
-#: Controller/UsersController.php:487
+#: Controller/UsersController.php:491
 msgid "An error occurred while logging you in"
 msgstr "Une erreur est survenue pendant que nous vous connections"
 
-#: Controller/UsersController.php:497
+#: Controller/UsersController.php:501
 msgid ""
 "The email address of your Twitch account has not been verified. We can't "
 "create your account yet"
@@ -211,7 +215,7 @@ msgstr ""
 "L'adresse email de votre compte Twitch n'a pas été vérifiée. Nous ne pouvons "
 "pas vous créer de compte actuellement"
 
-#: Controller/UsersController.php:530
+#: Controller/UsersController.php:535
 msgid ""
 "Your profile picture could not be resized, converted to a PNG format or "
 "saved... Please contact an administrator."
@@ -219,7 +223,7 @@ msgstr ""
 "Votre image de profil n'a pas pu être redimensionnée, convertie en PNG ou "
 "bien enregistrée... Veuillez contacter un administrateur."
 
-#: Controller/UsersController.php:555
+#: Controller/UsersController.php:560
 msgid "An error occurred while saving your account"
 msgstr "Une erreur est survenue pendant que nous enregistrions votre compte"
 
@@ -319,15 +323,15 @@ msgstr "Ce titre est trop long (plus de 48 caractères en tout cas)"
 msgid "This description is too long (more than 5000 characters)"
 msgstr "La description est trop longue (plus de 5000 caractères)."
 
-#: Model/Table/UsersTable.php:104
+#: Model/Table/UsersTable.php:105
 msgid "We need a valid E-mail address"
 msgstr "Nous avons besoin d'une adresse email valide"
 
-#: Model/Table/UsersTable.php:110
+#: Model/Table/UsersTable.php:111
 msgid "The password has to contain more than 8 characters"
 msgstr "Votre mot de passe doit contenir 8 caractères ou plus"
 
-#: Model/Table/UsersTable.php:194
+#: Model/Table/UsersTable.php:224
 msgid ""
 "An internal error occurred while creating your profile picture. Please "
 "contact an administrator."
@@ -335,14 +339,14 @@ msgstr ""
 "Une erreur interne est survenue pendant que nous créions votre image de "
 "profil. Veuillez contacter un administrateur"
 
-#: Model/Table/UsersTable.php:200
+#: Model/Table/UsersTable.php:230
 msgid ""
 "Your default picture could not be set... Please contact an administrator."
 msgstr ""
 "Votre image de profil n'a pas pu être mise en place. Veuillez contacter un "
 "administrateur"
 
-#: Model/Table/UsersTable.php:210
+#: Model/Table/UsersTable.php:240
 msgid ""
 "An internal error occurred while saving your profile picture. Please contact "
 "an administrator."
@@ -350,7 +354,7 @@ msgstr ""
 "Une erreur interne est survenue pendant que nous enregistrions votre image "
 "de profil. Veuillez contacter un administrateur"
 
-#: Model/Table/UsersTable.php:224
+#: Model/Table/UsersTable.php:254
 msgid ""
 "Your profile picture could not be compressed, resized, converted to a PNG "
 "format or saved... Please contact an administrator."
@@ -358,11 +362,11 @@ msgstr ""
 "Votre image n'a pas pu être compressée, redimensionnée, convertie en .png ou "
 "bien enregistrée. Veuillez contacter un administrateur"
 
-#: Model/Table/UsersTable.php:230
+#: Model/Table/UsersTable.php:260
 msgid "Your profile picture could not be saved."
 msgstr "Votre image de profil n'a pas pu être enregistrée"
 
-#: Model/Table/UsersTable.php:236
+#: Model/Table/UsersTable.php:266
 msgid ""
 "The file you uploaded does not validate our rules... Please contact an "
 "administrator."
@@ -497,15 +501,15 @@ msgstr "Mes setups"
 msgid "Edit Profile"
 msgstr "Éditer mon profil"
 
-#: Template/Layout/default.ctp:84;281
+#: Template/Layout/default.ctp:83;280
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: Template/Layout/default.ctp:90 Template/Users/view.ctp:80
+#: Template/Layout/default.ctp:89 Template/Users/view.ctp:80
 msgid "Change only what you want !"
 msgstr "Modifier uniquement ce que vous voulez !"
 
-#: Template/Layout/default.ctp:99
+#: Template/Layout/default.ctp:98
 msgid "Change my profile picture"
 msgstr "Changer mon image de profil"
 
@@ -536,7 +540,7 @@ msgstr "Modifier mon mot de passe"
 msgid "Delete my account"
 msgstr "Supprimer mon compte"
 
-#: Template/Layout/default.ctp:132;285
+#: Template/Layout/default.ctp:132;284
 msgid "Connect with"
 msgstr "Se connecter avec"
 
@@ -604,35 +608,43 @@ msgstr "auteur"
 msgid "Publish"
 msgstr "Publier"
 
-#: Template/Layout/default.ctp:284
+#: Template/Layout/default.ctp:283
 msgid "Log in"
 msgstr "Se connecter"
 
-#: Template/Layout/default.ctp:307
+#: Template/Layout/default.ctp:306
 msgid "Partners"
 msgstr "Partenaires"
 
-#: Template/Layout/default.ctp:315
+#: Template/Layout/default.ctp:314
 msgid "About us"
 msgstr "À propos de nous"
 
-#: Template/Layout/default.ctp:317
-msgid "Our Stories"
+#: Template/Layout/default.ctp:316
+msgid "Our Blog"
 msgstr "Notre Blog"
 
-#: Template/Layout/default.ctp:318 Template/Pages/team.ctp:12
+#: Template/Layout/default.ctp:317 Template/Pages/team.ctp:12
 msgid "Our Team"
 msgstr "Notre Équipe"
 
-#: Template/Layout/default.ctp:319
+#: Template/Layout/default.ctp:318
 msgid "Legal Mentions"
 msgstr "Mentions légales"
 
-#: Template/Layout/default.ctp:323
-msgid "Social"
-msgstr "Réseaux sociaux"
+#: Template/Layout/default.ctp:322
+msgid "Support"
+msgstr "Support"
 
-#: Template/Layout/default.ctp:332
+#: Template/Layout/default.ctp:324
+msgid "Help - Q&A"
+msgstr "Aide - FAQ"
+
+#: Template/Layout/default.ctp:325
+msgid "Report a bug"
+msgstr "Signaler un bogue"
+
+#: Template/Layout/default.ctp:330
 msgid "All rights reserved"
 msgstr "Tous droits réservés"
 
@@ -967,6 +979,14 @@ msgstr "Regarder ce setup en vidéo"
 msgid "Wanna share your opinion ?"
 msgstr "Une remarque ? Commentez ce setup !"
 
+#: Template/Setups/view.ctp:275
+msgid "by"
+msgstr "par"
+
+#: Template/Setups/view.ctp:275
+msgid "at"
+msgstr "le"
+
 #: Template/Setups/view.ctp:297
 msgid "Nice config'…"
 msgstr "Jolie config'..."
@@ -982,6 +1002,10 @@ msgstr "Vous devez être connecté(e) pour commenter ce setup"
 #: Template/Setups/view.ctp:318
 msgid "Log me in !"
 msgstr "Se connecter !"
+
+#: Template/Setups/view.ctp:328
+msgid "Published on"
+msgstr "Publié le"
 
 #: Template/Users/index.ctp:11
 msgid "Users"
@@ -1058,6 +1082,12 @@ msgstr "Changer le mot de passe de l'utilisateur"
 #: Template/Users/view.ctp:118
 msgid "Delete this account"
 msgstr "Supprimer ce compte"
+
+#~ msgid "Our Stories"
+#~ msgstr "Notre Blog"
+
+#~ msgid "Social"
+#~ msgstr "Réseaux sociaux"
 
 #~ msgid "I didn't received the verification mail"
 #~ msgstr "Je n'ai pas reçu le mail de vérification"
