@@ -108,6 +108,9 @@ class UsersController extends AppController
                 // ... and generate a token to verify its mail address =)
                 $user->mailVerification = $this->Users->getRandomString(32);
 
+                // By default, an user will have as timezone the Europe/London one (GMT + 0)
+                $user->timeZone = 'Europe/London';
+
                 if($this->Users->save($user))
                 {
                     $this->Users->saveDefaultProfilePicture($user, $this->Flash);
@@ -204,8 +207,8 @@ class UsersController extends AppController
                     $this->Users->saveProfilePicture($data['picture'], $user, $this->Flash);
                 }
 
-                // The user may have changed its preferred store / language, let's update this into the server's session
-                $this->request->session()->write('Config.language', strtolower($user['preferredStore']). '_' . $user['preferredStore']);
+                // The user may have changed its preferred store (language) and / or its timezone, let's update this into the server's session
+                $this->Users->prepareSessionForUser($this->request->session(), $user);
 
                 $this->Flash->success(__('The user has been updated.'));
             }
@@ -279,16 +282,16 @@ class UsersController extends AppController
 
                 else
                 {
-                    $this->Auth->setUser($user);
-
                     // Let's save the current date / time in the DB...
                     $user = $this->Users->get($user['id']);
                     $user->lastLogginDate = Time::now();
                     $this->Users->save($user);
 
-                    $this->request->session()->write('Config.language', strtolower($user['preferredStore']). '_' . $user['preferredStore']);
-
                     $this->Flash->success(__('You are successfully logged in !'));
+
+                    $this->Users->prepareSessionForUser($this->request->session(), $user);
+
+                    $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
                 }
             }
@@ -385,14 +388,15 @@ class UsersController extends AppController
 
                     $this->Users->save($user);
 
-                    // This person is new among us, let's log him in ASAP
-                    $this->Auth->setUser($user);
-                    $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
-
                     // Let's add some notifications to this new user
                     $this->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
                     $this->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
 
+                    $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
+
+                    $this->Users->prepareSessionForUser($this->request->session(), $user);
+
+                    $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
                 }
 
@@ -505,6 +509,7 @@ class UsersController extends AppController
             $user->mail           = $response->json['email'];
             $user->password       = $this->Users->getRandomString();
             $user->preferredStore = strtoupper((substr($_GET['state'], 0, 2)));
+            $user->timeZone       = 'Europe/London';
             $user->twitchToken    = $token;
 
             if($this->Users->save($user))
@@ -560,6 +565,8 @@ class UsersController extends AppController
         // Just before log this user in, let's save the current date time into the DB
         $user->lastLogginDate = Time::now();
         $this->Users->save($user);
+
+        $this->Users->prepareSessionForUser($this->request->session(), $user);
 
         // Let's log this user in !
         $this->Auth->setUser($user);
