@@ -103,7 +103,8 @@
 
                                     <?php
                                         echo $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "ES" => "ES", "IT" => "IT", "FR" => "FR", "DE" => "DE"], ['default' => $authUser['preferredStore']]);
-                                        ?>
+                                        echo $this->Form->select('timeZone', $timezones, ['default' => $authUser['timeZone']]);
+                                    ?>
                                     </div>
                                     <div class="column column-75">
                                         <?php

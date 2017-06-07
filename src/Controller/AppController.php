@@ -102,6 +102,9 @@ class AppController extends Controller
                 $user['admin'] = true;
             }
             $this->set('authUser', $user);
+
+            // Let's send to the view the list of timezones as well
+            $this->set('timezones', $this->Users->timezones);
         }
 
         // Before render the view, let's give a new entity for add Setup modal to it
@@ -357,7 +360,7 @@ class AppController extends Controller
                 'limit' => $this->request->getQuery('n', 4)
             ]);
 
-            // Here we'll concatenate 'on-th-go' a "time ago with words" to the notifications content
+            // Here we'll concatenate 'on-the-go' a "time ago with words" to the notifications content
             foreach($results as $result)
             {
                 $result['content'] = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
