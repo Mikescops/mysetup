@@ -65,7 +65,8 @@ class SetupsTable extends Table
          $this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => [
-                    'creationDate' => 'new'
+                    'creationDate' => 'new',
+                    'modifiedDate' => 'always'
                 ]
             ]
         ]);
@@ -114,6 +115,10 @@ class SetupsTable extends Table
         $validator
             ->dateTime('creationDate')
             ->notEmpty('creationDate');
+
+        $validator
+            ->dateTime('modifiedDate')
+            ->notEmpty('modifiedDate');
 
         $validator
             ->notEmpty('status');

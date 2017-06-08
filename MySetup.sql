@@ -88,6 +88,7 @@ CREATE TABLE `setups` (
   `author` varchar(255) COLLATE utf8_bin NOT NULL,
   `featured` tinyint(1) NOT NULL,
   `creationDate` datetime NOT NULL,
+  `modifiedDate` datetime NOT NULL,
   `status` VARCHAR(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 

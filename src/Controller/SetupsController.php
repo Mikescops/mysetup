@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\I18n\Time;
 
 /**
  * Setups Controller
@@ -192,12 +191,6 @@ class SetupsController extends AppController
             if(!isset($data['featured']) or !parent::isAdminBySession($this->request->session()))
             {
                 $data['featured'] = $setup['featured'];
-            }
-
-            // If the setup was not published, but now this will be the case, let's change its creation date
-            if($setup['status'] !== 'PUBLISHED' and $data['status'] === 'PUBLISHED')
-            {
-                $data['creationDate'] = Time::now();
             }
 
             $setup = $this->Setups->patchEntity($setup, $data);
