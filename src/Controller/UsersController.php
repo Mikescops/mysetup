@@ -37,9 +37,8 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        // If the visitor is not the owner (nor an admin), let's send only to the View the PUBLISHED setups (+ the count will be good with this method ;))
         $conditions = null;
-
-        // If the visitor is not the owner (nor an admin), let's only send to the View the PUBLISHED setups
         if($id != $this->request->session()->read('Auth.User.id') and !parent::isAdminBySession($this->request->session()))
         {
             $conditions = ['Setups.status' => 'PUBLISHED'];
@@ -51,26 +50,19 @@ class UsersController extends AppController
                     'sort' => [
                         'Setups.creationDate' => 'DESC'
                     ],
-                    'conditions' => $conditions
+                    'conditions' => $conditions,
+                    'Resources' => [
+                        'conditions' => [
+                            'type' => 'SETUP_FEATURED_IMAGE'
+                        ]
+                    ]
                 ],
-                'Comments',
-                'Resources'
+                'Likes',
+                'Comments'
             ]
         ]);
 
-        $fimage = [];
-        foreach($user['setups'] as $setup)
-        {
-            array_push($fimage, $this->Users->Resources->find()->where(['setup_id' => $setup['id'], 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']);
-        }
-
-        $nbsetup = $this->Users->Setups->find('all')->where(['user_id' => $id])->count();
-
-        $nblike = $this->Users->Likes->find('all')->where(['user_id' => $id])->count();
-
-        $nbcomment = $this->Users->Comments->find('all')->where(['user_id' => $id])->count();
-
-        $this->set(compact('user', 'fimage', 'nbsetup', 'nbcomment', 'nblike'));
+        $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
 
@@ -143,8 +135,6 @@ class UsersController extends AppController
                 return $this->redirect($this->referer());
             }
         }
-        $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
     }
 
     /**
@@ -156,9 +146,7 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id, [
-            'contain' => []
-        ]);
+        $user = $this->Users->get($id);
 
         if($this->request->is(['patch', 'post', 'put']))
         {
@@ -220,9 +208,6 @@ class UsersController extends AppController
             
             return $this->redirect($this->referer());
         }
-
-        $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
     }
 
     /**

@@ -32,12 +32,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     <div class="featured-inner">
         <div class="row">
             <div class="column column-75">
-                <a class="featured-user" href="<?= $this->Url->build('/users/'.$additionalData['owner']['id']) ?>">
-                    <img alt="Profile picture of <?= $additionalData['owner']['name'] ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
+                <a class="featured-user" href="<?= $this->Url->build('/users/'.$setup->user['id']) ?>">
+                    <img alt="Profile picture of <?= $setup->user['name'] ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
                 </a>
                 <h3><?= $setup->title ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
                 <p>
-                    <?= __('Shared by') ?> <?php if($additionalData['owner']['name']){echo $this->Html->link($additionalData['owner']['name'], ['controller' => 'users', 'action' => 'view', $additionalData['owner']['id']]);}else{echo "Unknown";} ?><?php if($additionalData['owner']['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($additionalData['owner']['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . $setup->author ; endif?>
+                    <?= __('Shared by') ?> <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?><?php if($setup->user['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . $setup->author ; endif?>
                 </p>
             </div>
             <a class="labeled_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('" . __('You must be logged in to like !') . "');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
@@ -186,9 +186,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <p><?= __('Go to your Twitch channel and toggle panel edition.') ?></p>
         <?= $this->Html->image('howto_twitch.png', array('alt' => 'Twitch Panel Edition')) ?> <br>
         <p><?= __('Copy the following url in the link field') ?> :</p>
-        <pre><code><span><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title).'?ref='.urlencode($additionalData['owner']['name']), true)?></span></code></pre>
+        <pre><code><span><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title).'?ref='.urlencode($setup->user['name']), true)?></span></code></pre>
         <p><?= __('And add your personal mySetup.co banner image !') ?></p>
-        <p style="text-align: center;"><img alt="Advert - Setup by <?= $additionalData['owner']['name'] ?>" src="<?= $this->Url->build('/imgeneration/twitch-promote.php?id='. $setup->user_id . '&name=' . $additionalData['owner']['name'] . '&setup=' . $setup->title)?>"></p>
+        <p style="text-align: center;"><img alt="Advert - Setup by <?= $setup->user['name'] ?>" src="<?= $this->Url->build('/imgeneration/twitch-promote.php?id='. $setup->user_id . '&name=' . $setup->user['name'] . '&setup=' . $setup->title)?>"></p>
         
         <p><?= __('You can even configure your Twitch Chat bot to display your link or image.') ?></p>
     </div>
@@ -272,7 +272,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                           <p content="<?= h($comments->content) ?>"><?= h($comments->content) ?></p>
                           <?= $this->Html->scriptBlock("$(function(){ $('#comment-".  $comments->id ." > p').html(emojione.toImage(`".$comments->content."`)); });", array('block' => 'scriptBottom')) ?>
                         </div>
-                        <p class="attribution"><?= __('by') ?> <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($additionalData[$comments->user_id]) ?></a> <?= __('at') ?> <?= $this->Time->format($comments->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comments->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></p>
+                        <p class="attribution"><?= __('by') ?> <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($comments->user['name']) ?></a> <?= __('at') ?> <?= $this->Time->format($comments->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comments->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></p>
 
                         <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are you sure ?')); 
                             echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> Edit </a>';

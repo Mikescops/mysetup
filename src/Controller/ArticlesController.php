@@ -22,10 +22,6 @@ class ArticlesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
-
         $articles = $this->paginate($this->Articles);
 
         $this->set(compact('articles'));
@@ -46,9 +42,7 @@ class ArticlesController extends AppController
      */
     public function view($id = null)
     {
-        $article = $this->Articles->get($id, [
-            'contain' => ['Users']
-        ]);
+        $article = $this->Articles->get($id);
 
         $this->set('article', $article);
         $this->set('_serialize', ['article']);
@@ -121,9 +115,7 @@ class ArticlesController extends AppController
      */
     public function edit($id = null)
     {
-        $article = $this->Articles->get($id, [
-            'contain' => []
-        ]);
+        $article = $this->Articles->get($id);
 
         if($this->request->is(['patch', 'post', 'put']))
         {

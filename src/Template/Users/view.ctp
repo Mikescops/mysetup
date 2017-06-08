@@ -27,9 +27,9 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
         <div class="column column-50">
             <ul class="user-stats">
-                <li><span><?= $nbsetup ?></span> setups</li>
-                <li><span><?= $nblike ?></span> likes</li>
-                <li><span><?= $nbcomment ?></span> comments</li>
+                <li><span><?= count($user['setups']) ?></span> setups</li>
+                <li><span><?= count($user['likes']) ?></span> likes</li>
+                <li><span><?= count($user['comments']) ?></span> comments</li>
             </ul>
         </div>
 
@@ -38,10 +38,10 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
     <div class="row">
         <div class="column column-75">
 
-            <?php  if (!empty($user->setups)): $i = 0; foreach ($user->setups as $setup): ?>
+            <?php  if (!empty($user->setups)): foreach ($user->setups as $setup): ?>
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                    <img src="<?= $this->Url->build('/'); ?><?= $fimage[$i] ?>">
+                    <img src="<?= $this->Url->build('/'); ?><?= $setup->resources[0]->src ?>">
                 </a>
                 <div class="fullitem-inner">
 
@@ -61,7 +61,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                     </div>
                 </div>
             </div>
-            <?php $i++; endforeach; else: ?>
+            <?php endforeach; else: ?>
 
             <?= __('There is no setup here yet...') ?>
 

@@ -20,9 +20,8 @@ class CommentsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users', 'Setups']
-        ];
+        $this->paginate = ['contain' => ['Users', 'Setups']];
+
         $comments = $this->paginate($this->Comments);
 
         $this->set(compact('comments'));
@@ -90,9 +89,7 @@ class CommentsController extends AppController
      */
     public function edit($id = null)
     {
-        $comment = $this->Comments->get($id, [
-            'contain' => []
-        ]);
+        $comment = $this->Comments->get($id);
 
         if($this->request->is(['patch', 'post', 'put']))
         {

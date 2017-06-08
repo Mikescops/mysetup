@@ -19,9 +19,8 @@ class SetupsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
+        $this->paginate = ['contain' => ['Users']];
+
         $setups = $this->paginate($this->Setups);
 
         $this->set(compact('setups'));
@@ -42,7 +41,12 @@ class SetupsController extends AppController
     {
         // This should be below, but we wanna throw a 404 on the production if the user tries to have access to a non-existing setup...
         $setup = $this->Setups->get($id, [
-            'contain' => ['Users', 'Resources', 'Comments']
+            'contain' => [
+                'Users',
+                'Comments' => [
+                    'Users'
+                ]
+            ]
         ]);
 
         // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner, nor an administrator...
@@ -52,7 +56,7 @@ class SetupsController extends AppController
             $this->Flash->error(__('You are not authorized to access that location.'));
             return $this->redirect('/');
         }
-        // ________________________________________________
+        // _________________________________________________________________________________________________________________________________
 
         // List of products that we have to send to the View
         $products = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all();
@@ -66,17 +70,11 @@ class SetupsController extends AppController
         // Video link that we have to send to the View
         $video = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_VIDEO_LINK'])->first();
 
-        // Sets an array with the name of the owner as a first entry, and its profile validation status
-        $additionalData['owner'] = $this->Setups->Users->get($setup->user_id);
-        foreach($setup['comments'] as $comment)
-        {
-            // Let's complete that array with the name of each person who posted a comment on this setup
-            $additionalData[$comment->user_id] = $this->Setups->Users->get($comment->user_id)['name'];
-        }
-
+        // A new entity if the current visitor wanna post a comment
         $newComment = $this->Setups->Comments->newEntity();
+        // ________________________________________________________
 
-        $this->set(compact('setup', 'additionalData', 'products', 'fimage', 'gallery', 'video', 'newComment'));
+        $this->set(compact('setup', 'products', 'fimage', 'gallery', 'video', 'newComment'));
         $this->set('_serialize', ['setup']);
     }
 
@@ -153,9 +151,6 @@ class SetupsController extends AppController
                 return $this->redirect($this->referer());
             }
         }
-
-        $this->set(compact('setup'));
-        $this->set('_serialize', ['setup']);
     }
 
     /**
@@ -167,9 +162,7 @@ class SetupsController extends AppController
      */
     public function edit($id = null)
     {
-        $setup = $this->Setups->get($id, [
-            'contain' => []
-        ]);
+        $setup = $this->Setups->get($id);
 
         if($this->request->is(['patch', 'post', 'put']))
         {
@@ -237,10 +230,6 @@ class SetupsController extends AppController
 
             return $this->redirect($this->referer());
         }
-
-        $users = $this->Setups->Users->find('list', ['limit' => 200]);
-        $this->set(compact('setup', 'users'));
-        $this->set('_serialize', ['setup']);
     }
 
     /**
