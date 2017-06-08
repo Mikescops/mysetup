@@ -35,7 +35,7 @@ class ArticlesTable extends Table
            ]
        ]);
 
-        $this->addBehavior('Sitemap.Sitemap', ['changefreq' => 'daily']);
+        $this->addBehavior('Sitemap.Sitemap', ['changefreq' => 'daily', 'lastmod' => 'dateTime']);
     }
 
     /** Let's get the real url of article **/

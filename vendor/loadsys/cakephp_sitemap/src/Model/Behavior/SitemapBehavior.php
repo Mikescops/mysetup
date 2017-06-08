@@ -22,7 +22,7 @@ class SitemapBehavior extends Behavior {
 	 */
 	protected $_defaultConfig = [
 		'cacheConfigKey' => 'default',
-		'lastmod' => 'modified',
+		'lastmod' => 'modifiedDate',
 		'changefreq' => 'daily',
 		'priority' => '0.8',
 		'conditions' => [],
