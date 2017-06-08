@@ -18,6 +18,8 @@ class ResourcesController extends AppController
      */
     public function index()
     {
+        $this->paginate = ['contain' => ['Users', 'Setups']];
+
         $resources = $this->paginate($this->Resources);
 
         $this->set(compact('resources'));
