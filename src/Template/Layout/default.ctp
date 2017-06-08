@@ -63,7 +63,7 @@
                             </li>
                             <?php if($authUser['admin']): ?>
                                 <li>
-                                    <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Admin Panel') ?></a>
+                                    <a href="<?= $this->Url->build('/admin'); ?>"><?= __('Admin Panel') ?></a>
                                 </li>
                             <?php endif; ?>
                         <?php endif; ?>
@@ -262,7 +262,7 @@
                         </li>
                         <?php if($authUser['admin']): ?>
                             <li>
-                                <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><?= __('Admin Panel') ?></a>
+                                <a href="<?= $this->Url->build('/admin'); ?>"><?= __('Admin Panel') ?></a>
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>

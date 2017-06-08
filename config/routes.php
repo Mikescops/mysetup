@@ -82,6 +82,13 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/twitch/*', ['controller' => 'Users', 'action' => 'twitch']);
 
+    /* Admin panel routes */
+    $routes->connect('/admin', ['controller' => 'Setups', 'action' => 'index']);
+    $routes->connect('/admin/setups', ['controller' => 'Setups', 'action' => 'index']);
+    $routes->connect('/admin/users', ['controller' => 'Users', 'action' => 'index']);
+    $routes->connect('/admin/comments', ['controller' => 'Comments', 'action' => 'index']);
+    $routes->connect('/admin/resources', ['controller' => 'Resources', 'action' => 'index']);
+
     /**
      * Connect catchall routes for all controllers.
      *

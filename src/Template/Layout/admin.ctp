@@ -51,21 +51,21 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>">myAdmin</a>
+      <a class="navbar-brand" href="<?= $this->Url->build('/admin'); ?>">myAdmin</a>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'index']); ?>"><i class="fa fa-server"></i> Setups</a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/setups'); ?>"><i class="fa fa-server"></i> Setups</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>"><i class="fa fa-user-o"></i> Users </a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/users'); ?>"><i class="fa fa-user-o"></i> Users </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Comments', 'action' => 'index']); ?>"><i class="fa fa-comment-o"></i> Comments </a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/comments'); ?>"><i class="fa fa-comment-o"></i> Comments </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Resources', 'action' => 'index']); ?>"><i class="fa fa-database"></i> Resources</a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/resources'); ?>"><i class="fa fa-database"></i> Resources</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'add']); ?>"><i class="fa fa-pencil-square-o"></i> Add Article</a>
