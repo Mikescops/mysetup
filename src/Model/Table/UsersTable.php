@@ -284,17 +284,17 @@ class UsersTable extends Table
         return substr(md5(mt_rand()), 0, $length);
     }
 
-    public function prepareSessionForUser($session, $user)
+    public function getLocaleByCountryID($country_id)
     {
         $locale = null;
 
-        switch($user['preferredStore'])
+        switch(strtoupper($country_id))
         {
             case 'FR':
             case 'ES':
             case 'IT':
             case 'DE':
-                $locale = strtolower($user['preferredStore']) . '-' . $user['preferredStore'];
+                $locale = strtolower($country_id) . '-' . strtoupper($country_id);
                 break;
 
             case 'US':
@@ -304,7 +304,12 @@ class UsersTable extends Table
                 break;
         }
 
-        $session->write('Config.language', $locale);
+        return $locale;
+    }
+
+    public function prepareSessionForUser($session, $user)
+    {
+        $session->write('Config.language', $this->getLocaleByCountryID($user['preferredStore']));
         $session->write('Config.timezone', $user['timeZone']);
     }
 }

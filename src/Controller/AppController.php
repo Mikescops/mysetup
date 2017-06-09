@@ -75,8 +75,18 @@ class AppController extends Controller
             ]
         ]);
 
-        // Here let's adapt the website language !
-        I18n::locale($this->request->session()->read('Config.language'));
+        /* Here let's adapt the website language ! */
+        // This is the trick : If the `?lang=` is specified in the URL, this parameter overwrites the Session's one (hello the robots ;))
+        if(array_key_exists('lang', $_GET))
+        {
+            $this->loadModel('Users');
+            I18n::locale($this->Users->getLocaleByCountryID($_GET['lang']));
+        }
+
+        else
+        {
+            I18n::locale($this->request->session()->read('Config.language'));
+        }
     }
 
     /**
