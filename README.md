@@ -28,8 +28,6 @@ In order to deploy this website on your web server:
 
 ### Notes to developers
 
-* Warning: the `pages` tables present in the SQL DB **IS NOT** a CakePHP entity. It's just a container for more or less "static" HTML content.
-
 * Will be 'administrator' the users having a `verified` value equal to `125`, and the account with an email address and password as (`admin@admin.admin` / `adminadmin`) (which cannot be verified...).
 
 * During development, you may get an error into the console: `TypeError: a.result is undefined`. Don't bother, this is due to the JS social module.
