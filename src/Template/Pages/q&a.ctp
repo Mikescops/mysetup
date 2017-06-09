@@ -3,7 +3,7 @@
 $this->layout = 'default';
 $this->assign('title', __('Q&A').' | mySetup.co');
 
-echo $this->Html->meta('description', 'We answer common questions and issues about mySetup. Find some tutorials to start sharing your setup now.', ['block' => true]);
+echo $this->Html->meta('description', __('We answer common questions and issues about mySetup. Find some tutorials to start sharing your setup now.'), ['block' => true]);
 
 ?>
 

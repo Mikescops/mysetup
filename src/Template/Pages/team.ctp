@@ -1,9 +1,9 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', 'Our Team | mySetup.co');
+$this->assign('title', __('Our Team | mySetup.co'));
 
-echo $this->Html->meta('description', 'Who is behind mySetup.co ?', ['block' => true]);
+echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block' => true]);
 
 ?>
 

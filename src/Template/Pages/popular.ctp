@@ -1,9 +1,9 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', 'Popular this week | mySetup.co');
+$this->assign('title', __('Popular this week | mySetup.co'));
 
-echo $this->Html->meta('description', 'The most popular setups of the week on mySetup.co', ['block' => true]);
+echo $this->Html->meta('description', __('The most popular setups of the week on mySetup.co'), ['block' => true]);
 
 
 echo $this->Html->meta(['property' => 'og:title', 'content' => 'Popular this week | mySetup.co'], null ,['block' => true]);

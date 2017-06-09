@@ -2,7 +2,7 @@
 /**
   * @var \App\View\AppView $this
   */
-$this->assign('title', 'Login | mySetup.co');
+$this->assign('title', __('Login | mySetup.co'));
 ?>
 
 <div class="login-form">
