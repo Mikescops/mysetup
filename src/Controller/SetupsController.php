@@ -58,23 +58,20 @@ class SetupsController extends AppController
         }
         // _________________________________________________________________________________________________________________________________
 
-        // List of products that we have to send to the View
-        $products = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all();
-
-        // Featured Image that we have to send to the View
-        $fimage = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first();
-
-        // List of images that we have to send to the View
-        $gallery = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_GALLERY_IMAGE'])->all();
-
-        // Video link that we have to send to the View
-        $video = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_VIDEO_LINK'])->first();
+        // Here we'll get each resource linked to this setup, and set them up into the existing entity
+        $setup['resources'] = [
+            'products' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all()->toArray(),
+            'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src'],
+            'gallery_images' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_GALLERY_IMAGE'])->all()->toArray(),
+            'video_link' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_VIDEO_LINK'])->first()['src']
+        ];
+        // ___________________________________________________________________________________________
 
         // A new entity if the current visitor wanna post a comment
         $newComment = $this->Setups->Comments->newEntity();
         // ________________________________________________________
 
-        $this->set(compact('setup', 'products', 'fimage', 'gallery', 'video', 'newComment'));
+        $this->set(compact('setup', 'newComment'));
         $this->set('_serialize', ['setup']);
     }
 

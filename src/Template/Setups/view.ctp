@@ -22,13 +22,13 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
 echo $this->Html->meta(['property' => 'og:title', 'content' => $setup->title.' | mySetup.co'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/'.$fimage->src, true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/'.$fimage->src, true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/'.$setup['resources']['featured_image'], true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/'.$setup['resources']['featured_image'], true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)], null ,['block' => true]);
 ?>
 
 <div class="featured-container">
-    <img alt="<?= $setup->title ?>" width="1120" src="<?= $this->Url->build('/'.$fimage->src, true) ?>" alt="<?= $setup->title ?>">
+    <img alt="<?= $setup->title ?>" width="1120" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>" alt="<?= $setup->title ?>">
     <div class="featured-inner">
         <div class="row">
             <div class="column column-75">
@@ -88,7 +88,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?php
                     echo $this->Form->input('featuredImage', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
                 ?>
-                <img alt="Featured Preview" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $fimage->src ?>" alt="<?= $setup->title ?>">
+                <img alt="Featured Preview" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $setup['resources']['featured_image'] ?>" alt="<?= $setup->title ?>">
                 <div class="hidden_five_inputs">
                     <?php
                         echo $this->Form->input('gallery0', ['id' => 'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
@@ -99,7 +99,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     ?>
                 </div>
 
-                <?php $i = 0;foreach ($gallery as $image):?>
+                <?php $i = 0;foreach ($setup['resources']['gallery_images'] as $image):?>
                 <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
                 <?php $i++; endforeach; for(;$i < 5;$i++): ?>
                 <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
@@ -118,7 +118,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
                 <ul class="search_results edit_setup"></ul>
                 <ul class="basket_items edit_setup">
-                    <?php foreach ($products as $item): ?>
+                    <?php foreach ($setup['resources']['products'] as $item): ?>
 
                         <li>
                             <img src="<?= urldecode($item->src) ?>">
@@ -143,12 +143,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <?php
                 /* Fill the video source if exist */
-                if(!empty($video->src)){$video_field = $video->src;}else{$video_field = '';}
+                if(!empty($setup['resources']['video_link'])){$video_field = $setup['resources']['video_link'];}else{$video_field = '';}
                 echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'default' => $video_field]);
 
                 /* Fill the current items in the field before edit */
                 $item_field = '';
-                foreach ($products as $item){
+                foreach ($setup['resources']['products'] as $item){
                     $item_field = $item_field.$item->title.';'.$item->href.';'.$item->src.',';
                 }
                 // A hidden entry to gather the item resources
@@ -201,7 +201,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <div class="config-items">
 
-            <?php $i=0; foreach ($products as $item): ?>
+            <?php $i=0; foreach ($setup['resources']['products'] as $item): ?>
 
                         <div id="item-trigger-<?= $i ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
 
@@ -226,7 +226,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     <br>
 
     <div class="post_slider">
-        <?php foreach ($gallery as $image): ?>
+        <?php foreach ($setup['resources']['gallery_images'] as $image): ?>
             <div class="slider-item">
                 <div class="slider-item-inner">
                     <a href="<?= $this->Url->build('/', true)?><?= $image->src ?>" data-lity data-lity-desc="Photo of Config'">
@@ -247,8 +247,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <div id="social-networks"></div>
 
-            <?php if(!empty($video->src)): ?>
-                <a class="button item-youtube" href="<?= $video->src ?>" data-lity><?= __('Watch it in video') ?></a>
+            <?php if(!empty($setup['resources']['video_link'])): ?>
+                <a class="button item-youtube" href="<?= $setup['resources']['video_link'] ?>" data-lity><?= __('Watch it in video') ?></a>
             <?php endif?>
         </div>
 
@@ -264,7 +264,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?php foreach ($setup->comments as $comments): ?>
                 <article class="comment">
                     <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
-                        <img alt="Profile picture of #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$comments->user_id.'.png') ?>" alt="" width="50" height="50" />
+                        <img alt="Profile picture of #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$comments->user_id.'.png') ?>" width="50" height="50" />
                     </a>
                         
                     <div class="comment-body">
@@ -289,7 +289,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?php if($authUser): ?>
 
                 <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
-                    <img alt="Profile picture of #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser->id.'.png') ?>" alt="" width="50" height="50" />
+                    <img alt="Profile picture of #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser->id.'.png') ?>" width="50" height="50" />
                 </a>
 
                 <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
