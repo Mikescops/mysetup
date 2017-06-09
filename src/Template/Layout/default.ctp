@@ -35,12 +35,22 @@
     <meta name="msapplication-config" content="<?= $this->Url->build('/'); ?>img/favicon/browserconfig.xml?v=LbGvygO5bN">
     <meta name="theme-color" content="#151515">
 
+    <?php
+        echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'x-default', 'href' => $this->Url->build(null, true) ));
+        echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'fr', 'href' => $this->Url->build(null, true)."?lang=fr"));
+        echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'en', 'href' => $this->Url->build(null, true)."?lang=us"));
+        echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'es', 'href' => $this->Url->build(null, true)."?lang=es"));
+        echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'it', 'href' => $this->Url->build(null, true)."?lang=it"));
+        echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'de', 'href' => $this->Url->build(null, true)."?lang=de"));
+    ?>
+
     <meta name="twitter:card" value="summary"> 
     <meta property="og:type" content="article" />
     <meta name="twitter:site" content="@mysetup_co">
     <meta property="og:site_name" content="mySetup.co" />
     <meta property="fb:admins" content="1912097312403661" />
     <meta name="google-site-verification" content="8eCzlQ585iC5IG3a4-fENYChl1AaEUaW7VeBj2NiFJQ" />
+
 </head>
 <body>
     <nav class="heavy-nav">
