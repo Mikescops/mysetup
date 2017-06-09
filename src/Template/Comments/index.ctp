@@ -11,11 +11,11 @@
         <table class="table table-striped table-responsive" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
-                    <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('content') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('setup_id') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('dateTime') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('id', 'ID') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('content', __('Content')) ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('user_id', __('User')) ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('setup_id', __('Setup')) ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('dateTime', __('Date')) ?></th>
                     <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>

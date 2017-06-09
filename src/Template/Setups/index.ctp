@@ -87,19 +87,20 @@
           });
         </script>
 
+        <br />
 
         <h3><?= __('Setups') ?> - <?= $this->Paginator->counter(['format' => '{{count}}']) ?></h3>
         <table class="table table-striped table-responsive" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
-                    <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('title') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('author') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('featured') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('status') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('creationDate') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('modifiedDate') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('id', 'ID') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('user_id', __('User')) ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('title', __('Title')) ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('author', __('Author')) ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('featured', __('Featured')) ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('status', __('Status')) ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('creationDate', __('Created on')) ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('modifiedDate', __('Modified on')) ?></th>
                     <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -110,7 +111,7 @@
                     <td><?= $setup->has('user') ? $this->Html->link($setup->user->name, ['controller' => 'Users', 'action' => 'view', $setup->user->id]) : '' ?></td>
                     <td><?= h($setup->title) ?></td>
                     <td><?= h($setup->author) ?></td>
-                    <td><?= h($setup->featured) ?></td>
+                    <td><?= ($setup->featured ? __('Yes') : __('No')) ?></td>
                     <td><?= h($setup->status) ?></td>
                     <td><?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); ?></td>
                     <td><?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); ?></td>
