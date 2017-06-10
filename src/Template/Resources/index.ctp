@@ -24,7 +24,7 @@
             <tbody>
                 <?php foreach ($resources as $resource): ?>
                 <tr>
-                    <td><?= $this->Number->format($resource->id) ?></td>
+                    <td><?= $resource->id ?></td>
                     <td><?= $this->Html->link($resource->user->name, ['controller' => 'Users', 'action' => 'view', $resource->user_id]) ?></td>
                     <td><?= $this->Html->link($resource->setup->title, ['controller' => 'Setups', 'action' => 'view', $resource->setup_id]) ?></td>
                     <td><?= h($resource->type) ?></td>

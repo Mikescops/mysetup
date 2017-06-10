@@ -22,7 +22,7 @@
             <tbody>
                 <?php foreach ($comments as $comment): ?>
                 <tr>
-                    <td><?= $this->Number->format($comment->id) ?></td>
+                    <td><?=$comment->id ?></td>
                     <td><?= h($comment->content) ?></td>
                     <td><?= $comment->has('user') ? $this->Html->link($comment->user->name, ['controller' => 'Users', 'action' => 'view', $comment->user->id]) : '' ?></td>
                     <td><?= $comment->has('setup') ? $this->Html->link($comment->setup->title, ['controller' => 'Setups', 'action' => 'view', $comment->setup->id]) : '' ?></td>

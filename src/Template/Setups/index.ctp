@@ -107,7 +107,7 @@
             <tbody>
                 <?php foreach ($setups as $setup): ?>
                 <tr>
-                    <td><?= $this->Number->format($setup->id) ?></td>
+                    <td><?= $setup->id ?></td>
                     <td><?= $setup->has('user') ? $this->Html->link($setup->user->name, ['controller' => 'Users', 'action' => 'view', $setup->user->id]) : '' ?></td>
                     <td><?= h($setup->title) ?></td>
                     <td><?= h($setup->author) ?></td>
