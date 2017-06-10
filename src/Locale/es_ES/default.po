@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-06-09 21:20+0200\n"
-"PO-Revision-Date: 2017-06-09 21:30+0200\n"
+"POT-Creation-Date: 2017-06-10 11:06+0200\n"
+"PO-Revision-Date: 2017-06-10 11:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: es_ES\n"
@@ -14,6 +14,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.11\n"
+
+#: Controller/AppController.php:283
+msgid "Liker's profile picture"
+msgstr "Imagen de perfil del \"liker\""
 
 #: Controller/AppController.php:283
 msgid "liked your setup"
@@ -42,6 +46,10 @@ msgstr "El artículo no pudo ser eliminado."
 #: Controller/CommentsController.php:54;100
 msgid "The comment has been saved."
 msgstr "El comentario ha sido guardado "
+
+#: Controller/CommentsController.php:61
+msgid "Commenter's profile picture"
+msgstr "Imagen de perfil del \"comentador\""
 
 #: Controller/CommentsController.php:61
 msgid "commented your setup"
@@ -577,6 +585,10 @@ msgstr "Descripción"
 msgid "Click to add a featured image *"
 msgstr "Haz clic para agregar una imagen *"
 
+#: Template/Layout/default.ctp:196 Template/Setups/view.ctp:103;105
+msgid "Gallery Preview"
+msgstr "Vista previa de la galería"
+
 #: Template/Layout/default.ctp:200
 msgid "required fields"
 msgstr "campos requeridos"
@@ -678,6 +690,11 @@ msgstr ""
 "comunidad ! Inspirar a otros o inspirarte en las configuraciones de juegos, "
 "battlestations ..."
 
+#: Template/Pages/home.ctp:46;122 Template/Pages/popular.ctp:83
+#: Template/Pages/recent.ctp:81 Template/Setups/view.ctp:36;267;292
+msgid "Profile picture of"
+msgstr "Foto del perfil de"
+
 #: Template/Pages/home.ctp:59
 msgid "Search a component... Find a cool setup !"
 msgstr "Buscar un componente... ¡ Encontrar una configuración que mola !"
@@ -689,6 +706,12 @@ msgstr "¿ Quieres más ? ¡ Haz click para ver lo último !"
 #: Template/Pages/home.ctp:145
 msgid "Login with Twitch and create my Setup !"
 msgstr "¡ Inicia sesión con Twitch y crea mi programa de configuración !"
+
+#: Template/Pages/home.ctp:151 Template/Pages/popular.ctp:103
+#: Template/Pages/recent.ctp:106 Template/Setups/search.ctp:59
+#: Template/Users/view.ctp:127
+msgid "Read our latest news"
+msgstr "Lea nuestras últimas noticias"
 
 #: Template/Pages/legals.ctp:4
 msgid "Legal Mentions | mySetup.co"
@@ -1020,6 +1043,10 @@ msgstr "esto"
 msgid "Embed it in Twitch"
 msgstr "Compartirlo en Twitch"
 
+#: Template/Setups/view.ctp:91
+msgid "Featured Preview"
+msgstr "Vista previa imagen"
+
 #: Template/Setups/view.ctp:110;136;177
 msgid "Save as draft (the setup will not be visible)"
 msgstr "Guardar como borrador (la configuración no será visible)"
@@ -1162,6 +1189,18 @@ msgstr "Configuraciones de"
 #: Template/Users/view.ctp:7
 msgid "All the setups shared by "
 msgstr "Todas las configuraciones compartidas por"
+
+#: Template/Users/view.ctp:30
+msgid "setups"
+msgstr "setups"
+
+#: Template/Users/view.ctp:31
+msgid "likes"
+msgstr "likes"
+
+#: Template/Users/view.ctp:32
+msgid "comments"
+msgstr "comentarios"
 
 #: Template/Users/view.ctp:66
 msgid "There is no setup here yet..."

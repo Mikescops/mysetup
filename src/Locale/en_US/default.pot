@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-06-09 19:11+0000\n"
+"POT-Creation-Date: 2017-06-10 08:59+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -13,6 +13,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/AppController.php:283
+msgid "Liker's profile picture"
+msgstr ""
 
 #: Controller/AppController.php:283
 msgid "liked your setup"
@@ -40,6 +44,10 @@ msgstr ""
 
 #: Controller/CommentsController.php:54;100
 msgid "The comment has been saved."
+msgstr ""
+
+#: Controller/CommentsController.php:61
+msgid "Commenter's profile picture"
 msgstr ""
 
 #: Controller/CommentsController.php:61
@@ -539,6 +547,11 @@ msgstr ""
 msgid "Click to add a featured image *"
 msgstr ""
 
+#: Template/Layout/default.ctp:196
+#: Template/Setups/view.ctp:103;105
+msgid "Gallery Preview"
+msgstr ""
+
 #: Template/Layout/default.ctp:200
 msgid "required fields"
 msgstr ""
@@ -642,6 +655,13 @@ msgstr ""
 msgid "The best place to share your computer setup with your community ! Inspire others or get inspired with gaming setups, battlestations..."
 msgstr ""
 
+#: Template/Pages/home.ctp:46;122
+#: Template/Pages/popular.ctp:83
+#: Template/Pages/recent.ctp:81
+#: Template/Setups/view.ctp:36;267;292
+msgid "Profile picture of"
+msgstr ""
+
 #: Template/Pages/home.ctp:59
 msgid "Search a component... Find a cool setup !"
 msgstr ""
@@ -652,6 +672,14 @@ msgstr ""
 
 #: Template/Pages/home.ctp:145
 msgid "Login with Twitch and create my Setup !"
+msgstr ""
+
+#: Template/Pages/home.ctp:151
+#: Template/Pages/popular.ctp:103
+#: Template/Pages/recent.ctp:106
+#: Template/Setups/search.ctp:59
+#: Template/Users/view.ctp:127
+msgid "Read our latest news"
 msgstr ""
 
 #: Template/Pages/legals.ctp:4
@@ -910,6 +938,10 @@ msgstr ""
 msgid "Embed it in Twitch"
 msgstr ""
 
+#: Template/Setups/view.ctp:91
+msgid "Featured Preview"
+msgstr ""
+
 #: Template/Setups/view.ctp:110;136;177
 msgid "Save as draft (the setup will not be visible)"
 msgstr ""
@@ -1045,6 +1077,18 @@ msgstr ""
 
 #: Template/Users/view.ctp:7
 msgid "All the setups shared by "
+msgstr ""
+
+#: Template/Users/view.ctp:30
+msgid "setups"
+msgstr ""
+
+#: Template/Users/view.ctp:31
+msgid "likes"
+msgstr ""
+
+#: Template/Users/view.ctp:32
+msgid "comments"
 msgstr ""
 
 #: Template/Users/view.ctp:66
