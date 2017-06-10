@@ -34,7 +34,7 @@ In order to deploy this website on your web server:
 
 * The plugin _loadsys/cakephp\_sitemap_ has been re-coded by @Mikescops. **/!\ If you clone and install this repository, please take care of having the correct sources. /!\\**
 
-* If you wanna add a translation for a foreign language, just add _default.po_ / _default.mo_ files into `src/Locale/xx_XX/`, and authorize this new locale in `src/Application.php`. In order to extract the strings from the source code, and edit them with _Poedit_, just follow this scenario :
+* If you wanna add a translation for a foreign language, just add _default.po_ / _default.mo_ and _core.po_ / _core.mo_files into `src/Locale/xx_XX/`, and authorize this new locale in `src/Application.php`. In order to extract the strings from the source code, and edit them with _Poedit_, just follow this scenario :
 	
 	> [user@localhost:/var/www/html/mysetup]$ bin/cake i18n extract  
 	>  
@@ -55,7 +55,7 @@ In order to deploy this website on your web server:
 	> [D] >   
 	>
 	> Would you like to extract the messages from the CakePHP core? (y/n)  
-	> [n] >   
+	> [n] > __y__  
 	> What is the path you would like to output?  
 	> [Q]uit  
 	> [/var/www/html/mysetup/src/Locale] > __/var/www/html/mysetup/src/Locale/en_US/__  
@@ -73,6 +73,9 @@ In order to deploy this website on your web server:
 	> \---------------------------------------------------------------  
 	> ==========================================================================> 100%  
 	> Error: default.pot already exists in this location. Overwrite? [Y]es, [N]o, [A]ll (y/n/a)  
-	> [y] > __y__  
-	>   
+	> [y] >  
+	>  
+	> Error: cake.pot already exists in this location. Overwrite? [Y]es, [N]o, [A]ll (y/n/a)  
+	> [y] >  
+	>  
 	> Done.
