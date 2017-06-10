@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2017-06-09 21:12+0200\n"
-"PO-Revision-Date: 2017-06-09 21:18+0200\n"
+"PO-Revision-Date: 2017-06-10 00:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -943,7 +943,7 @@ msgstr "Dernières setups"
 
 #: Template/Pages/team.ctp:4
 msgid "Our Team | mySetup.co"
-msgstr "Notre équipe"
+msgstr "Notre équipe | mySetup.co"
 
 #: Template/Pages/team.ctp:6
 msgid "Who is behind mySetup.co ?"

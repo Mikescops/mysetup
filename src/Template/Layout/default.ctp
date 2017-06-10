@@ -193,7 +193,7 @@
 
                             <div class="gallery-holder">
                             <?php for($i = 0; $i < 5; $i++): ?>
-                                <img alt="Gallery Preview" class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+                                <img alt="<?= __('Gallery Preview') ?>" class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
                             <?php endfor ?>
                             </div>
 

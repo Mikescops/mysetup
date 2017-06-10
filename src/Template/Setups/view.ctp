@@ -33,7 +33,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <div class="row">
             <div class="column column-75">
                 <a class="featured-user" href="<?= $this->Url->build('/users/'.$setup->user['id']) ?>">
-                    <img alt="Profile picture of <?= $setup->user['name'] ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
+                    <img alt="<?= __('Profile picture of') ?> <?= $setup->user['name'] ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
                 </a>
                 <h3><?= $setup->title ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
                 <p>
@@ -88,7 +88,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?php
                     echo $this->Form->input('featuredImage', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
                 ?>
-                <img alt="Featured Preview" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $setup['resources']['featured_image'] ?>" alt="<?= $setup->title ?>">
+                <img alt="<?= __('Featured Preview') ?>" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $setup['resources']['featured_image'] ?>" alt="<?= $setup->title ?>">
                 <div class="hidden_five_inputs">
                     <?php
                         echo $this->Form->input('gallery0', ['id' => 'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
@@ -100,9 +100,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 </div>
 
                 <?php $i = 0;foreach ($setup['resources']['gallery_images'] as $image):?>
-                <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
+                <img alt="<?= __('Gallery Preview') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
                 <?php $i++; endforeach; for(;$i < 5;$i++): ?>
-                <img alt="Gallery Preview" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+                <img alt="<?= __('Gallery Preview') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
                 <?php endfor ?>
 
                     <div class="modal-footer">
@@ -188,7 +188,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <p><?= __('Copy the following url in the link field') ?> :</p>
         <pre><code><span><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title).'?ref='.urlencode($setup->user['name']), true)?></span></code></pre>
         <p><?= __('And add your personal mySetup.co banner image !') ?></p>
-        <p style="text-align: center;"><img alt="Advert - Setup by <?= $setup->user['name'] ?>" src="<?= $this->Url->build('/imgeneration/twitch-promote.php?id='. $setup->user_id . '&name=' . $setup->user['name'] . '&setup=' . $setup->title)?>"></p>
+        <p style="text-align: center;"><img alt="<?= ('Advert - Setup by') ?> <?= $setup->user['name'] ?>" src="<?= $this->Url->build('/imgeneration/twitch-promote.php?id='. $setup->user_id . '&name=' . $setup->user['name'] . '&setup=' . $setup->title)?>"></p>
         
         <p><?= __('You can even configure your Twitch Chat bot to display your link or image.') ?></p>
     </div>
@@ -230,7 +230,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div class="slider-item">
                 <div class="slider-item-inner">
                     <a href="<?= $this->Url->build('/', true)?><?= $image->src ?>" data-lity data-lity-desc="Photo of Config'">
-                        <img alt="Gallery image of <?= $setup->title ?>" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
+                        <img alt="<?= ('Gallery image of') ?> <?= $setup->title ?>" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
                     </a>
                 </div>
             </div>
@@ -264,7 +264,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?php foreach ($setup->comments as $comments): ?>
                 <article class="comment">
                     <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
-                        <img alt="Profile picture of #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$comments->user_id.'.png') ?>" width="50" height="50" />
+                        <img alt="<?= __('Profile picture of') ?> #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$comments->user_id.'.png') ?>" width="50" height="50" />
                     </a>
                         
                     <div class="comment-body">
@@ -289,7 +289,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?php if($authUser): ?>
 
                 <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
-                    <img alt="Profile picture of #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser->id.'.png') ?>" width="50" height="50" />
+                    <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser->id.'.png') ?>" width="50" height="50" />
                 </a>
 
                 <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>

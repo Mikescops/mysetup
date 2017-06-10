@@ -80,7 +80,7 @@ curl_close($CURL);
 
                         <div class="column column-75">
                             <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                <img alt="Profile picture of #<?= $setup->user_id ?>" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $setup->user_id ?>.png">
+                                <img alt="<?= __('Profile picture of') ?> #<?= $setup->user_id ?>" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $setup->user_id ?>.png">
                             </a>
 
                             <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= $setup->title ?></h3></a>

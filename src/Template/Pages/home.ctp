@@ -43,7 +43,7 @@ curl_close($CURL);
     <div class="slider-item">
         <a href="<?= $this->Url->build('/setups/'.$fsetup->id.'-'.$this->Text->slug($fsetup->title)); ?>"><img alt="<?= $fsetup->title ?>" src="<?= $fsetup->resources[0]->src ?>"></a>
         <a class="slider-item-inner featured-user" href="<?=$this->Url->build('/users/'.$fsetup->user_id)?>">
-            <img alt="Profile picture of #<?= $fsetup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$fsetup->user_id.'.png'); ?>">
+            <img alt="<?= __('Profile picture of') ?> #<?= $fsetup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$fsetup->user_id.'.png'); ?>">
         </a>
         <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($fsetup->likes[0])){echo $fsetup->likes[0]->total;}else{echo 0;} ?></div>
     </div>
@@ -119,7 +119,7 @@ curl_close($CURL);
 
                         <div class="column column-75">
                             <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                <img alt="Profile picture of #<?= $setup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png'); ?>">
+                                <img alt="<?= __('Profile picture of') ?> #<?= $setup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png'); ?>">
                             </a>
 
                             <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= $setup->title ?></h3></a>
