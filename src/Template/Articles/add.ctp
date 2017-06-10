@@ -7,7 +7,7 @@
 ?>
 
 <div class="row justify-content-md-center">
-    <div class="col-12 col-md-auto">
+    <div class="col-12 col-md-auto" style="width: 800px;">
         <h3><?= __('Add post') ?></h3>
 
         <?= $this->Form->create($article, ['type' => 'file']) ?>
