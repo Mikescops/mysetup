@@ -9,7 +9,7 @@
 				<loc><?= h($record->_loc) ?></loc>
 				<changefreq><?= h($record->_changefreq) ?></changefreq>
 				<priority><?= h($record->_priority) ?></priority>
-				<lastmod><?= h($record->_lastmod) ?></lastmod>
+				<lastmod><?= $record->_lastmod->format('c') ?></lastmod>
 			</url>
 		<?php endforeach; ?>
 	<?php endforeach; ?>
