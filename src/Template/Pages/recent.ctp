@@ -103,7 +103,7 @@ curl_close($CURL);
 
             <div class="blog-advert">
               <a href="<?=$this->Url->build('/blog/')?>">
-                <h5><i class="fa fa-newspaper-o"></i><br>Read our latest news</h5>
+                <h5><i class="fa fa-newspaper-o"></i><br><?= __('Read our latest news') ?></h5>
               </a>
             </div>
 

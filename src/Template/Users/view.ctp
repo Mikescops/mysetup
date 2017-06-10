@@ -27,9 +27,9 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
         <div class="column column-50">
             <ul class="user-stats">
-                <li><span><?= count($user['setups']) ?></span> setups</li>
-                <li><span><?= count($user['likes']) ?></span> likes</li>
-                <li><span><?= count($user['comments']) ?></span> comments</li>
+                <li><span><?= count($user['setups']) ?></span> <?= __('setups') ?></li>
+                <li><span><?= count($user['likes']) ?></span> <?= __('likes') ?></li>
+                <li><span><?= count($user['comments']) ?></span> <?= __('comments') ?></li>
             </ul>
         </div>
 
@@ -124,7 +124,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
             <div class="blog-advert">
             <a href="<?=$this->Url->build('/blog/')?>">
-              <h5><i class="fa fa-newspaper-o"></i><br>Read our latest news</h5>
+              <h5><i class="fa fa-newspaper-o"></i><br><?= __('Read our latest news') ?></h5>
             </a>
             </div>
 

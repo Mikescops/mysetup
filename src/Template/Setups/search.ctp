@@ -56,7 +56,7 @@ $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
 		<div class="column column-25 sidebar sidebar-search">
 			<div class="blog-advert">
 	            <a href="<?=$this->Url->build('/blog/')?>">
-	              <h5><i class="fa fa-newspaper-o"></i><br>Read our latest news</h5>
+	              <h5><i class="fa fa-newspaper-o"></i><br><?= __('Read our latest news') ?></h5>
 	            </a>
             </div>
 
