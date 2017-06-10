@@ -1,25 +1,25 @@
 # LANGUAGE translation of CakePHP Application
-# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Copyright 2017 mysetup.co <contact@mysetup.co>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-06-10 11:06+0200\n"
-"PO-Revision-Date: 2017-06-10 14:03+0200\n"
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: 2017-06-10 15:46+0200\n"
+"PO-Revision-Date: 2017-06-10 15:47+0200\n"
 "Last-Translator: \n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"Language: es_ES\n"
+"Language-Team: contact@mysetup.co\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: Controller/AppController.php:283
+#: Controller/AppController.php:288
 msgid "Liker's profile picture"
 msgstr "Imagen de perfil del \"liker\""
 
-#: Controller/AppController.php:283
+#: Controller/AppController.php:288
 msgid "liked your setup"
 msgstr "ha amado tu setup"
 
@@ -374,7 +374,7 @@ msgstr ""
 msgid "Add post"
 msgstr "Añadir publicación"
 
-#: Template/Articles/add.ctp:24 Template/Layout/default.ctp:134
+#: Template/Articles/add.ctp:24 Template/Layout/default.ctp:137
 #: Template/Users/view.ctp:115
 msgid "Submit"
 msgstr "Subir"
@@ -486,182 +486,182 @@ msgstr ""
 "Pagina {{page}} de {{pages}}, mostrando {{current}} elemento(s) entre un "
 "total de {{count}}"
 
-#: Template/Layout/default.ctp:72;271
+#: Template/Layout/default.ctp:75;274
 msgid "Add Setup"
 msgstr "Añadir una setup"
 
-#: Template/Layout/default.ctp:76;275
+#: Template/Layout/default.ctp:79;278
 msgid "Admin Panel"
 msgstr "Panel de Administración"
 
-#: Template/Layout/default.ctp:81
+#: Template/Layout/default.ctp:84
 msgid "Categories"
 msgstr "Categorías"
 
-#: Template/Layout/default.ctp:83;281
+#: Template/Layout/default.ctp:86;284
 msgid "Most recent"
 msgstr "Lo más reciente"
 
-#: Template/Layout/default.ctp:84;282 Template/Pages/popular.ctp:65
+#: Template/Layout/default.ctp:87;285 Template/Pages/popular.ctp:65
 msgid "Popular this week"
 msgstr "Populares esta semana"
 
-#: Template/Layout/default.ctp:91;288
+#: Template/Layout/default.ctp:94;291
 msgid "My Setups"
 msgstr "Mis Setups"
 
-#: Template/Layout/default.ctp:92;289
+#: Template/Layout/default.ctp:95;292
 msgid "Edit Profile"
 msgstr "Editar el perfil"
 
-#: Template/Layout/default.ctp:93;290
+#: Template/Layout/default.ctp:96;293
 msgid "Logout"
 msgstr "Cerrar sesión"
 
-#: Template/Layout/default.ctp:99 Template/Users/view.ctp:80
+#: Template/Layout/default.ctp:102 Template/Users/view.ctp:80
 msgid "Change only what you want !"
 msgstr "¡ Puedes editar lo que quieras !"
 
-#: Template/Layout/default.ctp:108
+#: Template/Layout/default.ctp:111
 msgid "Change my profile picture"
 msgstr "Cambiar mi foto del perfil"
 
-#: Template/Layout/default.ctp:121 Template/Users/index.ctp:16
+#: Template/Layout/default.ctp:124 Template/Users/index.ctp:16
 #: Template/Users/login.ctp:45 Template/Users/view.ctp:95
 msgid "Name"
 msgstr "Apellido"
 
-#: Template/Layout/default.ctp:122 Template/Users/login.ctp:76
+#: Template/Layout/default.ctp:125 Template/Users/login.ctp:76
 #: Template/Users/view.ctp:96
 msgid "Email address"
 msgstr "Dirección electrónica"
 
-#: Template/Layout/default.ctp:126 Template/Users/login.ctp:28;48
+#: Template/Layout/default.ctp:129 Template/Users/login.ctp:28;48
 #: Template/Users/view.ctp:104
 msgid "Password"
 msgstr "Contraseña"
 
-#: Template/Layout/default.ctp:127 Template/Users/view.ctp:105
+#: Template/Layout/default.ctp:130 Template/Users/view.ctp:105
 msgid "Confirm password"
 msgstr "Confirmar la contraseña"
 
-#: Template/Layout/default.ctp:129
+#: Template/Layout/default.ctp:132
 msgid "Change my password"
 msgstr "Cambiar la contraseña"
 
-#: Template/Layout/default.ctp:137
+#: Template/Layout/default.ctp:140
 msgid "Delete my account"
 msgstr "Eliminar mi cuenta"
 
-#: Template/Layout/default.ctp:142;294
+#: Template/Layout/default.ctp:145;297
 msgid "Connect with"
 msgstr "Se conectar con"
 
-#: Template/Layout/default.ctp:146
+#: Template/Layout/default.ctp:149
 msgid "Sign In / Up"
 msgstr "Registro / Entrar"
 
-#: Template/Layout/default.ctp:163 Template/Setups/view.ctp:71
+#: Template/Layout/default.ctp:166 Template/Setups/view.ctp:71
 msgid "Basics"
 msgstr "Lo Esencial"
 
-#: Template/Layout/default.ctp:166 Template/Setups/view.ctp:74
+#: Template/Layout/default.ctp:169 Template/Setups/view.ctp:74
 msgid "Components"
 msgstr "Componentes"
 
-#: Template/Layout/default.ctp:169 Template/Setups/view.ctp:77
+#: Template/Layout/default.ctp:172 Template/Setups/view.ctp:77
 msgid "More infos"
 msgstr "Varios"
 
-#: Template/Layout/default.ctp:175
+#: Template/Layout/default.ctp:178
 msgid "Title *"
 msgstr "Título *"
 
-#: Template/Layout/default.ctp:176 Template/Setups/view.ctp:85
+#: Template/Layout/default.ctp:179 Template/Setups/view.ctp:85
 msgid "Description"
 msgstr "Descripción"
 
-#: Template/Layout/default.ctp:181
+#: Template/Layout/default.ctp:184
 msgid "Click to add a featured image *"
 msgstr "Haz clic para agregar una imagen *"
 
-#: Template/Layout/default.ctp:196 Template/Setups/view.ctp:103;105
+#: Template/Layout/default.ctp:199 Template/Setups/view.ctp:103;105
 msgid "Gallery Preview"
 msgstr "Vista previa de la galería"
 
-#: Template/Layout/default.ctp:200
+#: Template/Layout/default.ctp:203
 msgid "required fields"
 msgstr "campos requeridos"
 
-#: Template/Layout/default.ctp:204;219 Template/Setups/view.ctp:109;134
+#: Template/Layout/default.ctp:207;222 Template/Setups/view.ctp:109;134
 msgid "Next step"
 msgstr "Siguiente paso"
 
-#: Template/Layout/default.ctp:206;221;247
+#: Template/Layout/default.ctp:209;224;250
 msgid "Save as draft"
 msgstr "Guardar como borrador"
 
-#: Template/Layout/default.ctp:213 Template/Setups/view.ctp:118
+#: Template/Layout/default.ctp:216 Template/Setups/view.ctp:118
 msgid "Search for components..."
 msgstr "Buscar componentes..."
 
-#: Template/Layout/default.ctp:230 Template/Setups/view.ctp:147
+#: Template/Layout/default.ctp:233 Template/Setups/view.ctp:147
 msgid "Video (Youtube, Dailymotion, Twitch, ...)"
 msgstr "Vídeo (YouTube, Dailymotion, Twitch, ...)"
 
-#: Template/Layout/default.ctp:235 Template/Setups/view.ctp:157
+#: Template/Layout/default.ctp:238 Template/Setups/view.ctp:157
 msgid "It's not my setup !"
 msgstr "¡ Esta no es mi setup !"
 
-#: Template/Layout/default.ctp:236 Template/Setups/view.ctp:158
+#: Template/Layout/default.ctp:239 Template/Setups/view.ctp:158
 msgid "Setup's owner"
 msgstr "Propietario de la setup"
 
-#: Template/Layout/default.ctp:238
+#: Template/Layout/default.ctp:241
 msgid "author"
 msgstr "autor"
 
-#: Template/Layout/default.ctp:245 Template/Setups/view.ctp:173
+#: Template/Layout/default.ctp:248 Template/Setups/view.ctp:173
 msgid "Publish"
 msgstr "Publicar"
 
-#: Template/Layout/default.ctp:293
+#: Template/Layout/default.ctp:296
 msgid "Log in"
 msgstr "Iniciar sesión"
 
-#: Template/Layout/default.ctp:316
+#: Template/Layout/default.ctp:319
 msgid "Partners"
 msgstr "Socios "
 
-#: Template/Layout/default.ctp:324
+#: Template/Layout/default.ctp:327
 msgid "About us"
 msgstr "Nosotros "
 
-#: Template/Layout/default.ctp:326
+#: Template/Layout/default.ctp:329
 msgid "Our Blog"
 msgstr "Nuestro Blog"
 
-#: Template/Layout/default.ctp:327 Template/Pages/team.ctp:12
+#: Template/Layout/default.ctp:330 Template/Pages/team.ctp:12
 msgid "Our Team"
 msgstr "Nuestro Equipo"
 
-#: Template/Layout/default.ctp:328
+#: Template/Layout/default.ctp:331
 msgid "Legal Mentions"
 msgstr "Aviso legal"
 
-#: Template/Layout/default.ctp:332
+#: Template/Layout/default.ctp:335
 msgid "Support"
 msgstr "Soporte"
 
-#: Template/Layout/default.ctp:334
+#: Template/Layout/default.ctp:337
 msgid "Help - Q&A"
 msgstr "Ayuda - P&R"
 
-#: Template/Layout/default.ctp:335
+#: Template/Layout/default.ctp:338
 msgid "Report a bug"
 msgstr "Reportar un error"
 
-#: Template/Layout/default.ctp:340
+#: Template/Layout/default.ctp:343
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
 
@@ -1190,18 +1190,6 @@ msgstr "Setups de"
 msgid "All the setups shared by "
 msgstr "Todas las setups compartidas por"
 
-#: Template/Users/view.ctp:30
-msgid "setups"
-msgstr "setups"
-
-#: Template/Users/view.ctp:31
-msgid "likes"
-msgstr "likes"
-
-#: Template/Users/view.ctp:32
-msgid "comments"
-msgstr "comentarios"
-
 #: Template/Users/view.ctp:66
 msgid "There is no setup here yet..."
 msgstr "Todavia no hay setup en esta cuenta... "
@@ -1221,6 +1209,33 @@ msgstr "Cambiar la contraseña"
 #: Template/Users/view.ctp:118
 msgid "Delete this account"
 msgstr "Eliminar esta cuenta"
+
+#: Template/Users/view.ctp:30
+msgid "setup"
+msgid_plural "setups"
+msgstr[0] "setup"
+msgstr[1] "setups"
+
+#: Template/Users/view.ctp:31
+msgid "like"
+msgid_plural "likes"
+msgstr[0] "like"
+msgstr[1] "likes"
+
+#: Template/Users/view.ctp:32
+msgid "comment"
+msgid_plural "comments"
+msgstr[0] "comentario"
+msgstr[1] "comentarios"
+
+#~ msgid "setups"
+#~ msgstr "setups"
+
+#~ msgid "likes"
+#~ msgstr "likes"
+
+#~ msgid "comments"
+#~ msgstr "comentarios"
 
 #~ msgid "Our Stories"
 #~ msgstr "Nuestro Blog"
