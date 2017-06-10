@@ -285,7 +285,7 @@ class AppController extends Controller
                         {
                             $this->loadModel('Users');
                             $this->loadModel('Notifications');
-                            $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $like['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $like['user_id'] . '.png" alt="' . __('Liker\'s profile picture') . '">  <span><strong>' . $this->Users->get($like['user_id'])['name'] . '</strong> '. __('liked your setup') . ' <strong>' . $setup['title'] . '</strong></span></a>');
+                            $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $like['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $like['user_id'] . '.png" alt="__ALT">  <span><strong>' . $this->Users->get($like['user_id'])['name'] . '</strong> __LIKE <strong>' . $setup['title'] . '</strong></span></a>');
                         }
                     }
 
@@ -375,10 +375,22 @@ class AppController extends Controller
                 'limit' => $this->request->getQuery('n', 4)
             ]);
 
-            // Here we'll concatenate 'on-the-go' a "time ago with words" to the notifications content
+            // Here we'll concatenate 'on-the-go' a "time ago with words" to the notifications content + Makes some translations
             foreach($results as $result)
             {
                 $result['content'] = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
+
+                if(strpos($result['content'], '__LIKE'))
+                {
+                    $result['content'] = str_replace('__ALT', __('Liker\'s profile picture'), $result['content']);
+                    $result['content'] = str_replace('__LIKE', __('liked your setup'), $result['content']);
+                }
+
+                else if(strpos($result['content'], '__COMMENT'))
+                {
+                    $result['content'] = str_replace('__ALT', __('Commenter\'s profile picture'), $result['content']);
+                    $result['content'] = str_replace('__COMMENT', __('commented your setup'), $result['content']);
+                }
             }
 
             return new Response([
