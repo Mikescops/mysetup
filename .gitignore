@@ -3,3 +3,4 @@
 /tmp/*
 /logs/*
 /webroot/uploads/files/
+/src/Locale/*.pot
