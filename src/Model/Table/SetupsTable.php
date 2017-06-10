@@ -71,7 +71,7 @@ class SetupsTable extends Table
             ]
         ]);
 
-        $this->addBehavior('Sitemap.Sitemap', ['changefreq' => 'daily']);
+        $this->addBehavior('Sitemap.Sitemap', ['changefreq' => 'daily', 'conditions' => ['status' => 'PUBLISHED'] ]);
     }
 
 
