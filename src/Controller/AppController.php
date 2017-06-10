@@ -20,7 +20,6 @@ use Cake\Event\Event;
 use Cake\I18n\I18n;
 use Cake\Network\Http\Client;
 use Cake\Routing\Router;
-use Cake\I18n\Time;
 
 /**
  * Application Controller
@@ -405,31 +404,28 @@ class AppController extends Controller
     {
         if($this->request->is('get'))
         {
-            $nbpost = $this->request->getQuery('n', '8');
-            $order = $this->request->getQuery('o', 'DESC');
-            $type = $this->request->getQuery('t', 'date');
-            $weeks = $this->request->getQuery('w', '9999');
-            $featured = $this->request->getQuery('f', false);
-            $offset = $this->request->getQuery('p', '0');
+            $conditions = [];
 
-            $this->loadModel('Setups');
-
-            $conditions = array();
-
-            /* Featured ? */
-            if ($featured == true) {
-                array_push($conditions, array("featured" => true));
+            // If the query specified only the features ones
+            if($this->request->getQuery('f', false))
+            {
+                $conditions += ['featured' => true];
             }
 
-            array_push($conditions, ['creationDate >' => date('Y-m-d', strtotime("-" . $weeks . "weeks")), 'creationDate <=' => date('Y-m-d', strtotime("+ 1 day")), 'status' => 'PUBLISHED']);
+            $conditions += [
+                'creationDate >' => date('Y-m-d', strtotime("-" . $this->request->getQuery('w', '9999') . "weeks")),
+                'creationDate <=' => date('Y-m-d', strtotime("+ 1 day")),
+                'status' => 'PUBLISHED'
+            ];
 
+            $this->loadModel('Setups');
             $results = $this->Setups->find('all', [
                 'conditions' => $conditions,
                 'order' => [
-                    'creationDate' => $order
+                    'creationDate' => $this->request->getQuery('o', 'DESC')
                 ],
-                'limit' => $nbpost,
-                'offset' => $offset,
+                'limit' => $this->request->getQuery('n', '8'),
+                'offset' => $this->request->getQuery('p', '0'),
                 'contain' => [
                     'Likes' => function ($q) {
                         return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
@@ -443,16 +439,31 @@ class AppController extends Controller
                 ]
             ])->toArray();
 
-            if ($type == "like") {
+            // If the query specified a ranking by number of "likes", let's sort them just before sending it
+            if($this->request->getQuery('t', 'date') == "like")
+            {
                 usort($results, function($a, $b) {
-                    error_reporting(0);
-                    if(empty($a->likes)){$a->likes[0]->total = 0;}
-                    if(empty($b->likes)){$b->likes[0]->total = 0;}
-                    if($a->likes[0]->total == $b->likes[0]->total) {
+
+                    if(empty($a->likes))
+                    {
+                        $a->likes += [0 => ['total' => 0]];
+                    }
+                    
+                    if(empty($b->likes))
+                    {
+                        $b->likes += [0 => ['total' => 0]];
+                    }
+                    
+                    if($a->likes[0]['total'] == $b->likes[0]['total'])
+                    {
                         return 0;
-                    } 
-                    return ($a->likes[0]->total > $b->likes[0]->total) ? -1 : 1;
-                }); // not working yet
+                    }
+
+                    else
+                    {
+                        return ($a->likes[0]['total'] < $b->likes[0]['total']) ? 1 : -1;
+                    }
+                });
             }
 
             return new Response([

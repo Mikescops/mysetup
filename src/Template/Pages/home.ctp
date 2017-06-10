@@ -15,25 +15,38 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 ?>
 
 <?php
-$url=$this->Url->build('/', true) . "app/getsetups?f=1&n=5"; 
-$options=array(
-      CURLOPT_URL            => $url,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_HEADER         => false,
-      CURLOPT_FAILONERROR    => true, 
-      CURLOPT_HTTPHEADER, array('Content-Type: application/json','Accept: application/json')
-);
-$CURL=curl_init();
-if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponible.");}
-      curl_setopt_array($CURL,$options);
-      $fsetups=curl_exec($CURL);
-      if(curl_errno($CURL)){
-            echo "ERREUR curl_exec : ".curl_error($CURL);
-      }
-      $fsetups = json_decode($fsetups);
-      //var_dump($fsetups);
-curl_close($CURL);
  
+  $options = [
+    CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?f=1&n=5',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HEADER => false,
+    CURLOPT_FAILONERROR => true,
+    CURLOPT_HTTPHEADER => [
+      'Content-Type: application/json',
+      'Accept: application/json'
+    ]
+  ];
+
+  $curl = curl_init();
+  if(empty($curl))
+  {
+    die("ERROR (curl_init) : It looks like cURL is not available yet.");
+  }
+
+  curl_setopt_array($curl, $options);
+  $fsetups = curl_exec($curl);
+
+  if(curl_errno($curl))
+  {
+    die("ERROR (curl_exec) : " . curl_error($curl));
+  }
+
+  else
+  {
+    $fsetups = json_decode($fsetups);
+  }
+
+  curl_close($curl);
 ?>
 
 <div class="home_slider">
@@ -65,46 +78,41 @@ curl_close($CURL);
     <div class="row">
         <div class="column column-75">
 
-<?php
-$url= $this->Url->build('/', true) . "app/getsetups?t=like&n=20"; 
- 
-// Tableau contenant les options de téléchargement
-$options=array(
-      CURLOPT_URL            => $url,  // Url cible (l'url la page que vous voulez télécharger)
-      CURLOPT_RETURNTRANSFER => true,  // Retourner le contenu téléchargé dans une chaine (au lieu de l'afficher directement)
-      CURLOPT_HEADER         => false, // Ne pas inclure l'entête de réponse du serveur dans la chaine retournée
-      CURLOPT_FAILONERROR    => true,   // Gestion des codes d'erreur HTTP supérieurs ou égaux à 400
-      CURLOPT_HTTPHEADER, array(
-    'Content-Type: application/json',
-    'Accept: application/json'
-) // Gestion du json
-);
- 
-// Création d'un nouvelle ressource cURL
-$CURL=curl_init();
-// Erreur suffisante pour justifier un die()
-if(empty($CURL)){die("ERREUR curl_init : Il semble que cURL ne soit pas disponible.");}
- 
-      // Configuration des options de téléchargement
-      curl_setopt_array($CURL,$options);
- 
-      // Exécution de la requête
-      $setups=curl_exec($CURL);       // Le contenu téléchargé est enregistré dans la variable $content.
- 
-      // Si il s'est produit une erreur lors du téléchargement
-      if(curl_errno($CURL)){
-            // Le message d'erreur correspondant est affiché
-            echo "ERREUR curl_exec : ".curl_error($CURL);
-      }
+        <?php
+         
+          $options = [
+            CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?t=like&n=20',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER => false,
+            CURLOPT_FAILONERROR => true,
+            CURLOPT_HTTPHEADER => [
+              'Content-Type: application/json',
+              'Accept: application/json'
+            ]
+          ];
 
-      $setups = json_decode($setups);
+          $curl = curl_init();
+          if(empty($curl))
+          {
+            die("ERROR (curl_init) : It looks like cURL is not available yet.");
+          }
 
-      //var_dump($setups);
- 
-// Fermeture de la session cURL
-curl_close($CURL);
- 
-?>
+          curl_setopt_array($curl, $options);
+          $setups = curl_exec($curl);
+
+          if(curl_errno($curl))
+          {
+            die("ERROR (curl_exec) : " . curl_error($curl));
+          }
+
+          else
+          {
+            $setups = json_decode($setups);
+          }
+
+          curl_close($curl);
+        ?>
+
             <?php $i=0; foreach ($setups as $setup): ?>
 
             <div class="fullitem">
