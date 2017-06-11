@@ -23,7 +23,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 <?php
  
   $options = [
-    CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?o=DESC&t=like&w=1',
+    CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?o=DESC&t=like&w=1&n=30',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HEADER => false,
     CURLOPT_FAILONERROR => true,
