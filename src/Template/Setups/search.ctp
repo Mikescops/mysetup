@@ -33,17 +33,18 @@ $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
 			<?php foreach ($setups as $setup): ?>
 
 				<div class="fullitem">
-				<a href="<?= $this->Url->build('/setups/'.$setup->setup_id.'-'.$this->Text->slug($setup->setup->title)); ?>">
-					<img src="<?= $this->Url->build('/', true)?><?= $setup->src ?>">
+				<a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
+					<img src="<?= $this->Url->build('/', true)?><?= $setup['resources'][0]['src'] ?>">
 				</a>
+				<div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
 				<div class="fullitem-inner">
 					<div class="row">
 						<div class="column column-75">
-							<a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->setup->user_id)?>">
-								<img src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $setup->setup->user_id ?>.png">
+							<a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
+								<img src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $setup->user_id ?>.png">
 							</a>
-							<a href="<?= $this->Url->build('/setups/'.$setup->setup_id.'-'.$this->Text->slug($setup->setup->title)); ?>">
-								<h3><?= $setup->setup->title ?></h3>
+							<a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
+								<h3><?= $setup->title ?></h3>
 							</a>
 						</div>
 					</div>

@@ -287,68 +287,72 @@ class SetupsController extends AppController
 
     public function search()
     {
-        if($this->request->getQuery('q'))
+        $query = $this->request->getQuery('q');
+
+        if($query)
         {
-            /* Get query */
-            $query  = $this->request->getQuery('q', '');
-            $offset = $this->request->getQuery('p', '0');
+            // Some empty arrays in which we'll set the SQL conditions to match a setup... or not
+            $name_cond      = [];
+            $author_cond    = [];
+            $title_cond     = [];
+            $desc_cond      = [];
+            $resources_cond = [];
 
-            /* Add each word divided by + in request "like"*/
-            $qcond = array();
-
-            foreach(explode("+", urlencode($query)) as $key => $value)
+            // Let's fill in these array (tough operation)
+            foreach(explode("+", urlencode($query)) as $word)
             {
-                array_push($qcond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%'.$value.'%']);
+                array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);
+                array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
+                array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
+                array_push($desc_cond, ['LOWER(Setups.description) LIKE' => '%' . strtolower($word) . '%']);
+                array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
             }
 
-            /* Fetch corresponding setups */
-            $this->loadModel('Resources');
-            $test = $this->Resources->find('all', [
-                'limit' => 10,
-                'offset' => $offset,
-                'group' => 'setup_id'
-            ])->where([
-                'OR' => $qcond,
-                'Resources.type' => 'SETUP_PRODUCT'
-            ]);
+            /*
+                This query is just ESSENTIAL. Some explanations are required:
 
-            /* Query featured image and infos for each setup found */
-            $ncond = array();
-            foreach($test as $key)
-            {
-                array_push($ncond, ['Resources.setup_id' => $key->setup_id]);
-            }
-
-            if(!empty($ncond))
-            {
-                // To avoid a additional loop, we fetched here only the published setups
-                $setups = $this->Resources->find('all', [
-                    'contain' => [
-                        'Setups' => function($q) {
-                            return $q->autoFields(false)
-                            ->select([
-                                'title',
-                                'user_id',
-                                'creationDate'
-                            ])->where([
-                                'status' => 'PUBLISHED'
-                            ]);
-                        }
-                    ]
-                ])->where([
-                    'OR' => $ncond,
-                    'Resources.type' => 'SETUP_FEATURED_IMAGE'
-                ])->order([
+                    * We select only the column that we'll need (id, user_id, title, status) #optimization
+                    * Featured image (for each setup) will be directly available  ($setup['resources'][0]['src'])
+                    * Number of likes for each setup will be directly available ($setup->likes[0]->total)
+                    * We browse the Users table (in order to gather some setups with their user name)
+                    * We browse the Setups table (in order to gather some setups with their author name, title or even their description)
+                    * We browse the Resources table (in order to gather some setups with their resources title [=== product name])
+            */
+            $setups = $this->Setups->find('all', [
+                'contain' => [
+                    'Resources' => function($q) {
+                        return $q->autoFields(false)->where(['type' => 'SETUP_FEATURED_IMAGE'])->select(['setup_id', 'src']);
+                    },
+                    'Users' => function($q) {
+                        return $q->autoFields(false)->select(['id', 'name']);
+                    },
+                    'Likes' => function($q) {
+                        return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
+                    }
+                ],
+                'fields' => [
+                    'id',
+                    'user_id',
+                    'title',
+                    'status'
+                ],
+                'order' => [
                     'Setups.creationDate' => 'DESC'
-                ])->all()->toArray();
+                ],
+                'having' => [
+                    'status' => 'PUBLISHED'
+                ]
+            ])
+            ->where(['OR' => $name_cond])
+            ->orWhere(['OR' => $author_cond])
+            ->orWhere(['OR' => $title_cond])
+            ->orWhere(['OR' => $desc_cond])
+            ->leftJoinWith('Resources')
+            ->orWhere(['OR' => $resources_cond])
+            ->distinct()
+            ->toArray();
 
-                if(sizeof($setups) == 0)
-                {
-                    $setups = "noresult";
-                }
-            }
-
-            else
+            if(count($setups) == 0)
             {
                 $setups = "noresult";
             }
