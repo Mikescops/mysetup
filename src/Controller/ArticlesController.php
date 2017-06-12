@@ -42,7 +42,16 @@ class ArticlesController extends AppController
      */
     public function view($id = null)
     {
-        $article = $this->Articles->get($id);
+        $article = $this->Articles->get($id, [
+            'contain' => [
+                'Users' => [
+                    'fields' => [
+                        'id',
+                        'name'
+                    ]
+                ]
+            ]
+        ]);
 
         $this->set('article', $article);
         $this->set('_serialize', ['article']);

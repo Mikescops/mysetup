@@ -43,12 +43,15 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
         <h2><?= $article->title ?></h2>
 
+        <?= $this->Markdown->transform(h($article->content))?>
 
-         <?= $this->Markdown->transform(h($article->content))?>
+        <div id="social-networks"></div>
 
+        <br />
 
-         <div id="social-networks"></div>
-
+        <p class="setup-date">
+            <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($article->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $article->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?> , <?= __('by') ?> <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view', $article->user->id]); ?>"><?= $article->user->name ?></a>
+        </p>
 
         </div>
         <div class="column column-25 sidebar">
