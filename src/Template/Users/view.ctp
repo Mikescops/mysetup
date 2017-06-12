@@ -43,6 +43,8 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img src="<?= $this->Url->build('/'); ?><?= $setup->resources[0]->src ?>">
                 </a>
+                <div class="red_like"><i class="fa fa-heart"></i>  <?php echo count($setup->likes) ?></div>
+
                 <div class="fullitem-inner">
 
                     <div class="row">

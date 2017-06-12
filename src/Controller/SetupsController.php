@@ -42,7 +42,13 @@ class SetupsController extends AppController
         // This should be below, but we wanna throw a 404 on the production if the user tries to have access to a non-existing setup...
         $setup = $this->Setups->get($id, [
             'contain' => [
-                'Users',
+                'Users' => [
+                    'fields' => [
+                        'id',
+                        'name',
+                        'verified'
+                    ]
+                ],
                 'Comments' => [
                     'Users'
                 ]

@@ -50,15 +50,40 @@ class UsersController extends AppController
                     'sort' => [
                         'Setups.creationDate' => 'DESC'
                     ],
+                    'fields' => [
+                        'id',
+                        'title',
+                        'user_id'
+                    ],
                     'conditions' => $conditions,
                     'Resources' => [
                         'conditions' => [
                             'type' => 'SETUP_FEATURED_IMAGE'
+                        ],
+                        'fields' =>[
+                            'src',
+                            'setup_id'
+                        ]
+                    ],
+                    'Likes' => [
+                        'fields' => [
+                            'id',
+                            'setup_id'
                         ]
                     ]
                 ],
-                'Likes',
-                'Comments'
+                'Likes' => [
+                    'fields' => [
+                        'id',
+                        'user_id'
+                    ]
+                ],
+                'Comments' => [
+                    'fields' => [
+                        'id',
+                        'user_id'
+                    ]
+                ]
             ]
         ]);
 
