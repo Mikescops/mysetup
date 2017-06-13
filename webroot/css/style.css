@@ -118,7 +118,22 @@ footer a{
 }
 
 .social-networks a{
-	padding: 8px;
+	margin: 2%;
+	width: 46%;
+	display: block;
+	float: left;
+	background-color: #009cff;
+	border-radius: 6px;
+	color: #fff;
+	text-align: center;
+	height: 140px;
+	font-size: 35px;
+	line-height: 170px;
+	transition: opacity 0.45s;
+}
+
+.social-networks a:hover{
+	opacity: 0.8;
 }
 
 .tippy-tooltip{

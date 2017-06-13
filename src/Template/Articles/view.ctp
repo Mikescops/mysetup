@@ -50,7 +50,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <br />
 
         <p class="setup-date">
-            <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($article->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $article->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?> , <?= __('by') ?> <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view', $article->user->id]); ?>"><?= $article->user->name ?></a>
+            <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($article->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $article->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?> <?= __('by') ?> <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view', $article->user->id]); ?>"><?= $article->user->name ?></a>
         </p>
 
         </div>
@@ -63,16 +63,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?php endif; ?>
         <?php endif; ?>
 
-            <a class="button" href="<?= $this->Url->build('/blog/') ?>"><?= __('Go back to list') ?></a>
-
-            <div class="twitter-feed">
-              <a class="twitter-timeline" data-chrome="noscrollbar nofooter noboders" data-height="781" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by @mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
+            <a class="button" href="<?= $this->Url->build('/blog/') ?>"><i class="fa fa-share"></i> <?= __('Go back to list') ?></a>
 
             <div class="social-networks">
-                <a href="https://www.facebook.com/mysetup.co" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
-                <a href="https://twitter.com/mysetup_co" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
-                <a href="mailto:support@mysetup.co" title="Report a bug !"><i class="fa fa-bug fa-2x"></i></a>
+                <a href="https://www.facebook.com/mysetup.co" target="_blank" style="background-color: #3b5998"><i class="fa fa-facebook fa-2x"></i></a>
+                <a href="https://twitter.com/mysetup_co" target="_blank" style="background-color: #55acee"><i class="fa fa-twitter fa-2x"></i></a>
+                <a href="https://geeks.one/@mysetup_co" title="Mastodon" target="_blank" style="background-color: #45668e"><i class="fa fa-2x">M</i></a>
             </div>
 
         </div>
