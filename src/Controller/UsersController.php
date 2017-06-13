@@ -53,7 +53,8 @@ class UsersController extends AppController
                     'fields' => [
                         'id',
                         'title',
-                        'user_id'
+                        'user_id',
+                        'status'
                     ],
                     'conditions' => $conditions,
                     'Resources' => [
