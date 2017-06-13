@@ -63,7 +63,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?php endif; ?>
         <?php endif; ?>
 
-            <a class="button" href="<?= $this->Url->build('/blog/') ?>"><i class="fa fa-share"></i> <?= __('Go back to list') ?></a>
+            <a class="button button-backtolist" href="<?= $this->Url->build('/blog/') ?>"><i class="fa fa-share"></i> <?= __('Go back to list') ?></a>
 
             <div class="social-networks">
                 <a href="https://www.facebook.com/mysetup.co" target="_blank" style="background-color: #3b5998"><i class="fa fa-facebook fa-2x"></i></a>
