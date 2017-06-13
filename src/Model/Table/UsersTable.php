@@ -134,6 +134,15 @@ class UsersTable extends Table
         $validator
             ->allowEmpty('twitchToken');
 
+        $validator
+            ->allowEmpty('uwebsite');
+
+        $validator
+            ->allowEmpty('ufacebook');
+
+        $validator
+            ->allowEmpty('utwitter');
+
         return $validator;
     }
 
