@@ -23,6 +23,31 @@
 		<priority>1</priority>
 	</url>
 	<url>
+		<loc>https://mysetup.co/?lang=fr</loc>
+		<changefreq>always</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>https://mysetup.co/?lang=en</loc>
+		<changefreq>always</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>https://mysetup.co/?lang=it</loc>
+		<changefreq>always</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>https://mysetup.co/?lang=es</loc>
+		<changefreq>always</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>https://mysetup.co/?lang=de</loc>
+		<changefreq>always</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
 		<loc>https://mysetup.co/recents</loc>
 		<changefreq>daily</changefreq>
 		<priority>0.9</priority>
