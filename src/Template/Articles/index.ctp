@@ -11,7 +11,7 @@ echo $this->Html->meta(['property' => 'og:description', 'content' => 'Our latest
 echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'Our latest posts on mySetup.co blog'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/popular', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/blog', true)], null ,['block' => true]);
 
 
 ?>

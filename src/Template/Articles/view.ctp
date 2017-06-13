@@ -23,7 +23,7 @@ echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text
 echo $this->Html->meta(['property' => 'twitter:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/popular', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("/blog/".$article->id."-".$this->Text->slug($article->title), true)], null ,['block' => true]);
 
 
 
