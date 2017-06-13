@@ -16,9 +16,9 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
             <div><h2><?= $user->name ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
                 <ul>
-                    <?php if($user->uwebsite): ?><li><i class="fa fa-globe"></i> <?= $user->uwebsite ?></li><?php endif ?>
-                    <?php if($user->ufacebook): ?><li><i class="fa fa-twitter"></i> <?= $user->utwitter ?></li><?php endif ?>
-                    <?php if($user->utwitter): ?><li><i class="fa fa-facebook"></i> <?= $user->ufacebook ?></li><?php endif ?>
+                    <?php if($user->uwebsite): ?><li><i class="fa fa-globe"></i> <a href="<?= $user->uwebsite ?>" target="_blank"><?= $user->uwebsite ?></a></li><?php endif ?>
+                    <?php if($user->ufacebook): ?><li><i class="fa fa-twitter"></i> <a href="<?= $user->utwitter ?>" target="_blank"><?= $user->utwitter ?></a></li><?php endif ?>
+                    <?php if($user->utwitter): ?><li><i class="fa fa-facebook"></i> <a href="<?= $user->ufacebook ?>" target="_blank"><?= $user->ufacebook ?></a></li><?php endif ?>
                 </ul>
 
             </div>
@@ -100,6 +100,12 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
                         <?php
                         echo $this->Form->input('picture', ['label' => __("Change the profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
+                        ?>
+
+                        <?php
+                            echo $this->Form->control('uwebsite', ['label' => ['text' => ' Website', 'class' => 'fa fa-globe'], 'placeholder' => "https://website.me", 'default' => $authUser['uwebsite']]);
+                            echo $this->Form->control('ufacebook', ['label' => ['text' => ' Facebook', 'class' => 'fa fa-facebook'], 'placeholder' => "https://facebook.com/me", 'default' => $authUser['ufacebook']]);
+                            echo $this->Form->control('utwitter', ['label' => ['text' => ' Twitter', 'class' => 'fa fa-twitter'], 'placeholder' => "https://twitter.com/me", 'default' => $authUser['utwitter']]);
                         ?>
 
                         <?php
