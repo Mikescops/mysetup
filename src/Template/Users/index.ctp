@@ -22,6 +22,9 @@
                     <th scope="col"><?= $this->Paginator->sort('creationDate', __('Created on')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('lastLogginDate', __('Last Login')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('twitchToken', 'Twitch') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('uwebsite', 'Website') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('ufacebook', 'Facebook') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('utwitter', 'Twitter') ?></th>
                     <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -38,6 +41,9 @@
                     <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']); ?></td>
                     <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); ?></td>
                     <td><?= ($user->twitchToken ? __('Yes') : __('No')) ?></td>
+                    <td><?php if($user->uwebsite): echo '<i class="fa fa-globe"> <a href="$user->uwebsite" target="_blank">Website</a></i>'; endif; ?></td>
+                    <td><?php if($user->ufacebook): echo '<i class="fa fa-facebook"> <a href="$user->ufacebook" target="_blank">Facebook</a></i>'; endif; ?></td>
+                    <td><?php if($user->utwitter): echo '<i class="fa fa-twitter"> <a href="$user->utwitter" target="_blank">Twitter</a></i>'; endif; ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete this user ?')]) ?>

@@ -17,8 +17,8 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
             <div><h2><?= $user->name ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
                 <ul>
                     <?php if($user->uwebsite): ?><li><i class="fa fa-globe"></i> <a href="<?= $user->uwebsite ?>" target="_blank"><?= $user->uwebsite ?></a></li><?php endif ?>
-                    <?php if($user->ufacebook): ?><li><i class="fa fa-twitter"></i> <a href="<?= $user->utwitter ?>" target="_blank"><?= $user->utwitter ?></a></li><?php endif ?>
-                    <?php if($user->utwitter): ?><li><i class="fa fa-facebook"></i> <a href="<?= $user->ufacebook ?>" target="_blank"><?= $user->ufacebook ?></a></li><?php endif ?>
+                    <?php if($user->ufacebook): ?><li><i class="fa fa-facebook"></i> <a href="<?= $user->ufacebook ?>" target="_blank"><?= $user->ufacebook ?></a></li><?php endif ?>
+                    <?php if($user->utwitter): ?><li><i class="fa fa-twitter"></i> <a href="<?= $user->utwitter ?>" target="_blank"><?= $user->utwitter ?></a></li><?php endif ?>
                 </ul>
 
             </div>
