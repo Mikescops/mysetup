@@ -37,4 +37,22 @@ echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block'
 		<a href="https://www.linkedin.com/in/samuelforestier/" target="_blank"><i class="fa fa-linkedin"></i> LinkedIn</a>
 
 	</div>
+
+	<br><br>
+
+
+	<h3>Graphist</h3>
+
+	<div class="member">
+
+		<img alt="Jeff Gbeho" src="https://mysetup.co/uploads/files/pics/profile_picture_1301137618.png">
+
+		<p><strong>Jeff Gbeho</strong> : Young graphic designer and illustrator based at Toulouse. I'm specialized in branding and illustration but I like to diversify by realizing projects such as typography, photography, web design, etc... I like challenges and finding solutions to problems through image.</p>
+
+		<a href="https://www.jeffgbeho.com/" target="_blank"><i class="fa fa-globe"></i> Jeff website</a> | 
+		<a href="https://www.behance.net/JeffGbeho" target="_blank"><i class="fa fa-behance"></i> Behance</a> | 
+		<a href="https://www.facebook.com/designjeff" target="_blank"><i class="fa fa-facebook"></i> Facebook</a>
+
+
+	</div>
 </div>

@@ -326,7 +326,7 @@
                     <div class="column column-25">
                       <div class="footer-title"><?= __('About us') ?></div>
                       <ul>
-                        <li><a href="<?=$this->Url->build('/blog/')?>" target="_blank" class="item"><?= __('Our Blog') ?></a></li>
+                        <li><a href="<?=$this->Url->build('/blog/')?>" class="item"><?= __('Our Blog') ?></a></li>
                         <li><a href="<?= $this->Url->build('/pages/team'); ?>"><?= __('Our Team') ?></a></li>
                         <li><a href="<?= $this->Url->build('/pages/legals'); ?>"><?= __('Legal Mentions') ?></a></li>
                       </ul>
