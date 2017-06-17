@@ -29,7 +29,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 <div class="featured-container">
     <div class="featured-gradient" style="background-image: url('<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>')"></div>
-    <h2><?= $setup->title ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h2>
     <img alt="<?= $setup->title ?>" width="1120" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>" alt="<?= $setup->title ?>">
 </div>
 
