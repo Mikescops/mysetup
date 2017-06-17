@@ -4,7 +4,7 @@
   */
 $this->assign('title', __('Login | mySetup.co'));
 ?>
-
+<div class="container sitecontainer">
 <div class="login-form">
     <ul class="tabs">
         <li>
@@ -83,4 +83,5 @@ $this->assign('title', __('Login | mySetup.co'));
         <?= $this->Form->end() ?>
     </div>
     <!--/#reset.form-action-->
+</div>
 </div>

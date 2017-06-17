@@ -13,6 +13,7 @@ echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/recents', true)], null ,['block' => true]);
 
 ?>
+<div class="container sitecontainer">
     <div class="maincontainer">
 
     <div class="row">
@@ -109,4 +110,5 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         </div>
     </div>
 
+</div>
 </div>

@@ -5,7 +5,7 @@
 
 $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
 ?>
-
+<div class="container sitecontainer">
 <div class="maincontainer">
 	<div class="row">
 		<div class="column column-75">
@@ -66,4 +66,5 @@ $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
             </div>
 		</div>
 	</div>
+</div>
 </div>

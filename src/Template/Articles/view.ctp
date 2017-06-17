@@ -28,6 +28,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 
 ?>
+<div class="container sitecontainer">
     <div class="maincontainer">
 
     <div class="row">
@@ -74,4 +75,5 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         </div>
     </div>
 
+</div>
 </div>

@@ -305,10 +305,8 @@
         </div>
     </nav>
 
-
-    <div class="container sitecontainer">
+    
         <?= $this->fetch('content') ?>
-    </div>
 
 
     <footer>

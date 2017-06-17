@@ -7,6 +7,8 @@ $this->assign('title', __('Setups by ') . $user->name . ' | mySetup.co');
 echo $this->Html->meta('description', __('All the setups shared by ') . $user->name, ['block' => true]);
 ?>
 
+<div class="container sitecontainer">
+
 <div class="maincontainer">
 
     <div class="row user-profile">
@@ -137,4 +139,5 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
             </div>
         </div>
     </div>
+</div>
 </div>
