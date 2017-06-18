@@ -35,13 +35,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
         <div class="post-image">
 
-            <img src="<?= $this->Url->build('/') . $article->picture ?>" alt="<?= $article->title ?>">
+            <img src="<?= $this->Url->build('/') . $article->picture ?>" alt="<?= h($article->title) ?>">
 
         </div>
 
-        <em class="float-right">#<?= $article->category ?></em>
+        <em class="float-right">#<?= h($article->category) ?></em>
 
-        <h2><?= $article->title ?></h2>
+        <h2><?= h($article->title) ?></h2>
 
         <?= $this->Markdown->transform(h($article->content))?>
 
@@ -50,7 +50,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <br />
 
         <p class="setup-date">
-            <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($article->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $article->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?> <?= __('by') ?> <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view', $article->user->id]); ?>"><?= $article->user->name ?></a>
+            <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($article->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $article->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?> <?= __('by') ?> <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view', $article->user->id]); ?>"><?= h($article->user->name) ?></a>
         </p>
 
         </div>

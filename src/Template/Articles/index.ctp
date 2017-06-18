@@ -26,11 +26,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                 <div class="article-img">
 
-                    <img src="<?= $this->Url->build('/') . $article->picture ?>" alt="<?= $article->title ?>">
+                    <img src="<?= $this->Url->build('/') . $article->picture ?>" alt="<?= h($article->title) ?>">
 
                 </div>
 
-                <h3><?= $article->title ?></h3>
+                <h3><?= h($article->title) ?></h3>
 
             </a>
         <?php endforeach ?>
