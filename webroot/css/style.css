@@ -742,67 +742,45 @@ footer a{
 .labeled_button, .red_button{
     cursor: pointer;
     display: inline-block;
-    background: #fff none;
     line-height: 1em;
     text-decoration: none;
     border-radius: 4px;
 }
 
-.labeled_button{
+.red_button{
 	position: absolute;
 	margin-top: 20px;
 	right: 20px;
-	border-radius: 5px;
+	border: 1px solid #fff;
+	border-radius: 25px;
+	color: #fff;
+	text-decoration: none;
 }
 
-.red_button{
-	border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+.labeled_button{
 	margin: 0;
-	background-color: #db2828;
-    color: #fff;
     text-shadow: none;
-    background-image: none;
-    padding: .78571429em 1.5em .78571429em;
-    box-shadow: 0 0 0 0 rgba(34,36,38,.15) inset;
+    padding: .7em .8em .7em;
 }
 
-.labeled_button:hover > .red_button{
-	opacity: .9;
-	-webkit-transition: opacity .2s ease-in-out;
-	-moz-transition: opacity .2s ease-in-out;
-	-ms-transition: opacity .2s ease-in-out;
-	-o-transition: opacity .2s ease-in-out;
-	transition: opacity .2s ease-in-out;
+.red_button:focus{
+	color: #fff;
+}
+
+.red_button:hover{
+	border: 1px solid #E73535;
+	color: #E73535;
 }
 
 .red_button.active{
-	background-color: #cb2525;
-	box-shadow: inset -2px 0px 10px rgba(0,0,0,0.5);
+	border: 1px solid #FC003E;
+	color: #FC003E;
 }
 
 .pointing_label{
 	position: relative;
-	padding: .78571429em 0.5em .78571429em;
+	padding: .7em .8em .7em 0em;
 	font-size: 1.1em;
-	color: #000;
-}
-
-.pointing_label:before {
-	content: "";
-	position: absolute;
-    top: 20px;
-    left: -10px;
-    width: .6666em;
-    height: .6666em;
-    border-width: 0 0 1px 1px;
-    border-style: solid;
-    border-color: #e5e5e5;
-    background: #fff;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
 }
 
 .item-meta{
@@ -1704,15 +1682,6 @@ nav {
 		height: auto!important;
 	}
 
-	.pointing_label{
-		display: none;
-	}
-
-	.labeled_button{
-		top: 10px;
-		right: 0!important;
-	}
-
 	.featured-inner .featured-user img{
 		position: absolute;
 		top: 10px;
@@ -1829,13 +1798,8 @@ nav {
 		width: 50px;
 	}
 
-	.labeled_button{
-		right: 5px;
-		margin-top: 7px;
-		line-height: 0.5em;
-	}
-	.red_button{
-		padding: .58571429em 0.8em .58571429em;
+	.labeled_button span{
+		display: none;
 	}
 
 	.comment-section .column, .description-section .column{
