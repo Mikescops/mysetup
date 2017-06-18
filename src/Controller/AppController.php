@@ -284,7 +284,7 @@ class AppController extends Controller
                         {
                             $this->loadModel('Users');
                             $this->loadModel('Notifications');
-                            $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $like['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $like['user_id'] . '.png" alt="__ALT">  <span><strong>' . $this->Users->get($like['user_id'])['name'] . '</strong> __LIKE <strong>' . $setup['title'] . '</strong></span></a>');
+                            $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $like['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $like['user_id'] . '.png" alt="__ALT">  <span><strong>' . h($this->Users->get($like['user_id'])['name']) . '</strong> __LIKE <strong>' . h($setup['title']) . '</strong></span></a>');
                         }
                     }
 
