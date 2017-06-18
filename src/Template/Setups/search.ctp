@@ -11,7 +11,7 @@ $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
 		<div class="column column-75">
 
 			<div class="large_search">
-				<input type="text" id="keyword-search" placeholder="<?= $_GET["q"] ?>" /> 
+				<input type="text" id="keyword-search" placeholder="<?= h($_GET["q"]) ?>" /> 
 				<?= $this->Html->scriptBlock('let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
 			</div>
 
@@ -44,7 +44,7 @@ $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
 								<img src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $setup->user_id ?>.png">
 							</a>
 							<a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-								<h3><?= $setup->title ?></h3>
+								<h3><?= h($setup->title) ?></h3>
 							</a>
 						</div>
 					</div>

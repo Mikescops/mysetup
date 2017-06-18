@@ -14,7 +14,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
         <div class="column column-50">
             <img src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$user->id.'.png'); ?>">
 
-            <div><h2><?= $user->name ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
+            <div><h2><?= h($user->name) ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
                 <ul>
                     <?php if($user->uwebsite): ?><li><i class="fa fa-globe"></i> <?= $user->uwebsite ?></li><?php endif ?>
                     <?php if($user->ufacebook): ?><li><i class="fa fa-twitter"></i> <?= $user->utwitter ?></li><?php endif ?>

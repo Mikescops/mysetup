@@ -28,16 +28,16 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 ?>
 
 <div class="featured-container">
-    <img alt="<?= $setup->title ?>" width="1120" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>" alt="<?= $setup->title ?>">
+    <img alt="<?= h($setup->title) ?>" width="1120" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>" alt="<?= h($setup->title) ?>">
     <div class="featured-inner">
         <div class="row">
             <div class="column column-75">
                 <a class="featured-user" href="<?= $this->Url->build('/users/'.$setup->user['id']) ?>">
-                    <img alt="<?= __('Profile picture of') ?> <?= $setup->user['name'] ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
+                    <img alt="<?= __('Profile picture of') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
                 </a>
-                <h3><?= $setup->title ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
+                <h3><?= h($setup->title) ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
                 <p>
-                    <?= __('Shared by') ?> <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?><?php if($setup->user['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . $setup->author ; endif?>
+                    <?= __('Shared by') ?> <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?><?php if($setup->user['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . h($setup->author) ; endif?>
                 </p>
             </div>
             <a class="labeled_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('" . __('You must be logged in to like !') . "');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
@@ -88,7 +88,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?php
                     echo $this->Form->input('featuredImage', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
                 ?>
-                <img alt="<?= __('Featured Preview') ?>" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $setup['resources']['featured_image'] ?>" alt="<?= $setup->title ?>">
+                <img alt="<?= __('Featured Preview') ?>" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $setup['resources']['featured_image'] ?>" alt="<?= h($setup->title) ?>">
                 <div class="hidden_five_inputs">
                     <?php
                         echo $this->Form->input('gallery0', ['id' => 'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
@@ -188,7 +188,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <p><?= __('Copy the following url in the link field') ?> :</p>
         <pre><code><span><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title).'?ref='.urlencode($setup->user['name']), true)?></span></code></pre>
         <p><?= __('And add your personal mySetup.co banner image !') ?></p>
-        <p style="text-align: center;"><img alt="<?= ('Advert - Setup by') ?> <?= $setup->user['name'] ?>" src="<?= $this->Url->build('/imgeneration/twitch-promote.php?id='. $setup->user_id . '&name=' . $setup->user['name'] . '&setup=' . $setup->title)?>"></p>
+        <p style="text-align: center;"><img alt="<?= ('Advert - Setup by') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/imgeneration/twitch-promote.php?id='. $setup->user_id . '&name=' . $setup->user['name'] . '&setup=' . $setup->title)?>"></p>
         
         <p><?= __('You can even configure your Twitch Chat bot to display your link or image.') ?></p>
     </div>
@@ -230,7 +230,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div class="slider-item">
                 <div class="slider-item-inner">
                     <a href="<?= $this->Url->build('/', true)?><?= $image->src ?>" data-lity data-lity-desc="Photo of Config'">
-                        <img alt="<?= ('Gallery image of') ?> <?= $setup->title ?>" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
+                        <img alt="<?= ('Gallery image of') ?> <?= h($setup->title) ?>" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
                     </a>
                 </div>
             </div>
