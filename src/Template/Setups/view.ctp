@@ -44,16 +44,18 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                         <?= __('Shared by') ?> <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?><?php if($setup->user['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . $setup->author ; endif?>
                     </p>
                 </div>
-                <a class="red_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('" . __('You must be logged in to like !') . "');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
-                  <div class="labeled_button">
-                    <i class="fa fa-heart"></i> <span>Like</span>
-                  </div>
-                  <span class="pointing_label">
-                    0
-                  </span>
-                </a>
-                <?= $this->Html->scriptBlock('$(document).ready(function() {printLikes("' . $setup->id . '");});', array('block' => 'scriptBottom')); ?>
-                <?php if($authUser): echo $this->Html->scriptBlock('$(document).ready(function() {doesLike("' . $setup->id . '");});', array('block' => 'scriptBottom'));endif; ?>
+                <div class="column column-25">
+                    <a class="red_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('" . __('You must be logged in to like !') . "');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
+                      <div class="labeled_button">
+                        <i class="fa fa-heart"></i> <span>Like</span>
+                      </div>
+                      <span class="pointing_label">
+                        0
+                      </span>
+                    </a>
+                    <?= $this->Html->scriptBlock('$(document).ready(function() {printLikes("' . $setup->id . '");});', array('block' => 'scriptBottom')); ?>
+                    <?php if($authUser): echo $this->Html->scriptBlock('$(document).ready(function() {doesLike("' . $setup->id . '");});', array('block' => 'scriptBottom'));endif; ?>
+                </div>
             </div>
         </div>
     </div>
@@ -201,7 +203,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 <?php endif ?>
 
 
-<div class="container sitecontainer">
+<div class="container">
 <div class="maincontainer">
 
     <div class="row config-post">

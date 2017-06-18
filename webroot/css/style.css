@@ -614,7 +614,7 @@ footer a{
 	display: inline-flex;
 }
 
-.edit_panel div{
+.edit_panel .container div{
 	width: 50%;
 	background: #000;
 	float: left;
@@ -623,7 +623,7 @@ footer a{
 	padding: 0 6px;
 }
 
-.edit_panel div:first-child{
+.edit_panel .container div:first-child{
 	border-right: solid 1px #fff;
 }
 
@@ -748,13 +748,12 @@ footer a{
 }
 
 .red_button{
-	position: absolute;
 	margin-top: 20px;
-	right: 20px;
 	border: 1px solid #fff;
 	border-radius: 25px;
 	color: #fff;
 	text-decoration: none;
+	height: 40px;
 }
 
 .labeled_button{
@@ -1294,7 +1293,7 @@ nav {
 
 .label_fimage {
     color: #328fea;
-    border: 3px dashed #328fea;
+    border: 2px dashed #328fea;
     display: inline-block;
     cursor: pointer; /* "hand" cursor */
     border-radius: 5px;
@@ -1682,12 +1681,6 @@ nav {
 		height: auto!important;
 	}
 
-	.featured-inner .featured-user img{
-		position: absolute;
-		top: 10px;
-		left: 10px;
-	}
-
 	.featured-inner h3{
 		margin: 5px 0 5px 0;
 	}
@@ -1783,7 +1776,6 @@ nav {
 
 	.featured-inner{
 		height: 70px;
-		margin-top: -8px;
 	}
 
 	.featured-inner h3{
@@ -1796,6 +1788,10 @@ nav {
 
 	.featured-inner .featured-user img{
 		width: 50px;
+	}
+
+	.red_button{
+		margin-top: 5px;
 	}
 
 	.labeled_button span{
