@@ -44,7 +44,7 @@ img{
 	-ms-user-select: none;
 }
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     width: 8px;
     height: 8px;
     background: #2b2b2b;
@@ -63,7 +63,7 @@ img{
 
 ::selection {
     background: #bfbfbf;
-}
+}*/
 
 .sitecontainer{
 	padding-top: 60px;
