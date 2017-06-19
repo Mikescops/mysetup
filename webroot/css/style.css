@@ -142,8 +142,12 @@ footer a{
 
  /*********** INDEX CSS ***********/
 
+.home_slider_container{
+	background-color: #344154;
+	padding: 120px 0 80px 0;
+}
+
 .home_slider{
-	margin-top: 25px;
 }
 
 .home_slider .slider-item{
@@ -380,11 +384,11 @@ footer a{
 
 
 .slick-center {
-	box-shadow: 0 0 35px rgba(0,0,0,.75);
+/*	box-shadow: 0 0 35px rgba(0,0,0,.75);
 	-moz-box-shadow: 0 0 35px rgba(0,0,0,.75);
 	-webkit-box-shadow: 0 0 35px rgba(0,0,0,.75);
-	-webkit-transform: scale(1.08);
-	transform: scale(1.08);
+	-webkit-transform: scale(1.08);*/
+	transform: scale(1.1);
 }
 
 .fullitem{
@@ -910,7 +914,26 @@ footer a{
  /*********** MENU CSS ***********/
 
 nav {
+}
+
+.nav-transparent{
+	height: 80px;
+	background: RGBA(21, 21, 21, 0);
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.nav-color{
+	height: 60px;
 	background: RGBA(21, 21, 21, 0.95);
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 .heavy-nav{
@@ -921,7 +944,6 @@ nav {
 	width: 100%;
 	margin: 0;
 	z-index: 500;
-	height: 80px;
 	padding: 10px 15px 0px 15px;
 	top: 0;
 }
