@@ -32,9 +32,9 @@ In order to deploy this website on your web server:
 
 * During development, you may get an error into the console: `TypeError: a.result is undefined`. Don't bother, this is due to the JS social module.
 
-* The plugin _loadsys/cakephp\_sitemap_ has been re-coded by @Mikescops. **/!\ If you clone and install this repository, please take care of having the correct sources. /!\\**
+* The plugin _loadsys/cakephp\_sitemap_ has been re-coded by @Mikescops. **:warning: If you clone and install this repository, please take care of having the correct sources. :warning:**
 
-* If you wanna add a translation for a foreign language, just add _default.po_ / _default.mo_ and _core.po_ / _core.mo_files into `src/Locale/xx_XX/`, and authorize this new locale in `src/Application.php`. In order to extract the strings from the source code, and edit them with _Poedit_, just follow this scenario :
+* If you wanna add a translation for a foreign language, just add _default.po_ / _default.mo_ and _core.po_ / _core.mo_ files into `src/Locale/xx_XX/`, and authorize this new locale in `src/Application.php`. In order to extract the strings from the source code, and edit them with _Poedit_, just follow this scenario :
 	
 	> [user@localhost:/var/www/html/mysetup]$ **bin/cake i18n extract**  
 	>  
