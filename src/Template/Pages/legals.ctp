@@ -7,6 +7,8 @@ echo $this->Html->meta('description', __('Legal mentions about your personal dat
 
 ?>
 
+<div class="container sitecontainer">
+
 <div class="maincontainer">
 
 	<h3><?= __('Site Publisher') ?></h3>
@@ -41,5 +43,7 @@ echo $this->Html->meta('description', __('Legal mentions about your personal dat
 	<h2><?= __('Credits') ?></h2>
 
 	<p><?= __('© 2017 mysetup.co – All rights reserved. Total or partial production or imitation of said documents without the express prior written consent of mysetup.co is strictly prohibited and constitutes a punishable violation under France’s Intellectual Property Code. All brands and trademarks on mysetup.co belongs to their respective owners.') ?></p>
+
+</div>
 
 </div>

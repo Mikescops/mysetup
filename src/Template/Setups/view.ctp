@@ -28,36 +28,44 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 ?>
 
 <div class="featured-container">
-    <img alt="<?= h($setup->title) ?>" width="1120" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>" alt="<?= h($setup->title) ?>">
+    <div class="featured-gradient" style="background-image: url('<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>')"></div>
+    <img alt="<?= $setup->title ?>" width="1120" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>" alt="<?= $setup->title ?>">
+</div>
+
     <div class="featured-inner">
-        <div class="row">
-            <div class="column column-75">
-                <a class="featured-user" href="<?= $this->Url->build('/users/'.$setup->user['id']) ?>">
-                    <img alt="<?= __('Profile picture of') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
-                </a>
-                <h3><?= h($setup->title) ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
-                <p>
-                    <?= __('Shared by') ?> <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?><?php if($setup->user['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . h($setup->author) ; endif?>
-                </p>
+        <div class="container">
+            <div class="row">
+                <div class="column column-75">
+                    <a class="featured-user" href="<?= $this->Url->build('/users/'.$setup->user['id']) ?>">
+                        <img alt="<?= __('Profile picture of') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
+                    </a>
+                    <h3><?= h($setup->title) ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
+                    <p>
+                        <?= __('Shared by') ?> <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?><?php if($setup->user['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . h($setup->author) ; endif?>
+                    </p>
+                </div>
+                <div class="column column-25">
+                    <a class="red_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('" . __('You must be logged in to like !') . "');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
+                      <div class="labeled_button">
+                        <i class="fa fa-heart"></i> <span>Like</span>
+                      </div>
+                      <span class="pointing_label">
+                        0
+                      </span>
+                    </a>
+                    <?= $this->Html->scriptBlock('$(document).ready(function() {printLikes("' . $setup->id . '");});', array('block' => 'scriptBottom')); ?>
+                    <?php if($authUser): echo $this->Html->scriptBlock('$(document).ready(function() {doesLike("' . $setup->id . '");});', array('block' => 'scriptBottom'));endif; ?>
+                </div>
             </div>
-            <a class="labeled_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('" . __('You must be logged in to like !') . "');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
-              <div class="red_button">
-                <i class="fa fa-heart"></i> Like
-              </div>
-              <span class="pointing_label">
-                0
-              </span>
-            </a>
-            <?= $this->Html->scriptBlock('$(document).ready(function() {printLikes("' . $setup->id . '");});', array('block' => 'scriptBottom')); ?>
-            <?php if($authUser): echo $this->Html->scriptBlock('$(document).ready(function() {doesLike("' . $setup->id . '");});', array('block' => 'scriptBottom'));endif; ?>
         </div>
     </div>
-</div>
 
 <?php if($authUser['id'] == $setup->user_id or $authUser['admin']): ?>
     <div class="edit_panel">
-        <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> <?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup</a></div>
-        <div><a href="#embed_twitch_modal" data-lity><i class="fa fa-twitch"></i> <?= __('Embed it in Twitch') ?></a></div>
+        <div class="container">
+            <div><a href="#edit_setup_modal" data-lity><i class="fa fa-wrench"></i> <?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup</a></div>
+            <div><a href="#embed_twitch_modal" data-lity><i class="fa fa-twitch"></i> <?= __('Embed it in Twitch') ?></a></div>
+        </div>
     </div>
 
     <div id="edit_setup_modal" class="lity-hide">
@@ -194,6 +202,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     </div>
 <?php endif ?>
 
+
+<div class="container">
 <div class="maincontainer">
 
     <div class="row config-post">
@@ -332,6 +342,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <?php endif; ?>
     </p>
 
+</div>
 </div>
 
 <script>

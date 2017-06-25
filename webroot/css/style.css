@@ -44,7 +44,7 @@ img{
 	-ms-user-select: none;
 }
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     width: 8px;
     height: 8px;
     background: #2b2b2b;
@@ -63,7 +63,7 @@ img{
 
 ::selection {
     background: #bfbfbf;
-}
+}*/
 
 .sitecontainer{
 	padding-top: 60px;
@@ -142,8 +142,12 @@ footer a{
 
  /*********** INDEX CSS ***********/
 
+.home_slider_container{
+	background-color: #344154;
+	padding: 120px 0 80px 0;
+}
+
 .home_slider{
-	margin-top: 25px;
 }
 
 .home_slider .slider-item{
@@ -380,11 +384,11 @@ footer a{
 
 
 .slick-center {
-	box-shadow: 0 0 35px rgba(0,0,0,.75);
+/*	box-shadow: 0 0 35px rgba(0,0,0,.75);
 	-moz-box-shadow: 0 0 35px rgba(0,0,0,.75);
 	-webkit-box-shadow: 0 0 35px rgba(0,0,0,.75);
-	-webkit-transform: scale(1.08);
-	transform: scale(1.08);
+	-webkit-transform: scale(1.08);*/
+	transform: scale(1.1);
 }
 
 .fullitem{
@@ -528,19 +532,40 @@ footer a{
  /********** POST CSS **********/
 
 .featured-container{
-	position: relative;
-	max-height: 500px;
+	padding: 120px 0 40px 0;
 	overflow: hidden;
-	margin-top: 25px;
-	border-radius: 6px 6px 0 0;
+	width: 100%;
+	text-align: center;
+	position: relative;
+	z-index: 20;
+}
+
+.featured-container h2{
+	text-transform: uppercase;
+}
+
+.featured-container img{
+	box-shadow: 0 10px 20px rgba(5,30,50,.2);
+	border-radius: 4px;
+}
+
+.featured-gradient{
+	width: 100%;
+	height: 100%;
+	-webkit-filter: blur(70px);
+	-o-filter: blur(70px);
+	filter: blur(70px);
+	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='70');
+	background-size: cover;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+	opacity: 0.8;
 }
 
 .featured-inner{
 	height: 100px;
 	background-color: rgba(0,0,0,0.8);
-	position: absolute;
-	left: 0;
-	bottom: 0;
 	width: 100%;
 	padding: 10px;
 	z-index: 9;
@@ -593,7 +618,7 @@ footer a{
 	display: inline-flex;
 }
 
-.edit_panel div{
+.edit_panel .container div{
 	width: 50%;
 	background: #000;
 	float: left;
@@ -602,7 +627,7 @@ footer a{
 	padding: 0 6px;
 }
 
-.edit_panel div:first-child{
+.edit_panel .container div:first-child{
 	border-right: solid 1px #fff;
 }
 
@@ -721,67 +746,44 @@ footer a{
 .labeled_button, .red_button{
     cursor: pointer;
     display: inline-block;
-    background: #fff none;
     line-height: 1em;
     text-decoration: none;
     border-radius: 4px;
 }
 
-.labeled_button{
-	position: absolute;
-	margin-top: 20px;
-	right: 20px;
-	border-radius: 5px;
-}
-
 .red_button{
-	border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-	margin: 0;
-	background-color: #db2828;
-    color: #fff;
-    text-shadow: none;
-    background-image: none;
-    padding: .78571429em 1.5em .78571429em;
-    box-shadow: 0 0 0 0 rgba(34,36,38,.15) inset;
+	margin-top: 20px;
+	border: 1px solid #fff;
+	border-radius: 25px;
+	color: #fff;
+	text-decoration: none;
+	height: 40px;
 }
 
-.labeled_button:hover > .red_button{
-	opacity: .9;
-	-webkit-transition: opacity .2s ease-in-out;
-	-moz-transition: opacity .2s ease-in-out;
-	-ms-transition: opacity .2s ease-in-out;
-	-o-transition: opacity .2s ease-in-out;
-	transition: opacity .2s ease-in-out;
+.labeled_button{
+	margin: 0;
+    text-shadow: none;
+    padding: .7em .8em .7em;
+}
+
+.red_button:focus{
+	color: #fff;
+}
+
+.red_button:hover{
+	border: 1px solid #E73535;
+	color: #E73535;
 }
 
 .red_button.active{
-	background-color: #cb2525;
-	box-shadow: inset -2px 0px 10px rgba(0,0,0,0.5);
+	border: 1px solid #FC003E;
+	color: #FC003E;
 }
 
 .pointing_label{
 	position: relative;
-	padding: .78571429em 0.5em .78571429em;
+	padding: .7em .8em .7em 0em;
 	font-size: 1.1em;
-	color: #000;
-}
-
-.pointing_label:before {
-	content: "";
-	position: absolute;
-    top: 20px;
-    left: -10px;
-    width: .6666em;
-    height: .6666em;
-    border-width: 0 0 1px 1px;
-    border-style: solid;
-    border-color: #e5e5e5;
-    background: #fff;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
 }
 
 .item-meta{
@@ -912,7 +914,26 @@ footer a{
  /*********** MENU CSS ***********/
 
 nav {
-	background: #151515;
+}
+
+.nav-transparent{
+	height: 80px;
+	background: RGBA(21, 21, 21, 0);
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.nav-color{
+	height: 60px;
+	background: RGBA(21, 21, 21, 0.95);
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 .heavy-nav{
@@ -923,7 +944,6 @@ nav {
 	width: 100%;
 	margin: 0;
 	z-index: 500;
-	height: 80px;
 	padding: 10px 15px 0px 15px;
 	top: 0;
 }
@@ -1295,7 +1315,7 @@ nav {
 
 .label_fimage {
     color: #328fea;
-    border: 3px dashed #328fea;
+    border: 2px dashed #328fea;
     display: inline-block;
     cursor: pointer; /* "hand" cursor */
     border-radius: 5px;
@@ -1683,21 +1703,6 @@ nav {
 		height: auto!important;
 	}
 
-	.pointing_label{
-		display: none;
-	}
-
-	.labeled_button{
-		top: 10px;
-		right: 0!important;
-	}
-
-	.featured-inner .featured-user img{
-		position: absolute;
-		top: 10px;
-		left: 10px;
-	}
-
 	.featured-inner h3{
 		margin: 5px 0 5px 0;
 	}
@@ -1793,7 +1798,6 @@ nav {
 
 	.featured-inner{
 		height: 70px;
-		margin-top: -8px;
 	}
 
 	.featured-inner h3{
@@ -1808,13 +1812,12 @@ nav {
 		width: 50px;
 	}
 
-	.labeled_button{
-		right: 5px;
-		margin-top: 7px;
-		line-height: 0.5em;
-	}
 	.red_button{
-		padding: .58571429em 0.8em .58571429em;
+		margin-top: 5px;
+	}
+
+	.labeled_button span{
+		display: none;
 	}
 
 	.comment-section .column, .description-section .column{

@@ -49,25 +49,32 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
   curl_close($curl);
 ?>
 
-<div class="home_slider">
+<div class="home_slider_container sitecontainer">
 
-<?php foreach ($fsetups as $fsetup): ?>
-            
-    <div class="slider-item">
-        <a href="<?= $this->Url->build('/setups/'.$fsetup->id.'-'.$this->Text->slug($fsetup->title)); ?>"><img alt="<?= h($fsetup->title) ?>" src="<?= $fsetup->resources[0]->src ?>"></a>
-        <a class="slider-item-inner featured-user" href="<?=$this->Url->build('/users/'.$fsetup->user_id)?>">
-            <img alt="<?= __('Profile picture of') ?> #<?= $fsetup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$fsetup->user_id.'.png'); ?>">
-        </a>
-        <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($fsetup->likes[0])){echo $fsetup->likes[0]->total;}else{echo 0;} ?></div>
-    </div>
+  <div class="container home_slider">
 
-<?php endforeach ?>
+    <?php foreach ($fsetups as $fsetup): ?>
+                
+        <div class="slider-item">
+            <a href="<?= $this->Url->build('/setups/'.$fsetup->id.'-'.$this->Text->slug($fsetup->title)); ?>"><img alt="<?= $fsetup->title ?>" src="<?= $fsetup->resources[0]->src ?>"></a>
+            <a class="slider-item-inner featured-user" href="<?=$this->Url->build('/users/'.$fsetup->user_id)?>">
+                <img alt="<?= __('Profile picture of') ?> #<?= $fsetup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$fsetup->user_id.'.png'); ?>">
+            </a>
+            <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($fsetup->likes[0])){echo $fsetup->likes[0]->total;}else{echo 0;} ?></div>
+        </div>
+
+    <?php endforeach ?>
+
+  </div>
 
 </div>
 
+
+<div class="container">
+
     <div class="maincontainer">
 
-      <div class="large_search"> <i class="fa fa-search"></i>
+      <div class="large_search" style="margin-top: -60px"> <i class="fa fa-search"></i>
         
         <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" /> 
         <?= $this->Html->scriptBlock(' let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`setups/search?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
@@ -169,4 +176,5 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         </div>
     </div>
 
+</div>
 </div>

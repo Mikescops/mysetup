@@ -10,20 +10,40 @@
 
 $(window).scroll(function(){
   var scrollTop = $(window).scrollTop();
-  if(scrollTop < 110){
+  if(scrollTop < 50){
     height = 60;
     margin = 10;
+    $('.heavy-nav').stop().removeClass('nav-color').addClass('nav-transparent');
   }else{
     height = 40;
     margin = 0;
+    $('.heavy-nav').stop().removeClass('nav-transparent').addClass('nav-color');
   }
   heavyheight = height + 20;
-  $('.heavy-nav').stop().animate({'height': heavyheight+"px"}, 300);
+  //$('.heavy-nav').stop().animate({'height': heavyheight+"px"}, 300);
   $('.heavy-nav .row:first-child').stop().animate({'height': height+"px"}, 300);
   $('.heavy-nav .ms-logo').stop().animate({'height': height+"px"}, 300);
   $('.right-nav').stop().animate({'margin-top': margin+"px"}, 300);
   $('.mobile-nav').stop().animate({'margin-top': margin+"px"}, 300);
 })
+
+$(function() { 
+  var scrollTop = $(window).scrollTop();
+  if(scrollTop < 50){
+    height = 60;
+    margin = 10;
+    $('.heavy-nav').addClass('nav-transparent');
+  }else{
+    height = 40;
+    margin = 0;
+    $('.heavy-nav').addClass('nav-color');
+  }
+  heavyheight = height + 20;
+  //$('.heavy-nav').stop().animate({'height': heavyheight+"px"}, 300);
+  $('.heavy-nav .row:first-child').stop().animate({'height': height+"px"}, 100);
+  $('.heavy-nav .ms-logo').stop().animate({'height': height+"px"}, 100);
+  $('.right-nav').stop().animate({'margin-top': margin+"px"}, 100);
+  $('.mobile-nav').stop().animate({'margin-top': margin+"px"}, 100);})
 
 
 

@@ -6,7 +6,7 @@ $this->assign('title', __('Q&A').' | mySetup.co');
 echo $this->Html->meta('description', __('We answer common questions and issues about mySetup. Find some tutorials to start sharing your setup now.'), ['block' => true]);
 
 ?>
-
+<div class="container sitecontainer">
 <div class="maincontainer">
 
 	<h3><?= __('Q&A - We answer common questions') ?></h3>
@@ -61,4 +61,5 @@ echo $this->Html->meta('description', __('We answer common questions and issues 
 
 
 
+</div>
 </div>
