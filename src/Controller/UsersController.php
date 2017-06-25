@@ -129,6 +129,11 @@ class UsersController extends AppController
                 // By default, an user will have as timezone the Europe/London one (GMT + 0)
                 $user->timeZone = 'Europe/London';
 
+                // By default, no user social networks
+                $user->uwebsite  = null;
+                $user->ufacebook = null;
+                $user->utwitter  = null;
+
                 if($this->Users->save($user))
                 {
                     $this->Users->saveDefaultProfilePicture($user, $this->Flash);
@@ -177,16 +182,6 @@ class UsersController extends AppController
         if($this->request->is(['patch', 'post', 'put']))
         {
             $data = $this->request->getData();
-
-            if(!isset($data['name']) || $data['name'] === '')
-            {
-                $data['name'] = $user['name'];
-            }
-
-            if(!isset($data['mail']) || $data['mail'] === '')
-            {
-                $data['mail'] = $user['mail'];
-            }
 
             if(!isset($data['secret']) || $data['secret'] === '')
             {

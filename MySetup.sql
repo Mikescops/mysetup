@@ -97,7 +97,10 @@ CREATE TABLE `users` (
   `mailVerification` varchar(32) COLLATE utf8_bin DEFAULT NULL,
   `creationDate` datetime NOT NULL,
   `lastLogginDate` datetime DEFAULT NULL,
-  `twitchToken` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL
+  `twitchToken` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
+  `uwebsite` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
+  `ufacebook` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
+  `utwitter` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
