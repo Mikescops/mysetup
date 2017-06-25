@@ -207,6 +207,33 @@ class UsersController extends AppController
                 $data['verified'] = $user['verified'];
             }
 
+            // Let's check the social inputs links !
+            if(isset($data['uwebsite']) and $data['uwebsite'] != '' and !isset(parse_url($data['uwebsite'])['host']))
+            {
+                $data['uwebsite'] = '';
+                $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+            }
+            if(isset($data['ufacebook']) and $data['ufacebook'] != '')
+            {
+                $temp = parse_url($data['ufacebook']);
+
+                if(!isset($temp['host']) or $temp['host'] !== 'facebook.com')
+                {
+                    $data['ufacebook'] = '';
+                    $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+                }
+            }
+            if(isset($data['utwitter']) and $data['utwitter'] != '')
+            {
+                $temp = parse_url($data['utwitter']);
+
+                if(!isset($temp['host']) or $temp['host'] !== 'twitter.com')
+                {
+                    $data['utwitter'] = '';
+                    $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+                }
+            }
+
             $user = $this->Users->patchEntity($user, $data);
 
             if($this->Users->save($user))
