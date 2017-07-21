@@ -200,7 +200,7 @@ class ResourcesTable extends Table
                 * Whatever the file format is, we move the image into the owner's directory, and renamed it as 'UUID.jpg' (even if it's a PNG !!) ;
                 * We convert the image into a JPG format ;
                 * We compress it ;
-                * We apply a little Gaussian blur to optimize a little more without much lost ;
+                //* We apply a little Gaussian blur to optimize a little more without much lost ;
                 * We crop the image into featured / gallery format (depends on the case) ;
                 * We save the new obtained image.
             */

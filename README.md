@@ -3,32 +3,52 @@
 [![Website](https://img.shields.io/website-up-down-green-red/https/mysetup.co.svg?label=mySetup.co)](https://mysetup.co/)
 [![Twitter Follow](https://img.shields.io/twitter/follow/mysetup_co.svg?style=social&label=Follow&style=flat-square)](https://twitter.com/mysetup_co)
 
-
 ## Installation
 
 In order to deploy this website on your web server:  
 
-1. `cd /var/www/html/`
+1. `# aptitude install git apache2 php7.0 php7.0-intl php7.0-mbstring php7.0-imagick`
 
-2. `git clone https://github.com/MikeScops/mysetup.git`
+2.
+	1. `# nano /etc/apache2/site-available/mysetup.conf`
+	2. ```apacheconf
+		<VirtualHost *:80>
 
-3. `cd mysetup/`
+			DocumentRoot /var/www/html/mysetup/webroot
+			<Directory /var/www/html/mysetup/webroot/>
+				Options FollowSymLinks
+				AllowOverride All
+			</Directory>
 
-4. `chmod -R 777 webroot/uploads/`
+		</VirtualHost>
+		```
+	3. `# a2ensite mysetup`
+	4. `# a2enmod rewrite`
+	5. `# service apache2 restart`
 
-5. `curl -s https://getcomposer.org/installer | php`
+3. `$ cd /var/www/html/`
 
-6. `php composer.phar install && rm composer.phar`
+4. `$ git clone https://github.com/MikeScops/mysetup.git`
 
-7. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and import the `MySetup.sql` file into a new database.
+5. `$ cd mysetup/`
 
-8. Configure an user with required rights on this database, and set it up in the `config/app.php` file in the _Datasources_ section.
+6. `$ chmod -R 777 webroot/uploads/`
 
-9. You're done. Go to [http://YOUR_SERVER_IP/mysetup/](http://YOUR_SERVER_IP/mysetup/), the page would be supposed to appear !
+7. `$ curl -s https://getcomposer.org/installer | php`
+
+8. `$ php composer.phar install && rm composer.phar`
+
+9. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and import the `MySetup.sql` file 9into a new database.
+
+10. Configure an user with required rights on this database, and set it up in the `config/app.php` file in the _1Datasources_ section.
+
+11. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page would be supposed to appear !
 
 ### Notes to developers
 
-* Will be 'administrator' the users having a `verified` value equal to `125`, and the account with an email address and password as (`admin@admin.admin` / `adminadmin`) (which cannot be verified...).
+* Will be 'administrators' users having a `verified` value equal to `125`, AND the account with an email address and password as (`admin@admin.admin` / `adminadmin`) (which cannot be verified...).
+
+* On the first connection as `admin`, your profile picture will be broken. Please fix this by uploading one.
 
 * During development, you may get an error into the console: `TypeError: a.result is undefined`. Don't bother, this is due to the JS social module.
 
