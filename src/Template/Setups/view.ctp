@@ -251,7 +251,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         
         <div class="column column-60 column-offset-20 item-meta">
 
-            <h4>About this setup</h4>
+            <h4><?= __('About this setup') ?></h4>
 
             <?= $this->Markdown->transform(h($setup->description))?>
 
