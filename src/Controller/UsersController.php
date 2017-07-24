@@ -136,7 +136,12 @@ class UsersController extends AppController
 
                 if($this->Users->save($user))
                 {
-                    $this->Users->saveDefaultProfilePicture($user, $this->Flash);
+                    // Here we'll try to retrieve a Gravatar avatar linked to this email address
+                    // If it fails, we'll fall back on the default egg head
+                    if(!$this->Users->saveRemoteProfilePicture($user->id, 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($user->mail))) . '?s=100&d=404', $this->Flash))
+                    {
+                        $this->Users->saveDefaultProfilePicture($user, $this->Flash);
+                    }
 
                     $this->Users->sendEmail($user->mail, 'Verify your account !', "
                         Hello " . $data['name'] . " !
@@ -547,27 +552,11 @@ class UsersController extends AppController
 
             if($this->Users->save($user))
             {
-                // This new user has been created and saved, let's keep a local copy of its profile picture
-                $destination = 'uploads/files/pics/profile_picture_' . $user->id . '.png';
-                $file = fopen($destination, 'w+');
-                $curl = curl_init($response->json['logo']);
-                /* curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); */
-                curl_setopt($curl, CURLOPT_FILE, $file);
-                curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-                curl_setopt($curl, CURLOPT_TIMEOUT, 1000);
-                curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0');
-                /* curl_setopt($curl, CURLOPT_VERBOSE, true); */
-                curl_exec($curl);
-                curl_close($curl);
-                fclose($file);
-
-                // Let's resize (and convert ?) this new image
-                $image = new \Imagick($destination);
-                if(!$image || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination))
+                // We'll use the Twitch API to retrieve its profile picture :O
+                if(!$this->Users->saveRemoteProfilePicture($user->id, $response->json['logo'], $this->Flash))
                 {
-                    $flash->warning(__('Your profile picture could not be resized, converted to a PNG format or saved... Please contact an administrator.'));
+                    $this->Users->saveDefaultProfilePicture($user, $this->Flash);
                 }
-                // ________________________________________________________________________________________
 
                 $this->Users->sendEmail($user->mail, 'Your account has been created !', "
                     Hello " . $user->name . " !
@@ -595,7 +584,7 @@ class UsersController extends AppController
             }
         }
 
-        // Just before log this user in, let's save the current date time into the DB
+        // Just before logging this user in, let's save the current date time into the DB
         $user->lastLogginDate = Time::now();
         $this->Users->save($user);
 

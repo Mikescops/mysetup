@@ -321,4 +321,44 @@ class UsersTable extends Table
         $session->write('Config.language', $this->getLocaleByCountryID($user['preferredStore']));
         $session->write('Config.timezone', $user['timeZone']);
     }
+
+    public function saveRemoteProfilePicture($user_id, $remote_url, $flash)
+    {
+        debug($remote_url);
+
+        // This new user has been created and saved, let's keep a local copy of its profile picture
+        $destination = 'uploads/files/pics/profile_picture_' . $user_id . '.png';
+        $file = fopen($destination, 'w+');
+        $curl = curl_init($remote_url);
+        /* curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); */
+        curl_setopt($curl, CURLOPT_FILE, $file);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 1000);
+        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0');
+        /* curl_setopt($curl, CURLOPT_VERBOSE, true); */
+        curl_exec($curl);
+
+        debug(curl_getinfo($curl, CURLINFO_HTTP_CODE));
+
+        if(curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200)
+        {
+            return false;
+        }
+
+        curl_close($curl);
+        fclose($file);
+
+        // Let's resize (and convert ?) this new image
+        $image = new \Imagick($destination);
+        if(!$image || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination))
+        {
+            $flash->warning(__('Your profile picture could not be resized, converted to a PNG format or saved... Please contact an administrator.'));
+            return false;
+        }
+
+        else
+        {
+            return true;
+        }
+    }
 }
