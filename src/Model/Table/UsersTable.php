@@ -326,8 +326,6 @@ class UsersTable extends Table
 
     public function saveRemoteProfilePicture($user_id, $remote_url, $flash)
     {
-        debug($remote_url);
-
         // This new user has been created and saved, let's keep a local copy of its profile picture
         $destination = 'uploads/files/pics/profile_picture_' . $user_id . '.png';
         $file = fopen($destination, 'w+');
@@ -339,8 +337,6 @@ class UsersTable extends Table
         curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0');
         /* curl_setopt($curl, CURLOPT_VERBOSE, true); */
         curl_exec($curl);
-
-        debug(curl_getinfo($curl, CURLINFO_HTTP_CODE));
 
         if(curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200)
         {
