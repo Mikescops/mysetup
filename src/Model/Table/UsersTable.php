@@ -205,7 +205,7 @@ class UsersTable extends Table
         }
     }
 
-    public function sendEmail($receiver, $subject, $content)
+    public function getEmailObject($receiver, $subject)
     {
         Email::setConfigTransport('Zoho', [
             'host' => 'smtp.zoho.eu',
@@ -216,14 +216,16 @@ class UsersTable extends Table
             'tls' => true
         ]);
 
-        $email = new Email('default');
+        $email = new Email();
         $email
             ->setTransport('Zoho')
             ->setFrom(['support@mysetup.co' => 'mySetup.co | Support'])
-            ->setTo($receiver)
-            ->setSubject("mySetup.co | " . $subject)
             ->setEmailFormat('html')
-            ->send($content);
+            ->setLayout('layout')
+            ->setTo($receiver)
+            ->setSubject($subject);
+
+        return $email;
     }
 
     public function saveDefaultProfilePicture($user, $flash)
