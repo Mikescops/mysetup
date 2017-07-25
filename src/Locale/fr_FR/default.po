@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "POT-Creation-Date: 2017-07-21 16:53+0200\n"
-"PO-Revision-Date: 2017-07-21 16:55+0200\n"
+"PO-Revision-Date: 2017-07-24 16:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: contact@mysetup.co\n"
 "Language: fr\n"
@@ -1060,7 +1060,7 @@ msgstr "Seul vous pouvez voir ce setup"
 
 #: Template/Setups/view.ctp:44
 msgid "Shared by"
-msgstr "Partagée par"
+msgstr "Partagé par"
 
 #: Template/Setups/view.ctp:44
 msgid ", created by "
