@@ -143,16 +143,10 @@ class UsersController extends AppController
                         $this->Users->saveDefaultProfilePicture($user, $this->Flash);
                     }
 
-                    $this->Users->sendEmail($user->mail, 'Verify your account !', "
-                        Hello " . $data['name'] . " !
-                        <br />
-                        <br />
-                        Please, in order to activate your account, click the following link : <a href=\"https://mysetup.co/verify/" . $user->id . '/' . $user->mailVerification . "\" target=\"_blank\">Activate my account</a> !
-                        <br />
-                        <br />
-                        <br />
-                        <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
-                    ");
+                    $email = $this->Users->getEmailObject($user->mail, 'Verify your account !');
+                    $email->setTemplate('verify')
+                          ->viewVars(['name' => $data['name'], 'id' => $user->id, 'token' => $user->mailVerification])
+                          ->send();
 
                     $this->Flash->success(__('Your account has been created, check your email to verify your account'));
                     return $this->redirect('/');
@@ -371,18 +365,10 @@ class UsersController extends AppController
                 $user->password = $temp;
                 if($this->Users->save($user))
                 {
-                    $this->Users->sendEmail($data['mailReset'], 'Your password has been reseted !', "
-                        Hello " . $user->name . " !
-                        <br />
-                        <br />
-                        Your password has been reseted and set to: <span style=\"font-weight: bold;\">" . $temp . "</span><br />
-                        <br />
-                        Please <a href=\"https://mysetup.co/login\" target=\"_blank\">log you in</a> and change it as soon as possible !
-                        <br />
-                        <br />
-                        <br />
-                        <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
-                    ");
+                    $email = $this->Users->getEmailObject($data['mailReset'], 'Your password has been reseted !');
+                    $email->setTemplate('password')
+                          ->viewVars(['name' => $user->name, 'password' => $temp])
+                          ->send();
 
                     $this->Flash->success(__("An email has been sent to this email address !"));
                     return $this->redirect(['action' => 'login']);
@@ -558,17 +544,10 @@ class UsersController extends AppController
                     $this->Users->saveDefaultProfilePicture($user, $this->Flash);
                 }
 
-                $this->Users->sendEmail($user->mail, 'Your account has been created !', "
-                    Hello " . $user->name . " !
-                    <br />
-                    <br />
-                    Your account has just been created on <a href=\"https://mysetup.co/\" target=\"_blank\">mySetup.co</a> !
-                    <br />
-                    We're so glad you joined us, come on and create your first setup ;)
-                    <br />
-                    <br />
-                    <img src=\"https://mysetup.co/img/logo_footer.svg\" alt=\"mySetup.co's Support\" style=\"height: 80px\">
-                ");
+                $email = $this->Users->getEmailObject($user->mail, 'Your account has been created !');
+                $email->setTemplate('welcome')
+                      ->viewVars(['name' => $user->name])
+                      ->send();
 
                 $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
 
