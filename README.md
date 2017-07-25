@@ -7,7 +7,7 @@
 
 In order to deploy this website on your web server:  
 
-1. `# aptitude install git apache2 php7.0 php7.0-intl php7.0-mbstring php7.0-imagick`
+1. `# aptitude install git apache2 php7.0 php7.0-intl php7.0-mbstring php7.0-imagick phpmyadmin composer`
 
 2.
 	1. `# nano /etc/apache2/site-available/mysetup.conf`
@@ -32,17 +32,15 @@ In order to deploy this website on your web server:
 
 5. `$ cd mysetup/`
 
-6. `$ chmod -R 777 webroot/uploads/`
+6. `$ mkdir webroot/uploads && chmod -R 777 webroot/uploads/`
 
-7. `$ curl -s https://getcomposer.org/installer | php`
+7. `$ composer install`
 
-8. `$ php composer.phar install && rm composer.phar`
+8. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and import the `MySetup.sql` file into a new database.
 
-9. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and import the `MySetup.sql` file 9into a new database.
+9. Configure an user with required rights on this database, and set it up in the `config/app.php` file in the _Datasources_ section.
 
-10. Configure an user with required rights on this database, and set it up in the `config/app.php` file in the _1Datasources_ section.
-
-11. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page would be supposed to appear !
+10. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page would be supposed to appear !
 
 ### Notes to developers
 
@@ -52,7 +50,7 @@ In order to deploy this website on your web server:
 
 * During development, you may get an error into the console: `TypeError: a.result is undefined`. Don't bother, this is due to the JS social module.
 
-* The plugin _loadsys/cakephp\_sitemap_ has been re-coded by @Mikescops. **:warning: If you clone and install this repository, please take care of having the correct sources. :warning:**
+* The plugin _loadsys/cakephp\_sitemap_ has been re-coded by [**@Mikescops**](https://github.com/Mikescops). **:warning: It won't be updated anymore because we blocked _Composer_ from tracking it :warning:**.
 
 * If you wanna add a translation for a foreign language, just add _default.po_ / _default.mo_ and _core.po_ / _core.mo_ files into `src/Locale/xx_XX/`, and authorize this new locale in `src/Application.php`. In order to extract the strings from the source code, and edit them with _Poedit_, just follow this scenario :
 	
