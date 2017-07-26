@@ -7,7 +7,7 @@
 
 In order to deploy this website on your web server:  
 
-1. `# aptitude install git apache2 php7.0 php7.0-intl php7.0-mbstring php7.0-imagick phpmyadmin composer`
+1. `# aptitude install git apache2 php7.0 php7.0-intl php7.0-mbstring php7.0-imagick php7.0-sqlite3 phpmyadmin composer`
 
 2.
 	1. `# nano /etc/apache2/site-available/mysetup.conf`
