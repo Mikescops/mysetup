@@ -89,8 +89,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div id="basics-edit" class="form-action-edit show-edit">
 
                 <?php
-                    echo $this->Form->control('title', ['label' => __('Title'), 'id' => 'title', 'maxLength' => 48, 'default' => $setup->title, 'required' => 'true']);
-                    echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxLength' => 5000, 'default' => $setup->description]);
+                    echo $this->Form->control('title', ['label' => __('Title'), 'id' => 'title', 'maxlength' => 48, 'default' => $setup->title, 'required' => 'true']);
+                    echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'default' => $setup->description]);
                 ?>
                 <br />
                 <?php
@@ -304,7 +304,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                 <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
                 <fieldset>
-                <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'), 'rows' => "1", 'maxLength' => 500]); ?>
+                <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'), 'rows' => "1", 'maxlength' => 500]); ?>
                 </fieldset>
                 <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
                 <?= $this->Form->end(); ?>
