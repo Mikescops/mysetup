@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Network\Http\Client;
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\Event\Event;
 use Cake\I18n\Time;
@@ -414,8 +413,8 @@ class UsersController extends AppController
                     $this->Users->save($user);
 
                     // Let's add some notifications to this new user
-                    TableRegistry::get('Notifications')->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
-                    TableRegistry::get('Notifications')->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
+                    $this->Users->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
+                    $this->Users->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
 
                     $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
 
@@ -553,8 +552,8 @@ class UsersController extends AppController
                 $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
 
                 // Let's add some notifications to this new user
-                TableRegistry::get('Notifications')->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
-                TableRegistry::get('Notifications')->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
+                $this->Users->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
+                $this->Users->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
             }
 
             else
