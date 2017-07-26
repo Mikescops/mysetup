@@ -5,7 +5,7 @@
 composer install
 
 # We can't get Composer to do what we want with this tweaked dependence, so this is the current workaround...
-git checkout vendor/loadsys/cakephp-sitemap/
+git checkout vendor/loadsys/cakephp_sitemap/
 
 # Some CakePHP optimizations
 composer dumpautoload -o
