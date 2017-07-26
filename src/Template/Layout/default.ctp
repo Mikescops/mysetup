@@ -108,7 +108,7 @@
 
                                     <div class="profilepicup">
                                         <?php
-                                        echo $this->Form->input('picture', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
+                                            echo $this->Form->input('picture', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
                                         ?>
                                     </div>
 
@@ -187,7 +187,7 @@
                             <span class="float-right link-marksupp"><a href="<?=$this->Url->build('/pages/q&a')?>"><i class="fa fa-info-circle"></i> Markdown supported</a></span>
                             <br>
                             <?php
-                                echo $this->Form->input('featuredImage', ['type' => 'file', 'label' => array('class' => 'label_fimage label_fimage_add','text' => __('Click to add a featured image *')), 'class' => 'inputfile', 'required' => 'true']);
+                                echo $this->Form->input('featuredImage', ['type' => 'file', 'label' => ['class' => 'label_fimage label_fimage_add', 'text' => __('Click to add a featured image *')], 'class' => 'inputfile', 'required' => 'true']);
                             ?>
                             <img id="featuredimage_preview">
                             <div class="hidden_five_inputs">
