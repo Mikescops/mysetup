@@ -41,9 +41,9 @@
                     <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']); ?></td>
                     <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); ?></td>
                     <td><?= ($user->twitchToken ? __('Yes') : __('No')) ?></td>
-                    <td><?php if($user->uwebsite): echo '<a href="' . $user->uwebsite . '" target="_blank">Website</a>'; endif; ?></td>
-                    <td><?php if($user->ufacebook): echo '<a href="' . $user->ufacebook . '" target="_blank">Facebook</a>'; endif; ?></td>
-                    <td><?php if($user->utwitter): echo '<a href="' . $user->utwitter . '" target="_blank">Twitter</a>'; endif; ?></td>
+                    <td><?php if($user->uwebsite): echo '<a href="' . $user->uwebsite . '" title="' . $user->uwebsite . '" target="_blank">Website</a>'; endif; ?></td>
+                    <td><?php if($user->ufacebook): echo '<a href="' . $user->ufacebook . '" title="' . $user->ufacebook . '" target="_blank">Facebook</a>'; endif; ?></td>
+                    <td><?php if($user->utwitter): echo '<a href="' . $user->utwitter . '" title="' . $user->utwitter . '" target="_blank">Twitter</a>'; endif; ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete this user ?')]) ?>
