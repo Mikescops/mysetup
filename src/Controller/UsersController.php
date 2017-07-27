@@ -209,7 +209,7 @@ class UsersController extends AppController
             // Let's check the social inputs links !
             if(isset($data['uwebsite']) and $data['uwebsite'] != '' and !isset(parse_url($data['uwebsite'])['host']))
             {
-                $data['uwebsite'] = '';
+                $data['uwebsite'] = $user['uwebsite'];
                 $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
             }
             if(isset($data['ufacebook']) and $data['ufacebook'] != '')
@@ -218,7 +218,7 @@ class UsersController extends AppController
 
                 if(!isset($temp['host']) or $temp['host'] !== 'facebook.com')
                 {
-                    $data['ufacebook'] = '';
+                    $data['ufacebook'] = $user['ufacebook'];
                     $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
                 }
             }
@@ -228,7 +228,7 @@ class UsersController extends AppController
 
                 if(!isset($temp['host']) or $temp['host'] !== 'twitter.com')
                 {
-                    $data['utwitter'] = '';
+                    $data['utwitter'] = $user['utwitter'];
                     $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
                 }
             }
