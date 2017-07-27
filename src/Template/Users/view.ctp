@@ -18,13 +18,17 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
             <div><h2><?= h($user->name) ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
                 <ul>
-                    <?php if($user->uwebsite): ?><li><i class="fa fa-globe"></i> <a href="<?= $user->uwebsite ?>" target="_blank"><?= h($user->uwebsite) ?></a></li><?php endif ?>
-                    <?php if($user->ufacebook): ?><li><i class="fa fa-facebook"></i> <a href="<?= $user->ufacebook ?>" target="_blank"><?= h($user->ufacebook) ?></a></li><?php endif ?>
-                    <?php if($user->utwitter): ?><li><i class="fa fa-twitter"></i> <a href="<?= $user->utwitter ?>" target="_blank"><?= h($user->utwitter) ?></a></li><?php endif ?>
+                    <?php
+                        function urlPrettifying($url) {
+                           return preg_replace('/https?:\/\/(www\.)?/', '', $url);
+                        }
+                    ?>
+
+                    <?php if($user->uwebsite): ?><li><i class="fa fa-globe" style="margin-right: 2px;"></i> <a href="<?= $user->uwebsite ?>" target="_blank"><?= h(urlPrettifying($user->uwebsite)) ?></a></li><?php endif ?>
+                    <?php if($user->ufacebook): ?><li><i class="fa fa-facebook" style="margin-right: 6px;"></i> <a href="<?= $user->ufacebook ?>" target="_blank"><?= h(urlPrettifying($user->ufacebook)) ?></a></li><?php endif ?>
+                    <?php if($user->utwitter): ?><li><i class="fa fa-twitter"></i> <a href="<?= $user->utwitter ?>" target="_blank"><?= h(urlPrettifying($user->utwitter)) ?></a></li><?php endif ?>
                 </ul>
-
             </div>
-
         </div>
 
         <div class="column column-50">
