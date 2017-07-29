@@ -34,7 +34,7 @@ In order to deploy this website on your web server:
 
 6. `$ mkdir webroot/uploads && chmod -R 777 webroot/uploads/`
 
-7. `$ composer install`
+7. `$ bash deployment.sh`
 
 8. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and import the `MySetup.sql` file into a new database.
 
