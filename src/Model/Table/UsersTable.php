@@ -70,6 +70,11 @@ class UsersTable extends Table
             'dependent' => 'true',
             'cascadeCallbacks' => 'true'
         ]);
+        $this->hasMany('Requests', [
+            'foreignKey' => 'user_id',
+            'dependent' => 'true',
+            'cascadeCallbacks' => 'true'
+        ]);
 
         $this->addBehavior('Timestamp', [
             'events' => [

@@ -89,6 +89,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/admin/comments', ['controller' => 'Comments', 'action' => 'index']);
     $routes->connect('/admin/resources', ['controller' => 'Resources', 'action' => 'index']);
 
+    /* Request owner special route */
+    $routes->connect('/setups/request/:id/:token/:response', ['controller' => 'Setups', 'action' => 'answerOwnership'], ['id' => '\d+', 'pass' => ['id', 'token', 'response']]);
+
     /**
      * Connect catchall routes for all controllers.
      *
