@@ -267,7 +267,7 @@ class SetupsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['search', 'view']);
+        $this->Auth->allow(['search', 'view', 'answerOwnership']);
     }
 
     public function isAuthorized($user)
@@ -282,7 +282,7 @@ class SetupsController extends AppController
                 }
             }
 
-            else if($this->request->action === 'add')
+            else if(in_array($this->request->action, ['add', 'requestOwnership', 'requestReport'])) 
             {
                 return true;
             }
@@ -371,5 +371,136 @@ class SetupsController extends AppController
 
         $this->set(compact('setups'));
         $this->set('_serialize', ['setups']);
+    }
+
+    public function requestOwnership($id = null)
+    {
+        if($this->request->is('post') and $id != null)
+        {
+            $user = $this->Setups->Users->get($this->request->session()->read('Auth.User.id'));
+            $setup = $this->Setups->get($id, [
+                'contain' => [
+                    'Users' => [
+                        'fields' => [
+                            'id',
+                            'mail'
+                        ]
+                    ]
+                ]
+            ]);
+
+            if($setup->user_id != $user->id and !$this->Setups->Requests->exists(['user_id' => $user->id, 'setup_id' => $setup->id]))
+            {
+                $request = $this->Setups->Requests->newEntity();
+                $request->token    = $this->Setups->Users->getRandomString();
+                $request->user_id  = $user->id;
+                $request->setup_id = $setup->id;
+
+                if($this->Setups->Requests->save($request))
+                {
+                    $email = $this->Setups->Users->getEmailObject($setup->user->mail, $user->name . ' has claimed your setup !');
+                    $email->setTemplate('ownership')
+                          ->viewVars(['setup_id' => $setup->id, 'setup_title' => $setup->title, 'owner_name' => $setup->user->name, 'requester_id' => $user->id, 'requester_name' => $user->name, 'requester_mail' => $user->mail, 'token' => $request->token])
+                          ->send();
+
+                    $this->Flash->success(__('Your request has just been sent, Let\'s wait for the owner\'s approval for now.'));
+                }
+
+                else
+                {
+                    $this->Flash->error(__('An error occurred while saving your request.'));   
+                }
+            }
+ 
+            else
+            {
+                $this->Flash->warning(__('No, no. This is impossible.'));
+            }
+
+            return $this->redirect(['action' => 'view', $id]);
+        }
+    }
+
+    public function answerOwnership($id = null, $token = null, $response = null)
+    {
+        if($this->request->is('get'))
+        {
+            $request = $this->Setups->Requests->find()->where(['setup_id' => $id, 'token' => $token])->first();
+
+            // If this request exists...
+            if($request)
+            {
+                // ... and the response is YES...
+                if($response)
+                {
+                    // ... let's change the ownership on this setup
+                    $setup = $this->Setups->get($request->setup_id);
+                    $setup->author  = $this->Setups->Users->get($request->user_id)['name'];
+                    $setup->user_id = $request->user_id;
+
+                    if(!$this->Setups->save($setup))
+                    {
+                        $this->Flash->error(__('An error occurred while processing your answer.'));
+                    }
+
+                    else
+                    {
+                        $this->Flash->success(__('Your voice has been heard !'));
+
+                        if(!$this->Setups->Requests->delete($request))
+                        {
+                            $this->Flash->warning(__('Your request couldn\'t be deleted as well.'));
+                        }
+                    }
+                }
+
+                else
+                {
+                    // else if, let's just delete the request in our DB
+                    if($this->Setups->Requests->delete($request))
+                    {
+                        $this->Flash->success(__('Your voice has been heard !'));
+                    }
+
+                    else
+                    {
+                        $this->Flash->error(__('An error occurred while processing your answer.'));
+                    }
+                }
+            }
+
+            else
+            {
+                $this->Flash->error(__('This request is invalid.'));
+            }
+
+            return $this->redirect('/');
+        }
+    }
+
+    public function requestReport($id = null)
+    {
+        if($this->request->is('post') and $id != null)
+        {
+            $user = $this->Setups->Users->get($this->request->session()->read('Auth.User.id'));
+            $setup = $this->Setups->get($id);
+ 
+            if($setup['user_id'] != $user['id'])
+            {
+                $email = $this->Setups->Users->getEmailObject('support@mysetup.co', 'A setup has been flagged !');
+                $email->setTemplate('report')
+                      ->viewVars(['setup_id' => $setup->id, 'flagger_id' => $user->id, 'flagger_name' => $user->name, 'flagger_mail' => $user->mail])
+                      ->send();
+
+                $this->Flash->success(__('Your request has just been sent, we may contact you in the future.'));
+            }
+ 
+            else
+            {
+                $this->Flash->warning(__('No, no. This is impossible.'));
+            }
+
+            return $this->redirect(['action' => 'view', $id]);
+        }
     }
 }
