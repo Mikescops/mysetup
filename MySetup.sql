@@ -123,7 +123,6 @@ CREATE TABLE `notifications` (
 -- Table structure for table `articles`
 --
 
-
 CREATE TABLE `articles` (
   `id` INT(11) NOT NULL,
   `title` VARCHAR(255) NOT NULL,
@@ -133,6 +132,19 @@ CREATE TABLE `articles` (
   `user_id` INT(11) NOT NULL,
   `category` VARCHAR(255) NOT NULL,
   `tags` VARCHAR(255) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `id` INT(11) NOT NULL,
+  `token` VARCHAR(255) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `setup_id` INT(11) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
@@ -190,6 +202,12 @@ ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -227,6 +245,11 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
