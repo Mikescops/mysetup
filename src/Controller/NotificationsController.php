@@ -13,9 +13,8 @@ use Cake\Event\Event;
 class NotificationsController extends AppController
 {
     /*
-        /!\ CAREFUL This is not the common `index()``method /!\
+        /!\ CAREFUL This is not the common `index()`` method /!\
         With this very entity, we'll only allow 'index per user' method.
-        The `$id` will represent the user id, NOT A NOTIFICATION ONE.
     */
     public function index()
     {

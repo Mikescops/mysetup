@@ -203,7 +203,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 <?php elseif($authUser && $setup->user_id != $authUser['id']): ?>
     <div class="edit_panel">
         <div class="container">
-        <div><i class="fa fa-bolt"></i> <?= $this->Form->postLink(__('This is my setup'), ['action' => 'requestOwnership', $setup->id], ['confirm' => __('This will send an ownership-request for this setup, are you really sure ?')]) ?></div>
+        <div><i class="fa fa-bolt"></i> <?= $this->Form->postLink(__('This is my setup !'), ['action' => 'requestOwnership', $setup->id], ['confirm' => __('This will send an ownership-request for this setup, are you really sure ?')]) ?></div>
 
         <div><i class="fa fa-flag"></i> <?= $this->Form->postLink(__('Report this setup'), ['action' => 'requestReport', $setup->id], ['confirm' => __('This will send a report-request against this setup, are you really sure ?')]) ?></div>
         </div>
