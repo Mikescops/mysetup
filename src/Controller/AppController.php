@@ -137,7 +137,7 @@ class AppController extends Controller
         $this->Auth->deny();
 
         // Allow GET request on public functions
-        $this->Auth->allow(['getSetups', 'getLikes']);
+        $this->Auth->allow(['getSetups', 'getLikes', 'reportBug']);
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
         $this->Security->config('unlockedFields', [
@@ -151,7 +151,9 @@ class AppController extends Controller
             'gallery2',
             'gallery3',
             'gallery4',
-            'g-recaptcha-response'
+            'g-recaptcha-response',
+            'bugDescription',
+            'bugMail'
         ]);
     }
 
@@ -471,5 +473,33 @@ class AppController extends Controller
                 'body' => json_encode($results)
             ]);
         }
+    }
+
+    public function reportBug()
+    {
+        if($this->request->is('post'))
+        {
+            $data = $this->request->getData();
+
+            $auth = $this->Auth->user();
+
+            if(isset($data['bugDescription']) and $data['bugDescription'] !== '' and strlen($data['bugDescription'] <= 5000) and ($auth or (isset($data['bugMail']) and $data['bugMail'] !== '')))
+            {
+                $this->loadModel('Users');
+                $email = $this->Users->getEmailObject('samuel@geek-mexicain.net', '[mySetup.co] There is a bug !');
+                $email->setTemplate('bug')
+                      ->viewVars(['content' => $data['bugDescription'], 'email' => ($auth ? $auth['mail'] : $data['bugMail'])])
+                      ->send();
+
+                $this->Flash->success(__('Your bug has been correctly sent ! Thanks for this report :)'));
+            }
+
+            else
+            {
+                $this->Flash->warning(__('You didn\'t report anything (or has missed something) :('));
+            }
+        }
+
+        return $this->redirect('/');
     }
 }
