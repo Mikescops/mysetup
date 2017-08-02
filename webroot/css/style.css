@@ -1,5 +1,5 @@
 /*!
- * mySetup v1.0.0
+ * mySetup v1.7.2
  * https://mysetup.co
  *
  * Copyright (c) 2017 Corentin Mors / Samuel Forestier
@@ -1243,7 +1243,7 @@ nav {
 
 /* **** ADD MODAL **** */
 
-#add_setup_modal, #edit_setup_modal, #edit_profile_modal, #embed_twitch_modal, #edit_user_admin{
+#add_setup_modal, #edit_setup_modal, #edit_profile_modal, #embed_twitch_modal, #edit_user_admin, #bug_report_modal{
 	color: #000;
 	overflow:auto;
 	background:#fff;

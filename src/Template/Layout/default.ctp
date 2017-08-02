@@ -317,7 +317,31 @@
 
     <footer>
         <div class="container">
-        
+
+            <div id="bug_report_modal" class="lity-hide">
+
+                <?= $this->Form->create(null, ['url' => ['controller' => 'App', 'action' => 'reportBug']]) ?>
+
+                <fieldset style="border:0;">
+                    <h4><?= __('Bug Report') ?> <i class="fa fa-bug"></i></h4>
+
+                    <?php
+
+                        if(!$authUser)
+                        {
+                            echo $this->Form->control('bugMail', ['label' => __('An email to contact you, young visitor !'), 'type' => 'email', 'placeholder' => 'me.name@exemple.com', 'required' => true]);
+                        }
+
+                        echo $this->Form->control('bugDescription', ['label' => __('Bug description'), 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'placeholder' => __('Please, describe precisely the bug you unfortunately encountered on mySetup.co...'), 'required' => true]);
+                        echo $this->Form->submit(__('Send'), ['class' => 'button', 'id' => 'publish-add']);
+
+                    ?>
+                </fieldset>
+                
+                <?= $this->Form->end() ?>
+
+            </div>
+
             <div class="row">
                     <div class="column column-25">
                       <div class="footer-title"><?= __('Partners') ?></div>
@@ -339,7 +363,7 @@
                       <div class="footer-title"><?= __('Support') ?></div>
                       <ul>
                         <li><a href="<?=$this->Url->build('/pages/q&a')?>"><?= __('Help - Q&A') ?></a></li>
-                        <li><a href="mailto:support@mysetup.co"><?= __('Report a bug') ?></a></li>
+                        <li><a href="#bug_report_modal" data-lity><?= __('Report a bug') ?></a></li>
                       </ul>
                     </div>
                     <div class="column column-25 logo_footer">
@@ -367,7 +391,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
 <!-- App Js async load -->
-<?= $this->Html->script('app.min.js?v=16') ?>
+<?= $this->Html->script('app.min.js?v=17') ?>
 <script>const toast = new siiimpleToast();</script>
 <?php if($authUser): ?>
     <script>const instance = new Tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification(); Tippy('.button.draft'); Tippy('.setup-unpublished');</script>
