@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2017-07-21 16:56+0200\n"
-"PO-Revision-Date: 2017-07-21 16:58+0200\n"
+"POT-Creation-Date: 2017-08-02 16:39+0200\n"
+"PO-Revision-Date: 2017-08-02 16:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: contact@mysetup.co\n"
 "Language: es\n"
@@ -15,21 +15,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: Controller/AppController.php:384
+#: Controller/AppController.php:386
 msgid "Liker's profile picture"
 msgstr "Imagen de perfil del \"liker\""
 
-#: Controller/AppController.php:385
+#: Controller/AppController.php:387
 msgid "liked your setup"
 msgstr "ha amado tu setup"
 
-#: Controller/AppController.php:390
+#: Controller/AppController.php:392
 msgid "Commenter's profile picture"
 msgstr "Imagen de perfil del \"comentador\""
 
-#: Controller/AppController.php:391
+#: Controller/AppController.php:393
 msgid "commented your setup"
 msgstr "ha comentado tu setup"
+
+#: Controller/AppController.php:494
+msgid "Your bug has been correctly sent ! Thanks for this report :)"
+msgstr "¡ Tu error ha sido enviado correctamente ! Gracias por este informe :)"
+
+#: Controller/AppController.php:499
+msgid "You didn't report anything (or has missed something) :("
+msgstr "No informas nada (o las información no estan completas) :("
 
 #: Controller/ArticlesController.php:86
 msgid "You need a featured image with this article !"
@@ -103,80 +111,114 @@ msgstr "La setup ha sido eliminada."
 msgid "The setup could not be deleted. Please, try again."
 msgstr "No se pudo eliminar la setup. Por favor, intenta de nuevo."
 
-#: Controller/UsersController.php:152
+#: Controller/SetupsController.php:406
+msgid ""
+"Your request has just been sent. Let's wait for the owner's approval for now."
+msgstr ""
+"Su solicitud acaba de ser enviada. Espera la aprobación del propietario !"
+
+#: Controller/SetupsController.php:411
+msgid "An error occurred while saving your request."
+msgstr "Se ha producido un error al guardar la solicitud."
+
+#: Controller/SetupsController.php:417;500
+msgid "No, no. This is impossible."
+msgstr "No, eso es imposible."
+
+#: Controller/SetupsController.php:443;467
+msgid "An error occurred while processing your answer."
+msgstr "Se produjo un error al procesar tu respuesta."
+
+#: Controller/SetupsController.php:448;462
+msgid "Your voice has been heard !"
+msgstr "¡ Tu voz se ha escuchado !"
+
+#: Controller/SetupsController.php:452
+msgid "Your request couldn't be deleted as well."
+msgstr "Su solicitud no se pudo eliminar también."
+
+#: Controller/SetupsController.php:474
+msgid "This request is invalid."
+msgstr "Esta solicitud no es válida."
+
+#: Controller/SetupsController.php:495
+msgid "Your request has just been sent, we may contact you in the future."
+msgstr "Su solicitud acaba de ser enviada, podemos contactarte en el futuro."
+
+#: Controller/UsersController.php:151
 msgid "Your account has been created, check your email to verify your account"
 msgstr "Tu cuenta ha sido creada, comprueba tu buzón para validar tu cuenta."
 
-#: Controller/UsersController.php:158
+#: Controller/UsersController.php:157
 msgid "The user could not be saved. (Is this address already taken ?)"
 msgstr ""
 "El usuario no pudo ser guardado. (¿ Quizá esta dirección ya sea utilizada ?)"
 
-#: Controller/UsersController.php:165;195
+#: Controller/UsersController.php:164;194
 msgid "These passwords do not match. Please try again."
 msgstr "Las contraseñas no corresponden. Por favor, intenta de nuevo."
 
-#: Controller/UsersController.php:214;223;233
+#: Controller/UsersController.php:213;222;232
 msgid ""
 "One of your social inputs URL does not fit with its field. It has not been "
 "saved"
 msgstr ""
-"Una de sus URL de entradas sociales no encaja con su campo. No se ha guardado"
+"Una de tu URL de entradas sociales no encaja con su campo. No se ha guardado"
 
-#: Controller/UsersController.php:249
+#: Controller/UsersController.php:248
 msgid "The user has been updated."
 msgstr "El usuario ha sido actualizado."
 
-#: Controller/UsersController.php:254
+#: Controller/UsersController.php:253
 msgid "The user could not be updated. Please, try again."
 msgstr "El usuario no pudo ser actualizado. Por favor, intenta de nuevo."
 
-#: Controller/UsersController.php:276
+#: Controller/UsersController.php:275
 msgid "The user has been deleted."
 msgstr "El usuario ha sido eliminado."
 
-#: Controller/UsersController.php:278
+#: Controller/UsersController.php:277
 msgid "The user could not be deleted. Please, try again."
 msgstr "El usuario no pudo ser eliminado. Por favor, intenta de nuevo."
 
-#: Controller/UsersController.php:284
+#: Controller/UsersController.php:283
 msgid "You just CANNOT delete the admin user of the website..."
 msgstr "Es IMPOSIBLE eliminar el administrador del sitio..."
 
-#: Controller/UsersController.php:302
+#: Controller/UsersController.php:301
 msgid "You are already logged in."
 msgstr "Ya estás conectado."
 
-#: Controller/UsersController.php:312
+#: Controller/UsersController.php:311
 msgid "Your account is not verified, check your emails !"
 msgstr ""
 "¡ Tu cuenta no está autentificada, por favor comprueba tu buzón electrónico !"
 
-#: Controller/UsersController.php:323;507
+#: Controller/UsersController.php:322;498
 msgid "You are successfully logged in !"
 msgstr "¡ Tu conexión es un éxito !"
 
-#: Controller/UsersController.php:334
+#: Controller/UsersController.php:333
 msgid "Username or password is incorrect"
 msgstr "El nombre de usuario o la contraseña es incorrecta"
 
-#: Controller/UsersController.php:343
+#: Controller/UsersController.php:342
 msgid "You are now logged out, see you soon !"
 msgstr "Estás desconectado, hasta pronto !"
 
-#: Controller/UsersController.php:349
+#: Controller/UsersController.php:348
 msgid "You can't logout because you're not connected."
 msgstr "No puedes desconectarte porque no estás conectado."
 
-#: Controller/UsersController.php:382
+#: Controller/UsersController.php:373
 msgid "An email has been sent to this email address !"
 msgstr "Un correo electronico ha sido mandado a tu direccion"
 
-#: Controller/UsersController.php:388;402
+#: Controller/UsersController.php:379;393
 msgid "Internal error, please try again."
 msgstr "Error interna, intenta de nuevo"
 
-#: Controller/UsersController.php:395
+#: Controller/UsersController.php:386
 msgid ""
 "This email address does not exist in our database. Are you sure you that you "
 "have an account ?"
@@ -184,41 +226,41 @@ msgstr ""
 "Esta dirección no existe en nuestra base de datos. Estás seguro que tienes "
 "una cuenta ?"
 
-#: Controller/UsersController.php:425;587
+#: Controller/UsersController.php:416;555
 msgid "We advise you to edit your profile (use the panel at the top)..."
 msgstr ""
-"Te recomendamos que modifique su perfil (utilice el panel en la parte "
+"Te recomendamos que modifique tu perfil (utilice el panel en la parte "
 "superior)..."
 
-#: Controller/UsersController.php:426;588
+#: Controller/UsersController.php:417;556
 msgid "... in order to add a profile picture ! You'd look better :P"
 msgstr "... para añadir una foto de perfil ! Te verías mejor: P"
 
-#: Controller/UsersController.php:428;584
+#: Controller/UsersController.php:419;552
 msgid "Your account is now activated, you're now logged in ;)"
 msgstr "Tu cuenta ya esta activada, ahora estás conectado ;)"
 
-#: Controller/UsersController.php:438
+#: Controller/UsersController.php:429
 msgid "Your token is invalid"
 msgstr "Tu sesión es invalida"
 
-#: Controller/UsersController.php:445
+#: Controller/UsersController.php:436
 msgid "This request is invalid"
 msgstr "Esta recuesta es invalida"
 
-#: Controller/UsersController.php:475;493
+#: Controller/UsersController.php:466;484
 msgid "We could not access Twitch's data"
 msgstr "No pudimos acceder a los datos de Twitch"
 
-#: Controller/UsersController.php:517
+#: Controller/UsersController.php:508
 msgid "Your account has just been linked to your Twitch one !"
 msgstr "Tu cuenta acaba de ser vinculada a tu Twitch !"
 
-#: Controller/UsersController.php:524
+#: Controller/UsersController.php:515
 msgid "An error occurred while logging you in"
 msgstr "Se ha producido un error al iniciar sesión"
 
-#: Controller/UsersController.php:534
+#: Controller/UsersController.php:525
 msgid ""
 "The email address of your Twitch account has not been verified. We can't "
 "create your account yet"
@@ -226,15 +268,7 @@ msgstr ""
 "Tu correo electrónico de tu cuenta de Twitch no se ha verificado. No podemos "
 "crear tu cuenta todavía"
 
-#: Controller/UsersController.php:568
-msgid ""
-"Your profile picture could not be resized, converted to a PNG format or "
-"saved... Please contact an administrator."
-msgstr ""
-"Una de tus imágenes no pudo ser convertida en PNG, ajustada o guardada... "
-"Por favor, contacta con un administrador."
-
-#: Controller/UsersController.php:593
+#: Controller/UsersController.php:561
 msgid "An error occurred while saving your account"
 msgstr "Se ha producido un error al guardar tu cuenta"
 
@@ -318,23 +352,23 @@ msgstr ""
 "El enlace vídeo que elegiste no es conforme con nuestras normas... Por "
 "favor, contacta con un administrador."
 
-#: Model/Table/SetupsTable.php:100
+#: Model/Table/SetupsTable.php:105
 msgid "This title is too long (more than 48 characters)"
 msgstr "Este título es demasiado largo (más de 48 caracteres)"
 
-#: Model/Table/SetupsTable.php:106
+#: Model/Table/SetupsTable.php:111
 msgid "This description is too long (more than 5000 characters)"
 msgstr "Esta descripción es demasiada larga (más de 5000 caracteres)"
 
-#: Model/Table/UsersTable.php:105
+#: Model/Table/UsersTable.php:110
 msgid "We need a valid E-mail address"
 msgstr "Necesitamos una dirección electrónica valida."
 
-#: Model/Table/UsersTable.php:111
+#: Model/Table/UsersTable.php:116
 msgid "The password has to contain more than 8 characters"
 msgstr "La contraseña debe tener más de 8 carácteres."
 
-#: Model/Table/UsersTable.php:233
+#: Model/Table/UsersTable.php:240
 msgid ""
 "An internal error occurred while creating your profile picture. Please "
 "contact an administrator."
@@ -342,14 +376,14 @@ msgstr ""
 "Un error interno occurió durante la creación de tu foto de perfil. Por "
 "favor, contacta con un administrador."
 
-#: Model/Table/UsersTable.php:239
+#: Model/Table/UsersTable.php:246
 msgid ""
 "Your default picture could not be set... Please contact an administrator."
 msgstr ""
 "Tu imagen por defecto no pudo ser establecida... Por favor, contacta con un "
 "administrador."
 
-#: Model/Table/UsersTable.php:249
+#: Model/Table/UsersTable.php:256
 msgid ""
 "An internal error occurred while saving your profile picture. Please contact "
 "an administrator."
@@ -357,7 +391,7 @@ msgstr ""
 "Un error interno occurió al guardar tu foto de perfil. Por favor, contacta "
 "con un administrador."
 
-#: Model/Table/UsersTable.php:263
+#: Model/Table/UsersTable.php:270
 msgid ""
 "Your profile picture could not be compressed, resized, converted to a PNG "
 "format or saved... Please contact an administrator."
@@ -365,11 +399,11 @@ msgstr ""
 "Una de tus imágenes no pudo ser convertida en PNG, comprimida, ajustada o "
 "guardada... Por favor, contacta con un administrador."
 
-#: Model/Table/UsersTable.php:269
+#: Model/Table/UsersTable.php:276
 msgid "Your profile picture could not be saved."
 msgstr "No se pudo guardar tu foto de perfil."
 
-#: Model/Table/UsersTable.php:275
+#: Model/Table/UsersTable.php:282
 msgid ""
 "The file you uploaded does not validate our rules... Please contact an "
 "administrator."
@@ -377,12 +411,20 @@ msgstr ""
 "El archivo que subiste no es conforme con nuestras normas... Por favor, "
 "contacta con un administrador."
 
+#: Model/Table/UsersTable.php:358
+msgid ""
+"Your profile picture could not be resized, converted to a PNG format or "
+"saved... Please contact an administrator."
+msgstr ""
+"Una de tus imágenes no pudo ser convertida en PNG, ajustada o guardada... "
+"Por favor, contacta con un administrador."
+
 #: Template/Articles/add.ctp:11
 msgid "Add post"
 msgstr "Añadir publicación"
 
 #: Template/Articles/add.ctp:24 Template/Layout/default.ctp:143
-#: Template/Users/view.ctp:125
+#: Template/Users/view.ctp:129
 msgid "Submit"
 msgstr "Subir"
 
@@ -390,7 +432,7 @@ msgstr "Subir"
 msgid "Edit post"
 msgstr "Editar publicación"
 
-#: Template/Articles/edit.ctp:24 Template/Setups/view.ctp:66;319
+#: Template/Articles/edit.ctp:24 Template/Setups/view.ctp:66;327
 msgid "Edit"
 msgstr "Editar"
 
@@ -398,11 +440,11 @@ msgstr "Editar"
 msgid "Tweets by @mysetup_co"
 msgstr "Tweets de @mysetup_co"
 
-#: Template/Articles/view.ctp:54 Template/Setups/view.ctp:341
+#: Template/Articles/view.ctp:54 Template/Setups/view.ctp:349
 msgid "Published on"
 msgstr "Publicado el"
 
-#: Template/Articles/view.ctp:54 Template/Setups/view.ctp:285
+#: Template/Articles/view.ctp:54 Template/Setups/view.ctp:293
 msgid "by"
 msgstr "por"
 
@@ -455,7 +497,7 @@ msgid "View"
 msgstr "Ver"
 
 #: Template/Comments/index.ctp:32 Template/Resources/index.ctp:35
-#: Template/Setups/index.ctp:120 Template/Setups/view.ctp:287
+#: Template/Setups/index.ctp:120 Template/Setups/view.ctp:295
 #: Template/Users/index.ctp:49
 msgid "Delete"
 msgstr "Eliminar"
@@ -530,7 +572,7 @@ msgstr "Editar el perfil"
 msgid "Logout"
 msgstr "Cerrar sesión"
 
-#: Template/Layout/default.ctp:102 Template/Users/view.ctp:84
+#: Template/Layout/default.ctp:102 Template/Users/view.ctp:88
 msgid "Change only what you want !"
 msgstr "¡ Puedes editar lo que quieras !"
 
@@ -539,21 +581,21 @@ msgid "Change my profile picture"
 msgstr "Cambiar mi foto del perfil"
 
 #: Template/Layout/default.ctp:124 Template/Users/index.ctp:16
-#: Template/Users/login.ctp:45 Template/Users/view.ctp:99
+#: Template/Users/login.ctp:45 Template/Users/view.ctp:103
 msgid "Name"
 msgstr "Apellido"
 
 #: Template/Layout/default.ctp:125 Template/Users/login.ctp:76
-#: Template/Users/view.ctp:100
+#: Template/Users/view.ctp:104
 msgid "Email address"
 msgstr "Dirección electrónica"
 
 #: Template/Layout/default.ctp:135 Template/Users/login.ctp:28;48
-#: Template/Users/view.ctp:114
+#: Template/Users/view.ctp:118
 msgid "Password"
 msgstr "Contraseña"
 
-#: Template/Layout/default.ctp:136 Template/Users/view.ctp:115
+#: Template/Layout/default.ctp:136 Template/Users/view.ctp:119
 msgid "Confirm password"
 msgstr "Confirmar la contraseña"
 
@@ -595,7 +637,7 @@ msgstr "Descripción"
 
 #: Template/Layout/default.ctp:185
 msgid "What is the purpose of your setup ? Tell us your setup's story..."
-msgstr "¿ Cuál es el propósito de su setup ? Cuéntanos su historia..."
+msgstr "¿ Cuál es el propósito de tu setup ? Cuéntanos su historia..."
 
 #: Template/Layout/default.ctp:190
 msgid "Click to add a featured image *"
@@ -633,10 +675,6 @@ msgstr "¡ Esta no es mi setup !"
 msgid "Setup's owner"
 msgstr "Propietario de la setup"
 
-#: Template/Layout/default.ctp:247
-msgid "author"
-msgstr "autor"
-
 #: Template/Layout/default.ctp:254 Template/Setups/view.ctp:181
 msgid "Publish"
 msgstr "Publicar"
@@ -645,39 +683,63 @@ msgstr "Publicar"
 msgid "Log in"
 msgstr "Iniciar sesión"
 
-#: Template/Layout/default.ctp:323
+#: Template/Layout/default.ctp:326
+msgid "Bug Report"
+msgstr "Informe de error"
+
+#: Template/Layout/default.ctp:332
+msgid "An email to contact you, young visitor !"
+msgstr "¡ Un correo electrónico para contactarte, joven visitante !"
+
+#: Template/Layout/default.ctp:335
+msgid "Bug description"
+msgstr "Descripción del error"
+
+#: Template/Layout/default.ctp:335
+msgid ""
+"Please, describe precisely the bug you unfortunately encountered on mySetup."
+"co..."
+msgstr ""
+"Por favor, describa con precisión el error que desafortunadamente encontras "
+"en mySetup.co..."
+
+#: Template/Layout/default.ctp:336 Template/Users/login.ctp:79
+msgid "Send"
+msgstr "Mandar"
+
+#: Template/Layout/default.ctp:347
 msgid "Partners"
 msgstr "Socios "
 
-#: Template/Layout/default.ctp:331
+#: Template/Layout/default.ctp:355
 msgid "About us"
 msgstr "Nosotros "
 
-#: Template/Layout/default.ctp:333
+#: Template/Layout/default.ctp:357
 msgid "Our Blog"
 msgstr "Nuestro Blog"
 
-#: Template/Layout/default.ctp:334 Template/Pages/team.ctp:12
+#: Template/Layout/default.ctp:358 Template/Pages/team.ctp:12
 msgid "Our Team"
 msgstr "Nuestro Equipo"
 
-#: Template/Layout/default.ctp:335
+#: Template/Layout/default.ctp:359
 msgid "Legal Mentions"
 msgstr "Aviso legal"
 
-#: Template/Layout/default.ctp:339
+#: Template/Layout/default.ctp:363
 msgid "Support"
 msgstr "Soporte"
 
-#: Template/Layout/default.ctp:341
+#: Template/Layout/default.ctp:365
 msgid "Help - Q&A"
 msgstr "Ayuda - P&R"
 
-#: Template/Layout/default.ctp:342
+#: Template/Layout/default.ctp:366
 msgid "Report a bug"
 msgstr "Reportar un error"
 
-#: Template/Layout/default.ctp:347
+#: Template/Layout/default.ctp:371
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
 
@@ -707,7 +769,7 @@ msgstr ""
 "battlestations ..."
 
 #: Template/Pages/home.ctp:61;137 Template/Pages/popular.ctp:78
-#: Template/Pages/recent.ctp:76 Template/Setups/view.ctp:40;277;302
+#: Template/Pages/recent.ctp:76 Template/Setups/view.ctp:40;285;310
 msgid "Profile picture of"
 msgstr "Foto del perfil de"
 
@@ -725,7 +787,7 @@ msgstr "¡ Inicia sesión con Twitch y crea mi programa de setup !"
 
 #: Template/Pages/home.ctp:166 Template/Pages/popular.ctp:98
 #: Template/Pages/recent.ctp:101 Template/Setups/search.ctp:60
-#: Template/Users/view.ctp:137
+#: Template/Users/view.ctp:141
 msgid "Read our latest news"
 msgstr "Lea nuestras últimas noticias"
 
@@ -786,7 +848,7 @@ msgstr ""
 "Al registrarse en mysetup.co, tú aceptas las siguientes reglas. Contenidos "
 "publicados en este sitio web deben estar relacionados con setups. Cualquier "
 "contenido no juzgado adecuado será moderado sin previo aviso. Los usuarios "
-"que no respetan  varias veces las reglas previamente establecidas verán su "
+"que no respetan  varias veces las reglas previamente establecidas verán tu "
 "cuenta proscribido."
 
 #: Template/Pages/legals.ctp:34
@@ -895,7 +957,7 @@ msgid ""
 "Check your spam folder, your mailbox may have dropped it there. If you "
 "didn't receive it within 10 minutes please contact us on our social networks."
 msgstr ""
-"Compruebe su carpeta de correo no deseado. Si no lo recibió en 10 minutos, "
+"Compruebe tu carpeta de correo no deseado. Si no lo recibió en 10 minutos, "
 "póngase en contacto con nosotros en nuestras redes sociales."
 
 #: Template/Pages/q&a.ctp:33
@@ -912,7 +974,7 @@ msgid ""
 "moments and retry your search."
 msgstr ""
 "A veces, la búsqueda de productos está ocupada con mucha solicitud, espere "
-"unos momentos y vuelva a intentar su búsqueda."
+"unos momentos y vuelva a intentar tu búsqueda."
 
 #: Template/Pages/q&a.ctp:43
 msgid ""
@@ -1003,7 +1065,7 @@ msgstr "Estatus"
 msgid "Created on"
 msgstr "Creado le"
 
-#: Template/Setups/index.ctp:103 Template/Setups/view.ctp:339
+#: Template/Setups/index.ctp:103 Template/Setups/view.ctp:347
 msgid "Modified on"
 msgstr "Modificado le"
 
@@ -1031,7 +1093,7 @@ msgstr "Sin consulta de búsqueda, no resultados :("
 msgid "We haven't found any results for this query :("
 msgstr "No se han encontrado resultados para esta consulta :("
 
-#: Template/Setups/view.ctp:42 Template/Users/view.ctp:59
+#: Template/Setups/view.ctp:42 Template/Users/view.ctp:63
 msgid "Only you can see this setup"
 msgstr "Sólo tu puede ver esta setup"
 
@@ -1094,35 +1156,55 @@ msgstr ""
 "También puedes configurar tu robot de Twitch Chat para fijar tu enlace o tu "
 "foto."
 
-#: Template/Setups/view.ctp:254
+#: Template/Setups/view.ctp:206
+msgid "This is my setup !"
+msgstr "Reclamar ese setup !"
+
+#: Template/Setups/view.ctp:206
+msgid ""
+"This will send an ownership-request for this setup, are you really sure ?"
+msgstr ""
+"Esto le enviará solicitud de propiedad para ese setup, ¿ está realmente "
+"seguro ?"
+
+#: Template/Setups/view.ctp:208
+msgid "Report this setup"
+msgstr "Reportar ese setup"
+
+#: Template/Setups/view.ctp:208
+msgid ""
+"This will send a report-request against this setup, are you really sure ?"
+msgstr "Esto informara nos de ese setup, ¿ estás realmente seguro ?"
+
+#: Template/Setups/view.ctp:262
 msgid "About this setup"
 msgstr "Acerca de esta setup"
 
-#: Template/Setups/view.ctp:261
+#: Template/Setups/view.ctp:269
 msgid "Watch it in video"
 msgstr "Mirarlo en vídeo"
 
-#: Template/Setups/view.ctp:270
+#: Template/Setups/view.ctp:278
 msgid "Wanna share your opinion ?"
 msgstr "¿ Quieres compartir tu opinión ?"
 
-#: Template/Setups/view.ctp:285
+#: Template/Setups/view.ctp:293
 msgid "at"
 msgstr "el"
 
-#: Template/Setups/view.ctp:307
+#: Template/Setups/view.ctp:315
 msgid "Nice config'…"
 msgstr "Buena config'..."
 
-#: Template/Setups/view.ctp:309
+#: Template/Setups/view.ctp:317
 msgid "Post this comment"
 msgstr "Postear este comentario"
 
-#: Template/Setups/view.ctp:328
+#: Template/Setups/view.ctp:336
 msgid "You must be logged in to comment"
 msgstr "Tienes que estar conectado para comentar"
 
-#: Template/Setups/view.ctp:328
+#: Template/Setups/view.ctp:336
 msgid "Log me in !"
 msgstr "¡ Quiero conectarme ! "
 
@@ -1190,10 +1272,6 @@ msgstr ""
 "Para reinicializar tu contraseña, debes entrar tu dirección electrónica y te "
 "mandaremos una nueva contraseña temporal."
 
-#: Template/Users/login.ctp:79
-msgid "Send"
-msgstr "Mandar"
-
 #: Template/Users/view.ctp:6
 msgid "Setups by "
 msgstr "Setups de"
@@ -1202,43 +1280,46 @@ msgstr "Setups de"
 msgid "All the setups shared by "
 msgstr "Todas las setups compartidas por"
 
-#: Template/Users/view.ctp:70
+#: Template/Users/view.ctp:74
 msgid "There is no setup here yet..."
 msgstr "Todavia no hay setup en esta cuenta... "
 
-#: Template/Users/view.ctp:79
+#: Template/Users/view.ctp:83
 msgid "Edit this user"
 msgstr "Editar este usuario"
 
-#: Template/Users/view.ctp:104
+#: Template/Users/view.ctp:108
 msgid "Change the profile picture"
 msgstr "Cambiar la foto del perfil."
 
-#: Template/Users/view.ctp:117
+#: Template/Users/view.ctp:121
 msgid "Change the user password"
 msgstr "Cambiar la contraseña"
 
-#: Template/Users/view.ctp:128
+#: Template/Users/view.ctp:132
 msgid "Delete this account"
 msgstr "Eliminar esta cuenta"
 
-#: Template/Users/view.ctp:32
+#: Template/Users/view.ctp:36
 msgid "setup"
 msgid_plural "setups"
 msgstr[0] "setup"
 msgstr[1] "setups"
 
-#: Template/Users/view.ctp:33
+#: Template/Users/view.ctp:37
 msgid "like"
 msgid_plural "likes"
 msgstr[0] "like"
 msgstr[1] "likes"
 
-#: Template/Users/view.ctp:34
+#: Template/Users/view.ctp:38
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "comentario"
 msgstr[1] "comentarios"
+
+#~ msgid "author"
+#~ msgstr "autor"
 
 #~ msgid "setups"
 #~ msgstr "setups"
