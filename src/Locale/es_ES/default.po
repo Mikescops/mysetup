@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2017-08-02 16:39+0200\n"
-"PO-Revision-Date: 2017-08-02 16:45+0200\n"
+"POT-Creation-Date: 2017-08-07 16:44+0200\n"
+"PO-Revision-Date: 2017-08-07 16:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: contact@mysetup.co\n"
 "Language: es\n"
@@ -834,11 +834,11 @@ msgstr ""
 "una razón justa. Puedes ejercer este derecho y obtener las informaciónes que "
 "tratan de tus datos personales escribiendo al Jefe de la publicación. "
 
-#: Template/Pages/legals.ctp:30
+#: Template/Pages/legals.ctp:31
 msgid "Publishing Policy"
 msgstr "Política editorial"
 
-#: Template/Pages/legals.ctp:32
+#: Template/Pages/legals.ctp:33
 msgid ""
 "By registering on mysetup.co, you agree with the following rules. Content "
 "published on this website must be related with setups. Any content judged "
@@ -851,11 +851,11 @@ msgstr ""
 "que no respetan  varias veces las reglas previamente establecidas verán tu "
 "cuenta proscribido."
 
-#: Template/Pages/legals.ctp:34
+#: Template/Pages/legals.ctp:36
 msgid "Use of Cookies"
 msgstr "Uso de cookies"
 
-#: Template/Pages/legals.ctp:36
+#: Template/Pages/legals.ctp:38
 msgid ""
 "The user is informed that during his visits to the site, a cookie can be "
 "installed automatically on his navigator software. A cookie is a file "
@@ -867,11 +867,11 @@ msgstr ""
 "contiene datos que tratan de la navegación del usuario en el sitio pero sin "
 "permitir su indentificación."
 
-#: Template/Pages/legals.ctp:39
+#: Template/Pages/legals.ctp:41
 msgid "Partnership Disclaimer"
 msgstr "Descargo de Responsabilidad de la Asociación"
 
-#: Template/Pages/legals.ctp:40
+#: Template/Pages/legals.ctp:43
 msgid ""
 "mySetup.co is a participant in the Amazon Services LLC Associates Program, "
 "an affiliate advertising program. In other terms, links to Amazon Stores use "
@@ -881,11 +881,27 @@ msgstr ""
 "Services LLC\", un programa de publicidad de afiliados. En otros términos, "
 "los enlaces a tiendas de Amazon utilizan una identificación de afiliado."
 
-#: Template/Pages/legals.ctp:43
+#: Template/Pages/legals.ctp:46
+msgid "Hosting"
+msgstr "Hospedaje"
+
+#: Template/Pages/legals.ctp:48
+msgid "This website is hosted by"
+msgstr "Este sitio web está alojado por"
+
+#: Template/Pages/legals.ctp:49
+msgid "Contact"
+msgstr "Contacto"
+
+#: Template/Pages/legals.ctp:49
+msgid "or by email"
+msgstr "o por correo electrónico"
+
+#: Template/Pages/legals.ctp:52
 msgid "Credits"
 msgstr "Créditos "
 
-#: Template/Pages/legals.ctp:45
+#: Template/Pages/legals.ctp:54
 msgid ""
 "© 2017 mysetup.co – All rights reserved. Total or partial production or "
 "imitation of said documents without the express prior written consent of "
