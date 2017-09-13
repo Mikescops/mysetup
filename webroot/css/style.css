@@ -113,6 +113,15 @@ footer a{
 	display: none;
 }
 
+.rowsocial .social-networks{
+	height: 200px;
+}
+
+.rowsocial .social-networks a{
+	margin: 0 2%;
+	width: 29%;
+}
+
 .social-networks{
 	margin: 10px 0;
 }
@@ -123,7 +132,7 @@ footer a{
 	display: block;
 	float: left;
 	background-color: #009cff;
-	border-radius: 6px;
+	border-radius: 4px;
 	color: #fff;
 	text-align: center;
 	height: 140px;
@@ -180,6 +189,26 @@ footer a{
 	max-width: 100%;
 	white-space: normal;
 	height: auto;
+}
+
+.rowsocial{
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	column-count: 2;
+	margin-top: 10px;
+}
+
+.rowsocial .blog-advert{
+	height: 140px;
+	margin-bottom: 0;
+}
+
+.rowsocial .blog-advert i{
+	font-size: 1.3em;
+}
+
+.rowsocial .blog-advert h5{
+	font-size: 26px;
 }
 
 .twitch-advert{
@@ -398,6 +427,26 @@ footer a{
 	border-radius: 4px;
 	overflow: hidden;
 }
+
+.feeditem{
+	-webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+}
+
+.feeditem .fullitem:hover > .fullitem-inner {
+    height: 80px;
+}
+
+.feeditem	.fullitem-inner .featured-user img{
+	width: 40px;
+}
+
+.feeditem	.fullitem-inner h3{
+	line-height: 40px;
+	font-size: 1.2em;
+}
+
 
 .fullitem a:first-child{
 	line-height: 0;
@@ -1682,6 +1731,12 @@ nav {
 		width: 40px;
 	}
 
+	.feeditem{
+		-webkit-column-count: 1; /* Chrome, Safari, Opera */
+	    -moz-column-count: 1; /* Firefox */
+	    column-count: 1;
+	}
+
 	.fullitem:hover > .fullitem-inner {
 	    height: 80px;
 	}
@@ -1772,6 +1827,12 @@ nav {
 
 	.heavy-nav .row{
 		padding: 0 2rem 0 0!important;
+	}
+
+	.feeditem{
+		-webkit-column-count: 2; /* Chrome, Safari, Opera */
+	    -moz-column-count: 2; /* Firefox */
+	    column-count: 2;
 	}
 
 
