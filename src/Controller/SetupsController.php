@@ -95,7 +95,7 @@ class SetupsController extends AppController
             // Let's get the data from the form
             $data = $this->request->getData();
 
-            // Let's set the id of the current logged in user 
+            // Let's set the id of the current logged in user
             $data['user_id'] = $this->request->session()->read('Auth.User.id');
 
             // Here we'll assign automatically the owner of the setup to the entity
@@ -282,7 +282,7 @@ class SetupsController extends AppController
                 }
             }
 
-            else if(in_array($this->request->action, ['add', 'requestOwnership', 'requestReport'])) 
+            else if(in_array($this->request->action, ['add', 'requestOwnership', 'requestReport']))
             {
                 return true;
             }
@@ -340,6 +340,7 @@ class SetupsController extends AppController
                     'id',
                     'user_id',
                     'title',
+                    'creationDate',
                     'status'
                 ],
                 'order' => [
@@ -408,10 +409,10 @@ class SetupsController extends AppController
 
                 else
                 {
-                    $this->Flash->error(__('An error occurred while saving your request.'));   
+                    $this->Flash->error(__('An error occurred while saving your request.'));
                 }
             }
- 
+
             else
             {
                 $this->Flash->warning(__('No, no. This is impossible.'));
@@ -484,7 +485,7 @@ class SetupsController extends AppController
         {
             $user = $this->Setups->Users->get($this->request->session()->read('Auth.User.id'));
             $setup = $this->Setups->get($id);
- 
+
             if($setup['user_id'] != $user['id'])
             {
                 $email = $this->Setups->Users->getEmailObject('support@mysetup.co', 'A setup has been flagged !');
@@ -494,7 +495,7 @@ class SetupsController extends AppController
 
                 $this->Flash->success(__('Your request has just been sent, we may contact you in the future.'));
             }
- 
+
             else
             {
                 $this->Flash->warning(__('No, no. This is impossible.'));
