@@ -145,7 +145,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
             <?php if (++$i == 3) break; endforeach ?>
         </div>
-        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/pages/popular'); ?>"><?= __('More popular setups') ?> <i class="fa fa-chevron-right"></i></a>
+        <a class="home_more float-right" href="<?= $this->Url->build('/pages/popular'); ?>"><?= __('More popular setups') ?> <i class="fa fa-chevron-right"></i></a>
     </div>
 
     <br clear='all'>
@@ -175,7 +175,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 
     <div class="rowfeed">
-        <h4>Most recents</h4>
+        <h4 class="fancy"><span>Latest setups</span></h4>
         <div class="feeditem">
 
         <?php
@@ -240,13 +240,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
             <?php if (++$i == 8) break; endforeach ?>
         </div>
-        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More recent setups') ?> <i class="fa fa-chevron-right"></i></a>
+        <a class="home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More recent setups') ?> <i class="fa fa-chevron-right"></i></a>
     </div>
 
     <br clear='all'>
 
     <div class="rowfeed">
-        <h4>AMD</h4>
+        <h4 class="fancy"><span>AMD</span></h4>
         <div class="feeditem">
 
         <?php $options=[ CURLOPT_URL=>$this->Url->build('/',true).'app/getsetups?t=like&n=3&q=amd',CURLOPT_RETURNTRANSFER=>true,CURLOPT_HEADER=>false,CURLOPT_FAILONERROR=>true,CURLOPT_HTTPHEADER=>['Content-Type: application/json','Accept: application/json'] ];$curl=curl_init();if(empty($curl)){die("ERROR (curl_init) : It looks like cURL is not available yet.");}curl_setopt_array($curl,$options);$setups=curl_exec($curl);if(curl_errno($curl)){die("ERROR (curl_exec) : ".curl_error($curl));}else{$setups=json_decode($setups);}curl_close($curl);?>
@@ -278,13 +278,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
             <?php endforeach ?>
         </div>
-        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/setups/search?q=amd'); ?>"><?= __('More AMD setups') ?> <i class="fa fa-chevron-right"></i></a>
+        <a class="home_more float-right" href="<?= $this->Url->build('/setups/search?q=amd'); ?>"><?= __('More AMD setups') ?> <i class="fa fa-chevron-right"></i></a>
     </div>
 
     <br clear='all'>
 
     <div class="rowfeed">
-        <h4>Nvidia</h4>
+        <h4 class="fancy"><span>Nvidia</span></h4>
         <div class="feeditem">
 
         <?php $options=[ CURLOPT_URL=>$this->Url->build('/',true).'app/getsetups?t=like&n=3&q=nvidia',CURLOPT_RETURNTRANSFER=>true,CURLOPT_HEADER=>false,CURLOPT_FAILONERROR=>true,CURLOPT_HTTPHEADER=>['Content-Type: application/json','Accept: application/json'] ];$curl=curl_init();if(empty($curl)){die("ERROR (curl_init) : It looks like cURL is not available yet.");}curl_setopt_array($curl,$options);$setups=curl_exec($curl);if(curl_errno($curl)){die("ERROR (curl_exec) : ".curl_error($curl));}else{$setups=json_decode($setups);}curl_close($curl);?>
@@ -316,7 +316,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
             <?php endforeach ?>
         </div>
-        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/setups/search?q=nvidia'); ?>"><?= __('More Nvidia setups') ?> <i class="fa fa-chevron-right"></i></a>
+        <a class="home_more float-right" href="<?= $this->Url->build('/setups/search?q=nvidia'); ?>"><?= __('More Nvidia setups') ?> <i class="fa fa-chevron-right"></i></a>
     </div>
 
     <br clear='all'>

@@ -189,6 +189,37 @@ footer a{
 	max-width: 100%;
 	white-space: normal;
 	height: auto;
+	margin-top: -15px;
+	color: #d7d7d7;
+}
+
+.fancy {
+  line-height: 1;
+  text-align: center;
+  width: 100%;
+  overflow-x: hidden;
+}
+.fancy span {
+  display: inline-block;
+  position: relative;  
+}
+.fancy span:before,
+.fancy span:after {
+  content: "";
+  position: absolute;
+  height: 10px;
+  border-bottom: 1px solid #636363;
+  /*border-top: 1px solid white;*/
+  top: 0;
+  width: 800px;
+}
+.fancy span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.fancy span:after {
+  left: 100%;
+  margin-left: 15px;
 }
 
 .rowsocial{
