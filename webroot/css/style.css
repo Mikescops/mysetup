@@ -1732,9 +1732,9 @@ nav {
 	}
 
 	.feeditem{
-		-webkit-column-count: 1; /* Chrome, Safari, Opera */
-	    -moz-column-count: 1; /* Firefox */
-	    column-count: 1;
+		-webkit-column-count: 1!important; /* Chrome, Safari, Opera */
+	    -moz-column-count: 1!important; /* Firefox */
+	    column-count: 1!important;
 	}
 
 	.fullitem:hover > .fullitem-inner {
