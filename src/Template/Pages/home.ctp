@@ -145,7 +145,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
             <?php if (++$i == 3) break; endforeach ?>
         </div>
-        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More popular setups') ?> <i class="fa fa-chevron-right"></i></a>
+        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/pages/popular'); ?>"><?= __('More popular setups') ?> <i class="fa fa-chevron-right"></i></a>
     </div>
 
     <br clear='all'>
@@ -278,7 +278,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
             <?php endforeach ?>
         </div>
-        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More AMD setups') ?> <i class="fa fa-chevron-right"></i></a>
+        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/setups/search?q=amd'); ?>"><?= __('More AMD setups') ?> <i class="fa fa-chevron-right"></i></a>
     </div>
 
     <br clear='all'>
@@ -316,7 +316,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
             <?php endforeach ?>
         </div>
-        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More Nvidia setups') ?> <i class="fa fa-chevron-right"></i></a>
+        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/setups/search?q=nvidia'); ?>"><?= __('More Nvidia setups') ?> <i class="fa fa-chevron-right"></i></a>
     </div>
 
     <br clear='all'>
