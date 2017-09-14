@@ -231,7 +231,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                             </div>
                         </div>
 
-                        <?= $this->Html->scriptBlock("new Tippy('#item-trigger-$i', {zIndex: 20, html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
+                        <?= $this->Html->scriptBlock("new tippy('#item-trigger-$i', {zIndex: 20, html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
 
             <?php $i++; endforeach ?>
 

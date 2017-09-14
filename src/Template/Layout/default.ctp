@@ -394,7 +394,7 @@
 <?= $this->Html->script('app.min.js?v=16') ?>
 <script>const toast = new siiimpleToast();</script>
 <?php if($authUser): ?>
-    <script>const instance = new Tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification(); Tippy('.button.draft'); Tippy('.setup-unpublished');</script>
+    <script>const instance = new tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification(); tippy('.button.draft'); tippy('.setup-unpublished');</script>
 <?php endif ?>
 
 <?= $this->Flash->render() ?>
