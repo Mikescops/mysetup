@@ -301,7 +301,6 @@ class SetupsController extends AppController
             $name_cond      = [];
             $author_cond    = [];
             $title_cond     = [];
-            $desc_cond      = [];
             $resources_cond = [];
 
             // Let's fill in these array (tough operation)
@@ -310,7 +309,6 @@ class SetupsController extends AppController
                 array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);
                 array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
                 array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
-                array_push($desc_cond, ['LOWER(Setups.description) LIKE' => '%' . strtolower($word) . '%']);
                 array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
             }
 
@@ -353,7 +351,6 @@ class SetupsController extends AppController
             ->where(['OR' => $name_cond])
             ->orWhere(['OR' => $author_cond])
             ->orWhere(['OR' => $title_cond])
-            ->orWhere(['OR' => $desc_cond])
             ->leftJoinWith('Resources')
             ->orWhere(['OR' => $resources_cond])
             ->distinct()
