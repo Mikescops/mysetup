@@ -118,8 +118,11 @@ footer a{
 }
 
 .rowsocial .social-networks a{
-	margin: 0 2%;
-	width: 29%;
+	margin: 0;
+    width: 23%;
+    margin-right: 2%;
+}
+
 }
 
 .social-networks{
@@ -229,17 +232,14 @@ footer a{
 	margin-top: 10px;
 }
 
-.rowsocial .blog-advert{
+.rowsocial .blog-advert, .rowsocial .twitch-advert{
 	height: 140px;
 	margin-bottom: 0;
 }
 
-.rowsocial .blog-advert i{
-	font-size: 1.3em;
-}
-
-.rowsocial .blog-advert h5{
+.rowsocial .blog-advert h5, .rowsocial .twitch-advert h4{
 	font-size: 26px;
+	margin-bottom: 0;
 }
 
 .twitch-advert{
@@ -261,6 +261,7 @@ footer a{
 	background: linear-gradient(135deg, #BB68C4 0%,#6441A4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#BB68C4', endColorstr='#6441A4',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	transition: background 1s;
+	overflow: hidden;
 }
 
 .twitch-advert:before {
@@ -289,11 +290,16 @@ footer a{
 	font-size: 30px;
 	text-transform: uppercase;
 	font-weight: bold;
+	width: 100%;
 }
 
-.twitch-advert i{
-	font-size: 70px;
-	margin-bottom: 10px;
+.twitch-advert i, .blog-advert i{
+	font-size: 120px;
+	position: absolute;
+	color: rgba(255, 255, 255, 0.18);
+	top: 14px;
+	left: 6px;
+
 }
 
 .blog-advert{
@@ -312,6 +318,7 @@ footer a{
 	background: linear-gradient(135deg, #3C72B8 0%,#3A4071 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3C72B8', endColorstr='#3A4071',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	transition: background 1s;
+	overflow: hidden;
 }
 
 .blog-advert:before {
@@ -341,15 +348,11 @@ footer a{
     align-items: center;
 }
 
-.blog-advert i{
-	font-size: 60px;
-	margin-bottom: 10px;
-}
-
 .blog-advert h5{
 	font-size: 30px;
 	text-transform: uppercase;
 	font-weight: bold;
+	width: 100%;
 }
 
 .blog-advert:hover:before {
@@ -1768,6 +1771,12 @@ nav {
 	    column-count: 1!important;
 	}
 
+	.rowsocial{
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+		column-count: 1;
+	}
+
 	.fullitem:hover > .fullitem-inner {
 	    height: 80px;
 	}
@@ -1866,6 +1875,9 @@ nav {
 	    column-count: 2;
 	}
 
+	.rowsocial .blog-advert h5, .rowsocial .twitch-advert h4{
+		font-size: 18px;
+	}
 
 	/* POST PAGE RESPONSIVE */
 

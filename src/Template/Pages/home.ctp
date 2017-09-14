@@ -157,12 +157,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
       <?php if(!$authUser): ?>
         <div class="twitch-advert" onclick="logTwitch('<?= $lang ?>')">
-          <h4><i class="fa fa-twitch"></i><br><?= __('Login with Twitch and create my Setup !') ?></h4>
+          <h4><i class="fa fa-twitch"></i> <?= __('Login with Twitch and create my Setup !') ?></h4>
         </div>
       <?php else: ?>
           <div class="blog-advert">
             <a href="<?=$this->Url->build('/blog/')?>">
-              <h5><i class="fa fa-newspaper-o"></i><br><?= __('Read our latest news') ?></h5>
+              <h5><i class="fa fa-newspaper-o"></i> <?= __('Read our latest news') ?></h5>
             </a>
           </div>
       <?php endif ?>
