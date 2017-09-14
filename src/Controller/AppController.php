@@ -420,6 +420,29 @@ class AppController extends Controller
                 'status' => 'PUBLISHED'
             ];
 
+
+            $term_query = $this->request->getQuery('q');
+            // Some empty arrays in which we'll set the SQL conditions to match a setup... or not
+                $name_cond      = [];
+                $author_cond    = [];
+                $title_cond     = [];
+                $desc_cond      = [];
+                $resources_cond = [];
+
+            if($term_query)
+            {
+                // Let's fill in these array (tough operation)
+                foreach(explode("+", urlencode($term_query)) as $word)
+                {
+                    array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
+                    array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
+                    array_push($desc_cond, ['LOWER(Setups.description) LIKE' => '%' . strtolower($word) . '%']);
+                    array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
+                }
+
+            }
+
+
             $this->loadModel('Setups');
             $results = $this->Setups->find('all', [
                 'conditions' => $conditions,
@@ -439,7 +462,14 @@ class AppController extends Controller
                         return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);
                     }
                 ]
-            ])->toArray();
+            ])
+            ->where(['OR' => $author_cond])
+            ->orWhere(['OR' => $title_cond])
+            ->orWhere(['OR' => $desc_cond])
+            ->leftJoinWith('Resources')
+            ->orWhere(['OR' => $resources_cond])
+            ->distinct()
+            ->toArray();
 
             // If the query specified a ranking by number of "likes", let's sort them just before sending it
             if($this->request->getQuery('t', 'date') == "like")

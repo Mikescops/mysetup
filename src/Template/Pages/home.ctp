@@ -246,45 +246,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <br clear='all'>
 
     <div class="rowfeed">
-        <h4>Others</h4>
+        <h4>AMD</h4>
         <div class="feeditem">
 
-        <?php
-         
-          $options = [
-            CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?t=like&n=3',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HEADER => false,
-            CURLOPT_FAILONERROR => true,
-            CURLOPT_HTTPHEADER => [
-              'Content-Type: application/json',
-              'Accept: application/json'
-            ]
-          ];
+        <?php $options=[ CURLOPT_URL=>$this->Url->build('/',true).'app/getsetups?t=like&n=3&q=amd',CURLOPT_RETURNTRANSFER=>true,CURLOPT_HEADER=>false,CURLOPT_FAILONERROR=>true,CURLOPT_HTTPHEADER=>['Content-Type: application/json','Accept: application/json'] ];$curl=curl_init();if(empty($curl)){die("ERROR (curl_init) : It looks like cURL is not available yet.");}curl_setopt_array($curl,$options);$setups=curl_exec($curl);if(curl_errno($curl)){die("ERROR (curl_exec) : ".curl_error($curl));}else{$setups=json_decode($setups);}curl_close($curl);?>
 
-          $curl = curl_init();
-          if(empty($curl))
-          {
-            die("ERROR (curl_init) : It looks like cURL is not available yet.");
-          }
-
-          curl_setopt_array($curl, $options);
-          $setups = curl_exec($curl);
-
-          if(curl_errno($curl))
-          {
-            die("ERROR (curl_exec) : " . curl_error($curl));
-          }
-
-          else
-          {
-            $setups = json_decode($setups);
-          }
-
-          curl_close($curl);
-        ?>
-
-            <?php $i=0; foreach ($setups as $setup): ?>
+            <?php foreach ($setups as $setup): ?>
 
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
@@ -309,9 +276,47 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 </div>
             </div>
 
-            <?php if (++$i == 8) break; endforeach ?>
+            <?php endforeach ?>
         </div>
-        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More popular setups') ?> <i class="fa fa-chevron-right"></i></a>
+        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More AMD setups') ?> <i class="fa fa-chevron-right"></i></a>
+    </div>
+
+    <br clear='all'>
+
+    <div class="rowfeed">
+        <h4>Nvidia</h4>
+        <div class="feeditem">
+
+        <?php $options=[ CURLOPT_URL=>$this->Url->build('/',true).'app/getsetups?t=like&n=3&q=nvidia',CURLOPT_RETURNTRANSFER=>true,CURLOPT_HEADER=>false,CURLOPT_FAILONERROR=>true,CURLOPT_HTTPHEADER=>['Content-Type: application/json','Accept: application/json'] ];$curl=curl_init();if(empty($curl)){die("ERROR (curl_init) : It looks like cURL is not available yet.");}curl_setopt_array($curl,$options);$setups=curl_exec($curl);if(curl_errno($curl)){die("ERROR (curl_exec) : ".curl_error($curl));}else{$setups=json_decode($setups);}curl_close($curl);?>
+
+            <?php foreach ($setups as $setup): ?>
+
+            <div class="fullitem">
+                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
+                    <img alt="<?= h($setup->title) ?>" src="<?= $setup->resources[0]->src ?>">
+                </a>
+                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
+
+                <div class="fullitem-inner">
+
+                    <div class="row">
+
+                        <div class="column column-75">
+                            <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
+                                <img alt="<?= __('Profile picture of') ?> #<?= $setup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png'); ?>">
+                            </a>
+
+                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <?php endforeach ?>
+        </div>
+        <a class="button button-clear home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More Nvidia setups') ?> <i class="fa fa-chevron-right"></i></a>
     </div>
 
     <br clear='all'>
