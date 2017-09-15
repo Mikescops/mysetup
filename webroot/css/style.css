@@ -643,8 +643,51 @@ footer a{
 }
 
 .featured-container img{
+	display: block;
 	box-shadow: 0 10px 20px rgba(5,30,50,.2);
 	border-radius: 4px;
+}
+
+.featured-img-setup{
+	position: relative;
+	display: inline-block;
+}
+
+.featured-img-setup:hover .videoplayer-icon {
+	opacity: 1;
+}
+
+.videoplayer-icon {
+	color: #fff;
+	width: 100%;
+	height: 519px;
+	line-height: 519px;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	-webkit-transition: opacity .2s ease-in-out;
+	-moz-transition: opacity .2s ease-in-out;
+	-ms-transition: opacity .2s ease-in-out;
+	-o-transition: opacity .2s ease-in-out;
+	transition: opacity .2s ease-in-out;
+}
+
+.videoplayer-icon:hover {
+	background: rgba(0,0,0,0.4);
+	border-radius: 4px;
+	color: #fff;
+}
+
+.videoplayer-icon i{
+	font-size: 6em;
+    vertical-align: middle;
 }
 
 .featured-gradient{

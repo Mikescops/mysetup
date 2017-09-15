@@ -29,7 +29,19 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 <div class="featured-container">
     <div class="featured-gradient" style="background-image: url('<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>')"></div>
-    <img alt="<?= $setup->title ?>" width="1120" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>" alt="<?= $setup->title ?>">
+    <div class="featured-img-setup">
+
+        <img alt="<?= $setup->title ?>" width="1120" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>" alt="<?= $setup->title ?>">
+        <?php if(!empty($setup['resources']['video_link'])): ?>
+            <div class="overlay">
+                <a class="videoplayer-icon" href="<?= $setup['resources']['video_link']?>" title="<?= __('Watch it in video') ?>" data-lity>
+                    <i class="fa fa-play-circle"></i>
+                </a>
+            </div>
+        <?php endif ?>
+
+    </div>
+    
 </div>
 
     <div class="featured-inner">
@@ -264,10 +276,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?= $this->Markdown->transform(h($setup->description))?>
 
             <div id="social-networks"></div>
-
-            <?php if(!empty($setup['resources']['video_link'])): ?>
-                <a class="button item-youtube" href="<?= $setup['resources']['video_link'] ?>" data-lity><?= __('Watch it in video') ?></a>
-            <?php endif?>
+            
         </div>
 
     </div>
