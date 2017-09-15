@@ -175,7 +175,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 
     <div class="rowfeed">
-        <h4 class="fancy"><span>Latest setups</span></h4>
+        <h4 class="fancy"><span><?= __('Latest setups') ?></span></h4>
         <div class="feeditem">
 
         <?php
@@ -322,7 +322,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <br clear='all'>
 
     <div class="rowfeed">
-        <h4 class="fancy"><span>Suggested Users</span></h4>
+        <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
         <div class="activeUsers">
 
         <?php $options=[ CURLOPT_URL=>$this->Url->build('/',true).'app/getActiveUsers?n=12',CURLOPT_RETURNTRANSFER=>true,CURLOPT_HEADER=>false,CURLOPT_FAILONERROR=>true,CURLOPT_HTTPHEADER=>['Content-Type: application/json','Accept: application/json'] ];$curl=curl_init();if(empty($curl)){die("ERROR (curl_init) : It looks like cURL is not available yet.");}curl_setopt_array($curl,$options);$activeUsers=curl_exec($curl);if(curl_errno($curl)){die("ERROR (curl_exec) : ".curl_error($curl));}else{$activeUsers=json_decode($activeUsers);}curl_close($curl);?>
