@@ -39,3 +39,6 @@ if($_SESSION['Auth'])
 
 	$minifier->minify($minifiedPath);
 }
+else{
+	echo "You don't have the rights to access this service.";
+}
