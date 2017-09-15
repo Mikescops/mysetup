@@ -134,6 +134,9 @@ class UsersController extends AppController
                 $user->ufacebook = null;
                 $user->utwitter  = null;
 
+                // By default user is not verified
+                $user->verified = 0;
+
                 if($this->Users->save($user))
                 {
                     // Here we'll try to retrieve a Gravatar avatar linked to this email address
