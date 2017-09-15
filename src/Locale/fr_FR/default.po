@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2017-09-15 10:16-0400\n"
-"PO-Revision-Date: 2017-09-15 10:18-0400\n"
+"POT-Creation-Date: 2017-09-15 11:42-0400\n"
+"PO-Revision-Date: 2017-09-15 11:43-0400\n"
 "Last-Translator: \n"
 "Language-Team: contact@mysetup.co\n"
 "Language: fr\n"
@@ -233,18 +233,18 @@ msgstr ""
 "Cette adresse mail n'existe pas dans notre base de données. Avez-vous déjà "
 "créé un compte ?"
 
-#: Controller/UsersController.php:419;558
+#: Controller/UsersController.php:419;559
 msgid "We advise you to edit your profile (use the panel at the top)..."
 msgstr ""
 "Nous vous conseillons d'éditer votre profil (utilisez le menu situé en tête "
 "de page)"
 
-#: Controller/UsersController.php:420;559
+#: Controller/UsersController.php:420;560
 msgid "... in order to add a profile picture ! You'd look better :P"
 msgstr ""
 "... de façon à ajouter une image de profil ! Vous aurez une meilleure tête :P"
 
-#: Controller/UsersController.php:422;555
+#: Controller/UsersController.php:422;556
 msgid "Your account is now activated, you're now logged in ;)"
 msgstr "Votre compte vient d'être activé, vous êtes maintenant connecté(e) ;)"
 
@@ -276,7 +276,7 @@ msgstr ""
 "L'adresse email de votre compte Twitch n'a pas été vérifiée. Nous ne pouvons "
 "pas vous créer de compte actuellement"
 
-#: Controller/UsersController.php:564
+#: Controller/UsersController.php:565
 msgid "An error occurred while saving your account"
 msgstr "Une erreur est survenue pendant que nous enregistrions votre compte"
 
@@ -807,6 +807,10 @@ msgstr "Se connecter avec Twitch et créer mon Setup !"
 msgid "Read our latest news"
 msgstr "Découvrez nos dernières annonces"
 
+#: Template/Pages/home.ctp:178 Template/Pages/recent.ctp:58
+msgid "Latest setups"
+msgstr "Dernières setups"
+
 #: Template/Pages/home.ctp:243
 msgid "More recent setups"
 msgstr "D'autres setups récentes"
@@ -818,6 +822,10 @@ msgstr "D'autres setups AMD"
 #: Template/Pages/home.ctp:319
 msgid "More Nvidia setups"
 msgstr "D'autres setups Nvidia"
+
+#: Template/Pages/home.ctp:325
+msgid "Suggested Users"
+msgstr "Profils Suggerés"
 
 #: Template/Pages/legals.ctp:4
 msgid "Legal Mentions | mySetup.co"
@@ -1069,10 +1077,6 @@ msgstr "Setups récents"
 #: Template/Pages/recent.ctp:6
 msgid "See the most recent setups published on mySetup.co"
 msgstr "Découvrez les setups récemment publiés sur mySetup.co"
-
-#: Template/Pages/recent.ctp:58
-msgid "Latest setups"
-msgstr "Dernières setups"
 
 #: Template/Pages/team.ctp:4
 msgid "Our Team | mySetup.co"
