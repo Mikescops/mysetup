@@ -158,7 +158,7 @@ class UsersController extends AppController
                 else
                 {
                     $this->Flash->error(__('The user could not be saved. (Is this address already taken ?)'));
-                    return $this->redirect($this->referer());                    
+                    return $this->redirect($this->referer());
                 }
             }
 
@@ -255,7 +255,7 @@ class UsersController extends AppController
             {
                 $this->Flash->error(__('The user could not be updated. Please, try again.'));
             }
-            
+
             return $this->redirect($this->referer());
         }
     }
@@ -271,7 +271,7 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
-        
+
         if($user and !parent::isAdmin($user))
         {
             if($this->Users->delete($user)) {
@@ -490,7 +490,7 @@ class UsersController extends AppController
 
         // Let's try to get an user entity linked to the Twitch address email of this user
         $user = $this->Users->find()->where(['mail' => $response->json['email']])->first();
-        
+
         if($user)
         {
             // This is the problem, when the user log in, Twitch gives us a brand new token for this person, but we don't need it :S
@@ -538,6 +538,7 @@ class UsersController extends AppController
             $user->preferredStore = strtoupper((substr($_GET['state'], 0, 2)));
             $user->timeZone       = 'Europe/London';
             $user->twitchToken    = $token;
+            $user->verified       = 0;
 
             if($this->Users->save($user))
             {
@@ -574,7 +575,7 @@ class UsersController extends AppController
 
         // Let's log this user in !
         $this->Auth->setUser($user);
-        return $this->redirect($this->Auth->redirectUrl()); 
+        return $this->redirect($this->Auth->redirectUrl());
     }
 
     public function beforeFilter(Event $event)
