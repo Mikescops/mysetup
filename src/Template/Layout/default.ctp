@@ -19,7 +19,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css?v=16') ?>
+    <?= $this->Html->css('app.min.css?v=17') ?>
     <?= $this->Html->css('emoji.min.css') ?>
     <?= $this->Html->css('tippy.css') ?>
 
