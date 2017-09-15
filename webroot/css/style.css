@@ -378,13 +378,15 @@ footer a{
 	-webkit-column-count: 12; /* Chrome, Safari, Opera */
     -moz-column-count: 12; /* Firefox */
     column-count: 12;
+    -moz-column-fill: balance;
+    column-fill: balance;
 }
 
 .activeUsers .featured-user img{
 	width: 80px;
 	max-width: 100%;
 	border-radius: 100%;
-	float: left;
+	display: block;
 	border: solid 2px #328fea;
 	background-color: rgb(0, 0, 0);
 	margin-bottom: 10px;
