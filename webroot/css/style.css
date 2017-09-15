@@ -374,6 +374,21 @@ footer a{
 	margin-top: 56.4px;
 }
 
+.activeUsers{
+	-webkit-column-count: 12; /* Chrome, Safari, Opera */
+    -moz-column-count: 12; /* Firefox */
+    column-count: 12;
+}
+
+.activeUsers .featured-user img{
+	width: 80px;
+	max-width: 100%;
+	border-radius: 100%;
+	float: left;
+	border: solid 2px #328fea;
+	background-color: rgb(0, 0, 0);
+}
+
 /* Search Bar */
 .large_search{
 	margin: 45px 0;
@@ -1877,6 +1892,12 @@ nav {
 
 	.rowsocial .blog-advert h5, .rowsocial .twitch-advert h4{
 		font-size: 18px;
+	}
+
+	.activeUsers{
+		-webkit-column-count: 4; /* Chrome, Safari, Opera */
+	    -moz-column-count: 4; /* Firefox */
+	    column-count: 4;
 	}
 
 	/* POST PAGE RESPONSIVE */
