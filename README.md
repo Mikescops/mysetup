@@ -32,7 +32,7 @@ In order to deploy this website on your web server:
 
 5. `$ cd mysetup/`
 
-6. `$ mkdir webroot/uploads && chmod -R 777 webroot/uploads/`
+6. `$ mkdir webroot/uploads && chmod -R 777 webroot/uploads/` (if needed create webroot/uploads/files folder too)
 
 7. `$ bash deployment.sh`
 
