@@ -22,6 +22,13 @@ class ArticlesController extends AppController
      */
     public function index()
     {
+
+        $this->paginate = array(
+            'limit' => 10,
+            'order' => array( // sets a default order to sort by
+                'Articles.dateTime'=> 'desc'
+            )
+        );
         $articles = $this->paginate($this->Articles);
 
         $this->set(compact('articles'));
