@@ -184,7 +184,7 @@
                                 echo $this->Form->control('title', ['label' => __('Title *'), 'id' => 'title', 'maxlength' => 48, 'required' => 'true']);
                                 echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'placeholder' => __('What is the purpose of your setup ? Tell us your setup\'s story...')]);
                             ?>
-                            <span class="float-right link-marksupp"><a href="<?=$this->Url->build('/pages/q&a')?>"><i class="fa fa-info-circle"></i> Markdown supported</a></span>
+                            <span class="float-right link-marksupp"><a target="_blank" href="<?=$this->Url->build('/pages/q&a#q-6')?>"><i class="fa fa-info-circle"></i> Markdown supported</a></span>
                             <br>
                             <?php
                                 echo $this->Form->input('featuredImage', ['type' => 'file', 'label' => ['class' => 'label_fimage label_fimage_add', 'text' => __('Click to add a featured image *')], 'class' => 'inputfile', 'required' => 'true']);
