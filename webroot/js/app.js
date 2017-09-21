@@ -337,6 +337,7 @@ function featuredPreview( uploader ) {
              window.URL.createObjectURL(uploader.files[0]) );
     }
     $(".label_fimage_add").hide();
+    $(".gallery-holder.homide").show();
 }
 
 function featuredPreview_edit( uploader ) {

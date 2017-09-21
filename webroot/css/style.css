@@ -1436,6 +1436,10 @@ nav {
 	overflow: auto;
 }
 
+.gallery-holder.homide{
+	display: none;
+}
+
 .gallery_edit_preview, .gallery_add_preview{
 	display: inline-block;
 	width: 18%;
@@ -1514,7 +1518,7 @@ nav {
 }
 
 .add-form, .edit-form{
-	min-height: 450px;
+	min-height: 350px;
 	margin-bottom: 40px;
 	padding-top: 40px;
 }

@@ -200,7 +200,7 @@
                                 ?>
                             </div>
 
-                            <div class="gallery-holder">
+                            <div class="gallery-holder homide">
                             <?php for($i = 0; $i < 5; $i++): ?>
                                 <img alt="<?= __('Gallery Preview') ?>" class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
                             <?php endfor ?>
