@@ -106,7 +106,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 ?>
                 <br />
                 <?php
-                    echo $this->Form->input('featuredImage', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => 'Change featured image'], 'class' => 'inputfile']);
+                    echo $this->Form->input('featuredImage', ['id' => 'featuredImage_edit', 'type' => 'file', 'label' => ['class' => 'label_fimage', 'text' => __('Change featured image')], 'class' => 'inputfile']);
                 ?>
                 <img alt="<?= __('Featured Preview') ?>" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $setup['resources']['featured_image'] ?>" alt="<?= h($setup->title) ?>">
                 <div class="hidden_five_inputs">
@@ -121,9 +121,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                 <div class="gallery-holder">
                     <?php $i = 0;foreach ($setup['resources']['gallery_images'] as $image):?>
-                    <img alt="<?= __('Gallery Preview') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
+                    <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Change gallery image') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
                     <?php $i++; endforeach; for(;$i < 5;$i++): ?>
-                    <img alt="<?= __('Gallery Preview') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+                    <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Add gallery image') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
                     <?php endfor ?>
                 </div>
 
