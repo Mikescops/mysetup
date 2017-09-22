@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2017-09-15 11:42-0400\n"
-"PO-Revision-Date: 2017-09-15 11:43-0400\n"
+"POT-Creation-Date: 2017-09-22 08:43-0400\n"
+"PO-Revision-Date: 2017-09-22 08:50-0400\n"
 "Last-Translator: \n"
 "Language-Team: contact@mysetup.co\n"
 "Language: fr\n"
@@ -39,23 +39,23 @@ msgstr "Votre bogue a correctement été envoyé ! Merci pour ce signalement :)"
 msgid "You didn't report anything (or has missed something) :("
 msgstr "Vous n'avez rien signalé du tout (ou une information est manquante) :("
 
-#: Controller/ArticlesController.php:86
+#: Controller/ArticlesController.php:92
 msgid "You need a featured image with this article !"
 msgstr "Une image est nécessaire avec cet article !"
 
-#: Controller/ArticlesController.php:97;164
+#: Controller/ArticlesController.php:103;170
 msgid "The article has been saved."
 msgstr "L'article a bien été enregistré"
 
-#: Controller/ArticlesController.php:105;177
+#: Controller/ArticlesController.php:111;183
 msgid "The article could not be saved. Please, try again."
 msgstr "L'article n'a pas pu être enregistré"
 
-#: Controller/ArticlesController.php:204
+#: Controller/ArticlesController.php:210
 msgid "The article has been deleted."
 msgstr "L'article a été supprimé"
 
-#: Controller/ArticlesController.php:210
+#: Controller/ArticlesController.php:216
 msgid "The article could not be deleted. Please, try again."
 msgstr "L'article n'a pas pu être supprimé"
 
@@ -440,7 +440,7 @@ msgid "Add post"
 msgstr "Ajouter un article"
 
 #: Template/Articles/add.ctp:24 Template/Layout/default.ctp:143
-#: Template/Users/view.ctp:129
+#: Template/Users/view.ctp:117
 msgid "Submit"
 msgstr "Soumettre"
 
@@ -448,7 +448,7 @@ msgstr "Soumettre"
 msgid "Edit post"
 msgstr "Éditer un article"
 
-#: Template/Articles/edit.ctp:24 Template/Setups/view.ctp:78;336
+#: Template/Articles/edit.ctp:24 Template/Setups/view.ctp:78;339
 msgid "Edit"
 msgstr "Éditer"
 
@@ -456,11 +456,11 @@ msgstr "Éditer"
 msgid "Tweets by @mysetup_co"
 msgstr "Tweets de @mysetup_co"
 
-#: Template/Articles/view.ctp:54 Template/Setups/view.ctp:358
+#: Template/Articles/view.ctp:54 Template/Setups/view.ctp:361
 msgid "Published on"
 msgstr "Publié le"
 
-#: Template/Articles/view.ctp:54 Template/Setups/view.ctp:302
+#: Template/Articles/view.ctp:54 Template/Setups/view.ctp:305
 msgid "by"
 msgstr "par"
 
@@ -513,7 +513,7 @@ msgid "View"
 msgstr "Voir"
 
 #: Template/Comments/index.ctp:32 Template/Resources/index.ctp:35
-#: Template/Setups/index.ctp:120 Template/Setups/view.ctp:304
+#: Template/Setups/index.ctp:120 Template/Setups/view.ctp:307
 #: Template/Users/index.ctp:49
 msgid "Delete"
 msgstr "Supprimer"
@@ -597,21 +597,21 @@ msgid "Change my profile picture"
 msgstr "Changer mon image de profil"
 
 #: Template/Layout/default.ctp:124 Template/Users/index.ctp:16
-#: Template/Users/login.ctp:45 Template/Users/view.ctp:103
+#: Template/Users/login.ctp:45 Template/Users/view.ctp:91
 msgid "Name"
 msgstr "Nom"
 
 #: Template/Layout/default.ctp:125 Template/Users/login.ctp:76
-#: Template/Users/view.ctp:104
+#: Template/Users/view.ctp:92
 msgid "Email address"
 msgstr "Adresse email"
 
 #: Template/Layout/default.ctp:135 Template/Users/login.ctp:28;48
-#: Template/Users/view.ctp:118
+#: Template/Users/view.ctp:107
 msgid "Password"
 msgstr "Mot de passe"
 
-#: Template/Layout/default.ctp:136 Template/Users/view.ctp:119
+#: Template/Layout/default.ctp:136 Template/Users/view.ctp:108
 msgid "Confirm password"
 msgstr "Confirmer le mot de passe"
 
@@ -657,17 +657,21 @@ msgstr "Quel est le but de ce setup ? Racontez-nous son histoire..."
 
 #: Template/Layout/default.ctp:190
 msgid "Click to add a featured image *"
-msgstr "Cliquez pour ajouter une image"
+msgstr "Cliquez pour ajouter une image *"
 
-#: Template/Layout/default.ctp:205 Template/Setups/view.ctp:123;125
+#: Template/Layout/default.ctp:205 Template/Setups/view.ctp:125;127
 msgid "Gallery Preview"
 msgstr "Pré-visualisation de la galerie"
+
+#: Template/Layout/default.ctp:205 Template/Setups/view.ctp:127
+msgid "Add gallery image"
+msgstr "Ajouter une image à la galerie"
 
 #: Template/Layout/default.ctp:209
 msgid "required fields"
 msgstr "Champs requis"
 
-#: Template/Layout/default.ctp:213;228 Template/Setups/view.ctp:129;154
+#: Template/Layout/default.ctp:213;228 Template/Setups/view.ctp:132;157
 msgid "Next step"
 msgstr "Étape suivante"
 
@@ -675,23 +679,23 @@ msgstr "Étape suivante"
 msgid "Save as draft"
 msgstr "Enregistrer en tant que brouillon"
 
-#: Template/Layout/default.ctp:222 Template/Setups/view.ctp:138
+#: Template/Layout/default.ctp:222 Template/Setups/view.ctp:141
 msgid "Search for components..."
 msgstr "Chercher des composants..."
 
-#: Template/Layout/default.ctp:239 Template/Setups/view.ctp:167
+#: Template/Layout/default.ctp:239 Template/Setups/view.ctp:170
 msgid "Video (Youtube, Dailymotion, Twitch, ...)"
 msgstr "Vidéo (Youtube, Dailymotion, Twitch, ...)"
 
-#: Template/Layout/default.ctp:244 Template/Setups/view.ctp:177
+#: Template/Layout/default.ctp:244 Template/Setups/view.ctp:180
 msgid "It's not my setup !"
 msgstr "Ce n'est pas mon setup !"
 
-#: Template/Layout/default.ctp:245 Template/Setups/view.ctp:178
+#: Template/Layout/default.ctp:245 Template/Setups/view.ctp:181
 msgid "Setup's owner"
 msgstr "Propriétaire du setup"
 
-#: Template/Layout/default.ctp:254 Template/Setups/view.ctp:193
+#: Template/Layout/default.ctp:254 Template/Setups/view.ctp:196
 msgid "Publish"
 msgstr "Publier"
 
@@ -785,7 +789,7 @@ msgstr ""
 "battlestations..."
 
 #: Template/Pages/home.ctp:61;135;230;268;306;333 Template/Pages/popular.ctp:78
-#: Template/Pages/recent.ctp:76 Template/Setups/view.ctp:52;294;319
+#: Template/Pages/recent.ctp:76 Template/Setups/view.ctp:52;297;322
 msgid "Profile picture of"
 msgstr "Image de profil de"
 
@@ -803,7 +807,7 @@ msgstr "Se connecter avec Twitch et créer mon Setup !"
 
 #: Template/Pages/home.ctp:165 Template/Pages/popular.ctp:98
 #: Template/Pages/recent.ctp:101 Template/Setups/search.ctp:60
-#: Template/Users/view.ctp:141
+#: Template/Users/view.ctp:129
 msgid "Read our latest news"
 msgstr "Découvrez nos dernières annonces"
 
@@ -1123,7 +1127,7 @@ msgstr "Status"
 msgid "Created on"
 msgstr "Créé le"
 
-#: Template/Setups/index.ctp:103 Template/Setups/view.ctp:356
+#: Template/Setups/index.ctp:103 Template/Setups/view.ctp:359
 msgid "Modified on"
 msgstr "Modifié le"
 
@@ -1183,91 +1187,99 @@ msgstr "ce"
 msgid "Embed it in Twitch"
 msgstr "Intégrer à Twitch"
 
-#: Template/Setups/view.ctp:111
+#: Template/Setups/view.ctp:110
+msgid "Change featured image"
+msgstr "Modifier l'image en-avant"
+
+#: Template/Setups/view.ctp:112
 msgid "Featured Preview"
 msgstr "Pré-visualisation de l'image en-avant"
 
-#: Template/Setups/view.ctp:130;156;197
+#: Template/Setups/view.ctp:125
+msgid "Change gallery image"
+msgstr "Modifier une image de la galerie"
+
+#: Template/Setups/view.ctp:133;159;200
 msgid "Save as draft (the setup will not be visible)"
 msgstr ""
 "Enregistrer en tant que brouillon (ce setup ne sera pas visible publiquement)"
 
-#: Template/Setups/view.ctp:196
+#: Template/Setups/view.ctp:199
 msgid "You are going to delete this setup ! Are you sure ?"
 msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer ce setup ?"
 
-#: Template/Setups/view.ctp:205
+#: Template/Setups/view.ctp:208
 msgid "How to embed your setup in Twitch ?"
 msgstr "Comment intégrer ce setup à Twitch ?"
 
-#: Template/Setups/view.ctp:206
+#: Template/Setups/view.ctp:209
 msgid "Go to your Twitch channel and toggle panel edition."
 msgstr ""
 "Rendez-vous sur la page de votre chaîne Twitch, et lancer le panneau "
 "d'édition"
 
-#: Template/Setups/view.ctp:208
+#: Template/Setups/view.ctp:211
 msgid "Copy the following url in the link field"
 msgstr "Copiez cette URL dans le champ lien"
 
-#: Template/Setups/view.ctp:210
+#: Template/Setups/view.ctp:213
 msgid "And add your personal mySetup.co banner image !"
 msgstr "Et ajoutez votre bannière mySetup.co personnelle !"
 
-#: Template/Setups/view.ctp:213
+#: Template/Setups/view.ctp:216
 msgid ""
 "You can even configure your Twitch Chat bot to display your link or image."
 msgstr ""
 "Vous pouvez aussi configurer le Bot Chat de Twitch pour afficher votre lien "
 "ou votre image"
 
-#: Template/Setups/view.ctp:218
+#: Template/Setups/view.ctp:221
 msgid "This is my setup !"
 msgstr "Réclamer ce setup !"
 
-#: Template/Setups/view.ctp:218
+#: Template/Setups/view.ctp:221
 msgid ""
 "This will send an ownership-request for this setup, are you really sure ?"
 msgstr ""
 "Cela va envoyer une demande à la personne ayant posté ce setup pour que vous "
 "en deveniez le propriétaire, êtes-vous vraiment sûr(e) ?"
 
-#: Template/Setups/view.ctp:220
+#: Template/Setups/view.ctp:223
 msgid "Report this setup"
 msgstr "Signaler ce setup"
 
-#: Template/Setups/view.ctp:220
+#: Template/Setups/view.ctp:223
 msgid ""
 "This will send a report-request against this setup, are you really sure ?"
 msgstr ""
 "Cela va signaler ce setup auprès de notre équipe de modération, êtes-vous "
 "vraiment sûr(e) ?"
 
-#: Template/Setups/view.ctp:274
+#: Template/Setups/view.ctp:277
 msgid "About this setup"
 msgstr "À propos de ce setup"
 
-#: Template/Setups/view.ctp:287
+#: Template/Setups/view.ctp:290
 msgid "Wanna share your opinion ?"
 msgstr "Une remarque ? Commentez ce setup !"
 
-#: Template/Setups/view.ctp:302
+#: Template/Setups/view.ctp:305
 msgid "at"
 msgstr "le"
 
-#: Template/Setups/view.ctp:324
+#: Template/Setups/view.ctp:327
 msgid "Nice config'…"
 msgstr "Jolie config'..."
 
-#: Template/Setups/view.ctp:326
+#: Template/Setups/view.ctp:329
 msgid "Post this comment"
 msgstr "Publier ce commentaire"
 
-#: Template/Setups/view.ctp:345
+#: Template/Setups/view.ctp:348
 msgid "You must be logged in to comment"
 msgstr "Vous devez être connecté(e) pour commenter ce setup"
 
-#: Template/Setups/view.ctp:345
+#: Template/Setups/view.ctp:348
 msgid "Log me in !"
 msgstr "Se connecter !"
 
@@ -1351,15 +1363,19 @@ msgstr "Il n'y a pas de setup à afficher ici encore..."
 msgid "Edit this user"
 msgstr "Éditer cet utilisateur"
 
-#: Template/Users/view.ctp:108
-msgid "Change the profile picture"
-msgstr "Modifier votre image de profil"
+#: Template/Users/view.ctp:97
+msgid "Change the user profile picture"
+msgstr "Modifier l'image de profil de l'utilisateur"
 
-#: Template/Users/view.ctp:121
+#: Template/Users/view.ctp:110
 msgid "Change the user password"
 msgstr "Changer le mot de passe de l'utilisateur"
 
-#: Template/Users/view.ctp:132
+#: Template/Users/view.ctp:112
+msgid " User verified"
+msgstr "Utilisateur vérifié"
+
+#: Template/Users/view.ctp:120
 msgid "Delete this account"
 msgstr "Supprimer ce compte"
 
@@ -1380,6 +1396,9 @@ msgid "comment"
 msgid_plural "comments"
 msgstr[0] "commentaire"
 msgstr[1] "commentaires"
+
+#~ msgid "Change the profile picture"
+#~ msgstr "Modifier votre image de profil"
 
 #~ msgid "Need more ? Click to see the latest !"
 #~ msgstr ""
