@@ -86,26 +86,15 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                     <?= $this->Form->create($user, ['type' => 'file', 'url' => ['controller' => 'Users', 'action' => 'edit', $user->id]]); ?>
                     <fieldset style="border:0;">
                     <h4><?= __('Change only what you want !') ?></h4>
-                    <div class="row">
-                    <div class="column column-25">
-                    <div class="profile-container">
-                       <img id="profileImage" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $user['id'] ?>.png" />
-                    </div>                    
-
-                    <br>
-
-                    <?php
-                        echo $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "ES" => "ES", "IT" => "IT", "FR" => "FR", "DE" => "DE"], ['default' => $user['preferredStore']]);
-                        ?>
-                    </div>
-                    <div class="column column-75">
+                    <div>
                         <?php
                             echo $this->Form->control('name', ['required' => true, 'label' => '', 'placeholder' => __("Name"), 'default' => $user['name']]);
                             echo $this->Form->control('mail', ['required' => true, 'type' => 'email', 'label' => '', 'placeholder' => __("Email address"), 'default' => $user['mail']]);
+                            echo $this->Form->select('preferredStore', ["US" => "US", "UK" => "UK", "ES" => "ES", "IT" => "IT", "FR" => "FR", "DE" => "DE"], ['default' => $user['preferredStore']]);
                         ?>
 
                         <?php
-                            echo $this->Form->input('picture', ['label' => __("Change the profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
+                            echo $this->Form->input('picture', ['label' => __("Change the user profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
                         ?>
 
                         <?php
@@ -120,9 +109,8 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                         ?>
                         <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> <?= __('Change the user password') ?></a>
                         <?php
-                            echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => 'User verified', 'default' => $user['verified'], 'required' => false]);
+                            echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => __(' User verified'), 'default' => $user['verified'], 'required' => false]);
                         ?>
-                    </div>
                     </div>
                     
                     </fieldset>
