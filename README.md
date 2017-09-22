@@ -5,7 +5,7 @@
 
 ## Installation
 
-In order to deploy this website on your web server:  
+In order to deploy this website on your web server:
 
 1. `# aptitude install git apache2 php7.0 php7.0-intl php7.0-mbstring php7.0-imagick php7.0-sqlite3 phpmyadmin composer`
 
@@ -32,7 +32,7 @@ In order to deploy this website on your web server:
 
 5. `$ cd mysetup/`
 
-6. `$ mkdir webroot/uploads && chmod -R 777 webroot/uploads/` (if needed create webroot/uploads/files folder too)
+6. `$ mkdir webroot/uploads && chmod -R 777 webroot/uploads/` (if needed create `webroot/uploads/files/` too)
 
 7. `$ bash deployment.sh`
 
