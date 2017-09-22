@@ -79,7 +79,8 @@ class UsersTable extends Table
         $this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => [
-                    'creationDate' => 'new'
+                    'creationDate' => 'new',
+                    'modificationDate' => 'always'
                 ]
             ]
         ]);
@@ -135,6 +136,10 @@ class UsersTable extends Table
         $validator
             ->dateTime('lastLogginDate')
             ->allowEmpty('lastLogginDate');
+
+        $validator
+            ->dateTime('modificationDate')
+            ->notEmpty('modificationDate');
 
         $validator
             ->allowEmpty('twitchToken');

@@ -89,7 +89,7 @@
                         </li>
                         <?php if($authUser): ?>
                         <li style="margin-right: 19px;">
-                                <a class="navbar-user"><?= h($authUser['name']) ?> <img class="current-profile-user" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser['id'].'.png') ?>"></a>
+                                <a class="navbar-user"><?= h($authUser['name']) ?> <img class="current-profile-user" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser['id'].'.png?'.$authUser['modificationDate']->format('ydHms')) ?>"></a>
                                 <ul style="left: auto;right: -20px;">
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>

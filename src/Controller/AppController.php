@@ -433,8 +433,8 @@ class AppController extends Controller
             }
 
             $conditions += [
-                'creationDate >' => date('Y-m-d', strtotime("-" . $this->request->getQuery('w', '9999') . "weeks")),
-                'creationDate <=' => date('Y-m-d', strtotime("+ 1 day")),
+                'Setups.creationDate >' => date('Y-m-d', strtotime("-" . $this->request->getQuery('w', '9999') . "weeks")),
+                'Setups.creationDate <=' => date('Y-m-d', strtotime("+ 1 day")),
                 'status' => 'PUBLISHED'
             ];
 
@@ -462,7 +462,7 @@ class AppController extends Controller
             $results = $this->Setups->find('all', [
                 'conditions' => $conditions,
                 'order' => [
-                    'creationDate' => $this->request->getQuery('o', 'DESC')
+                    'Setups.creationDate' => $this->request->getQuery('o', 'DESC')
                 ],
                 'limit' => $this->request->getQuery('n', '8'),
                 'offset' => $this->request->getQuery('p', '0'),
@@ -475,6 +475,9 @@ class AppController extends Controller
                     },
                     'Resources' => function ($q) {
                         return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);
+                    },
+                    'Users' => function ($q) {
+                        return $q->autoFields(false)->select(['Users.id', 'Users.name', 'Users.modificationDate']);
                     }
                 ]
             ])
