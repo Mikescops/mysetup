@@ -46,7 +46,8 @@ class SetupsController extends AppController
                     'fields' => [
                         'id',
                         'name',
-                        'verified'
+                        'verified',
+                        'modificationDate'
                     ]
                 ],
                 'Comments' => [

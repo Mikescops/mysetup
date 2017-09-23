@@ -411,7 +411,8 @@ class AppController extends Controller
             $results = $this->Notifications->find('all', ['limit' => $this->request->getQuery('n', '8')])
                 ->select([
                     'Notifications.user_id',
-                    'Users.name'
+                    'Users.name',
+                    'Users.modificationDate'
                 ])
                 ->group('Notifications.user_id')
                 ->contain([
