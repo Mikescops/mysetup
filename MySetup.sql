@@ -96,6 +96,7 @@ CREATE TABLE `users` (
   `verified` int(1) NOT NULL,
   `mailVerification` varchar(32) COLLATE utf8_bin DEFAULT NULL,
   `creationDate` datetime NOT NULL,
+  `modificationDate` timestamp NOT NULL,
   `lastLogginDate` datetime DEFAULT NULL,
   `twitchToken` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
   `uwebsite` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
