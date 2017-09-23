@@ -43,7 +43,7 @@ class CommentsController extends AppController
 
             if(parent::captchaValidation($data))
             {
-                // Let's set the id of the current logged in user 
+                // Let's set the id of the current logged in user
                 $data['user_id'] = $this->request->session()->read('Auth.User.id');
                 $data['setup_id'] = $setup_id;
 
@@ -73,7 +73,7 @@ class CommentsController extends AppController
                 $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
             }
 
-            return $this->redirect($this->referer());
+            return $this->redirect($this->referer() . '#comment' . ($comment->id ? '-' . $comment->id : 's'));
         }
 
         $this->set(compact('comment'));
@@ -105,7 +105,7 @@ class CommentsController extends AppController
                 $this->Flash->error(__('The comment could not be saved. Please, try again.'));
             }
 
-            return $this->redirect($this->referer());
+            return $this->redirect($this->referer() . '#comment' . ($comment->id ? '-' . $comment->id : 's'));
         }
 
         $this->set(compact('comment'));
@@ -129,7 +129,7 @@ class CommentsController extends AppController
             $this->Flash->error(__('The comment could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect($this->referer());
+        return $this->redirect($this->referer() . '#comments');
     }
 
     public function beforeFilter(Event $event)

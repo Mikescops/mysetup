@@ -41,7 +41,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <?php endif ?>
 
     </div>
-    
+
 </div>
 
     <div class="featured-inner">
@@ -97,7 +97,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                         <a id="infos-edit-tab" href="#infos-edit"><?= __('More infos') ?></a>
                     </li>
                 </ul>
-            
+
             <div id="basics-edit" class="form-action-edit show-edit">
 
                 <?php
@@ -137,7 +137,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 
             <div id="components-edit" class="form-action-edit hide-edit">
-  
+
                 <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
                 <ul class="search_results edit_setup"></ul>
                 <ul class="basket_items edit_setup">
@@ -187,7 +187,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 {
                     echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
                 }
-                
+
                 echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit', 'class' => 'hidden']);
             ?>
 
@@ -198,7 +198,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
                     <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
                     <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
-                    
+
                 </div>
             </div>
         </fieldset>
@@ -212,7 +212,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <pre><code><span><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title).'?ref='.urlencode($setup->user['name']), true)?></span></code></pre>
         <p><?= __('And add your personal mySetup.co banner image !') ?></p>
         <p style="text-align: center;"><img alt="<?= ('Advert - Setup by') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/imgeneration/twitch-promote.php?id='. $setup->user_id . '&name=' . $setup->user['name'] . '&setup=' . $setup->title)?>"></p>
-        
+
         <p><?= __('You can even configure your Twitch Chat bot to display your link or image.') ?></p>
     </div>
 <?php elseif($authUser && $setup->user_id != $authUser['id']): ?>
@@ -271,7 +271,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     </div>
 
     <div class="row description-section">
-        
+
         <div class="column column-60 column-offset-20 item-meta">
 
             <h4><?= __('About this setup') ?></h4>
@@ -279,13 +279,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?= $this->Markdown->transform(h($setup->description))?>
 
             <div id="social-networks"></div>
-            
+
         </div>
 
     </div>
 
-    <div class="row comment-section">
-        
+    <div class="row comment-section" id="comments">
+
         <div class="column column-60 column-offset-20">
             <h4 class="comment-section-title"><?= __('Wanna share your opinion ?') ?></h4>
 
@@ -296,7 +296,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
                         <img alt="<?= __('Profile picture of') ?> #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$comments->user_id.'.png') ?>" width="50" height="50" />
                     </a>
-                        
+
                     <div class="comment-body">
                         <div class="text" id="comment-<?= $comments->id ?>">
                           <p content="<?= h($comments->content) ?>"><?= h($comments->content) ?></p>
@@ -304,7 +304,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                         </div>
                         <p class="attribution"><?= __('by') ?> <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($comments->user['name']) ?></a> <?= __('at') ?> <?= $this->Time->format($comments->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comments->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></p>
 
-                        <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are you sure ?')); 
+                        <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are you sure ?'));
                             echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> Edit </a>';
                         endif ?>
                     </div>
