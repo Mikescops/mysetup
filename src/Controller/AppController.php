@@ -409,8 +409,14 @@ class AppController extends Controller
             $this->loadModel('Notifications');
 
             $results = $this->Notifications->find('all', ['limit' => $this->request->getQuery('n', '8')])
-                ->select('Notifications.user_id')
+                ->select([
+                    'Notifications.user_id',
+                    'Users.name'
+                ])
                 ->group('Notifications.user_id')
+                ->contain([
+                    'Users'
+                ])
                 ->toArray();
 
             return new Response([
@@ -497,12 +503,12 @@ class AppController extends Controller
                     {
                         $a->likes += [0 => ['total' => 0]];
                     }
-                    
+
                     if(empty($b->likes))
                     {
                         $b->likes += [0 => ['total' => 0]];
                     }
-                    
+
                     if($a->likes[0]['total'] == $b->likes[0]['total'])
                     {
                         return 0;

@@ -15,7 +15,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 ?>
 
 <?php
- 
+
   $options = [
     CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?f=1&n=5',
     CURLOPT_RETURNTRANSFER => true,
@@ -54,7 +54,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
   <div class="container home_slider">
 
     <?php foreach ($fsetups as $fsetup): ?>
-                
+
         <div class="slider-item">
             <a href="<?= $this->Url->build('/setups/'.$fsetup->id.'-'.$this->Text->slug($fsetup->title)); ?>"><img alt="<?= $fsetup->title ?>" src="<?= $fsetup->resources[0]->src ?>"></a>
             <a class="slider-item-inner featured-user" href="<?=$this->Url->build('/users/'.$fsetup->user_id)?>">
@@ -75,8 +75,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="maincontainer">
 
       <div class="large_search" style="margin-top: -60px"> <i class="fa fa-search"></i>
-        
-        <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" /> 
+
+        <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" />
         <?= $this->Html->scriptBlock(' let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`setups/search?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
 
       </div>
@@ -84,7 +84,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="rowfeed">
         <div class="feeditem">
         <?php
-         
+
           $options = [
             CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?t=like&n=20',
             CURLOPT_RETURNTRANSFER => true,
@@ -179,7 +179,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <div class="feeditem">
 
         <?php
-         
+
           $options = [
             CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?n=3',
             CURLOPT_RETURNTRANSFER => true,
@@ -330,7 +330,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             <?php foreach ($activeUsers as $activeUser): ?>
 
             <a class="featured-user" href="<?=$this->Url->build('/users/'.$activeUser->user_id)?>">
-                <img alt="<?= __('Profile picture of') ?> <?= $activeUser->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$activeUser->user_id.'.png'); ?>">
+                <img alt="<?= __('Profile picture of') ?> <?= $activeUser->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$activeUser->user_id.'.png'); ?>">
             </a>
 
             <?php endforeach ?>
