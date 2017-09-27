@@ -329,7 +329,7 @@ class SetupsController extends AppController
                         return $q->autoFields(false)->where(['type' => 'SETUP_FEATURED_IMAGE'])->select(['setup_id', 'src']);
                     },
                     'Users' => function($q) {
-                        return $q->autoFields(false)->select(['id', 'name']);
+                        return $q->autoFields(false)->select(['id', 'name', 'modificationDate']);
                     },
                     'Likes' => function($q) {
                         return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
