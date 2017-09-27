@@ -497,7 +497,8 @@ footer a{
 .feeditem .fullitem-inner h3{
 	line-height: 40px;
 	font-size: 1.2em;
-	margin-left: 7px;
+	padding-left: 7px;
+	display: flex;
 }
 
 
