@@ -103,7 +103,7 @@
                                     <div class="row">
                                     <div class="column column-25">
                                     <div class="profile-container">
-                                       <img id="profileImage" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $authUser['id'] ?>.png" />
+                                       <img id="profileImage" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $authUser['id'] ?>.png?<?= $authUser['modificationDate']->format('Hs') ?>" />
                                     </div>
 
                                     <div class="profilepicup">
