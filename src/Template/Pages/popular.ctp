@@ -22,7 +22,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <div class="column column-75">
 
 <?php
- 
+
   $options = [
     CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?o=DESC&t=like&w=1&n=30',
     CURLOPT_RETURNTRANSFER => true,
@@ -75,7 +75,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                         <div class="column column-75">
                             <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                <img alt="<?= __('Profile picture of') ?> #<?= $setup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'Hs', null, null)); ?>">
+                                <img alt="<?= __('Profile picture of') ?> #<?= $setup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'HHss', null, null)); ?>">
                             </a>
 
                             <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
