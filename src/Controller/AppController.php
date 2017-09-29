@@ -115,6 +115,14 @@ class AppController extends Controller
             {
                 $user['admin'] = true;
             }
+
+            // Let's check if the the session is "synced" with the user entity...
+            if($user['admin'] XOR $this->request->session()->check('Auth.User.admin'))
+            {
+                // ... if not, let's update the session accordingly
+                $this->request->session()->write('Auth.User', $user);
+            }
+
             $this->set('authUser', $user);
 
             // Let's send to the view the list of timezones as well
