@@ -494,9 +494,11 @@ footer a{
 	width: 40px;
 }
 
-.feeditem	.fullitem-inner h3{
+.feeditem .fullitem-inner h3{
 	line-height: 40px;
 	font-size: 1.2em;
+	padding-left: 7px;
+	display: flex;
 }
 
 
@@ -1792,10 +1794,6 @@ nav {
 	    height: 70px!important;
 	}
 
-	.fullitem-inner h3 {
-		margin-left: 7px;
-	}
-
 	.user-profile .column:first-child{
 		display: block;
 	}
@@ -1853,6 +1851,7 @@ nav {
 	.fullitem-inner h3{
 		line-height: 40px;
 		font-size: 1.2em;
+		margin-left: 7px;
 	}
 
 	/* POST RESPONSIVE */

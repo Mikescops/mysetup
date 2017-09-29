@@ -11,7 +11,7 @@ $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
 		<div class="column column-75">
 
 			<div class="large_search">
-				<input type="text" id="keyword-search" placeholder="<?= h($_GET["q"]) ?>" /> 
+				<input type="text" id="keyword-search" placeholder="<?= h($_GET["q"]) ?>" />
 				<?= $this->Html->scriptBlock('let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
 			</div>
 
@@ -41,7 +41,7 @@ $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
 					<div class="row">
 						<div class="column column-75">
 							<a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-								<img src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $setup->user_id ?>.png">
+								<img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $setup->user_id ?>.png?<?= $setup->user->modificationDate->format('Hs') ?>">
 							</a>
 							<a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
 								<h3><?= h($setup->title) ?></h3>

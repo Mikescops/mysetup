@@ -409,8 +409,15 @@ class AppController extends Controller
             $this->loadModel('Notifications');
 
             $results = $this->Notifications->find('all', ['limit' => $this->request->getQuery('n', '8')])
-                ->select('Notifications.user_id')
+                ->select([
+                    'Notifications.user_id',
+                    'Users.name',
+                    'Users.modificationDate'
+                ])
                 ->group('Notifications.user_id')
+                ->contain([
+                    'Users'
+                ])
                 ->toArray();
 
             return new Response([
@@ -433,8 +440,8 @@ class AppController extends Controller
             }
 
             $conditions += [
-                'creationDate >' => date('Y-m-d', strtotime("-" . $this->request->getQuery('w', '9999') . "weeks")),
-                'creationDate <=' => date('Y-m-d', strtotime("+ 1 day")),
+                'Setups.creationDate >' => date('Y-m-d', strtotime("-" . $this->request->getQuery('w', '9999') . "weeks")),
+                'Setups.creationDate <=' => date('Y-m-d', strtotime("+ 1 day")),
                 'status' => 'PUBLISHED'
             ];
 
@@ -462,7 +469,7 @@ class AppController extends Controller
             $results = $this->Setups->find('all', [
                 'conditions' => $conditions,
                 'order' => [
-                    'creationDate' => $this->request->getQuery('o', 'DESC')
+                    'Setups.creationDate' => $this->request->getQuery('o', 'DESC')
                 ],
                 'limit' => $this->request->getQuery('n', '8'),
                 'offset' => $this->request->getQuery('p', '0'),
@@ -475,6 +482,9 @@ class AppController extends Controller
                     },
                     'Resources' => function ($q) {
                         return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);
+                    },
+                    'Users' => function ($q) {
+                        return $q->autoFields(false)->select(['Users.id', 'Users.name', 'Users.modificationDate']);
                     }
                 ]
             ])
@@ -494,12 +504,12 @@ class AppController extends Controller
                     {
                         $a->likes += [0 => ['total' => 0]];
                     }
-                    
+
                     if(empty($b->likes))
                     {
                         $b->likes += [0 => ['total' => 0]];
                     }
-                    
+
                     if($a->likes[0]['total'] == $b->likes[0]['total'])
                     {
                         return 0;

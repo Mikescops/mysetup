@@ -49,7 +49,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div class="row">
                 <div class="column column-75">
                     <a class="featured-user" href="<?= $this->Url->build('/users/'.$setup->user['id']) ?>">
-                        <img alt="<?= __('Profile picture of') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$setup->user_id.'.png') ?>">
+                        <img alt="<?= __('Profile picture of') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'HHss', null, null)) ?>">
                     </a>
                     <h3><?= h($setup->title) ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
                     <p>
@@ -294,7 +294,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?php foreach ($setup->comments as $comments): ?>
                 <article class="comment">
                     <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
-                        <img alt="<?= __('Profile picture of') ?> #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$comments->user_id.'.png') ?>" width="50" height="50" />
+                        <img alt="<?= __('Profile picture of') ?> #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $comments->user_id . '.png?' . $this->Time->format($comments->user->modificationDate, 'HHss', null, null)) ?>" width="50" height="50" />
                     </a>
 
                     <div class="comment-body">
@@ -319,7 +319,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?php if($authUser): ?>
 
                 <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
-                    <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser->id.'.png') ?>" width="50" height="50" />
+                    <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser->id . '.png?' . $this->Time->format($authUser->modificationDate, 'HHss', null, null)) ?>" width="50" height="50" />
                 </a>
 
                 <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>

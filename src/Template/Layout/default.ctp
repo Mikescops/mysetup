@@ -8,7 +8,7 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="<?= $lang ?>"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="<?= $lang ?>"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="<?= $lang ?>"> <![endif]-->
-<!--[if gt IE 8]><!--> 
+<!--[if gt IE 8]><!-->
 <html lang="<?= $lang ?>">
 <head>
     <?= $this->Html->charset() ?>
@@ -47,7 +47,7 @@
         echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'de', 'href' => $this->Url->build(null, true)."?lang=de"));
     ?>
 
-    <meta name="twitter:card" value="summary"> 
+    <meta name="twitter:card" value="summary">
     <meta property="og:type" content="article" />
     <meta name="twitter:site" content="@mysetup_co">
     <meta property="og:site_name" content="mySetup.co" />
@@ -59,13 +59,13 @@
     <nav class="heavy-nav">
         <div class="row container">
             <div class="column column-20">
-                
+
                 <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg?v=2', array('alt' => 'mySetup', 'class' => 'ms-logo')); ?></a>
 
             </div>
             <div class="column column-80">
                 <div class="right-nav">
-                    
+
                     <ul>
                         <?php if($authUser): ?>
                             <li>
@@ -89,7 +89,7 @@
                         </li>
                         <?php if($authUser): ?>
                         <li style="margin-right: 19px;">
-                                <a class="navbar-user"><?= h($authUser['name']) ?> <img class="current-profile-user" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_'.$authUser['id'].'.png') ?>"></a>
+                                <a class="navbar-user"><?= h($authUser['name']) ?> <img class="current-profile-user" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser['id'] . '.png?' . $authUser['modificationDate']->format('Hs')) ?>"></a>
                                 <ul style="left: auto;right: -20px;">
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
@@ -103,7 +103,7 @@
                                     <div class="row">
                                     <div class="column column-25">
                                     <div class="profile-container">
-                                       <img id="profileImage" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $authUser['id'] ?>.png" />
+                                       <img id="profileImage" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $authUser['id'] ?>.png?<?= $authUser['modificationDate']->format('Hs') ?>" />
                                     </div>
 
                                     <div class="profilepicup">
@@ -138,7 +138,7 @@
                                         <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> <?= __('Change my password') ?></a>
                                     </div>
                                     </div>
-                                    
+
                                     </fieldset>
                                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                                     <?= $this->Form->end(); ?>
@@ -157,7 +157,7 @@
                                     </ul>
                             </li>
                             <?php endif; ?>
-                        
+
                     </ul>
 
                 </div>
@@ -232,7 +232,7 @@
                             </div>
 
                         </div>
-                        
+
                         <div id="infos" class="form-action hide">
 
                             <?php
@@ -254,7 +254,7 @@
                                 <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-add']); ?>
                                 <a href="#components" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
                                 <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
-                                
+
                             </div>
 
                         </div>
@@ -262,7 +262,7 @@
                         </div>
 
                     </fieldset>
-                    
+
                     <?= $this->Form->end(); ?>
 
                 </div>
@@ -273,7 +273,7 @@
             </div>
 
             <div id="mobile-nav" class="lity-hide">
-                
+
                 <ul>
                     <?php if($authUser): ?>
                         <li>
@@ -311,7 +311,7 @@
         </div>
     </nav>
 
-    
+
         <?= $this->fetch('content') ?>
 
 
@@ -337,7 +337,7 @@
 
                     ?>
                 </fieldset>
-                
+
                 <?= $this->Form->end() ?>
 
             </div>
