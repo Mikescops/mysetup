@@ -1,12 +1,12 @@
+<!DOCTYPE html>
 <?php
-/**
-  * @var \App\View\AppView $this
-  */
-
-    $this->layout = 'ajax';
-    $this->render(false);
+    $this->layout = null;
+    if(!$lang)
+    {
+      $lang = ($authUser && $authUser['preferredStore'] !== "US" && $authUser['preferredStore'] !== "UK" ? strtolower($authUser['preferredStore']) : "en");
+    }
 ?>
-
+<html lang="<?= $lang ?>">
 <head>
 	<title><?= h($setup->title) ?></title>
 	<style type="text/css">
@@ -29,5 +29,5 @@ abbr,acronym,address,applet,aside,audio,big,blockquote,body,canvas,caption,cite,
 	<div class="meta-links">
 		<a target="_blank" href="<?= $this->Url->build('/setups/'.$setup->id.'?ref=embed-'.urlencode($setup->user['name']), true)?>" class="button-view"><?= __('View full setup') ?></a>
 	</div>
-	
+
 </body>
