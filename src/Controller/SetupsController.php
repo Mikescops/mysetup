@@ -267,7 +267,7 @@ class SetupsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['search', 'view', 'answerOwnership']);
+        $this->Auth->allow(['search', 'view', 'answerOwnership', 'embed']);
     }
 
     public function isAuthorized($user)
@@ -521,7 +521,7 @@ class SetupsController extends AppController
                         'name',
                         'verified'
                     ]
-                ],
+                ]
             ]
         ]);
 
@@ -530,7 +530,8 @@ class SetupsController extends AppController
         if(!$this->Setups->isPublic($id) and (!$session->read('Auth.User.id') or !$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and !parent::isAdminBySession($session))
         {
             $this->Flash->error(__('You are not authorized to access that location.'));
-            return $this->redirect('/404');
+            // Just throw a 404-like exception here to make the `iframe` voluntary crash
+            throw new NotFoundException();
         }
         // _________________________________________________________________________________________________________________________________
 
@@ -544,5 +545,4 @@ class SetupsController extends AppController
         $this->set(compact('setup'));
         $this->set('_serialize', ['setup']);
     }
-
 }
