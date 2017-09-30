@@ -299,7 +299,7 @@ class UsersController extends AppController
 
     public function login()
     {
-        if($this->request->session()->read('Auth.User.id') != null)
+        if($this->request->session()->check('Auth.User'))
         {
             $this->Flash->warning(__('You are already logged in.'));
             return $this->redirect('/');
@@ -342,7 +342,7 @@ class UsersController extends AppController
 
     public function logout()
     {
-        if($this->request->session()->read('Auth.User.id') != null)
+        if($this->request->session()->check('Auth.User'))
         {
             $this->Flash->success(__('You are now logged out, see you soon !'));
             return $this->redirect($this->Auth->logout());
