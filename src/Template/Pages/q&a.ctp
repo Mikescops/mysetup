@@ -19,8 +19,9 @@ echo $this->Html->meta('description', __('We answer common questions and issues 
 		<li><a href="#q-5"><?= __("I can't add a Youtube / Twitch video on my setup") ?></a></li>
 		<li><a href="#q-6"><?= __("How to use the Markdown") ?></a></li>
 		<li><a href="#q-7"><?= __("My setup has been refused, why ?") ?></a></li>
+        <li><a href="#q-8"><?= __("How can I use the API you provide ?") ?></a></li>
 	</ol>
-	
+
 	<hr>
 	<br>
 
@@ -59,7 +60,14 @@ echo $this->Html->meta('description', __('We answer common questions and issues 
 
 	<br>
 
+    <h4 id="q-8"><?= __("How can I use the API you provide ?") ?></h4>
+    <p>
+        <?= __("It's pretty easy, just add the code below to your page (and set the setup id accordingly) :") ?>
+        <style>.gist{width:990px!important}.gist-file .gist-data{max-height:990px;max-width:990px}</style>
+        <script src="https://gist.github.com/HorlogeSkynet/e9a5f7a0a4da8014035238786c288f2a.js"></script>
+    </p>
 
+    <br>
 
 </div>
 </div>
