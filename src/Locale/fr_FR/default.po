@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2017-09-22 08:43-0400\n"
-"PO-Revision-Date: 2017-09-22 08:50-0400\n"
+"POT-Creation-Date: 2017-10-01 13:42-0400\n"
+"PO-Revision-Date: 2017-10-01 13:44-0400\n"
 "Last-Translator: \n"
 "Language-Team: contact@mysetup.co\n"
 "Language: fr\n"
@@ -15,27 +15,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: Controller/AppController.php:386
+#: Controller/AppController.php:394
 msgid "Liker's profile picture"
 msgstr "Image de profil de votre admirateur"
 
-#: Controller/AppController.php:387
+#: Controller/AppController.php:395
 msgid "liked your setup"
 msgstr "a aimé votre setup"
 
-#: Controller/AppController.php:392
+#: Controller/AppController.php:400
 msgid "Commenter's profile picture"
 msgstr "Image de profil du commentateur"
 
-#: Controller/AppController.php:393
+#: Controller/AppController.php:401
 msgid "commented your setup"
 msgstr "a commenté votre setup"
 
-#: Controller/AppController.php:538
+#: Controller/AppController.php:556
 msgid "Your bug has been correctly sent ! Thanks for this report :)"
 msgstr "Votre bogue a correctement été envoyé ! Merci pour ce signalement :)"
 
-#: Controller/AppController.php:543
+#: Controller/AppController.php:561
 msgid "You didn't report anything (or has missed something) :("
 msgstr "Vous n'avez rien signalé du tout (ou une information est manquante) :("
 
@@ -83,66 +83,66 @@ msgstr "Le commentaire a bien été supprimé"
 msgid "The comment could not be deleted. Please, try again."
 msgstr "Le commentaire n'a pas pu être supprimé. Ré-essayez"
 
-#: Controller/SetupsController.php:62
+#: Controller/SetupsController.php:63;533
 msgid "You are not authorized to access that location."
 msgstr "Vous n'êtes pas autorisé à accéder à cette page."
 
-#: Controller/SetupsController.php:131
+#: Controller/SetupsController.php:132
 msgid "You need a featured image with this setup !"
 msgstr "Vous avez besoin d'une image d'en-tête avec ce setup !"
 
-#: Controller/SetupsController.php:147
+#: Controller/SetupsController.php:148
 msgid "The setup has been saved."
 msgstr "Le setup a bien été créé"
 
-#: Controller/SetupsController.php:153;231
+#: Controller/SetupsController.php:154;232
 msgid "The setup could not be saved. Please, try again."
 msgstr "Votre setup n'a pas pu être créé"
 
-#: Controller/SetupsController.php:226
+#: Controller/SetupsController.php:227
 msgid "The setup has been updated."
 msgstr "Le setup a bien été mis à jour"
 
-#: Controller/SetupsController.php:250
+#: Controller/SetupsController.php:251
 msgid "The setup has been deleted."
 msgstr "Le setup a correctement été supprimé"
 
-#: Controller/SetupsController.php:252
+#: Controller/SetupsController.php:253
 msgid "The setup could not be deleted. Please, try again."
 msgstr "Le setup n'a pas pu être supprimé. Ré-essayez"
 
-#: Controller/SetupsController.php:404
+#: Controller/SetupsController.php:405
 msgid ""
 "Your request has just been sent. Let's wait for the owner's approval for now."
 msgstr ""
 "Votre requête a bien été envoyée. Il ne reste plus qu'à attendre la réponse "
 "du propriétaire actuel !"
 
-#: Controller/SetupsController.php:409
+#: Controller/SetupsController.php:410
 msgid "An error occurred while saving your request."
 msgstr "Une erreur est survenue pendant que nous enregistrions votre requête."
 
-#: Controller/SetupsController.php:415;498
+#: Controller/SetupsController.php:416;499
 msgid "No, no. This is impossible."
 msgstr "Non, ceci est impossible."
 
-#: Controller/SetupsController.php:441;465
+#: Controller/SetupsController.php:442;466
 msgid "An error occurred while processing your answer."
 msgstr "Une erreur est survenue pendant que nous traitions votre requête."
 
-#: Controller/SetupsController.php:446;460
+#: Controller/SetupsController.php:447;461
 msgid "Your voice has been heard !"
 msgstr "Votre voix a été entendue !"
 
-#: Controller/SetupsController.php:450
+#: Controller/SetupsController.php:451
 msgid "Your request couldn't be deleted as well."
 msgstr "Votre requête n'a pas pu être correctement supprimée."
 
-#: Controller/SetupsController.php:472
+#: Controller/SetupsController.php:473
 msgid "This request is invalid."
 msgstr "Cette requête est invalide."
 
-#: Controller/SetupsController.php:493
+#: Controller/SetupsController.php:494
 msgid "Your request has just been sent, we may contact you in the future."
 msgstr ""
 "Votre requête a correctement été envoyée, nous vous contacterons peut-être "
@@ -201,31 +201,31 @@ msgstr ""
 "Votre compte n'a pas encore été activé ! Vérifiez vos mails, ou veuillez "
 "contacter un administrateur"
 
-#: Controller/UsersController.php:325;501
+#: Controller/UsersController.php:327;503
 msgid "You are successfully logged in !"
 msgstr "Vous êtes maintenant connecté(e) !"
 
-#: Controller/UsersController.php:336
+#: Controller/UsersController.php:338
 msgid "Username or password is incorrect"
 msgstr "Ces identifiants sont invalides"
 
-#: Controller/UsersController.php:345
+#: Controller/UsersController.php:347
 msgid "You are now logged out, see you soon !"
 msgstr "Vous êtes maintenant déconnecté(e), à bientôt !"
 
-#: Controller/UsersController.php:351
+#: Controller/UsersController.php:353
 msgid "You can't logout because you're not connected."
 msgstr "Vous êtes déjà déconnecté(e), nous vous avons redirigé(e)"
 
-#: Controller/UsersController.php:376
+#: Controller/UsersController.php:378
 msgid "An email has been sent to this email address !"
 msgstr "Un email a été envoyé à cette adresse !"
 
-#: Controller/UsersController.php:382;396
+#: Controller/UsersController.php:384;398
 msgid "Internal error, please try again."
 msgstr "Erreur interne. Ré-essayez, ou veuillez contacter un administrateur"
 
-#: Controller/UsersController.php:389
+#: Controller/UsersController.php:391
 msgid ""
 "This email address does not exist in our database. Are you sure you that you "
 "have an account ?"
@@ -233,42 +233,42 @@ msgstr ""
 "Cette adresse mail n'existe pas dans notre base de données. Avez-vous déjà "
 "créé un compte ?"
 
-#: Controller/UsersController.php:419;559
+#: Controller/UsersController.php:421;563
 msgid "We advise you to edit your profile (use the panel at the top)..."
 msgstr ""
 "Nous vous conseillons d'éditer votre profil (utilisez le menu situé en tête "
 "de page)"
 
-#: Controller/UsersController.php:420;560
+#: Controller/UsersController.php:422;564
 msgid "... in order to add a profile picture ! You'd look better :P"
 msgstr ""
 "... de façon à ajouter une image de profil ! Vous aurez une meilleure tête :P"
 
-#: Controller/UsersController.php:422;556
+#: Controller/UsersController.php:424;560
 msgid "Your account is now activated, you're now logged in ;)"
 msgstr "Votre compte vient d'être activé, vous êtes maintenant connecté(e) ;)"
 
-#: Controller/UsersController.php:432
+#: Controller/UsersController.php:434
 msgid "Your token is invalid"
 msgstr "Votre jeton est invalide"
 
-#: Controller/UsersController.php:439
+#: Controller/UsersController.php:441
 msgid "This request is invalid"
 msgstr "Cette requête est invalide"
 
-#: Controller/UsersController.php:469;487
+#: Controller/UsersController.php:471;489
 msgid "We could not access Twitch's data"
 msgstr "Nous n'avons pas pu accéder aux informations de Twitch"
 
-#: Controller/UsersController.php:511
+#: Controller/UsersController.php:513
 msgid "Your account has just been linked to your Twitch one !"
 msgstr "Votre compte mySetup.co est maintenant lié à votre compte Twitch !"
 
-#: Controller/UsersController.php:518
+#: Controller/UsersController.php:522
 msgid "An error occurred while logging you in"
 msgstr "Une erreur est survenue pendant que nous vous connections"
 
-#: Controller/UsersController.php:528
+#: Controller/UsersController.php:532
 msgid ""
 "The email address of your Twitch account has not been verified. We can't "
 "create your account yet"
@@ -276,7 +276,7 @@ msgstr ""
 "L'adresse email de votre compte Twitch n'a pas été vérifiée. Nous ne pouvons "
 "pas vous créer de compte actuellement"
 
-#: Controller/UsersController.php:565
+#: Controller/UsersController.php:569
 msgid "An error occurred while saving your account"
 msgstr "Une erreur est survenue pendant que nous enregistrions votre compte"
 
@@ -376,15 +376,15 @@ msgstr "Ce titre est trop long (plus de 48 caractères en tout cas)"
 msgid "This description is too long (more than 5000 characters)"
 msgstr "La description est trop longue (plus de 5000 caractères)."
 
-#: Model/Table/UsersTable.php:110
+#: Model/Table/UsersTable.php:111
 msgid "We need a valid E-mail address"
 msgstr "Nous avons besoin d'une adresse email valide"
 
-#: Model/Table/UsersTable.php:116
+#: Model/Table/UsersTable.php:117
 msgid "The password has to contain more than 8 characters"
 msgstr "Votre mot de passe doit contenir 8 caractères ou plus"
 
-#: Model/Table/UsersTable.php:240
+#: Model/Table/UsersTable.php:245
 msgid ""
 "An internal error occurred while creating your profile picture. Please "
 "contact an administrator."
@@ -392,14 +392,14 @@ msgstr ""
 "Une erreur interne est survenue pendant que nous créions votre image de "
 "profil. Veuillez contacter un administrateur"
 
-#: Model/Table/UsersTable.php:246
+#: Model/Table/UsersTable.php:251
 msgid ""
 "Your default picture could not be set... Please contact an administrator."
 msgstr ""
 "Votre image de profil n'a pas pu être mise en place. Veuillez contacter un "
 "administrateur"
 
-#: Model/Table/UsersTable.php:256
+#: Model/Table/UsersTable.php:261
 msgid ""
 "An internal error occurred while saving your profile picture. Please contact "
 "an administrator."
@@ -407,7 +407,7 @@ msgstr ""
 "Une erreur interne est survenue pendant que nous enregistrions votre image "
 "de profil. Veuillez contacter un administrateur"
 
-#: Model/Table/UsersTable.php:270
+#: Model/Table/UsersTable.php:275
 msgid ""
 "Your profile picture could not be compressed, resized, converted to a PNG "
 "format or saved... Please contact an administrator."
@@ -415,11 +415,11 @@ msgstr ""
 "Votre image n'a pas pu être compressée, redimensionnée, convertie en .png ou "
 "bien enregistrée. Veuillez contacter un administrateur"
 
-#: Model/Table/UsersTable.php:276
+#: Model/Table/UsersTable.php:281
 msgid "Your profile picture could not be saved."
 msgstr "Votre image de profil n'a pas pu être enregistrée"
 
-#: Model/Table/UsersTable.php:282
+#: Model/Table/UsersTable.php:287
 msgid ""
 "The file you uploaded does not validate our rules... Please contact an "
 "administrator."
@@ -427,7 +427,7 @@ msgstr ""
 "Le fichier que vous avez sélectionné ne valide pas nos exigences. Veuillez "
 "contacter un administrateur"
 
-#: Model/Table/UsersTable.php:358
+#: Model/Table/UsersTable.php:363
 msgid ""
 "Your profile picture could not be resized, converted to a PNG format or "
 "saved... Please contact an administrator."
@@ -789,7 +789,8 @@ msgstr ""
 "battlestations..."
 
 #: Template/Pages/home.ctp:61;135;230;268;306;333 Template/Pages/popular.ctp:78
-#: Template/Pages/recent.ctp:76 Template/Setups/view.ctp:52;297;322
+#: Template/Pages/recent.ctp:76 Template/Setups/search.ctp:44
+#: Template/Setups/view.ctp:52;297;322
 msgid "Profile picture of"
 msgstr "Image de profil de"
 
@@ -985,35 +986,39 @@ msgstr ""
 msgid "Q&A - We answer common questions"
 msgstr "FAQ - Nous répondons aux question courantes"
 
-#: Template/Pages/q&a.ctp:15;27
+#: Template/Pages/q&a.ctp:15;28
 msgid "I didn't receive the verification mail"
 msgstr "Je n'ai pas reçu le mail de vérification"
 
-#: Template/Pages/q&a.ctp:16;32
+#: Template/Pages/q&a.ctp:16;33
 msgid "I can't find a product with the product search"
 msgstr "Je n'arrive pas à trouver un produit avec la recherche"
 
-#: Template/Pages/q&a.ctp:17;37
+#: Template/Pages/q&a.ctp:17;38
 msgid "The product search is not responding"
 msgstr "La recherche de produits ne répond pas"
 
-#: Template/Pages/q&a.ctp:18;42
+#: Template/Pages/q&a.ctp:18;43
 msgid "My setup was not created due to the images I uploaded"
 msgstr "Mon setup n'a pas pu être créé à cause de mes images"
 
-#: Template/Pages/q&a.ctp:19;47
+#: Template/Pages/q&a.ctp:19;48
 msgid "I can't add a Youtube / Twitch video on my setup"
 msgstr "Je n'arrive pas à ajouter une vidéo sur mon setup"
 
-#: Template/Pages/q&a.ctp:20;52
+#: Template/Pages/q&a.ctp:20;53
 msgid "How to use the Markdown"
 msgstr "Comment utiliser le Markdown"
 
-#: Template/Pages/q&a.ctp:21;57
+#: Template/Pages/q&a.ctp:21;58
 msgid "My setup has been refused, why ?"
 msgstr "Mon setup a été refusé, pourquoi ?"
 
-#: Template/Pages/q&a.ctp:28
+#: Template/Pages/q&a.ctp:22;63
+msgid "How can I use the API you provide ?"
+msgstr "Comment puis-je utiliser l'API que vous mettez à disposition ?"
+
+#: Template/Pages/q&a.ctp:29
 msgid ""
 "Check your spam folder, your mailbox may have dropped it there. If you "
 "didn't receive it within 10 minutes please contact us on our social networks."
@@ -1022,7 +1027,7 @@ msgstr ""
 "dedans. Si au bout de 10 minutes vous n'avez rien reçu nul part, contactez "
 "nous à l'aide des réseaux sociaux."
 
-#: Template/Pages/q&a.ctp:33
+#: Template/Pages/q&a.ctp:34
 msgid ""
 "Some products does not exist in our database, because it is a special "
 "edition or it is too old. Try to find a replacement available."
@@ -1031,7 +1036,7 @@ msgstr ""
 "qu'ils sont trop vieux, ou qu'ils relèvent d'une édition spéciale. Essayez "
 "de leur trouver des substituants disponibles."
 
-#: Template/Pages/q&a.ctp:38
+#: Template/Pages/q&a.ctp:39
 msgid ""
 "Sometimes the product search is busy with lot of request, please wait few "
 "moments and retry your search."
@@ -1040,7 +1045,7 @@ msgstr ""
 "trop gros nombre de requêtes simultanées. Attendez quelques secondes et "
 "retentez votre chance !"
 
-#: Template/Pages/q&a.ctp:43
+#: Template/Pages/q&a.ctp:44
 msgid ""
 "We use some rules on images to prevent abuses. Images are limited to 5Mo per "
 "image and the format should be jpg, jpeg or png."
@@ -1049,7 +1054,7 @@ msgstr ""
 "abus et dépassement de quota. Elles sont limitées à 5 Mo respectivement, et "
 "doivent être au format JPG, JPEG ou PNG."
 
-#: Template/Pages/q&a.ctp:48
+#: Template/Pages/q&a.ctp:49
 msgid ""
 "Video links must be full URI links like : \"https://www.youtube.com/watch?"
 "v=dQw4w9WgXcQ\" or \"https://player.twitch.tv/?channel=mikescops\""
@@ -1058,13 +1063,13 @@ msgstr ""
 "pour YouTube, ou bien \"https://player.twitch.tv/XXXX\" pour Twitch. "
 "D'autres hébergeurs sont disponibles, n'hésitez pas à nous contacter."
 
-#: Template/Pages/q&a.ctp:53
+#: Template/Pages/q&a.ctp:54
 msgid "The Markdown system is similar to Github's one, please read more at : "
 msgstr ""
 "Le système Markdown est similaire à celui de GitHub, vous trouverez "
 "d'avantage d'informations ici : "
 
-#: Template/Pages/q&a.ctp:58
+#: Template/Pages/q&a.ctp:59
 msgid ""
 "If your setup has been moderated and refused, you can read why in your setup "
 "description. Please create another setup and follow the moderators "
@@ -1073,6 +1078,14 @@ msgstr ""
 "Si votre setup a été modéré ou refusé, vous pourrez en consulter la raison à "
 "l'intérieur de sa description. Merci de créer un autre setup en suivant les "
 "conseils des modérateurs."
+
+#: Template/Pages/q&a.ctp:65
+msgid ""
+"It's pretty easy, just add the code below to your page (and set the setup id "
+"accordingly) :"
+msgstr ""
+"Cela est très simple, ajoutez simplement ce code HTML à l'endroit désiré (et "
+"mettez à jour l'identifiant du setup en conséquence) :"
 
 #: Template/Pages/recent.ctp:4
 msgid "Latest Setups | mySetup.co"
@@ -1106,6 +1119,10 @@ msgstr "Titre"
 #: Template/Resources/index.ctp:35
 msgid "Are you sure you want to delete this resource ?"
 msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer cette ressource ?"
+
+#: Template/Setups/embed.ctp:30
+msgid "View full setup"
+msgstr "Voir le setup complet"
 
 #: Template/Setups/index.ctp:92
 msgid "Setups"
