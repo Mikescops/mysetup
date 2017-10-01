@@ -1,4 +1,5 @@
 <?php
+
 use Cake\Routing\Router;
 
 Router::plugin(
@@ -6,9 +7,8 @@ Router::plugin(
 	['path' => '/sitemap'],
 	function ($routes) {
 		$routes->connect('/*', [
-		    'controller' => 'Sitemaps',
-		    'action' => 'index'
+			'controller' => 'Sitemaps',
+			'action' => 'index'
 		], ['_name' => 'sitemap']);
 	}
-	
 );

@@ -1,37 +1,34 @@
 # CakePHP-Sitemap
 
-[![Latest Version](https://img.shields.io/github/release/loadsys/CakePHP-Sitemap.svg?style=flat-square)](https://github.com/loadsys/CakePHP-Sitemap/releases)
-[![Build Status](https://img.shields.io/travis/loadsys/CakePHP-Sitemap/master.svg?style=flat-square)](https://travis-ci.org/loadsys/CakePHP-Sitemap)
-[![Coverage Status](https://img.shields.io/coveralls/loadsys/CakePHP-Sitemap/master.svg?style=flat-square)](https://coveralls.io/r/loadsys/CakePHP-Sitemap)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Total Downloads](https://img.shields.io/packagist/dt/loadsys/cakephp_sitemap.svg?style=flat-square)](https://packagist.org/packages/loadsys/cakephp_sitemap)
-
-The Sitemap provides a mechanism for displaying Sitemap style information (the url, change frequency, priority and last modified datetime) for a set of Tables that CakePHP has access to.
-
+The Sitemap provides a mechanism for displaying Sitemap style information (the URL, change frequency, priority and last modified date-time) for a set of Tables that CakePHP has access to.
 
 ## Requirements
 
 * CakePHP 3.0.0+
 * PHP 5.6+
 
-
 ## Installation
 
-```bash
-$ composer require loadsys/cakephp_sitemap
-```
+1. Add the official package as a required one :
+	```bash
+	$ composer require loadsys/cakephp_sitemap
+	```
 
-In your `config/bootstrap.php` file, add:
+2. Tweak the `package.lock` to point to <https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap> instead of the official package repository, and run :
+	```bash
+	$ composer install
+	```
 
-```php
-Plugin::load('Sitemap', ['bootstrap' => false, 'routes' => true]);
-```
+3. In your `config/bootstrap.php` file, add:
+	```php
+	Plugin::load('Sitemap', ['bootstrap' => false, 'routes' => true]);
+	```
 
-OR
+	OR
 
-```php
-bin/cake plugin load Sitemap
-```
+	```php
+	bin/cake plugin load Sitemap -r
+	```
 
 ## Usage
 
@@ -50,6 +47,8 @@ Configure::write('Sitemap.tables', [
 ```php
 $this->addBehavior('Sitemap.Sitemap');
 ```
+
+You can now access the sitemap at `/sitemap` !
 
 ### Configuration
 
@@ -77,9 +76,9 @@ $this->addBehavior('Sitemap.Sitemap');
 $this->addBehavior('Sitemap.Sitemap', ['changefreq' => 'weekly']);
 ```
 
-* To customize the url generated for each record create a method named `getUrl` in the matching `Table` class.
+* To customize the URL generated for each record create a method named `getUrl` in the matching `Table` class.
 
-```
+```php
 public function getUrl(\App\Model\Entity $entity) {
 	return \Cake\Routing\Router::url(
 		[
@@ -102,13 +101,13 @@ This project has adopted the Contributor Covenant as its [code of conduct](CODE_
 
 ### Reporting Issues
 
-Please use [GitHub Isuses](https://github.com/loadsys/CakePHP-Sitemap/issues) for listing any known defects or issues.
+Please use [Gogs Issues](https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap/issues) for listing any known defects or issues.
 
 ### Development
 
 When developing this plugin, please fork and issue a PR for any new development.
 
-Set up a working copy:
+Set up a working copy :
 ```shell
 $ git clone git@github.com:YOUR_USERNAME/CakePHP-Sitemap.git
 $ cd CakePHP-Sitemap/
@@ -116,7 +115,7 @@ $ composer install
 $ vendor/bin/phpcs --config-set installed_paths vendor/loadsys/loadsys_codesniffer,vendor/cakephp/cakephp-codesniffer
 ```
 
-Make your changes:
+Make your changes :
 ```shell
 $ git checkout -b your-topic-branch
 # (Make your changes. Write some tests.)
@@ -126,12 +125,12 @@ $ vendor/bin/phpcs -p --extensions=php --standard=Loadsys ./src ./tests
 
 Then commit and push your changes to your fork, and open a pull request.
 
-
 ## License
 
-[MIT](https://github.com/loadsys/CakePHP-Sitemap/blob/master/LICENSE.md)
-
+[MIT](https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap/src/master/LICENSE.md)
 
 ## Copyright
 
 [Loadsys Web Strategies](http://www.loadsys.com) 2016
+[MikeScops](https://github.com/MikeScops) 2017
+[HorlogeSkynet](https://github.com/HorlogeSkynet) 2017

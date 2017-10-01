@@ -46,7 +46,7 @@ class SitemapsController extends AppController {
         $this->viewBuilder()->className($formats[$format]);
 
 
-        	
+
 		$tablesToList = [];
 		$data = [];
 
@@ -55,8 +55,7 @@ class SitemapsController extends AppController {
 		}
 
 		foreach ($tablesToList as $table) {
-			$this->loadModel($table);
-			$data[$table] = $this->{$table}->find('forSitemap');
+			$data[$table] = $this->loadModel($table)->find('forSitemap');
 		}
 
 		$this->set('data', $data);
