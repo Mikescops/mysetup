@@ -79,12 +79,12 @@ class AppController extends Controller
         if(array_key_exists('lang', $_GET))
         {
             $this->loadModel('Users');
-            I18n::locale($this->Users->getLocaleByCountryID($_GET['lang']));
+            I18n::setLocale($this->Users->getLocaleByCountryID($_GET['lang']));
         }
 
         else
         {
-            I18n::locale($this->request->session()->read('Config.language'));
+            I18n::setLocale($this->request->session()->read('Config.language'));
         }
 
         // Listen carefully to the second trick : In the 'default.ctp' and 'admin.ctp' (and now `Setups/embed.ctp`, you'll find a `if(!$lang)`.
