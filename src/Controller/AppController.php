@@ -87,7 +87,7 @@ class AppController extends Controller
             I18n::locale($this->request->session()->read('Config.language'));
         }
 
-        // Listen carefully to the second trick : In the 'default.ctp' and 'admin.ctp', you'll find a `if(!$lang)`.
+        // Listen carefully to the second trick : In the 'default.ctp' and 'admin.ctp' (and now `Setups/embed.ctp`, you'll find a `if(!$lang)`.
         // This line set this very variable for the view, if the lang is enforced in the URL the HTML will follow it. If not, check there what is done :P
         $this->set('lang', (isset($_GET['lang']) ? strtolower($_GET['lang']) : null));
         /* _______________________________________ */

@@ -66,6 +66,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/setups/:id', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
 
+    $routes->connect('/embed/:id', ['controller' => 'Setups', 'action' => 'embed'], ['id' => '\d+', 'pass' => ['id']]);
+
     $routes->connect('/setups/:id-:slug', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
 
     $routes->connect('/blog/', ['controller' => 'Articles', 'action' => 'index']);

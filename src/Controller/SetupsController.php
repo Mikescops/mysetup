@@ -268,7 +268,7 @@ class SetupsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['search', 'view', 'answerOwnership']);
+        $this->Auth->allow(['search', 'view', 'answerOwnership', 'embed']);
     }
 
     public function isAuthorized($user)
@@ -501,5 +501,49 @@ class SetupsController extends AppController
 
             return $this->redirect(['action' => 'view', $id]);
         }
+    }
+
+
+    /**
+     * Embed method
+     *
+     * @param string|null $id Setup id.
+     * @return \Cake\Network\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function embed($id = null)
+    {
+        // This should be below, but we wanna throw a 404 on the production if the user tries to have access to a non-existing setup...
+        $setup = $this->Setups->get($id, [
+            'contain' => [
+                'Users' => [
+                    'fields' => [
+                        'id',
+                        'name',
+                        'verified'
+                    ]
+                ]
+            ]
+        ]);
+
+        // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner, nor an administrator...
+        $session = $this->request->session();
+        if(!$this->Setups->isPublic($id) and (!$session->read('Auth.User.id') or !$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and !parent::isAdminBySession($session))
+        {
+            $this->Flash->error(__('You are not authorized to access that location.'));
+            // Just throw a 404-like exception here to make the `iframe` voluntary crash
+            throw new NotFoundException();
+        }
+        // _________________________________________________________________________________________________________________________________
+
+        // Here we'll get each resource linked to this setup, and set them up into the existing entity
+        $setup['resources'] = [
+            'products' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all()->toArray(),
+            'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
+        ];
+        // ___________________________________________________________________________________________
+
+        $this->set(compact('setup'));
+        $this->set('_serialize', ['setup']);
     }
 }
