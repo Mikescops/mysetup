@@ -703,16 +703,16 @@
         },
         {
             "name": "loadsys/cakephp_sitemap",
-            "version": "3.0.1",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/loadsys/CakePHP-Sitemap.git",
-                "reference": "8157192b9320dd1789da6975086fd41c876a2a53"
+                "url": "https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap.git",
+                "reference": "057c18338d94f2d3634e9c16617b2ecb1f8777f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/loadsys/CakePHP-Sitemap/zipball/8157192b9320dd1789da6975086fd41c876a2a53",
-                "reference": "8157192b9320dd1789da6975086fd41c876a2a53",
+                "url": "https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap/archive/master.zip",
+                "reference": "057c18338d94f2d3634e9c16617b2ecb1f8777f1",
                 "shasum": ""
             },
             "require": {
