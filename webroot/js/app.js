@@ -1,5 +1,5 @@
 /*!
- * mySetup v1.0.0
+ * mySetup v1.1.0
  * https://mysetup.co
  *
  * Copyright (c) 2017 Corentin Mors / Samuel Forestier
@@ -27,7 +27,7 @@ $(window).scroll(function(){
   $('.mobile-nav').stop().animate({'margin-top': margin+"px"}, 300);
 })
 
-$(function() { 
+$(function() {
   var scrollTop = $(window).scrollTop();
   if(scrollTop < 50){
     height = 60;
@@ -110,20 +110,20 @@ $(function() {
   var SHOW_CLASS = 'show',
       HIDE_CLASS = 'hide',
       ACTIVE_CLASS = 'active';
-  
+
   $( '.tabs' ).on( 'click', 'li a', function(e){
     e.preventDefault();
     var $tab = $( this ),
          href = $tab.attr( 'href' );
-  
+
      $( '.active' ).removeClass( ACTIVE_CLASS );
      $tab.addClass( ACTIVE_CLASS );
-  
+
      $( '.show' )
         .removeClass( SHOW_CLASS )
         .addClass( HIDE_CLASS )
         .hide();
-    
+
       $(href)
         .removeClass( HIDE_CLASS )
         .addClass( SHOW_CLASS )
@@ -131,19 +131,19 @@ $(function() {
         .fadeIn( 550 );
   });
   $( '.form-action' ).on( 'click', '.next', function(e){
-    e.preventDefault(); 
+    e.preventDefault();
     var $next = $( this ),
          href = $next.attr( 'href' ),
          $tab = $( href + '-tab' );
-  
+
      $( '.active' ).removeClass( ACTIVE_CLASS );
      $tab.addClass( ACTIVE_CLASS );
-  
+
      $( '.show' )
         .removeClass( SHOW_CLASS )
         .addClass( HIDE_CLASS )
         .hide();
-    
+
       $(href)
         .removeClass( HIDE_CLASS )
         .addClass( SHOW_CLASS )
@@ -159,20 +159,20 @@ $(function() {
   var SHOW_CLASS = 'show-edit',
       HIDE_CLASS = 'hide-edit',
       ACTIVE_CLASS = 'active-edit';
-  
+
   $( '.tabs-edit' ).on( 'click', 'li a', function(e){
     e.preventDefault();
     var $tab = $( this ),
          href = $tab.attr( 'href' );
-  
+
      $( '.active-edit' ).removeClass( ACTIVE_CLASS );
      $tab.addClass( ACTIVE_CLASS );
-  
+
      $( '.show-edit' )
         .removeClass( SHOW_CLASS )
         .addClass( HIDE_CLASS )
         .hide();
-    
+
       $(href)
         .removeClass( HIDE_CLASS )
         .addClass( SHOW_CLASS )
@@ -180,27 +180,25 @@ $(function() {
         .fadeIn( 550 );
   });
   $( '.form-action-edit' ).on( 'click', '.next', function(e){
-    e.preventDefault(); 
+    e.preventDefault();
     var $next = $( this ),
          href = $next.attr( 'href' ),
          $tab = $( href + '-tab' );
-  
+
      $( '.active-edit' ).removeClass( ACTIVE_CLASS );
      $tab.addClass( ACTIVE_CLASS );
-  
+
      $( '.show-edit' )
         .removeClass( SHOW_CLASS )
         .addClass( HIDE_CLASS )
         .hide();
-    
+
       $(href)
         .removeClass( HIDE_CLASS )
         .addClass( SHOW_CLASS )
         .hide()
         .fadeIn( 550 );
   });
-
-
 });
 
 /***** On load functions *****/
@@ -305,18 +303,14 @@ $(function(){
       galleryPreview_add( this, 4 );
     });
 
-
     $(".edit-comment").click(function(e) {
       var $comment = $( this ),
         $place = $comment.attr( 'source' );
       var $oldvalue = $('#' + $place + '> p').attr('content'),
         $id = $place.replace(/[^0-9]/g, '');
 
-        // console.log($oldvalue);
         $('.textarea-edit-comment > .emojionearea-editor').html(emojione.toImage($oldvalue));
-        $('#edit-comment-hidden > form').attr( 'action',  $('#edit-comment-hidden > form').attr( 'action' ) + '/' + $id); 
-
-
+        $('#edit-comment-hidden > form').attr( 'action',  $('#edit-comment-hidden > form').attr( 'action' ) + '/' + $id);
     });
 });
 
@@ -324,7 +318,7 @@ $(function(){
 
 function fasterPreview( uploader ) {
     if ( uploader.files && uploader.files[0] ){
-          $('#profileImage').attr('src', 
+          $('#profileImage').attr('src',
              window.URL.createObjectURL(uploader.files[0]) );
     }
 }
@@ -333,7 +327,7 @@ function fasterPreview( uploader ) {
 
 function featuredPreview( uploader ) {
     if ( uploader.files && uploader.files[0] ){
-          $('#featuredimage_preview').attr('src', 
+          $('#featuredimage_preview').attr('src',
              window.URL.createObjectURL(uploader.files[0]) );
     }
     $(".label_fimage_add").hide();
@@ -342,21 +336,21 @@ function featuredPreview( uploader ) {
 
 function featuredPreview_edit( uploader ) {
     if ( uploader.files && uploader.files[0] ){
-          $('#featuredimage_preview_edit').attr('src', 
+          $('#featuredimage_preview_edit').attr('src',
              window.URL.createObjectURL(uploader.files[0]) );
     }
 }
 
 function galleryPreview_edit( uploader, number ) {
     if ( uploader.files && uploader.files[0] ){
-          $('#gallery'+number+'image_preview_edit').attr('src', 
+          $('#gallery'+number+'image_preview_edit').attr('src',
              window.URL.createObjectURL(uploader.files[0]) );
     }
 }
 
 function galleryPreview_add( uploader, number ) {
     if ( uploader.files && uploader.files[0] ){
-          $('#gallery'+number+'image_preview_add').attr('src', 
+          $('#gallery'+number+'image_preview_add').attr('src',
              window.URL.createObjectURL(uploader.files[0]) );
     }
 }
@@ -374,7 +368,7 @@ function searchItem(query, region, action) {
     url: webRootJs +'amazon/index.php',
     type: 'get',
     data: { "q": query, "lang": region},
-    success: function(response) { 
+    success: function(response) {
 
       $( ".search_results."+action ).html("");
 
@@ -399,7 +393,7 @@ function searchItem(query, region, action) {
 
       var title = $('title', attributes).html();
       img.attr('title', title);
-      
+
       if(title.length > 48){
           var shorttitle = title.substring(0,48) + '..';
       }
@@ -440,7 +434,6 @@ function addToBasket(title, url, src, action) {
 
 function deleteFromBasket(title, parent, action) {
 
-
   var ResearchArea = $('.hiddenInput.'+action).val();
 
   var splitTextInput = ResearchArea.split(",");
@@ -450,7 +443,7 @@ function deleteFromBasket(title, parent, action) {
   });
 
   $('.hiddenInput.'+action).val(new_arr);
-  
+
   parent.closest('li').remove();
 
 }
@@ -458,44 +451,37 @@ function deleteFromBasket(title, parent, action) {
 function likeSetup(id){
 
   if ($( ".red_button" ).hasClass( "active" )){
-    //console.log("des likes");
     $.ajax({
       url: webRootJs + 'app/dislike',
       type: 'get',
       data: { "setup_id": id},
       success: answer_dislike,
-      error: answer_error 
+      error: answer_error
     });
-
 }
 
   else{
-    //console.log("Pas de like");
     $.ajax({
       url: webRootJs + 'app/like',
       type: 'get',
       data: { "setup_id": id},
       success: answer_like,
-      error: answer_error 
-
+      error: answer_error
     });}
 
 function answer_like(response){
   $( ".red_button" ).addClass( "active" );
-  //console.log(response);
   printLikes(id);
 }
 
 function answer_dislike(response){
   $( ".red_button" ).removeClass( "active" );
-  //console.log(response);
   printLikes(id);
 }
 
 function answer_error(response){
   console.log(response);
 }
-
 }
 
 function printLikes(id) {
@@ -507,12 +493,9 @@ function printLikes(id) {
         dataType: 'html',
         type: 'get',
         success: function (json) {
-          //console.log(json);
           $(".pointing_label").html(json);
         }
-            
     });
-
 }
 
 function doesLike(setup) {
@@ -524,13 +507,11 @@ function doesLike(setup) {
         dataType: 'html',
         type: 'get',
         success: function (json) {
-          //console.log(json);
           if(json == 'true')
             $(".red_button").addClass("active");
         }
-            
     });
-  }
+}
 
 /** SIMPLE TOAST **/
 
@@ -543,7 +524,7 @@ class siiimpleToast {
         horizontal: 'right'
       }
     }
-    // throw Parameter Error    
+    // throw Parameter Error
     if (!settings.vertical) throw new Error('Please set parameter "vertical" ex) bottom, top ');
     if (!settings.horizontal) throw new Error('Please set parameter "horizontal" ex) left, center, right ');
     // data binding
@@ -640,7 +621,7 @@ class siiimpleToast {
     const toast = document.getElementsByClassName(this.defaultClass);
     let pushStack = 15;
 
-    // *CSS* transform - scale, opacity 
+    // *CSS* transform - scale, opacity
     if (this._settings.horizontal == 'center') {
       obj.style.transform = 'translateX(-50%) scale(1)';
     } else {
@@ -653,7 +634,7 @@ class siiimpleToast {
       const height = toast[i].offsetHeight;
       const objMargin = 15; // interval between objects
 
-      // *CSS* bottom, top 
+      // *CSS* bottom, top
       if (this._settings.vertical == 'bottom') {
         toast[i].style.bottom = `${pushStack}px`;
       } else {
@@ -720,15 +701,14 @@ function convertToSlug(str)
 
 /**** Infinite Scroll Maison ****/
 
-function infiniteScroll(nbtodisplay) { 
+function infiniteScroll(nbtodisplay) {
   var offset = nbtodisplay;
   $(window).data('ajaxready', true);
-  // on déclence une fonction lorsque l'utilisateur utilise sa molette 
+  // on déclence une fonction lorsque l'utilisateur utilise sa molette
   $(window).scroll(function() {
-    if ($(window).data('ajaxready') == false) return; //permet de couper les trigger parallèles  
+    if ($(window).data('ajaxready') == false) return; //permet de couper les trigger parallèles
     if(($(window).scrollTop() + $(window).height()) + 250 > $(document).height()) {
       $(window).data('ajaxready', false);
-      //console.log(offset);
       $.ajax({
         url: webRootJs + "app/getSetups",
         data: {
@@ -740,9 +720,7 @@ function infiniteScroll(nbtodisplay) {
         success: function (json) {
           setups = $.parseJSON(json);
           if(setups[0]){
-            //console.log(json[0]['title']);
             $.each(setups ,function(key, value) {
-              //console.log(value['likes']);
               var nblikes;
               if(value['likes'][0]){
                 nblikes = value['likes'][0]['total'];
@@ -750,14 +728,14 @@ function infiniteScroll(nbtodisplay) {
               else{
                 nblikes = 0;
               }
-              $('.fullitem_holder').append('<div class="fullitem"><a href="'+webRootJs+'setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><img src="'+webRootJs+value['resources'][0]['src'] +'"><\/a><div class="red_like"><i class="fa fa-heart"><\/i> '+ nblikes +'<\/div><div class="fullitem-inner"><div class="row"><div class="column column-75"><a class="featured-user" href="'+webRootJs+'users/'+value['user_id']+'"><img src="'+webRootJs+'uploads/files/pics/profile_picture_'+value['user_id']+'.png"><\/a><a href="'+webRootJs+'setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><h3>'+value['title']+'<\/h3><\/a><\/div><\/div><\/div><\/div>');
+              console.log(value['user']['modificationDate']);
+              $('.fullitem_holder').append('<div class="fullitem"><a href="'+webRootJs+'setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><img src="'+webRootJs+value['resources'][0]['src'] +'"><\/a><div class="red_like"><i class="fa fa-heart"><\/i> '+ nblikes +'<\/div><div class="fullitem-inner"><div class="row"><div class="column column-75"><a class="featured-user" href="'+webRootJs+'users/'+value['user_id']+'"><img src="'+webRootJs+'uploads/files/pics/profile_picture_'+value['user_id']+'.png?'+("0"+(new Date(value['user']['modificationDate'])).getHours()).slice(-2)+("0"+(new Date(value['user']['modificationDate'])).getSeconds()).slice(-2)+'"><\/a><a href="'+webRootJs+'setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><h3>'+value['title']+'<\/h3><\/a><\/div><\/div><\/div><\/div>');
             });
             $(window).data('ajaxready', true);
           }
           else{
             $('.no_more_setups').html("No more setups to display...");
           }
-          
         }
       });
       offset+= nbtodisplay;
@@ -767,9 +745,7 @@ function infiniteScroll(nbtodisplay) {
 
 /************ TWITCH LOGIN **************/
 function logTwitch(lang){
-  var rand_state = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
-  console.log(rand_state);
-
+    var rand_state = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
     window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?client_id=zym0nr99v74zljmo6z96st25rj6rzz&redirect_uri=https://mysetup.co/twitch/&response_type=code&scope=user_read&state='+lang+rand_state;
 }
 
@@ -830,7 +806,6 @@ function saveasdraftadd(){
   $("#status-add").val('DRAFT');
    $('#publish-add').click();
 }
-
 
 function saveasdraftedit(){
   $("#status-edit").val('DRAFT');
