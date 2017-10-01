@@ -44,55 +44,44 @@ use Cake\Routing\Route\DashedRoute;
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
-    /**
-     * Here, we are connecting '/' (base path) to a controller called 'Pages',
-     * its action called 'display', and we pass a param to select the view file
-     * to use (in this case, src/Template/Pages/home.ctp)...
-     */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
-
-    $routes->connect('/recent', ['controller' => 'Pages', 'action' => 'display', 'recent']);
+    /* Static pages' routes */
+    $routes->connect('/',        ['controller' => 'Pages', 'action' => 'display', 'home']);
+    $routes->connect('/recent',  ['controller' => 'Pages', 'action' => 'display', 'recent']);
     $routes->connect('/popular', ['controller' => 'Pages', 'action' => 'display', 'popular']);
 
-    /** Handle routes for login and logout **/
-    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
-    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
-
-    /**
-     * ...and connect the rest of 'Pages' controller's URLs.
-     */
+    /* And all the other static pages' */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
-    $routes->connect('/setups/:id', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    /** Login and logout's routes **/
+    $routes->connect('/login',  ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 
+    /* Setups' routes */
+    $routes->connect('/setups/:id', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/setups/:id-:slug', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/setups/request/:id/:token/:response', ['controller' => 'Setups', 'action' => 'answerOwnership'], ['id' => '\d+', 'pass' => ['id', 'token', 'response']]);
     $routes->connect('/embed/:id', ['controller' => 'Setups', 'action' => 'embed'], ['id' => '\d+', 'pass' => ['id']]);
 
-    $routes->connect('/setups/:id-:slug', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-
-    $routes->connect('/blog/', ['controller' => 'Articles', 'action' => 'index']);
-
+    /* Articles' routes */
+    $routes->connect('/blog', ['controller' => 'Articles', 'action' => 'index']);
     $routes->connect('/blog/:id', ['controller' => 'Articles', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-
     $routes->connect('/blog/:id-:slug', ['controller' => 'Articles', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
 
+    /* Users' routes */
     $routes->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-
     $routes->connect('/verify/:id/:token', ['controller' => 'Users', 'action' => 'verifyAccount'], ['id' => '\d+', 'pass' => ['id', 'token']]);
-
-    $routes->connect('/notifications', ['controller' => 'Notifications', 'action' => 'index']);
-
     $routes->connect('/twitch/*', ['controller' => 'Users', 'action' => 'twitch']);
 
-    /* Admin panel routes */
+    /* Notifications' routes */
+    $routes->connect('/notifications', ['controller' => 'Notifications', 'action' => 'index']);
+
+    /* Admin's routes */
     $routes->connect('/admin', ['controller' => 'Setups', 'action' => 'index']);
     $routes->connect('/admin/setups', ['controller' => 'Setups', 'action' => 'index']);
     $routes->connect('/admin/users', ['controller' => 'Users', 'action' => 'index']);
     $routes->connect('/admin/comments', ['controller' => 'Comments', 'action' => 'index']);
     $routes->connect('/admin/resources', ['controller' => 'Resources', 'action' => 'index']);
-
-    /* Request owner special route */
-    $routes->connect('/setups/request/:id/:token/:response', ['controller' => 'Setups', 'action' => 'answerOwnership'], ['id' => '\d+', 'pass' => ['id', 'token', 'response']]);
 
     /**
      * Connect catchall routes for all controllers.
