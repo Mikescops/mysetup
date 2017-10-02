@@ -8,7 +8,7 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="<?= $lang ?>"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="<?= $lang ?>"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="<?= $lang ?>"> <![endif]-->
-<!--[if gt IE 8]><!--> 
+<!--[if gt IE 8]><!-->
 <html lang="<?= $lang ?>">
 <head>
     <?= $this->Html->charset() ?>
@@ -34,7 +34,7 @@
     <meta name="msapplication-config" content="<?= $this->Url->build('/'); ?>img/favicon/browserconfig.xml">
     <meta name="theme-color" content="#151515">
 
-    <meta name="twitter:card" value="summary"> 
+    <meta name="twitter:card" value="summary">
     <meta property="og:type" content="article" />
     <meta name="twitter:site" content="@mysetup_co">
     <meta property="og:site_name" content="mySetup.co" />
@@ -84,12 +84,11 @@
 
     <div class="container pt-4"><?= $this->fetch('content') ?></div>
 
+    <?= $this->Html->script('lib.min.js') ?>
+    <?= $this->Html->script('app.min.js') ?>
+
+    <script>const toast = new siiimpleToast();</script>
+    <?= $this->Flash->render() ?>
+
 </body>
-
-<?= $this->Html->script('lib.min.js') ?>
-<?= $this->Html->script('app.min.js') ?>
-
-<script>const toast = new siiimpleToast();</script>
-<?= $this->Flash->render() ?>
-
 </html>
