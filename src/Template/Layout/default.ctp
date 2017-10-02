@@ -153,7 +153,7 @@
                                     <a><i class="fa fa-user"></i> <i class="fa fa-caret-down"></i></a>
                                     <ul style="right: 0;left: auto;text-align: right;">
                                         <li><a href="<?= $this->Url->build('/login'); ?>"><?= __('Sign In / Up') ?></a></li>
-                                        <li><a href="<?= $this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
+                                        <li><a href="<?= $this->Url->build('/pages/q&a')?>">Help - Q&amp;A</a></li>
                                     </ul>
                             </li>
                             <?php endif; ?>
@@ -292,17 +292,17 @@
                         </ul>
                     </li>
                     <li>
-                        <?php if($authUser): ?>
-                            <ul>
+                        <ul>
+                            <?php if($authUser): ?>
                                 <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                 <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
                                 <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
-                            </ul>
-                        <?php else: ?>
-                            <a href="<?= $this->Url->build('/login'); ?>"><?= __('Log in') ?></a>
-                            <a onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i></a>
-                            <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&A</a></li>
-                        <?php endif; ?>
+                            <?php else: ?>
+                                <li><a href="<?= $this->Url->build('/login'); ?>"><?= __('Log in') ?></a></li>
+                                <li><a onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i></a></li>
+                                <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&amp;A</a></li>
+                            <?php endif; ?>
+                        </ul>
                     </li>
                 </ul>
 
@@ -362,7 +362,7 @@
                     <div class="column column-25">
                       <div class="footer-title"><?= __('Support') ?></div>
                       <ul>
-                        <li><a href="<?=$this->Url->build('/pages/q&a')?>"><?= __('Help - Q&A') ?></a></li>
+                        <li><a href="<?=$this->Url->build('/pages/q&a')?>"><?= __('Help - Q&amp;A') ?></a></li>
                         <li><a href="#bug_report_modal" data-lity><?= __('Report a bug') ?></a></li>
                       </ul>
                     </div>
