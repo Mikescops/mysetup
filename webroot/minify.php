@@ -7,7 +7,7 @@ use MatthiasMullie\Minify;
 session_name('CAKEPHP');
 session_start();
 
-if($_SESSION['Auth'])
+if($_SESSION['Auth']['User']['admin'])
 {
 	$normalize = dirname(__DIR__) . '/webroot/css/normalize.css';
 	$minifier = new Minify\CSS($normalize);
