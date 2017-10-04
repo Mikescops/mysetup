@@ -50,7 +50,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/recent',  ['controller' => 'Pages', 'action' => 'display', 'recent']);
     $routes->connect('/popular', ['controller' => 'Pages', 'action' => 'display', 'popular']);
 
-    /* And all the other static pages' */
+    /* And all the other static pages' routes */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
     /** Login and logout's routes **/

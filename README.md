@@ -32,25 +32,23 @@ In order to deploy this website on your web server:
 
 5. `$ cd mysetup/`
 
-6. `$ mkdir webroot/uploads && chmod -R 777 webroot/uploads/` (if needed create `webroot/uploads/files/` too)
+6. `$ mkdir -p webroot/uploads/files/pics/`
 
-7. `$ bash deployment.sh`
+7. `$ cp webroot/img/profile-default.png webroot/uploads/files/pics/profile_picture_1.png`
 
-8. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and import the `MySetup.sql` file into a new database.
+8. `# chown -R www-data:www-data webroot/uploads/`
 
-9. Configure an user with required rights on this database, and set it up in the `config/app.php` file in the _Datasources_ section.
+9. `$ bash deployment.sh`
 
-10. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page would be supposed to appear !
+10. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and import the `MySetup.sql` file into a new database.
+
+11. Configure an user with required rights on this database, and set it up in the `config/app.php` file in the _Datasources_ section.
+
+12. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page would be supposed to appear !
 
 ### Notes to developers
 
 * Will be 'administrators' users having a `verified` value equal to `125`, AND the account with an email address and password as (`admin@admin.admin` / `adminadmin`) (which cannot be verified...).
-
-* On the first connection as `admin`, your profile picture will be broken. Please fix this by uploading one.
-
-* During development, you may get an error into the console: `TypeError: a.result is undefined`. Don't bother, this is due to the JS social module.
-
-* The plugin _loadsys/cakephp\_sitemap_ has been re-coded by [**@Mikescops**](https://github.com/Mikescops). **:warning: Do not update this dependence, and take care of having the correct sources (present on our repository) :warning:**.
 
 * If you wanna add a translation for a foreign language, just add _default.po_ / _default.mo_ and _core.po_ / _core.mo_ files into `src/Locale/xx_XX/`, and authorize this new locale in `src/Application.php`. In order to extract the strings from the source code, and edit them with _Poedit_, just follow this scenario :
 	
