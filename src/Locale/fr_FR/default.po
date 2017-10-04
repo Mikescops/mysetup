@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2017-10-03 14:12-0400\n"
-"PO-Revision-Date: 2017-10-03 14:13-0400\n"
+"POT-Creation-Date: 2017-10-04 11:39-0400\n"
+"PO-Revision-Date: 2017-10-04 11:39-0400\n"
 "Last-Translator: \n"
 "Language-Team: contact@mysetup.co\n"
 "Language: fr\n"
@@ -1120,9 +1120,9 @@ msgstr "Titre"
 msgid "Are you sure you want to delete this resource ?"
 msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer cette ressource ?"
 
-#: Template/Setups/embed.ctp:33
-msgid "View full setup"
-msgstr "Voir le setup complet"
+#: Template/Setups/embed.ctp:24
+msgid "Setup of"
+msgstr "Setup de"
 
 #: Template/Setups/index.ctp:92
 msgid "Setups"
@@ -1413,6 +1413,9 @@ msgid "comment"
 msgid_plural "comments"
 msgstr[0] "commentaire"
 msgstr[1] "commentaires"
+
+#~ msgid "View full setup"
+#~ msgstr "Voir le setup complet"
 
 #~ msgid "Q&A"
 #~ msgstr "FAQ"
