@@ -23,7 +23,7 @@ In order to deploy this website on your web server:
 		</VirtualHost>
 		```
 	3. `# a2ensite mysetup`
-	4. `# a2enmod rewrite`
+	4. `# a2enmod expires headers rewrite`
 	5. `# service apache2 restart`
 
 3. `$ cd /var/www/html/`
