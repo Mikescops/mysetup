@@ -20,6 +20,7 @@ use Cake\Http\BaseApplication;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Cake\I18n\Middleware\LocaleSelectorMiddleware;
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
 
 /**
  * Application setup class.
@@ -49,7 +50,10 @@ class Application extends BaseApplication
             ->add(RoutingMiddleware::class)
 
             // We we'll handle just these locales
-            ->add(new LocaleSelectorMiddleware(['en_US', 'fr_FR', 'es_ES']));
+            ->add(new LocaleSelectorMiddleware(['en_US', 'fr_FR', 'es_ES']))
+
+            // Since CakePHP 3.5, CSRF protection should be handled by a middleware
+            ->add(new CsrfProtectionMiddleware(['secure' => true]));
 
         return $middleware;
     }
