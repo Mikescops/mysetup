@@ -757,29 +757,19 @@ footer a{
 }
 
 .edit_panel{
-	width: 100%;
+	margin-top: 20px;
 	padding: 4px;
-	background: #000;
-	border-radius: 0 0 10px 10px;
-	display: inline-flex;
-}
-
-.edit_panel .container div{
-	width: 50%;
-	background: #000;
-	float: left;
-	text-align: center;
-	display: block;
-	padding: 0 6px;
-}
-
-.edit_panel .container div:first-child{
-	border-right: solid 1px #fff;
+	position:absolute;
 }
 
 .edit_panel a{
 	text-decoration: none;
 	color: #fff;
+	padding: 7px;
+	border-radius: 4px;
+	background-color: #292929;
+	margin: 1px;
+	font-size: 20px;
 }
 
 
@@ -1986,7 +1976,7 @@ nav {
 		width: 50px;
 	}
 
-	.red_button{
+	.red_button, .edit_panel{
 		margin-top: 5px;
 	}
 
