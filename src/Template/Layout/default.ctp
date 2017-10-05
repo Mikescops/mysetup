@@ -162,6 +162,8 @@
 
                 </div>
 
+                <?php if($authUser): ?>
+
                 <div id="add_setup_modal" class="lity-hide">
                     <?= $this->Form->create($newSetupEntity, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'add']]); ?>
                     <fieldset style="border:0;">
@@ -266,6 +268,9 @@
                     <?= $this->Form->end(); ?>
 
                 </div>
+
+                <?php endif; ?>
+
             </div>
 
             <div class="mobile-nav float-right">
