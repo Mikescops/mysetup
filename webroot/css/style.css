@@ -710,7 +710,6 @@ footer a{
 }
 
 .featured-inner{
-	height: 100px;
 	background-color: rgba(0,0,0,0.8);
 	width: 100%;
 	padding: 10px;
@@ -727,6 +726,7 @@ footer a{
 
 .featured-inner p{
 	margin-left: 100px;
+	margin-bottom: 0;
 }
 
 .featured-inner .featured-user img{
@@ -759,7 +759,7 @@ footer a{
 .edit_panel{
 	margin-top: 20px;
 	padding: 4px;
-	position:absolute;
+	float: right;
 }
 
 .edit_panel a{
@@ -889,8 +889,9 @@ footer a{
 
 .red_button{
 	margin-top: 20px;
-	border: 1px solid #fff;
-	border-radius: 25px;
+	border: 1px solid #292929;
+	background: #292929;
+/*	border-radius: 25px;*/
 	color: #fff;
 	text-decoration: none;
 	height: 40px;
@@ -901,6 +902,12 @@ footer a{
     text-shadow: none;
     padding: .7em .8em .7em;
 }
+
+/* Remove to have button name */
+.labeled_button span{
+	display: none;
+}
+
 
 .red_button:focus{
 	color: #fff;
@@ -1379,7 +1386,7 @@ nav {
 
 /* **** ADD MODAL **** */
 
-#add_setup_modal, #edit_setup_modal, #edit_profile_modal, #embed_twitch_modal, #edit_user_admin, #bug_report_modal{
+#add_setup_modal, #edit_setup_modal, #edit_profile_modal, #embed_twitch_modal, #edit_user_admin, #bug_report_modal, #embed_website_script{
 	color: #000;
 	overflow:auto;
 	background:#fff;
@@ -1864,6 +1871,10 @@ nav {
 		padding: 0;
 	}
 
+	.edit_panel{
+		float: left;
+	}
+
 
 	/* MENU RESPONSIVE */
 	.right-nav{
@@ -1958,10 +1969,6 @@ nav {
 
 	.featured-container{
 		max-height: 400px;
-	}
-
-	.featured-inner{
-		height: 70px;
 	}
 
 	.featured-inner h3{

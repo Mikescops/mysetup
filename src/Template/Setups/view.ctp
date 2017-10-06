@@ -72,6 +72,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <div class="edit_panel">
                     <a href="#edit_setup_modal" data-lity title="<?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup"><i class="fa fa-wrench"></i></a>
                     <a href="#embed_twitch_modal" data-lity title="<?= __('Embed it in Twitch') ?>"><i class="fa fa-twitch"></i></a>
+                    <a href="#embed_website_script" data-lity title="<?= __('Embed on your website') ?>"><i class="fa fa-code"></i></a>
                 </div>
 
                 <div id="edit_setup_modal" class="lity-hide">
@@ -209,12 +210,28 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <p><?= __('You can even configure your Twitch Chat bot to display your link or image.') ?></p>
                 </div>
+
+                <div id="embed_website_script" class="lity-hide">
+                    <h4><?= __('How to embed the setup on my website ?') ?></h4>
+                    <?= __("It's pretty easy, just add the code below to your page (and set the setup id accordingly) :") ?>
+                    <pre><code><xmp><script src="https://mysetup.co/api/widgets.js"></script>
+<div id="mysetup-embed" ms-setup="<?= $setup->id ?>" ms-width="350">Setup powered by <a href="https://mysetup.co/">mySetup.co</a></div></xmp></code></pre>
+
+                    <h5>Preview :</h5>
+
+                    <script async src="https://mysetup.co/api/widgets.js"></script>
+                    <div id="mysetup-embed" ms-setup="<?= $setup->id ?>" ms-width="350">Setup powered by <a href="https://mysetup.co/">mySetup.co</a></div>
+
+                    <br>
+                    <p><?= __('You can customize the size of your embedded setup by editing the value of ms-width.') ?></p>
+                </div>
+
+
             <?php elseif($authUser && $setup->user_id != $authUser['id']): ?>
                 <div class="edit_panel">
-                    <div class="container">
-                        <div><i class="fa fa-bolt"></i> <?= $this->Form->postLink(__('This is my setup !'), ['action' => 'requestOwnership', $setup->id], ['confirm' => __('This will send an ownership-request for this setup, are you really sure ?')]) ?></div>
+                        <?= $this->Form->postLink('', ['action' => 'requestOwnership', $setup->id], ['confirm' => __('This will send an ownership-request for this setup, are you really sure ?'), 'title' => __('This is my setup !'), 'class' => 'fa fa-bolt']) ?>
 
-                        <div><i class="fa fa-flag"></i> <?= $this->Form->postLink(__('Report this setup'), ['action' => 'requestReport', $setup->id], ['confirm' => __('This will send a report-request against this setup, are you really sure ?')]) ?></div>
+                        <?= $this->Form->postLink('', ['action' => 'requestReport', $setup->id], ['confirm' => __('This will send a report-request against this setup, are you really sure ?'), 'title' => __('Report this setup'), 'class' => 'fa fa-flag']) ?>
                     </div>
                 </div>
             <?php endif; ?>
