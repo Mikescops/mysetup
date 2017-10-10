@@ -544,6 +544,13 @@ class UsersController extends AppController
             $user->twitchToken    = $token;
             $user->verified       = 0;
 
+            // Fix a very weird behavior (un-debug-gable) if the `EN` language comes from the JS
+            // As this Amazon Store does not exist, we just replace it by the `US` one
+            if($user->preferredStore === 'EN')
+            {
+                $user->preferredStore = 'US';
+            }
+
             if($this->Users->save($user))
             {
                 // We'll use the Twitch API to retrieve its profile picture :O
