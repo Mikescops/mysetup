@@ -463,7 +463,7 @@ class UsersController extends AppController
         $http = new Client();
 
         // Let's ask Twitch for this client's token
-        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=' . $client_secret . '&grant_type=authorization_code&redirect_uri=' . 'http://localhost/twitch/' . '&code=' . $_GET['code'] . '&state=' . $_GET['state']);
+        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=' . $client_secret . '&grant_type=authorization_code&redirect_uri=' . 'https://mysetup.co/twitch/' . '&code=' . $_GET['code'] . '&state=' . $_GET['state']);
 
         // Here we check if the response fit what we expect, and if we're allowed to get the user data
         if(!$response or !isset($response->json['scope'][0]) or !$response->json['scope'][0] === $scope)
