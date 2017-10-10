@@ -148,14 +148,7 @@
                     </td>
                 </tr>
             </table>
-            <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
-                <tr>
-                    <td bgcolor="#222222">
-                        <img src="https://mysetup.co/img/mysetup_header.jpg" aria-hidden="true" width="600" height="" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #222222; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; border-radius: 60px;" class="g-img">
-                    </td>
-                </tr>
-            </table>
-            <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px; margin-top: 20px !important">
+            <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px; margin-top: 50px !important">
                 <tr>
                     <td bgcolor="#222222">
 
