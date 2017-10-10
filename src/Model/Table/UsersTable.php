@@ -214,9 +214,12 @@ class UsersTable extends Table
         // Let's revoke the Twitch token access !
         if($entity['twitchToken'])
         {
-            (new Client())->post('https://api.twitch.tv/kraken/oauth2/revoke?client_id=zym0nr99v74zljmo6z96st25rj6rzz&client_secret=b8mrbqfd9vsyjciyec560j44lh1muk&token=' . $entity['twitchToken']);
+            (new Client())->post('https://api.twitch.tv/kraken/oauth2/revoke?client_id=' . $this->getTwitchAPIID() . '&client_secret=' . $this->getTwitchAPISecret() . '&token=' . $entity['twitchToken']);
         }
     }
+
+    public function getTwitchAPIID() { return 'zym0nr99v74zljmo6z96st25rj6rzz'; }
+    public function getTwitchAPISecret() { return 'b8mrbqfd9vsyjciyec560j44lh1muk'; }
 
     public function getEmailObject($receiver, $subject)
     {

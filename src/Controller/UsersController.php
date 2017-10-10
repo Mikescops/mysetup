@@ -446,9 +446,9 @@ class UsersController extends AppController
 
     public function twitch()
     {
-        // Our Twitch's API IDs
-        $client_id     = 'zym0nr99v74zljmo6z96st25rj6rzz';
-        $client_secret = 'b8mrbqfd9vsyjciyec560j44lh1muk';
+        // Let's get our Twitch's API IDs
+        $client_id     = $this->Users->getTwitchAPIID();
+        $client_secret = $this->Users->getTwitchAPISecret();
 
         // The Twitch's API authorization we want
         $scope = 'user_read';
@@ -463,7 +463,7 @@ class UsersController extends AppController
         $http = new Client();
 
         // Let's ask Twitch for this client's token
-        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=' . $client_secret . '&grant_type=authorization_code&redirect_uri=' . 'https://mysetup.co/twitch/' . '&code=' . $_GET['code'] . '&state=' . $_GET['state']);
+        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=' . $client_secret . '&grant_type=authorization_code&redirect_uri=' . 'http://localhost/twitch/' . '&code=' . $_GET['code'] . '&state=' . $_GET['state']);
 
         // Here we check if the response fit what we expect, and if we're allowed to get the user data
         if(!$response or !isset($response->json['scope'][0]) or !$response->json['scope'][0] === $scope)
@@ -526,7 +526,7 @@ class UsersController extends AppController
 
         else
         {
-            // The user has not been found, let's create a new account for him (if its Twitch email address has been verified of course)  !
+            // The user has not been found, let's create a new account for him (if its Twitch email address has been verified of course) !
             if(!$response->json['email_verified'])
             {
                 $this->Flash->warning(__('The email address of your Twitch account has not been verified. We can\'t create your account yet'));
