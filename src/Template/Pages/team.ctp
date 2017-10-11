@@ -6,11 +6,13 @@ $this->assign('title', __('Our Team | mySetup.co'));
 echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block' => true]);
 
 ?>
-<div class="container sitecontainer">
-<div class="maincontainer team-page">
-
-	<h1><?= __('Our Team') ?></h1>
- 
+<div class="colored-container">
+    <div class="container">
+        <br><h2><?= __('Our Team') ?></h2><br>
+    </div>
+</div>
+<div class="container">
+<div class="maincontainer team-page"> 
 
 	<h3>HeadStaff</h3>
 
