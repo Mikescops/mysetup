@@ -15,7 +15,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
 
 ?>
-<div class="container sitecontainer">
+<div class="colored-container">
+    <div class="container">
+        <br><h2><?= __('OUR LATEST UPDATES') ?></h2><br>
+    </div>
+</div>
+<div class="container">
     <div class="maincontainer">
 
     <div class="row">
