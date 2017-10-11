@@ -19,7 +19,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css?v=18') ?>
+    <?= $this->Html->css('app.min.css') ?>
     <?= $this->Html->css('emoji.min.css') ?>
     <?= $this->Html->css('tippy.css') ?>
 
@@ -27,15 +27,16 @@
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= $this->Url->build('/'); ?>img/favicon/apple-touch-icon.png?v=LbGvygO5bN">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-32x32.png?v=LbGvygO5bN">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= $this->Url->build('/'); ?>img/favicon/favicon-16x16.png?v=LbGvygO5bN">
-    <link rel="manifest" href="<?= $this->Url->build('/'); ?>img/favicon/manifest.json?v=LbGvygO5bN">
-    <link rel="mask-icon" href="<?= $this->Url->build('/'); ?>img/favicon/safari-pinned-tab.svg?v=LbGvygO5bN" color="#151515">
-    <link rel="shortcut icon" href="<?= $this->Url->build('/'); ?>img/favicon/favicon.ico?v=LbGvygO5bN">
+    <?= $this->Html->meta(['link' => '/img/favicon/apple-touch-icon.png', 'rel' => 'apple-touch-icon', 'sizes' => '180x180']) ?>
+    <?= $this->Html->meta(['link' => '/img/favicon/favicon-32x32.png', 'rel' => 'icon', 'type' => 'image/png', 'sizes' => '32x32']) ?>
+    <?= $this->Html->meta(['link' => '/img/favicon/favicon-16x16.png', 'rel' => 'icon', 'type' => 'image/png', 'sizes' => '16x16']) ?>
+    <?= $this->Html->meta(['link' => '/img/favicon/manifest.json', 'rel' => 'manifest']) ?>
+    <?= $this->Html->meta(['link' => '/img/favicon/safari-pinned-tab.svg', 'rel' => 'mask-icon', 'color' => '#151515']) ?>
+    <?= $this->Html->meta(['link' => '/img/favicon/favicon.ico', 'rel' => 'shortcut icon']) ?>
+
     <meta name="apple-mobile-web-app-title" content="mySetup.co">
     <meta name="application-name" content="mySetup.co">
-    <meta name="msapplication-config" content="<?= $this->Url->build('/'); ?>img/favicon/browserconfig.xml?v=LbGvygO5bN">
+    <?= $this->Html->meta(['link' => '/img/favicon/browserconfig.xml', 'name' => 'msapplication-config']) ?>
     <meta name="theme-color" content="#151515">
 
     <?php
@@ -60,7 +61,7 @@
         <div class="row container">
             <div class="column column-20">
 
-                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg?v=2', array('alt' => 'mySetup', 'class' => 'ms-logo')); ?></a>
+                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mySetup', 'class' => 'ms-logo')); ?></a>
 
             </div>
             <div class="column column-80">
@@ -395,7 +396,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
     <!-- App Js async load -->
-    <?= $this->Html->script('app.min.js?v=18') ?>
+    <?= $this->Html->script('app.min.js') ?>
     <script>const toast = new siiimpleToast();</script>
     <?php if($authUser): ?>
         <script>const instance = new tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification(); tippy('.button.draft'); tippy('.setup-unpublished');</script>
