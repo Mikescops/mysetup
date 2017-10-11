@@ -121,6 +121,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                                     <?php $i++; endforeach; for(;$i < 5;$i++): ?>
                                     <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Add gallery image') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
                                 <?php endfor ?>
+                                </div>
                             </div>
 
                             <div class="modal-footer">
@@ -215,7 +216,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <h4><?= __('How to embed the setup on my website ?') ?></h4>
                     <?= __("It's pretty easy, just add the code below to your page (and set the setup id accordingly) :") ?>
                     <pre><code><xmp><script src="https://mysetup.co/api/widgets.js"></script>
-<div id="mysetup-embed" ms-setup="<?= $setup->id ?>" ms-width="350">Setup powered by <a href="https://mysetup.co/">mySetup.co</a></div></xmp></code></pre>
+                    <div id="mysetup-embed" ms-setup="<?= $setup->id ?>" ms-width="350">Setup powered by <a href="https://mysetup.co/">mySetup.co</a></div></xmp></code></pre>
 
                     <h5>Preview :</h5>
 
@@ -261,21 +262,22 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                           <a href="<?=  $this->Url->build('/setups/search?q='.urldecode($item->title)); ?>" class="button brelated"><i class="fa fa-search"></i> Find related setups</a>
                           <a href="<?= urldecode($item->href) ?>" traget="_blank" class="button amazon-buy">More info on <i class="fa fa-amazon"></i></a>
                       </div>
-                  </div>
+                    </div>
 
-                  <?= $this->Html->scriptBlock("new tippy('#item-trigger-$i', {zIndex: 20, html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
+                    <?= $this->Html->scriptBlock("new tippy('#item-trigger-$i', {zIndex: 20, html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
 
-                  <?php $i++; endforeach ?>
+                    <?php $i++; endforeach ?>
 
-              </div>
+                </div>
 
-          </div>
+            </div>
 
-      </div>
+        </div>
 
-      <br>
+        <br />
+    </div>
 
-      <div class="post_slider">
+    <div class="post_slider">
         <?php foreach ($setup['resources']['gallery_images'] as $image): ?>
             <div class="slider-item">
                 <div class="slider-item-inner">
@@ -326,60 +328,56 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                               endif ?>
                           </div>
                       </article>
-
                   <?php endforeach; ?>
               <?php endif; ?>
+            </section>
 
-          </section>
+            <?php if($authUser): ?>
 
+                <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
+                    <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser->id . '.png?' . $this->Time->format($authUser->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
+                </a>
 
-          <?php if($authUser): ?>
+                <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
+                <fieldset>
+                    <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'), 'rows' => "1", 'maxlength' => 500]); ?>
+                </fieldset>
+                <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
+                <?= $this->Form->end(); ?>
 
-            <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
-                <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser->id . '.png?' . $this->Time->format($authUser->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
-            </a>
+                <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
 
-            <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
-            <fieldset>
-                <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'), 'rows' => "1", 'maxlength' => 500]); ?>
-            </fieldset>
-            <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
-            <?= $this->Form->end(); ?>
+                <div class="lity-hide" id="edit-comment-hidden">
+                    <?php
+                        /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
+                        $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'edit']]);
+                        echo $this->Form->control('content', ['label' => '', 'class' => 'textarea-edit-comment','id' => 'textarea-edit', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
+                        echo $this->Form->submit(__('Edit'), ['id' => 'editCommentButton', 'class' => 'float-right' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
+                        $this->Form->end();
+                    ?>
+                </div>
 
-            <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
+                <?= $this->Html->scriptBlock('$(document).ready(function() {$("#textarea-edit").emojioneArea({pickerPosition: "top"});});', array('block' => 'scriptBottom')) ?>
 
-            <div class="lity-hide" id="edit-comment-hidden">
-                <?=
-                /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
-                $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'edit']]);
-            echo $this->Form->control('content', ['label' => '', 'class' => 'textarea-edit-comment','id' => 'textarea-edit', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
-        echo $this->Form->submit(__('Edit'), ['id' => 'editCommentButton', 'class' => 'float-right' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
-        $this->Form->end();
-        ?>
+            <?php else: ?>
 
-        <?= $this->Html->scriptBlock('$(document).ready(function() {$("#textarea-edit").emojioneArea({pickerPosition: "top"});});', array('block' => 'scriptBottom')) ?>
+                <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build('/login')?>"><?= __('Log me in !') ?></a>
+
+            <?php endif ?>
+
+        </div>
     </div>
 
-<?php else: ?>
+    <br>
 
-    <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build('/login')?>"><?= __('Log me in !') ?></a>
+    <p class="setup-date">
+        <?php if($setup->creationDate != $setup->modifiedDate): ?>
+            <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
+        <?php else: ?>
+            <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
+        <?php endif; ?>
+    </p>
 
-<?php endif ?>
-</div>
-
-</div>
-
-<br>
-
-<p class="setup-date">
-    <?php if($setup->creationDate != $setup->modifiedDate): ?>
-        <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
-    <?php else: ?>
-        <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
-    <?php endif; ?>
-</p>
-
-</div>
 </div>
 
 <script>
