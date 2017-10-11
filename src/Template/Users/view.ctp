@@ -14,7 +14,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
     <div class="row user-profile">
 
         <div class="column column-50">
-            <img src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'HHss', null, null)); ?>">
+            <img alt="<?= __('Profile picture of') ?> #<?= $user->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
 
             <div><h2><?= h($user->name) ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
                 <ul>
@@ -47,7 +47,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
             <?php  if (!empty($user->setups)): foreach ($user->setups as $setup): ?>
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                    <img src="<?= $this->Url->build('/'); ?><?= $setup->resources[0]->src ?>">
+                    <img alt="<?= ('Gallery image of') ?> <?= h($setup->title) ?>" src="<?= $this->Url->build('/'); ?><?= $setup->resources[0]->src ?>">
                 </a>
                 <div class="red_like"><i class="fa fa-heart"></i>  <?php echo count($setup->likes) ?></div>
 
@@ -57,11 +57,10 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
                         <div class="column column-75">
                             <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                <img src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($user->modificationDate, 'HHss', null, null)); ?>">
+                                <img alt="<?= __('Profile picture of') ?> #<?= $setup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
                             </a>
 
                             <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3></a>
-
                         </div>
 
                         <div class="column column-25"></div>
