@@ -595,6 +595,7 @@ footer a{
 .user-profile ul{
 	margin: 0;
 	list-style: none;
+	margin-bottom: 5px;
 }
 
 .user-profile li{
