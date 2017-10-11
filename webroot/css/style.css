@@ -1841,6 +1841,10 @@ nav {
 		font-size: 2.9rem;
 	}
 
+	.featured-inner .featured-user{
+		display: none;
+	}
+
 	.article-list h3{
 		font-size: 1.8rem;
 		line-height: 1.0;
