@@ -25,5 +25,9 @@ class ResourcesController extends AppController
         $this->set(compact('resources'));
         $this->set('_serialize', ['resources']);
     }
-    
+
+    public function isAuthorized($user)
+    {
+        return parent::isAuthorized($user);
+    }
 }
