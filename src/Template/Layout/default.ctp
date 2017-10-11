@@ -385,7 +385,7 @@
 
     <!-- Jquery async load -->
     <?= $this->Html->script('jquery-3.2.0.min.js') ?>
-    <?= $this->Html->script('lib.min.js') ?>
+    <?= $this->Html->script('lib.min.js?v=2') ?>
     <?= $this->Html->script('tippy.min.js') ?>
 
     <!-- Emoji handling -->
@@ -395,7 +395,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
 
     <!-- App Js async load -->
-    <?= $this->Html->script('app.min.js?v=18') ?>
+    <?= $this->Html->script('app.js?v=18') ?>
     <script>const toast = new siiimpleToast();</script>
     <?php if($authUser): ?>
         <script>const instance = new tippy('#notifications-trigger', {html: '#notifications-pop',arrow: true,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false});const popper = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification(); tippy('.button.draft'); tippy('.setup-unpublished');</script>
