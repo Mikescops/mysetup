@@ -452,9 +452,9 @@ function likeSetup(id){
 
   if ($( ".red_button" ).hasClass( "active" )){
     $.ajax({
-      url: webRootJs + 'app/dislike',
+      url: webRootJs + 'likes/dislike',
       type: 'get',
-      data: { "setup_id": id},
+      data: {"setup_id": id},
       success: answer_dislike,
       error: answer_error
     });
@@ -462,9 +462,9 @@ function likeSetup(id){
 
   else{
     $.ajax({
-      url: webRootJs + 'app/like',
+      url: webRootJs + 'likes/like',
       type: 'get',
-      data: { "setup_id": id},
+      data: {"setup_id": id},
       success: answer_like,
       error: answer_error
     });}
@@ -486,7 +486,7 @@ function answer_error(response){
 
 function printLikes(id) {
     $.ajax({
-        url: webRootJs + "app/getlikes",
+        url: webRootJs + "likes/getlikes",
         data: {
             setup_id: id
         },
@@ -500,7 +500,7 @@ function printLikes(id) {
 
 function doesLike(setup) {
     $.ajax({
-        url: webRootJs + "app/doesLike",
+        url: webRootJs + "likes/doesLike",
         data: {
             setup_id: setup
         },
