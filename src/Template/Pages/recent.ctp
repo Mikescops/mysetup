@@ -96,7 +96,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
 
         </div>
-        <div class="column column-25 sidebar sidebar-feed">
+        <div class="column column-25 sidebar">
 
             <div class="blog-advert">
               <a href="<?=$this->Url->build('/blog/')?>">
