@@ -59,11 +59,11 @@ $('.home_slider').slick({
   slidesToShow: 1,
   responsive: [
     {
-      breakpoint: 768,
+      breakpoint: 900,
       settings: {
         arrows: false,
         centerMode: true,
-        centerPadding: '40px',
+        centerPadding: '50px',
         slidesToShow: 1
       }
     },
@@ -72,7 +72,7 @@ $('.home_slider').slick({
       settings: {
         arrows: false,
         centerMode: true,
-        centerPadding: '40px',
+        centerPadding: '20px',
         slidesToShow: 1
       }
     }

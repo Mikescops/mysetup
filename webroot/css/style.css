@@ -1817,6 +1817,10 @@ nav {
 /* Smaller than smartphone screen */
 @media (max-width: 640px) {
 
+	.home_slider_container{
+		padding: 80px 0 40px 0;
+	}
+
 	.home_slider .slider-item-inner{
 		height: 60px;
 	}
@@ -1932,6 +1936,10 @@ nav {
 
 	.heavy-nav .row{
 		padding: 0 2rem 0 0!important;
+	}
+
+	.home_slider{
+		padding: 0;
 	}
 
 	.feeditem{
