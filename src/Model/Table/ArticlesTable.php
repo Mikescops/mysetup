@@ -6,14 +6,16 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Datasource\EntityInterface;
+use Cake\ORM\Entity;
 use Cake\Event\Event;
 use Cake\Utility\Text;
+use Cake\Routing\Router;
 use Cake\Filesystem\File;
 
 
 class ArticlesTable extends Table
 {
-    public $categories = ['dev' => 'Development', 'edito' => 'Editorial',  'event' => 'Event', 'interview' => 'Interview', 'news' => 'News'];
+    public $categories = ['dev' => 'Development', 'edito' => 'Editorial', 'event' => 'Event', 'interview' => 'Interview', 'news' => 'News'];
 
     public function initialize(array $config)
     {
@@ -39,9 +41,9 @@ class ArticlesTable extends Table
     }
 
     /** Let's get the real url of article **/
-    public function getUrl(\Cake\ORM\Entity $entity)
+    public function getUrl(Entity $entity)
     {
-        return \Cake\Routing\Router::url('/blog/'.$entity->id.'-'.\Cake\Utility\Text::slug($entity->title), true);
+        return Router::url('/blog/' . $entity->id . '-' . Text::slug($entity->title), true);
     }
 
     public function validationDefault(Validator $validator)
@@ -138,7 +140,6 @@ class ArticlesTable extends Table
                     $flash->warning(__('Your image could not be saved.'));
                 }
             }
-
         }
 
         else
