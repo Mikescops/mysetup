@@ -46,7 +46,7 @@ Router::defaultRouteClass(DashedRoute::class);
 Router::scope('/', function (RouteBuilder $routes) {
 
     /* Static pages' routes */
-    $routes->connect('/',        ['controller' => 'Pages', 'action' => 'display', 'home']);
+    $routes->connect('/',        ['controller' => 'Pages', 'action' => 'home']);
     $routes->connect('/recent',  ['controller' => 'Pages', 'action' => 'display', 'recent']);
     $routes->connect('/popular', ['controller' => 'Pages', 'action' => 'display', 'popular']);
 

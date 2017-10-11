@@ -19,6 +19,7 @@ use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Static content controller
@@ -29,6 +30,18 @@ use Cake\Event\Event;
  */
 class PagesController extends AppController
 {
+    /**
+     * Simple "hook" hand-made (see `config/routes.php`).
+     * This allows us to put some data into the view easily !
+     */
+    public function home()
+    {
+        // Set some variables here, and give back the control to the `display()` method
+        $this->set('activeUsers', TableRegistry::get('Users')->getActiveUsers(12));
+
+        $this->display('home');
+    }
+
 
     /**
      * Displays a view
@@ -72,6 +85,6 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['display']);
+        $this->Auth->allow(['display', 'home']);
     }
 }

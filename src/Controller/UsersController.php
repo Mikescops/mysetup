@@ -589,6 +589,8 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->redirectUrl());
     }
 
+    /* __________ */
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
