@@ -81,24 +81,26 @@ $('.home_slider').slick({
 
 
 $('.post_slider').slick({
+  centerMode: false,
+  autoplay: false,
+  adaptiveHeight: true,
   lazyLoad: 'ondemand',
   arrows: true,
   infinite: false,
-  slidesToShow: 2,
+  slidesToShow: 1,
   responsive: [
     {
       breakpoint: 768,
       settings: {
         arrows: false,
-        slidesToShow: 2
+        slidesToShow: 1,
       }
     },
     {
       breakpoint: 480,
       settings: {
         arrows: false,
-        centerMode: true,
-        slidesToShow: 1
+        slidesToShow: 1,
       }
     }
   ]
