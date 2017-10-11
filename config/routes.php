@@ -73,9 +73,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/verify/:id/:token', ['controller' => 'Users', 'action' => 'verifyAccount'], ['id' => '\d+', 'pass' => ['id', 'token']]);
     $routes->connect('/twitch/*', ['controller' => 'Users', 'action' => 'twitch']);
 
-    /* Notifications' routes */
-    $routes->connect('/notifications', ['controller' => 'Notifications', 'action' => 'index']);
-
     /* Admin's routes */
     $routes->connect('/admin', ['controller' => 'Setups', 'action' => 'index']);
     $routes->connect('/admin/setups', ['controller' => 'Setups', 'action' => 'index']);

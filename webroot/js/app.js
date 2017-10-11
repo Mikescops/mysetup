@@ -752,7 +752,7 @@ function logTwitch(lang){
 
 function checknotification(){
     $.ajax({
-        url: webRootJs + "app/getNotifications",
+        url: webRootJs + "notifications/getNotifications",
         data: {
         n: '8'
         },

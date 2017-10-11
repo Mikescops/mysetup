@@ -366,47 +366,6 @@ class AppController extends Controller
             ]);
         }
     }
-
-    public function getNotifications()
-    {
-        if($this->request->is('ajax'))
-        {
-            $this->loadModel('Notifications');
-            $results = $this->Notifications->find('all', [
-                'conditions' => [
-                    'user_id' => $this->request->session()->read('Auth.User.id'),
-                    'new' => 1
-                ],
-                'order' => [
-                    'dateTime' => 'DESC'
-                ],
-                'limit' => $this->request->getQuery('n', 4)
-            ]);
-
-            // Here we'll concatenate 'on-the-go' a "time ago with words" to the notifications content + Makes some translations
-            foreach($results as $result)
-            {
-                $result['content'] = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
-
-                if(strpos($result['content'], '__LIKE'))
-                {
-                    $result['content'] = str_replace('__ALT', __('Liker\'s profile picture'), $result['content']);
-                    $result['content'] = str_replace('__LIKE', __('liked your setup'), $result['content']);
-                }
-
-                else if(strpos($result['content'], '__COMMENT'))
-                {
-                    $result['content'] = str_replace('__ALT', __('Commenter\'s profile picture'), $result['content']);
-                    $result['content'] = str_replace('__COMMENT', __('commented your setup'), $result['content']);
-                }
-            }
-
-            return new Response([
-                'status' => 200,
-                'body' => json_encode($results)
-            ]);
-        }
-    }
     /* ____________ */
 
     public function getActiveUsers()
