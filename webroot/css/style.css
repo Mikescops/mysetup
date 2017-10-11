@@ -548,6 +548,11 @@ footer a{
 
 /*********** USER CSS ***********/
 
+.colored-container{
+	background-color: #344154;
+	padding-top: 100px;
+}
+
 .user-profile{
 	overflow: auto;
 	margin-bottom: 15px;
