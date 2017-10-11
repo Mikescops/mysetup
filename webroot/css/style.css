@@ -1112,9 +1112,45 @@ nav {
 	transition: all 0.3s ease;
 }
 
+.nav-transparent .row:first-child, .nav-transparent .ms-logo{
+	height: 60px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.nav-transparent .right-nav, .nav-transparent .mobile-nav{
+	margin-top: 10px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
 .nav-color{
 	height: 60px;
 	background: RGBA(21, 21, 21, 0.95);
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.nav-color .row:first-child, .nav-color .ms-logo{
+	height: 40px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.nav-color .right-nav, .nav-color .mobile-nav{
+	margin-top: 0;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
@@ -1144,8 +1180,12 @@ nav {
 	padding: 0!important;
 }
 
+.heavy-nav .column-20{
+	max-height: 100%;
+}
+
 .heavy-nav .ms-logo{
-	height: 60px;
+	max-height: 100%;
 }
 
 .right-nav{
