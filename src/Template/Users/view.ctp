@@ -23,9 +23,9 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                             }
                         ?>
 
-                        <?php if($user->uwebsite): ?><li><i class="fa fa-globe" style="margin-right: 2px;"></i> <a href="<?= $user->uwebsite ?>" target="_blank"><?= h(urlPrettifying($user->uwebsite)) ?></a></li><?php endif ?>
-                        <?php if($user->ufacebook): ?><li><i class="fa fa-facebook" style="margin-right: 6px;"></i> <a href="<?= $user->ufacebook ?>" target="_blank"><?= h(urlPrettifying($user->ufacebook)) ?></a></li><?php endif ?>
-                        <?php if($user->utwitter): ?><li><i class="fa fa-twitter"></i> <a href="<?= $user->utwitter ?>" target="_blank"><?= h(urlPrettifying($user->utwitter)) ?></a></li><?php endif ?>
+                        <?php if($user->uwebsite): ?><li><i class="fa fa-globe" style="margin-right: 2px;"></i> <a href="<?= $user->uwebsite ?>" rel="nofollow" target="_blank"><?= h(urlPrettifying($user->uwebsite)) ?></a></li><?php endif ?>
+                        <?php if($user->ufacebook): ?><li><i class="fa fa-facebook" style="margin-right: 6px;"></i> <a href="<?= $user->ufacebook ?>" rel="nofollow" target="_blank"><?= h(urlPrettifying($user->ufacebook)) ?></a></li><?php endif ?>
+                        <?php if($user->utwitter): ?><li><i class="fa fa-twitter"></i> <a href="<?= $user->utwitter ?>" rel="nofollow" target="_blank"><?= h(urlPrettifying($user->utwitter)) ?></a></li><?php endif ?>
                     </ul>
                 </div>
             </div>

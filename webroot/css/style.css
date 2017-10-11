@@ -558,6 +558,14 @@ footer a{
 	margin-bottom: 15px;
 }
 
+.user-profile a{
+	color: #f5f5f5;
+}
+
+.user-profile a:hover{
+	color: #328fea;
+}
+
 .user-profile img{
 	display: block;
 	width: 100px;
