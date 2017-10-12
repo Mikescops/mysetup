@@ -21,6 +21,7 @@ class LikesController extends AppController
         {
             return new Response([
                 'status' => 200,
+                'type' => 'json',
                 'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->query['setup_id']])->count())
             ]);
         }
@@ -32,6 +33,7 @@ class LikesController extends AppController
         {
             return new Response([
                 'status' => 200,
+                'type' => 'json',
                 'body' => json_encode($this->Likes->hasBeenLikedBy($this->request->query['setup_id'], $this->request->session()->read('Auth.User.id')))
             ]);
         }
@@ -87,6 +89,7 @@ class LikesController extends AppController
 
             return new Response([
                 'status' => $status,
+                'type' => 'json',
                 'body' => $body
             ]);
         }
@@ -131,6 +134,7 @@ class LikesController extends AppController
 
             return new Response([
                 'status' => $status,
+                'type' => 'json',
                 'body' => $body
             ]);
         }

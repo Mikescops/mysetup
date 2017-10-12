@@ -48,6 +48,7 @@ class NotificationsController extends AppController
 
             return new Response([
                 'status' => 200,
+                'type' => 'json',
                 'body' => json_encode($results)
             ]);
         }
@@ -95,6 +96,7 @@ class NotificationsController extends AppController
 
             return new Response([
                 'status' => $status,
+                'type' => 'json',
                 'body' => $body
             ]);
         }
@@ -146,6 +148,7 @@ class NotificationsController extends AppController
 
             return new Response([
                 'status' => $status,
+                'type' => 'json',
                 'body' => $body
             ]);
         }
@@ -195,6 +198,7 @@ class NotificationsController extends AppController
 
             return new Response([
                 'status' => $status,
+                'type' => 'json',
                 'body' => $body
             ]);
         }
