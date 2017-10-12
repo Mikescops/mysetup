@@ -218,7 +218,6 @@ class ArticlesController extends AppController
         }
     }
 
-
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -244,7 +243,7 @@ class ArticlesController extends AppController
                 }
             }
 
-            // Each admin can add a new article, or edit the existing ones
+            // Each admin can add a new article, or edit an existing one
             else if(in_array($this->request->action, ['add', 'edit']))
             {
                 return true;

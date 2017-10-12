@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Network\Response;
 
 /**
  * Setups Controller
@@ -268,7 +269,7 @@ class SetupsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['search', 'view', 'answerOwnership', 'embed']);
+        $this->Auth->allow(['search', 'view', 'answerOwnership', 'embed', 'getSetups']);
     }
 
     public function isAuthorized($user)
@@ -292,84 +293,50 @@ class SetupsController extends AppController
         return parent::isAuthorized($user);
     }
 
+    public function getSetups()
+    {
+        if($this->request->is('ajax') or $this->request->is('get'))
+        {
+            $results = $this->Setups->getSetups([
+                'query' => $this->request->getQuery('q'),
+                'featured' => $this->request->getQuery('f'),
+                'order' => $this->request->getQuery('o'),
+                'number' => $this->request->getQuery('n'),
+                'offset' => $this->request->getQuery('p'),
+                'type' => $this->request->getQuery('t'),
+                'weeks' => $this->request->getQuery('w')
+            ]);
+
+            return new Response([
+                'status' => 200,
+                'type' => 'json',
+                'body' => json_encode($results)
+            ]);
+        }
+    }
+
     public function search()
     {
-        $query = $this->request->getQuery('q');
-
-        if($query)
+        if($this->request->query('q'))
         {
-            // Some empty arrays in which we'll set the SQL conditions to match a setup... or not
-            $name_cond      = [];
-            $author_cond    = [];
-            $title_cond     = [];
-            $resources_cond = [];
+            $results = $this->Setups->getSetups([
+                'query' => $this->request->query('q'),
+                'number' => 9999
+            ]);
 
-            // Let's fill in these array (tough operation)
-            foreach(explode("+", urlencode($query)) as $word)
+            if(count($results) == 0)
             {
-                array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);
-                array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
-                array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
-                array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
-            }
-
-            /*
-                This query is just ESSENTIAL. Some explanations are required:
-
-                    * We select only the column that we'll need (id, user_id, title, status) #optimization
-                    * Featured image (for each setup) will be directly available  ($setup['resources'][0]['src'])
-                    * Number of likes for each setup will be directly available ($setup->likes[0]->total)
-                    * We browse the Users table (in order to gather some setups with their user name)
-                    * We browse the Setups table (in order to gather some setups with their author name and title)
-                    * We browse the Resources table (in order to gather some setups with their resources title [=== product name])
-            */
-            $setups = $this->Setups->find('all', [
-                'contain' => [
-                    'Resources' => function($q) {
-                        return $q->autoFields(false)->where(['type' => 'SETUP_FEATURED_IMAGE'])->select(['setup_id', 'src']);
-                    },
-                    'Users' => function($q) {
-                        return $q->autoFields(false)->select(['id', 'name', 'modificationDate']);
-                    },
-                    'Likes' => function($q) {
-                        return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
-                    }
-                ],
-                'fields' => [
-                    'id',
-                    'user_id',
-                    'title',
-                    'creationDate',
-                    'status'
-                ],
-                'order' => [
-                    'Setups.creationDate' => 'DESC'
-                ],
-                'having' => [
-                    'status' => 'PUBLISHED'
-                ]
-            ])
-            ->where(['OR' => $name_cond])
-            ->orWhere(['OR' => $author_cond])
-            ->orWhere(['OR' => $title_cond])
-            ->leftJoinWith('Resources')
-            ->orWhere(['OR' => $resources_cond])
-            ->distinct()
-            ->toArray();
-
-            if(count($setups) == 0)
-            {
-                $setups = "noresult";
+                $results = 'noresult';
             }
         }
 
         else
         {
-            $setups = "noquery";
+            $results = 'noquery';
         }
 
-        $this->set(compact('setups'));
-        $this->set('_serialize', ['setups']);
+        $this->set(compact('results'));
+        $this->set('_serialize', ['results']);
     }
 
     public function requestOwnership($id = null)

@@ -19,6 +19,7 @@ use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Static content controller
@@ -29,6 +30,38 @@ use Cake\Event\Event;
  */
 class PagesController extends AppController
 {
+    /**
+     * Simple "hooks" hand-made (see `config/routes.php`).
+     * This allows us to put some data into the view easily !
+     */
+    public function home()
+    {
+        // Set some variables here, and give back the control to the `display()` method
+        $Setups = TableRegistry::get('Setups');
+        $this->set('featuredSetups', $Setups->getSetups(['featured' => true, 'number' => 5]));
+        $this->set('popularSetups', $Setups->getSetups(['number' => 20, 'type' => 'like']));
+        $this->set('recentSetups', $Setups->getSetups(['number' => 3]));
+        $this->set('amdSetups', $Setups->getSetups(['query' => 'amd', 'number' => 10, 'type' => 'like']));
+        $this->set('nvidiaSetups', $Setups->getSetups(['query' => 'nvidia', 'number' => 10, 'type' => 'like']));
+
+        $this->set('activeUsers', TableRegistry::get('Users')->getActiveUsers(12));
+
+        $this->display('home');
+    }
+
+    public function recent()
+    {
+        $this->set('setups', TableRegistry::get('Setups')->getSetups(['number' => 6]));
+
+        $this->display('recent');
+    }
+
+    public function popular()
+    {
+        $this->set('setups', TableRegistry::get('Setups')->getSetups(['number' => 30, 'type' => 'like', 'weeks' => 1]));
+
+        $this->display('popular');
+    }
 
     /**
      * Displays a view
@@ -72,6 +105,29 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['display']);
+        $this->Auth->allow(['display', 'home', 'recent', 'popular']);
+
+        // Another hook to avoid error pages when an user...
+        // ...types directly in an (existing) raw address
+        if($this->request->controller === 'Pages' and $this->request->action === 'display')
+        {
+            switch($this->request->params['pass'][0])
+            {
+                case 'home':
+                    $this->redirect(['action' => 'home']);
+                    break;
+
+                case 'recent':
+                    $this->redirect(['action' => 'recent']);
+                    break;
+
+                case 'popular':
+                    $this->redirect(['action' => 'popular']);
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }

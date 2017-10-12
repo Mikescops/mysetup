@@ -46,9 +46,9 @@ Router::defaultRouteClass(DashedRoute::class);
 Router::scope('/', function (RouteBuilder $routes) {
 
     /* Static pages' routes */
-    $routes->connect('/',        ['controller' => 'Pages', 'action' => 'display', 'home']);
-    $routes->connect('/recent',  ['controller' => 'Pages', 'action' => 'display', 'recent']);
-    $routes->connect('/popular', ['controller' => 'Pages', 'action' => 'display', 'popular']);
+    $routes->connect('/',        ['controller' => 'Pages', 'action' => 'home']);
+    $routes->connect('/recent',  ['controller' => 'Pages', 'action' => 'recent']);
+    $routes->connect('/popular', ['controller' => 'Pages', 'action' => 'popular']);
 
     /* And all the other static pages' routes */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
@@ -72,9 +72,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/verify/:id/:token', ['controller' => 'Users', 'action' => 'verifyAccount'], ['id' => '\d+', 'pass' => ['id', 'token']]);
     $routes->connect('/twitch/*', ['controller' => 'Users', 'action' => 'twitch']);
-
-    /* Notifications' routes */
-    $routes->connect('/notifications', ['controller' => 'Notifications', 'action' => 'index']);
 
     /* Admin's routes */
     $routes->connect('/admin', ['controller' => 'Setups', 'action' => 'index']);
