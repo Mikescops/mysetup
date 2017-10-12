@@ -710,7 +710,7 @@ function infiniteScroll(nbtodisplay) {
     if(($(window).scrollTop() + $(window).height()) + 250 > $(document).height()) {
       $(window).data('ajaxready', false);
       $.ajax({
-        url: webRootJs + "app/getSetups",
+        url: webRootJs + "setups/getSetups",
         data: {
             p: offset,
             n: nbtodisplay

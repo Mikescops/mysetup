@@ -16,7 +16,6 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
-use Cake\Network\Response;
 use Cake\I18n\I18n;
 use Cake\Network\Http\Client;
 
@@ -142,8 +141,8 @@ class AppController extends Controller
         // By default, no page is allowed. Please check special authorizations in the others controller
         $this->Auth->deny();
 
-        // Allow GET request on public functions
-        $this->Auth->allow(['getSetups', 'reportBug']);
+        // Allow request on public functions
+        $this->Auth->allow(['reportBug']);
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
         $this->Security->config('unlockedFields', [
@@ -227,108 +226,7 @@ class AppController extends Controller
     }
     /* _____________________________ */
 
-    public function getSetups()
-    {
-        if($this->request->is('get'))
-        {
-            $conditions = [];
-
-            // If the query specified only the features ones
-            if($this->request->getQuery('f', false))
-            {
-                $conditions += ['featured' => true];
-            }
-
-            $conditions += [
-                'Setups.creationDate >' => date('Y-m-d', strtotime("-" . $this->request->getQuery('w', '9999') . "weeks")),
-                'Setups.creationDate <=' => date('Y-m-d', strtotime("+ 1 day")),
-                'status' => 'PUBLISHED'
-            ];
-
-
-            $term_query = $this->request->getQuery('q');
-            // Some empty arrays in which we'll set the SQL conditions to match a setup... or not
-                $author_cond    = [];
-                $title_cond     = [];
-                $resources_cond = [];
-
-            if($term_query)
-            {
-                // Let's fill in these array (tough operation)
-                foreach(explode("+", urlencode($term_query)) as $word)
-                {
-                    array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
-                    array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
-                    array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
-                }
-
-            }
-
-
-            $this->loadModel('Setups');
-            $results = $this->Setups->find('all', [
-                'conditions' => $conditions,
-                'order' => [
-                    'Setups.creationDate' => $this->request->getQuery('o', 'DESC')
-                ],
-                'limit' => $this->request->getQuery('n', '8'),
-                'offset' => $this->request->getQuery('p', '0'),
-                'contain' => [
-                    'Likes' => function ($q) {
-                        return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
-                    },
-                    'Comments' => function ($q) {
-                        return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Comments.user_id')])->group(['Comments.setup_id']);
-                    },
-                    'Resources' => function ($q) {
-                        return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);
-                    },
-                    'Users' => function ($q) {
-                        return $q->autoFields(false)->select(['Users.id', 'Users.name', 'Users.modificationDate']);
-                    }
-                ]
-            ])
-            ->where(['OR' => $author_cond])
-            ->orWhere(['OR' => $title_cond])
-            ->leftJoinWith('Resources')
-            ->orWhere(['OR' => $resources_cond])
-            ->distinct()
-            ->toArray();
-
-            // If the query specified a ranking by number of "likes", let's sort them just before sending it
-            if($this->request->getQuery('t', 'date') == "like")
-            {
-                usort($results, function($a, $b) {
-
-                    if(empty($a->likes))
-                    {
-                        $a->likes += [0 => ['total' => 0]];
-                    }
-
-                    if(empty($b->likes))
-                    {
-                        $b->likes += [0 => ['total' => 0]];
-                    }
-
-                    if($a->likes[0]['total'] == $b->likes[0]['total'])
-                    {
-                        return 0;
-                    }
-
-                    else
-                    {
-                        return ($a->likes[0]['total'] < $b->likes[0]['total']) ? 1 : -1;
-                    }
-                });
-            }
-
-            return new Response([
-                'status' => 200,
-                'body' => json_encode($results)
-            ]);
-        }
-    }
-
+    /* MISCELLANEOUS */
     public function reportBug()
     {
         if($this->request->is('post'))
@@ -356,4 +254,5 @@ class AppController extends Controller
 
         return $this->redirect('/');
     }
+    /* _____________ */
 }

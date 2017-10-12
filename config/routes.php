@@ -47,8 +47,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     /* Static pages' routes */
     $routes->connect('/',        ['controller' => 'Pages', 'action' => 'home']);
-    $routes->connect('/recent',  ['controller' => 'Pages', 'action' => 'display', 'recent']);
-    $routes->connect('/popular', ['controller' => 'Pages', 'action' => 'display', 'popular']);
+    $routes->connect('/recent',  ['controller' => 'Pages', 'action' => 'recent']);
+    $routes->connect('/popular', ['controller' => 'Pages', 'action' => 'popular']);
 
     /* And all the other static pages' routes */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);

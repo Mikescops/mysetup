@@ -21,42 +21,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="row">
         <div class="column column-75">
 
-<?php
-
-  $options = [
-    CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?o=DESC&t=like&w=1&n=30',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HEADER => false,
-    CURLOPT_FAILONERROR => true,
-    CURLOPT_HTTPHEADER => [
-      'Content-Type: application/json',
-      'Accept: application/json'
-    ]
-  ];
-
-  $curl = curl_init();
-  if(empty($curl))
-  {
-    die("ERROR (curl_init) : It looks like cURL is not available yet.");
-  }
-
-  curl_setopt_array($curl, $options);
-  $setups = curl_exec($curl);
-
-  if(curl_errno($curl))
-  {
-    die("ERROR (curl_exec) : " . curl_error($curl));
-  }
-
-  else
-  {
-    $setups = json_decode($setups);
-  }
-
-  curl_close($curl);
-?>
-
-
             <h3><?= __('Popular this week') ?></h3>
 
             <div class="fullitem_holder">

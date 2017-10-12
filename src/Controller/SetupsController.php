@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Network\Response;
 
 /**
  * Setups Controller
@@ -268,7 +269,7 @@ class SetupsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['search', 'view', 'answerOwnership', 'embed']);
+        $this->Auth->allow(['search', 'view', 'answerOwnership', 'embed', 'getSetups']);
     }
 
     public function isAuthorized($user)
@@ -290,6 +291,28 @@ class SetupsController extends AppController
         }
 
         return parent::isAuthorized($user);
+    }
+
+    public function getSetups()
+    {
+        if($this->request->is('ajax') or $this->request->is('get'))
+        {
+            $results = $this->Setups->getSetups([
+                'query' => $this->request->getQuery('q'),
+                'featured' => $this->request->getQuery('f'),
+                'order' => $this->request->getQuery('o'),
+                'number' => $this->request->getQuery('n'),
+                'offset' => $this->request->getQuery('p'),
+                'type' => $this->request->getQuery('t'),
+                'weeks' => $this->request->getQuery('w')
+            ]);
+
+            return new Response([
+                'status' => 200,
+                'type' => 'json',
+                'body' => json_encode($results)
+            ]);
+        }
     }
 
     public function search()

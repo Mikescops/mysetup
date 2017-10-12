@@ -14,53 +14,18 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
 ?>
 
-<?php
-
-  $options = [
-    CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?f=1&n=5',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HEADER => false,
-    CURLOPT_FAILONERROR => true,
-    CURLOPT_HTTPHEADER => [
-      'Content-Type: application/json',
-      'Accept: application/json'
-    ]
-  ];
-
-  $curl = curl_init();
-  if(empty($curl))
-  {
-    die("ERROR (curl_init) : It looks like cURL is not available yet.");
-  }
-
-  curl_setopt_array($curl, $options);
-  $fsetups = curl_exec($curl);
-
-  if(curl_errno($curl))
-  {
-    die("ERROR (curl_exec) : " . curl_error($curl));
-  }
-
-  else
-  {
-    $fsetups = json_decode($fsetups);
-  }
-
-  curl_close($curl);
-?>
-
 <div class="home_slider_container sitecontainer">
 
   <div class="container home_slider">
 
-    <?php foreach ($fsetups as $fsetup): ?>
+    <?php foreach ($featuredSetups as $setup): ?>
 
         <div class="slider-item">
-            <a href="<?= $this->Url->build('/setups/'.$fsetup->id.'-'.$this->Text->slug($fsetup->title)); ?>"><img alt="<?= $fsetup->title ?>" src="<?= $fsetup->resources[0]->src ?>"></a>
-            <a class="slider-item-inner featured-user" href="<?=$this->Url->build('/users/'.$fsetup->user_id)?>">
-                <img alt="<?= __('Profile picture of') ?> <?= $fsetup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $fsetup->user_id . '.png?' . $this->Time->format($fsetup->user->modificationDate, 'mmss', null, null)); ?>">
+            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><img alt="<?= $setup->title ?>" src="<?= $setup->resources[0]->src ?>"></a>
+            <a class="slider-item-inner featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
+                <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
             </a>
-            <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($fsetup->likes[0])){echo $fsetup->likes[0]->total;}else{echo 0;} ?></div>
+            <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
         </div>
 
     <?php endforeach ?>
@@ -68,7 +33,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
   </div>
 
 </div>
-
 
 <div class="container">
 
@@ -83,48 +47,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
     <div class="rowfeed">
         <div class="feeditem">
-        <?php
 
-          $options = [
-            CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?t=like&n=20',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HEADER => false,
-            CURLOPT_FAILONERROR => true,
-            CURLOPT_HTTPHEADER => [
-              'Content-Type: application/json',
-              'Accept: application/json'
-            ]
-          ];
-
-          $curl = curl_init();
-          if(empty($curl))
-          {
-            die("ERROR (curl_init) : It looks like cURL is not available yet.");
-          }
-
-          curl_setopt_array($curl, $options);
-          $setups = curl_exec($curl);
-
-          if(curl_errno($curl))
-          {
-            die("ERROR (curl_exec) : " . curl_error($curl));
-          }
-
-          else
-          {
-            $setups = json_decode($setups);
-          }
-
-          curl_close($curl);
-        ?>
-
-            <?php $i=0; foreach ($setups as $setup): ?>
+            <?php $i=0; foreach ($popularSetups as $setup): ?>
 
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img alt="<?= h($setup->title) ?>" src="<?= $setup->resources[0]->src ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
 
                 <div class="fullitem-inner">
 
@@ -178,48 +108,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <h4 class="fancy"><span><?= __('Latest setups') ?></span></h4>
         <div class="feeditem">
 
-        <?php
-
-          $options = [
-            CURLOPT_URL => $this->Url->build('/', true) . 'app/getsetups?n=3',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HEADER => false,
-            CURLOPT_FAILONERROR => true,
-            CURLOPT_HTTPHEADER => [
-              'Content-Type: application/json',
-              'Accept: application/json'
-            ]
-          ];
-
-          $curl = curl_init();
-          if(empty($curl))
-          {
-            die("ERROR (curl_init) : It looks like cURL is not available yet.");
-          }
-
-          curl_setopt_array($curl, $options);
-          $setups = curl_exec($curl);
-
-          if(curl_errno($curl))
-          {
-            die("ERROR (curl_exec) : " . curl_error($curl));
-          }
-
-          else
-          {
-            $setups = json_decode($setups);
-          }
-
-          curl_close($curl);
-        ?>
-
-            <?php $i=0; foreach ($setups as $setup): ?>
+            <?php $i=0; foreach ($recentSetups as $setup): ?>
 
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img alt="<?= h($setup->title) ?>" src="<?= $setup->resources[0]->src ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
 
                 <div class="fullitem-inner">
 
@@ -249,15 +144,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <h4 class="fancy"><span>AMD</span></h4>
         <div class="feeditem">
 
-        <?php $options=[ CURLOPT_URL=>$this->Url->build('/',true).'app/getsetups?t=like&n=10&q=amd',CURLOPT_RETURNTRANSFER=>true,CURLOPT_HEADER=>false,CURLOPT_FAILONERROR=>true,CURLOPT_HTTPHEADER=>['Content-Type: application/json','Accept: application/json'] ];$curl=curl_init();if(empty($curl)){die("ERROR (curl_init) : It looks like cURL is not available yet.");}curl_setopt_array($curl,$options);$setups=curl_exec($curl);if(curl_errno($curl)){die("ERROR (curl_exec) : ".curl_error($curl));}else{$setups=json_decode($setups);}curl_close($curl);?>
-
-            <?php $i = 0; foreach ($setups as $setup): ?>
+            <?php $i = 0; foreach ($amdSetups as $setup): ?>
 
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img alt="<?= h($setup->title) ?>" src="<?= $setup->resources[0]->src ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
 
                 <div class="fullitem-inner">
 
@@ -287,15 +180,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <h4 class="fancy"><span>Nvidia</span></h4>
         <div class="feeditem">
 
-        <?php $options=[ CURLOPT_URL=>$this->Url->build('/',true).'app/getsetups?t=like&n=10&q=nvidia',CURLOPT_RETURNTRANSFER=>true,CURLOPT_HEADER=>false,CURLOPT_FAILONERROR=>true,CURLOPT_HTTPHEADER=>['Content-Type: application/json','Accept: application/json'] ];$curl=curl_init();if(empty($curl)){die("ERROR (curl_init) : It looks like cURL is not available yet.");}curl_setopt_array($curl,$options);$setups=curl_exec($curl);if(curl_errno($curl)){die("ERROR (curl_exec) : ".curl_error($curl));}else{$setups=json_decode($setups);}curl_close($curl);?>
-
-            <?php $i = 0; foreach ($setups as $setup): ?>
+            <?php $i = 0; foreach ($nvidiaSetups as $setup): ?>
 
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img alt="<?= h($setup->title) ?>" src="<?= $setup->resources[0]->src ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
 
                 <div class="fullitem-inner">
 
