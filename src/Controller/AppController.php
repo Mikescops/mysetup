@@ -144,7 +144,7 @@ class AppController extends Controller
         $this->Auth->deny();
 
         // Allow GET request on public functions
-        $this->Auth->allow(['getSetups', 'getActiveUsers', 'getLikes', 'reportBug']);
+        $this->Auth->allow(['getSetups', 'twitchSetup', 'getActiveUsers', 'getLikes', 'reportBug']);
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
         $this->Security->config('unlockedFields', [
@@ -431,6 +431,35 @@ class AppController extends Controller
                 'status' => 200,
                 'body' => json_encode($results)
             ]);
+        }
+    }
+
+    public function twitchSetup()
+    {
+        $twitch_channel = $this->request->getQuery('channel');
+        if($this->request->is('get'))
+        {
+            $this->loadModel('Setups');
+            $setup = $this->Setups->find()
+                ->contain([
+                    'Users' => function ($q) {
+                        return $q->autoFields(false)->select(['Users.id', 'Users.name', 'Users.twitch_channel']);
+                    },
+                    'Resources' => function ($q) {
+                        return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE'])->orWhere(['type' => 'SETUP_PRODUCT']);
+                    },
+
+                ])
+                ->where(['Users.twitch_channel' => $twitch_channel])
+                ->first()
+                ->toArray();
+
+            return new Response([
+                'status' => 200,
+                'type' => 'json',
+                'body' => json_encode($setup)
+            ]);
+
         }
     }
 
