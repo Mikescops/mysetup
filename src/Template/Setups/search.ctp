@@ -3,7 +3,7 @@
   * @var \App\View\AppView $this
   */
 
-$this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
+$this->assign('title', __('Search for "') . (isset($_GET["q"]) ? $_GET["q"] : "") . '" | mySetup.co');
 ?>
 <div class="container sitecontainer">
 <div class="maincontainer">
@@ -11,17 +11,17 @@ $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
         <div class="column column-75">
 
             <div class="large_search">
-                <input type="text" id="keyword-search" placeholder="<?= h($_GET["q"]) ?>" />
+                <input type="text" id="keyword-search" placeholder="<?= h((isset($_GET["q"]) ? $_GET["q"] : "")) ?>" />
                 <?= $this->Html->scriptBlock('let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
             </div>
 
             <?php
-                if($setups == "noquery")
+                if($results == "noquery")
                 {
                     echo "<h4>" . __("No search query, no results :(") . "</h4>";
                 }
 
-                elseif($setups == "noresult")
+                elseif($results == "noresult")
                 {
                     echo "<h4>" . __("We haven't found any results for this query :(") . "</h4>";
                 }
@@ -30,7 +30,7 @@ $this->assign('title', __('Search for "') . $_GET["q"] . '" | mySetup.co');
                 {
             ?>
 
-            <?php foreach ($setups as $setup): ?>
+            <?php foreach ($results as $setup): ?>
 
                 <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">

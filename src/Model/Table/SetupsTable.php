@@ -192,7 +192,7 @@ class SetupsTable extends Table
         // We'll stock some conditions in this
         $conditions = [];
 
-        // If the query specified only the features ones
+        // If the query specified only the featured ones
         if($params['featured'])
         {
             $conditions += ['featured' => true];
@@ -204,6 +204,7 @@ class SetupsTable extends Table
         ];
 
         // Some empty arrays in which we'll set the SQL conditions to match a setup... or not
+        $name_cond      = [];
         $author_cond    = [];
         $title_cond     = [];
         $resources_cond = [];
@@ -211,15 +212,26 @@ class SetupsTable extends Table
         if($params['query'])
         {
             // Let's fill in these array (tough operation)
-            foreach(explode("+", urlencode($params['query'])) as $word)
+            foreach(explode('+', urlencode($params['query'])) as $word)
             {
+                array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);
                 array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
                 array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
                 array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
             }
-
         }
 
+        /*
+            This query is just ESSENTIAL. Some explanations are required:
+
+                * We select only the columns that we'll need #optimization
+                * Featured image (for each setup) will be directly available  ($setup['resources'][0]['src'])
+                * Number of likes for each setup will be directly available ($setup->likes[0]->total)
+                * We browse the Users table (in order to gather some setups with the user name)
+                * We browse the Setups table (in order to gather some setups with their author name and title)
+                * We browse the Resources table (in order to gather some setups with their resources title [=== product name])
+                * We finally pick only the public setups !
+        */
         $results = $this->find('all', [
             'conditions' => $conditions,
             'order' => [
@@ -227,25 +239,30 @@ class SetupsTable extends Table
             ],
             'limit' => $params['number'],
             'offset' => $params['offset'],
+            'fields' => [
+                'id',
+                'user_id',
+                'title',
+                'creationDate',
+                'status'
+            ],
             'contain' => [
                 'Likes' => function ($q) {
                     return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
-                },
-                'Comments' => function ($q) {
-                    return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Comments.user_id')])->group(['Comments.setup_id']);
                 },
                 'Resources' => function ($q) {
                     return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);
                 },
                 'Users' => function ($q) {
-                    return $q->autoFields(false)->select(['Users.id', 'Users.name', 'Users.modificationDate']);
+                    return $q->autoFields(false)->select(['id', 'name', 'modificationDate']);
                 }
             ],
             'having' => [
                 'Setups.status' => 'PUBLISHED'
             ]
         ])
-        ->where(['OR' => $author_cond])
+        ->where(['OR' => $name_cond])
+        ->orWhere(['OR' => $author_cond])
         ->orWhere(['OR' => $title_cond])
         ->leftJoinWith('Resources')
         ->orWhere(['OR' => $resources_cond])
@@ -256,7 +273,6 @@ class SetupsTable extends Table
         if($params['type'] === 'like')
         {
             usort($results, function($a, $b) {
-
                 if(empty($a->likes))
                 {
                     $a->likes += [0 => ['total' => 0]];
