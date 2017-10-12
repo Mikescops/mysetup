@@ -15,14 +15,16 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
 
 ?>
-<div class="container sitecontainer">
+<div class="colored-container">
+    <div class="container">
+        <br><h2><?= __('Popular this week') ?></h2><br>
+    </div>
+</div>
+<div class="container">
     <div class="maincontainer">
 
     <div class="row">
         <div class="column column-75">
-
-            <h3><?= __('Popular this week') ?></h3>
-
             <div class="fullitem_holder">
 
             <?php foreach ($setups as $setup): ?>
@@ -55,7 +57,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             </div>
 
         </div>
-        <div class="column column-25 sidebar sidebar-feed">
+        <div class="column column-25 sidebar">
 
             <div class="blog-advert">
               <a href="<?=$this->Url->build('/blog/')?>">
@@ -72,5 +74,5 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         </div>
     </div>
 
-  </div>
+    </div>
 </div>

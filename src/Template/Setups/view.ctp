@@ -29,18 +29,37 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 <div class="featured-container">
     <div class="featured-gradient" style="background-image: url('<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>')"></div>
-    <div class="featured-img-setup">
 
-        <img alt="<?= $setup->title ?>" width="1120" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>" alt="<?= $setup->title ?>">
-        <?php if(!empty($setup['resources']['video_link'])): ?>
-            <div class="overlay">
-                <a class="videoplayer-icon" href="<?= $setup['resources']['video_link']?>" title="<?= __('Watch it in video') ?>" data-lity>
-                    <i class="fa fa-play-circle"></i>
-                </a>
+    <div class="post_slider">
+
+
+        <div class="slider-item">
+            <div class="featured-img-setup slider-item-inner">
+
+                <img alt="<?= $setup->title ?>" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>" alt="<?= $setup->title ?>">
+                <?php if(!empty($setup['resources']['video_link'])): ?>
+                    <div class="overlay">
+                        <a class="videoplayer-icon" href="<?= $setup['resources']['video_link']?>" title="<?= __('Watch it in video') ?>" data-lity>
+                            <i class="fa fa-play-circle"></i>
+                        </a>
+                    </div>
+                <?php endif ?>
+
             </div>
-        <?php endif ?>
+        </div>
 
+
+        <?php foreach ($setup['resources']['gallery_images'] as $image): ?>
+            <div class="slider-item">
+                <div class="slider-item-inner">
+                    <a href="<?= $this->Url->build('/', true)?><?= $image->src ?>" data-lity data-lity-desc="Photo of Config'">
+                        <img alt="<?= ('Gallery image of') ?> <?= h($setup->title) ?>" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
+                    </a>
+                </div>
+            </div>
+        <?php endforeach ?>
     </div>
+
 
 </div>
 
@@ -273,21 +292,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             </div>
 
         </div>
-
-        <br />
-    </div>
-
-    <div class="post_slider">
-        <?php foreach ($setup['resources']['gallery_images'] as $image): ?>
-            <div class="slider-item">
-                <div class="slider-item-inner">
-                    <a href="<?= $this->Url->build('/', true)?><?= $image->src ?>" data-lity data-lity-desc="Photo of Config'">
-                        <img alt="<?= ('Gallery image of') ?> <?= h($setup->title) ?>" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
-                    </a>
-                </div>
-            </div>
-        <?php endforeach ?>
-    </div>
 
     <div class="row description-section">
 

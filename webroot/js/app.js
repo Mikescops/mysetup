@@ -6,44 +6,25 @@
  * All rights reserved
  */
 
-/** MAIN MENU **/
+/** MAIN MENU transition effect **/
 
 $(window).scroll(function(){
   var scrollTop = $(window).scrollTop();
   if(scrollTop < 50){
-    height = 60;
-    margin = 10;
     $('.heavy-nav').stop().removeClass('nav-color').addClass('nav-transparent');
   }else{
-    height = 40;
-    margin = 0;
     $('.heavy-nav').stop().removeClass('nav-transparent').addClass('nav-color');
   }
-  heavyheight = height + 20;
-  //$('.heavy-nav').stop().animate({'height': heavyheight+"px"}, 300);
-  $('.heavy-nav .row:first-child').stop().animate({'height': height+"px"}, 300);
-  $('.heavy-nav .ms-logo').stop().animate({'height': height+"px"}, 300);
-  $('.right-nav').stop().animate({'margin-top': margin+"px"}, 300);
-  $('.mobile-nav').stop().animate({'margin-top': margin+"px"}, 300);
 })
-
+/* This function is for css initialization */
 $(function() {
   var scrollTop = $(window).scrollTop();
   if(scrollTop < 50){
-    height = 60;
-    margin = 10;
     $('.heavy-nav').addClass('nav-transparent');
   }else{
-    height = 40;
-    margin = 0;
     $('.heavy-nav').addClass('nav-color');
   }
-  heavyheight = height + 20;
-  //$('.heavy-nav').stop().animate({'height': heavyheight+"px"}, 300);
-  $('.heavy-nav .row:first-child').stop().animate({'height': height+"px"}, 100);
-  $('.heavy-nav .ms-logo').stop().animate({'height': height+"px"}, 100);
-  $('.right-nav').stop().animate({'margin-top': margin+"px"}, 100);
-  $('.mobile-nav').stop().animate({'margin-top': margin+"px"}, 100);})
+})
 
 
 
@@ -59,11 +40,11 @@ $('.home_slider').slick({
   slidesToShow: 1,
   responsive: [
     {
-      breakpoint: 768,
+      breakpoint: 900,
       settings: {
         arrows: false,
         centerMode: true,
-        centerPadding: '40px',
+        centerPadding: '50px',
         slidesToShow: 1
       }
     },
@@ -72,7 +53,7 @@ $('.home_slider').slick({
       settings: {
         arrows: false,
         centerMode: true,
-        centerPadding: '40px',
+        centerPadding: '20px',
         slidesToShow: 1
       }
     }
@@ -81,24 +62,26 @@ $('.home_slider').slick({
 
 
 $('.post_slider').slick({
+  centerMode: false,
+  autoplay: false,
+  adaptiveHeight: true,
   lazyLoad: 'ondemand',
   arrows: true,
   infinite: false,
-  slidesToShow: 2,
+  slidesToShow: 1,
   responsive: [
     {
       breakpoint: 768,
       settings: {
         arrows: false,
-        slidesToShow: 2
+        slidesToShow: 1,
       }
     },
     {
       breakpoint: 480,
       settings: {
         arrows: false,
-        centerMode: true,
-        slidesToShow: 1
+        slidesToShow: 1,
       }
     }
   ]
@@ -536,11 +519,12 @@ class siiimpleToast {
       position: 'fixed',
       padding: '1rem 1.2rem',
       minWidth: '17rem',
+      maxWidth: '100%',
+      marginLeft: '1rem',
       zIndex: '30',
       borderRadius: '2px',
       color: 'white',
       fontWeight: 300,
-      whiteSpace: 'nowrap',
       pointerEvents: 'none',
       opacity: 0,
       boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)',

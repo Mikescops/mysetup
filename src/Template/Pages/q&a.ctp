@@ -6,10 +6,13 @@ $this->assign('title', __('Q&amp;A').' | mySetup.co');
 echo $this->Html->meta('description', __('We answer common questions and issues about mySetup. Find some tutorials to start sharing your setup now.'), ['block' => true]);
 
 ?>
-<div class="container sitecontainer">
+<div class="colored-container">
+    <div class="container">
+        <br><h3><?= __('Q&amp;A - We answer common questions') ?></h3><br>
+    </div>
+</div>
+<div class="container">
 <div class="maincontainer">
-
-    <h3><?= __('Q&amp;A - We answer common questions') ?></h3>
 
 	<ol>
 		<li><a href="#q-1"><?= __("I didn't receive the verification mail") ?></a></li>

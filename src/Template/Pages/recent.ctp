@@ -13,13 +13,15 @@ echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/recent', true)], null ,['block' => true]);
 
 ?>
-<div class="container sitecontainer">
+<div class="colored-container">
+    <div class="container">
+        <br><h2><?= __('Latest setups') ?></h2><br>
+    </div>
+</div>
+<div class="container">
     <div class="maincontainer">
-
     <div class="row">
         <div class="column column-75">
-
-            <h3><?= __('Latest setups') ?></h3>
 
             <div class="fullitem_holder">
 
@@ -58,7 +60,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
 
         </div>
-        <div class="column column-25 sidebar sidebar-feed">
+        <div class="column column-25 sidebar">
 
             <div class="blog-advert">
               <a href="<?=$this->Url->build('/blog/')?>">
@@ -73,6 +75,5 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             </div>
         </div>
     </div>
-
-</div>
+    </div>
 </div>

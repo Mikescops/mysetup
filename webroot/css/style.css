@@ -163,7 +163,7 @@ footer a{
 }
 
 .home_slider .slider-item{
-	margin: 13px;
+	margin: 15px;
 	border-radius: 4px;
 	max-height: 310px;
 	overflow: hidden;
@@ -464,7 +464,7 @@ footer a{
 }
 
 
-.slick-center {
+.home_slider .slick-center {
 /*	box-shadow: 0 0 35px rgba(0,0,0,.75);
 	-moz-box-shadow: 0 0 35px rgba(0,0,0,.75);
 	-webkit-box-shadow: 0 0 35px rgba(0,0,0,.75);
@@ -548,9 +548,22 @@ footer a{
 
 /*********** USER CSS ***********/
 
+.colored-container{
+	background-color: #344154;
+	padding-top: 100px;
+}
+
 .user-profile{
 	overflow: auto;
 	margin-bottom: 15px;
+}
+
+.user-profile a{
+	color: #f5f5f5;
+}
+
+.user-profile a:hover{
+	color: #328fea;
 }
 
 .user-profile img{
@@ -582,6 +595,7 @@ footer a{
 .user-profile ul{
 	margin: 0;
 	list-style: none;
+	margin-bottom: 5px;
 }
 
 .user-profile li{
@@ -651,11 +665,13 @@ footer a{
 	display: block;
 	box-shadow: 0 10px 20px rgba(5,30,50,.2);
 	border-radius: 4px;
+	width: 100%;
 }
 
 .featured-img-setup{
 	position: relative;
-	display: inline-block;
+	display: block;
+	width: 100%;
 }
 
 .featured-img-setup:hover .videoplayer-icon {
@@ -830,11 +846,38 @@ footer a{
 	margin-top: 20px;
 }
 
+.post_slider{
+	margin: 0 auto;
+	max-width: 112rem;
+	padding: 0 2rem;
+	position: relative;
+	width: 100%;
+}
+
+/*.post_slider .slick-list{
+	overflow-y: inherit!important;
+}*/
+
 .post_slider .slider-item{
-	margin: 13px;
 	border-radius: 4px;
-	max-height: 250px;
+	margin: 0px;
+	max-height: 500px;
 	overflow: hidden;
+	opacity: 0.4;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.post_slider .slick-active{
+	opacity: 1;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 .slick-prev{
@@ -1069,9 +1112,45 @@ nav {
 	transition: all 0.3s ease;
 }
 
+.nav-transparent .row:first-child, .nav-transparent .ms-logo{
+	height: 60px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.nav-transparent .right-nav, .nav-transparent .mobile-nav{
+	margin-top: 10px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
 .nav-color{
 	height: 60px;
 	background: RGBA(21, 21, 21, 0.95);
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.nav-color .row:first-child, .nav-color .ms-logo{
+	height: 40px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.nav-color .right-nav, .nav-color .mobile-nav{
+	margin-top: 0;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
@@ -1101,8 +1180,12 @@ nav {
 	padding: 0!important;
 }
 
+.heavy-nav .column-20{
+	max-height: 100%;
+}
+
 .heavy-nav .ms-logo{
-	height: 60px;
+	max-height: 100%;
 }
 
 .right-nav{
@@ -1348,8 +1431,9 @@ nav {
 	height: 50px;
 	background-color: #fff;
 	float: left;
-	border-radius: 4px;
+	border-radius: 25px;
 	margin-right: 15px;
+	border: solid 2px #328fea;
 }
 
 .notif a span:last-child{
@@ -1817,6 +1901,10 @@ nav {
 /* Smaller than smartphone screen */
 @media (max-width: 640px) {
 
+	.home_slider_container{
+		padding: 80px 0 40px 0;
+	}
+
 	.home_slider .slider-item-inner{
 		height: 60px;
 	}
@@ -1852,6 +1940,16 @@ nav {
 	}
 
 	/* POST RESPONSIVE */
+
+	.featured-inner .featured-user{
+		display: none;
+	}
+
+	.featured-inner p{
+		display: block!important;
+		margin-left: 0;
+		margin-bottom: 5px;
+	}
 
 	.featured-inner{
 		text-align: center;
@@ -1934,6 +2032,10 @@ nav {
 		padding: 0 2rem 0 0!important;
 	}
 
+	.home_slider{
+		padding: 0;
+	}
+
 	.feeditem{
 		-webkit-column-count: 2; /* Chrome, Safari, Opera */
 	    -moz-column-count: 2; /* Firefox */
@@ -1965,10 +2067,6 @@ nav {
 		display: inline-block;
 		flex: 0 0 100%!important;
 		max-width: 100%!important;
-	}
-
-	.featured-container{
-		max-height: 400px;
 	}
 
 	.featured-inner h3{

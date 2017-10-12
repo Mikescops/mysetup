@@ -7,39 +7,46 @@ $this->assign('title', __('Setups by ') . $user->name . ' | mySetup.co');
 echo $this->Html->meta('description', __('All the setups shared by ') . $user->name, ['block' => true]);
 ?>
 
-<div class="container sitecontainer">
+<div class="colored-container">
+    
+    <div class="container">
+        <div class="row user-profile">
 
-<div class="maincontainer">
+            <div class="column column-50">
+                <img alt="<?= __('Profile picture of') ?> #<?= $user->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
 
-    <div class="row user-profile">
+                <div><h2><?= h($user->name) ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
+                    <ul>
+                        <?php
+                            function urlPrettifying($url) {
+                               return preg_replace('/https?:\/\/(www\.)?/', '', $url);
+                            }
+                        ?>
 
-        <div class="column column-50">
-            <img alt="<?= __('Profile picture of') ?> #<?= $user->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
+                        <?php if($user->uwebsite): ?><li><i class="fa fa-globe" style="margin-right: 2px;"></i> <a href="<?= $user->uwebsite ?>" rel="nofollow" target="_blank"><?= h(urlPrettifying($user->uwebsite)) ?></a></li><?php endif ?>
+                        <?php if($user->ufacebook): ?><li><i class="fa fa-facebook" style="margin-right: 6px;"></i> <a href="<?= $user->ufacebook ?>" rel="nofollow" target="_blank"><?= h(urlPrettifying($user->ufacebook)) ?></a></li><?php endif ?>
+                        <?php if($user->utwitter): ?><li><i class="fa fa-twitter"></i> <a href="<?= $user->utwitter ?>" rel="nofollow" target="_blank"><?= h(urlPrettifying($user->utwitter)) ?></a></li><?php endif ?>
+                    </ul>
+                </div>
+            </div>
 
-            <div><h2><?= h($user->name) ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
-                <ul>
-                    <?php
-                        function urlPrettifying($url) {
-                           return preg_replace('/https?:\/\/(www\.)?/', '', $url);
-                        }
-                    ?>
-
-                    <?php if($user->uwebsite): ?><li><i class="fa fa-globe" style="margin-right: 2px;"></i> <a href="<?= $user->uwebsite ?>" target="_blank"><?= h(urlPrettifying($user->uwebsite)) ?></a></li><?php endif ?>
-                    <?php if($user->ufacebook): ?><li><i class="fa fa-facebook" style="margin-right: 6px;"></i> <a href="<?= $user->ufacebook ?>" target="_blank"><?= h(urlPrettifying($user->ufacebook)) ?></a></li><?php endif ?>
-                    <?php if($user->utwitter): ?><li><i class="fa fa-twitter"></i> <a href="<?= $user->utwitter ?>" target="_blank"><?= h(urlPrettifying($user->utwitter)) ?></a></li><?php endif ?>
+            <div class="column column-50">
+                <ul class="user-stats">
+                    <li><span><?= count($user['setups']) ?></span> <?= __n('setup', 'setups', count($user['setups'])) ?></li>
+                    <li><span><?= count($user['likes']) ?></span> <?= __n('like', 'likes', count($user['likes'])) ?></li>
+                    <li><span><?= count($user['comments']) ?></span> <?= __n('comment', 'comments', count($user['comments'])) ?></li>
                 </ul>
             </div>
-        </div>
 
-        <div class="column column-50">
-            <ul class="user-stats">
-                <li><span><?= count($user['setups']) ?></span> <?= __n('setup', 'setups', count($user['setups'])) ?></li>
-                <li><span><?= count($user['likes']) ?></span> <?= __n('like', 'likes', count($user['likes'])) ?></li>
-                <li><span><?= count($user['comments']) ?></span> <?= __n('comment', 'comments', count($user['comments'])) ?></li>
-            </ul>
         </div>
-
     </div>
+
+
+</div>
+
+<div class="container">
+
+<div class="maincontainer">
 
     <div class="row">
         <div class="column column-75">
