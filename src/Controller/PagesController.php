@@ -106,5 +106,28 @@ class PagesController extends AppController
         parent::beforeFilter($event);
 
         $this->Auth->allow(['display', 'home', 'recent', 'popular']);
+
+        // Another hook to avoid error pages when an user...
+        // ...types directly in an (existing) raw address
+        if($this->request->controller === 'Pages' and $this->request->action === 'display')
+        {
+            switch($this->request->params['pass'][0])
+            {
+                case 'home':
+                    $this->redirect(['action' => 'home']);
+                    break;
+
+                case 'recent':
+                    $this->redirect(['action' => 'recent']);
+                    break;
+
+                case 'popular':
+                    $this->redirect(['action' => 'popular']);
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }
