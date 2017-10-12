@@ -61,7 +61,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/setups/:id', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/setups/:id-:slug', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/setups/request/:id/:token/:response', ['controller' => 'Setups', 'action' => 'answerOwnership'], ['id' => '\d+', 'pass' => ['id', 'token', 'response']]);
-    $routes->connect('/embed/:id', ['controller' => 'Setups', 'action' => 'embed'], ['id' => '\d+', 'pass' => ['id']]);
 
     /* Articles' routes */
     $routes->connect('/blog', ['controller' => 'Articles', 'action' => 'index']);
@@ -79,6 +78,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/admin/users', ['controller' => 'Users', 'action' => 'index']);
     $routes->connect('/admin/comments', ['controller' => 'Comments', 'action' => 'index']);
     $routes->connect('/admin/resources', ['controller' => 'Resources', 'action' => 'index']);
+
+    /* API routes ! */
+    $routes->connect('/embed/:id', ['controller' => 'API', 'action' => 'embed'], ['id' => '\d+', 'pass' => ['id']]);
 
     /**
      * Connect catchall routes for all controllers.
