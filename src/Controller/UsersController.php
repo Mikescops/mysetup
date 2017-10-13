@@ -22,7 +22,7 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
+        $users = $this->paginate($this->Users, ['order' => ['creationDate' => 'DESC']]);
 
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);

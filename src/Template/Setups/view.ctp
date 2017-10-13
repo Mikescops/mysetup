@@ -148,73 +148,74 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                                 <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
                             </div>
 
-                        </div>
+                            <div id="components-edit" class="form-action-edit hide-edit">
 
+                                <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
+                                <ul class="search_results edit_setup"></ul>
+                                <ul class="basket_items edit_setup">
+                                    <?php foreach ($setup['resources']['products'] as $item): ?>
 
-                        <div id="components-edit" class="form-action-edit hide-edit">
+                                        <li>
+                                            <a onclick="deleteFromBasket('<?= $item->title ?>',this,'edit_setup')">
+                                                <img src="<?= urldecode($item->src) ?>">
+                                                <p><?= urldecode($item->title) ?></p>
+                                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
 
-                            <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
-                            <ul class="search_results edit_setup"></ul>
-                            <ul class="basket_items edit_setup">
-                                <?php foreach ($setup['resources']['products'] as $item): ?>
+                                    <?php endforeach ?>
+                                </ul>
 
-                                    <li>
-                                        <img src="<?= urldecode($item->src) ?>">
-                                        <p><?= urldecode($item->title) ?></p>
-                                        <a onclick="deleteFromBasket('<?= $item->title ?>',this,'edit_setup')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
-                                    </li>
+                                <div class="modal-footer">
 
-                                <?php endforeach ?>
-                            </ul>
+                                    <a href="#infos-edit" class="button next float-right"><?= __('Next step') ?></a>
+                                    <a href="#basics-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+                                    <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
 
-                            <div class="modal-footer">
-
-                                <a href="#infos-edit" class="button next float-right"><?= __('Next step') ?></a>
-                                <a href="#basics-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
-
-                            </div>
-
-                        </div>
-
-                        <div id="infos-edit" class="form-action-edit hide-edit">
-
-                            <?php
-                            /* Fill the video source if exist */
-                            if(!empty($setup['resources']['video_link'])){$video_field = $setup['resources']['video_link'];}else{$video_field = '';}
-                            echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'default' => $video_field]);
-
-                            /* Fill the current items in the field before edit */
-                            $item_field = '';
-                            foreach ($setup['resources']['products'] as $item){
-                                $item_field = $item_field.$item->title.';'.$item->href.';'.$item->src.',';
-                            }
-                            // A hidden entry to gather the item resources
-                            echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden', 'default' => $item_field]);
-                            ?>
-                            <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
-                            <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
-                            <?php
-                            echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
-                            ?>
-                            <?php
-                            if($authUser['admin'])
-                            {
-                                echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
-                            }
-
-                            echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit', 'class' => 'hidden']);
-                            ?>
-
-                            <div class="modal-footer">
-
-                                <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-edit']); ?>
-                                <?= $this->Form->end(); ?>
-                                <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                                <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
-                                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
+                                </div>
 
                             </div>
+
+                            <div id="infos-edit" class="form-action-edit hide-edit">
+
+                                <?php
+                                /* Fill the video source if exist */
+                                if(!empty($setup['resources']['video_link'])){$video_field = $setup['resources']['video_link'];}else{$video_field = '';}
+                                echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'default' => $video_field]);
+
+                                /* Fill the current items in the field before edit */
+                                $item_field = '';
+                                foreach ($setup['resources']['products'] as $item){
+                                    $item_field = $item_field.$item->title.';'.$item->href.';'.$item->src.',';
+                                }
+                                // A hidden entry to gather the item resources
+                                echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden', 'default' => $item_field]);
+                                ?>
+                                <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
+                                <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
+                                <?php
+                                echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
+                                ?>
+                                <?php
+                                if($authUser['admin'])
+                                {
+                                    echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
+                                }
+
+                                echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit', 'class' => 'hidden']);
+                                ?>
+
+                                <div class="modal-footer">
+
+                                    <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-edit']); ?>
+                                    <?= $this->Form->end(); ?>
+                                    <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+                                    <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                                    <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
+
+                                </div>
+                            </div>
+
                         </div>
                     </fieldset>
                 </div>
@@ -293,97 +294,98 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
         </div>
 
-    <div class="row description-section">
+        <div class="row description-section">
 
-        <div class="column column-60 column-offset-20 item-meta">
+            <div class="column column-60 column-offset-20 item-meta">
 
-            <h4><?= __('About this setup') ?></h4>
+                <h4><?= __('About this setup') ?></h4>
 
-            <?= $this->Markdown->transform(h($setup->description))?>
+                <?= $this->Markdown->transform(h($setup->description))?>
 
-            <div id="social-networks"></div>
+                <div id="social-networks"></div>
+
+            </div>
 
         </div>
 
-    </div>
+        <div class="row comment-section" id="comments">
 
-    <div class="row comment-section" id="comments">
+            <div class="column column-60 column-offset-20">
+                <h4 class="comment-section-title"><?= __('Wanna share your opinion ?') ?></h4>
 
-        <div class="column column-60 column-offset-20">
-            <h4 class="comment-section-title"><?= __('Wanna share your opinion ?') ?></h4>
+                <section class="comments">
+                    <?php if (!empty($setup->comments)): ?>
+                        <?php foreach ($setup->comments as $comments): ?>
+                            <article class="comment">
+                                <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
+                                    <img alt="<?= __('Profile picture of') ?> #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $comments->user_id . '.png?' . $this->Time->format($comments->user->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
+                                </a>
 
-            <section class="comments">
-                <?php if (!empty($setup->comments)): ?>
-                    <?php foreach ($setup->comments as $comments): ?>
-                        <article class="comment">
-                            <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
-                                <img alt="<?= __('Profile picture of') ?> #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $comments->user_id . '.png?' . $this->Time->format($comments->user->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
-                            </a>
+                                <div class="comment-body">
+                                    <div class="text" id="comment-<?= $comments->id ?>">
+                                      <p content="<?= h($comments->content) ?>"><?= h($comments->content) ?></p>
+                                      <?= $this->Html->scriptBlock("$(function(){ $('#comment-".  $comments->id ." > p').html(emojione.toImage(`".$comments->content."`)); });", array('block' => 'scriptBottom')) ?>
+                                    </div>
+                                    <p class="attribution"><?= __('by') ?> <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($comments->user['name']) ?></a> <?= __('at') ?> <?= $this->Time->format($comments->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comments->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></p>
 
-                            <div class="comment-body">
-                                <div class="text" id="comment-<?= $comments->id ?>">
-                                  <p content="<?= h($comments->content) ?>"><?= h($comments->content) ?></p>
-                                  <?= $this->Html->scriptBlock("$(function(){ $('#comment-".  $comments->id ." > p').html(emojione.toImage(`".$comments->content."`)); });", array('block' => 'scriptBottom')) ?>
-                              </div>
-                              <p class="attribution"><?= __('by') ?> <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($comments->user['name']) ?></a> <?= __('at') ?> <?= $this->Time->format($comments->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comments->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></p>
+                                    <?php if($authUser['id'] == $comments->user_id):
+                                        echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => __('Are you sure you want to delete this comment ?')));
+                                        echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> ' . __('Edit') . ' </a>';
+                                    endif ?>
+                                </div>
+                          </article>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
+                </section>
 
-                              <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => __('Are you sure you want to delete this comment ?')));
-                              echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> ' . __('Edit') . ' </a>';
-                              endif ?>
-                          </div>
-                      </article>
-                  <?php endforeach; ?>
-              <?php endif; ?>
-            </section>
+                <?php if($authUser): ?>
 
-            <?php if($authUser): ?>
+                    <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
+                        <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser->id . '.png?' . $this->Time->format($authUser->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
+                    </a>
 
-                <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
-                    <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser->id . '.png?' . $this->Time->format($authUser->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
-                </a>
+                    <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
+                    <fieldset>
+                        <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'), 'rows' => "1", 'maxlength' => 500]); ?>
+                    </fieldset>
+                    <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
+                    <?= $this->Form->end(); ?>
 
-                <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
-                <fieldset>
-                    <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'), 'rows' => "1", 'maxlength' => 500]); ?>
-                </fieldset>
-                <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
-                <?= $this->Form->end(); ?>
+                    <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
 
-                <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
+                    <div class="lity-hide" id="edit-comment-hidden">
+                        <?php
+                            /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
+                            $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'edit']]);
+                            echo $this->Form->control('content', ['label' => '', 'class' => 'textarea-edit-comment','id' => 'textarea-edit', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
+                            echo $this->Form->submit(__('Edit'), ['id' => 'editCommentButton', 'class' => 'float-right' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
+                            $this->Form->end();
+                        ?>
+                    </div>
 
-                <div class="lity-hide" id="edit-comment-hidden">
-                    <?php
-                        /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
-                        $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'edit']]);
-                        echo $this->Form->control('content', ['label' => '', 'class' => 'textarea-edit-comment','id' => 'textarea-edit', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
-                        echo $this->Form->submit(__('Edit'), ['id' => 'editCommentButton', 'class' => 'float-right' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
-                        $this->Form->end();
-                    ?>
-                </div>
+                    <?= $this->Html->scriptBlock('$(document).ready(function() {$("#textarea-edit").emojioneArea({pickerPosition: "top"});});', array('block' => 'scriptBottom')) ?>
 
-                <?= $this->Html->scriptBlock('$(document).ready(function() {$("#textarea-edit").emojioneArea({pickerPosition: "top"});});', array('block' => 'scriptBottom')) ?>
+                <?php else: ?>
 
+                    <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build('/login')?>"><?= __('Log me in !') ?></a>
+
+                <?php endif ?>
+
+            </div>
+        </div>
+
+        <br>
+
+        <p class="setup-date">
+            <?php if($setup->creationDate != $setup->modifiedDate): ?>
+                <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
             <?php else: ?>
+                <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
+            <?php endif; ?>
+        </p>
 
-                <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build('/login')?>"><?= __('Log me in !') ?></a>
-
-            <?php endif ?>
-
-        </div>
     </div>
-
-    <br>
-
-    <p class="setup-date">
-        <?php if($setup->creationDate != $setup->modifiedDate): ?>
-            <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
-        <?php else: ?>
-            <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
-        <?php endif; ?>
-    </p>
-
 </div>
-
 <script>
     function onSubmit(token) {
         document.getElementById("comment-form").submit();
