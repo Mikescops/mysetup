@@ -89,20 +89,11 @@
       <div class="row">
         <div class="col-12 col-md-3 col-xl-2">
           
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
+            <div class="list-group d-none d-md-block">
+              <a href="<?=$this->Url->build('/users/'. $authUser['id'])?>" class="list-group-item active"><i class="fa fa-chevron-right"></i> Welcome <?= h($authUser['name']) ?></a>
+              <a href="https://github.com/Mikescops/mysetup" class="list-group-item list-group-item-action"><i class="fa fa-github"></i> Github Repo</a>
+              <a href="https://github.com/Mikescops/mysetup-twitch-extension" class="list-group-item list-group-item-action"><i class="fa fa-twitch"></i> Extension Twitch Repo</a>
+            </div>
 
         </div>
       
