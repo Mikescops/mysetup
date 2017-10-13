@@ -13,21 +13,6 @@ use Cake\Network\Response;
 class SetupsController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $this->paginate = ['contain' => ['Users']];
-
-        $setups = $this->paginate($this->Setups);
-
-        $this->set(compact('setups'));
-        $this->set('_serialize', ['setups']);
-    }
-
     /*Add markdown support*/
     public $helpers = ['Tanuck/Markdown.Markdown' => ['parser' => 'GithubMarkdown']];
 

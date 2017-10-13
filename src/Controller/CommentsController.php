@@ -14,21 +14,6 @@ class CommentsController extends AppController
 {
 
     /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $this->paginate = ['contain' => ['Users', 'Setups']];
-
-        $comments = $this->paginate($this->Comments);
-
-        $this->set(compact('comments'));
-        $this->set('_serialize', ['comments']);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
