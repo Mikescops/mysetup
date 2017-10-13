@@ -22,9 +22,7 @@
                     <th scope="col"><?= $this->Paginator->sort('creationDate', __('Created on')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('lastLogginDate', __('Last Login')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('twitchToken', 'Twitch') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('uwebsite', 'Website') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('ufacebook', 'Facebook') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('utwitter', 'Twitter') ?></th>
+                    <th scope="col"><?= __('Social') ?></th>
                     <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -41,9 +39,19 @@
                     <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']); ?></td>
                     <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); ?></td>
                     <td><?= ($user->twitchToken ? __('Yes') : __('No')) ?></td>
-                    <td><?php if($user->uwebsite): echo '<a href="' . $user->uwebsite . '" title="' . $user->uwebsite . '" target="_blank">Website</a>'; endif; ?></td>
-                    <td><?php if($user->ufacebook): echo '<a href="' . $user->ufacebook . '" title="' . $user->ufacebook . '" target="_blank">Facebook</a>'; endif; ?></td>
-                    <td><?php if($user->utwitter): echo '<a href="' . $user->utwitter . '" title="' . $user->utwitter . '" target="_blank">Twitter</a>'; endif; ?></td>
+                    <td>
+                        <?php if($user->uwebsite or $user->ufacebook or $user->utwitter): ?> 
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-info"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <?php if($user->uwebsite): echo '<a class="dropdown-item" href="' . $user->uwebsite . '" title="' . $user->uwebsite . '" target="_blank">Website</a>'; endif; ?>
+                                <?php if($user->ufacebook): echo '<a class="dropdown-item" href="' . $user->ufacebook . '" title="' . $user->ufacebook . '" target="_blank">Facebook</a>'; endif; ?>
+                                <?php if($user->utwitter): echo '<a class="dropdown-item" href="' . $user->utwitter . '" title="' . $user->utwitter . '" target="_blank">Twitter</a>'; endif; ?>
+                            </div>
+                        <?php endif; ?>
+                        
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete this user ?')]) ?>
