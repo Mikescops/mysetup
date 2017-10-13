@@ -138,9 +138,9 @@ footer a{
 	border-radius: 4px;
 	color: #fff;
 	text-align: center;
-	height: 140px;
-	font-size: 35px;
-	line-height: 170px;
+	height: 100px;
+	font-size: 30px;
+	line-height: 125px;
 	transition: opacity 0.45s;
 }
 
@@ -230,15 +230,16 @@ footer a{
 	-moz-column-count: 2;
 	column-count: 2;
 	margin-top: 10px;
+	height: 130px;
 }
 
 .rowsocial .blog-advert, .rowsocial .twitch-advert{
-	height: 140px;
+	height: 100px;
 	margin-bottom: 10px;
 }
 
 .rowsocial .blog-advert h5, .rowsocial .twitch-advert h4{
-	font-size: 26px;
+	font-size: 24px;
 	margin-bottom: 0;
 }
 
@@ -1901,6 +1902,12 @@ nav {
 	    height: 70px!important;
 	}
 
+	.rowsocial .blog-advert h5, .rowsocial .twitch-advert h4{
+		font-size: 18px;
+	}
+
+
+
 	.user-profile .column:first-child{
 		display: block;
 	}
@@ -1943,12 +1950,6 @@ nav {
 		-webkit-column-count: 1!important; /* Chrome, Safari, Opera */
 	    -moz-column-count: 1!important; /* Firefox */
 	    column-count: 1!important;
-	}
-
-	.rowsocial{
-		-webkit-column-count: 1;
-		-moz-column-count: 1;
-		column-count: 1;
 	}
 
 	.feeditem .fullitem:hover > .fullitem-inner {
@@ -2072,8 +2073,14 @@ nav {
 	    column-count: 2;
 	}
 
-	.rowsocial .blog-advert h5, .rowsocial .twitch-advert h4{
-		font-size: 18px;
+	.rowsocial{
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+		column-count: 1;
+	}
+
+	.rowsocial .social-networks{
+		display: none;
 	}
 
 	.activeUsers{
