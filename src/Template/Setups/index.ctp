@@ -6,9 +6,7 @@
     $this->layout = 'admin';
 ?>
 
-<div class="row">
-
-    <div class="col-sm-12">
+<div class="col-12 col-md-9 col-xl-10">
 
 
   <h3>Analytics</h3>
@@ -89,7 +87,9 @@
 
         <br />
 
-        <h3><?= __('Setups') ?> - <?= $this->Paginator->counter(['format' => '{{count}}']) ?></h3>
+    <h3><?= __('Setups') ?> - <?= $this->Paginator->counter(['format' => '{{count}}']) ?></h3>
+
+    <div style="overflow-x: auto;">
         <table class="table table-striped table-responsive" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
@@ -123,6 +123,7 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+    </div>
         <?php $this->Paginator->setTemplates(['current' => '<li class="page-item active"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
               $this->Paginator->setTemplates(['number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
               $this->Paginator->setTemplates(['first' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
@@ -142,5 +143,5 @@
             </ul>
             <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
         </div>
-    </div>
 </div>
+
