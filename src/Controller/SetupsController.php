@@ -138,7 +138,7 @@ class SetupsController extends AppController
                 $this->Setups->Resources->saveGalleryImages($setup, $data, $this->Flash);
 
                 /* Here we save each product that has been selected by the user */
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], false);
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], false, parent::isAdminBySession($this->request->session()));
 
                 /* Here we save the setup video URL */
                 if(isset($data['video']) and $data['video'] !== '')
@@ -197,7 +197,7 @@ class SetupsController extends AppController
             {
                 /* Here we delete all products then save each product that has been selected by the user */
                 $this->Setups->Resources->deleteAll(['Resources.user_id' => $setup->user_id, 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $setup->user_id, true);
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $setup->user_id, true, parent::isAdminBySession($this->request->session()));
 
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage']) and $data['featuredImage'] !== '' and (int)$data['featuredImage']['error'] === 0)

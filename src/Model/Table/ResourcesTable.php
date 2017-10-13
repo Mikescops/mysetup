@@ -124,7 +124,7 @@ class ResourcesTable extends Table
         }
     }
 
-    public function saveResourceProducts($products, $setup, $flash, $user_id, $edition)
+    public function saveResourceProducts($products, $setup, $flash, $user_id, $edition, $admin = false)
     {
         // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"
         foreach(explode(',', $products) as $elements)
@@ -137,7 +137,7 @@ class ResourcesTable extends Table
                 $parsing_3 = parse_url(urldecode($elements[2]));
 
                 // Let's check if the resources selected by the user are from Amazon
-                if(isset($parsing_2['host']) && strstr($parsing_2['host'], "amazon") && isset($parsing_3['host']) && strstr($parsing_3['host'], "amazon"))
+                if((isset($parsing_2['host']) && strstr($parsing_2['host'], "amazon") && isset($parsing_3['host']) && strstr($parsing_3['host'], "amazon")) or $admin)
                 {
                     // Let's create a new entity to store these data !
                     $resource = $this->newEntity();
