@@ -79,8 +79,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/admin/comments', ['controller' => 'Comments', 'action' => 'index']);
     $routes->connect('/admin/resources', ['controller' => 'Resources', 'action' => 'index']);
 
-    /* API routes ! */
-    $routes->connect('/embed/:id', ['controller' => 'API', 'action' => 'embed'], ['id' => '\d+', 'pass' => ['id']]);
+    /* Here we allow the usage of 'api' in lowercase... */
+    $routes->connect('/api/:action/*', ['controller' => 'API', 'action' => 'action']);
 
     /**
      * Connect catchall routes for all controllers.
