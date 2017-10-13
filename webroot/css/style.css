@@ -486,18 +486,28 @@ footer a{
     column-count: 3;
 }
 
+.feeditem .red_like {
+    margin: 7px;
+}
+
+.feeditem .fullitem-inner{
+	bottom: -10px;
+	padding: 5px;
+}
+
 .feeditem .fullitem:hover > .fullitem-inner {
-    height: 80px;
+	height: 60px;
 }
 
 .feeditem	.fullitem-inner .featured-user img{
-	width: 40px;
+	width: 35px;
+	margin-top: 2.5px;
 }
 
 .feeditem .fullitem-inner h3{
 	line-height: 40px;
-	font-size: 1.2em;
-	padding-left: 7px;
+	font-size: 1.1em;
+	padding-left: 5px;
 	display: flex;
 }
 
@@ -1869,9 +1879,22 @@ nav {
 		padding-bottom: 48%!important; 
 	}
 
+	.feeditem .red_like {
+	    margin: 0;
+	}
+
 	.fullitem-inner{
 		height: 70px;
 		padding: 5px;
+	}
+
+	.feeditem .fullitem-inner{
+		height: 54px;
+		padding: 2px;
+	}
+
+	.feeditem .fullitem:hover > .fullitem-inner {
+	    height: 54px!important;
 	}
 
 	.fullitem:hover > .fullitem-inner {
@@ -1926,6 +1949,10 @@ nav {
 		-webkit-column-count: 1;
 		-moz-column-count: 1;
 		column-count: 1;
+	}
+
+	.feeditem .fullitem:hover > .fullitem-inner {
+	    height: 60px;
 	}
 
 	.fullitem:hover > .fullitem-inner {
