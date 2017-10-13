@@ -116,8 +116,8 @@
                     <td><?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); ?></td>
                     <td><?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link('', ['action' => 'view', $setup->id], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
-                        <?= $this->Form->postLink('', ['action' => 'delete', $setup->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this setup ?')]) ?>
+                        <?= $this->Html->link('', ['controller' => 'Setups', 'action' => 'view', $setup->id], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
+                        <?= $this->Form->postLink('', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this setup ?')]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -131,7 +131,7 @@
               $this->Paginator->setTemplates(['nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
               $this->Paginator->setTemplates(['prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
               $this->Paginator->setTemplates(['nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
-              $this->Paginator->setTemplates(['prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);  
+              $this->Paginator->setTemplates(['prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
          ?>
         <div class="paginator">
             <ul class="pagination">

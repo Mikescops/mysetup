@@ -19,7 +19,6 @@
                     <th scope="col"><?= $this->Paginator->sort('title', __('Title')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('href', 'HREF') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('src', 'SRC') ?></th>
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,9 +31,6 @@
                     <td><?= urldecode(h($resource->title)) ?></td>
                     <td><?= urldecode(h($resource->href)) ?></td>
                     <td><?= urldecode(h($resource->src)) ?></td>
-                    <td class="actions">
-                        <?= $this->Form->postLink('', ['action' => 'delete', $resource->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this resource ?')]) ?>
-                    </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -47,7 +43,7 @@
           $this->Paginator->setTemplates(['nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
           $this->Paginator->setTemplates(['prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
           $this->Paginator->setTemplates(['nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
-          $this->Paginator->setTemplates(['prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);  
+          $this->Paginator->setTemplates(['prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
      ?>
     <div class="paginator">
         <ul class="pagination pagination-large">

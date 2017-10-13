@@ -29,8 +29,8 @@
                     <td><?= $comment->has('setup') ? $this->Html->link($comment->setup->title, ['controller' => 'Setups', 'action' => 'view', $comment->setup->id]) : '' ?></td>
                     <td><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link('',  ['controller' => 'Setups', 'action' => 'view', $comment->setup->id], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
-                        <?= $this->Form->postLink('', ['action' => 'delete', $comment->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this comment ?')]) ?>
+                        <?= $this->Html->link('',  ['controller' => 'Setups', 'action' => 'view', $comment->setup->id, '#' => 'comments'], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
+                        <?= $this->Form->postLink('', ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this comment ?')]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -44,7 +44,7 @@
           $this->Paginator->setTemplates(['nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
           $this->Paginator->setTemplates(['prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
           $this->Paginator->setTemplates(['nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
-          $this->Paginator->setTemplates(['prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);  
+          $this->Paginator->setTemplates(['prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
      ?>
     <div class="paginator">
         <ul class="pagination">
