@@ -327,8 +327,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                               </div>
                               <p class="attribution"><?= __('by') ?> <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($comments->user['name']) ?></a> <?= __('at') ?> <?= $this->Time->format($comments->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comments->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></p>
 
-                              <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => 'Are you sure ?'));
-                              echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> Edit </a>';
+                              <?php if($authUser['id'] == $comments->user_id): echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => __('Are you sure you want to delete this comment ?')));
+                              echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> ' . __('Edit') . ' </a>';
                               endif ?>
                           </div>
                       </article>
