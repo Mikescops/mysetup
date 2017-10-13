@@ -148,73 +148,72 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                                 <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
                             </div>
 
-                        </div>
+                            <div id="components-edit" class="form-action-edit hide-edit">
 
+                                <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
+                                <ul class="search_results edit_setup"></ul>
+                                <ul class="basket_items edit_setup">
+                                    <?php foreach ($setup['resources']['products'] as $item): ?>
 
-                        <div id="components-edit" class="form-action-edit hide-edit">
+                                        <li>
+                                            <img src="<?= urldecode($item->src) ?>">
+                                            <p><?= urldecode($item->title) ?></p>
+                                            <a onclick="deleteFromBasket('<?= $item->title ?>',this,'edit_setup')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                                        </li>
 
-                            <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
-                            <ul class="search_results edit_setup"></ul>
-                            <ul class="basket_items edit_setup">
-                                <?php foreach ($setup['resources']['products'] as $item): ?>
+                                    <?php endforeach ?>
+                                </ul>
 
-                                    <li>
-                                        <img src="<?= urldecode($item->src) ?>">
-                                        <p><?= urldecode($item->title) ?></p>
-                                        <a onclick="deleteFromBasket('<?= $item->title ?>',this,'edit_setup')"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
-                                    </li>
+                                <div class="modal-footer">
 
-                                <?php endforeach ?>
-                            </ul>
+                                    <a href="#infos-edit" class="button next float-right"><?= __('Next step') ?></a>
+                                    <a href="#basics-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+                                    <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
 
-                            <div class="modal-footer">
-
-                                <a href="#infos-edit" class="button next float-right"><?= __('Next step') ?></a>
-                                <a href="#basics-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
-
-                            </div>
-
-                        </div>
-
-                        <div id="infos-edit" class="form-action-edit hide-edit">
-
-                            <?php
-                            /* Fill the video source if exist */
-                            if(!empty($setup['resources']['video_link'])){$video_field = $setup['resources']['video_link'];}else{$video_field = '';}
-                            echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'default' => $video_field]);
-
-                            /* Fill the current items in the field before edit */
-                            $item_field = '';
-                            foreach ($setup['resources']['products'] as $item){
-                                $item_field = $item_field.$item->title.';'.$item->href.';'.$item->src.',';
-                            }
-                            // A hidden entry to gather the item resources
-                            echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden', 'default' => $item_field]);
-                            ?>
-                            <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
-                            <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
-                            <?php
-                            echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
-                            ?>
-                            <?php
-                            if($authUser['admin'])
-                            {
-                                echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
-                            }
-
-                            echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit', 'class' => 'hidden']);
-                            ?>
-
-                            <div class="modal-footer">
-
-                                <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-edit']); ?>
-                                <?= $this->Form->end(); ?>
-                                <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                                <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
-                                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
+                                </div>
 
                             </div>
+
+                            <div id="infos-edit" class="form-action-edit hide-edit">
+
+                                <?php
+                                /* Fill the video source if exist */
+                                if(!empty($setup['resources']['video_link'])){$video_field = $setup['resources']['video_link'];}else{$video_field = '';}
+                                echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'default' => $video_field]);
+
+                                /* Fill the current items in the field before edit */
+                                $item_field = '';
+                                foreach ($setup['resources']['products'] as $item){
+                                    $item_field = $item_field.$item->title.';'.$item->href.';'.$item->src.',';
+                                }
+                                // A hidden entry to gather the item resources
+                                echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden', 'default' => $item_field]);
+                                ?>
+                                <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
+                                <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
+                                <?php
+                                echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
+                                ?>
+                                <?php
+                                if($authUser['admin'])
+                                {
+                                    echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
+                                }
+
+                                echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit', 'class' => 'hidden']);
+                                ?>
+
+                                <div class="modal-footer">
+
+                                    <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-edit']); ?>
+                                    <?= $this->Form->end(); ?>
+                                    <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
+                                    <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
+                                    <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
+
+                                </div>
+                            </div>
+
                         </div>
                     </fieldset>
                 </div>
