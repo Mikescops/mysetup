@@ -1493,11 +1493,14 @@ nav {
 
 .search_results img, .basket_items img{
 	max-width: 100%;
+	display: block;
+	margin: 0 auto;
 }
 
 .search_results p, .basket_items p{
 	margin: 0;
 	line-height: 20px;
+	font-size: 16px;
 }
 
 .search_results a, .basket_items a{
