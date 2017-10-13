@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Network\Http\Client;
-use Cake\Routing\Router;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 
@@ -14,19 +13,6 @@ use Cake\I18n\Time;
  */
 class UsersController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $users = $this->paginate($this->Users, ['order' => ['creationDate' => 'DESC']]);
-
-        $this->set(compact('users'));
-        $this->set('_serialize', ['users']);
-    }
 
     /**
      * View method

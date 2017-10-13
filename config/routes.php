@@ -94,15 +94,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     });
     /* ____________________________ */
 
-    /* Admin's routes */
-    $routes->scope('/admin', function(RouteBuilder $routes) {
-        $routes->connect('/', ['controller' => 'Setups']);
-        $routes->connect('/setups', ['controller' => 'Setups']);
-        $routes->connect('/users', ['controller' => 'Users']);
-        $routes->connect('/comments', ['controller' => 'Comments']);
-        $routes->connect('/resources', ['controller' => 'Resources']);
-    });
-    /* ______________ */
+    /* Admin's (default) route */
+    $routes->connect('/admin', ['controller' => 'Admin', 'action' => 'setups']);
+    /* _______________________ */
 
     // However, default routes are still available...
     $routes->fallbacks(DashedRoute::class);
