@@ -42,7 +42,7 @@
                     <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); ?></td>
                     <td><?= ($user->twitchToken ? __('Yes') : __('No')) ?></td>
                     <td>
-                        <?php if($user->uwebsite or $user->ufacebook or $user->utwitter): ?> 
+                        <?php if($user->uwebsite or $user->ufacebook or $user->utwitter or $user->utwitch): ?>
                         <div class="btn-group">
                             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-info"></i>
@@ -51,9 +51,10 @@
                                 <?php if($user->uwebsite): echo '<a class="dropdown-item" href="' . $user->uwebsite . '" title="' . $user->uwebsite . '" target="_blank">Website</a>'; endif; ?>
                                 <?php if($user->ufacebook): echo '<a class="dropdown-item" href="' . $user->ufacebook . '" title="' . $user->ufacebook . '" target="_blank">Facebook</a>'; endif; ?>
                                 <?php if($user->utwitter): echo '<a class="dropdown-item" href="' . $user->utwitter . '" title="' . $user->utwitter . '" target="_blank">Twitter</a>'; endif; ?>
+                                <?php if($user->utwitch): echo '<a class="dropdown-item" href="' . $user->utwitch . '" title="' . $user->utwitch . '" target="_blank">Twitch</a>'; endif; ?>
                             </div>
                         <?php endif; ?>
-                        
+
                     <td class="actions">
                         <?= $this->Html->link('', ['controller' => 'Users', 'action' => 'view', $user->id], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
                         <?= $this->Form->postLink('', ['controller' => 'Users', 'action' => 'delete', $user->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this user ?')]) ?>
@@ -71,7 +72,7 @@
           $this->Paginator->setTemplates(['nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
           $this->Paginator->setTemplates(['prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
           $this->Paginator->setTemplates(['nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
-          $this->Paginator->setTemplates(['prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);  
+          $this->Paginator->setTemplates(['prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
      ?>
     <div class="paginator">
         <ul class="pagination">

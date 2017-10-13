@@ -155,6 +155,9 @@ class UsersTable extends Table
         $validator
             ->allowEmpty('utwitter');
 
+        $validator
+            ->allowEmpty('utwitch');
+
         return $validator;
     }
 

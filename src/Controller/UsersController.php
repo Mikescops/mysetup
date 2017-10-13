@@ -119,6 +119,7 @@ class UsersController extends AppController
                 $user->uwebsite  = null;
                 $user->ufacebook = null;
                 $user->utwitter  = null;
+                $user->utwitch   = null;
 
                 // By default user is not verified
                 $user->verified = 0;
@@ -218,6 +219,16 @@ class UsersController extends AppController
                 if(!isset($temp['host']) or $temp['host'] !== 'twitter.com')
                 {
                     $data['utwitter'] = $user['utwitter'];
+                    $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+                }
+            }
+            if(isset($data['utwitch']) and $data['utwitch'] != '')
+            {
+                $temp = parse_url($data['utwitch']);
+
+                if(!isset($temp['host']) or !in_array($temp['host'], ['twitch.tv', 'go.twitch.tv']))
+                {
+                    $data['utwitch'] = $user['utwitch'];
                     $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
                 }
             }
