@@ -55,8 +55,8 @@
                         <?php endif; ?>
                         
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete this user ?')]) ?>
+                        <?= $this->Html->link('', ['action' => 'view', $user->id], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
+                        <?= $this->Form->postLink('', ['action' => 'delete', $user->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this user ?')]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

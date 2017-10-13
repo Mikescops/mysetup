@@ -29,8 +29,8 @@
                     <td><?= $comment->has('setup') ? $this->Html->link($comment->setup->title, ['controller' => 'Setups', 'action' => 'view', $comment->setup->id]) : '' ?></td>
                     <td><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['controller' => 'Setups', 'action' => 'view', $comment->setup->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete this comment ?')]) ?>
+                        <?= $this->Html->link('',  ['controller' => 'Setups', 'action' => 'view', $comment->setup->id], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
+                        <?= $this->Form->postLink('', ['action' => 'delete', $comment->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this comment ?')]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

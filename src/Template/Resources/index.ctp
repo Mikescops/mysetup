@@ -33,7 +33,7 @@
                     <td><?= urldecode(h($resource->href)) ?></td>
                     <td><?= urldecode(h($resource->src)) ?></td>
                     <td class="actions">
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $resource->id], ['confirm' => __('Are you sure you want to delete this resource ?')]) ?>
+                        <?= $this->Form->postLink('', ['action' => 'delete', $resource->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this resource ?')]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

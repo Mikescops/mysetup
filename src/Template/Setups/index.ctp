@@ -116,8 +116,8 @@
                     <td><?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); ?></td>
                     <td><?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $setup->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $setup->id], ['confirm' => __('Are you sure you want to delete this setup ?')]) ?>
+                        <?= $this->Html->link('', ['action' => 'view', $setup->id], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
+                        <?= $this->Form->postLink('', ['action' => 'delete', $setup->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this setup ?')]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
