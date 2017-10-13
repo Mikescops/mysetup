@@ -87,12 +87,30 @@
     <div class="container-fluid pt-4">
 
       <div class="row">
-        <div class="col-12 col-md-3 col-xl-2">
+        <div class="col-12 col-md-3 col-xl-2 d-none d-md-block">
           
-            <div class="list-group d-none d-md-block">
+            <div class="list-group">
               <a href="<?=$this->Url->build('/users/'. $authUser['id'])?>" class="list-group-item active"><i class="fa fa-chevron-right"></i> Welcome <?= h($authUser['name']) ?></a>
               <a href="https://github.com/Mikescops/mysetup" class="list-group-item list-group-item-action"><i class="fa fa-github"></i> Github Repo</a>
               <a href="https://github.com/Mikescops/mysetup-twitch-extension" class="list-group-item list-group-item-action"><i class="fa fa-twitch"></i> Extension Twitch Repo</a>
+            </div>
+
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <strong>X</strong> setups
+                    </div>
+                    <div class="col-6">
+                        <strong>X</strong> users
+                    </div>
+                    <div class="col-6">
+                        <strong>X</strong> comments
+                    </div>
+                    <div class="col-6">
+                        <strong>X</strong> resources
+                    </div>
+                </div>
             </div>
 
         </div>
