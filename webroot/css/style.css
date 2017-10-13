@@ -900,15 +900,8 @@ footer a{
 	font: normal normal normal 25px/1 FontAwesome;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
-
-	visibility: hidden;
 	background: none;
 	border: none;
-}
-
-.slick-prev:before{
-	content: "\f053";
-	visibility: visible;
 }
 
 .slick-next{
@@ -920,17 +913,21 @@ footer a{
 	font: normal normal normal 25px/1 FontAwesome;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
-
-	visibility: hidden;
 	background: none;
 	border: none;
 }
 
-.slick-next:after{
-	content: "\f054";
-	visibility: visible;
+
+.slick-prev:hover, .slick-next:hover, .slick-prev:focus, .slick-next:focus{
+	background: none;
+	color: #ababab;
+	outline: 0;
+	border: 0;
 }
 
+.slick-disabled{
+	display: none!important;
+}
 
 
 .labeled_button, .red_button{
