@@ -981,28 +981,76 @@ footer a{
 }
 
 .item-meta{
-	margin-top: 20px;
+	
 }
 
 .setup-date{
 	text-align: center;
 }
 
-.description-section{
-	padding: 2rem;
-}
-
-.description-section h4:first-child{
-	text-align: center;
-	border-bottom: 1px solid rgb(215, 209, 209);
-	padding-bottom: 10px;
-}
-
-.description-section .column{
-	border: 1px solid rgb(60, 60, 60);
+.content-section{
+	position: relative;
+	margin-top: 20px;
 	border-radius: 4px;
-	padding: 2rem;
 	background-color: rgb(29, 29, 29);
+	overflow-x: hidden;
+	overflow-y: auto;
+	max-height: calc(100vh - 60px);
+}
+
+.section-inner::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: rgb(29, 29, 29)
+}
+
+.section-inner::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: rgb(29, 29, 29);
+}
+
+.section-inner::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: rgb(60, 60, 60);
+}
+
+.content-section .column{
+	padding: 0;
+	position: relative;
+}
+
+.item-meta .section-inner{
+	border-right: 1px solid rgb(60, 60, 60);
+}
+
+.section-header{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	background: #040404;
+	padding: 10px;
+	text-align: center;
+	border-bottom: 2px solid rgb(60, 60, 60);
+	z-index: 10;
+}
+
+.section-header h4{
+	margin-bottom: 0;
+}
+
+.content-section .section-inner{
+	padding: 70px 20px;
+	height: 100%;
+	overflow: auto;
+}
+
+.section-footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background: #040404;
 }
 
 .jssocials-shares {
@@ -1017,13 +1065,6 @@ footer a{
 
 .jssocials-share-link:hover{
 	background: #3E3E3E !important;
-}
-
-.comment-section-title{
-}
-
-.comment-section{
-	margin-top: 15px;
 }
 
 #commentField{
@@ -1993,8 +2034,16 @@ nav {
     	max-width: 100%;
 	}
 
-	.description-section{
+	.setupview{
 		padding: 0;
+	}
+
+	.content-section{
+		padding: 0;
+	}
+
+	.content-section h4{
+		font-size: 1.6rem;
 	}
 
 	.edit_panel{
@@ -2103,6 +2152,15 @@ nav {
 		max-width: 100%!important;
 	}
 
+	.content-section{
+		max-height: none;
+	}
+
+	.content-section .column{
+		flex: 0 0 100%!important;
+    	max-width: 100%!important;
+	}
+
 	.featured-inner h3{
 		font-size: 1.3em;
 	}
@@ -2121,12 +2179,6 @@ nav {
 
 	.labeled_button span{
 		display: none;
-	}
-
-	.comment-section .column, .description-section .column{
-		flex: 0 0 100%!important;
-		max-width: 100%!important;
-		margin-left: 0!important;
 	}
 
 	/* USER PROFILE */

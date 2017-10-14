@@ -299,54 +299,64 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 </div>
 
 
-<div class="container">
-    <div class="maincontainer">
+<div class="container maincontainer setupview">
+    <div class="row config-post">
+        <div class="column">
 
-        <div class="row config-post">
-            <div class="column">
+            <div class="config-items">
 
-                <div class="config-items">
+                <?php $i=0; foreach ($setup['resources']['products'] as $item): ?>
 
-                    <?php $i=0; foreach ($setup['resources']['products'] as $item): ?>
+                <div id="item-trigger-<?= $i ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
 
-                    <div id="item-trigger-<?= $i ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
-
-                    <div id="item-about-<?= $i ?>" style="display: none;">
-                        <div class="about-inner">
-                          <h5><?= urldecode($item->title) ?></h5>
-                          <a href="<?=  $this->Url->build('/setups/search?q='.urldecode($item->title)); ?>" class="button brelated"><i class="fa fa-search"></i> Find related setups</a>
-                          <a href="<?= urldecode($item->href) ?>" traget="_blank" class="button amazon-buy">More info on <i class="fa fa-amazon"></i></a>
-                      </div>
-                    </div>
-
-                    <?= $this->Html->scriptBlock("new tippy('#item-trigger-$i', {zIndex: 20, html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
-
-                    <?php $i++; endforeach ?>
-
+                <div id="item-about-<?= $i ?>" style="display: none;">
+                    <div class="about-inner">
+                      <h5><?= urldecode($item->title) ?></h5>
+                      <a href="<?=  $this->Url->build('/setups/search?q='.urldecode($item->title)); ?>" class="button brelated"><i class="fa fa-search"></i> Find related setups</a>
+                      <a href="<?= urldecode($item->href) ?>" traget="_blank" class="button amazon-buy">More info on <i class="fa fa-amazon"></i></a>
+                  </div>
                 </div>
 
+                <?= $this->Html->scriptBlock("new tippy('#item-trigger-$i', {zIndex: 20, html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
+
+                <?php $i++; endforeach ?>
+
             </div>
 
         </div>
 
-        <div class="row description-section">
+    </div>
 
-            <div class="column column-60 column-offset-20 item-meta">
+    <div class="row content-section">
 
+        <div class="column column-60 item-meta">
+
+            <div class="section-header">
                 <h4><?= __('About this setup') ?></h4>
+            </div>
+
+            <div class="section-inner">
 
                 <?= $this->Markdown->transform(h($setup->description))?>
-
-                <div id="social-networks"></div>
-
+                <span class="setup-date">
+                    <?php if($setup->creationDate != $setup->modifiedDate): ?>
+                        <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
+                    <?php else: ?>
+                        <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
+                    <?php endif; ?>
+                </span>
+                
             </div>
 
         </div>
 
-        <div class="row comment-section" id="comments">
+        <div id="comments" class="column column-40">
 
-            <div class="column column-60 column-offset-20">
+            <div class="section-header">
                 <h4 class="comment-section-title"><?= __('Wanna share your opinion ?') ?></h4>
+            </div>
+
+            <div class="section-inner">
 
                 <section class="comments">
                     <?php if (!empty($setup->comments)): ?>
@@ -407,20 +417,17 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?php endif ?>
 
             </div>
+
         </div>
 
-        <br>
-
-        <p class="setup-date">
-            <?php if($setup->creationDate != $setup->modifiedDate): ?>
-                <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
-            <?php else: ?>
-                <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
-            <?php endif; ?>
-        </p>
+        <div class="section-footer">
+            <div id="social-networks"></div>
+        </div>
 
     </div>
+
 </div>
+
 <script>
     function onSubmit(token) {
         document.getElementById("comment-form").submit();
