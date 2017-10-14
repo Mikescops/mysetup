@@ -151,6 +151,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                             <div id="components-edit" class="form-action-edit hide-edit">
 
                                 <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
+
+                                <?php if($authUser['admin']): ?>
+
+                                    <a href="#edit_setup_manual_modal" data-lity><?= __('Add product manually') ?></a>
+
+                                <?php endif ?>
+
                                 <ul class="search_results edit_setup"></ul>
                                 <ul class="basket_items edit_setup">
                                     <?php foreach ($setup['resources']['products'] as $item): ?>
@@ -219,6 +226,34 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                         </div>
                     </fieldset>
                 </div>
+
+                <?php if($authUser['admin']): ?>
+
+                    <div id="edit_setup_manual_modal" class="lity-hide">
+
+                        <span><?= __('Add a product manually') ?></span>
+                        <div id="manual-product-edit">
+                            <input type="text" name="manual-title" placeholder="<?= __('Product Title') ?>">
+                            <input type="text" name="manual-href" placeholder="Href">
+                            <input type="text" name="manual-src" placeholder="Src">
+                            <a class="button" onclick="manualAddToBasket()"><?= __('Add') ?></a class="button">
+                        </div>
+
+                        <script type="text/javascript">
+                            function manualAddToBasket(){
+                                var title = $('#manual-product-edit input[name="manual-title"]').val();
+                                var href = $('#manual-product-edit input[name="manual-href"]').val();
+                                var src = $('#manual-product-edit input[name="manual-src"]').val();
+                                var encodedHref = encodeURIComponent(href);
+                                var encodedTitle = encodeURIComponent(title);
+                                var encodedSrc = encodeURIComponent(src);
+                                addToBasket(title, href, src, 'edit_setup');
+                            }
+                        </script>
+
+                    </div>
+
+                <?php endif ?>
 
                 <div id="embed_twitch_modal" class="lity-hide">
                     <h4><?= __('How to embed your setup in Twitch ?') ?></h4>

@@ -1478,7 +1478,7 @@ nav {
 
 /* **** ADD MODAL **** */
 
-#add_setup_modal, #edit_setup_modal, #edit_profile_modal, #embed_twitch_modal, #edit_user_admin, #bug_report_modal, #embed_website_script{
+#add_setup_modal, #edit_setup_modal, #edit_setup_manual_modal,#edit_profile_modal, #embed_twitch_modal, #edit_user_admin, #bug_report_modal, #embed_website_script{
 	color: #000;
 	overflow:auto;
 	background:#fff;
