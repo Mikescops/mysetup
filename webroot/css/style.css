@@ -1188,7 +1188,7 @@ nav {
 }
 
 .nav-transparent .right-nav, .nav-transparent .mobile-nav{
-	margin-top: 10px;
+	margin-top: 0px;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
@@ -1234,7 +1234,7 @@ nav {
 }
 
 .nav-color .right-nav, .nav-color .mobile-nav{
-	margin-top: 0;
+	margin-top: -10px;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
@@ -1433,12 +1433,6 @@ nav {
 	-moz-transition:all 0.2s linear;
 	-o-transition:all 0.2s linear;
 	transition:all 0.2s linear;
-	/* Enable hardware acceleration to fix laggy transitions */
-	-webkit-transform: translateZ(0);
-	-moz-transform: translateZ(0);
-	-ms-transform: translateZ(0);
-	-o-transform: translateZ(0);
-	transform: translateZ(0);	
 }
 
 #mobile-nav li a:hover {
