@@ -18,7 +18,7 @@ $this->assign('title', __('Login | mySetup.co'));
         </li>
     </ul>
     <div id="login" class="form-action show">
-        <?= $this->Form->create(null, ['url' => ['controller' => 'Users', 'action' => 'login']]) ?>
+        <?= $this->Form->create(null, ['url' => ['controller' => 'Users', 'action' => 'login', '?' => ['redirect' => $this->request->query('redirect')]]]) ?>
         <fieldset>
             <ul>
                 <li>
