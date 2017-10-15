@@ -146,6 +146,9 @@ class UsersTable extends Table
         $validator
             ->allowEmpty('twitchToken');
 
+    $validator
+            ->allowEmpty('twitchUserId');
+
         $validator
             ->allowEmpty('uwebsite');
 
@@ -170,7 +173,11 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['mail', 'twitchToken']));
+        $rules->add($rules->isUnique([
+            'mail',
+            'twitchToken',
+            'twitchUserId'
+        ]));
 
         $rules->
             add(function($entity) {

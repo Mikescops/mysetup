@@ -538,6 +538,7 @@ class UsersController extends AppController
             $user->preferredStore = strtoupper((substr($_GET['state'], 0, 2)));
             $user->timeZone       = 'Europe/London';
             $user->twitchToken    = $token;
+            $user->twitchUserId   = $response->json['_id'];
             $user->verified       = 0;
 
             // Fix a very weird behavior (un-debug-gable) if the `EN` language comes from the JS
