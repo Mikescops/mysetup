@@ -346,7 +346,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                         <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
                     <?php endif; ?>
                 </span>
-                
+
             </div>
 
         </div>
@@ -413,7 +413,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                 <?php else: ?>
 
-                    <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build('/login')?>"><?= __('Log me in !') ?></a>
+                    <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login', '?' => ['redirect' => '/setups/' . $setup->id]])?>"><?= __('Log me in !') ?></a>
 
                 <?php endif ?>
 

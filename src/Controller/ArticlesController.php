@@ -28,10 +28,8 @@ class ArticlesController extends AppController
                 'Articles.dateTime'=> 'desc'
             ]
         ];
-        $articles = $this->paginate($this->Articles);
 
-        $this->set(compact('articles'));
-        $this->set('_serialize', ['articles']);
+        $this->set('articles', $this->paginate($this->Articles));
     }
 
 
@@ -60,7 +58,6 @@ class ArticlesController extends AppController
         ]);
 
         $this->set('article', $article);
-        $this->set('_serialize', ['article']);
     }
 
     /**
@@ -118,7 +115,6 @@ class ArticlesController extends AppController
         $categories = $this->Articles->categories;
 
         $this->set(compact('article', 'categories'));
-        $this->set('_serialize', ['article']);
     }
 
     /**
@@ -189,7 +185,6 @@ class ArticlesController extends AppController
         $categories = $this->Articles->categories;
 
         $this->set(compact('article', 'categories'));
-        $this->set('_serialize', ['article']);
     }
 
     /**

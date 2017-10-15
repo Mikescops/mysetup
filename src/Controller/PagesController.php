@@ -38,13 +38,15 @@ class PagesController extends AppController
     {
         // Set some variables here, and give back the control to the `display()` method
         $Setups = TableRegistry::get('Setups');
-        $this->set('featuredSetups', $Setups->getSetups(['featured' => true, 'number' => 5]));
-        $this->set('popularSetups', $Setups->getSetups(['number' => 20, 'type' => 'like']));
-        $this->set('recentSetups', $Setups->getSetups(['number' => 3]));
-        $this->set('amdSetups', $Setups->getSetups(['query' => 'amd', 'number' => 10, 'type' => 'like']));
-        $this->set('nvidiaSetups', $Setups->getSetups(['query' => 'nvidia', 'number' => 10, 'type' => 'like']));
+        $featuredSetups = $Setups->getSetups(['featured' => true, 'number' => 5]);
+        $popularSetups = $Setups->getSetups(['number' => 20, 'type' => 'like']);
+        $recentSetups = $Setups->getSetups(['number' => 3]);
+        $amdSetups = $Setups->getSetups(['query' => 'amd', 'number' => 10, 'type' => 'like']);
+        $nvidiaSetups = $Setups->getSetups(['query' => 'nvidia', 'number' => 10, 'type' => 'like']);
 
-        $this->set('activeUsers', TableRegistry::get('Users')->getActiveUsers(12));
+        $activeUsers = TableRegistry::get('Users')->getActiveUsers(12);
+
+        $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'amdSetups', 'nvidiaSetups', 'activeUsers'));
 
         $this->display('home');
     }

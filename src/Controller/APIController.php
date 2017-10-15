@@ -84,7 +84,6 @@ class APIController extends AppController
         ];
         // ___________________________________________________________________________________________
 
-        $this->set(compact('setup'));
-        $this->set('_serialize', ['setup']);
+        $this->set('setup', $setup);
     }
 }
