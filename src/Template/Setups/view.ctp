@@ -53,7 +53,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div class="slider-item">
                 <div class="slider-item-inner">
                     <a href="<?= $this->Url->build('/', true)?><?= $image->src ?>" data-lity data-lity-desc="Photo of Config'">
-                        <img alt="<?= ('Gallery image of') ?> <?= h($setup->title) ?>" src="<?= $this->Url->build('/', true)?><?= $image->src ?>">
+                        <img data-lazy="<?= $this->Url->build('/', true)?><?= $image->src ?>">
                     </a>
                 </div>
             </div>

@@ -66,7 +66,7 @@ $('.post_slider').slick({
   centerMode: false,
   autoplay: false,
   adaptiveHeight: true,
-  lazyLoad: 'ondemand',
+  lazyLoad: 'progressive',
   arrows: true,
   infinite: false,
   slidesToShow: 1,
