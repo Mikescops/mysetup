@@ -141,11 +141,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                                     <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Add gallery image') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
                                 <?php endfor ?>
                                 </div>
-                            </div>
 
-                            <div class="modal-footer">
-                                <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
-                                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
+
+                                <div class="modal-footer">
+                                    <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
+                                    <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
+                                </div>
                             </div>
 
                             <div id="components-edit" class="form-action-edit hide-edit">
