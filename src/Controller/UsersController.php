@@ -317,7 +317,7 @@ class UsersController extends AppController
                     $user = $this->Users->get($user['id']);
                     $user->lastLogginDate = Time::now();
                     // The `modificationDate` value won't change as we've just updated the `lastLogginDate` value...
-                    $user->dirty('modificationDate', 'dirty');
+                    $user->setDirty('modificationDate', true);
                     $this->Users->save($user);
 
                     $this->Flash->success(__('You are successfully logged in !'));
@@ -512,7 +512,7 @@ class UsersController extends AppController
             // ... let's now patch this new token, and save the entity
             $user->twitchToken = $token;
             // The `modificationDate` value won't change as we've just replaced the token
-            $user->dirty('modificationDate', 'dirty');
+            $user->setDirty('modificationDate', true);
             if(!$this->Users->save($user))
             {
                 $this->Flash->error(__('An error occurred while logging you in'));
