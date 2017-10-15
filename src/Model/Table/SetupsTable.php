@@ -172,6 +172,30 @@ class SetupsTable extends Table
     {
         // Read or not, we just get rid of each notification referencing this (deleted) setup
         TableRegistry::get('Notifications')->deleteAll(['content LIKE' => '%' . $entity['id'] . '%']);
+
+        // This setup has just been deleted, let's update the main setup of this user accordingly
+        $user = $this->Users->get($entity['user_id']);
+        if($user->mainSetup_id === $entity['id'])
+        {
+            // His new main setup will be his second one, or NULL if there is no other one :s
+            $newMainSetup = $this->find('all', [
+                'fields' => [
+                    'id'
+                ],
+                'conditions' => [
+                    'user_id' => $user->id
+                ],
+                'order' => [
+                    'creationDate' => 'DESC'
+                ],
+                'limit' => 1
+            ])->first();
+
+            $user->mainSetup_id = ($newMainSetup ? $newMainSetup->id : 0);
+
+            $user->setDirty('modificationDate', true);
+            $this->Users->save($user);
+        }
     }
 
     public function getSetups($array = [])

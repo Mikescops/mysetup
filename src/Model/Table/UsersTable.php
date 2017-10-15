@@ -136,17 +136,21 @@ class UsersTable extends Table
             ->notEmpty('creationDate');
 
         $validator
-            ->dateTime('lastLogginDate')
-            ->allowEmpty('lastLogginDate');
-
-        $validator
             ->dateTime('modificationDate')
             ->notEmpty('modificationDate');
 
         $validator
+            ->dateTime('lastLogginDate')
+            ->allowEmpty('lastLogginDate');
+
+        $validator
+            ->integer('mainSetup_id')
+            ->allowEmpty('mainSetup_id');
+
+        $validator
             ->allowEmpty('twitchToken');
 
-    $validator
+        $validator
             ->allowEmpty('twitchUserId');
 
         $validator
@@ -204,6 +208,21 @@ class UsersTable extends Table
                 }
             },
             'preferredStoreIntegrity_rule');
+
+        $rules->
+            add(function($entity) {
+                // Here we only allow a "NULL" value, or an ID existing in the Setups DB
+                if($entity['mainSetup_id'] !== 0 and !$this->Setups->exists(['id' => $entity['mainSetup_id']]))
+                {
+                    return false;
+                }
+
+                else
+                {
+                    return true;
+                }
+            },
+            'mainSetup_idIntegrity_rule');
 
         return $rules;
     }

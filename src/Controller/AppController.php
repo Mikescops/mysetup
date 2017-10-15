@@ -102,6 +102,9 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
 
+        // We'll need this Model below...
+        $this->loadModel('Setups');
+
         // Test if a user is logged in, and if it's the case, give to the view the user entity linked
         if(isset($this->Auth)) {
             $this->loadModel('Users');
@@ -120,12 +123,28 @@ class AppController extends Controller
 
             $this->set('authUser', $user);
 
+            // Now, let's send the setups list to the view (to let the user choose a default one)*
+            $setupsList = [];
+            foreach($this->Setups->find('all', [
+                'fields' => [
+                    'id',
+                    'title'
+                ],
+                'conditions' => [
+                    'user_id' => $user['id']
+                ]
+            ]
+            )->toArray() as $setup) {
+                $setupsList += [$setup->id => $setup->title];
+            }
+
+            $this->set('setupsList', $setupsList);
+
             // Let's send to the view the list of timezones as well
             $this->set('timezones', $this->Users->timezones);
         }
 
         // Before render the view, let's give a new entity for add Setup modal to it
-        $this->loadModel('Setups');
         $newSetupEntity = $this->Setups->newEntity();
 
         // We'll need also the setups available status

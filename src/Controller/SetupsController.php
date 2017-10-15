@@ -81,10 +81,13 @@ class SetupsController extends AppController
             // Let's set the id of the current logged in user
             $data['user_id'] = $this->request->session()->read('Auth.User.id');
 
+            // Here we fetch the user entity, 'cause we'll need it later
+            $user = $this->Setups->Users->get($data['user_id']);
+
             // Here we'll assign automatically the owner of the setup to the entity
             if(!isset($data['author']) or $data['author'] === '')
             {
-                $data['author'] = $this->Setups->Users->get($data['user_id'])['name'];
+                $data['author'] = $user->name;
             }
 
             // See the `edit` method for the explanations of the below statements
@@ -103,7 +106,6 @@ class SetupsController extends AppController
             do {
                 $setup->id = mt_rand() + 1;
             } while($this->Setups->find()->where(['id' => $setup->id])->count() !== 0);
-
 
             if($this->Setups->save($setup))
             {
@@ -126,6 +128,16 @@ class SetupsController extends AppController
                 {
                     $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id'], false);
                 }
+
+                // User's main Setup feature : If this user does not have currently any, let's assign this new one
+                if(!$user->mainSetup_id)
+                {
+                    $user->mainSetup_id = $setup->id;
+
+                    $user->setDirty('modificationDate', true);
+                    $this->Setups->Users->save($user);
+                }
+                // _______________________________________________________________________________________________
 
                 $this->Flash->success(__('The setup has been saved.'));
                 return $this->redirect(['action' => 'view', $setup->id]);
