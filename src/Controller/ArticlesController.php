@@ -32,11 +32,6 @@ class ArticlesController extends AppController
         $this->set('articles', $this->paginate($this->Articles));
     }
 
-
-    /*Add markdown support*/
-    public $helpers = ['Tanuck/Markdown.Markdown' => ['parser' => 'GithubMarkdown']];
-
-
     /**
      * View method
      *

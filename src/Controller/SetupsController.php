@@ -13,9 +13,6 @@ use Cake\Network\Response;
 class SetupsController extends AppController
 {
 
-    /*Add markdown support*/
-    public $helpers = ['Tanuck/Markdown.Markdown' => ['parser' => 'GithubMarkdown']];
-
     /**
      * View method
      *

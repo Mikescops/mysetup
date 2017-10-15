@@ -25,16 +25,12 @@ use Cake\View\View;
 class AppView extends View
 {
 
-    /**
-     * Initialization hook method.
-     *
-     * Use this method to add common initialization code like loading helpers.
-     *
-     * e.g. `$this->loadHelper('Html');`
-     *
-     * @return void
-     */
     public function initialize()
     {
+        // We'll only load our Markdown Helper for '{Setups,Articles}.view' pages !
+        if($this->request->action === 'view' and in_array($this->request->controller, ['Setups', 'Articles']))
+        {
+            $this->loadHelper('Tanuck/Markdown.Markdown');
+        }
     }
 }
