@@ -31,7 +31,7 @@ class AdminController extends AppController
             ]
         ]);
 
-        $this->set(compact('setups'));
+        $this->set('setups', $setups);
     }
 
     public function users()
@@ -42,7 +42,7 @@ class AdminController extends AppController
             ]
         ]);
 
-        $this->set(compact('users'));
+        $this->set('users', $users);
     }
 
     public function comments()
@@ -54,7 +54,7 @@ class AdminController extends AppController
             ]
         ]);
 
-        $this->set(compact('comments'));
+        $this->set('comments', $comments);
     }
 
     public function resources()
@@ -66,6 +66,6 @@ class AdminController extends AppController
             ]
         ]);
 
-        $this->set(compact('resources'));
+        $this->set('resources', $resources);
     }
 }

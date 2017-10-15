@@ -65,7 +65,6 @@ class SetupsController extends AppController
         // ________________________________________________________
 
         $this->set(compact('setup', 'newComment'));
-        $this->set('_serialize', ['setup']);
     }
 
     /**
@@ -320,8 +319,7 @@ class SetupsController extends AppController
             $results = 'noquery';
         }
 
-        $this->set(compact('results'));
-        $this->set('_serialize', ['results']);
+        $this->set('results', $results);
     }
 
     public function requestOwnership($id = null)

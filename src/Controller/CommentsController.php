@@ -61,8 +61,7 @@ class CommentsController extends AppController
             return $this->redirect($this->referer() . '#comment' . ($comment->id ? '-' . $comment->id : 's'));
         }
 
-        $this->set(compact('comment'));
-        $this->set('_serialize', ['comment']);
+        $this->set('comment', $comment);
     }
 
     /**
@@ -93,8 +92,7 @@ class CommentsController extends AppController
             return $this->redirect($this->referer() . '#comment' . ($comment->id ? '-' . $comment->id : 's'));
         }
 
-        $this->set(compact('comment'));
-        $this->set('_serialize', ['comment']);
+        $this->set('comment', $comment);
     }
 
     /**
