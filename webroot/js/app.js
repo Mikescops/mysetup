@@ -34,6 +34,7 @@ $('.home_slider').slick({
   centerMode: true,
   infinite: true,
   arrows: false,
+  lazyLoad: 'ondemand',
   autoplay: true,
   autoplaySpeed: 4000,
   centerPadding: '200px',
