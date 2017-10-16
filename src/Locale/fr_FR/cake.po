@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-06-09 19:31+0200\n"
-"PO-Revision-Date: 2017-06-09 19:31+0200\n"
+"POT-Creation-Date: 2017-10-16 14:18-0400\n"
+"PO-Revision-Date: 2017-10-16 14:18-0400\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -15,23 +15,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: Template/Error/error500.ctp:41
-msgid "An Internal Error Has Occurred :("
-msgstr "Une erreur interne est survenue :("
-
-#: Template/Error/error500.ctp:43
-msgid "Error"
-msgstr "Erreur"
-
 #: Controller/Component/AuthComponent.php:496
 msgid "You are not authorized to access that location."
 msgstr "Vous n'êtes pas autorisé(e) à accéder à cette page"
 
-#: Controller/Component/CsrfComponent.php:155
+#: Controller/Component/CsrfComponent.php:157
+#: Http/Middleware/CsrfProtectionMiddleware.php:190
 msgid "Missing CSRF token cookie"
 msgstr "Cookie CSRF manquant"
 
-#: Controller/Component/CsrfComponent.php:159
+#: Controller/Component/CsrfComponent.php:161
+#: Http/Middleware/CsrfProtectionMiddleware.php:194
 msgid "CSRF token mismatch."
 msgstr "Jeton CSRF invalide"
 
@@ -43,11 +37,11 @@ msgstr "Non trouvée !"
 msgid "An Internal Error Has Occurred."
 msgstr "Une erreur interne est survenue :("
 
-#: Http/Response.php:2258
+#: Http/Response.php:2389
 msgid "The requested file contains `..` and will not be read."
 msgstr "Le fichier demandé contient `...` et ne sera pas lu"
 
-#: Http/Response.php:2269
+#: Http/Response.php:2400
 msgid "The requested file was not found"
 msgstr "Le fichier demandé n'a pas été trouvé"
 
@@ -215,35 +209,35 @@ msgstr "Cette valeur n'existe pas"
 msgid "The count does not match {0}{1}"
 msgstr "Le compte ne correspond pas {0}{1}"
 
-#: Utility/Text.php:899
+#: Utility/Text.php:902
 msgid "and"
 msgstr "et"
 
-#: Validation/Validator.php:103
+#: Validation/Validator.php:111
 msgid "This field is required"
 msgstr "Ce champ est requis"
 
-#: Validation/Validator.php:104
+#: Validation/Validator.php:112
 msgid "This field cannot be left empty"
 msgstr "Ce champ ne put pas être laissé vide"
 
-#: Validation/Validator.php:1801
+#: Validation/Validator.php:1885
 msgid "The provided value is invalid"
 msgstr "La valeur renseignée est invalide"
 
-#: View/Helper/FormHelper.php:1016
+#: View/Helper/FormHelper.php:1040
 msgid "New %s"
 msgstr "Nouveau %s"
 
-#: View/Helper/FormHelper.php:1019
+#: View/Helper/FormHelper.php:1043
 msgid "Edit %s"
 msgstr "Éditer %s"
 
-#: View/Helper/FormHelper.php:1895
+#: View/Helper/FormHelper.php:1920
 msgid "Submit"
 msgstr "Soumettre"
 
-#: View/Helper/HtmlHelper.php:793
+#: View/Helper/HtmlHelper.php:795
 msgid "Home"
 msgstr "Accueil"
 
@@ -294,6 +288,12 @@ msgstr "Novembre"
 #: View/Widget/DateTimeWidget.php:551
 msgid "December"
 msgstr "Décembre"
+
+#~ msgid "An Internal Error Has Occurred :("
+#~ msgstr "Une erreur interne est survenue :("
+
+#~ msgid "Error"
+#~ msgstr "Erreur"
 
 #~ msgid "The {0} was not found :( Maybe your friend sent you the wrong link !"
 #~ msgstr "La page {0} n'existe pas :( Peut-être que votre ami(e) vous a envoyé un mauvais lien !"

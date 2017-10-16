@@ -155,7 +155,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                                 <?php if($authUser['admin']): ?>
 
-                                    <a href="#edit_setup_manual_modal" data-lity><?= __('Add product manually') ?></a>
+                                    <a href="#edit_setup_manual_modal" data-lity><?= __('Add a product manually') ?></a>
 
                                 <?php endif ?>
 
