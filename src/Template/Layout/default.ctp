@@ -61,7 +61,7 @@
         <div class="row container">
             <div class="column column-20">
 
-                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mySetup', 'class' => 'ms-logo')); ?></a>
+                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mySetup', 'class' => 'ms-logo', 'height' => '100%')); ?></a>
 
             </div>
             <div class="column column-80">
@@ -92,6 +92,7 @@
                         <li style="margin-right: 19px;">
                                 <a class="navbar-user"><?= h($authUser['name']) ?> <img class="current-profile-user" alt="<?= __('Profile picture of') ?> <?= $authUser['name'] ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser['id'] . '.png?' . $authUser['modificationDate']->format('is')) ?>"></a>
                                 <ul style="left: auto;right: -20px;">
+                                    <li><a href="<?=$this->Url->build('/likes')?>"><?= __('My Likes') ?></a></li>
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
                                     <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
@@ -109,7 +110,7 @@
 
                                     <div class="profilepicup">
                                         <?php
-                                            echo $this->Form->input('picture', ['label' => __("Change my profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
+                                            echo $this->Form->control('picture', ['type' => 'file', 'label' => __("Change my profile picture"), 'class' => 'inputfile', 'id' => 'profileUpload']);
                                         ?>
                                     </div>
 
@@ -122,14 +123,20 @@
                                     </div>
                                     <div class="column column-75">
                                         <?php
-                                            echo $this->Form->control('name', ['required' => true, 'label' => '', 'placeholder' => __("Name"), 'default' => $authUser['name']]);
-                                            echo $this->Form->control('mail', ['required' => true, 'type' => 'email', 'label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
+                                            echo $this->Form->control('name', ['required' => true, 'label' => ['text' => '', 'class' => 'fa fa-user'], 'placeholder' => __("Name"), 'default' => $authUser['name']]);
+                                            echo $this->Form->control('mail', ['disabled' => true, 'type' => 'email', 'label' => ['text' => '', 'class' => 'fa fa-envelope'], 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
                                         ?>
 
                                         <?php
                                             echo $this->Form->control('uwebsite', ['label' => ['text' => '', 'class' => 'fa fa-globe'], 'placeholder' => "https://website.me", 'default' => $authUser['uwebsite']]);
                                             echo $this->Form->control('ufacebook', ['label' => ['text' => '', 'class' => 'fa fa-facebook'], 'placeholder' => "https://facebook.com/me", 'default' => $authUser['ufacebook']]);
                                             echo $this->Form->control('utwitter', ['label' => ['text' => '', 'class' => 'fa fa-twitter'], 'placeholder' => "https://twitter.com/me", 'default' => $authUser['utwitter']]);
+                                            echo $this->Form->control('utwitch', ['label' => ['text' => '', 'class' => 'fa fa-twitch'], 'placeholder' => "https://go.twitch.tv/me", 'default' => $authUser['utwitch']]);
+                                        ?>
+
+                                        <span><?= __('Choose your main setup : ') ?></span>
+                                        <?php
+                                            echo $this->Form->select('mainSetup_id', $setupsList, ['default' => $authUser['mainSetup_id'], 'class' => 'form-control']);
                                         ?>
 
                                         <?php
@@ -190,16 +197,16 @@
                             <span class="float-right link-marksupp"><a target="_blank" href="<?=$this->Url->build('/pages/q&a#q-6')?>"><i class="fa fa-info-circle"></i> Markdown supported</a></span>
                             <br>
                             <?php
-                                echo $this->Form->input('featuredImage', ['type' => 'file', 'label' => ['class' => 'label_fimage label_fimage_add', 'text' => __('Click to add a featured image *')], 'class' => 'inputfile', 'required' => 'true']);
+                                echo $this->Form->control('featuredImage', ['type' => 'file', 'label' => ['class' => 'label_fimage label_fimage_add', 'text' => __('Click to add a featured image *')], 'class' => 'inputfile', 'required' => 'true']);
                             ?>
                             <img id="featuredimage_preview">
                             <div class="hidden_five_inputs">
                                 <?php
-                                    echo $this->Form->input('gallery0', ['id' => 'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                                    echo $this->Form->input('gallery1', ['id' => 'gallery1add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                                    echo $this->Form->input('gallery2', ['id' => 'gallery2add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                                    echo $this->Form->input('gallery3', ['id' => 'gallery3add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                                    echo $this->Form->input('gallery4', ['id' => 'gallery4add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->control('gallery0', ['id' => 'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->control('gallery1', ['id' => 'gallery1add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->control('gallery2', ['id' => 'gallery2add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->control('gallery3', ['id' => 'gallery3add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                                    echo $this->Form->control('gallery4', ['id' => 'gallery4add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
                                 ?>
                             </div>
 
@@ -300,6 +307,7 @@
                     <li>
                         <ul>
                             <?php if($authUser): ?>
+                                <li><a href="<?=$this->Url->build('/likes')?>"><?= __('My Likes') ?></a></li>
                                 <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
                                 <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
                                 <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
@@ -386,7 +394,7 @@
 
     <!-- Jquery async load -->
     <?= $this->Html->script('jquery-3.2.0.min.js') ?>
-    <?= $this->Html->script('lib.min.js') ?>
+    <?= $this->Html->script('lib.min.js?v=2') ?>
     <?= $this->Html->script('tippy.min.js') ?>
 
     <!-- Emoji handling -->

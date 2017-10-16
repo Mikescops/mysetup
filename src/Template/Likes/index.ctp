@@ -1,23 +1,22 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', __('Popular this week | mySetup.co'));
+$this->assign('title', __('My likes | mySetup.co'));
 
-echo $this->Html->meta('description', __('The most popular setups of the week on mySetup.co'), ['block' => true]);
+echo $this->Html->meta('description', __('Setups you like on mySetup.co'), ['block' => true]);
 
-
-echo $this->Html->meta(['property' => 'og:title', 'content' => 'Popular this week | mySetup.co'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:description', 'content' => 'The most popular setups of the week on mySetup.co'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'The most popular setups of the week on mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:title', 'content' => 'My likes | mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => 'Setups you like on mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'Setups you like on mySetup.co'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/popular', true)], null ,['block' => true]);
-
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/likes', true)], null ,['block' => true]);
 
 ?>
+
 <div class="colored-container">
     <div class="container">
-        <br><h2><?= __('Popular this week') ?></h2><br>
+        <br><h2><?= __('My likes') ?></h2><br>
     </div>
 </div>
 <div class="container">
@@ -27,24 +26,24 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <div class="column column-75">
             <div class="fullitem_holder">
 
-            <?php foreach ($setups as $setup): ?>
+            <?php foreach ($likes as $like): ?>
 
             <div class="fullitem">
-                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                    <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/', true)?><?= $setup->resources[0]->src ?>">
+                <a href="<?= $this->Url->build('/setups/'.$like->setup->id.'-'.$this->Text->slug($like->setup->title)); ?>">
+                    <img alt="<?= h($like->setup->title) ?>" src="<?= $this->Url->build('/', true)?><?= $like->setup->resources[0]->src ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($like->setup->likes[0])){echo $like->setup->likes[0]->total;}else{echo 0;} ?></div>
 
                 <div class="fullitem-inner">
 
                     <div class="row">
 
                         <div class="column column-75">
-                            <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                <img alt="<?= __('Profile picture of') ?> #<?= $setup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
+                            <a class="featured-user" href="<?=$this->Url->build('/users/'.$like->setup->user->id)?>">
+                                <img alt="<?= __('Profile picture of') ?> #<?= $like->setup->user->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $like->setup->user->id . '.png?' . $this->Time->format($like->setup->user->modificationDate, 'mmss', null, null)); ?>">
                             </a>
 
-                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
+                            <a href="<?= $this->Url->build('/setups/'.$like->setup->id.'-'.$this->Text->slug($like->setup->title)); ?>"><h3><?= h($like->setup->title) ?></h3></a>
 
                         </div>
 

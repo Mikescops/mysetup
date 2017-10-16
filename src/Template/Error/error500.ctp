@@ -36,13 +36,19 @@ if (Configure::read('debug')):
     $this->end();
 endif;
 ?>
-
-<div class="maincontainer">
-    <h2><?= __d('cake', 'An Internal Error Has Occurred :(') ?></h2>
+<div class="colored-container">
+    <div class="container">
+        <br><h3>500 - <?= __('Something went wrong') ?></h3><br>
+    </div>
+</div>
+<div class="container">
+    <div class="maincontainer">
+    <h2><?= __('An Internal Error Has Occurred :(') ?></h2>
     <p class="error">
-        <strong><?= __d('cake', 'Error') ?>: </strong>
+        <strong><?= __('Error') ?>: </strong>
         <?= h($message) ?><br>
 
         You may cry or call an <a href="mailto:alert@mysetup.co">ambulance</a> !
     </p>
+    </div>
 </div>

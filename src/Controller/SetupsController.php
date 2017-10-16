@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Network\Response;
 
 /**
  * Setups Controller
@@ -11,24 +12,6 @@ use Cake\Event\Event;
  */
 class SetupsController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $this->paginate = ['contain' => ['Users']];
-
-        $setups = $this->paginate($this->Setups);
-
-        $this->set(compact('setups'));
-        $this->set('_serialize', ['setups']);
-    }
-
-    /*Add markdown support*/
-    public $helpers = ['Tanuck/Markdown.Markdown' => ['parser' => 'GithubMarkdown']];
 
     /**
      * View method
@@ -79,7 +62,6 @@ class SetupsController extends AppController
         // ________________________________________________________
 
         $this->set(compact('setup', 'newComment'));
-        $this->set('_serialize', ['setup']);
     }
 
     /**
@@ -99,10 +81,13 @@ class SetupsController extends AppController
             // Let's set the id of the current logged in user
             $data['user_id'] = $this->request->session()->read('Auth.User.id');
 
+            // Here we fetch the user entity, 'cause we'll need it later
+            $user = $this->Setups->Users->get($data['user_id']);
+
             // Here we'll assign automatically the owner of the setup to the entity
             if(!isset($data['author']) or $data['author'] === '')
             {
-                $data['author'] = $this->Setups->Users->get($data['user_id'])['name'];
+                $data['author'] = $user->name;
             }
 
             // See the `edit` method for the explanations of the below statements
@@ -122,7 +107,6 @@ class SetupsController extends AppController
                 $setup->id = mt_rand() + 1;
             } while($this->Setups->find()->where(['id' => $setup->id])->count() !== 0);
 
-
             if($this->Setups->save($setup))
             {
                 /* Here we get and save the featured image */
@@ -137,13 +121,23 @@ class SetupsController extends AppController
                 $this->Setups->Resources->saveGalleryImages($setup, $data, $this->Flash);
 
                 /* Here we save each product that has been selected by the user */
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], false);
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], false, parent::isAdminBySession($this->request->session()));
 
                 /* Here we save the setup video URL */
                 if(isset($data['video']) and $data['video'] !== '')
                 {
                     $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id'], false);
                 }
+
+                // User's main Setup feature : If this user does not have currently any, let's assign this new one
+                if(!$user->mainSetup_id)
+                {
+                    $user->mainSetup_id = $setup->id;
+
+                    $user->setDirty('modificationDate', true);
+                    $this->Setups->Users->save($user);
+                }
+                // _______________________________________________________________________________________________
 
                 $this->Flash->success(__('The setup has been saved.'));
                 return $this->redirect(['action' => 'view', $setup->id]);
@@ -196,7 +190,7 @@ class SetupsController extends AppController
             {
                 /* Here we delete all products then save each product that has been selected by the user */
                 $this->Setups->Resources->deleteAll(['Resources.user_id' => $setup->user_id, 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $setup->user_id, true);
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $setup->user_id, true, parent::isAdminBySession($this->request->session()));
 
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage']) and $data['featuredImage'] !== '' and (int)$data['featuredImage']['error'] === 0)
@@ -268,7 +262,7 @@ class SetupsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['search', 'view', 'answerOwnership', 'embed']);
+        $this->Auth->allow(['search', 'view', 'answerOwnership', 'getSetups']);
     }
 
     public function isAuthorized($user)
@@ -277,7 +271,7 @@ class SetupsController extends AppController
         {
             if(in_array($this->request->action, ['edit', 'delete']))
             {
-                if($this->Setups->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+                if($this->Setups->isOwnedBy((int)$this->request->getAttribute('params')['pass'][0], $user['id']))
                 {
                     return true;
                 }
@@ -292,84 +286,49 @@ class SetupsController extends AppController
         return parent::isAuthorized($user);
     }
 
+    public function getSetups()
+    {
+        if($this->request->is('ajax') or $this->request->is('get'))
+        {
+            $results = $this->Setups->getSetups([
+                'query' => $this->request->getQuery('q'),
+                'featured' => $this->request->getQuery('f'),
+                'order' => $this->request->getQuery('o'),
+                'number' => $this->request->getQuery('n'),
+                'offset' => $this->request->getQuery('p'),
+                'type' => $this->request->getQuery('t'),
+                'weeks' => $this->request->getQuery('w')
+            ]);
+
+            return new Response([
+                'status' => 200,
+                'type' => 'json',
+                'body' => json_encode($results)
+            ]);
+        }
+    }
+
     public function search()
     {
-        $query = $this->request->getQuery('q');
-
-        if($query)
+        if($this->request->getQuery('q'))
         {
-            // Some empty arrays in which we'll set the SQL conditions to match a setup... or not
-            $name_cond      = [];
-            $author_cond    = [];
-            $title_cond     = [];
-            $resources_cond = [];
+            $results = $this->Setups->getSetups([
+                'query' => $this->request->getQuery('q'),
+                'number' => 9999
+            ]);
 
-            // Let's fill in these array (tough operation)
-            foreach(explode("+", urlencode($query)) as $word)
+            if(count($results) == 0)
             {
-                array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);
-                array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
-                array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
-                array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
-            }
-
-            /*
-                This query is just ESSENTIAL. Some explanations are required:
-
-                    * We select only the column that we'll need (id, user_id, title, status) #optimization
-                    * Featured image (for each setup) will be directly available  ($setup['resources'][0]['src'])
-                    * Number of likes for each setup will be directly available ($setup->likes[0]->total)
-                    * We browse the Users table (in order to gather some setups with their user name)
-                    * We browse the Setups table (in order to gather some setups with their author name and title)
-                    * We browse the Resources table (in order to gather some setups with their resources title [=== product name])
-            */
-            $setups = $this->Setups->find('all', [
-                'contain' => [
-                    'Resources' => function($q) {
-                        return $q->autoFields(false)->where(['type' => 'SETUP_FEATURED_IMAGE'])->select(['setup_id', 'src']);
-                    },
-                    'Users' => function($q) {
-                        return $q->autoFields(false)->select(['id', 'name', 'modificationDate']);
-                    },
-                    'Likes' => function($q) {
-                        return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
-                    }
-                ],
-                'fields' => [
-                    'id',
-                    'user_id',
-                    'title',
-                    'creationDate',
-                    'status'
-                ],
-                'order' => [
-                    'Setups.creationDate' => 'DESC'
-                ],
-                'having' => [
-                    'status' => 'PUBLISHED'
-                ]
-            ])
-            ->where(['OR' => $name_cond])
-            ->orWhere(['OR' => $author_cond])
-            ->orWhere(['OR' => $title_cond])
-            ->leftJoinWith('Resources')
-            ->orWhere(['OR' => $resources_cond])
-            ->distinct()
-            ->toArray();
-
-            if(count($setups) == 0)
-            {
-                $setups = "noresult";
+                $results = 'noresult';
             }
         }
 
         else
         {
-            $setups = "noquery";
+            $results = 'noquery';
         }
 
-        $this->set(compact('setups'));
-        $this->set('_serialize', ['setups']);
+        $this->set('results', $results);
     }
 
     public function requestOwnership($id = null)
@@ -501,49 +460,5 @@ class SetupsController extends AppController
 
             return $this->redirect(['action' => 'view', $id]);
         }
-    }
-
-
-    /**
-     * Embed method
-     *
-     * @param string|null $id Setup id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function embed($id = null)
-    {
-        // This should be below, but we wanna throw a 404 on the production if the user tries to have access to a non-existing setup...
-        $setup = $this->Setups->get($id, [
-            'contain' => [
-                'Users' => [
-                    'fields' => [
-                        'id',
-                        'name',
-                        'verified'
-                    ]
-                ]
-            ]
-        ]);
-
-        // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner, nor an administrator...
-        $session = $this->request->session();
-        if(!$this->Setups->isPublic($id) and (!$session->read('Auth.User.id') or !$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and !parent::isAdminBySession($session))
-        {
-            $this->Flash->error(__('You are not authorized to access that location.'));
-            // Just throw a 404-like exception here to make the `iframe` voluntary crash
-            throw new NotFoundException();
-        }
-        // _________________________________________________________________________________________________________________________________
-
-        // Here we'll get each resource linked to this setup, and set them up into the existing entity
-        $setup['resources'] = [
-            'products' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all()->toArray(),
-            'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
-        ];
-        // ___________________________________________________________________________________________
-
-        $this->set(compact('setup'));
-        $this->set('_serialize', ['setup']);
     }
 }

@@ -6,9 +6,7 @@
     $this->layout = 'admin';
 ?>
 
-<div class="row">
-
-    <div class="col-sm-12">
+<div class="col-12 col-md-9 col-xl-10">
 
 
   <h3>Analytics</h3>
@@ -89,7 +87,9 @@
 
         <br />
 
-        <h3><?= __('Setups') ?> - <?= $this->Paginator->counter(['format' => '{{count}}']) ?></h3>
+    <h3><?= __('Setups') ?> - <?= $this->Paginator->counter(['format' => '{{count}}']) ?></h3>
+
+    <div style="overflow-x: auto;">
         <table class="table table-striped table-responsive" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
@@ -116,13 +116,14 @@
                     <td><?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); ?></td>
                     <td><?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $setup->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $setup->id], ['confirm' => __('Are you sure you want to delete this setup ?')]) ?>
+                        <?= $this->Html->link('', ['controller' => 'Setups', 'action' => 'view', $setup->id], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
+                        <?= $this->Form->postLink('', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this setup ?')]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+    </div>
         <?php $this->Paginator->setTemplates(['current' => '<li class="page-item active"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
               $this->Paginator->setTemplates(['number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
               $this->Paginator->setTemplates(['first' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
@@ -130,7 +131,7 @@
               $this->Paginator->setTemplates(['nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
               $this->Paginator->setTemplates(['prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
               $this->Paginator->setTemplates(['nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
-              $this->Paginator->setTemplates(['prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);  
+              $this->Paginator->setTemplates(['prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>']);
          ?>
         <div class="paginator">
             <ul class="pagination">
@@ -142,5 +143,5 @@
             </ul>
             <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
         </div>
-    </div>
 </div>
+

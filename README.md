@@ -38,9 +38,9 @@ In order to deploy this website on your web server:
 
 8. `# chown -R www-data:www-data webroot/uploads/`
 
-9. `$ bash deployment.sh`
+9. `$ bash bin/deployment.sh`
 
-10. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and import the `MySetup.sql` file into a new database.
+10. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and import the `config/schema/mySetup.sql` file into a new database.
 
 11. Configure an user with required rights on this database, and set it up in the `config/app.php` file in the _Datasources_ section.
 

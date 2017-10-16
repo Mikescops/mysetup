@@ -15,11 +15,9 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
-use Cake\Network\Response;
 use Cake\Event\Event;
 use Cake\I18n\I18n;
 use Cake\Network\Http\Client;
-use Cake\Routing\Router;
 
 /**
  * Application Controller
@@ -48,7 +46,6 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Security');
-
         $this->loadComponent('Auth', [
             'authenticate' => [
                 'Form' => [
@@ -63,13 +60,11 @@ class AppController extends Controller
             ],
             'loginRedirect' => [
                 'controller' => 'Pages',
-                'action' => 'display',
-                'home'
+                'action' => 'home'
             ],
             'logoutRedirect' => [
                 'controller' => 'Pages',
-                'action' => 'display',
-                'home'
+                'action' => 'home'
             ]
         ]);
 
@@ -100,11 +95,8 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
-        if (!array_key_exists('_serialize', $this->viewVars) &&
-            in_array($this->response->type(), ['application/json', 'application/xml'])
-        ) {
-            $this->set('_serialize', true);
-        }
+        // We'll need this Model below...
+        $this->loadModel('Setups');
 
         // Test if a user is logged in, and if it's the case, give to the view the user entity linked
         if(isset($this->Auth)) {
@@ -124,12 +116,28 @@ class AppController extends Controller
 
             $this->set('authUser', $user);
 
+            // Now, let's send the setups list to the view (to let the user choose a default one)*
+            $setupsList = [];
+            foreach($this->Setups->find('all', [
+                'fields' => [
+                    'id',
+                    'title'
+                ],
+                'conditions' => [
+                    'user_id' => $user['id']
+                ]
+            ]
+            )->toArray() as $setup) {
+                $setupsList += [$setup->id => $setup->title];
+            }
+
+            $this->set('setupsList', $setupsList);
+
             // Let's send to the view the list of timezones as well
             $this->set('timezones', $this->Users->timezones);
         }
 
         // Before render the view, let's give a new entity for add Setup modal to it
-        $this->loadModel('Setups');
         $newSetupEntity = $this->Setups->newEntity();
 
         // We'll need also the setups available status
@@ -143,8 +151,8 @@ class AppController extends Controller
         // By default, no page is allowed. Please check special authorizations in the others controller
         $this->Auth->deny();
 
-        // Allow GET request on public functions
-        $this->Auth->allow(['getSetups', 'getActiveUsers', 'getLikes', 'reportBug']);
+        // Allow request on public functions
+        $this->Auth->allow(['reportBug']);
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
         $this->Security->config('unlockedFields', [
@@ -166,12 +174,6 @@ class AppController extends Controller
 
     public function isAuthorized($user)
     {
-        // Authorizes some actions if the user is connected
-        if(isset($user) && in_array($this->request->action, ['like', 'dislike', 'doesLike', 'getNotifications']))
-        {
-            return true;
-        }
-
         /* DANGEROUS PART IS JUST BELOW, PLEASE TAKE THAT WITH EXTREME PRECAUTION */
         if(isset($user) && $this->isAdmin($user))
         {
@@ -234,308 +236,8 @@ class AppController extends Controller
     }
     /* _____________________________ */
 
-    /* AJAX CALLS ? */
-    public function getLikes()
-    {
-        if($this->request->is('ajax'))
-        {
-            $this->loadModel('Likes');
 
-            return new Response([
-                'status' => 200,
-                'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->query['setup_id']])->count())
-            ]);
-        }
-    }
-
-    public function doesLike()
-    {
-        if($this->request->is('ajax'))
-        {
-            $this->loadModel('Likes');
-
-            return new Response([
-                'status' => 200,
-                'body' => json_encode($this->Likes->hasBeenLikedBy($this->request->query['setup_id'], $this->request->session()->read('Auth.User.id')))
-            ]);
-        }
-    }
-
-    public function like()
-    {
-        if($this->request->is('ajax'))
-        {
-            $status = 500;
-            $body   = null;
-
-            $setup_id = $this->request->query['setup_id'];
-            $this->loadModel('Likes');
-
-            if($this->Likes->Setups->exists(['id' => $setup_id]))
-            {
-                if(!$this->Likes->exists(['setup_id' => $setup_id, 'user_id' => $this->request->session()->read('Auth.User.id')]))
-                {
-                    $like = $this->Likes->newEntity();
-
-                    // When an user likes a setup, we just create an entity with its id, and the setup's one
-                    $like['setup_id'] = $setup_id;
-                    $like['user_id']  = $this->request->session()->read('Auth.User.id');
-
-                    if($this->Likes->save($like))
-                    {
-                        $status = 200;
-                        $body   = 'LIKED';
-
-                        // If it's not him, let's inform the setup owner of this new like
-                        $this->loadModel('Setups');
-                        $setup = $this->Setups->get($setup_id);
-                        if($like['user_id'] !== $setup['user_id'])
-                        {
-                            $this->loadModel('Users');
-                            $this->loadModel('Notifications');
-                            $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $like['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $like['user_id'] . '.png" alt="__ALT">  <span><strong>' . h($this->Users->get($like['user_id'])['name']) . '</strong> __LIKE <strong>' . h($setup['title']) . '</strong></span></a>');
-                        }
-                    }
-
-                    else
-                    {
-                        $body = 'NOT_LIKED';
-                    }
-                }
-
-                else
-                {
-                    $body = 'ALREADY_LIKED';
-                }
-            }
-
-            else
-            {
-                $body = 'DOES_NOT_EXIST';
-            }
-
-            return new Response([
-                'status' => $status,
-                'body' => $body
-            ]);
-        }
-    }
-
-    public function dislike()
-    {
-        if($this->request->is('ajax'))
-        {
-            $status = 500;
-            $body   = null;
-
-            $setup_id = $this->request->query['setup_id'];
-            $this->loadModel('Likes');
-
-            if($this->Likes->Setups->exists(['id' => $setup_id]))
-            {
-                $like = $this->Likes->find()->where(['setup_id' => $setup_id, 'user_id' => $this->request->session()->read('Auth.User.id')])->first();
-
-                if($like)
-                {
-                    if($this->Likes->delete($like))
-                    {
-                        $status = 200;
-                        $body   = 'DISLIKED';
-                    }
-
-                    else
-                    {
-                        $body = 'NOT_DISLIKED';
-                    }
-                }
-
-                else
-                {
-                    $body = 'NOT_ALREADY_LIKED';
-                }
-            }
-
-            else
-            {
-                $body = 'DOES_NOT_EXIST';
-            }
-
-            return new Response([
-                'status' => $status,
-                'body' => $body
-            ]);
-        }
-    }
-
-    public function getNotifications()
-    {
-        if($this->request->is('ajax'))
-        {
-            $this->loadModel('Notifications');
-            $results = $this->Notifications->find('all', [
-                'conditions' => [
-                    'user_id' => $this->request->session()->read('Auth.User.id'),
-                    'new' => 1
-                ],
-                'order' => [
-                    'dateTime' => 'DESC'
-                ],
-                'limit' => $this->request->getQuery('n', 4)
-            ]);
-
-            // Here we'll concatenate 'on-the-go' a "time ago with words" to the notifications content + Makes some translations
-            foreach($results as $result)
-            {
-                $result['content'] = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
-
-                if(strpos($result['content'], '__LIKE'))
-                {
-                    $result['content'] = str_replace('__ALT', __('Liker\'s profile picture'), $result['content']);
-                    $result['content'] = str_replace('__LIKE', __('liked your setup'), $result['content']);
-                }
-
-                else if(strpos($result['content'], '__COMMENT'))
-                {
-                    $result['content'] = str_replace('__ALT', __('Commenter\'s profile picture'), $result['content']);
-                    $result['content'] = str_replace('__COMMENT', __('commented your setup'), $result['content']);
-                }
-            }
-
-            return new Response([
-                'status' => 200,
-                'body' => json_encode($results)
-            ]);
-        }
-    }
-    /* ____________ */
-
-    public function getActiveUsers()
-    {
-        if($this->request->is('get'))
-        {
-            $this->loadModel('Notifications');
-
-            $results = $this->Notifications->find('all', ['limit' => $this->request->getQuery('n', '8')])
-                ->select([
-                    'Notifications.user_id',
-                    'Users.name',
-                    'Users.modificationDate'
-                ])
-                ->group('Notifications.user_id')
-                ->contain([
-                    'Users'
-                ])
-                ->toArray();
-
-            return new Response([
-                'status' => 200,
-                'body' => json_encode($results)
-            ]);
-        }
-    }
-
-    public function getSetups()
-    {
-        if($this->request->is('get'))
-        {
-            $conditions = [];
-
-            // If the query specified only the features ones
-            if($this->request->getQuery('f', false))
-            {
-                $conditions += ['featured' => true];
-            }
-
-            $conditions += [
-                'Setups.creationDate >' => date('Y-m-d', strtotime("-" . $this->request->getQuery('w', '9999') . "weeks")),
-                'Setups.creationDate <=' => date('Y-m-d', strtotime("+ 1 day")),
-                'status' => 'PUBLISHED'
-            ];
-
-
-            $term_query = $this->request->getQuery('q');
-            // Some empty arrays in which we'll set the SQL conditions to match a setup... or not
-                $author_cond    = [];
-                $title_cond     = [];
-                $resources_cond = [];
-
-            if($term_query)
-            {
-                // Let's fill in these array (tough operation)
-                foreach(explode("+", urlencode($term_query)) as $word)
-                {
-                    array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
-                    array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
-                    array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
-                }
-
-            }
-
-
-            $this->loadModel('Setups');
-            $results = $this->Setups->find('all', [
-                'conditions' => $conditions,
-                'order' => [
-                    'Setups.creationDate' => $this->request->getQuery('o', 'DESC')
-                ],
-                'limit' => $this->request->getQuery('n', '8'),
-                'offset' => $this->request->getQuery('p', '0'),
-                'contain' => [
-                    'Likes' => function ($q) {
-                        return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
-                    },
-                    'Comments' => function ($q) {
-                        return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Comments.user_id')])->group(['Comments.setup_id']);
-                    },
-                    'Resources' => function ($q) {
-                        return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);
-                    },
-                    'Users' => function ($q) {
-                        return $q->autoFields(false)->select(['Users.id', 'Users.name', 'Users.modificationDate']);
-                    }
-                ]
-            ])
-            ->where(['OR' => $author_cond])
-            ->orWhere(['OR' => $title_cond])
-            ->leftJoinWith('Resources')
-            ->orWhere(['OR' => $resources_cond])
-            ->distinct()
-            ->toArray();
-
-            // If the query specified a ranking by number of "likes", let's sort them just before sending it
-            if($this->request->getQuery('t', 'date') == "like")
-            {
-                usort($results, function($a, $b) {
-
-                    if(empty($a->likes))
-                    {
-                        $a->likes += [0 => ['total' => 0]];
-                    }
-
-                    if(empty($b->likes))
-                    {
-                        $b->likes += [0 => ['total' => 0]];
-                    }
-
-                    if($a->likes[0]['total'] == $b->likes[0]['total'])
-                    {
-                        return 0;
-                    }
-
-                    else
-                    {
-                        return ($a->likes[0]['total'] < $b->likes[0]['total']) ? 1 : -1;
-                    }
-                });
-            }
-
-            return new Response([
-                'status' => 200,
-                'body' => json_encode($results)
-            ]);
-        }
-    }
-
+    /* MISCELLANEOUS */
     public function reportBug()
     {
         if($this->request->is('post'))
@@ -563,4 +265,5 @@ class AppController extends Controller
 
         return $this->redirect('/');
     }
+    /* _____________ */
 }

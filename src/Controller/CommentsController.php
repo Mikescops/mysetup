@@ -14,21 +14,6 @@ class CommentsController extends AppController
 {
 
     /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $this->paginate = ['contain' => ['Users', 'Setups']];
-
-        $comments = $this->paginate($this->Comments);
-
-        $this->set(compact('comments'));
-        $this->set('_serialize', ['comments']);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
@@ -76,8 +61,7 @@ class CommentsController extends AppController
             return $this->redirect($this->referer() . '#comment' . ($comment->id ? '-' . $comment->id : 's'));
         }
 
-        $this->set(compact('comment'));
-        $this->set('_serialize', ['comment']);
+        $this->set('comment', $comment);
     }
 
     /**
@@ -108,8 +92,7 @@ class CommentsController extends AppController
             return $this->redirect($this->referer() . '#comment' . ($comment->id ? '-' . $comment->id : 's'));
         }
 
-        $this->set(compact('comment'));
-        $this->set('_serialize', ['comment']);
+        $this->set('comment', $comment);
     }
 
     /**
@@ -146,7 +129,7 @@ class CommentsController extends AppController
         {
             if(in_array($this->request->action, ['edit', 'delete']))
             {
-                if($this->Comments->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+                if($this->Comments->isOwnedBy((int)$this->request->getAttribute('params')['pass'][0], $user['id']))
                 {
                     return true;
                 }

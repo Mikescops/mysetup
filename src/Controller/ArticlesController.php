@@ -28,16 +28,9 @@ class ArticlesController extends AppController
                 'Articles.dateTime'=> 'desc'
             ]
         ];
-        $articles = $this->paginate($this->Articles);
 
-        $this->set(compact('articles'));
-        $this->set('_serialize', ['articles']);
+        $this->set('articles', $this->paginate($this->Articles));
     }
-
-
-    /*Add markdown support*/
-    public $helpers = ['Tanuck/Markdown.Markdown' => ['parser' => 'GithubMarkdown']];
-
 
     /**
      * View method
@@ -60,7 +53,6 @@ class ArticlesController extends AppController
         ]);
 
         $this->set('article', $article);
-        $this->set('_serialize', ['article']);
     }
 
     /**
@@ -118,7 +110,6 @@ class ArticlesController extends AppController
         $categories = $this->Articles->categories;
 
         $this->set(compact('article', 'categories'));
-        $this->set('_serialize', ['article']);
     }
 
     /**
@@ -189,7 +180,6 @@ class ArticlesController extends AppController
         $categories = $this->Articles->categories;
 
         $this->set(compact('article', 'categories'));
-        $this->set('_serialize', ['article']);
     }
 
     /**
@@ -218,7 +208,6 @@ class ArticlesController extends AppController
         }
     }
 
-
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -233,7 +222,7 @@ class ArticlesController extends AppController
             // Only the owner can delete his articles
             if($this->request->action === 'delete')
             {
-                if($this->Articles->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+                if($this->Articles->isOwnedBy((int)$this->request->getAttribute('params')['pass'][0], $user['id']))
                 {
                     return true;
                 }
@@ -244,7 +233,7 @@ class ArticlesController extends AppController
                 }
             }
 
-            // Each admin can add a new article, or edit the existing ones
+            // Each admin can add a new article, or edit an existing one
             else if(in_array($this->request->action, ['add', 'edit']))
             {
                 return true;

@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -137,15 +136,22 @@ class UsersTable extends Table
             ->notEmpty('creationDate');
 
         $validator
-            ->dateTime('lastLogginDate')
-            ->allowEmpty('lastLogginDate');
-
-        $validator
             ->dateTime('modificationDate')
             ->notEmpty('modificationDate');
 
         $validator
+            ->dateTime('lastLogginDate')
+            ->allowEmpty('lastLogginDate');
+
+        $validator
+            ->integer('mainSetup_id')
+            ->allowEmpty('mainSetup_id');
+
+        $validator
             ->allowEmpty('twitchToken');
+
+        $validator
+            ->allowEmpty('twitchUserId');
 
         $validator
             ->allowEmpty('uwebsite');
@@ -155,6 +161,9 @@ class UsersTable extends Table
 
         $validator
             ->allowEmpty('utwitter');
+
+        $validator
+            ->allowEmpty('utwitch');
 
         return $validator;
     }
@@ -168,7 +177,11 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['mail', 'twitchToken']));
+        $rules->add($rules->isUnique([
+            'mail',
+            'twitchToken',
+            'twitchUserId'
+        ]));
 
         $rules->
             add(function($entity) {
@@ -195,6 +208,21 @@ class UsersTable extends Table
                 }
             },
             'preferredStoreIntegrity_rule');
+
+        $rules->
+            add(function($entity) {
+                // Here we only allow a "NULL" value, or an ID existing in the Setups DB
+                if($entity['mainSetup_id'] !== 0 and !$this->Setups->exists(['id' => $entity['mainSetup_id']]))
+                {
+                    return false;
+                }
+
+                else
+                {
+                    return true;
+                }
+            },
+            'mainSetup_idIntegrity_rule');
 
         return $rules;
     }
@@ -374,5 +402,21 @@ class UsersTable extends Table
         {
             return true;
         }
+    }
+
+    // A simple getter method to retrieve the "active" users on the website
+    public function getActiveUsers($n = 8)
+    {
+        return $this->Notifications->find('all', ['limit' => $n])
+            ->select([
+                'Notifications.user_id',
+                'Users.name',
+                'Users.modificationDate'
+            ])
+            ->group('Notifications.user_id')
+            ->contain([
+                'Users'
+            ])
+            ->toArray();
     }
 }

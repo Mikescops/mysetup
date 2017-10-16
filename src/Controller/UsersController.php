@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Network\Http\Client;
-use Cake\Routing\Router;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 
@@ -14,19 +13,6 @@ use Cake\I18n\Time;
  */
 class UsersController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $users = $this->paginate($this->Users);
-
-        $this->set(compact('users'));
-        $this->set('_serialize', ['users']);
-    }
 
     /**
      * View method
@@ -88,8 +74,7 @@ class UsersController extends AppController
             ]
         ]);
 
-        $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
+        $this->set('user', $user);
     }
 
     /**
@@ -133,6 +118,7 @@ class UsersController extends AppController
                 $user->uwebsite  = null;
                 $user->ufacebook = null;
                 $user->utwitter  = null;
+                $user->utwitch   = null;
 
                 // By default user is not verified
                 $user->verified = 0;
@@ -185,6 +171,12 @@ class UsersController extends AppController
         {
             $data = $this->request->getData();
 
+            // Here we'll block the 'Users.mail' modification
+            if(!isset($data['mail']) || $data['mail'] != $user['mail'])
+            {
+                $data['mail'] = $user['mail'];
+            }
+
             if(!isset($data['secret']) || $data['secret'] === '')
             {
                 $data['password'] = $user['password'];
@@ -232,6 +224,16 @@ class UsersController extends AppController
                 if(!isset($temp['host']) or $temp['host'] !== 'twitter.com')
                 {
                     $data['utwitter'] = $user['utwitter'];
+                    $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+                }
+            }
+            if(isset($data['utwitch']) and $data['utwitch'] != '')
+            {
+                $temp = parse_url($data['utwitch']);
+
+                if(!isset($temp['host']) or !in_array($temp['host'], ['twitch.tv', 'go.twitch.tv']))
+                {
+                    $data['utwitch'] = $user['utwitch'];
                     $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
                 }
             }
@@ -321,7 +323,7 @@ class UsersController extends AppController
                     $user = $this->Users->get($user['id']);
                     $user->lastLogginDate = Time::now();
                     // The `modificationDate` value won't change as we've just updated the `lastLogginDate` value...
-                    $user->dirty('modificationDate', 'dirty');
+                    $user->setDirty('modificationDate', true);
                     $this->Users->save($user);
 
                     $this->Flash->success(__('You are successfully logged in !'));
@@ -516,7 +518,7 @@ class UsersController extends AppController
             // ... let's now patch this new token, and save the entity
             $user->twitchToken = $token;
             // The `modificationDate` value won't change as we've just replaced the token
-            $user->dirty('modificationDate', 'dirty');
+            $user->setDirty('modificationDate', true);
             if(!$this->Users->save($user))
             {
                 $this->Flash->error(__('An error occurred while logging you in'));
@@ -542,6 +544,7 @@ class UsersController extends AppController
             $user->preferredStore = strtoupper((substr($_GET['state'], 0, 2)));
             $user->timeZone       = 'Europe/London';
             $user->twitchToken    = $token;
+            $user->twitchUserId   = $response->json['_id'];
             $user->verified       = 0;
 
             // Fix a very weird behavior (un-debug-gable) if the `EN` language comes from the JS
@@ -589,6 +592,8 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->redirectUrl());
     }
 
+    /* __________ */
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -598,7 +603,7 @@ class UsersController extends AppController
 
     public function isAuthorized($user)
     {
-        if(isset($user) && in_array($this->request->action, ['edit', 'delete']) && (int)$this->request->params['pass'][0] === $user['id'])
+        if(isset($user) && in_array($this->request->action, ['edit', 'delete']) && (int)$this->request->getAttribute('params')['pass'][0] === $user['id'])
         {
             return true;
         }

@@ -45,60 +45,60 @@ Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
 
-    /* Static pages' routes */
-    $routes->connect('/',        ['controller' => 'Pages', 'action' => 'display', 'home']);
-    $routes->connect('/recent',  ['controller' => 'Pages', 'action' => 'display', 'recent']);
-    $routes->connect('/popular', ['controller' => 'Pages', 'action' => 'display', 'popular']);
-
-    /* And all the other static pages' routes */
+    /* Static pages' routes... */
+    $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);
+    $routes->connect('/recent', ['controller' => 'Pages', 'action' => 'recent']);
+    $routes->connect('/popular', ['controller' => 'Pages', 'action' => 'popular']);
+    // ... and all the other ones
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    /* _______________________ */
 
-    /** Login and logout's routes **/
+    /* Setups Controller's routes */
+    $routes->scope('/setups', function(RouteBuilder $routes) {
+        $routes
+            ->connect('/:id:slug', ['controller' => 'Setups', 'action' => 'view'])
+            ->setPatterns(['id' => '\d+', 'slug' => '(-.*)?'])
+            ->setPass(['id']);
+        $routes
+            ->connect('/request/:id/:token/:response', ['controller' => 'Setups', 'action' => 'answerOwnership'])
+            ->setPatterns(['id' => '\d+'])
+            ->setPass(['id', 'token', 'response']);
+    });
+    /* __________________________ */
+
+    /* Users Controller's routes */
     $routes->connect('/login',  ['controller' => 'Users', 'action' => 'login']);
     $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
-
-    /* Setups' routes */
-    $routes->connect('/setups/:id', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/setups/:id-:slug', ['controller' => 'Setups', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/setups/request/:id/:token/:response', ['controller' => 'Setups', 'action' => 'answerOwnership'], ['id' => '\d+', 'pass' => ['id', 'token', 'response']]);
-    $routes->connect('/embed/:id', ['controller' => 'Setups', 'action' => 'embed'], ['id' => '\d+', 'pass' => ['id']]);
-
-    /* Articles' routes */
-    $routes->connect('/blog', ['controller' => 'Articles', 'action' => 'index']);
-    $routes->connect('/blog/:id', ['controller' => 'Articles', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/blog/:id-:slug', ['controller' => 'Articles', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-
-    /* Users' routes */
-    $routes->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/verify/:id/:token', ['controller' => 'Users', 'action' => 'verifyAccount'], ['id' => '\d+', 'pass' => ['id', 'token']]);
+    $routes
+        ->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'])
+        ->setPatterns(['id' => '\d+'])
+        ->setPass(['id']);
+    $routes
+        ->connect('/verify/:id/:token', ['controller' => 'Users', 'action' => 'verifyAccount'])
+        ->setPatterns(['id' => '\d+'])
+        ->setPass(['id', 'token']);
     $routes->connect('/twitch/*', ['controller' => 'Users', 'action' => 'twitch']);
+    /* _________________________ */
 
-    /* Notifications' routes */
-    $routes->connect('/notifications', ['controller' => 'Notifications', 'action' => 'index']);
+    /* Allows the usage of 'api' in lowercase */
+    $routes->connect('/api/:action/*', ['controller' => 'API', 'action' => 'action']);
+    /* ______________________________________ */
 
-    /* Admin's routes */
-    $routes->connect('/admin', ['controller' => 'Setups', 'action' => 'index']);
-    $routes->connect('/admin/setups', ['controller' => 'Setups', 'action' => 'index']);
-    $routes->connect('/admin/users', ['controller' => 'Users', 'action' => 'index']);
-    $routes->connect('/admin/comments', ['controller' => 'Comments', 'action' => 'index']);
-    $routes->connect('/admin/resources', ['controller' => 'Resources', 'action' => 'index']);
+    /* Articles Controller's routes */
+    $routes->scope('/blog', function(RouteBuilder $routes) {
+        $routes->connect('/', ['controller' => 'Articles']);
+        $routes
+            ->connect('/:id:slug', ['controller' => 'Articles', 'action' => 'view'])
+            ->setPatterns(['id' => '\d+', 'slug' => '(-.*)?'])
+            ->setPass(['id']);
+    });
+    /* ____________________________ */
 
-    /**
-     * Connect catchall routes for all controllers.
-     *
-     * Using the argument `DashedRoute`, the `fallbacks` method is a shortcut for
-     *    `$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'DashedRoute']);`
-     *    `$routes->connect('/:controller/:action/*', [], ['routeClass' => 'DashedRoute']);`
-     *
-     * Any route class can be used with this method, such as:
-     * - DashedRoute
-     * - InflectedRoute
-     * - Route
-     * - Or your own route class
-     *
-     * You can remove these routes once you've connected the
-     * routes you want in your application.
-     */
+    /* Admin's (default) route */
+    $routes->connect('/admin', ['controller' => 'Admin', 'action' => 'setups']);
+    /* _______________________ */
+
+    // However, default routes are still available...
     $routes->fallbacks(DashedRoute::class);
 });
 
