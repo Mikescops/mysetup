@@ -38,6 +38,12 @@ class LikesController extends AppController
                             'creationDate',
                             'status'
                         ],
+                        'Users' => [
+                            'fields' => [
+                                'id',
+                                'modificationDate'
+                            ]
+                        ],
                         'Resources' => [
                             'conditions' => [
                                 'type' => 'SETUP_FEATURED_IMAGE'
@@ -50,13 +56,7 @@ class LikesController extends AppController
                         ],
                         'Likes' => function ($q) {
                             return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
-                        },
-                    ],
-                    'Users' => [
-                        'fields' => [
-                            'id',
-                            'modificationDate'
-                        ]
+                        }
                     ]
                 ],
                 'order' => [
