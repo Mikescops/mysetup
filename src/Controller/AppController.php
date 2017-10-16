@@ -46,7 +46,6 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Security');
-
         $this->loadComponent('Auth', [
             'authenticate' => [
                 'Form' => [
@@ -96,12 +95,6 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
-        if (!array_key_exists('_serialize', $this->viewVars) &&
-            in_array($this->response->type(), ['application/json', 'application/xml'])
-        ) {
-            $this->set('_serialize', true);
-        }
-
         // We'll need this Model below...
         $this->loadModel('Setups');
 
