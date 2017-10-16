@@ -99,16 +99,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6">
-                        <strong>X</strong> setups
+                        <strong><?= $total_setups ?></strong> setups
                     </div>
                     <div class="col-6">
-                        <strong>X</strong> users
+                        <strong><?= $total_users ?></strong> users
                     </div>
                     <div class="col-6">
-                        <strong>X</strong> comments
+                        <strong><?= $total_comments ?></strong> comments
                     </div>
                     <div class="col-6">
-                        <strong>X</strong> resources
+                        <strong><?= $total_resources ?></strong> resources
                     </div>
                 </div>
             </div>

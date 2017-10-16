@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * Admin Controller
@@ -19,6 +20,23 @@ class AdminController extends AppController
         return parent::isAuthorized($user);
     }
 
+    public function beforeRender(Event $event)
+    {
+
+        parent::beforeRender($event);
+
+        $this->loadModel('Users');
+        $this->loadModel('Setups');
+        $this->loadModel('Resources');
+        $this->loadModel('Comments');
+
+        $total_users = $this->Users->find()->count();
+        $total_setups = $this->Setups->find()->count();
+        $total_comments = $this->Comments->find()->count();
+        $total_resources = $this->Resources->find()->count();
+
+        $this->set(compact('total_users', 'total_setups', 'total_comments', 'total_resources'));
+    }
 
     public function setups()
     {
