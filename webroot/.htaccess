@@ -1,5 +1,6 @@
 <IfModule mod_headers.c>
     RequestHeader unset Proxy
+    Header set Access-Control-Allow-Origin "*"
 </IfModule>
 
 <IfModule mod_rewrite.c>
