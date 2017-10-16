@@ -868,7 +868,7 @@ footer a{
 
 .edit_panel{
 	margin-top: 20px;
-	padding: 4px;
+	margin-right: 4px;
 	float: right;
 }
 
@@ -878,8 +878,11 @@ footer a{
 	padding: 7px;
 	border-radius: 4px;
 	background-color: #292929;
-	margin: 1px;
 	font-size: 20px;
+	float: left;
+    margin: 1px 2px;
+    line-height: 24px;
+    display: block;
 }
 
 .grecaptcha-badge{
