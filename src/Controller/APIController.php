@@ -61,13 +61,16 @@ class APIController extends AppController
                                     'href'
                                 ],
                                 'conditions' => [
-                                    'type' => 'SETUP_FEATURED_IMAGE'
-                                ]
+                                    'OR' => [
+                                        'type' => 'SETUP_FEATURED_IMAGE',
+                                        'OR' => ['type' => 'SETUP_PRODUCT']
+                                    ]
+                                ],
+                                'sort' => ['type' => 'ASC'],
                             ]
                         ]
                     ]
-                ])
-                ->first();
+                ])->first();
 
                 return new Response([
                     'status' => 200,
