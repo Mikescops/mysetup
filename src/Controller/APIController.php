@@ -26,19 +26,19 @@ class APIController extends AppController
     /* A simple method to handle the new Twitch extension (EBS) */
     public function twitchSetup()
     {
-        if($this->request->is('get') and $this->request->getQuery('channel'))
+        if($this->request->is('get') and $this->request->getQuery('twitchId'))
         {
             $setup = TableRegistry::get('Setups')->find('all', [
                 'contain' => [
                     'Users' => function($q) {
-                        return $q->autoFields(false)->select(['id', 'name', 'twitch_channel']);
+                        return $q->autoFields(false)->select(['id', 'name', 'twitchUserId']);
                     },
                     'Resources' => function($q) {
                         return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE'])->orWhere(['type' => 'SETUP_PRODUCT']);
                     }
                 ]
             ])
-            ->where(['Users.twitch_channel' => $this->request->getQuery('channel')])
+            ->where(['Users.twitchUserId' => $this->request->getQuery('twitchId')])
             ->first()
             ->toArray();
 
