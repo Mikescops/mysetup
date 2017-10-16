@@ -25,15 +25,12 @@ class AdminController extends AppController
 
         parent::beforeRender($event);
 
-        $this->loadModel('Users');
+        // Here we'll just gather some global counters about the data we have !
         $this->loadModel('Setups');
-        $this->loadModel('Resources');
-        $this->loadModel('Comments');
-
-        $total_users = $this->Users->find()->count();
+        $total_users = $this->Setups->Users->find()->count();
         $total_setups = $this->Setups->find()->count();
-        $total_comments = $this->Comments->find()->count();
-        $total_resources = $this->Resources->find()->count();
+        $total_comments = $this->Setups->Comments->find()->count();
+        $total_resources = $this->Setups->Resources->find()->count();
 
         $this->set(compact('total_users', 'total_setups', 'total_comments', 'total_resources'));
     }
