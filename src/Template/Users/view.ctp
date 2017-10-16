@@ -101,7 +101,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                         ?>
 
                         <?php
-                            echo $this->Form->input('picture', ['label' => __("Change the user profile picture"), 'type' => 'file', 'class' => 'inputfile', 'id' => 'profileUpload']);
+                            echo $this->Form->control('picture', ['type' => 'file', 'label' => __("Change the user profile picture"), 'class' => 'inputfile', 'id' => 'profileUpload']);
                         ?>
 
                         <?php

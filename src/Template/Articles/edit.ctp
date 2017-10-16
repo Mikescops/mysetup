@@ -11,11 +11,11 @@
 
     <?= $this->Form->create($article, ['type' => 'file']) ?>
 
-    <fieldset>            
+    <fieldset>
         <?php
             echo '<div class="form-group">' . $this->Form->control('title', ['class' => 'form-control']) . '</div>';
             echo '<div class="form-group">' . $this->Form->control('content', ['class' => 'form-control']) . '</div>';
-            echo '<div class="form-group">' . $this->Form->input('picture', ['type' => 'file', 'class' => 'form-control inputfile', 'required' => 'false']) . '</div>';
+            echo '<div class="form-group">' . $this->Form->control('picture', ['type' => 'file', 'class' => 'form-control inputfile', 'required' => 'false']) . '</div>';
             echo '<div class="form-group">' . $this->Form->select('category', $categories, ['class' => 'form-control']) . '</div>';
             echo '<div class="form-group">' . $this->Form->control('tags', ['class' => 'form-control']) . '</div>';
         ?>
