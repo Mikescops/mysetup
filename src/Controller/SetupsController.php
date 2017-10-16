@@ -271,7 +271,7 @@ class SetupsController extends AppController
         {
             if(in_array($this->request->action, ['edit', 'delete']))
             {
-                if($this->Setups->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+                if($this->Setups->isOwnedBy((int)$this->request->getAttribute('params')['pass'][0], $user['id']))
                 {
                     return true;
                 }
@@ -310,10 +310,10 @@ class SetupsController extends AppController
 
     public function search()
     {
-        if($this->request->query('q'))
+        if($this->request->getQuery('q'))
         {
             $results = $this->Setups->getSetups([
-                'query' => $this->request->query('q'),
+                'query' => $this->request->getQuery('q'),
                 'number' => 9999
             ]);
 

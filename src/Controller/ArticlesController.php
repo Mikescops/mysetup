@@ -222,7 +222,7 @@ class ArticlesController extends AppController
             // Only the owner can delete his articles
             if($this->request->action === 'delete')
             {
-                if($this->Articles->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+                if($this->Articles->isOwnedBy((int)$this->request->getAttribute('params')['pass'][0], $user['id']))
                 {
                     return true;
                 }

@@ -22,7 +22,7 @@ class LikesController extends AppController
             return new Response([
                 'status' => 200,
                 'type' => 'json',
-                'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->query['setup_id']])->count())
+                'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->getQuery('setup_id')])->count())
             ]);
         }
     }
@@ -34,7 +34,7 @@ class LikesController extends AppController
             return new Response([
                 'status' => 200,
                 'type' => 'json',
-                'body' => json_encode($this->Likes->hasBeenLikedBy($this->request->query['setup_id'], $this->request->session()->read('Auth.User.id')))
+                'body' => json_encode($this->Likes->hasBeenLikedBy($this->request->getQuery('setup_id'), $this->request->session()->read('Auth.User.id')))
             ]);
         }
     }
@@ -46,7 +46,7 @@ class LikesController extends AppController
             $status = 500;
             $body   = null;
 
-            $setup_id = $this->request->query['setup_id'];
+            $setup_id = $this->request->getQuery('setup_id');
             if($this->Likes->Setups->exists(['id' => $setup_id]))
             {
                 if(!$this->Likes->exists(['setup_id' => $setup_id, 'user_id' => $this->request->session()->read('Auth.User.id')]))
@@ -102,7 +102,7 @@ class LikesController extends AppController
             $status = 500;
             $body   = null;
 
-            $setup_id = $this->request->query['setup_id'];
+            $setup_id = $this->request->getQuery('setup_id');
             if($this->Likes->Setups->exists(['id' => $setup_id]))
             {
                 $like = $this->Likes->find()->where(['setup_id' => $setup_id, 'user_id' => $this->request->session()->read('Auth.User.id')])->first();

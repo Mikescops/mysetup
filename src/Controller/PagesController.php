@@ -113,7 +113,7 @@ class PagesController extends AppController
         // ...types directly in an (existing) raw address
         if($this->request->controller === 'Pages' and $this->request->action === 'display')
         {
-            switch($this->request->params['pass'][0])
+            switch($this->request->getAttribute('params')['pass'][0])
             {
                 case 'home':
                     $this->redirect(['action' => 'home']);

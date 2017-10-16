@@ -129,7 +129,7 @@ class CommentsController extends AppController
         {
             if(in_array($this->request->action, ['edit', 'delete']))
             {
-                if($this->Comments->isOwnedBy((int)$this->request->params['pass'][0], $user['id']))
+                if($this->Comments->isOwnedBy((int)$this->request->getAttribute('params')['pass'][0], $user['id']))
                 {
                     return true;
                 }

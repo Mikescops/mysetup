@@ -61,7 +61,7 @@ class NotificationsController extends AppController
             $status = 500;
             $body   = null;
 
-            $notification_id = $this->request->query['notification_id'];
+            $notification_id = $this->request->getQuery('notification_id');
 
             if($this->Notifications->exists(['id' => $notification_id]))
             {
@@ -113,7 +113,7 @@ class NotificationsController extends AppController
             $status = 500;
             $body   = null;
 
-            $notification_id = $this->request->query['notification_id'];
+            $notification_id = $this->request->getQuery('notification_id');
 
             if($this->Notifications->exists(['id' => $notification_id]))
             {
@@ -165,7 +165,7 @@ class NotificationsController extends AppController
             $status = 500;
             $body   = null;
 
-            $notification_id = $this->request->query['notification_id'];
+            $notification_id = $this->request->getQuery('notification_id');
 
             if($this->Notifications->exists(['id' => $notification_id]))
             {
