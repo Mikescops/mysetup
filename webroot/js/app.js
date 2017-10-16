@@ -698,7 +698,8 @@ function infiniteScroll(nbtodisplay) {
         url: webRootJs + "setups/getSetups",
         data: {
             p: offset,
-            n: nbtodisplay
+            n: nbtodisplay,
+            o:'DESC'
         },
         dataType: 'html',
         type: 'get',
