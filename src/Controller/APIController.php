@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 use Cake\Network\Response;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * API Controller
@@ -28,25 +29,59 @@ class APIController extends AppController
     {
         if($this->request->is('get') and $this->request->getQuery('twitchId'))
         {
-            $setup = TableRegistry::get('Setups')->find('all', [
-                'contain' => [
-                    'Users' => function($q) {
-                        return $q->autoFields(false)->select(['id', 'name', 'twitchUserId']);
-                    },
-                    'Resources' => function($q) {
-                        return $q->autoFields(false)->select(['setup_id', 'src', 'href'])->where(['type' => 'SETUP_FEATURED_IMAGE'])->orWhere(['type' => 'SETUP_PRODUCT']);
-                    }
+            $Users = TableRegistry::get('Users');
+            $user = $Users->find('all', [
+                'conditions' => [
+                    'twitchUserId' => $this->request->getQuery('twitchId')
                 ]
-            ])
-            ->where(['Users.twitchUserId' => $this->request->getQuery('twitchId')])
-            ->first()
-            ->toArray();
+            ])->first();
 
-            return new Response([
-                'status' => 200,
-                'type' => 'json',
-                'body' => json_encode($setup)
-            ]);
+            if($user)
+            {
+                $setup = $Users->find('all', [
+                    'fields' => [
+                        'id',
+                        'name',
+                        'mainSetup_id',
+                        'twitchUserId'
+                    ],
+                    'conditions' => [
+                        'Users.twitchUserId' => $this->request->getQuery('twitchId')
+                    ],
+                    'contain' => [
+                        'Setups' => [
+                            'conditions' => [
+                                'Setups.id' => $user->mainSetup_id
+                            ],
+                            'Resources' => [
+                                'fields' => [
+                                    'user_id',
+                                    'setup_id',
+                                    'src',
+                                    'href'
+                                ],
+                                'conditions' => [
+                                    'type' => 'SETUP_FEATURED_IMAGE'
+                                ]
+                            ]
+                        ]
+                    ]
+                ])
+                ->first();
+
+                return new Response([
+                    'status' => 200,
+                    'type' => 'json',
+                    'body' => json_encode($setup)
+                ]);
+            }
+
+            else
+            {
+                $this->Flash->error(__('You are not authorized to access that location.'));
+                // Just throw a 404-like exception here to make the `iframe` voluntary crash
+                throw new NotFoundException();
+            }
         }
     }
 
