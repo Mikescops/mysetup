@@ -123,7 +123,7 @@
                                     <div class="column column-75">
                                         <?php
                                             echo $this->Form->control('name', ['required' => true, 'label' => ['text' => '', 'class' => 'fa fa-user'], 'placeholder' => __("Name"), 'default' => $authUser['name']]);
-                                            echo $this->Form->control('mail', ['required' => true, 'type' => 'email', 'label' => ['text' => '', 'class' => 'fa fa-envelope'], 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
+                                            echo $this->Form->control('mail', ['disabled' => true, 'type' => 'email', 'label' => ['text' => '', 'class' => 'fa fa-envelope'], 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
                                         ?>
 
                                         <?php

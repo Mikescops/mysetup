@@ -171,6 +171,12 @@ class UsersController extends AppController
         {
             $data = $this->request->getData();
 
+            // Here we'll block the 'Users.mail' modification
+            if(!isset($data['mail']) || $data['mail'] != $user['mail'])
+            {
+                $data['mail'] = $user['mail'];
+            }
+
             if(!isset($data['secret']) || $data['secret'] === '')
             {
                 $data['password'] = $user['password'];
