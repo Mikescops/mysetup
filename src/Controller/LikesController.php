@@ -24,7 +24,8 @@ class LikesController extends AppController
         if($this->request->is('get'))
         {
             // Let's just fetch the setups that the current user has liked !
-            $setups = $this->Likes->find('all', [
+            // They will be available into a `like` entity although...
+            $likes = $this->Likes->find('all', [
                 'conditions' => [
                     'Likes.user_id' => $this->request->session()->read('Auth.User.id')
                 ],
@@ -37,6 +38,25 @@ class LikesController extends AppController
                             'creationDate',
                             'status'
                         ],
+                        'Resources' => [
+                            'conditions' => [
+                                'type' => 'SETUP_FEATURED_IMAGE'
+                            ],
+                            'fields' => [
+                                'id',
+                                'src',
+                                'setup_id'
+                            ]
+                        ],
+                        'Likes' => function ($q) {
+                            return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
+                        },
+                    ],
+                    'Users' => [
+                        'fields' => [
+                            'id',
+                            'modificationDate'
+                        ]
                     ]
                 ],
                 'order' => [
@@ -44,10 +64,7 @@ class LikesController extends AppController
                 ]
             ])->all()->toArray();
 
-            debug($setups);
-            die();
-
-            $this->set('setups', $setups);
+            $this->set('likes', $likes);
         }
     }
 
