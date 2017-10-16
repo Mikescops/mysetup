@@ -34,7 +34,7 @@ class APIController extends AppController
                         return $q->autoFields(false)->select(['id', 'name', 'twitchUserId']);
                     },
                     'Resources' => function($q) {
-                        return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE'])->orWhere(['type' => 'SETUP_PRODUCT']);
+                        return $q->autoFields(false)->select(['setup_id', 'src', 'href'])->where(['type' => 'SETUP_FEATURED_IMAGE'])->orWhere(['type' => 'SETUP_PRODUCT']);
                     }
                 ]
             ])
