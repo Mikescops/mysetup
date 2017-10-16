@@ -4,6 +4,8 @@ Disallow: /admin/
 Disallow: /embed/
 Disallow: /verify/
 Disallow: /twitch/
+Disallow: /likes/
+Disallow: /comments/
 Disallow: /notifications/
 Disallow: /users/logout
 Disallow: /setups/request/
