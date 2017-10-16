@@ -90,7 +90,7 @@ class LikesController extends AppController
             return new Response([
                 'status' => $status,
                 'type' => 'json',
-                'body' => $body
+                'body' => json_encode($body)
             ]);
         }
     }
@@ -135,7 +135,7 @@ class LikesController extends AppController
             return new Response([
                 'status' => $status,
                 'type' => 'json',
-                'body' => $body
+                'body' => json_encode($body)
             ]);
         }
     }
