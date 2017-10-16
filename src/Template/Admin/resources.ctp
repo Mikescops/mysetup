@@ -29,7 +29,7 @@
                     <td><?= $this->Html->link($resource->setup->title, ['controller' => 'Setups', 'action' => 'view', $resource->setup_id]) ?></td>
                     <td><?= h($resource->type) ?></td>
                     <td><?= urldecode(h($resource->title)) ?></td>
-                    <td><?= urldecode(h($resource->href)) ?></td>
+                    <td><?php if ($resource->href) :?> <a href="<?= urldecode(h($resource->href)) ?>"><i class="fa fa-link"></i></a> <?php endif ?></td>
                     <td><?= urldecode(h($resource->src)) ?></td>
                 </tr>
                 <?php endforeach; ?>
