@@ -794,8 +794,11 @@ footer a{
 .featured-gradient{
 	width: 100%;
 	height: 100%;
+
+	filter: url(blur.svg#blur);
 	-webkit-filter: blur(70px);
 	-o-filter: blur(70px);
+	-ms-filter: blur(70px);
 	filter: blur(70px);
 	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='70');
 	background-size: cover;
@@ -803,6 +806,17 @@ footer a{
 	position: absolute;
 	z-index: -1;
 	opacity: 0.8;
+}
+
+@-moz-document url-prefix() {
+  .featured-gradient {
+    background: #151515!important;
+    filter: none!important;
+   	-webkit-filter: none!important;
+	-o-filter: none!important;
+	-ms-filter: none!important;
+	opacity: 1;
+  }
 }
 
 .featured-inner{
