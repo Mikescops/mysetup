@@ -674,9 +674,39 @@ footer a{
   line-height:1em;
 }
 
-/*.sidebar-user{
-	margin-top: 81px;
-}*/
+#edit_profile_modal .input.text, #edit_profile_modal .input.email{
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	margin-bottom: 1.5rem;
+}
+
+#edit_profile_modal .input.text label, #edit_profile_modal .input.email label {
+    padding: .5rem .75rem;
+    width: 40px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #464a4c;
+    text-align: center;
+    background-color: #eceeef;
+    border: 1px solid rgba(0,0,0,.15);
+        border-right-width: 1px;
+        border-right-style: solid;
+        border-right-color: rgba(0, 0, 0, 0.15);
+    border-radius: .25rem;
+    border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#edit_profile_modal .input.text input, #edit_profile_modal .input.email input{
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	margin-bottom: 0;
+}
 
 /********** TEAM PAGE *********/
 

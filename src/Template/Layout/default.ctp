@@ -122,8 +122,8 @@
                                     </div>
                                     <div class="column column-75">
                                         <?php
-                                            echo $this->Form->control('name', ['required' => true, 'label' => '', 'placeholder' => __("Name"), 'default' => $authUser['name']]);
-                                            echo $this->Form->control('mail', ['required' => true, 'type' => 'email', 'label' => '', 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
+                                            echo $this->Form->control('name', ['required' => true, 'label' => ['text' => '', 'class' => 'fa fa-user'], 'placeholder' => __("Name"), 'default' => $authUser['name']]);
+                                            echo $this->Form->control('mail', ['required' => true, 'type' => 'email', 'label' => ['text' => '', 'class' => 'fa fa-envelope'], 'placeholder' => __("Email address"), 'default' => $authUser['mail']]);
                                         ?>
 
                                         <?php
@@ -133,6 +133,7 @@
                                             echo $this->Form->control('utwitch', ['label' => ['text' => '', 'class' => 'fa fa-twitch'], 'placeholder' => "https://go.twitch.tv/me", 'default' => $authUser['utwitch']]);
                                         ?>
 
+                                        <span><?= __('Choose your main setup : ') ?></span>
                                         <?php
                                             echo $this->Form->select('mainSetup_id', $setupsList, ['default' => $authUser['mainSetup_id'], 'class' => 'form-control']);
                                         ?>
