@@ -804,6 +804,9 @@ footer a{
 	font-size: 20px;
 }
 
+.grecaptcha-badge{
+	z-index: 11;
+}
 
 .item_box {
     float:left;
