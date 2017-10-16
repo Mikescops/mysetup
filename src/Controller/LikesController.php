@@ -14,6 +14,44 @@ use Cake\Routing\Router;
  */
 class LikesController extends AppController
 {
+    /* /!\ Careful /!\
+     * This is not a 'regular' `index()` method :
+     * This one will list the likes of the current user.
+     * It's only available 'privately'.
+     */
+    public function index()
+    {
+        if($this->request->is('get'))
+        {
+            // Let's just fetch the setups that the current user has liked !
+            $setups = $this->Likes->find('all', [
+                'conditions' => [
+                    'Likes.user_id' => $this->request->session()->read('Auth.User.id')
+                ],
+                'contain' => [
+                    'Setups' => [
+                        'fields' => [
+                            'id',
+                            'user_id',
+                            'title',
+                            'creationDate',
+                            'status'
+                        ],
+                    ]
+                ],
+                'order' => [
+                    'Likes.id' => 'DESC'
+                ]
+            ])->all()->toArray();
+
+            debug($setups);
+            die();
+
+            $this->set('setups', $setups);
+        }
+    }
+
+
     /* AJAX CALLS */
     public function getLikes()
     {
