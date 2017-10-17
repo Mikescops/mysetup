@@ -213,12 +213,12 @@ class SetupsTable extends Table
         $array);
 
         // We'll stock some conditions in this
-        $conditions = [];
+        $conditions = ['Setups.status' => 'PUBLISHED'];
 
         // If the query specified only the featured ones
         if($params['featured'])
         {
-            $conditions += ['featured' => true];
+            $conditions += ['Setups.featured' => true];
         }
 
         $conditions += [
@@ -279,9 +279,6 @@ class SetupsTable extends Table
                 'Users' => function ($q) {
                     return $q->autoFields(false)->select(['id', 'name', 'modificationDate']);
                 }
-            ],
-            'having' => [
-                'Setups.status' => 'PUBLISHED'
             ]
         ])
         ->where(['OR' => [$name_cond, $author_cond, $title_cond, $resources_cond]])
