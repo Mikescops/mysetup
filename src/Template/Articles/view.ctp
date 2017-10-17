@@ -4,30 +4,28 @@ $this->layout = 'default';
 $this->assign('title', $article->title. ' | mySetup.co');
 
 function getplaintextintrofromhtml($html) {
-        // Remove the HTML tags
-        $html = strip_tags($html);
-        // Convert HTML entities to single characters
-        $html = html_entity_decode($html, ENT_QUOTES, 'UTF-8');
+    // Remove the HTML tags
+    $html = strip_tags($html);
+    // Convert HTML entities to single characters
+    $html = html_entity_decode($html, ENT_QUOTES, 'UTF-8');
 
-        $html = str_replace("\n", " ", $html);
-        return $html;
-    }
+    $html = str_replace("\n", " ", $html);
+    return $html;
+}
 
 echo $this->Html->meta('description', $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true]), ['block' => true]);
 
 echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("/blog/".$article->id."-".$this->Text->slug($article->title), true)), null, ['block' => true]);
 
-
 echo $this->Html->meta(['property' => 'og:title', 'content' =>  $article->title. ' | mySetup.co'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/'.$article->picture, true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/'.$article->picture, true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("/blog/".$article->id."-".$this->Text->slug($article->title), true)], null ,['block' => true]);
 
-
-
 ?>
+
 <div class="container sitecontainer">
     <div class="maincontainer">
 
