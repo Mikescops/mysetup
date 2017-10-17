@@ -98,7 +98,7 @@ CREATE TABLE `users` (
   `creationDate` datetime NOT NULL,
   `modificationDate` timestamp NOT NULL,
   `lastLogginDate` datetime DEFAULT NULL,
-  `mainSetup_id` INT(11) DEFAULT NULL,
+  `mainSetup_id` int(11) NOT NULL DEFAULT '0',
   `twitchToken` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
   `twitchUserId` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
   `uwebsite` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
