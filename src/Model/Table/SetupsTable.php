@@ -284,11 +284,8 @@ class SetupsTable extends Table
                 'Setups.status' => 'PUBLISHED'
             ]
         ])
-        ->where(['OR' => $name_cond])
-        ->orWhere(['OR' => $author_cond])
-        ->orWhere(['OR' => $title_cond])
+        ->where(['OR' => [$name_cond, $author_cond, $title_cond, $resources_cond]])
         ->leftJoinWith('Resources')
-        ->orWhere(['OR' => $resources_cond])
         ->distinct()
         ->toArray();
 
