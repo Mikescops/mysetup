@@ -170,7 +170,7 @@ class SetupsController extends AppController
             // Here we'll assign automatically the owned of the setup to the entity, if in the setup it has not be filled
             if(!isset($data['author']) or $data['author'] === '')
             {
-                $data['author'] = $this->Setups->Users->find()->where(['id' => $setup->user_id])->first()['name'];
+                $data['author'] = $this->Setups->Users->get($setup->user_id)['name'];
             }
 
             // A regular user should have the right to submit its setups with PUBLISHED and DRAFT status values
