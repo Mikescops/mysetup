@@ -79,8 +79,8 @@ class NotificationsTable extends Table
 
     public function createNotification($user_id, $content)
     {
-        // Before saving this new notification, we'll check if its content is not yet existing in the DB #floodDetection
-        if($this->find()->where(['content' => $content])->count() === 0)
+        // Before saving this new notification, we'll check if its content is not already present into the DB #floodDetection
+        if(!$this->exists(['content' => $content]))
         {
             $notification = $this->newEntity();
 
