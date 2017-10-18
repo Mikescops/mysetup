@@ -125,9 +125,11 @@ class AppController extends Controller
                 ],
                 'conditions' => [
                     'user_id' => $user['id']
+                ],
+                'order' => [
+                    'creationDate' => 'DESC'
                 ]
-            ]
-            )->toArray() as $setup) {
+            ])->toArray() as $setup) {
                 $setupsList += [$setup->id => $setup->title];
             }
 
