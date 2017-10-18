@@ -497,7 +497,7 @@ class UsersController extends AppController
 
         if($user)
         {
-            // This is the problem, when the user log in, Twitch gives us a brand new token for this person, but we don't need it :S
+            // This is the problem, when the user logs him in, Twitch gives us a brand new token for this person, but we don't need it :S
             // So, again, two cases, we save this token as a new one, and if one was present beforehand, we revoke it ;)
             if($user->twitchToken)
             {
