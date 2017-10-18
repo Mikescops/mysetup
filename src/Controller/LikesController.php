@@ -55,7 +55,7 @@ class LikesController extends AppController
                             ]
                         ],
                         'Likes' => function ($q) {
-                            return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
+                            return $q->enableAutoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
                         }
                     ]
                 ],

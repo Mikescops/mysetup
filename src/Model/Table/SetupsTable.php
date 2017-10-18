@@ -253,7 +253,7 @@ class SetupsTable extends Table
                 * We browse the Users table (in order to gather some setups with the user name)
                 * We browse the Setups table (in order to gather some setups with their author name and title)
                 * We browse the Resources table (in order to gather some setups with their resources title [=== product name])
-                * We finally pick only the public setups !
+                * We pick only the public setups !
         */
         $results = $this->find('all', [
             'conditions' => $conditions,
@@ -271,14 +271,24 @@ class SetupsTable extends Table
             ],
             'contain' => [
                 'Likes' => function ($q) {
-                    return $q->autoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
+                    return $q->enableAutoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
                 },
-                'Resources' => function ($q) {
-                    return $q->autoFields(false)->select(['setup_id', 'src'])->where(['type' => 'SETUP_FEATURED_IMAGE']);
-                },
-                'Users' => function ($q) {
-                    return $q->autoFields(false)->select(['id', 'name', 'modificationDate']);
-                }
+                'Resources' => [
+                    'fields' => [
+                        'setup_id',
+                        'src'
+                    ],
+                    'conditions' => [
+                        'type' => 'SETUP_FEATURED_IMAGE'
+                    ]
+                ],
+                'Users' => [
+                    'fields' => [
+                        'id',
+                        'name',
+                        'modificationDate'
+                    ]
+                ]
             ]
         ])
         ->where(['OR' => [$name_cond, $author_cond, $title_cond, $resources_cond]])
