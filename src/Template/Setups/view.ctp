@@ -4,11 +4,10 @@
   */
 
 function getplaintextintrofromhtml($html) {
-        // Remove the HTML tags
+    // Remove the HTML tags
     $html = strip_tags($html);
-        // Convert HTML entities to single characters
+    // Convert HTML entities to single characters
     $html = html_entity_decode($html, ENT_QUOTES, 'UTF-8');
-
     $html = str_replace("\n", " ", $html);
     return $html;
 }
@@ -22,13 +21,13 @@ echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("
 echo $this->Html->meta(['property' => 'og:title', 'content' => $setup->title.' | mySetup.co'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/'.$setup['resources']['featured_image'], true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/'.$setup['resources']['featured_image'], true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)], null ,['block' => true]);
 ?>
 
 <div class="featured-container">
-    <div class="featured-gradient" style="background-image: url('<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>')"></div>
+    <div class="featured-gradient" style="background-image: url('<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true) ?>')"></div>
 
     <div class="post_slider">
 
@@ -36,7 +35,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <div class="slider-item">
             <div class="featured-img-setup slider-item-inner">
 
-                <img alt="<?= $setup->title ?>" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>">
+                <img alt="<?= $setup->title ?>" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true) ?>">
                 <?php if(!empty($setup['resources']['video_link'])): ?>
                     <div class="overlay">
                         <a class="videoplayer-icon" href="<?= $setup['resources']['video_link']?>" title="<?= __('Watch it in video') ?>" data-lity>
@@ -120,7 +119,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                                     <?php
                                     echo $this->Form->control('featuredImage', ['type' => 'file', 'id' => 'featuredImage_edit', 'label' => ['class' => 'label_fimage', 'text' => __('Change featured image')], 'class' => 'inputfile']);
                                     ?>
-                                    <img alt="<?= __('Featured Preview') ?>" id="featuredimage_preview_edit" src="<?= $this->Url->build('/', true)?><?= $setup['resources']['featured_image'] ?>">
+                                    <img alt="<?= __('Featured Preview') ?>" id="featuredimage_preview_edit" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg')) ?>">
                                     <div class="hidden_five_inputs">
                                         <?php
                                         echo $this->Form->control('gallery0', ['id' => 'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);

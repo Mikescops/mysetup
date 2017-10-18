@@ -55,7 +55,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
             <?php  if (!empty($user->setups)): foreach ($user->setups as $setup): ?>
             <div class="fullitem">
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                    <img alt="<?= ('Gallery image of') ?> <?= h($setup->title) ?>" src="<?= $this->Url->build('/'); ?><?= $setup->resources[0]->src ?>">
+                    <img alt="<?= ('Gallery image of') ?> <?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg')) ?>">
                 </a>
                 <div class="red_like"><i class="fa fa-heart"></i>  <?php echo count($setup->likes) ?></div>
 
