@@ -407,16 +407,22 @@ class UsersTable extends Table
     // A simple getter method to retrieve the "active" users on the website
     public function getActiveUsers($n = 8)
     {
-        return $this->Notifications->find('all', ['limit' => $n])
-            ->select([
-                'Notifications.user_id',
-                'Users.name',
-                'Users.modificationDate'
-            ])
-            ->group('Notifications.user_id')
-            ->contain([
-                'Users'
-            ])
-            ->toArray();
+        return $this->Notifications->find('all', [
+            'limit' => $n,
+            'fields' => [
+                'user_id'
+            ],
+            'contain' => [
+                'Users' => [
+                    'fields' => [
+                        'name',
+                        'modificationDate'
+                    ]
+                ]
+            ],
+            'group' => [
+                'user_id'
+            ]
+        ])->all()->toArray();
     }
 }
