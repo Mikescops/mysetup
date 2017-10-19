@@ -16,13 +16,14 @@ $this->assign('title', $setup->title.' | mySetup.co');
 
 echo $this->Html->meta('description', $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true]), ['block' => true]);
 
-echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)), null, ['block' => true]);
+echo $this->Html->meta(array('name' => 'canonical', 'content' => 'summary_large_image'), null, ['block' => true]);
 
+echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)), null, ['block' => true]);
 echo $this->Html->meta(['property' => 'og:title', 'content' => $setup->title.' | mySetup.co'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
+echo $this->Html->meta(['name' => 'twitter:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true)], null ,['block' => true]);
+echo $this->Html->meta(['name' => 'twitter:image', 'content' => $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)], null ,['block' => true]);
 ?>
 

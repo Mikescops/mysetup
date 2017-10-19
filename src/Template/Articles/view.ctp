@@ -17,11 +17,14 @@ echo $this->Html->meta('description', $this->Text->truncate(getplaintextintrofro
 
 echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("/blog/".$article->id."-".$this->Text->slug($article->title), true)), null, ['block' => true]);
 
+
+echo $this->Html->meta(array('name' => 'canonical', 'content' => 'summary_large_image'), null, ['block' => true]);
+
 echo $this->Html->meta(['property' => 'og:title', 'content' =>  $article->title. ' | mySetup.co'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
+echo $this->Html->meta(['name' => 'twitter:description', 'content' => $this->Text->truncate(getplaintextintrofromhtml($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/'.$article->picture, true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/'.$article->picture, true)], null ,['block' => true]);
+echo $this->Html->meta(['name' => 'twitter:image', 'content' => $this->Url->build('/'.$article->picture, true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("/blog/".$article->id."-".$this->Text->slug($article->title), true)], null ,['block' => true]);
 
 ?>
