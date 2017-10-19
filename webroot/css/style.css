@@ -1,5 +1,5 @@
 /*!
- * mySetup v1.7.2
+ * mySetup v2.0.1
  * https://mysetup.co
  *
  * Copyright (c) 2017 Corentin Mors / Samuel Forestier
@@ -36,7 +36,7 @@ body{
 }
 
 img{
-	user-drag: none; 
+	user-drag: none;
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-drag: none;
@@ -171,13 +171,13 @@ footer a{
 	overflow: hidden;
 	z-index: 0;
 	-webkit-transition: all 200ms ease-in;
-    -webkit-transform: scale(1); 
+    -webkit-transform: scale(1);
     -ms-transition: all 200ms ease-in;
-    -ms-transform: scale(1); 
+    -ms-transform: scale(1);
     -moz-transition: all 200ms ease-in;
     -moz-transform: scale(1);
     transition: all 200ms ease-in;
-    transform: scale(1);   
+    transform: scale(1);
 }
 
 .home_slider .stretchy-wrapper{
@@ -229,7 +229,7 @@ footer a{
     -webkit-transition: all 200ms ease-in;
     -webkit-transform: scale(1.1);
     -ms-transition: all 200ms ease-in;
-    -ms-transform: scale(1.1);   
+    -ms-transform: scale(1.1);
     -moz-transition: all 200ms ease-in;
     -moz-transform: scale(1.1);
     transition: all 200ms ease-in;
@@ -252,7 +252,7 @@ footer a{
 }
 .fancy span {
   display: inline-block;
-  position: relative;  
+  position: relative;
 }
 .fancy span:before,
 .fancy span:after {
@@ -320,7 +320,7 @@ footer a{
 	background: -webkit-linear-gradient(-45deg, #6441A4 0%,#6441A4 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(135deg, #6441A4 0%,#6441A4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6441A4', endColorstr='#6441A4',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-	content: '';    
+	content: '';
 	display: block;
 	height: 100%;
 	position: absolute;
@@ -377,7 +377,7 @@ footer a{
 	background: -webkit-linear-gradient(-45deg, #3C72B8 0%,#3C72B8 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(135deg, #3C72B8 0%,#3C72B8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3C72B8', endColorstr='#3C72B8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-	content: '';    
+	content: '';
 	display: block;
 	height: 100%;
 	position: absolute;
@@ -669,7 +669,7 @@ footer a{
 .user-stats span{
   font-weight:bold;
   font-size:4em;
-  
+
   display:block;
   line-height:1em;
 }
@@ -827,7 +827,7 @@ footer a{
 }
 
 .featured-inner h3{
-	margin: 10px 0 0 20px; 
+	margin: 10px 0 0 20px;
 	display: inline-block;
 	text-shadow: 0 1px 0 black;
 	-moz-text-shadow: 0 1px 0 black;
@@ -1070,7 +1070,7 @@ footer a{
 }
 
 .item-meta{
-	
+
 }
 
 .setup-date{
@@ -1183,7 +1183,7 @@ footer a{
 
 .comment-img img { display: block }
 
-.comment-body{ 
+.comment-body{
 	overflow: hidden;
 	margin-top: 6px;
 }
@@ -1518,14 +1518,14 @@ nav {
 	padding:0;
 	list-style: none;
 	overflow:hidden;
-	
+
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	border-radius: 5px;	
-	
+	border-radius: 5px;
+
 	-webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
-	box-shadow:  1px 1px 10px rgba(0, 0, 0, 0.1);	
+	box-shadow:  1px 1px 10px rgba(0, 0, 0, 0.1);
 }
 
 #mobile-nav li{
@@ -1544,7 +1544,7 @@ nav {
 	text-transform:uppercase;
 	font-size:14px;
 	color:#686868;
-	
+
 	-webkit-transition:all 0.2s linear;
 	-moz-transition:all 0.2s linear;
 	-o-transition:all 0.2s linear;
@@ -1898,6 +1898,40 @@ nav {
 	padding: 0 10px;
 }
 
+/* Custom check-box */
+input[type="checkbox"]{
+  display: none;
+}
+.checkbox_container label{
+  position: relative;
+}
+.checkbox_container label::before, .checkbox_container label::after{
+  content: '';
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.checkbox_container .checkbox::before{
+  content: '\f096';
+  font-family: 'FontAwesome';
+  color: rgb(50, 143, 234);
+  left: -35px;
+  box-sizing: border-box;
+  border-radius: 25%;
+}
+.checkbox_container label.checkbox::after{
+  content: '\f00c';
+  font-family: 'FontAwesome';
+  font-size: 0.9rem;
+  left: 2px;
+  top: 5px;
+  color: transparent;
+  transition: color .2s;
+  position: absolute;
+}
+input[type="checkbox"]:checked + label.checkbox::after{
+  color: rgb(50, 143, 234);
+}
 
 /********* ARTICLES CSS ********/
 
@@ -2078,7 +2112,7 @@ nav {
 
 	.item_box{
 		width: 48%!important;
-		padding-bottom: 48%!important; 
+		padding-bottom: 48%!important;
 	}
 
 	.feeditem .red_like {
@@ -2256,12 +2290,10 @@ nav {
 		line-height: 30px;
 		min-height: 60px;
 	}
-
-
 }
 
 /* Smaller than tablet screen */
-@media (max-width: 880px) { 
+@media (max-width: 880px) {
 	.maincontainer .row .column.column-75 {
 	    flex: 0 0 100%;
 	    max-width: 100%;
@@ -2307,7 +2339,7 @@ nav {
 
 	.item_box{
 		width: 23%;
-		padding-bottom: 23%; 
+		padding-bottom: 23%;
 	}
 
 	.config-post{

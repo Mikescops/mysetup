@@ -139,7 +139,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                                     <?php endfor ?>
                                     </div>
 
-
                                     <div class="modal-footer">
                                         <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
                                         <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
@@ -204,7 +203,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                                     <?php
                                     if($authUser['admin'])
                                     {
-                                        echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => 'Feature this setup !', 'default' => $setup->featured]);
+                                        echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => ['text' => __('Feature this setup !'), 'class' => 'checkbox'], 'default' => $setup->featured, 'hiddenField' => true]);
                                     }
 
                                     echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit', 'class' => 'hidden']);

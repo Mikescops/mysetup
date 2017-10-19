@@ -115,12 +115,13 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                             echo $this->Form->control('secret', ['pattern' => '.{8,}', 'type' => 'password', 'placeholder' => __("Password"), 'class' => 'pwd_field', 'label' => '']);
                             echo $this->Form->control('secret2', ['type' => 'password', 'placeholder' => __("Confirm password"), 'class' => 'pwd_field', 'label' => '']);
                         ?>
-                        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> <?= __('Change the user password') ?></a>
-                        <?php
-                            echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => __(' User verified'), 'default' => $user['verified'], 'required' => false]);
-                        ?>
-                    </div>
 
+                        <?php
+                            echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => ['text' => __(' User verified'), 'class' => 'checkbox'], 'default' => $user['verified'], 'required' => false, 'hiddenField' => true]);
+                        ?>
+
+                        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> <?= __('Change the user password') ?></a>
+                    </div>
                     </fieldset>
                     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
                     <?= $this->Form->end(); ?>

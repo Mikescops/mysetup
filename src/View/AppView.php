@@ -27,10 +27,31 @@ class AppView extends View
 
     public function initialize()
     {
-        // We'll only load our Markdown Helper for '{Setups,Articles}.view' pages !
-        if($this->request->action === 'view' and in_array($this->request->controller, ['Setups', 'Articles']))
+        if($this->request->action === 'view')
         {
-            $this->loadHelper('Tanuck/Markdown.Markdown');
+            // We'll only load our Markdown Helper for '{Setups,Articles}.view' pages !
+            if(in_array($this->request->controller, ['Setups', 'Articles']))
+            {
+                $this->loadHelper('Tanuck/Markdown.Markdown');
+            }
+
+            // Here we'll apply special templates for our modal check-boxes
+            if(in_array($this->request->controller, ['Setups', 'Users']))
+            {
+                $this->Form->setTemplates([
+                    'checkboxContainer' => '
+                        <div class="checkbox_container">
+                            {{content}}
+                        </div>
+                    ',
+                    'nestingLabel' => '
+                        {{input}}
+                        <label{{attrs}}>
+                            {{text}}
+                        </label>
+                    '
+                ]);
+            }
         }
     }
 }
