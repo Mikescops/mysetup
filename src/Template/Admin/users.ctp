@@ -19,8 +19,8 @@
                     <th scope="col"><?= $this->Paginator->sort('mail', __('Email')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('preferredStore', __('Store')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('timeZone', __('Timezone')) ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('verified', __('Status')) ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('mailVerification', __('Verified')) ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('verified') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('mailVerification', __('Email')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('creationDate', __('Created on')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('lastLogginDate', __('Last Login')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('twitchToken', 'Twitch') ?></th>
@@ -36,7 +36,22 @@
                     <td><?= h($user->mail) ?></td>
                     <td><?= h($user->preferredStore) ?></td>
                     <td><?= h($user->timeZone) ?></td>
-                    <td><?= h($user->verified) ?></td>
+                    <td>
+                    <?php
+                        if($user->verified === 125 || $user->mail === 'admin@admin.admin')
+                        {
+                            echo __('Admin');
+                        }
+                        elseif($user->verified === 0)
+                        {
+                            echo __('No');
+                        }
+                        else
+                        {
+                            echo __('Yes');
+                        }
+                    ?>
+                    </td>
                     <td><?= ($user->mailVerification ? __('No') : __('Yes')) ?></td>
                     <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']); ?></td>
                     <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); ?></td>
