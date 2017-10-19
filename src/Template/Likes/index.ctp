@@ -32,7 +32,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <a href="<?= $this->Url->build('/setups/'.$like->setup->id.'-'.$this->Text->slug($like->setup->title)); ?>">
                     <img alt="<?= h($like->setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($like->setup->resources[0]) ? $like->setup->resources[0]->src : 'img/not_found.jpg')) ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i>  <?php if(!empty($like->setup->likes[0])){echo $like->setup->likes[0]->total;}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($like->setup->likes[0])){echo $like->setup->likes[0]['total'];}else{echo 0;} ?></div>
 
                 <div class="fullitem-inner">
 

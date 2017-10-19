@@ -36,7 +36,7 @@ $this->assign('title', __('Search for "') . (isset($_GET["q"]) ? $_GET["q"] : ""
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img src="<?= $this->Url->build('/', true)?><?= $setup['resources'][0]['src'] ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($setup->likes[0])){echo $setup->likes[0]->total;}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
                 <div class="fullitem-inner">
                     <div class="row">
                         <div class="column column-75">

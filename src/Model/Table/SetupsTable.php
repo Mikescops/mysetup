@@ -249,7 +249,7 @@ class SetupsTable extends Table
 
                 * We select only the columns that we'll need #optimization
                 * Featured image (for each setup) will be directly available  ($setup['resources'][0]['src'])
-                * Number of likes for each setup will be directly available ($setup->likes[0]->total)
+                * Number of likes for each setup will be directly available ($setup->likes[0]['total'])
                 * We browse the Users table (in order to gather some setups with the user name)
                 * We browse the Setups table (in order to gather some setups with their author name and title)
                 * We browse the Resources table (in order to gather some setups with their resources title [=== product name])
