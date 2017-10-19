@@ -62,8 +62,12 @@ class APIController extends AppController
                                 ],
                                 'conditions' => [
                                     'OR' => [
-                                        'type' => 'SETUP_FEATURED_IMAGE',
-                                        'OR' => ['type' => 'SETUP_PRODUCT']
+                                        [
+                                            'type' => 'SETUP_FEATURED_IMAGE'
+                                        ],
+                                        [
+                                            'type' => 'SETUP_PRODUCT'
+                                        ]
                                     ]
                                 ],
                                 'sort' => ['type' => 'ASC'],
