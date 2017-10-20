@@ -4,6 +4,7 @@
   */
 
     $this->layout = 'admin';
+    $this->assign('title', __('Users | myAdmin'));
 ?>
 
 <div class="col-12 col-md-9 col-xl-10">

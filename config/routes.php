@@ -95,7 +95,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     /* ____________________________ */
 
     /* Admin's (default) route */
-    $routes->connect('/admin', ['controller' => 'Admin', 'action' => 'setups']);
+    $routes->connect('/admin', ['controller' => 'Admin', 'action' => 'dashboard']);
     /* _______________________ */
 
     // However, default routes are still available...

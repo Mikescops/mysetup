@@ -4,6 +4,7 @@
   */
 
     $this->layout = 'admin';
+    $this->assign('title', __('Comments | myAdmin'));
 ?>
 <div class="col-12 col-md-9 col-xl-10">
     <h3><?= __('Comments') ?> - <?= $this->Paginator->counter(['format' => '{{count}}']) ?></h3>

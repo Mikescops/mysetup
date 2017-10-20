@@ -32,8 +32,14 @@ class AdminController extends AppController
         $total_comments = $this->Setups->Comments->find()->count();
         $total_resources = $this->Setups->Resources->find()->count();
 
-        $this->set(compact('total_users', 'total_setups', 'total_comments', 'total_resources'));
+        $this->set(compact('total_users', 'total_setups', 'total_comments', 'total_resources', 'searchUsers'));
     }
+
+    public function dashboard()
+    {
+        
+    }
+
 
     public function setups()
     {
