@@ -24,7 +24,10 @@ class AdminController extends AppController
     {
 
         parent::beforeRender($event);
+    }
 
+    public function dashboard()
+    {
         // Here we'll just gather some global counters about the data we have !
         $this->loadModel('Setups');
         $total_users = $this->Setups->Users->find()->count();
@@ -33,11 +36,7 @@ class AdminController extends AppController
         $total_resources = $this->Setups->Resources->find()->count();
 
         $this->set(compact('total_users', 'total_setups', 'total_comments', 'total_resources', 'searchUsers'));
-    }
 
-    public function dashboard()
-    {
-        
     }
 
 

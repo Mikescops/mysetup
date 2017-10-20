@@ -95,24 +95,6 @@
               <a href="https://github.com/Mikescops/mysetup-twitch-extension" class="list-group-item list-group-item-action"><i class="fa fa-twitch"></i> Extension Twitch Repo</a>
             </div>
 
-            <br>
-            <div class="container">
-                <div class="row">
-                    <div class="col-6">
-                        <strong><?= $total_setups ?></strong> setups
-                    </div>
-                    <div class="col-6">
-                        <strong><?= $total_users ?></strong> users
-                    </div>
-                    <div class="col-6">
-                        <strong><?= $total_comments ?></strong> comments
-                    </div>
-                    <div class="col-6">
-                        <strong><?= $total_resources ?></strong> resources
-                    </div>
-                </div>
-            </div>
-
         </div>
       
 
