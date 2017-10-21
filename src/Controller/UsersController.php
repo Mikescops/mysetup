@@ -123,6 +123,9 @@ class UsersController extends AppController
                 // By default user is not verified
                 $user->verified = 0;
 
+                // No setup exists yet...
+                $user->mainSetup_id = 0;
+
                 if($this->Users->save($user))
                 {
                     // Here we'll try to retrieve a Gravatar avatar linked to this email address
@@ -546,6 +549,7 @@ class UsersController extends AppController
             $user->twitchToken    = $token;
             $user->twitchUserId   = $response->json['_id'];
             $user->verified       = 0;
+            $user->mainSetup_id   = 0;
 
             // Fix a very weird behavior (un-debug-gable) if the `EN` language comes from the JS
             // As this Amazon Store does not exist, we just replace it by the `US` one
