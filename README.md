@@ -1,11 +1,11 @@
-# MySetup.co
+# mySetup.co
 
 [![Website](https://img.shields.io/website-up-down-green-red/https/mysetup.co.svg?label=mySetup.co)](https://mysetup.co/)
 [![Twitter Follow](https://img.shields.io/twitter/follow/mysetup_co.svg?style=social&label=Follow&style=flat-square)](https://twitter.com/mysetup_co)
 
 ## Installation
 
-In order to deploy this website on your web server:
+In order to deploy this website on your web server :
 
 1. `# aptitude install git apache2 php7.0 php7.0-intl php7.0-mbstring php7.0-imagick php7.0-sqlite3 phpmyadmin composer`
 
@@ -49,6 +49,12 @@ In order to deploy this website on your web server:
 ### Notes to developers
 
 * Will be 'administrators' users having a `verified` value equal to `125`, AND the account with an email address and password as (`admin@admin.admin` / `adminadmin`) (which cannot be verified...).
+
+* If you want to bump vendor packages version :
+    1. Execute `$ composer update` during development
+    2. Run some tests
+    3. Commit the `composer.lock` changes
+    4. Deploy normally on the production with `$ bash bin/deployment.sh`
 
 * If you wanna add a translation for a foreign language, just add _default.po_ / _default.mo_ and _core.po_ / _core.mo_ files into `src/Locale/xx_XX/`, and authorize this new locale in `src/Application.php`. In order to extract the strings from the source code, and edit them with _Poedit_, just follow this scenario :
 	
