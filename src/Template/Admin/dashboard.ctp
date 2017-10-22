@@ -17,7 +17,7 @@
 						<i class="fa fa-list fa-3x"></i>
 					</div>
 					<h6 class="text-uppercase">Setups</h6>
-					<h1 class="display-4"><?= $total_setups ?></h1>
+					<h1 class="display-4"><?= $stats['count']['setups'] ?></h1>
 				</div>
 			</div>
 		</div>
@@ -28,7 +28,7 @@
             <i class="fa fa-user fa-3x"></i>
           </div>
           <h6 class="text-uppercase">Users</h6>
-          <h1 class="display-4"><?= $total_users ?></h1>
+          <h1 class="display-4"><?= $stats['count']['users'] ?></h1>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
 						<i class="fa fa-comment fa-3x"></i>
 					</div>
 					<h6 class="text-uppercase">Comments</h6>
-					<h1 class="display-4"><?= $total_comments ?></h1>
+					<h1 class="display-4"><?= $stats['count']['comments'] ?></h1>
 				</div>
 			</div>
 		</div>
@@ -50,11 +50,25 @@
 						<i class="fa fa-database fa-3x"></i>
 					</div>
 					<h6 class="text-uppercase">Resources</h6>
-					<h1 class="display-4"><?= $total_resources ?></h1>
+					<h1 class="display-4"><?= $stats['count']['resources'] ?></h1>
 				</div>
 			</div>
 		</div>
 	</div>
+
+    <?php
+
+        debug($stats['users']['certified']);
+        debug($stats['users']['twitch']);
+        debug($stats['users']['recentConnected']);
+        debug($stats['users']['recentCreated']);
+        debug($stats['users']['adminUsers']);
+
+        // Pense à la protection XSS pour les entrées utilisateurs qu'on pourrait afficher ici...
+        debug($stats['comments']['recentCreated']);
+        debug($stats['requests']['onGoing']);
+
+    ?>
 
   <h3>Analytics</h3>
 

@@ -30,15 +30,22 @@ class AdminController extends AppController
     {
         // Here we'll just gather some global counters about the data we have !
         $this->loadModel('Setups');
-        $total_users = $this->Setups->Users->find()->count();
-        $total_setups = $this->Setups->find()->count();
-        $total_comments = $this->Setups->Comments->find()->count();
-        $total_resources = $this->Setups->Resources->find()->count();
+        $stats['count']['users'] = $this->Setups->Users->find()->count();
+        $stats['count']['setups'] = $this->Setups->find()->count();
+        $stats['count']['comments'] = $this->Setups->Comments->find()->count();
+        $stats['count']['resources'] = $this->Setups->Resources->find()->count();
 
-        $this->set(compact('total_users', 'total_setups', 'total_comments', 'total_resources', 'searchUsers'));
+        // Some more information !
+        $stats['users']['certified'] = ($stats['count']['users'] !== 0 ? round($this->Setups->Users->find()->where(['mailVerification IS' => null])->count() / $stats['count']['users'] * 100, 2) : 0);
+        $stats['users']['twitch'] = ($stats['count']['users'] !== 0 ? round($this->Setups->Users->find()->where(['twitchToken IS NOT' => null])->count() / $stats['count']['users'] * 100, 2) : 0);
+        $stats['users']['recentConnected'] = $this->Setups->Users->find()->order(['lastLogginDate' => 'DESC'])->limit(5)->toArray();
+        $stats['users']['recentCreated'] = $this->Setups->Users->find()->order(['creationDate' => 'DESC'])->limit(5)->toArray();
+        $stats['users']['adminUsers'] = $this->Setups->Users->find()->where(['OR' => ['verified' => 125], ['mail' => 'admin@admin.admin']])->all()->toArray();
+        $stats['comments']['recentCreated'] = $this->Setups->Comments->find()->order(['dateTime' => 'DESC'])->limit(5)->toArray();
+        $stats['requests']['onGoing'] = $this->Setups->Requests->find()->order(['id' => 'DESC'])->all()->toArray();
 
+        $this->set('stats', $stats);
     }
-
 
     public function setups()
     {
