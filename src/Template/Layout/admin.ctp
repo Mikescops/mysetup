@@ -102,7 +102,17 @@
       </div>
       
     </div>
+
+    <hr>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <p class="text-center text-muted">mySetup.co - Admin Panel</p>
+        </div>
+    </footer>
+
     <?= $this->Flash->render() ?>
+
 
 </body>
 </html>

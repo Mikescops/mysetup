@@ -142,21 +142,26 @@
 
 	<div class="row mb-3">
 		<div class="col-xl-6 col-sm-6">
-			<br>
+			<br>		
 			<h3>Recently connected</h3>
 			<div class="list-group">
 				<?php foreach ($stats['users']['recentConnected'] as $user):?>
 					<a href="<?=$this->Url->build('/users/'.$user->id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
-						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1"><?= h($user->name) ?>
-								<?php if(is_null($user->mailVerification)):?><i class="fa fa-envelope" title="Mail verified"></i><?php endif;?>
-								<?php if($user->twitchToken):?><i class="fa fa-twitch" title="Twitch user id : <?= $user->twitchUserId ?>"></i><?php endif;?>
-								<?php if($user->verified == "1"):?><i class="fa fa-check-circle" title="Certified user"></i><?php endif;?>
-								<?php if($user->verified == "125"):?><i class="fa fa-fort-awesome" title="Admin user"></i><?php endif;?>
-							</h5>
-							<small><?= $this->Time->format($user->lastLogginDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></small>
+						<div class="media">
+							<img class="mr-3 rounded" height="45" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
+							<div class="media-body">
+								<div class="d-flex w-100 justify-content-between">
+									<h5 class="mb-1"><?= h($user->name) ?>
+										<?php if(is_null($user->mailVerification)):?><i class="fa fa-envelope" title="Mail verified"></i><?php endif;?>
+										<?php if($user->twitchToken):?><i class="fa fa-twitch" title="Twitch user id : <?= $user->twitchUserId ?>"></i><?php endif;?>
+										<?php if($user->verified == "1"):?><i class="fa fa-check-circle" title="Certified user"></i><?php endif;?>
+										<?php if($user->verified == "125"):?><i class="fa fa-fort-awesome" title="Admin user"></i><?php endif;?>
+									</h5>
+									<small><?= $this->Time->format($user->lastLogginDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></small>
+								</div>
+								<small><?= h($user->mail) ?></small>
+							</div>
 						</div>
-						<small><?= h($user->mail) ?></small>
 					</a>
 				<?php endforeach ?>
 			</div>
@@ -168,16 +173,21 @@
 			<div class="list-group">
 				<?php foreach ($stats['users']['recentCreated'] as $user):?>
 					<a href="<?=$this->Url->build('/users/'.$user->id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
-						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1"><?= h($user->name) ?>
-								<?php if(is_null($user->mailVerification)):?><i class="fa fa-envelope" title="Mail verified"></i><?php endif;?>
-								<?php if($user->twitchToken):?><i class="fa fa-twitch" title="Twitch user id : <?= $user->twitchUserId ?>"></i><?php endif;?>
-								<?php if($user->verified == "1"):?><i class="fa fa-check-circle" title="Certified user"></i><?php endif;?>
-								<?php if($user->verified == "125"):?><i class="fa fa-fort-awesome" title="Admin user"></i><?php endif;?>
-							</h5>
-							<small><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></small>
+						<div class="media">
+							<img class="mr-3 rounded" height="45" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
+							<div class="media-body">
+								<div class="d-flex w-100 justify-content-between">
+									<h5 class="mb-1"><?= h($user->name) ?>
+										<?php if(is_null($user->mailVerification)):?><i class="fa fa-envelope" title="Mail verified"></i><?php endif;?>
+										<?php if($user->twitchToken):?><i class="fa fa-twitch" title="Twitch user id : <?= $user->twitchUserId ?>"></i><?php endif;?>
+										<?php if($user->verified == "1"):?><i class="fa fa-check-circle" title="Certified user"></i><?php endif;?>
+										<?php if($user->verified == "125"):?><i class="fa fa-fort-awesome" title="Admin user"></i><?php endif;?>
+									</h5>
+									<small><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></small>
+								</div>
+								<small><?= h($user->mail) ?></small>
+							</div>
 						</div>
-						<small><?= h($user->mail) ?></small>
 					</a>
 				<?php endforeach ?>
 			</div>
@@ -192,7 +202,7 @@
 				<?php foreach ($stats['comments']['recentCreated'] as $comment):?>
 					<a href="<?=$this->Url->build('/setups/'.$comment->setup_id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
 						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1"><?= h($comment->user_id) ?></h5>
+							<h5 class="mb-1"><strong><?= h($comment->user->name) ?></strong> on <strong><?= h($comment->setup->title) ?></strong></h5>
 							<small><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></small>
 						</div>
 						<p class="mb-1"><?= h($comment->content) ?></p>
@@ -209,7 +219,7 @@
 				<?php foreach ($stats['requests']['onGoing'] as $request):?>
 					<a href="<?=$this->Url->build('/setups/'.$request->setup_id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
 						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1"><?= h($request->user_id) ?> ask for ownership on "<?= h($request->setup_id) ?>"</h5>
+							<h5 class="mb-1"><strong><?= h($request->user->name) ?></strong> ask for ownership on <strong><?= h($request->setup->title) ?></strong></h5>
 							<small>#<?= $request->token ?></small>
 						</div>
 						<p class="mb-1"><?= h($request->content) ?></p>
