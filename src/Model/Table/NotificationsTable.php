@@ -22,6 +22,7 @@ use Cake\Routing\Router;
 class NotificationsTable extends Table
 {
     public $types = [
+        'id' => '__ID',
         'alt' => '__ALT',
         'like' => '__LIKE',
         'comment' => '__COMMENT'
@@ -97,7 +98,8 @@ class NotificationsTable extends Table
             } while($this->find()->where(['id' => $notification->id])->count() !== 0);
 
             $notification->user_id = $user_id;
-            $notification->content = $content;
+            // Now we got an id for this notification, we may replace the template into the content !
+            $notification->content = str_replace($this->types['id'], $notification->id, $content);
             $notification->new     = 1;
 
             $this->save($notification);
@@ -117,7 +119,7 @@ class NotificationsTable extends Table
     public function createNotificationLink($user, $setup, $type)
     {
         $content = '
-            <a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $setup['id']]) . '">
+            <a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $setup['id']]) . '" onclick="markasread(' . $this->types['id'] . ')">
                 <img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $user->id . '.png" alt="' . $this->types['alt'] . '" />
                 <span>
                     <strong>' . h($user->name) . '</strong> ' . $type . ' <strong>' . h($setup['title']) . '</strong>
