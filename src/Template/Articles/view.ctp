@@ -45,7 +45,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
         <h2><?= h($article->title) ?></h2>
 
-        <?= $this->Markdown->transform(h($article->content))?>
+        <?= $this->Markdown->transform($article->content)?>
 
         <div id="social-networks"></div>
 
