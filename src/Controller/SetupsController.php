@@ -445,7 +445,7 @@ class SetupsController extends AppController
 
             if($setup['user_id'] != $user['id'])
             {
-                $email = $this->Setups->Users->getEmailObject('support@mysetup.co', 'A setup has been flagged !');
+                $email = $this->Setups->Users->getEmailObject('report@mysetup.co', 'A setup has been flagged !');
                 $email->setTemplate('report')
                       ->viewVars(['setup_id' => $setup->id, 'flagger_id' => $user->id, 'flagger_name' => $user->name, 'flagger_mail' => $user->mail])
                       ->send();

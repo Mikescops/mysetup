@@ -48,7 +48,7 @@ endif;
         <strong><?= __('Error') ?>: </strong>
         <?= h($message) ?><br>
 
-        You may cry or call an <a href="mailto:alert@mysetup.co">ambulance</a> !
+        You may cry or call an <a href="mailto:support@mysetup.co">ambulance</a> !
     </p>
     </div>
 </div>

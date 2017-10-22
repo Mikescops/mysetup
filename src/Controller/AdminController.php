@@ -38,11 +38,51 @@ class AdminController extends AppController
         // Some more information !
         $stats['users']['certified'] = ($stats['count']['users'] !== 0 ? round($this->Setups->Users->find()->where(['mailVerification IS' => null])->count() / $stats['count']['users'] * 100, 2) : 0);
         $stats['users']['twitch'] = ($stats['count']['users'] !== 0 ? round($this->Setups->Users->find()->where(['twitchToken IS NOT' => null])->count() / $stats['count']['users'] * 100, 2) : 0);
+
         $stats['users']['recentConnected'] = $this->Setups->Users->find()->order(['lastLogginDate' => 'DESC'])->limit(5)->toArray();
         $stats['users']['recentCreated'] = $this->Setups->Users->find()->order(['creationDate' => 'DESC'])->limit(5)->toArray();
-        $stats['users']['adminUsers'] = $this->Setups->Users->find()->where(['OR' => ['verified' => 125], ['mail' => 'admin@admin.admin']])->all()->toArray();
-        $stats['comments']['recentCreated'] = $this->Setups->Comments->find()->order(['dateTime' => 'DESC'])->limit(5)->toArray();
-        $stats['requests']['onGoing'] = $this->Setups->Requests->find()->order(['id' => 'DESC'])->all()->toArray();
+
+        $stats['comments']['recentCreated'] = $this->Setups->Comments->find('all', [
+            'contain' => [
+                'Users' => [
+                    'fields' => [
+                        'id',
+                        'name'
+                    ]
+                ],
+                'Setups' => [
+                    'fields' => [
+                        'id',
+                        'title'
+                    ]
+                ]
+            ],
+            'order' => [
+                'dateTime' => 'DESC'
+            ],
+            'limit' => 5
+        ])->all()->toArray();
+
+        $stats['requests']['onGoing'] = $this->Setups->Requests->find('all', [
+            'contain' => [
+                'Users' => [
+                    'fields' => [
+                        'id',
+                        'name',
+                        'mail'
+                    ]
+                ],
+                'Setups' => [
+                    'fields' => [
+                        'id',
+                        'title'
+                    ]
+                ]
+            ],
+            'order' => [
+                'Requests.id' => 'DESC'
+            ]
+        ])->all()->toArray();
 
         $this->set('stats', $stats);
     }
