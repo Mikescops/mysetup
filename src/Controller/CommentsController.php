@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\Routing\Router;
 
 /**
  * Comments Controller
@@ -40,10 +39,10 @@ class CommentsController extends AppController
 
                     // If it's not him, let's inform the setup owner of this new comment
                     $setup = $this->Comments->Setups->get($setup_id);
-                    if($data['user_id'] !== $setup['user_id'])
+                    if($data['user_id'] !== $setup->user_id)
                     {
                         $this->loadModel('Notifications');
-                        $this->Notifications->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $data['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $data['user_id'] . '.png" alt="__ALT">  <span><strong>' . h($this->Comments->Users->get($data['user_id'])['name']) . '</strong> __COMMENT <strong>' . h($setup['title']) . '</strong></span></a>');
+                        $this->Notifications->createNotificationLink($this->Comments->Users->get($data['user_id']), $setup, $this->Notifications->types['comment']);
                     }
                 }
 
