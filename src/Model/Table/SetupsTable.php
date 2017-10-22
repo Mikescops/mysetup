@@ -5,7 +5,10 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Datasource\EntityInterface;
+use Cake\ORM\Entity;
 use Cake\Event\Event;
+use Cake\Utility\Text;
+use Cake\Routing\Router;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -80,9 +83,9 @@ class SetupsTable extends Table
 
 
     /** Let's get the real url of setup **/
-    public function getUrl(\Cake\ORM\Entity $entity)
+    public function getUrl(Entity $entity)
     {
-        return \Cake\Routing\Router::url('/setups/'.$entity->id.'-'.\Cake\Utility\Text::slug($entity->title), true);
+        return Router::url('/setups/' . $entity->id . '-' . Text::slug($entity->title), true);
     }
 
     /**
