@@ -102,11 +102,6 @@
       </div>
       
     </div>
-
-    <?= $this->Html->script('lib.min.js') ?>
-    <?= $this->Html->script('app.min.js') ?>
-
-    <script>const toast = new siiimpleToast();</script>
     <?= $this->Flash->render() ?>
 
 </body>
