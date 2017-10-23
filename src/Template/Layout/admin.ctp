@@ -89,7 +89,7 @@
 
             <div class="list-group">
               <a href="<?=$this->Url->build('/users/'. $authUser['id'])?>" class="list-group-item active"><i class="fa fa-chevron-right"></i> <?= __('Welcome') ?> <?= h($authUser['name']) ?></a>
-              <a href="<?= $this->Url->build('/sendnotification'); ?>" class="list-group-item list-group-item-action"><i class="fa fa-bullhorn"></i> Send notification</a>
+              <a href="<?= $this->Url->build('/admin/sendnotification'); ?>" class="list-group-item list-group-item-action"><i class="fa fa-bullhorn"></i> Send notification</a>
               <a href="https://github.com/Mikescops/mysetup" class="list-group-item list-group-item-action"><i class="fa fa-github"></i> Github Repo</a>
               <a href="https://github.com/Mikescops/mysetup-twitch-extension" class="list-group-item list-group-item-action"><i class="fa fa-twitch"></i> Extension Twitch Repo</a>
             </div>

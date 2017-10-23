@@ -140,4 +140,9 @@ class AdminController extends AppController
 
         $this->set('resources', $resources);
     }
+
+    public function sendNotification()
+    {
+        
+    }
 }
