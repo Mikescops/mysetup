@@ -31,7 +31,15 @@
                     <td><?= h($resource->type) ?></td>
                     <td><?= urldecode(h($resource->title)) ?></td>
                     <td><?php if ($resource->href) :?> <a href="<?= urldecode(h($resource->href)) ?>"><i class="fa fa-link"></i></a> <?php endif ?></td>
-                    <td><?= urldecode(h($resource->src)) ?></td>
+                    <?php
+                        $src = urldecode(h($resource->src));
+                        if(substr($src, 0, strlen('uploads/files/')) === 'uploads/files/')
+                        {
+                            $src = $this->Url->build('/') . $src;
+                        }
+                    ?>
+                    <td><a href="<?= $src ?>"><?= $src ?></a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
