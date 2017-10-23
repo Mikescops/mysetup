@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 
 /**
@@ -89,7 +88,7 @@ class AdminController extends AppController
 
     public function setups()
     {
-        $setups = $this->paginate(TableRegistry::get('Setups'), [
+        $setups = $this->paginate($this->loadModel('Setups'), [
             'order' => [
                 'creationDate' => 'DESC'
             ],
@@ -103,7 +102,7 @@ class AdminController extends AppController
 
     public function users()
     {
-        $users = $this->paginate(TableRegistry::get('Users'), [
+        $users = $this->paginate($this->loadModel('Users'), [
             'order' => [
                 'creationDate' => 'DESC'
             ]
@@ -114,10 +113,13 @@ class AdminController extends AppController
 
     public function comments()
     {
-        $comments = $this->paginate(TableRegistry::get('Comments'), [
+        $comments = $this->paginate($this->loadModel('Comments'), [
             'contain' => [
                 'Users',
                 'Setups'
+            ],
+            'order' => [
+                'dateTime' => 'DESC'
             ]
         ]);
 
@@ -126,10 +128,13 @@ class AdminController extends AppController
 
     public function resources()
     {
-        $resources = $this->paginate(TableRegistry::get('Resources'), [
+        $resources = $this->paginate($this->loadModel('Resources'), [
             'contain' => [
                 'Users',
                 'Setups'
+            ],
+            'order' => [
+                'id' => 'DESC'
             ]
         ]);
 
