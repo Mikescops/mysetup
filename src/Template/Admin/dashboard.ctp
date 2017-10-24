@@ -206,7 +206,7 @@
                             <small><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></small>
                         </div>
                         <p class="mb-1"><?= h($comment->content) ?></p>
-                        <small><?= h($user->mail) ?></small>
+                        <small><?= h($comment->user->mail) ?></small>
                     </a>
                 <?php endforeach ?>
             </div>
