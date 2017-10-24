@@ -200,7 +200,7 @@
             <h3><?= __('Latest comments') ?></h3>
             <div class="list-group">
                 <?php foreach ($stats['comments']['recentCreated'] as $comment):?>
-                    <a href="<?=$this->Url->build('/setups/'.$comment->setup_id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="<?=$this->Url->build('/setups/'.$comment->setup_id.'#comments')?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><strong><?= h($comment->user->name) ?></strong> on <strong><?= h($comment->setup->title) ?></strong></h5>
                             <small><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></small>
