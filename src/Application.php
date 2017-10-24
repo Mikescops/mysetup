@@ -50,8 +50,9 @@ class Application extends BaseApplication
             // Add routing middleware.
             ->add(new RoutingMiddleware($this))
 
-            // We we'll handle just these locales
-            ->add(new LocaleSelectorMiddleware(['en_US', 'fr_FR', 'es_ES']))
+            // Here we'll accept the user's locale (whatever it is)
+            // Check AppController.php@initialize() and AppController.php@beforeRender()
+            ->add(new LocaleSelectorMiddleware(['*']))
 
             // Since CakePHP 3.5, CSRF protection should be handled by a middleware
             ->add(new CsrfProtectionMiddleware(['secure' => !Configure::read('debug')]))
