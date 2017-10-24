@@ -1577,9 +1577,15 @@ nav {
 }
 
 .tippy-tooltip[data-template-id="#notifications-pop"] {
-  padding: 0 2rem;
+  padding: 0 1.2rem;
   font-size: inherit;
   position: relative;
+  border: 1px solid #333;
+}
+
+.tippy-tooltip[data-template-id="#notifications-pop"] #notif-container{
+	width: 400px;
+	max-width: 100%;
 }
 
 .tippy-tooltip[data-template-id="#notifications-pop"] .notif{

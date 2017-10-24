@@ -747,19 +747,19 @@ function checknotification(){
         success: function (json) {
             notifs = $.parseJSON(json);
             $('#notif-container').html('');
-            if(notifs[0]) {
-            $.each(notifs, function(key, value) {
-                $('#notif-container').append('<div onclick="markasread('+ value['id'] +')" class="notif notifnb-'+ value['id'] +'">'+ value['content'] +'<div class="notif-close"><span onclick="markasread('+ value['id'] +')">×</span></div></div>');
+            if(notifs[0] != null) {
+                $.each(notifs, function(key, value) {
+                    $('#notif-container').append('<div onclick="markasread('+ value['id'] +')" class="notif notifnb-'+ value['id'] +'">'+ value['content'] +'<div class="notif-close"><span onclick="markasread('+ value['id'] +')">×</span></div></div>');
                 });
 
                 $('#notifications-trigger').addClass('notif-trigger');
                 $('#no-notif').hide();
-                instance.update(popper);
+                instance.update(notificationcenter);
             }
             else{
                 $('#notifications-trigger').removeClass('notif-trigger');
                 $('#no-notif').show();
-                instance.update(popper);
+                instance.update(notificationcenter);
             }
         }
     });
@@ -780,7 +780,7 @@ function markasread(id) {
     if(!$.trim( $('#notif-container').html() ).length){
         $('#notifications-trigger').removeClass('notif-trigger');
         $('#no-notif').show();
-        instance.update(popper);
+        instance.update(notificationcenter);
     }
 }
 
