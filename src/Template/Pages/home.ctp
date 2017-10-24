@@ -84,10 +84,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <br clear='all'>
 
     <div class="rowsocial">
-      <?php
-          $lang = ($authUser && $authUser['preferredStore'] !== "US" && $authUser['preferredStore'] !== "UK" ? strtolower($authUser['preferredStore']) : "en")
-      ?>
-
       <?php if(!$authUser): ?>
         <div class="twitch-advert" onclick="logTwitch('<?= $lang ?>')">
           <h4><i class="fa fa-twitch"></i> <?= __('Login with Twitch and create my Setup !') ?></h4>

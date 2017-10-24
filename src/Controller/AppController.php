@@ -68,23 +68,31 @@ class AppController extends Controller
             ]
         ]);
 
-        /* Here let's adapt the website language ! */
-        // This is the trick : If the `?lang=` is specified in the URL, this parameter overwrites the Session's one (hello the robots ;))
-        if(array_key_exists('lang', $_GET))
+        /* Here let's adapt the website language !
+         *
+         * Order of treatment :
+         *   1. `?lang=` GET parameter (hello the robots ;))
+         *   2. Session configuration (written through user preferences)
+         *   3. Browser locale sent through `Accept-Language` header
+         *
+         */
+        $lang = null;
+        if($this->request->getQuery('lang'))
         {
-            $this->loadModel('Users');
-            I18n::setLocale($this->Users->getLocaleByCountryID($_GET['lang']));
+            $lang = $this->request->getQuery('lang');
         }
-
+        elseif($this->request->session()->check('Config.language'))
+        {
+            $lang = $this->request->session()->read('Config.language');
+        }
         else
         {
-            I18n::setLocale($this->request->session()->read('Config.language'));
+            $lang = I18n::getLocale();
         }
-
-        // Listen carefully to the second trick : In the 'default.ctp' and 'admin.ctp' (and now `Setups/embed.ctp`, you'll find a `if(!$lang)`.
-        // This line set this very variable for the view, if the lang is enforced in the URL the HTML will follow it. If not, check there what is done :P
-        $this->set('lang', (isset($_GET['lang']) ? strtolower($_GET['lang']) : null));
-        /* _______________________________________ */
+        $lang = $this->loadModel('Users')->getLocaleByCountryID($lang);
+        I18n::setLocale($lang);
+        $this->set('lang', substr($lang, 0, strpos($lang, '-')));
+        /* __________________________________________________________ */
     }
 
     /**
