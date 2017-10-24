@@ -77,22 +77,19 @@
 </style>
 
 <div class="col-12" style="max-width: 800px;">
-	<h3>Send notification</h3>
-	<form>
+	<h3><?= __('Send notification') ?></h3>
+    <?= $this->Form->create(null); ?>
+    <fieldset>
 		<div class="input-group">
-			<select class="selectpicker" data-live-search="true">
-			  <option data-tokens="global">Global</option>
-			  <option data-tokens="Corentin Mors">Corentin Mors</option>
-			  <option data-tokens="Samuel Forestier">Samuel Forestier</option>
-			</select>
+            <?= $this->Form->select('user_id', $usersList, ['class' => 'selectpicker', 'data-live-search' => true]) ?>
 		</div>
-		<br>
+		<br />
 		<div class="form-group">
-			<label for="exampleFormControlTextarea1">Content of notification (you can use HTML)</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <?= $this->Form->control('message', ['class' => 'form-control', 'id' => 'formControlTextArea', 'type' => 'textarea', 'rows' => 3, 'label' => __('Content of notification (you can use HTML)')]) ?>
 		</div>
-		<button type="submit" class="btn btn-primary">Push notification</button>
-	</form>
+		<button type="submit" class="btn btn-primary"><?= __('Push notification') ?></button>
+    </fieldset>
+	<?= $this->Form->end(); ?>
 
 </div>
 

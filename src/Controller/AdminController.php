@@ -143,6 +143,72 @@ class AdminController extends AppController
 
     public function sendNotification()
     {
-        
+        // Let's just build an array as ['user_id' => 'user_name'] for each user...
+        $usersList = [];
+        foreach($this->loadModel('Users')->find('all')->select(['id', 'name']) as $user)
+        {
+            $usersList += [$user->id => $user->name];
+        }
+
+        if($this->request->is('post'))
+        {
+            $data = $this->request->getData();
+            if(isset($data['user_id']) and (isset($data['message']) and $data['message'] !== ''))
+            {
+                $this->loadModel('Notifications');
+
+                // Are sending this to everyone ?
+                if($data['user_id'] === 'global')
+                {
+                    $i = 0;
+                    $nbUsers = count($usersList);
+
+                    foreach(array_keys($usersList) as $user_id)
+                    {
+                        if(!$this->Notifications->createNotification($user_id, $data['message']))
+                        {
+                            $i++;
+                        }
+                    }
+
+                    if($i === 0)
+                    {
+                        $this->Flash->success($nbUsers . ' ' . __n('notification have been sent !', 'notifications have been sent !', $nbUsers));
+                    }
+
+                    elseif($i === $nbUsers)
+                    {
+                        $this->Flash->error(__('No notification could be sent...'));
+                    }
+
+                    else
+                    {
+                        $this->Flash->warning($i . ' / ' . $nbUsers . ' ' . __n('notification couldn\'t be sent...', 'notifications couldn\'t be sent...', $nbUsers));
+                    }
+                }
+
+                // Or only one user ?
+                else
+                {
+                    if($this->Notifications->createNotification($data['user_id'], $data['message']))
+                    {
+                        $this->Flash->success(__('The notification has just been sent !'));
+                    }
+
+                    else
+                    {
+                        $this->Flash->error(__('The notification couldn\'t be sent.'));
+                    }
+                }
+            }
+
+            else
+            {
+                $this->Flash->warning(__('One information is missing to send this notification.'));
+            }
+        }
+
+        $usersList = ['global' => __('Everyone')] + $usersList;
+        $this->set('usersList', $usersList);
     }
 }

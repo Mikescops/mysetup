@@ -102,7 +102,7 @@ class NotificationsTable extends Table
             $notification->content = str_replace($this->types['id'], $notification->id, $content);
             $notification->new     = 1;
 
-            $this->save($notification);
+            return $this->save($notification);
         }
     }
 
