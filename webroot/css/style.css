@@ -1609,8 +1609,8 @@ nav {
     height: 100%;
     opacity: 0;
     visibility: hidden;
-    -webkit-transform: translate3d(18px,0,0);
-    transform: translate3d(18px,0,0);
+    -webkit-transform: translate3d(10px,0,0);
+    transform: translate3d(10px,0,0);
     transition: all .25s ease;
     padding-left: 35px;
     background: linear-gradient(90deg,transparent,#393939 60%,#393939);
