@@ -13,7 +13,6 @@ php_value upload_max_filesize 5M
 php_value post_max_size 50M
 
 AddType image/svg+xml .svg
-AddOutputFilterByType DEFLATE image/svg+xml
 
 <IfModule mod_expires.c>
     ExpiresActive On
@@ -28,4 +27,8 @@ AddOutputFilterByType DEFLATE image/svg+xml
     ExpiresByType application/x-shockwave-flash "access plus 1 month"
     ExpiresByType image/x-icon "access plus 1 year"
     ExpiresDefault "access plus 2 days"
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript image/svg+xml
 </IfModule>
