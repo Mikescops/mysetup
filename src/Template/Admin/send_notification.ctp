@@ -98,3 +98,10 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+<!-- Set the Flash dependencies on this view (not needed on the layout) -->
+<?= $this->Html->script('jquery-3.2.0.min.js') ?>
+<?= $this->Html->script('lib.min.js') ?>
+<?= $this->Html->script('app.min.js') ?>
+<script>const toast = new siiimpleToast();</script>
+<?= $this->Flash->render() ?>
