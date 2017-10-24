@@ -459,16 +459,16 @@ class UsersController extends AppController
         $scope = 'user_read';
 
         // A simple test to check the URL validity (still : "F*CK Twitch's API")
-        if(!$_GET or !isset($_GET['code']) or (!isset($_GET['scope']) or $_GET['scope'] !== $scope) or !isset($_GET['state']))
+        if(!$this->request->getQuery('code') or (!$this->request->getQuery('scope') or $this->request->getQuery('scope') !== $scope) or !$this->request->getQuery('state'))
         {
-            // This bastard only deserves to `die()`
-            die();
+            // Let's throw a 404 if the URL does not fit what we expect...
+            throw new NotFoundException();
         }
 
         $http = new Client();
 
         // Let's ask Twitch for this client's token
-        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=' . $client_secret . '&grant_type=authorization_code&redirect_uri=' . 'https://mysetup.co/twitch/' . '&code=' . $_GET['code'] . '&state=' . $_GET['state']);
+        $response = $http->post('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=' . $client_secret . '&grant_type=authorization_code&redirect_uri=' . 'https://mysetup.co/twitch/' . '&code=' . $this->request->getQuery('code') . '&state=' . $this->request->getQuery('state'));
 
         // Here we check if the response fit what we expect, and if we're allowed to get the user data
         if(!$response or !isset($response->json['scope'][0]) or !$response->json['scope'][0] === $scope)
@@ -544,7 +544,7 @@ class UsersController extends AppController
             $user->name           = $response->json['display_name'];
             $user->mail           = $response->json['email'];
             $user->password       = $this->Users->getRandomString();
-            $user->preferredStore = strtoupper((substr($_GET['state'], 0, 2)));
+            $user->preferredStore = strtoupper((substr($this->request->getQuery('state'), 0, 2)));
             $user->timeZone       = 'Europe/London';
             $user->twitchToken    = $token;
             $user->twitchUserId   = $response->json['_id'];

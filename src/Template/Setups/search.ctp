@@ -3,7 +3,7 @@
   * @var \App\View\AppView $this
   */
 
-$this->assign('title', __('Search for "') . (isset($_GET["q"]) ? $_GET["q"] : "") . '" | mySetup.co');
+$this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') ? $this->request->getQuery('q') : "") . '" | mySetup.co');
 ?>
 <div class="container sitecontainer">
 <div class="maincontainer">
@@ -11,7 +11,7 @@ $this->assign('title', __('Search for "') . (isset($_GET["q"]) ? $_GET["q"] : ""
         <div class="column column-75">
 
             <div class="large_search">
-                <input type="text" id="keyword-search" placeholder="<?= h((isset($_GET["q"]) ? $_GET["q"] : "")) ?>" />
+                <input type="text" id="keyword-search" placeholder="<?= h(($this->request->getQuery('q') ? $this->request->getQuery('q') : "")) ?>" />
                 <?= $this->Html->scriptBlock('let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
             </div>
 
