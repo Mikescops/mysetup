@@ -40,8 +40,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
-
 </head>
 
 <body>
@@ -55,24 +53,24 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build('/admin/setups'); ?>"><i class="fa fa-server"></i> Setups</a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/setups'); ?>"><i class="fa fa-server"></i> <?= __('Setups') ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build('/admin/users'); ?>"><i class="fa fa-user-o"></i> Users </a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/users'); ?>"><i class="fa fa-user-o"></i> <?= __('Users') ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build('/admin/comments'); ?>"><i class="fa fa-comment-o"></i> Comments </a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/comments'); ?>"><i class="fa fa-comment-o"></i> <?= __('Comments') ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build('/admin/resources'); ?>"><i class="fa fa-database"></i> Resources</a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/resources'); ?>"><i class="fa fa-database"></i> <?= __('Resources') ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'add']); ?>"><i class="fa fa-pencil-square-o"></i> Add Article</a>
+            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'add']); ?>"><i class="fa fa-pencil-square-o"></i> <?= __('Add Article') ?></a>
           </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build('/'); ?>"><i class="fa fa-external-link"></i> View website</a>
+            <a class="nav-link" href="<?= $this->Url->build('/'); ?>"><i class="fa fa-external-link"></i> <?= __('View website') ?></a>
           </li>
         </ul>
       </div>
@@ -84,24 +82,26 @@
         <div class="col-12 col-md-3 col-xl-2 d-none d-md-block">
 
             <div class="list-group">
-              <a href="<?=$this->Url->build('/users/'. $authUser['id'])?>" class="list-group-item active"><i class="fa fa-chevron-right"></i> Welcome <?= h($authUser['name']) ?></a>
+              <a href="<?=$this->Url->build('/users/'. $authUser['id'])?>" class="list-group-item active"><i class="fa fa-chevron-right"></i> <?= __('Welcome') ?> <?= h($authUser['name']) ?></a>
+              <a href="<?= $this->Url->build('/admin/sendNotification'); ?>" class="list-group-item list-group-item-action"><i class="fa fa-bullhorn"></i> Send notification</a>
               <a href="https://github.com/Mikescops/mysetup" class="list-group-item list-group-item-action"><i class="fa fa-github"></i> Github Repo</a>
               <a href="https://github.com/Mikescops/mysetup-twitch-extension" class="list-group-item list-group-item-action"><i class="fa fa-twitch"></i> Extension Twitch Repo</a>
             </div>
 
         </div>
 
+        <?= $this->fetch('content') ?>
 
-      <?= $this->fetch('content') ?>
       </div>
 
     </div>
 
-    <?= $this->Html->script('lib.min.js') ?>
-    <?= $this->Html->script('app.min.js') ?>
+    <hr>
 
-    <script>const toast = new siiimpleToast();</script>
-    <?= $this->Flash->render() ?>
-
+    <footer class="footer">
+        <div class="container-fluid">
+            <p class="text-center text-muted">mySetup.co - Admin Panel</p>
+        </div>
+    </footer>
 </body>
 </html>

@@ -137,7 +137,7 @@ class AppController extends Controller
                 'order' => [
                     'creationDate' => 'DESC'
                 ]
-            ])->toArray() as $setup) {
+            ]) as $setup) {
                 $setupsList += [$setup->id => $setup->title];
             }
 
@@ -259,7 +259,7 @@ class AppController extends Controller
             if(isset($data['bugDescription']) and $data['bugDescription'] !== '' and strlen($data['bugDescription'] <= 5000) and ($auth or (isset($data['bugMail']) and $data['bugMail'] !== '')))
             {
                 $this->loadModel('Users');
-                $email = $this->Users->getEmailObject('samuel@geek-mexicain.net', '[mySetup.co] There is a bug !');
+                $email = $this->Users->getEmailObject('beta@mysetup.co', '[mySetup.co] There is a bug !');
                 $email->setTemplate('bug')
                       ->viewVars(['content' => $data['bugDescription'], 'email' => ($auth ? $auth['mail'] : $data['bugMail'])])
                       ->send();

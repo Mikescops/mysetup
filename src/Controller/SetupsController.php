@@ -50,9 +50,9 @@ class SetupsController extends AppController
 
         // Here we'll get each resource linked to this setup, and set them up into the existing entity
         $setup['resources'] = [
-            'products' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->all()->toArray(),
+            'products' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->toArray(),
             'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src'],
-            'gallery_images' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_GALLERY_IMAGE'])->all()->toArray(),
+            'gallery_images' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_GALLERY_IMAGE'])->toArray(),
             'video_link' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_VIDEO_LINK'])->first()['src']
         ];
         // ___________________________________________________________________________________________
@@ -445,7 +445,7 @@ class SetupsController extends AppController
 
             if($setup['user_id'] != $user['id'])
             {
-                $email = $this->Setups->Users->getEmailObject('support@mysetup.co', 'A setup has been flagged !');
+                $email = $this->Setups->Users->getEmailObject('report@mysetup.co', 'A setup has been flagged !');
                 $email->setTemplate('report')
                       ->viewVars(['setup_id' => $setup->id, 'flagger_id' => $user->id, 'flagger_name' => $user->name, 'flagger_mail' => $user->mail])
                       ->send();

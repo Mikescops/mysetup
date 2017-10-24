@@ -69,7 +69,7 @@ class SetupsTable extends Table
             'cascadeCallbacks' => 'true'
         ]);
 
-         $this->addBehavior('Timestamp', [
+        $this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => [
                     'creationDate' => 'new',
@@ -77,8 +77,12 @@ class SetupsTable extends Table
                 ]
             ]
         ]);
-
-        $this->addBehavior('Sitemap.Sitemap', ['changefreq' => 'daily', 'conditions' => ['status' => 'PUBLISHED'] ]);
+        $this->addBehavior('Sitemap.Sitemap', [
+            'changefreq' => 'daily',
+            'conditions' => [
+                'status' => 'PUBLISHED'
+            ]
+        ]);
     }
 
 

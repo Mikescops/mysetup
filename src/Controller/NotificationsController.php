@@ -28,21 +28,21 @@ class NotificationsController extends AppController
                 'limit' => $this->request->getQuery('n', 4)
             ]);
 
-            // Here we'll concatenate 'on-the-go' a "time ago with words" to the notifications content + Makes some translations
+            // Here we'll concatenate 'on-the-go' a "time ago with words" to the notifications content and makes some translations (it was the actually the goal of this method...)
             foreach($results as $result)
             {
                 $result['content'] = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $result['dateTime']->timeAgoInWords() . '</span></a>', $result['content']);
 
-                if(strpos($result['content'], '__LIKE'))
+                if(strpos($result['content'], $this->Notifications->types['like']))
                 {
-                    $result['content'] = str_replace('__ALT', __('Liker\'s profile picture'), $result['content']);
-                    $result['content'] = str_replace('__LIKE', __('liked your setup'), $result['content']);
+                    $result['content'] = str_replace($this->Notifications->types['alt'], __('Liker\'s profile picture'), $result['content']);
+                    $result['content'] = str_replace($this->Notifications->types['like'], __('liked your setup'), $result['content']);
                 }
 
-                else if(strpos($result['content'], '__COMMENT'))
+                else if(strpos($result['content'], $this->Notifications->types['comment']))
                 {
-                    $result['content'] = str_replace('__ALT', __('Commenter\'s profile picture'), $result['content']);
-                    $result['content'] = str_replace('__COMMENT', __('commented your setup'), $result['content']);
+                    $result['content'] = str_replace($this->Notifications->types['alt'], __('Commenter\'s profile picture'), $result['content']);
+                    $result['content'] = str_replace($this->Notifications->types['comment'], __('commented your setup'), $result['content']);
                 }
             }
 

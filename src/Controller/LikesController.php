@@ -3,9 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\ORM\TableRegistry;
 use Cake\Network\Response;
-use Cake\Routing\Router;
 
 /**
  * Likes Controller
@@ -62,7 +60,7 @@ class LikesController extends AppController
                 'order' => [
                     'Likes.id' => 'DESC'
                 ]
-            ])->all()->toArray();
+            ])->toArray();
 
             $this->set('likes', $likes);
         }
@@ -119,9 +117,10 @@ class LikesController extends AppController
 
                         // If it's not him, let's inform the setup owner of this new like
                         $setup = $this->Likes->Setups->get($setup_id);
-                        if($like['user_id'] !== $setup['user_id'])
+                        if($like['user_id'] !== $setup->user_id)
                         {
-                            TableRegistry::get('Notifications')->createNotification($setup['user_id'], '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $like['setup_id']]) . '"><img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $like['user_id'] . '.png" alt="__ALT">  <span><strong>' . h($this->Likes->Users->get($like['user_id'])['name']) . '</strong> __LIKE <strong>' . h($setup['title']) . '</strong></span></a>');
+                            $this->loadModel('Notifications');
+                            $this->Notifications->createNotificationLink($this->Likes->Users->get($like['user_id']), $setup, $this->Notifications->types['like']);
                         }
                     }
 

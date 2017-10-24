@@ -260,14 +260,13 @@ class UsersTable extends Table
             'tls' => true
         ]);
 
-        $email = new Email();
-        $email
-            ->setTransport('Zoho')
-            ->setFrom(['support@mysetup.co' => 'mySetup.co | Support'])
-            ->setEmailFormat('html')
-            ->setLayout('layout')
-            ->setTo($receiver)
-            ->setSubject($subject);
+        $email = (new Email())
+                    ->setTransport('Zoho')
+                    ->setFrom(['webmaster@mysetup.co' => 'mySetup.co | Support'])
+                    ->setEmailFormat('html')
+                    ->setLayout('layout')
+                    ->setTo($receiver)
+                    ->setSubject($subject);
 
         return $email;
     }
@@ -425,6 +424,6 @@ class UsersTable extends Table
             'group' => [
                 'user_id'
             ]
-        ])->all()->toArray();
+        ])->toArray();
     }
 }
