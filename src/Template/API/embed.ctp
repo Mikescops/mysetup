@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <?php
     $this->layout = null;
-    if(!$lang)
-    {
-      $lang = ($authUser && $authUser['preferredStore'] !== "US" && $authUser['preferredStore'] !== "UK" ? strtolower($authUser['preferredStore']) : "en");
-    }
 ?>
 <html lang="<?= $lang ?>">
 <head>
@@ -18,9 +14,9 @@ abbr,acronym,address,applet,aside,audio,big,blockquote,body,canvas,caption,cite,
 	<div class="embed-frame">
 		<a target="_blank" href="<?= $this->Url->build('/setups/'.$setup->id.'?ref=embedProgram', true)?>">
 			<div class="box-image">
-			    
+
 			    <img alt="<?= $setup->title ?>" class="main-image" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>">
-			    
+
 			    <div class="box-overlay"><h3><?= __('Setup of') ?> <?= $setup->user['name'] ?></h3></div>
 			</div>
 		</a>

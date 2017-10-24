@@ -343,20 +343,22 @@ class UsersTable extends Table
     {
         $locale = null;
 
-        switch(strtoupper($country_id))
+        // `FR-*` locales
+        if(preg_match('/^fr([-_].*)?$/i', $country_id))
         {
-            case 'FR':
-            case 'ES':
-            case 'IT':
-            case 'DE':
-                $locale = strtolower($country_id) . '-' . strtoupper($country_id);
-                break;
+            $locale = 'fr-FR';
+        }
 
-            case 'US':
-            case 'UK':
-            default:
-                $locale = 'en-GB';
-                break;
+        // `ES-*` locales
+        elseif(preg_match('/^es([-_].*)?$/i', $country_id))
+        {
+            $locale = 'es-ES';
+        }
+
+        // All the others (yet)
+        else
+        {
+            $locale = 'en-GB';
         }
 
         return $locale;

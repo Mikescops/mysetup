@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<?php
-    if(!$lang)
-    {
-      $lang = ($authUser && $authUser['preferredStore'] !== "US" && $authUser['preferredStore'] !== "UK" ? strtolower($authUser['preferredStore']) : "en");
-    }
-?>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="<?= $lang ?>"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="<?= $lang ?>"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="<?= $lang ?>"> <![endif]-->
@@ -88,7 +82,7 @@
 
       <div class="row">
         <div class="col-12 col-md-3 col-xl-2 d-none d-md-block">
-          
+
             <div class="list-group">
               <a href="<?=$this->Url->build('/users/'. $authUser['id'])?>" class="list-group-item active"><i class="fa fa-chevron-right"></i> Welcome <?= h($authUser['name']) ?></a>
               <a href="https://github.com/Mikescops/mysetup" class="list-group-item list-group-item-action"><i class="fa fa-github"></i> Github Repo</a>
@@ -96,11 +90,11 @@
             </div>
 
         </div>
-      
+
 
       <?= $this->fetch('content') ?>
       </div>
-      
+
     </div>
 
     <?= $this->Html->script('lib.min.js') ?>
