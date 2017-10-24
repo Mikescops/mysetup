@@ -60,7 +60,7 @@ class LikesController extends AppController
                 'order' => [
                     'Likes.id' => 'DESC'
                 ]
-            ])->all()->toArray();
+            ])->toArray();
 
             $this->set('likes', $likes);
         }

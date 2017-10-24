@@ -422,6 +422,6 @@ class UsersTable extends Table
             'group' => [
                 'user_id'
             ]
-        ])->all()->toArray();
+        ])->toArray();
     }
 }

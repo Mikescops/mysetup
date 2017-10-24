@@ -129,7 +129,7 @@ class AppController extends Controller
                 'order' => [
                     'creationDate' => 'DESC'
                 ]
-            ])->toArray() as $setup) {
+            ]) as $setup) {
                 $setupsList += [$setup->id => $setup->title];
             }
 

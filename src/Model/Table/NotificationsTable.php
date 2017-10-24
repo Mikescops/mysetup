@@ -118,14 +118,13 @@ class NotificationsTable extends Table
      */
     public function createNotificationLink($user, $setup, $type)
     {
-        $content = '
-            <a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $setup['id']]) . '" onclick="markasread(' . $this->types['id'] . ')">
-                <img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $user->id . '.png" alt="' . $this->types['alt'] . '" />
-                <span>
-                    <strong>' . h($user->name) . '</strong> ' . $type . ' <strong>' . h($setup['title']) . '</strong>
-                </span>
-            </a>
-        ';
+        $content =
+        '<a href="' . Router::url(['controller' => 'Setups', 'action' => 'view', $setup['id']]) . '" onclick="markasread(' . $this->types['id'] . ')">
+            <img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $user->id . '.png" alt="' . $this->types['alt'] . '" />
+            <span>
+                <strong>' . h($user->name) . '</strong> ' . $type . ' <strong>' . h($setup['title']) . '</strong>
+            </span>
+        </a>';
 
         $this->createNotification($setup['user_id'], $content);
     }

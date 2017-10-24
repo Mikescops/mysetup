@@ -60,7 +60,7 @@ class AdminController extends AppController
                 'dateTime' => 'DESC'
             ],
             'limit' => 5
-        ])->all()->toArray();
+        ])->toArray();
 
         $stats['requests']['onGoing'] = $this->Setups->Requests->find('all', [
             'contain' => [
@@ -81,7 +81,7 @@ class AdminController extends AppController
             'order' => [
                 'Requests.id' => 'DESC'
             ]
-        ])->all()->toArray();
+        ])->toArray();
 
         $this->set('stats', $stats);
     }

@@ -310,7 +310,7 @@ class ResourcesTable extends Table
     public function saveGalleryImages($setup, $data, $flash)
     {
         /* Here we'll compare the uploaded images to the new ones (in the 5 hidden inputs) */
-        $galleries = $this->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $setup->user_id, 'type' => 'SETUP_GALLERY_IMAGE'])->all()->toArray();
+        $galleries = $this->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $setup->user_id, 'type' => 'SETUP_GALLERY_IMAGE'])->toArray();
 
         if(isset($data['gallery0']) and $data['gallery0'] !== '' and (int)$data['gallery0']['error'] === 0)
         {
