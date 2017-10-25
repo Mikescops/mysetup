@@ -119,7 +119,7 @@ class CommentsController extends AppController
         parent::beforeFilter($event);
 
         // We've to disable security stuff on comments edition because the form concerned is just totally unpredictable
-        $this->Security->config('unlockedActions', ['edit']);
+        $this->Security->setConfig('unlockedActions', ['edit']);
     }
 
     public function isAuthorized($user)
