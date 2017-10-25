@@ -341,7 +341,7 @@
                         }
 
                         echo $this->Form->control('bugDescription', ['label' => __('Bug description'), 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'placeholder' => __('Please, describe precisely the bug you unfortunately encountered on mySetup.co...'), 'required' => true]);
-                        echo $this->Form->submit(__('Send'), ['class' => 'button', 'id' => 'publish-add']);
+                        echo $this->Form->submit(__('Send'), ['class' => 'button']);
 
                     ?>
                 </fieldset>
