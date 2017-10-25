@@ -68,7 +68,20 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                                 <img alt="<?= __('Profile picture of') ?> #<?= $setup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
                             </a>
 
-                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3></a>
+                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
+                                <h3>
+                                    <?= h($setup->title) ?>
+                                    <?php if($setup->status == 'DRAFT'): ?>
+                                        <i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i>
+                                    <?php endif ?>
+                                    <?php if($setup->id == $user->mainSetup_id): ?>
+                                        <i title="<?= ($authUser['id'] != $setup->user_id ? __('This is the main setup of') . ' ' . h($user->name) : __('This is your main setup')) ?>" class="fa fa-certificate setup-default"></i>
+                                    <?php endif ?>
+                                    <?php if($setup->featured): ?>
+                                        <i title="<?= __('This setup is featured on mySetup.co !')?>" class="fa fa-star setup-star"></i>
+                                    <?php endif ?>
+                                </h3>
+                            </a>
                         </div>
 
                         <div class="column column-25"></div>
