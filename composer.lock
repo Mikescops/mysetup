@@ -703,16 +703,16 @@
         },
         {
             "name": "loadsys/cakephp_sitemap",
-            "version": "4.0.0",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap.git",
-                "reference": "057c18338d94f2d3634e9c16617b2ecb1f8777f1"
+                "reference": "ffe91f78545c477fe3cb747d8bdcf124f54b4f86"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap/archive/master.zip",
-                "reference": "057c18338d94f2d3634e9c16617b2ecb1f8777f1",
+                "reference": "ffe91f78545c477fe3cb747d8bdcf124f54b4f86",
                 "shasum": ""
             },
             "require": {
