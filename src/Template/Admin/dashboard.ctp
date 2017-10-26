@@ -157,7 +157,7 @@
                                         <?php if($user->verified == "1"):?><i class="fa fa-check-circle" title="<?= __('Certified user') ?>"></i><?php endif;?>
                                         <?php if($user->verified == "125"):?><i class="fa fa-fort-awesome" title="<?= __('Admin user') ?>"></i><?php endif;?>
                                     </h5>
-                                    <small><?= $this->Time->format($user->lastLogginDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></small>
+                                    <small><?= $this->Time->format($user->lastLogginDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']) ?></small>
                                 </div>
                                 <small><?= h($user->mail) ?></small>
                             </div>
@@ -183,7 +183,7 @@
                                         <?php if($user->verified == "1"):?><i class="fa fa-check-circle" title="<?= __('Certified user') ?>"></i><?php endif;?>
                                         <?php if($user->verified == "125"):?><i class="fa fa-fort-awesome" title="<?= __('Admin user') ?>"></i><?php endif;?>
                                     </h5>
-                                    <small><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></small>
+                                    <small><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']) ?></small>
                                 </div>
                                 <small><?= h($user->mail) ?></small>
                             </div>
@@ -203,10 +203,10 @@
                     <a href="<?=$this->Url->build('/setups/'.$comment->setup_id.'#comments')?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><strong><?= h($comment->user->name) ?></strong> on <strong><?= h($comment->setup->title) ?></strong></h5>
-                            <small><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></small>
+                            <small><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']) ?></small>
                         </div>
                         <p class="mb-1"><?= h($comment->content) ?></p>
-                        <small><?= h($user->mail) ?></small>
+                        <small><?= h($comment->user->mail) ?></small>
                     </a>
                 <?php endforeach ?>
             </div>

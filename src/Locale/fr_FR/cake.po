@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2017-10-16 14:18-0400\n"
-"PO-Revision-Date: 2017-10-16 14:18-0400\n"
+"PO-Revision-Date: 2017-10-24 17:54-0400\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr\n"
@@ -288,12 +288,3 @@ msgstr "Novembre"
 #: View/Widget/DateTimeWidget.php:551
 msgid "December"
 msgstr "Décembre"
-
-#~ msgid "An Internal Error Has Occurred :("
-#~ msgstr "Une erreur interne est survenue :("
-
-#~ msgid "Error"
-#~ msgstr "Erreur"
-
-#~ msgid "The {0} was not found :( Maybe your friend sent you the wrong link !"
-#~ msgstr "La page {0} n'existe pas :( Peut-être que votre ami(e) vous a envoyé un mauvais lien !"

@@ -67,7 +67,18 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <a class="featured-user" href="<?= $this->Url->build('/users/'.$setup->user['id']) ?>">
                     <img alt="<?= __('Profile picture of') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)) ?>">
                 </a>
-                <h3><?= h($setup->title) ?> <?php if($setup->status == 'DRAFT'): ?><i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i><?php endif ?></h3>
+                <h3>
+                    <?= h($setup->title) ?>
+                    <?php if($setup->status == 'DRAFT'): ?>
+                        <i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i>
+                    <?php endif ?>
+                    <?php if($setup->id == $setup->user->mainSetup_id): ?>
+                        <i title="<?= ($authUser['id'] != $setup->user_id ? __('This is the main setup of') . ' ' . h($setup->user->name) : __('This is your main setup')) ?>" class="fa fa-certificate setup-default"></i>
+                    <?php endif ?>
+                    <?php if($setup->featured): ?>
+                        <i title="<?= __('This setup is featured on mySetup.co !')?>" class="fa fa-star setup-star"></i>
+                    <?php endif ?>
+                </h3>
                 <p>
                     <?= __('Shared by') ?> <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?><?php if($setup->user['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user['name'] != $setup->author and $setup->author !== ''): echo __(", created by ") . h($setup->author) ; endif?>
                 </p>
@@ -383,7 +394,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <?= $this->Form->create($newComment, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
                     <fieldset>
-                        <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'…'), 'rows' => "1", 'maxlength' => 500]); ?>
+                        <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'...'), 'rows' => "1", 'maxlength' => 500]); ?>
                     </fieldset>
                     <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
                     <?= $this->Form->end(); ?>
@@ -393,10 +404,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <div class="lity-hide" id="edit-comment-hidden">
                         <?php
                             /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
-                            $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'edit']]);
+                            echo $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'edit']]);
                             echo $this->Form->control('content', ['label' => '', 'class' => 'textarea-edit-comment','id' => 'textarea-edit', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
                             echo $this->Form->submit(__('Edit'), ['id' => 'editCommentButton', 'class' => 'float-right' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
-                            $this->Form->end();
+                            echo $this->Form->end();
                         ?>
                     </div>
 

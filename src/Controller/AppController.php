@@ -165,20 +165,16 @@ class AppController extends Controller
         $this->Auth->allow(['reportBug']);
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
-        $this->Security->config('unlockedFields', [
+        $this->Security->setConfig('unlockedFields', [
             'resources',
             'featuredImage',
-            'video',
-            'mailReset',
             'picture',
             'gallery0',
             'gallery1',
             'gallery2',
             'gallery3',
             'gallery4',
-            'g-recaptcha-response',
-            'bugDescription',
-            'bugMail'
+            'g-recaptcha-response'
         ]);
     }
 

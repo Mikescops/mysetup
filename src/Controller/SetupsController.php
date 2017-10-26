@@ -30,7 +30,8 @@ class SetupsController extends AppController
                         'id',
                         'name',
                         'verified',
-                        'modificationDate'
+                        'modificationDate',
+                        'mainSetup_id'
                     ]
                 ],
                 'Comments' => [

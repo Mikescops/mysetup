@@ -341,7 +341,7 @@
                         }
 
                         echo $this->Form->control('bugDescription', ['label' => __('Bug description'), 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'placeholder' => __('Please, describe precisely the bug you unfortunately encountered on mySetup.co...'), 'required' => true]);
-                        echo $this->Form->submit(__('Send'), ['class' => 'button', 'id' => 'publish-add']);
+                        echo $this->Form->submit(__('Send'), ['class' => 'button']);
 
                     ?>
                 </fieldset>
@@ -401,7 +401,7 @@
     <?= $this->Html->script('app.min.js') ?>
     <script>const toast = new siiimpleToast();</script>
     <?php if($authUser): ?>
-        <script>const instance = new tippy('#notifications-trigger', {html: '#notifications-pop',sticky: false,flipDuration:0,position:'bottom',arrow: true,appendTo: document.body,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false,performance: true});const notificationcenter = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification(); tippy('.button.draft'); tippy('.setup-unpublished');</script>
+        <script>const instance = new tippy('#notifications-trigger', {html: '#notifications-pop',sticky: false,flipDuration:0,position:'bottom',arrow: true,appendTo: document.body,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false,performance: true});const notificationcenter = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification();tippy('.button.draft');tippy('.setup-unpublished');tippy('.setup-default');tippy('.setup-star');</script>
     <?php endif ?>
 
     <?= $this->Flash->render() ?>
