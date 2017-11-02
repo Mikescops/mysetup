@@ -65,6 +65,39 @@ class PagesController extends AppController
         $this->display('popular');
     }
 
+    public function bugReport()
+    {
+        if($this->request->is('post'))
+        {
+            $data = $this->request->getData();
+
+            if(!parent::captchaValidation($data))
+            {
+                $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
+                return $this->redirect('/');
+            }
+
+            $auth = $this->Auth->user();
+
+            if(isset($data['bugDescription']) and $data['bugDescription'] !== '' and strlen($data['bugDescription'] <= 5000) and ($auth or (isset($data['bugMail']) and $data['bugMail'] !== '')))
+            {
+                $email = $this->loadModel('Users')->getEmailObject('beta@mysetup.co', '[mySetup.co] There is a bug !');
+                $email->setTemplate('bug')
+                      ->viewVars(['content' => $data['bugDescription'], 'email' => ($auth ? $auth['mail'] : $data['bugMail'])])
+                      ->send();
+
+                $this->Flash->success(__('Your bug has been correctly sent ! Thanks for this report :)'));
+            }
+
+            else
+            {
+                $this->Flash->warning(__('You didn\'t report anything (or have missed something) :('));
+            }
+        }
+
+        $this->display('bugReport');
+    }
+
     /**
      * Displays a view
      *
@@ -107,7 +140,7 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['display', 'home', 'recent', 'popular']);
+        $this->Auth->allow(['display', 'home', 'recent', 'popular', 'bugReport']);
 
         // Another hook to avoid error pages when an user...
         // ...types directly in an (existing) raw address
@@ -125,6 +158,10 @@ class PagesController extends AppController
 
                 case 'popular':
                     $this->redirect(['action' => 'popular']);
+                    break;
+
+                case 'bugReport':
+                    $this->redirect(['action' => 'bugReport']);
                     break;
 
                 default:

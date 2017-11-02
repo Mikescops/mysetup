@@ -241,35 +241,4 @@ class AppController extends Controller
         }
     }
     /* _____________________________ */
-
-
-    /* MISCELLANEOUS */
-    public function reportBug()
-    {
-        if($this->request->is('post'))
-        {
-            $data = $this->request->getData();
-
-            $auth = $this->Auth->user();
-
-            if(isset($data['bugDescription']) and $data['bugDescription'] !== '' and strlen($data['bugDescription'] <= 5000) and ($auth or (isset($data['bugMail']) and $data['bugMail'] !== '')))
-            {
-                $this->loadModel('Users');
-                $email = $this->Users->getEmailObject('beta@mysetup.co', '[mySetup.co] There is a bug !');
-                $email->setTemplate('bug')
-                      ->viewVars(['content' => $data['bugDescription'], 'email' => ($auth ? $auth['mail'] : $data['bugMail'])])
-                      ->send();
-
-                $this->Flash->success(__('Your bug has been correctly sent ! Thanks for this report :)'));
-            }
-
-            else
-            {
-                $this->Flash->warning(__('You didn\'t report anything (or has missed something) :('));
-            }
-        }
-
-        return $this->redirect('/');
-    }
-    /* _____________ */
 }

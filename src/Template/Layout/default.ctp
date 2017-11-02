@@ -319,36 +319,10 @@
         </div>
     </nav>
 
-
-        <?= $this->fetch('content') ?>
-
+    <?= $this->fetch('content') ?>
 
     <footer>
         <div class="container">
-
-            <div id="bug_report_modal" class="lity-hide">
-
-                <?= $this->Form->create(null, ['url' => ['controller' => 'App', 'action' => 'reportBug']]) ?>
-
-                <fieldset style="border:0;">
-                    <h4><?= __('Bug Report') ?> <i class="fa fa-bug"></i></h4>
-
-                    <?php
-
-                        if(!$authUser)
-                        {
-                            echo $this->Form->control('bugMail', ['label' => __('An email to contact you, young visitor !'), 'type' => 'email', 'placeholder' => 'me.name@exemple.com', 'required' => true]);
-                        }
-
-                        echo $this->Form->control('bugDescription', ['label' => __('Bug description'), 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'placeholder' => __('Please, describe precisely the bug you unfortunately encountered on mySetup.co...'), 'required' => true]);
-                        echo $this->Form->submit(__('Send'), ['class' => 'button']);
-
-                    ?>
-                </fieldset>
-
-                <?= $this->Form->end() ?>
-
-            </div>
 
             <div class="row">
                     <div class="column column-25">
@@ -371,7 +345,7 @@
                       <div class="footer-title"><?= __('Support') ?></div>
                       <ul>
                         <li><a href="<?=$this->Url->build('/pages/q&a')?>"><?= __('Help - Q&amp;A') ?></a></li>
-                        <li><a href="#bug_report_modal" data-lity><?= __('Report a bug') ?></a></li>
+                        <li><a href="<?= $this->Url->build('/bugReport') ?>"><?= __('Report a bug') ?></a></li>
                       </ul>
                     </div>
                     <div class="column column-25 logo_footer">

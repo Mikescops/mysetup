@@ -1682,7 +1682,7 @@ nav {
 
 /* **** ADD MODAL **** */
 
-#add_setup_modal, #edit_setup_modal, #edit_setup_manual_modal,#edit_profile_modal, #embed_twitch_modal, #edit_user_admin, #bug_report_modal, #embed_website_script{
+#add_setup_modal, #edit_setup_modal, #edit_setup_manual_modal,#edit_profile_modal, #embed_twitch_modal, #edit_user_admin, #embed_website_script{
 	color: #000;
 	overflow:auto;
 	background:#fff;
@@ -2083,6 +2083,32 @@ input[type="checkbox"]:checked + label.checkbox::after{
   color: #2167bd;
 }
 
+/************** BUG REPORT CSS ******************/
+
+.bug-report-form {
+  margin: 50px auto;
+  width: 750px;
+  max-width: 100%;
+  position: relative;
+}
+.bug-report-form form {
+  padding-right: 20px !important;
+}
+.bug-report-form form textarea,
+.bug-report-form form input[type=email] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  background: #fff;
+  border: none;
+  color: #2167bd;
+  outline: none;
+}
+
+.bug-report-form textarea {
+    min-height: 150px;
+}
 
 
 /**********************************************************/
