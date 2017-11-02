@@ -28,7 +28,7 @@ $this->assign('title', __('Bug Report | mySetup.co'));
             document.getElementById("bugreport-form").submit();
         }
     </script>
-    <!-- <script src='https://www.google.com/recaptcha/api.js' async defer></script> -->
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 
 </div>
 </div>
