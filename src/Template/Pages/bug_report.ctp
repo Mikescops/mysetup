@@ -19,15 +19,28 @@ $this->assign('title', __('Bug Report | mySetup.co'));
 
         <?= $this->Form->control('bugDescription', ['label' => __('Bug description'), 'class' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'placeholder' => __('Please, describe precisely the bug you unfortunately encountered on mySetup.co...'), 'required' => true]) ?>
 
-        <?= $this->Form->submit(__('Send'), ['class' => 'g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
+        <div class="g-recaptcha"
+            data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
+            data-size="invisible"
+            data-badge="bottomleft"
+            data-callback="onSubmit">
+        </div>
+
+        <?= $this->Form->button(__('Send')) ?>
     </fieldset>
     <?= $this->Form->end() ?>
 
-    <script>
+    <?= $this->Html->scriptBlock('
+        $("#bugreport-form").submit(function(event) {
+            event.preventDefault();
+            grecaptcha.reset();
+            grecaptcha.execute();
+        });
+
         function onSubmit(token) {
             document.getElementById("bugreport-form").submit();
         }
-    </script>
+    ', ['block' => 'scriptBottom']); ?>
     <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 
 </div>

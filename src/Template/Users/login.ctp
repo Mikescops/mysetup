@@ -50,17 +50,29 @@ $this->assign('title', __('Login | mySetup.co'));
                     <?= __('Password should be at least 8 characters.') ?>
                 </li>
                 <li>
-                    <?= $this->Form->submit(__('Sign up'), ['class' => 'g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
+                    <div class="g-recaptcha"
+                        data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
+                        data-size="invisible"
+                        data-badge="bottomleft"
+                        data-callback="onSubmit">
+                    </div>
+                    <?= $this->Form->button(__('Sign up')) ?>
                 </li>
             </ul>
         </fieldset>
         <?= $this->Form->end() ?>
 
-        <script>
+        <?= $this->Html->scriptBlock('
+            $("#register-form").submit(function(event) {
+                event.preventDefault();
+                grecaptcha.reset();
+                grecaptcha.execute();
+            });
+
             function onSubmit(token) {
                 document.getElementById("register-form").submit();
             }
-        </script>
+        ', ['block' => 'scriptBottom']); ?>
         <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     </div>
     <!--/#register.form-action-->

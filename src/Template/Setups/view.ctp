@@ -397,8 +397,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <fieldset>
                         <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'...'), 'rows' => "1", 'maxlength' => 500]); ?>
                     </fieldset>
-                    <?= $this->Form->submit(__('Post this comment'), ['class' => 'float-right g-recaptcha', 'data-sitekey' => '6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ', 'data-callback' => 'onSubmit', 'data-badge' => 'bottomleft']); ?>
-                    <?= $this->Form->end(); ?>
+                    <div class="g-recaptcha"
+                        data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
+                        data-size="invisible"
+                        data-badge="bottomleft"
+                        data-callback="onSubmit">
+                    </div>
+                    <?= $this->Form->button(__('Post this comment')) ?>
+                    <?= $this->Form->end() ?>
 
                     <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
 
@@ -432,9 +438,15 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 </div>
 
-<script>
+<?= $this->Html->scriptBlock('
+    $("#comment-form").submit(function(event) {
+        event.preventDefault();
+        grecaptcha.reset();
+        grecaptcha.execute();
+    });
+
     function onSubmit(token) {
         document.getElementById("comment-form").submit();
     }
-</script>
+', ['block' => 'scriptBottom']); ?>
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>
