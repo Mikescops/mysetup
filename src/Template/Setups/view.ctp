@@ -244,7 +244,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                                 <input type="text" name="manual-title" placeholder="<?= __('Product Title') ?>">
                                 <input type="text" name="manual-href" placeholder="Href">
                                 <input type="text" name="manual-src" placeholder="Src">
-                                <a class="button" onclick="manualAddToBasket()"><?= __('Add') ?></a class="button">
+                                <a class="button" onclick="manualAddToBasket()"><?= __('Add') ?></a>
                             </div>
 
                             <script type="text/javascript">
