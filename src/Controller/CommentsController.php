@@ -19,10 +19,9 @@ class CommentsController extends AppController
      */
     public function add($setup_id = null)
     {
-        $comment = $this->Comments->newEntity();
-
         if($this->request->is('post'))
         {
+            $comment = $this->Comments->newEntity();
             $data = $this->request->getData();
 
             if(parent::captchaValidation($data))
@@ -59,8 +58,6 @@ class CommentsController extends AppController
 
             return $this->redirect($this->referer() . '#comment' . ($comment->id ? '-' . $comment->id : 's'));
         }
-
-        $this->set('comment', $comment);
     }
 
     /**
@@ -72,10 +69,9 @@ class CommentsController extends AppController
      */
     public function edit($id = null)
     {
-        $comment = $this->Comments->get($id);
-
         if($this->request->is(['patch', 'post', 'put']))
         {
+            $comment = $this->Comments->get($id);
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
 
             if($this->Comments->save($comment))
@@ -90,8 +86,6 @@ class CommentsController extends AppController
 
             return $this->redirect($this->referer() . '#comment' . ($comment->id ? '-' . $comment->id : 's'));
         }
-
-        $this->set('comment', $comment);
     }
 
     /**

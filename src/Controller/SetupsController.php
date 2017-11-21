@@ -58,11 +58,7 @@ class SetupsController extends AppController
         ];
         // ___________________________________________________________________________________________
 
-        // A new entity if the current visitor wanna post a comment
-        $newComment = $this->Setups->Comments->newEntity();
-        // ________________________________________________________
-
-        $this->set(compact('setup', 'newComment'));
+        $this->set('setup', $setup);
     }
 
     /**
