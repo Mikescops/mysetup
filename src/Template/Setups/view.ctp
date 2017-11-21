@@ -340,7 +340,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <div class="section-inner">
 
-                <?= $this->Markdown->transform(h($setup->description))?>
+                <?= preg_replace('/<a (.*)>(.*)<\/a>/', '<a rel="nofollow" $1>$2</a>', $this->Markdown->transform(h($setup->description))) ?>
+
                 <span class="setup-date">
                     <?php if($setup->creationDate != $setup->modifiedDate): ?>
                         <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
