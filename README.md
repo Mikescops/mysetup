@@ -11,15 +11,15 @@ In order to deploy this website on your web server :
 2.
     1. `# nano /etc/apache2/site-available/mysetup.conf`
         ```apacheconf
-            <VirtualHost *:80>
+        <VirtualHost *:80>
 
-                DocumentRoot /var/www/html/mysetup/webroot
-                <Directory /var/www/html/mysetup/webroot/>
-                    Options FollowSymLinks
-                    AllowOverride All
-                </Directory>
+            DocumentRoot /var/www/html/mysetup/webroot/
+            <Directory /var/www/html/mysetup/webroot/>
+                Options FollowSymLinks
+                AllowOverride All
+            </Directory>
 
-            </VirtualHost>
+        </VirtualHost>
         ```
     2. `# a2ensite mysetup`
     3. `# a2enmod expires headers rewrite deflate`
@@ -39,7 +39,7 @@ In order to deploy this website on your web server :
 
 ### Administration
 
-Will be 'administrators' users having :
+Will be 'administrators' users having one of the below conditions verified :
 
 * A `Users.verified` value equal to `125`
 * An email address as `admin@admin.admin` (which cannot be verified), with `adminadmin` as default password
