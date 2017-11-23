@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `MySetup`
+-- Database: `mySetup.co`
 --
 
 -- --------------------------------------------------------
@@ -27,11 +27,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `comments` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `setup_id` int(11) NOT NULL,
-  `content` text COLLATE utf8mb4_bin NOT NULL,
-  `dateTime` datetime NOT NULL
+  `id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `setup_id` INT(11) NOT NULL,
+  `content` TEXT COLLATE utf8mb4_bin NOT NULL,
+  `dateTime` DATETIME NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -41,9 +41,9 @@ CREATE TABLE `comments` (
 --
 
 CREATE TABLE `likes` (
-  `id` int(11) NOT NULL,
-  `setup_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `id` INT(11) NOT NULL,
+  `setup_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -53,13 +53,13 @@ CREATE TABLE `likes` (
 --
 
 CREATE TABLE `resources` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `setup_id` int(11) DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8_bin NOT NULL,
-  `title` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `href` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `src` varchar(255) COLLATE utf8_bin DEFAULT NULL
+  `id` INT(11) NOT NULL,
+  `user_id` INT(11) DEFAULT NULL,
+  `setup_id` INT(11) DEFAULT NULL,
+  `type` VARCHAR(255) COLLATE utf8_bin NOT NULL,
+  `title` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
+  `href` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
+  `src` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -69,15 +69,16 @@ CREATE TABLE `resources` (
 --
 
 CREATE TABLE `setups` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8_bin NOT NULL,
-  `description` text COLLATE utf8_bin,
-  `author` varchar(255) COLLATE utf8_bin NOT NULL,
-  `featured` tinyint(1) NOT NULL,
-  `creationDate` datetime NOT NULL,
-  `modifiedDate` datetime NOT NULL,
-  `status` VARCHAR(255) COLLATE utf8_bin NOT NULL
+  `id` INT(11) NOT NULL,
+  `user_id` INT(11) DEFAULT NULL,
+  `title` VARCHAR(255) COLLATE utf8_bin NOT NULL,
+  `description` TEXT COLLATE utf8_bin,
+  `author` VARCHAR(255) COLLATE utf8_bin NOT NULL,
+  `featured` TINYINT(1) NOT NULL,
+  `creationDate` DATETIME NOT NULL,
+  `modifiedDate` DATETIME NOT NULL,
+  `status` VARCHAR(255) COLLATE utf8_bin NOT NULL,
+  `like_count` INT(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -87,18 +88,18 @@ CREATE TABLE `setups` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_bin NOT NULL,
-  `mail` varchar(255) COLLATE utf8_bin NOT NULL,
-  `password` varchar(255) COLLATE utf8_bin NOT NULL,
-  `preferredStore` varchar(16) COLLATE utf8_bin NOT NULL,
-  `timeZone` varchar(16) COLLATE utf8_bin NOT NULL,
-  `verified` int(1) NOT NULL,
-  `mailVerification` varchar(32) COLLATE utf8_bin DEFAULT NULL,
-  `creationDate` datetime NOT NULL,
+  `id` INT(11) NOT NULL,
+  `name` VARCHAR(255) COLLATE utf8_bin NOT NULL,
+  `mail` VARCHAR(255) COLLATE utf8_bin NOT NULL,
+  `password` VARCHAR(255) COLLATE utf8_bin NOT NULL,
+  `preferredStore` VARCHAR(16) COLLATE utf8_bin NOT NULL,
+  `timeZone` VARCHAR(16) COLLATE utf8_bin NOT NULL,
+  `verified` INT(1) NOT NULL,
+  `mailVerification` VARCHAR(32) COLLATE utf8_bin DEFAULT NULL,
+  `creationDate` DATETIME NOT NULL,
   `modificationDate` timestamp NOT NULL,
-  `lastLogginDate` datetime DEFAULT NULL,
-  `mainSetup_id` int(11) NOT NULL DEFAULT '0',
+  `lastLogginDate` DATETIME DEFAULT NULL,
+  `mainSetup_id` INT(11) NOT NULL DEFAULT 0,
   `twitchToken` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
   `twitchUserId` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
   `uwebsite` VARCHAR(255) COLLATE utf8_bin DEFAULT NULL,
@@ -116,9 +117,9 @@ CREATE TABLE `users` (
 CREATE TABLE `notifications` (
   `id` INT(11) NOT NULL,
   `user_id` INT(11) NOT NULL,
-  `content` text COLLATE utf8mb4_bin NOT NULL,
+  `content` TEXT COLLATE utf8mb4_bin NOT NULL,
   `new` TINYINT(1) NOT NULL,
-  `dateTime` datetime NOT NULL
+  `dateTime` DATETIME NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
@@ -219,42 +220,42 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `setups`
 --
 ALTER TABLE `setups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
