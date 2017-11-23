@@ -11,5 +11,9 @@ composer install -n
 composer dumpautoload -o
 bin/cake plugin assets symlink
 
+# Has the model changed ?
+bin/cake orm_cache clear
+bin/cake migrations migrate --no-lock
+
 
 exit 0
