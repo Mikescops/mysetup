@@ -205,7 +205,7 @@ class Initial extends AbstractMigration
             ])
             ->addColumn('mail', 'string', [
                 'default' => null,
-                'limit' => 255,
+                'limit' => 128,
                 'null' => false,
             ])
             ->addColumn('password', 'string', [
@@ -249,7 +249,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('mainSetup_id', 'integer', [
-                'default' => '0',
+                'default' => 0,
                 'limit' => 11,
                 'null' => false,
             ])

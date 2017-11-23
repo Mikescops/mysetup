@@ -90,7 +90,7 @@ CREATE TABLE `setups` (
 CREATE TABLE `users` (
   `id` INT(11) NOT NULL,
   `name` VARCHAR(255) COLLATE utf8_bin NOT NULL,
-  `mail` VARCHAR(255) COLLATE utf8_bin NOT NULL,
+  `mail` VARCHAR(128) COLLATE utf8_bin NOT NULL,
   `password` VARCHAR(255) COLLATE utf8_bin NOT NULL,
   `preferredStore` VARCHAR(16) COLLATE utf8_bin NOT NULL,
   `timeZone` VARCHAR(16) COLLATE utf8_bin NOT NULL,
