@@ -707,14 +707,7 @@ function infiniteScroll(nbtodisplay) {
           setups = $.parseJSON(json);
           if(setups[0]){
             $.each(setups ,function(key, value) {
-              var nblikes;
-              if(value['likes'][0]){
-                nblikes = value['likes'][0]['total'];
-              }
-              else{
-                nblikes = 0;
-              }
-              $('.fullitem_holder').append('<div class="fullitem"><a href="'+webRootJs+'setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><img src="'+webRootJs+value['resources'][0]['src'] +'"><\/a><div class="red_like"><i class="fa fa-heart"><\/i> '+ nblikes +'<\/div><div class="fullitem-inner"><div class="row"><div class="column column-75"><a class="featured-user" href="'+webRootJs+'users/'+value['user_id']+'"><img src="'+webRootJs+'uploads/files/pics/profile_picture_'+value['user_id']+'.png?'+("0"+(new Date(value['user']['modificationDate'])).getMinutes()).slice(-2)+("0"+(new Date(value['user']['modificationDate'])).getSeconds()).slice(-2)+'"><\/a><a href="'+webRootJs+'setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><h3>'+value['title']+'<\/h3><\/a><\/div><\/div><\/div><\/div>');
+              $('.fullitem_holder').append('<div class="fullitem"><a href="'+webRootJs+'setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><img src="'+webRootJs+value['resources'][0]['src'] +'"><\/a><div class="red_like"><i class="fa fa-heart"><\/i> '+ value['like_count'] +'<\/div><div class="fullitem-inner"><div class="row"><div class="column column-75"><a class="featured-user" href="'+webRootJs+'users/'+value['user_id']+'"><img src="'+webRootJs+'uploads/files/pics/profile_picture_'+value['user_id']+'.png?'+("0"+(new Date(value['user']['modificationDate'])).getMinutes()).slice(-2)+("0"+(new Date(value['user']['modificationDate'])).getSeconds()).slice(-2)+'"><\/a><a href="'+webRootJs+'setups/'+value['id']+'-'+convertToSlug(value['title'])+'"><h3>'+value['title']+'<\/h3><\/a><\/div><\/div><\/div><\/div>');
             });
             $(window).data('ajaxready', true);
           }
