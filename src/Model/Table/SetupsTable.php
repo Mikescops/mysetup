@@ -134,6 +134,9 @@ class SetupsTable extends Table
         $validator
             ->notEmpty('status');
 
+        $validator
+            ->allowEmpty('like_count');
+
         return $validator;
     }
 
@@ -219,19 +222,19 @@ class SetupsTable extends Table
         ],
         $array);
 
-        // We'll stock some conditions in this
-        $conditions = ['Setups.status' => 'PUBLISHED'];
+        // We'll stock some conditions in this array
+        $conditions = [
+            'Setups.status' => 'PUBLISHED',
+            'Setups.creationDate >' => date('Y-m-d', strtotime("-" . $params['weeks'] . "weeks")),
+            'Setups.creationDate <=' => date('Y-m-d', strtotime("+ 1 day"))
+        ];
 
-        // If the query specified only the featured ones
+        // If the query specified only the featured ones...
         if($params['featured'])
         {
+            // ... let's add this condition !
             $conditions += ['Setups.featured' => true];
         }
-
-        $conditions += [
-            'Setups.creationDate >' => date('Y-m-d', strtotime("-" . $params['weeks'] . "weeks")),
-            'Setups.creationDate <=' => date('Y-m-d', strtotime("+ 1 day")),
-        ];
 
         // Some empty arrays in which we'll set the SQL conditions to match a setup... or not
         $name_cond      = [];
@@ -251,12 +254,21 @@ class SetupsTable extends Table
             }
         }
 
+        // By default, we'll order the setups by creation dates
+        $orders = ['Setups.creationDate' => $params['order']];
+
+        // If the query specified a ranking by number of "likes", let's order them in the query below
+        if($params['type'] === 'like')
+        {
+            $orders = ['Setups.like_count' => 'DESC'] + $orders;
+        }
+
         /*
             This query is just ESSENTIAL. Some explanations are required:
 
                 * We select only the columns that we'll need #optimization
                 * Featured image (for each setup) will be directly available  ($setup['resources'][0]['src'])
-                * Number of likes for each setup will be directly available ($setup->likes[0]['total'])
+                * Number of likes for each setup will be directly available ($setup->like_count)
                 * We browse the Users table (in order to gather some setups with the user name)
                 * We browse the Setups table (in order to gather some setups with their author name and title)
                 * We browse the Resources table (in order to gather some setups with their resources title [=== product name])
@@ -264,9 +276,7 @@ class SetupsTable extends Table
         */
         $results = $this->find('all', [
             'conditions' => $conditions,
-            'order' => [
-                'Setups.creationDate' => $params['order']
-            ],
+            'order' => $orders,
             'limit' => $params['number'],
             'offset' => $params['offset'],
             'fields' => [
@@ -274,12 +284,10 @@ class SetupsTable extends Table
                 'user_id',
                 'title',
                 'creationDate',
-                'status'
+                'status',
+                'like_count'
             ],
             'contain' => [
-                'Likes' => function ($q) {
-                    return $q->enableAutoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
-                },
                 'Resources' => [
                     'fields' => [
                         'setup_id',
@@ -302,32 +310,6 @@ class SetupsTable extends Table
         ->leftJoinWith('Resources')
         ->distinct()
         ->toArray();
-
-        // If the query specified a ranking by number of "likes", let's sort them just before sending it
-        if($params['type'] === 'like')
-        {
-            usort($results, function($a, $b) {
-                if(empty($a->likes))
-                {
-                    $a->likes += [0 => ['total' => 0]];
-                }
-
-                if(empty($b->likes))
-                {
-                    $b->likes += [0 => ['total' => 0]];
-                }
-
-                if($a->likes[0]['total'] == $b->likes[0]['total'])
-                {
-                    return 0;
-                }
-
-                else
-                {
-                    return ($a->likes[0]['total'] < $b->likes[0]['total']) ? 1 : -1;
-                }
-            });
-        }
 
         return $results;
     }
