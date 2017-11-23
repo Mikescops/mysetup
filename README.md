@@ -30,9 +30,9 @@ In order to deploy this website on your web server :
 6. `$ mkdir -p webroot/uploads/files/pics/`
 7. `$ cp webroot/img/profile-default.png webroot/uploads/files/pics/profile_picture_1.png`
 8. `# chown -R www-data:www-data webroot/uploads/`
-9. `$ bash bin/deployment.sh`
-10. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and import the `config/schema/mySetup.sql` file into a new database.
-11. Configure an user with required rights on this database, and set it up in the `config/app.php` file in the _Datasources_ section.
+9. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and create a new database with `utf8mb4_bin` as collation.
+10. Configure a new user with required rights on this database (**Data** & **Structure**, and set it up in the `config/app.php` file, in the **Datasources** section.
+11. Now run our deployment script : `$ bash bin/deployment.sh`
 12. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page is supposed to appear !
 
 ## Notes to developers
