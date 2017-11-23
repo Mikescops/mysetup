@@ -290,6 +290,8 @@ class Initial extends AbstractMigration
                 ['unique' => true]
             )
             ->create();
+
+        $this->execute('INSERT INTO `users` (`id`, `name`, `mail`, `password`, `preferredStore`, `verified`, `mailVerification`) VALUES (1, \'Admin\', \'admin@admin.admin\', \'$2y$10$YRpe68er1G1m4Adani5hbOaFbWKKsog6eiLI45OGSBI7es9QMyg2m\', \'FR\', 0, NULL)');
     }
 
     public function down()
