@@ -34,7 +34,8 @@ class LikesController extends AppController
                             'user_id',
                             'title',
                             'creationDate',
-                            'status'
+                            'status',
+                            'like_count'
                         ],
                         'Users' => [
                             'fields' => [
@@ -51,10 +52,7 @@ class LikesController extends AppController
                                 'src',
                                 'setup_id'
                             ]
-                        ],
-                        'Likes' => function ($q) {
-                            return $q->enableAutoFields(false)->select(['setup_id', 'total' => $q->func()->count('Likes.user_id')])->group(['Likes.setup_id']);
-                        }
+                        ]
                     ]
                 ],
                 'order' => [

@@ -44,6 +44,12 @@ class LikesTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->addBehavior('CounterCache', [
+            'Setups' => [
+                'like_count'
+            ]
+        ]);
     }
 
     /**

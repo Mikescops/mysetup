@@ -27,7 +27,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <a class="slider-item-inner featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
                     <img data-lazy="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
             </div></div>
         </div>
 
@@ -57,7 +57,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
 
                 <div class="fullitem-inner">
 
@@ -113,7 +113,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
 
                 <div class="fullitem-inner">
 
@@ -149,7 +149,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
 
                 <div class="fullitem-inner">
 
@@ -185,7 +185,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                     <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
                 </a>
-                <div class="red_like"><i class="fa fa-heart"></i> <?php if(!empty($setup->likes[0])){echo $setup->likes[0]['total'];}else{echo 0;} ?></div>
+                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
 
                 <div class="fullitem-inner">
 
