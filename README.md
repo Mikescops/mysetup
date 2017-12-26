@@ -22,7 +22,7 @@ In order to deploy this website on your web server :
         </VirtualHost>
         ```
     2. `# a2ensite mysetup`
-    3. `# a2enmod expires headers rewrite deflate`
+    3. `# a2enmod expires headers rewrite filter deflate`
     4. `# service apache2 restart`
 3. `$ cd /var/www/html/`
 4. `$ git clone https://github.com/MikeScops/mysetup.git`
@@ -31,7 +31,7 @@ In order to deploy this website on your web server :
 7. `$ cp webroot/img/profile-default.png webroot/uploads/files/pics/profile_picture_1.png`
 8. `# chown -R www-data:www-data webroot/uploads/`
 9. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and create a new database with `utf8mb4_bin` as collation.
-10. Configure a new user with required rights on this database (**Data** & **Structure**, and set it up in the `config/app.php` file, in the **Datasources** section.
+10. Configure a new user with required rights on this database (**Data** & **Structure**), and set it up in the `config/app.php` file, in the **Datasources** section.
 11. Now run our deployment script : `$ bash bin/deployment.sh`
 12. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page is supposed to appear !
 
@@ -57,7 +57,7 @@ If you want to bump vendor packages version :
 
 If you wanna add a translation for a foreign language :
 
-1. Add _default.po_ and _core.po_ files into `src/Locale/xx_XX/` (or their binary `*.mo` format)
+1. Add `default.po` and `core.po` files into `src/Locale/xx_XX/`
 2. Add a corresponding test case into `src/Table/UsersTable.php@getLocaleByCountryID()` for the locale you added
 
 So as to extract the strings from the source code, and edit them with _Poedit_, just follow this scenario :
@@ -66,4 +66,5 @@ So as to extract the strings from the source code, and edit them with _Poedit_, 
 2. Keep the **default path** for extraction (`<...>/src/`)
 3. **Do extract** the CakePHP core's strings
 4. Keep the **default path** for output (`<...>/src/Locale`)
-5. Replace existing files if needed
+5. **Don't merge** all domain strings into the `default.pot` file
+6. Replace existing files if needed
