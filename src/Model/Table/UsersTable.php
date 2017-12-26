@@ -354,6 +354,12 @@ class UsersTable extends Table
             $locale = 'es-ES';
         }
 
+        // `IT-*` locales
+        elseif(preg_match('/^it([-_].*)?$/i', $country_id))
+        {
+            $locale = 'it-IT';
+        }
+
         // All the others (yet)
         else
         {
