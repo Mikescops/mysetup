@@ -155,7 +155,7 @@
                                     <a><i class="fa fa-user"></i> <i class="fa fa-caret-down"></i></a>
                                     <ul style="right: 0;left: auto;text-align: right;">
                                         <li><a href="<?= $this->Url->build('/login'); ?>"><?= __('Sign In / Up') ?></a></li>
-                                        <li><a href="<?= $this->Url->build('/pages/q&a')?>">Help - Q&amp;A</a></li>
+                                        <li><a href="<?= $this->Url->build('/pages/q&a')?>"><?= __('Help - Q&amp;A') ?></a></li>
                                     </ul>
                             </li>
                             <?php endif; ?>

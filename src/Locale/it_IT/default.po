@@ -513,22 +513,22 @@ msgstr "Sei sicuro di volere cancellare questo commento ?"
 #: Template/Admin/comments.ctp:43 Template/Admin/resources.ctp:50
 #: Template/Admin/setups.ctp:51 Template/Admin/users.ctp:86
 msgid "first"
-msgstr "Primo"
+msgstr "primo"
 
 #: Template/Admin/comments.ctp:44 Template/Admin/resources.ctp:51
 #: Template/Admin/setups.ctp:52 Template/Admin/users.ctp:87
 msgid "previous"
-msgstr "Prima"
+msgstr "prima"
 
 #: Template/Admin/comments.ctp:46 Template/Admin/resources.ctp:53
 #: Template/Admin/setups.ctp:54 Template/Admin/users.ctp:89
 msgid "next"
-msgstr "Dopo"
+msgstr "dopo"
 
 #: Template/Admin/comments.ctp:47 Template/Admin/resources.ctp:54
 #: Template/Admin/setups.ctp:55 Template/Admin/users.ctp:90
 msgid "last"
-msgstr "Ultimo"
+msgstr "ultimo"
 
 #: Template/Admin/comments.ctp:49 Template/Admin/resources.ctp:56
 #: Template/Admin/setups.ctp:57 Template/Admin/users.ctp:92
@@ -541,7 +541,7 @@ msgstr ""
 
 #: Template/Admin/dashboard.ctp:7
 msgid "Dashboard | myAdmin"
-msgstr "Dashboard | MyAdmin"
+msgstr "Dashboard | myAdmin"
 
 #: Template/Admin/dashboard.ctp:20
 msgid "SETUPS"
@@ -549,15 +549,15 @@ msgstr "SETUPS"
 
 #: Template/Admin/dashboard.ctp:29
 msgid "USERS"
-msgstr "Utilizzatori"
+msgstr "UTILIZZATORI"
 
 #: Template/Admin/dashboard.ctp:38
 msgid "COMMENTS"
-msgstr "Commenti"
+msgstr "COMMENTI"
 
 #: Template/Admin/dashboard.ctp:47
 msgid "RESOURCES"
-msgstr "Risorse"
+msgstr "RISORCE"
 
 #: Template/Admin/dashboard.ctp:60;234;236
 msgid "Certified users"
@@ -630,7 +630,7 @@ msgstr "Titolo"
 
 #: Template/Admin/send_notification.ctp:7
 msgid "Send Notification | myAdmin"
-msgstr "Invia notifica | MyAdmin"
+msgstr "Invia Notifica | myAdmin"
 
 #: Template/Admin/send_notification.ctp:80 Template/Layout/admin.ctp:86
 msgid "Send notification"
@@ -670,7 +670,7 @@ msgstr "Creato "
 
 #: Template/Admin/setups.ctp:25 Template/Setups/view.ctp:347
 msgid "Modified on"
-msgstr "Modificato "
+msgstr "Modificato"
 
 #: Template/Admin/setups.ctp:36 Template/Admin/users.ctp:52;56;59
 msgid "Yes"
@@ -768,7 +768,7 @@ msgstr "Cancellare questo articolo"
 
 #: Template/Articles/view.ctp:64
 msgid "Are you sure you want to delete this article ?"
-msgstr "Sei sicuro di volere cancellare questo articolo ? "
+msgstr "Sei sicuro di volere cancellare questo articolo ?"
 
 #: Template/Articles/view.ctp:68
 msgid "Go back to list"
@@ -784,7 +784,7 @@ msgstr "Questa pagina non esiste"
 
 #: Template/Error/error400.ctp:43
 msgid "Wrong page, wrong link ? Try to search something :"
-msgstr "Pagina sbagliata, collegamento errato? Prova di cercare qualcosa:"
+msgstr "Pagina sbagliata, collegamento errato? Prova di cercare qualcosa :"
 
 #: Template/Error/error400.ctp:53
 msgid "Search component, user or setup..."
@@ -804,7 +804,7 @@ msgstr "Errore"
 
 #: Template/Layout/admin.ctp:68
 msgid "Add Article"
-msgstr "Aggiungere un articolo"
+msgstr "Aggiungere un Articolo"
 
 #: Template/Layout/admin.ctp:73
 msgid "View website"
@@ -859,7 +859,7 @@ msgstr "Logout"
 
 #: Template/Layout/default.ctp:98 Template/Users/view.ctp:108
 msgid "Change only what you want !"
-msgstr "Cambia solo quello che vuoi!"
+msgstr "Cambia solo quello che vuoi !"
 
 #: Template/Layout/default.ctp:107
 msgid "Change my profile picture"
@@ -872,7 +872,7 @@ msgstr "Indirizzo email"
 
 #: Template/Layout/default.ctp:131
 msgid "Choose your main setup : "
-msgstr "Scegli la tua configurazione principale:"
+msgstr "Scegli la tua configurazione principale : "
 
 #: Template/Layout/default.ctp:137 Template/Users/login.ctp:28;48
 #: Template/Users/view.ctp:128
@@ -949,7 +949,7 @@ msgstr "Salva come bozza"
 
 #: Template/Layout/default.ctp:226 Template/Setups/view.ctp:161
 msgid "Search for components..."
-msgstr "Ricerca di componenti ..."
+msgstr "Ricerca di componenti..."
 
 #: Template/Layout/default.ctp:243 Template/Setups/view.ctp:199
 msgid "Video (Youtube, Dailymotion, Twitch, ...)"
@@ -1031,7 +1031,7 @@ msgstr "Leggi le nostre ultime notizie"
 
 #: Template/Pages/bug_report.ctp:5
 msgid "Bug Report | mySetup.co"
-msgstr "Riportare un errore| mySetup.co"
+msgstr "Riportare un errore | mySetup.co"
 
 #: Template/Pages/bug_report.ctp:12
 msgid "Bug Report"
@@ -1039,7 +1039,7 @@ msgstr "Riportare un errore"
 
 #: Template/Pages/bug_report.ctp:16
 msgid "An email to contact you, young visitor !"
-msgstr "Un email per contattarti, giovane visitatore!"
+msgstr "Un email per contattarti, giovane visitatore !"
 
 #: Template/Pages/bug_report.ctp:20
 msgid "Bug description"
@@ -1051,7 +1051,7 @@ msgid ""
 "co..."
 msgstr ""
 "Vi preghiamo di descrivere esattamente il bug che purtroppo avete incontrato "
-"su mySetup.co ..."
+"su mySetup.co..."
 
 #: Template/Pages/bug_report.ctp:29 Template/Users/login.ctp:91
 msgid "Send"
@@ -1072,7 +1072,7 @@ msgstr ""
 
 #: Template/Pages/home.ctp:46
 msgid "Search a component... Find a cool setup !"
-msgstr "Cerca un componente ... Trova un setup fredda !"
+msgstr "Cerca un componente... Trova un setup fantastico !"
 
 #: Template/Pages/home.ctp:81
 msgid "More popular setups"
@@ -1080,7 +1080,7 @@ msgstr "Setups più famosi"
 
 #: Template/Pages/home.ctp:89
 msgid "Login with Twitch and create my Setup !"
-msgstr "Login con Twitch e crea il mio setup!"
+msgstr "Login con Twitch e crea il mio Setup !"
 
 #: Template/Pages/home.ctp:107 Template/Pages/recent.ctp:18
 msgid "Latest setups"
@@ -1112,7 +1112,7 @@ msgstr "Menzioni legali relative ai tuoi dati personali, cookie e crediti."
 
 #: Template/Pages/legals.ctp:18
 msgid "Site Publisher"
-msgstr "Site Publisher"
+msgstr "Sito Web Editore"
 
 #: Template/Pages/legals.ctp:24
 msgid "Head of Publication"
@@ -1164,7 +1164,7 @@ msgstr ""
 
 #: Template/Pages/legals.ctp:42
 msgid "Use of Cookies"
-msgstr "Usi dei cookie"
+msgstr "Uso dei Cookies"
 
 #: Template/Pages/legals.ctp:44
 msgid ""
@@ -1229,7 +1229,7 @@ msgstr ""
 
 #: Template/Pages/popular.ctp:4
 msgid "Popular this week | mySetup.co"
-msgstr "Famoso questa settimana| mySetup.co"
+msgstr "Famoso questa settimana | mySetup.co"
 
 #: Template/Pages/popular.ctp:6
 msgid "The most popular setups of the week on mySetup.co"
@@ -1279,11 +1279,11 @@ msgstr "Come usare il Markdown"
 
 #: Template/Pages/q&a.ctp:24;61
 msgid "My setup has been refused, why ?"
-msgstr "Il mio setup è stato rifiutato, perché?"
+msgstr "Il mio setup è stato rifiutato, perché ?"
 
 #: Template/Pages/q&a.ctp:25;66
 msgid "How can I use the API you provide ?"
-msgstr "Come posso usare l'API che offri?"
+msgstr "Come posso usare l'API che offri ?"
 
 #: Template/Pages/q&a.ctp:32
 msgid ""
@@ -1331,7 +1331,8 @@ msgstr ""
 #: Template/Pages/q&a.ctp:57
 msgid "The Markdown system is similar to Github's one, please read more at : "
 msgstr ""
-"Il sistema Markdown è simile a quello di Github, per favore leggi di più su:"
+"Il sistema Markdown è simile a quello di Github, per favore leggi di più su "
+": "
 
 #: Template/Pages/q&a.ctp:62
 msgid ""
@@ -1349,7 +1350,7 @@ msgid ""
 "accordingly) :"
 msgstr ""
 "È abbastanza semplice, giusto aggiungi il codice qui sotto alla tua pagina "
-"(e impostare l'id di installazione di conseguenza):"
+"(e impostare l'id di installazione di conseguenza) :"
 
 #: Template/Pages/recent.ctp:4
 msgid "Latest Setups | mySetup.co"
@@ -1365,7 +1366,7 @@ msgstr "La nostra squadra | mySetup.co"
 
 #: Template/Pages/team.ctp:6
 msgid "Who is behind mySetup.co ?"
-msgstr "Chi c'è dietro mySetup.co?"
+msgstr "Chi c'è dietro mySetup.co ?"
 
 #: Template/Setups/search.ctp:6
 msgid "Search for"
@@ -1397,7 +1398,7 @@ msgstr "Questa è la tua configurazione principale"
 
 #: Template/Setups/view.ctp:79 Template/Users/view.ctp:81
 msgid "This setup is featured on mySetup.co !"
-msgstr "Questa configurazione è disponibile su mySetup.co!"
+msgstr "Questa configurazione è disponibile su mySetup.co !"
 
 #: Template/Setups/view.ctp:83
 msgid "Shared by"
@@ -1405,7 +1406,7 @@ msgstr "Condiviso da"
 
 #: Template/Setups/view.ctp:83
 msgid ", created by "
-msgstr ", creato da"
+msgstr ", creato da "
 
 #: Template/Setups/view.ctp:87
 msgid "You must be logged in to like !"
@@ -1534,7 +1535,7 @@ msgstr "alle"
 
 #: Template/Setups/view.ctp:398
 msgid "Nice config'..."
-msgstr "Bella configurazione'..."
+msgstr "Bella configurazione..."
 
 #: Template/Setups/view.ctp:406
 msgid "Post this comment"
