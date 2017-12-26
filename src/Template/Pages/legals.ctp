@@ -17,9 +17,9 @@ echo $this->Html->meta('description', __('Legal mentions about your personal dat
 
 	<h3><?= __('Site Publisher') ?></h3>
 	<p>GEEK MEXICAIN<br>
-	88 boulevard Lahitolle<br>
+	88 Boulevard Lahitolle<br>
 	18000 BOURGES<br>
-	contact(at)mysetup.co</p>
+	contact [at] mysetup [dot] co</p>
 
 	<h3><?= __('Head of Publication') ?></h3>
 	<p>

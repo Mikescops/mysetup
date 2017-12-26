@@ -130,7 +130,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                         ?>
 
                         <?php
-                            echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => ['text' => __(' User verified'), 'class' => 'checkbox'], 'default' => $user['verified'], 'required' => false, 'hiddenField' => true]);
+                            echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => ['text' => __('User verified'), 'class' => 'checkbox'], 'default' => $user['verified'], 'required' => false, 'hiddenField' => true]);
                         ?>
 
                         <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> <?= __('Change the user password') ?></a>

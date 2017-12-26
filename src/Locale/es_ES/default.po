@@ -1584,7 +1584,7 @@ msgid "Change the user profile picture"
 msgstr "Cambiar la imagen de perfil del usuario"
 
 #: Template/Users/view.ctp:133
-msgid " User verified"
+msgid "User verified"
 msgstr "Usuario verificado"
 
 #: Template/Users/view.ctp:136
