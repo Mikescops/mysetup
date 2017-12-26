@@ -15,5 +15,12 @@ bin/cake plugin assets symlink
 bin/cake orm_cache clear
 bin/cake migrations migrate --no-lock
 
+# Update the translation binary catalogs from sources !
+for file in src/Locale/*_*/*.po; do
+
+    msgfmt -o $(dirname "${file}")"/"$(basename "${file}" .po)".mo" "${file}"
+
+done
+
 
 exit 0
