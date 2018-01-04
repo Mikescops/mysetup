@@ -369,7 +369,7 @@
     <?php if($authUser): ?>
         <?= $this->Html->script('emoji.min.js') ?>
     <?php endif; ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/lib/js/emojione.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/lib/js/emojione.min.js"></script>
 
     <!-- App Js async load -->
     <?= $this->Html->script('app.min.js') ?>
@@ -383,8 +383,8 @@
     <?= $this->fetch('scriptBottom') ?>
 
     <!-- CookieConsent -->
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.js"></script>
     <script>window.addEventListener("load",function(){window.cookieconsent.initialise({"palette":{"popup":{"background":"#000"},"button":{"background":"#328fea"}},"theme":"classic","position":"bottom-left","content":{"href":"https://mysetup.co/pages/legals"}})});</script>
 
     <!-- Google Analytics -->
