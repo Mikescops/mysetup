@@ -68,7 +68,13 @@
         <div class="col-xl-6 col-sm-6">
             <br>
             <h3>Analytics</h3>
-            <iframe src="https://analytics.geek-mexicain.net/index.php?module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&idSite=2&period=month&date=today&token_auth=546a282fb9d3b7eedacaea7c4a8a1d5f&language=<?= strtolower($authUser['preferredStore']) ?>" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+            <div id="widgetIframe">
+                <iframe
+                    width="100%" height="350"
+                    src="https://analytics.geek-mexicain.net/index.php?module=Widgetize&action=iframe&forceView=1&viewDataTable=graphEvolution&widget=1&moduleToWidgetize=VisitsSummary&actionToWidgetize=getEvolutionGraph&idSite=2&period=day&date=today&disableLink=1&widget=1&token_auth=546a282fb9d3b7eedacaea7c4a8a1d5f&language=<?= strtolower($authUser['preferredStore']) ?>"
+                    scrolling="no" frameborder="0" marginheight="0" marginwidth="0">
+                </iframe>
+            </div>
         </div>
     </div>
 
