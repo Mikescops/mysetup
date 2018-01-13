@@ -57,7 +57,7 @@ echo $this->Html->meta('description', __('Legal mentions about your personal dat
 
 	<h3><?= __('Credits') ?></h3>
 	<p>
-		<?= __('© 2017 mysetup.co – All rights reserved. Total or partial production or imitation of said documents without the express prior written consent of mysetup.co is strictly prohibited and constitutes a punishable violation under France’s Intellectual Property Code. All brands and trademarks on mysetup.co belongs to their respective owners.') ?>
+		<?= __('© 2017 - 2018 mysetup.co – All rights reserved. Total or partial production or imitation of said documents without the express prior written consent of mysetup.co is strictly prohibited and constitutes a punishable violation under France’s Intellectual Property Code. All brands and trademarks on mysetup.co belongs to their respective owners.') ?>
 	</p>
 
 </div>

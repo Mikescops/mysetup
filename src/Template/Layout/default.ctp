@@ -350,7 +350,7 @@
                     </div>
                     <div class="column column-25 logo_footer">
                         <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mysetup.co')); ?>
-                        <p><?= __('All rights reserved') ?> – mysetup.co<br> © 2017</p>
+                        <p><?= __('All rights reserved') ?> – mysetup.co<br> © 2017 - 2018</p>
                     </div>
               </div>
           </div>

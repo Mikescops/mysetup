@@ -1,5 +1,5 @@
 # LANGUAGE translation of CakePHP Application
-# Copyright 2017 mysetup.co <support@mysetup.co>
+# Copyright 2017 - 2018 mysetup.co <support@mysetup.co>
 #
 msgid ""
 msgstr ""
@@ -1199,18 +1199,18 @@ msgstr "Créditos "
 
 #: Template/Pages/legals.ctp:60
 msgid ""
-"© 2017 mysetup.co – All rights reserved. Total or partial production or "
-"imitation of said documents without the express prior written consent of "
+"© 2017 - 2018 mysetup.co – All rights reserved. Total or partial production "
+"or imitation of said documents without the express prior written consent of "
 "mysetup.co is strictly prohibited and constitutes a punishable violation "
 "under France’s Intellectual Property Code. All brands and trademarks on "
 "mysetup.co belongs to their respective owners."
 msgstr ""
-"© 2017 mySetup.co – Todos los derechos reservados. La reproducción completa "
-"o parcial o la imitación de los mismos sin en consentimiento previo por "
-"escrito de mysetup.co está estrictamente prohibida y constituye una "
-"violación punible bajo el Código de Propiedad Intelectual de Francia. Todas "
-"las marcas y marcas registradas de mysetup.co pertenecen a sus respectivos "
-"propietarios."
+"© 2017 - 2018 mysetup.co – Todos los derechos reservados. La reproducción "
+"completa o parcial o la imitación de los mismos sin en consentimiento "
+"previo por escrito de mysetup.co está estrictamente prohibida y constituye "
+"una violación punible bajo el Código de Propiedad Intelectual de Francia. "
+"Todas las marcas y marcas registradas de mysetup.co pertenecen a sus "
+"respectivos propietarios."
 
 #: Template/Pages/popular.ctp:4
 msgid "Popular this week | mySetup.co"
