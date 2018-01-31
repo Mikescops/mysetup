@@ -2005,9 +2005,13 @@ input[type="checkbox"]:checked + label.checkbox::after{
 .article-list h3{
 	position: absolute;
 	bottom: 0;
-	padding: 10px 10px;
+	padding: 10px 12px;
 	color: #fff;
 	margin-bottom: 5px;
+	text-shadow: 0 1px 0 black;
+	-moz-text-shadow: 0 1px 0 black;
+	-webkit-text-shadow: 0 1px 0 black;
+	font-weight: bold;
 }
 
 .post-image{
