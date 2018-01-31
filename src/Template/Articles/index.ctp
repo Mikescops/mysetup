@@ -24,34 +24,29 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="maincontainer">
 
     <div class="row">
-        <div class="column column-75 article-list">
+        <div class="column column-100">
 
-        <?php foreach ($articles as $article): ?>
+            <div class="article-list">
 
-            <a href="<?= $this->Url->build('/blog/'. $article->id . '-' . $this->Text->slug($article->title)) ?>">
+                <?php foreach ($articles as $article): ?>
+                <div class="article-item">
 
-                <div class="article-img">
+                    <a href="<?= $this->Url->build('/blog/'. $article->id . '-' . $this->Text->slug($article->title)) ?>">
 
-                    <img src="<?= $this->Url->build('/') . $article->picture ?>" alt="<?= h($article->title) ?>">
+                        <div class="img-overlay"></div>
 
+                        <div class="article-img">
+
+                            <img src="<?= $this->Url->build('/') . $article->picture ?>" alt="<?= h($article->title) ?>">
+
+                        </div>
+
+                        <h3><?= h($article->title) ?></h3>
+
+                    </a>
                 </div>
+                <?php endforeach ?>
 
-                <h3><?= h($article->title) ?></h3>
-
-            </a>
-        <?php endforeach ?>
-
-        </div>
-        <div class="column column-25 sidebar">
-
-            <div class="twitter-feed">
-              <a class="twitter-timeline" data-chrome="noscrollbar nofooter noboders" data-height="781" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by @mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-
-            <div class="social-networks">
-                <a href="https://www.facebook.com/mysetup.co" target="_blank" style="background-color: #3b5998"><i class="fa fa-facebook fa-2x"></i></a>
-                <a href="https://twitter.com/mysetup_co" target="_blank" style="background-color: #55acee"><i class="fa fa-twitter fa-2x"></i></a>
-                <a href="https://geeks.one/@mysetup_co" title="Mastodon" target="_blank" style="background-color: #45668e"><img style="height:50px;margin-top:25px" src="/img/mastodon_logo.svg"></a>
             </div>
 
         </div>
