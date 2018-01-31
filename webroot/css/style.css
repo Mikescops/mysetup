@@ -1443,6 +1443,8 @@ nav {
 	background: rgba(21, 21, 21, 0.95);
 	top:42px;
 	z-index:1;
+	border-radius: 5px;
+	overflow: hidden;
 /*	box-shadow: 0 0 30px rgba(0,0,0,.35);
 	-moz-box-shadow: 0 0 30px rgba(0,0,0,.35);
 	-webkit-box-shadow: 0 0 30px rgba(0,0,0,.35);*/
@@ -1458,6 +1460,7 @@ nav {
 .right-nav li ul li {
 	width: 100%;
 	overflow:hidden;
+	margin-bottom: 0;
 
 	height: 0px;
 	-webkit-transition: height .30s ease-in-out;
