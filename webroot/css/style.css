@@ -1484,6 +1484,7 @@ nav {
 
 .right-nav .current-profile-user{
 	height: 32px;
+	width: 32px;
 	position: absolute;
 	border-radius: 50%;
 	border: 2px solid rgb(50, 143, 234);
