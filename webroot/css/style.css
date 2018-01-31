@@ -1491,6 +1491,18 @@ nav {
 	right: -18px;
 }
 
+.right-nav .twitch-login{
+	padding: 7px 10px;
+	margin: 1px 7px;
+	border: 2px solid hsla(0,0%,100%,.8);
+	border-radius: 20px;
+}
+
+.right-nav .twitch-login:hover{
+	color: #344154;
+	background: #fff;
+}
+
 .lity-hide {
     display: none;
 }

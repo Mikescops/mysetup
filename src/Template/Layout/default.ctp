@@ -150,14 +150,13 @@
                             </li>
                             <?php else: ?>
                             <li>
-                                <a class="twitch-login" onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i> </a></li>
-                                <li>
-                                    <a><i class="fa fa-user"></i> <i class="fa fa-caret-down"></i></a>
-                                    <ul style="right: 0;left: auto;text-align: right;">
-                                        <li><a href="<?= $this->Url->build('/login'); ?>"><?= __('Sign In / Up') ?></a></li>
-                                        <li><a href="<?= $this->Url->build('/pages/q&a')?>"><?= __('Help - Q&amp;A') ?></a></li>
-                                    </ul>
+                                <a><i class="fa fa-user"></i> <i class="fa fa-caret-down"></i></a>
+                                <ul style="right: 0;left: auto;text-align: right;">
+                                    <li><a href="<?= $this->Url->build('/login'); ?>"><?= __('Sign In / Up') ?></a></li>
+                                    <li><a href="<?= $this->Url->build('/pages/q&a')?>"><?= __('Help - Q&amp;A') ?></a></li>
+                                </ul>
                             </li>
+                            <li><a class="twitch-login" onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i> </a></li>
                             <?php endif; ?>
 
                     </ul>
