@@ -1955,6 +1955,15 @@ input[type="checkbox"]:checked + label.checkbox::after{
   color: rgb(50, 143, 234);
 }
 
+.display-preview{
+	width: 350px;
+	margin: 0 auto;
+	border-radius: 15px;
+	overflow: hidden;
+	border: 4px solid #eee;
+}
+
+
 /********* ARTICLES CSS ********/
 
 .article-list img{
