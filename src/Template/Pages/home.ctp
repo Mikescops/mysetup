@@ -18,8 +18,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="container">
     <?php if(!$authUser): ?>
         <div class="hero_image">
-            
-            <a class="hero_calltoaction">Sign in</a>
+            <?php echo $this->Html->image('hero.svg', array('alt' => 'Hero mySetup.co', 'class' => 'hero-image')); ?>
+            <a class="hero_calltoaction"><?= __('Sign in') ?></a>
         </div>
     <?php else: ?>
         <div class="hero_column">

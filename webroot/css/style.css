@@ -156,9 +156,44 @@ footer a{
 
 .home_hero_container{
 	background-color: #344154;
-	padding: 120px 0 80px 0;
+	padding: 60px 0 80px 0;
 	max-height: 530px;
 	overflow: hidden;
+}
+
+.hero_image{
+	position: relative;
+	text-align: center;
+}
+
+.hero_image img{
+	max-width: 100%;
+}
+
+.hero_calltoaction{
+	text-decoration: none;
+	padding: 12px 20px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-radius: 4px;
+	background: #5967C3;
+	background: -webkit-linear-gradient(left top, #5967C3, #83cedc);
+	background: linear-gradient(to bottom right, #5967C3, #83cedc);
+}
+
+.hero_image .hero_calltoaction{
+	position: absolute;
+	margin: 0 auto;
+    width: 240px;
+    bottom: 100px;
+	left: 0;
+	right: 30px;
+}
+
+.hero_image .hero_calltoaction:hover{
+	cursor: pointer;
+	color: #fff;
 }
 
 .home_more{
