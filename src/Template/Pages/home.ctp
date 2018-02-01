@@ -18,14 +18,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="container">
     <?php if(!$authUser): ?>
         <div class="hero_image">
-            <?php echo $this->Html->image('hero.svg', array('alt' => 'Hero mySetup.co', 'class' => 'hero-image')); ?>
-            <a class="hero_calltoaction"><?= __('Sign in') ?></a>
+            <?= $this->Html->image('hero.svg', ['alt' => 'Hero mySetup.co', 'class' => 'hero-image']) ?>
+            <?= $this->Html->link(__('Sign in'), '/login', ['class' => 'hero_calltoaction']) ?>
         </div>
     <?php else: ?>
         <div class="hero_column">
-            <h3>You didn't add any setup yet !</h3>
-            <p>Start now and select all your setup's components.</p>
-            <a href="#add_setup_modal" data-lity class="hero_calltoaction">Add my setup now</a>
+            <h3><?= __('You didn\'t add any setup yet !') ?></h3>
+            <p><?= __('Start now and select all your setup\'s components.') ?></p>
+            <a href="#add_setup_modal" data-lity class="hero_calltoaction"><?= __('Add my setup now') ?></a>
         </div>
         <div class="hero_column">
             <?php foreach ($recentResources as $item): ?>
