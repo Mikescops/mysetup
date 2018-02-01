@@ -14,13 +14,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
 ?>
 
-<div class="home_slider_container sitecontainer">
-
-  <div class="container home_slider">
+<div class="home_hero_container sitecontainer">
 
 
-
-  </div>
 
 </div>
 
