@@ -156,7 +156,7 @@ footer a{
 
 .home_hero_container{
 	background-color: #344154;
-	padding: 60px 0 80px 0;
+	padding: 70px 0 80px 0;
 	max-height: 530px;
 	overflow: hidden;
 }
@@ -186,7 +186,7 @@ footer a{
 	position: absolute;
 	margin: 0 auto;
     width: 240px;
-    bottom: 100px;
+    bottom: 110px;
 	left: 0;
 	right: 30px;
 }
@@ -194,6 +194,7 @@ footer a{
 .hero_image .hero_calltoaction:hover{
 	cursor: pointer;
 	color: #fff;
+	margin-bottom: -1px;
 }
 
 .home_more{
@@ -2212,7 +2213,14 @@ input[type="checkbox"]:checked + label.checkbox::after{
 @media (max-width: 640px) {
 
 	.home_hero_container{
-		padding: 80px 0 40px 0;
+		padding: 70px 0 40px 0;
+		max-height: 400px;
+	}
+
+	.hero_image .hero_calltoaction{
+		bottom: 0;
+		width: 100%;
+		right: 0;
 	}
 
 	.feeditem{
