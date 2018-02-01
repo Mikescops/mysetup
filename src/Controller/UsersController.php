@@ -300,7 +300,7 @@ class UsersController extends AppController
 
         else
         {
-            return $this->redirect($this->referer());
+            return $this->redirect('/');
         }
     }
 
