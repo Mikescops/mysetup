@@ -18,20 +18,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
   <div class="container home_slider">
 
-    <?php foreach ($featuredSetups as $setup): ?>
 
-        <div class="slider-item">
-
-            <div class="stretchy-wrapper"><div>
-                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><img data-lazy="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>"></a>
-                <a class="slider-item-inner featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                    <img data-lazy="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
-                </a>
-                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
-            </div></div>
-        </div>
-
-    <?php endforeach ?>
 
   </div>
 
@@ -49,6 +36,40 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
       </div>
 
     <div class="rowfeed">
+        <div class="feeditem">
+
+            <?php $i=0; foreach ($featuredSetups as $setup): ?>
+
+            <div class="fullitem">
+                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
+                    <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
+                </a>
+                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
+
+                <div class="fullitem-inner">
+
+                    <div class="row">
+
+                        <div class="column column-90">
+                            <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
+                                <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
+                            </a>
+
+                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <?php if (++$i == 8) break; endforeach ?>
+            <br>
+        </div>
+    </div>
+
+    <div class="rowfeed">
+        <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
         <div class="feeditem">
 
             <?php $i=0; foreach ($popularSetups as $setup): ?>
@@ -225,7 +246,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 
     <br clear='all'>
-
 
 </div>
 </div>
