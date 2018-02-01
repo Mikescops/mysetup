@@ -38,15 +38,18 @@ class PagesController extends AppController
     {
         // Set some variables here, and give back the control to the `display()` method
         $Setups = TableRegistry::get('Setups');
+
         $featuredSetups = $Setups->getSetups(['featured' => true, 'number' => 5]);
         $popularSetups = $Setups->getSetups(['number' => 20, 'type' => 'like']);
         $recentSetups = $Setups->getSetups(['number' => 3]);
         $amdSetups = $Setups->getSetups(['query' => 'amd', 'number' => 10, 'type' => 'like']);
         $nvidiaSetups = $Setups->getSetups(['query' => 'nvidia', 'number' => 10, 'type' => 'like']);
 
+        $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->limit(6)->toArray();
+
         $activeUsers = TableRegistry::get('Users')->getActiveUsers(12);
 
-        $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'amdSetups', 'nvidiaSetups', 'activeUsers'));
+        $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'amdSetups', 'nvidiaSetups', 'activeUsers', 'recentResources'));
 
         $this->display('home');
     }
