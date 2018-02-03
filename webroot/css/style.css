@@ -483,12 +483,89 @@ footer a{
 	margin-bottom: 15px;
 }
 
-.fullitem{
+.setup-item{
 	position: relative;
+	height: 150px;
 	margin-bottom: 20px;
-	max-height: 372.68px;
-	border-radius: 4px;
+	background: #0e0e0e;
+	border-radius: 5px;
 	overflow: hidden;
+}
+
+.setup-item .setup-pic{
+  position: relative;
+  display: inline-block;
+}
+
+.setup-item .setup-pic:before {
+	content: "";
+	top: 0;
+	left: 0;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, #0e0e0e00 49%, #0e0e0e 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(49%, #0e0e0e00), color-stop(100%, #0e0e0e));
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, #0e0e0e00 49%, #0e0e0e 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, rgba(255, 255, 255, 1) 0%, #0e0e0e00 49%, #0e0e0e 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(left, rgba(255, 255, 255, 1) 0%, #0e0e0e00 49%, #0e0e0e 100%);
+	/* IE10+ */
+	  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #0e0e0e00 49%, #0e0e0e 100%);
+	/* W3C */
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
+	/* IE6-9 */
+}
+
+.setup-item .setup-pic img{
+	height: 150px;
+}
+
+.setup-item .setup-pic{
+	float: left;
+}
+
+.setup-item .featured-user{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	z-index: 20;
+}
+
+.setup-item .featured-user img{
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+}
+
+.setup-item .item-inner a:last-child{
+	display: flex;
+}
+
+.setup-item .item-inner h3{
+	text-decoration: none;
+	color: #fff;
+	padding: 10px;
+	float: left;
+}
+
+.setup-item .red_like{
+  	position: absolute;
+  	right: 35px;
+	bottom: 14px;
+	padding-right: 25px;
+	height: 35px;
+}
+
+.fullitem {
+    position: relative;
+    margin-bottom: 20px;
+    max-height: 372.68px;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 .feeditem{
@@ -2157,6 +2234,11 @@ input[type="checkbox"]:checked + label.checkbox::after{
 		border-radius: 0 4px 0 4px;
 	}
 
+	.setup-item .red_like {
+		right: 0;
+		padding-right: 10px;
+	}
+
 	.search_results, .basket_items{
 		-moz-column-count: 1;
 		-webkit-column-count: 1;
@@ -2231,6 +2313,15 @@ input[type="checkbox"]:checked + label.checkbox::after{
 		bottom: 0;
 		width: 100%;
 		right: 0;
+	}
+
+	.setup-item h3{
+		display: none;
+	}
+
+	.setup-item .setup-pic img{
+		width: 100%;
+		height: auto;
 	}
 
 	.feeditem{
