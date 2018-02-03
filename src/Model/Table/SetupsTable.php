@@ -254,7 +254,13 @@ class SetupsTable extends Table
                 return null;
             }
 
-            // Let's fill in these array (tough operation)
+            // We add to the conditions search the whole query as a sentence...
+            array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($params['query']) . '%']);
+            array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($params['query']) . '%']);
+            array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($params['query']) . '%']);
+            array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($params['query']) . '%']);
+
+            // ... and each one of it words to improve matching probability (#fuzzySearch)
             foreach(explode('+', urlencode($params['query'])) as $word)
             {
                 array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);
