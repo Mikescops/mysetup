@@ -38,7 +38,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             <div class="rowfeed">
                 <div class="feeditem">
 
-                    <?php $i=0; foreach ($featuredSetups as $setup): ?>
+                    <?php foreach ($featuredSetups as $setup): ?>
 
                     <div class="fullitem">
                         <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
@@ -62,8 +62,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                             </div>
                         </div>
                     </div>
-
-                    <?php if (++$i == 8) break; endforeach ?>
+                    <?php endforeach ?>
+                    <br clear="all">
                 </div>
             </div>
         <?php else: ?>
