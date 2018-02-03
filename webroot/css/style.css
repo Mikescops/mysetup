@@ -170,6 +170,16 @@ footer a{
 	max-width: 100%;
 }
 
+.hero_inner{
+	margin-top: 30px;
+	display: flex;
+}
+
+.hero_column{
+	flex: 1 1;
+	flex-direction: row;
+}
+
 .hero_calltoaction{
 	text-decoration: none;
 	padding: 12px 20px;

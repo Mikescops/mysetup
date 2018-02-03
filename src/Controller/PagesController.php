@@ -39,7 +39,7 @@ class PagesController extends AppController
         // Set some variables here, and give back the control to the `display()` method
         $Setups = TableRegistry::get('Setups');
 
-        $featuredSetups = $Setups->getSetups(['featured' => true, 'number' => 5]);
+        $featuredSetups = $Setups->getSetups(['featured' => true, 'number' => 3]);
         $popularSetups = $Setups->getSetups(['number' => 20, 'type' => 'like']);
         $recentSetups = $Setups->getSetups(['number' => 3]);
         $amdSetups = $Setups->getSetups(['query' => 'amd', 'number' => 10, 'type' => 'like']);
