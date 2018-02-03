@@ -47,19 +47,22 @@ class PagesController extends AppController
 
         $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->order('RAND()')->limit(6)->toArray();
 
-        $mainSetup = $Setups->get($this->Auth->user('mainSetup_id'), [
-            'contain' => [
-                'Resources' => [
-                    'fields' => [
-                        'setup_id',
-                        'src'
-                    ],
-                    'conditions' => [
-                        'type' => 'SETUP_FEATURED_IMAGE'
+        if($this->Auth->user())
+        {
+            $mainSetup = $Setups->get($this->Auth->user('mainSetup_id'), [
+                'contain' => [
+                    'Resources' => [
+                        'fields' => [
+                            'setup_id',
+                            'src'
+                        ],
+                        'conditions' => [
+                            'type' => 'SETUP_FEATURED_IMAGE'
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
+        }
 
         $activeUsers = TableRegistry::get('Users')->getActiveUsers(12);
 
