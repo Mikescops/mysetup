@@ -122,11 +122,11 @@ class PagesController extends AppController
                     $results = TableRegistry::get('Setups')->getSetups([
                         'query' => $query,
                         'number' => 9999
-                    ], $this->Flash);
+                    ]);
                     break;
 
                 case 'users':
-                    // TO DO
+                    $results = TableRegistry::get('Users')->getUsers($query);
                     break;
 
                 case 'products':
