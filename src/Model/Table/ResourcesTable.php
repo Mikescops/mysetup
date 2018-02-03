@@ -124,6 +124,35 @@ class ResourcesTable extends Table
         }
     }
 
+    // A new method to retrieve resources from `Pages@search()` function
+    public function getResources($query = null)
+    {
+        $conditions = [
+            [
+                'type' => 'SETUP_PRODUCT'
+            ],
+            [
+                'CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%'
+            ]
+        ];
+        foreach(explode('+', urlencode($query)) as $word)
+        {
+            array_push($conditions, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
+        }
+
+        return $this->find('all', [
+            'conditions' => $conditions,
+            'fields' => [
+                'id',
+                'title',
+                'href',
+                'src'
+            ]
+        ])
+        ->distinct()
+        ->toArray();
+    }
+
     public function saveResourceProducts($products, $setup, $flash, $user_id, $edition, $admin = false)
     {
         // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"

@@ -129,8 +129,8 @@ class PagesController extends AppController
                     $results = TableRegistry::get('Users')->getUsers($query);
                     break;
 
-                case 'products':
-                    // TO DO
+                case 'resources':
+                    $results = TableRegistry::get('Resources')->getResources($query);
                     break;
 
                 default:
