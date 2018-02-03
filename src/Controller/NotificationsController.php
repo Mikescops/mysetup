@@ -19,7 +19,7 @@ class NotificationsController extends AppController
         {
             $results = $this->Notifications->find('all', [
                 'conditions' => [
-                    'user_id' => $this->request->session()->read('Auth.User.id'),
+                    'user_id' => $this->Auth->user('id'),
                     'new' => 1
                 ],
                 'order' => [
@@ -67,7 +67,7 @@ class NotificationsController extends AppController
             {
                 $notification = $this->Notifications->get($notification_id);
 
-                if($notification['user_id'] === (int)$this->request->session()->read('Auth.User.id'))
+                if($notification['user_id'] === $this->Auth->user('id'))
                 {
                     $notification->new = 0;
 
@@ -119,7 +119,7 @@ class NotificationsController extends AppController
             {
                 $notification = $this->Notifications->get($notification_id);
 
-                if($notification['user_id'] === (int)$this->request->session()->read('Auth.User.id'))
+                if($notification['user_id'] === $this->Auth->user('id'))
                 {
                     $notification->new = 1;
 
@@ -171,7 +171,7 @@ class NotificationsController extends AppController
             {
                 $notification = $this->Notifications->get($notification_id);
 
-                if($notification['user_id'] === (int)$this->request->session()->read('Auth.User.id'))
+                if($notification['user_id'] === $this->Auth->user('id'))
                 {
                     if($this->Notifications->delete($notification))
                     {

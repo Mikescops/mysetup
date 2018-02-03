@@ -27,7 +27,7 @@ class CommentsController extends AppController
             if(parent::captchaValidation($data))
             {
                 // Let's set the id of the current logged in user
-                $data['user_id'] = $this->request->session()->read('Auth.User.id');
+                $data['user_id'] = $this->Auth->user('id');
                 $data['setup_id'] = $setup_id;
 
                 $comment = $this->Comments->patchEntity($comment, $data);

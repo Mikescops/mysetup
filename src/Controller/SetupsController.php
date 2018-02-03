@@ -76,7 +76,7 @@ class SetupsController extends AppController
             $data = $this->request->getData();
 
             // Let's set the id of the current logged in user
-            $data['user_id'] = $this->request->session()->read('Auth.User.id');
+            $data['user_id'] = $this->Auth->user('id');
 
             // Here we fetch the user entity, 'cause we'll need it later
             $user = $this->Setups->Users->get($data['user_id']);
@@ -312,7 +312,7 @@ class SetupsController extends AppController
             $results = $this->Setups->getSetups([
                 'query' => $this->request->getQuery('q'),
                 'number' => 9999
-            ]);
+            ], $this->Flash);
 
             if(count($results) == 0)
             {
@@ -332,7 +332,7 @@ class SetupsController extends AppController
     {
         if($this->request->is('post') and $id != null)
         {
-            $user = $this->Setups->Users->get($this->request->session()->read('Auth.User.id'));
+            $user = $this->Setups->Users->get($this->Auth->user('id'));
             $setup = $this->Setups->get($id, [
                 'contain' => [
                     'Users' => [
@@ -437,7 +437,7 @@ class SetupsController extends AppController
     {
         if($this->request->is('post') and $id != null)
         {
-            $user = $this->Setups->Users->get($this->request->session()->read('Auth.User.id'));
+            $user = $this->Setups->Users->get($this->Auth->user('id'));
             $setup = $this->Setups->get($id);
 
             if($setup['user_id'] != $user['id'])

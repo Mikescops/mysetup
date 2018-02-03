@@ -88,7 +88,7 @@ class ArticlesController extends AppController
             $article = $this->Articles->patchEntity($article, $data);
 
             // Set the owner here
-            $article['user_id'] = $this->request->session()->read('Auth.User.id');
+            $article['user_id'] = $this->Auth->user('id');
 
             if($this->Articles->save($article))
             {

@@ -25,7 +25,7 @@ class LikesController extends AppController
             // They will be available into a `like` entity although...
             $likes = $this->Likes->find('all', [
                 'conditions' => [
-                    'Likes.user_id' => $this->request->session()->read('Auth.User.id')
+                    'Likes.user_id' => $this->Auth->user('id')
                 ],
                 'contain' => [
                     'Setups' => [
@@ -85,7 +85,7 @@ class LikesController extends AppController
             return new Response([
                 'status' => 200,
                 'type' => 'json',
-                'body' => json_encode($this->Likes->hasBeenLikedBy($this->request->getQuery('setup_id'), $this->request->session()->read('Auth.User.id')))
+                'body' => json_encode($this->Likes->hasBeenLikedBy($this->request->getQuery('setup_id'), $this->Auth->user('id')))
             ]);
         }
     }
@@ -100,13 +100,13 @@ class LikesController extends AppController
             $setup_id = $this->request->getQuery('setup_id');
             if($this->Likes->Setups->exists(['id' => $setup_id]))
             {
-                if(!$this->Likes->exists(['setup_id' => $setup_id, 'user_id' => $this->request->session()->read('Auth.User.id')]))
+                if(!$this->Likes->exists(['setup_id' => $setup_id, 'user_id' => $this->Auth->user('id')]))
                 {
                     $like = $this->Likes->newEntity();
 
                     // When an user likes a setup, we just create an entity with its id, and the setup's one
                     $like['setup_id'] = $setup_id;
-                    $like['user_id']  = $this->request->session()->read('Auth.User.id');
+                    $like['user_id']  = $this->Auth->user('id');
 
                     if($this->Likes->save($like))
                     {
@@ -157,7 +157,7 @@ class LikesController extends AppController
             $setup_id = $this->request->getQuery('setup_id');
             if($this->Likes->Setups->exists(['id' => $setup_id]))
             {
-                $like = $this->Likes->find()->where(['setup_id' => $setup_id, 'user_id' => $this->request->session()->read('Auth.User.id')])->first();
+                $like = $this->Likes->find()->where(['setup_id' => $setup_id, 'user_id' => $this->Auth->user('id')])->first();
 
                 if($like)
                 {

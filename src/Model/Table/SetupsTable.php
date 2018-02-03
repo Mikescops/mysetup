@@ -208,7 +208,7 @@ class SetupsTable extends Table
         }
     }
 
-    public function getSetups($array = [])
+    public function getSetups($array = [], $flash = null)
     {
         // Here we just 'merge' our default values with the parameters given
         $params = array_merge([
@@ -244,7 +244,23 @@ class SetupsTable extends Table
 
         if($params['query'])
         {
-            // Let's fill in these array (tough operation)
+            if(strlen($params['query']) < 3)
+            {
+                if($flash)
+                {
+                    $flash->warning(__('Your query does not contain enough characters.'));
+                }
+
+                return null;
+            }
+
+            // We add to the conditions search the whole query as a sentence...
+            array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($params['query']) . '%']);
+            array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($params['query']) . '%']);
+            array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($params['query']) . '%']);
+            array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($params['query']) . '%']);
+
+            // ... and each one of it words to improve matching probability (#fuzzySearch)
             foreach(explode('+', urlencode($params['query'])) as $word)
             {
                 array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);

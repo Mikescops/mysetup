@@ -25,7 +25,7 @@ class UsersController extends AppController
     {
         // If the visitor is not the owner (nor an admin), let's send only to the View the PUBLISHED setups (+ the count will be good with this method ;))
         $conditions = null;
-        if($id != $this->request->session()->read('Auth.User.id') and !parent::isAdminBySession($this->request->session()))
+        if($id != $this->Auth->user('id') and !parent::isAdminBySession($this->request->session()))
         {
             $conditions = ['Setups.status' => 'PUBLISHED'];
         }
@@ -254,6 +254,9 @@ class UsersController extends AppController
 
                 // The user may have changed its preferred store (language) and / or its timezone, let's update this into the server's session
                 $this->Users->prepareSessionForUser($this->request->session(), $user);
+
+                // The user entity has changed, let's update the session one to reflect the modifications everywhere !
+                $this->request->session()->write('Auth.User', $user);
 
                 $this->Flash->success(__('The user has been updated.'));
             }
