@@ -54,6 +54,12 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     /* _______________________ */
 
+    /* Search special page */
+    $routes
+        ->connect('/search/:entity/', ['controller' => 'Pages', 'action' => 'search'])
+        ->setPass(['entity']);
+    /* ___________________ */
+
     /* Setups Controller's routes */
     $routes->scope('/setups', function(RouteBuilder $routes) {
         $routes

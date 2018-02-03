@@ -118,6 +118,48 @@ class PagesController extends AppController
         $this->display('bugReport');
     }
 
+    public function search($entity = null)
+    {
+        $query = $this->request->getQuery('q');
+        if($query and strlen($query) >= 3)
+        {
+            switch($entity)
+            {
+                case 'setups':
+                    $results = TableRegistry::get('Setups')->getSetups([
+                        'query' => $query,
+                        'number' => 9999
+                    ], $this->Flash);
+                    break;
+
+                case 'users':
+                    // TO DO
+                    break;
+
+                case 'products':
+                    // TO DO
+                    break;
+
+                default:
+                    $results = null;
+                    break;
+            }
+
+            if(count($results) == 0)
+            {
+                $results = 'noresult';
+            }
+        }
+
+        else
+        {
+            $results = 'noquery';
+        }
+
+        $this->set('results', $results);
+        $this->display('search');
+    }
+
     /**
      * Displays a view
      *
@@ -160,7 +202,7 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['display', 'home', 'recent', 'popular', 'bugReport']);
+        $this->Auth->allow(['display', 'home', 'recent', 'popular', 'bugReport', 'search']);
 
         // Another hook to avoid error pages when an user...
         // ...types directly in an (existing) raw address
