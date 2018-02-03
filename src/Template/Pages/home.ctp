@@ -27,10 +27,42 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             <p><?= __('Start now and select all your setup\'s components.') ?></p>
             <a href="#add_setup_modal" data-lity class="hero_calltoaction"><?= __('Add my setup now') ?></a>
         </div>
+
+        <br clear="all">
+
         <div class="hero_column">
-            <?php foreach ($recentResources as $item): ?>
-                <div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
-            <?php endforeach?>
+            <div class="rowfeed">
+                <div class="feeditem">
+
+                    <?php $i=0; foreach ($featuredSetups as $setup): ?>
+
+                    <div class="fullitem">
+                        <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
+                            <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
+                        </a>
+                        <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
+
+                        <div class="fullitem-inner">
+
+                            <div class="row">
+
+                                <div class="column column-90">
+                                    <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
+                                        <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
+                                    </a>
+
+                                    <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php if (++$i == 8) break; endforeach ?>
+                    <br>
+                </div>
+            </div>
         </div>
     <?php endif ?>
     </div>
@@ -48,40 +80,35 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         </div>
 
         <div class="rowfeed">
-            <div class="feeditem">
-
-                <?php $i=0; foreach ($featuredSetups as $setup): ?>
-
-                <div class="fullitem">
-                    <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                        <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
-                    </a>
-                    <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
-
-                    <div class="fullitem-inner">
-
-                        <div class="row">
-
-                            <div class="column column-90">
-                                <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                    <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
-                                </a>
-
-                                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <?php if (++$i == 8) break; endforeach ?>
-                <br>
-            </div>
+            <?php foreach ($recentResources as $item): ?>
+                <a href="<?= $this->Url->build('/setups/search?q=' . $item->title) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
+            <?php endforeach?>
         </div>
 
+        <br clear='all'>
+
+        <div class="rowsocial">
+          <?php if(!$authUser): ?>
+            <div class="twitch-advert" onclick="logTwitch('<?= $lang ?>')">
+              <h4><i class="fa fa-twitch"></i> <?= __('Login with Twitch and create my Setup !') ?></h4>
+            </div>
+          <?php else: ?>
+              <div class="blog-advert">
+                <a href="<?=$this->Url->build('/blog/')?>">
+                  <h5><i class="fa fa-newspaper-o"></i> <?= __('Read our latest news') ?></h5>
+                </a>
+              </div>
+          <?php endif ?>
+
+          <div class="social-networks">
+              <a href="https://www.facebook.com/mysetup.co" target="_blank" style="background-color: #3b5998"><i class="fa fa-facebook fa-2x"></i></a>
+              <a href="https://twitter.com/mysetup_co" target="_blank" style="background-color: #55acee"><i class="fa fa-twitter fa-2x"></i></a>
+              <a href="https://geeks.one/@mysetup_co" title="Mastodon" target="_blank" style="background-color: #45668e"><img style="height:50px;margin-top:25px" src="<?= $this->Url->build('/img/mastodon_logo.svg')?>"></a>
+          </div>
+        </div>
+
+
         <div class="rowfeed">
-            <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
             <div class="feeditem">
 
                 <?php $i=0; foreach ($popularSetups as $setup): ?>
@@ -112,28 +139,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <?php if (++$i == 3) break; endforeach ?>
             </div>
             <a class="home_more float-right" href="<?= $this->Url->build('/pages/popular'); ?>"><?= __('More popular setups') ?> <i class="fa fa-chevron-right"></i></a>
-        </div>
-
-        <br clear='all'>
-
-        <div class="rowsocial">
-          <?php if(!$authUser): ?>
-            <div class="twitch-advert" onclick="logTwitch('<?= $lang ?>')">
-              <h4><i class="fa fa-twitch"></i> <?= __('Login with Twitch and create my Setup !') ?></h4>
-            </div>
-          <?php else: ?>
-              <div class="blog-advert">
-                <a href="<?=$this->Url->build('/blog/')?>">
-                  <h5><i class="fa fa-newspaper-o"></i> <?= __('Read our latest news') ?></h5>
-                </a>
-              </div>
-          <?php endif ?>
-
-          <div class="social-networks">
-              <a href="https://www.facebook.com/mysetup.co" target="_blank" style="background-color: #3b5998"><i class="fa fa-facebook fa-2x"></i></a>
-              <a href="https://twitter.com/mysetup_co" target="_blank" style="background-color: #55acee"><i class="fa fa-twitter fa-2x"></i></a>
-              <a href="https://geeks.one/@mysetup_co" title="Mastodon" target="_blank" style="background-color: #45668e"><img style="height:50px;margin-top:25px" src="<?= $this->Url->build('/img/mastodon_logo.svg')?>"></a>
-          </div>
         </div>
 
         <div class="rowfeed">
