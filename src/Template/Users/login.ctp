@@ -28,7 +28,7 @@ $this->assign('title', __('Login | mySetup.co'));
                     <?= $this->Form->control('password', ['required' => true, 'placeholder' => __('Password'), 'label' => false]) ?>
                 </li>
                 <li>
-                    <?= $this->Form->button(__('Login'), ['class' => 'button']); ?>
+                    <?= $this->Form->button(__('Login'), ['class' => 'button']); ?> <a class="button button-outline float-right" onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i> </a>
                 </li>
             </ul>
         </fieldset>
