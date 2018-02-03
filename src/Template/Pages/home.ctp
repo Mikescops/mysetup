@@ -22,51 +22,72 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             <?= $this->Html->link(__('Add my setup'), '/login', ['class' => 'hero_calltoaction']) ?>
         </div>
     <?php else: ?>
-        <div class="hero_inner">
-            <div class="hero_column">
-                <h3><?= __('You didn\'t add any setup yet !') ?></h3>
-                <p><?= __('Start now and select all your setup\'s components.') ?></p>
+        <?php if($authUser['mainSetup_id'] == 0): ?>
+            <div class="hero_inner">
+                <div class="hero_column">
+                    <h3><?= __('You didn\'t add any setup yet !') ?></h3>
+                    <p><?= __('Start now and select all your setup\'s components.') ?></p>
+                </div>
+                <div class="hero_column">
+                    <a href="#add_setup_modal" data-lity class="hero_calltoaction"><?= __('Add my setup now') ?></a>
+                </div>
             </div>
-            <div class="hero_column">
-                <a href="#add_setup_modal" data-lity class="hero_calltoaction"><?= __('Add my setup now') ?></a>
-            </div>
-        </div>
 
-        <br clear="all">
+            <br clear="all">
 
-        <div class="rowfeed">
-            <div class="feeditem">
+            <div class="rowfeed">
+                <div class="feeditem">
 
-                <?php $i=0; foreach ($featuredSetups as $setup): ?>
+                    <?php $i=0; foreach ($featuredSetups as $setup): ?>
 
-                <div class="fullitem">
-                    <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                        <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
-                    </a>
-                    <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
+                    <div class="fullitem">
+                        <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
+                            <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
+                        </a>
+                        <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
 
-                    <div class="fullitem-inner">
+                        <div class="fullitem-inner">
 
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="column column-90">
-                                <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                    <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
-                                </a>
+                                <div class="column column-90">
+                                    <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
+                                        <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
+                                    </a>
 
-                                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
+                                    <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
+
+                                </div>
 
                             </div>
-
                         </div>
+                    </div>
+
+                    <?php if (++$i == 8) break; endforeach ?>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="hero_inner">
+                <div class="hero_column">
+                    <h3>Your main setup has <?= $mainSetup->like_count ?> likes !</h3>
+                    <p>Share it to get more :</p>
+
+                    <a href="" class="jssocials-share-link"><i class="fa fa-code"></i> Embed it to your website</a>
+                    <a href="" class="jssocials-share-link"><i class="fa fa-twitch"></i> Integrate on Twitch</a>
+                    <a href="" class="jssocials-share-link"><i class="fa fa-facebook"></i> Post it !</a>
+                    <a href="" class="jssocials-share-link"><i class="fa fa-twitter"></i> Tweet it !</a>
+                </div>
+
+                <div class="hero_column">
+                    <div class="fullitem">
+                        <a href="<?= $this->Url->build('/setups/'.$mainSetup->id.'-'.$this->Text->slug($mainSetup->title)); ?>">
+                            <img alt="<?= h($mainSetup->title) ?>" src="<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg' )) ?>">
+                        </a>
                     </div>
                 </div>
 
-                <?php if (++$i == 8) break; endforeach ?>
-                <br>
             </div>
-
-        </div>
+        <?php endif ?>
     <?php endif ?>
     </div>
 </div>
