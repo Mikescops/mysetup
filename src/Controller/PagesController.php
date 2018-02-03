@@ -47,7 +47,7 @@ class PagesController extends AppController
 
         $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->order('RAND()')->limit(6)->toArray();
 
-        if($this->Auth->user())
+        if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {
             $mainSetup = $Setups->get($this->Auth->user('mainSetup_id'), [
                 'contain' => [
