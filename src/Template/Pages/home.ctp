@@ -19,7 +19,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <?php if(!$authUser): ?>
         <div class="hero_image">
             <?= $this->Html->image('hero.svg', ['alt' => 'Hero mySetup.co', 'class' => 'hero-image']) ?>
-            <?= $this->Html->link(__('Sign in'), '/login', ['class' => 'hero_calltoaction']) ?>
+            <?= $this->Html->link(__('Add my setup'), '/login', ['class' => 'hero_calltoaction']) ?>
         </div>
     <?php else: ?>
         <div class="hero_inner">
@@ -143,6 +143,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             </div>
             <a class="home_more float-right" href="<?= $this->Url->build('/pages/popular'); ?>"><?= __('More popular setups') ?> <i class="fa fa-chevron-right"></i></a>
         </div>
+
+        <br clear='all'>
 
         <div class="rowfeed">
             <h4 class="fancy"><span><?= __('Latest setups') ?></span></h4>
