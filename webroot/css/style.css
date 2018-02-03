@@ -2262,6 +2262,12 @@ input[type="checkbox"]:checked + label.checkbox::after{
 		margin-right: 0;
 	}
 
+	/* HOME RESPONSIVE */
+
+	.hero_inner{
+		display: block;
+	}
+
 	/* POST RESPONSIVE */
 
 	.featured-inner .featured-user{
@@ -2382,6 +2388,12 @@ input[type="checkbox"]:checked + label.checkbox::after{
 	    -moz-column-count: 4; /* Firefox */
 	    column-count: 4;
 	}
+
+	/* HOME RESPONSIVE */
+	.home_hero_container .rowfeed{
+		display: none;
+	}
+
 
 	/* POST PAGE RESPONSIVE */
 
