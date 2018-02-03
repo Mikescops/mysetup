@@ -208,7 +208,7 @@ class SetupsTable extends Table
         }
     }
 
-    public function getSetups($array = [])
+    public function getSetups($array = [], $flash = null)
     {
         // Here we just 'merge' our default values with the parameters given
         $params = array_merge([
@@ -244,6 +244,16 @@ class SetupsTable extends Table
 
         if($params['query'])
         {
+            if(strlen($params['query']) < 3)
+            {
+                if($flash)
+                {
+                    $flash->warning(__('Your query does not contain enough characters.'));
+                }
+
+                return null;
+            }
+
             // Let's fill in these array (tough operation)
             foreach(explode('+', urlencode($params['query'])) as $word)
             {

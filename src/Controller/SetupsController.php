@@ -312,7 +312,7 @@ class SetupsController extends AppController
             $results = $this->Setups->getSetups([
                 'query' => $this->request->getQuery('q'),
                 'number' => 9999
-            ]);
+            ], $this->Flash);
 
             if(count($results) == 0)
             {
