@@ -156,7 +156,7 @@ class AdminController extends AppController
             {
                 $this->loadModel('Notifications');
 
-                // Are sending this to everyone ?
+                // Are we sending this to everyone ?
                 if($data['user_id'] === 'global')
                 {
                     $i = 0;
