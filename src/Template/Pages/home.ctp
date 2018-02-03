@@ -69,8 +69,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <?php else: ?>
             <div class="hero_inner">
                 <div class="hero_column">
-                    <h3>Your main setup has <?= $mainSetup->like_count ?> likes !</h3>
-                    <p>Share it to get more :</p>
+                    <h3><?= __('Your main setup has') ?> <?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?> !</h3>
+                    <p><?= __('Share it to get more') ?> :</p>
 
                     <a href="" class="jssocials-share-link"><i class="fa fa-code"></i> Embed it to your website</a>
                     <a href="" class="jssocials-share-link"><i class="fa fa-twitch"></i> Integrate on Twitch</a>
