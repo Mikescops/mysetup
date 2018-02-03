@@ -116,8 +116,9 @@ class AppController extends Controller
             }
 
             // Let's check if the the session is "synced" with the user entity...
-            if($user['admin'] XOR $this->request->session()->check('Auth.User.admin'))
-            {
+            if(($user['admin'] XOR $this->request->session()->check('Auth.User.admin'))
+                or ($user['mainSetup_id'] !== $this->request->session()->read('Auth.User.mainSetup_id')
+            )) {
                 // ... if not, let's update the session accordingly
                 $this->request->session()->write('Auth.User', $user);
             }
