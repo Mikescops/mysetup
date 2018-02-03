@@ -994,7 +994,7 @@ msgid ""
 "co..."
 msgstr ""
 "Merci de décrire précisemment ici le bogue que vous avez malencontreusement "
-"recontré sur mySetup.co..."
+"rencontré sur mySetup.co..."
 
 #: Template/Layout/default.ctp:344 Template/Users/login.ctp:79
 msgid "Send"

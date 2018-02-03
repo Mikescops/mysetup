@@ -78,13 +78,6 @@ class PagesController extends AppController
         $this->display('recent');
     }
 
-    public function popular()
-    {
-        $this->set('setups', TableRegistry::get('Setups')->getSetups(['number' => 30, 'type' => 'like', 'weeks' => 1]));
-
-        $this->display('popular');
-    }
-
     public function bugReport()
     {
         if($this->request->is('post'))
@@ -202,7 +195,7 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['display', 'home', 'recent', 'popular', 'bugReport', 'search']);
+        $this->Auth->allow(['display', 'home', 'recent', 'bugReport', 'search']);
 
         // Another hook to avoid error pages when an user...
         // ...types directly in an (existing) raw address
@@ -218,8 +211,8 @@ class PagesController extends AppController
                     $this->redirect(['action' => 'recent']);
                     break;
 
-                case 'popular':
-                    $this->redirect(['action' => 'popular']);
+                case 'search':
+                    $this->redirect(['action' => 'search']);
                     break;
 
                 case 'bugReport':
