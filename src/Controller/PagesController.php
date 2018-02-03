@@ -45,7 +45,7 @@ class PagesController extends AppController
         $amdSetups = $Setups->getSetups(['query' => 'amd', 'number' => 10, 'type' => 'like']);
         $nvidiaSetups = $Setups->getSetups(['query' => 'nvidia', 'number' => 10, 'type' => 'like']);
 
-        $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->limit(6)->toArray();
+        $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->order('RAND()')->limit(6)->toArray();
 
         $activeUsers = TableRegistry::get('Users')->getActiveUsers(12);
 
