@@ -263,36 +263,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <?php endif ?>
 
-                    <div id="embed_twitch_modal" class="lity-hide">
-                        <h4><?= __('How to embed your setup in Twitch ?') ?></h4>
-                        <p><?= __('Go to your Twitch channel and toggle panel edition.') ?></p>
-                        <?= $this->Html->image('howto_twitch.png', array('alt' => 'Twitch Panel Edition')) ?> <br>
-                        <p><?= __('Copy the following url in the link field') ?> :</p>
-                        <pre><code><span><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title).'?ref='.urlencode($setup->user['name']), true)?></span></code></pre>
-                        <p><?= __('And add your personal mySetup.co banner image !') ?></p>
-                        <p style="text-align: center;"><img alt="<?= ('Advert - Setup by') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/imgeneration/twitch-promote.php?id='. $setup->user_id . '&name=' . $setup->user['name'] . '&setup=' . $setup->title)?>"></p>
+                    <?= $this->element('Modal/twitch') ?>
 
-                        <p><?= __('You can even configure your Twitch Chat bot to display your link or image.') ?></p>
-                    </div>
-
-                    <div id="embed_website_script" class="lity-hide">
-                        <h4><?= __('How to embed the setup on my website ?') ?></h4>
-                        <?= __("It's pretty easy, just add the code below to your page (and set the setup id accordingly) :") ?>
-
-                        <div class="input text"><input readonly name="embedcode" id="embedcode" value='<script src="https://mysetup.co/api/widgets.js"></script><div id="mysetup-embed" ms-setup="<?= $setup->id ?>" ms-width="350">Setup shared by <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?> at <a href="https://mysetup.co/">mySetup.co</a></div>' type="text"></div>
-
-                        <h5>Preview :</h5>
-
-                        <div class="display-preview">
-                            
-                            <script async src="https://mysetup.co/api/widgets.js"></script>
-                            <div id="mysetup-embed" ms-setup="<?= $setup->id ?>" ms-width="350">Setup shared by <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?> at <a href="https://mysetup.co/">mySetup.co</a></div>
-
-                        </div>
-
-                        <br>
-                        <p><?= __('You can customize the size of your embedded setup by editing the value of ms-width.') ?></p>
-                    </div>
+                    <?= $this->element('Modal/embed') ?>
 
                 <?php elseif($authUser && $setup->user_id != $authUser['id']): ?>
                     <div class="edit_panel">

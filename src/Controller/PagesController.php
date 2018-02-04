@@ -59,6 +59,13 @@ class PagesController extends AppController
                         'conditions' => [
                             'type' => 'SETUP_FEATURED_IMAGE'
                         ]
+                    ],
+                    'Users' => [
+                        'fields' => [
+                            'id',
+                            'name',
+                            'modificationDate'
+                        ]
                     ]
                 ]
             ]);

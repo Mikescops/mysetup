@@ -180,6 +180,15 @@ footer a{
 	flex-direction: row;
 }
 
+.hero_column .jssocials-share-link{
+	margin-bottom: 5px;
+}
+
+.hero_inner .center-margin-button{
+	text-align: center;
+	margin-top: 20px;
+}
+
 .hero_calltoaction{
 	text-decoration: none;
 	padding: 12px 20px;
