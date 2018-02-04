@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-02-04 10:38+0100\n"
-"PO-Revision-Date: 2018-02-04 10:40+0100\n"
+"POT-Creation-Date: 2018-02-04 11:01+0100\n"
+"PO-Revision-Date: 2018-02-04 11:01+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: it_IT\n"
@@ -79,7 +79,7 @@ msgstr "Il commento è stato salvato."
 msgid "The comment could not be saved. Please, try again."
 msgstr "Impossibile salvare il commento. Riprova"
 
-#: Controller/CommentsController.php:56 Controller/PagesController.php:103
+#: Controller/CommentsController.php:56 Controller/PagesController.php:96
 #: Controller/UsersController.php:97
 msgid ""
 "Google's CAPTCHA has detected you as a bot, sorry ! If you're a REAL human, "
@@ -112,11 +112,11 @@ msgstr "Foto del profilo del commentatore."
 msgid "commented your setup"
 msgstr "Ha fato un commento sul tuo setup"
 
-#: Controller/PagesController.php:116
+#: Controller/PagesController.php:109
 msgid "Your bug has been correctly sent ! Thanks for this report :)"
 msgstr "Il tuo bug è stato inviato correttamente! Grazie per questo report :)"
 
-#: Controller/PagesController.php:121
+#: Controller/PagesController.php:114
 msgid "You didn't report anything (or have missed something) :("
 msgstr "Non hai segnalato nulla (o hai perso qualcosa) :("
 
@@ -144,38 +144,38 @@ msgstr "Il setup è stato cancellato."
 msgid "The setup could not be deleted. Please, try again."
 msgstr "Impossibile cancellare il setup. Riprova"
 
-#: Controller/SetupsController.php:361
+#: Controller/SetupsController.php:338
 msgid ""
 "Your request has just been sent. Let's wait for the owner's approval for now."
 msgstr ""
 "La tua richiesta è stata appena inviata. Aspettiamo l'approvazione del "
 "proprietario per ora."
 
-#: Controller/SetupsController.php:366
+#: Controller/SetupsController.php:343
 msgid "An error occurred while saving your request."
 msgstr "Errore durante il salvataggio della tua richiesta."
 
-#: Controller/SetupsController.php:372;455
+#: Controller/SetupsController.php:349;432
 msgid "No, no. This is impossible."
 msgstr "No, no. Questo è impossibile."
 
-#: Controller/SetupsController.php:398;422
+#: Controller/SetupsController.php:375;399
 msgid "An error occurred while processing your answer."
 msgstr "Errore durante l'elaborazione della tua risposta."
 
-#: Controller/SetupsController.php:403;417
+#: Controller/SetupsController.php:380;394
 msgid "Your voice has been heard !"
 msgstr "La tua voce è stata ascoltata!"
 
-#: Controller/SetupsController.php:407
+#: Controller/SetupsController.php:384
 msgid "Your request couldn't be deleted as well."
 msgstr "Impossibile cancellare la tua richiesta."
 
-#: Controller/SetupsController.php:429
+#: Controller/SetupsController.php:406
 msgid "This request is invalid."
 msgstr "Questa richiesta è non valida."
 
-#: Controller/SetupsController.php:450
+#: Controller/SetupsController.php:427
 msgid "Your request has just been sent, we may contact you in the future."
 msgstr ""
 "La tua richiesta è stata appena inviata, possiamo contattarti nel futuro."
@@ -339,18 +339,18 @@ msgstr ""
 msgid "The comment is too long (more than 500 characters)"
 msgstr "Il commento è troppo lungo (più di 500 caratteri)"
 
-#: Model/Table/ResourcesTable.php:158;231;287
+#: Model/Table/ResourcesTable.php:193;266;322
 msgid "Internal error, we couldn't save your setup."
 msgstr "Errore interno, non potevamo salvare l'installazione."
 
-#: Model/Table/ResourcesTable.php:163;190;236;292
+#: Model/Table/ResourcesTable.php:198;225;271;327
 msgid ""
 "One of your resources could not be saved... Please contact an administrator."
 msgstr ""
 "Una delle tue risorse non poteva essere salvata ... Si prega di contattare "
 "un amministratore."
 
-#: Model/Table/ResourcesTable.php:170
+#: Model/Table/ResourcesTable.php:205
 msgid ""
 "One of the products you chose does not validate our rules... Please contact "
 "an administrator."
@@ -358,7 +358,7 @@ msgstr ""
 "Uno dei prodotti che hai scelto non convalida le nostre regole ... Si prega "
 "di contattare un amministratore."
 
-#: Model/Table/ResourcesTable.php:185
+#: Model/Table/ResourcesTable.php:220
 msgid ""
 "An internal error occurred while saving your images... Please contact an "
 "administrator."
@@ -366,7 +366,7 @@ msgstr ""
 "Si è verificato un errore interno durante il salvataggio delle immagini ... "
 "Contattare un amministratore."
 
-#: Model/Table/ResourcesTable.php:215
+#: Model/Table/ResourcesTable.php:250
 msgid ""
 "One of your image could not be converted to JPG, compressed, resized or "
 "saved... Please contact an administrator."
@@ -374,11 +374,11 @@ msgstr ""
 "Una delle tue immagini non poteva essere convertita in JPG, compressa, "
 "ridimensionata o salvata ... Contattare un amministratore."
 
-#: Model/Table/ResourcesTable.php:248
+#: Model/Table/ResourcesTable.php:283
 msgid "One of the file you uploaded could not be saved."
 msgstr "Uno dei file che hai caricato non poteva essere salvato."
 
-#: Model/Table/ResourcesTable.php:254
+#: Model/Table/ResourcesTable.php:289
 msgid ""
 "One of the files you uploaded does not validate our rules... Please contact "
 "an administrator."
@@ -386,7 +386,7 @@ msgstr ""
 "Uno dei file caricati non convalida le nostre regole ... Si prega di "
 "contattare un amministratore."
 
-#: Model/Table/ResourcesTable.php:299;305
+#: Model/Table/ResourcesTable.php:334;340
 msgid ""
 "The video link you chose does not validate our rules... Please contact an "
 "administrator."
@@ -414,7 +414,7 @@ msgstr "Abbiamo bisogno di un indirizzo e-mail valido"
 msgid "The password has to contain more than 8 characters"
 msgstr "La password deve contenere più di 8 caratteri"
 
-#: Model/Table/UsersTable.php:278
+#: Model/Table/UsersTable.php:312
 msgid ""
 "An internal error occurred while creating your profile picture. Please "
 "contact an administrator."
@@ -422,14 +422,14 @@ msgstr ""
 "Si è verificato un errore interno durante la creazione dell'immagine del "
 "profilo. Contattare un amministratore."
 
-#: Model/Table/UsersTable.php:284
+#: Model/Table/UsersTable.php:318
 msgid ""
 "Your default picture could not be set... Please contact an administrator."
 msgstr ""
 "Impossibile impostare l'immagine predefinita ... Si prega di contattare un "
 "amministratore."
 
-#: Model/Table/UsersTable.php:294
+#: Model/Table/UsersTable.php:328
 msgid ""
 "An internal error occurred while saving your profile picture. Please contact "
 "an administrator."
@@ -437,7 +437,7 @@ msgstr ""
 "Si è verificato un errore interno durante il salvataggio dell'immagine del "
 "profilo. Si prega di contattare un amministratore."
 
-#: Model/Table/UsersTable.php:308
+#: Model/Table/UsersTable.php:342
 msgid ""
 "Your profile picture could not be compressed, resized, converted to a PNG "
 "format or saved... Please contact an administrator."
@@ -446,11 +446,11 @@ msgstr ""
 "convertita in formato PNG o salvata ... Si prega di contattare un "
 "amministratore."
 
-#: Model/Table/UsersTable.php:314
+#: Model/Table/UsersTable.php:348
 msgid "Your profile picture could not be saved."
 msgstr "L'immagine del tuo profilo non poteva essere salvata."
 
-#: Model/Table/UsersTable.php:320
+#: Model/Table/UsersTable.php:354
 msgid ""
 "The file you uploaded does not validate our rules... Please contact an "
 "administrator."
@@ -458,7 +458,7 @@ msgstr ""
 "Il file che hai caricato non convalida le nostre regole ... Si prega di "
 "contattare un amministratore."
 
-#: Model/Table/UsersTable.php:404
+#: Model/Table/UsersTable.php:438
 msgid ""
 "Your profile picture could not be resized, converted to a PNG format or "
 "saved... Please contact an administrator."
@@ -696,7 +696,7 @@ msgstr "Users | myAdmin"
 msgid "Users"
 msgstr "Utilizzatori"
 
-#: Template/Admin/users.ctp:19 Template/Layout/default.ctp:120
+#: Template/Admin/users.ctp:19 Template/Layout/default.ctp:119
 #: Template/Users/login.ctp:45 Template/Users/view.ctp:111
 msgid "Name"
 msgstr "Nome"
@@ -733,7 +733,7 @@ msgstr "Sei sicuro di volere cancellare questo utente ?"
 msgid "Add post"
 msgstr "Aggiungere un articolo"
 
-#: Template/Articles/add.ctp:24 Template/Layout/default.ctp:145
+#: Template/Articles/add.ctp:24 Template/Layout/default.ctp:144
 #: Template/Users/view.ctp:139
 msgid "Submit"
 msgstr "Invia"
@@ -775,7 +775,7 @@ msgid "Go back to list"
 msgstr "Torna all'elenco"
 
 #: Template/Element/List/cards.ctp:13 Template/Element/List/tiles.ctp:9
-#: Template/Layout/default.ctp:87;102 Template/Likes/index.ctp:43
+#: Template/Layout/default.ctp:86;101 Template/Likes/index.ctp:43
 #: Template/Pages/home.ctp:180 Template/Pages/recent.ctp:42
 #: Template/Setups/view.ctp:68;347;370 Template/Users/view.ctp:16;68
 msgid "Profile picture of"
@@ -825,7 +825,7 @@ msgstr ""
 "la tua immagine."
 
 #: Template/Element/Structure/sidebar.ctp:3 Template/Likes/index.ctp:63
-#: Template/Pages/home.ctp:102 Template/Setups/search.ctp:41
+#: Template/Pages/home.ctp:102 Template/Pages/search.ctp:41
 #: Template/Users/view.ctp:151
 msgid "Read our latest news"
 msgstr "Leggi le nostre ultime notizie"
@@ -870,11 +870,11 @@ msgstr "Visualizza il sito Web"
 msgid "Welcome"
 msgstr "Benvenuto"
 
-#: Template/Layout/default.ctp:70;286
+#: Template/Layout/default.ctp:70;285
 msgid "Add Setup"
 msgstr "Aggiungere Setup"
 
-#: Template/Layout/default.ctp:74;290
+#: Template/Layout/default.ctp:74;289
 msgid "Admin Panel"
 msgstr "Pannello del Amministratore"
 
@@ -882,177 +882,173 @@ msgstr "Pannello del Amministratore"
 msgid "Categories"
 msgstr "Categorie"
 
-#: Template/Layout/default.ctp:81;296
+#: Template/Layout/default.ctp:81;295
 msgid "Most recent"
 msgstr "Piu recente"
 
-#: Template/Layout/default.ctp:82;297 Template/Pages/popular.ctp:20
-msgid "Popular this week"
-msgstr "Famoso questa settimana"
-
-#: Template/Layout/default.ctp:89;303
+#: Template/Layout/default.ctp:88;301
 msgid "My Likes"
 msgstr "I Miei Preferiti"
 
-#: Template/Layout/default.ctp:90;304
+#: Template/Layout/default.ctp:89;302
 msgid "My Setups"
 msgstr "Le mie Setups"
 
-#: Template/Layout/default.ctp:91;305
+#: Template/Layout/default.ctp:90;303
 msgid "Edit Profile"
 msgstr "Modifica il profilo"
 
-#: Template/Layout/default.ctp:92;306
+#: Template/Layout/default.ctp:91;304
 msgid "Logout"
 msgstr "Logout"
 
-#: Template/Layout/default.ctp:98 Template/Users/view.ctp:108
+#: Template/Layout/default.ctp:97 Template/Users/view.ctp:108
 msgid "Change only what you want !"
 msgstr "Cambia solo quello che vuoi !"
 
-#: Template/Layout/default.ctp:107
+#: Template/Layout/default.ctp:106
 msgid "Change my profile picture"
 msgstr "Cambia l'immagine del mio profilo"
 
-#: Template/Layout/default.ctp:121 Template/Users/login.ctp:88
+#: Template/Layout/default.ctp:120 Template/Users/login.ctp:88
 #: Template/Users/view.ctp:112
 msgid "Email address"
 msgstr "Indirizzo email"
 
-#: Template/Layout/default.ctp:131
+#: Template/Layout/default.ctp:130
 msgid "Choose your main setup : "
 msgstr "Scegli la tua configurazione principale : "
 
-#: Template/Layout/default.ctp:137 Template/Users/login.ctp:28;48
+#: Template/Layout/default.ctp:136 Template/Users/login.ctp:28;48
 #: Template/Users/view.ctp:128
 msgid "Password"
 msgstr "Password"
 
-#: Template/Layout/default.ctp:138 Template/Users/view.ctp:129
+#: Template/Layout/default.ctp:137 Template/Users/view.ctp:129
 msgid "Confirm password"
 msgstr "Conferma password"
 
-#: Template/Layout/default.ctp:140
+#: Template/Layout/default.ctp:139
 msgid "Change my password"
 msgstr "Cambia la mia password"
 
-#: Template/Layout/default.ctp:148
+#: Template/Layout/default.ctp:147
 msgid "Delete my account"
 msgstr "Cancella il mio account"
 
-#: Template/Layout/default.ctp:155
+#: Template/Layout/default.ctp:154
 msgid "Sign In / Up"
 msgstr "Registrarsi / Iscriversi"
 
-#: Template/Layout/default.ctp:156;346
+#: Template/Layout/default.ctp:155;344
 msgid "Help - Q&amp;A"
 msgstr "Aiuto - Q&amp;A"
 
-#: Template/Layout/default.ctp:159;309 Template/Users/login.ctp:31
+#: Template/Layout/default.ctp:158;307 Template/Users/login.ctp:31
 msgid "Connect with"
 msgstr "Connettere con"
 
-#: Template/Layout/default.ctp:175 Template/Setups/view.ctp:113
+#: Template/Layout/default.ctp:174 Template/Setups/view.ctp:113
 msgid "Basics"
 msgstr "Nozioni di base"
 
-#: Template/Layout/default.ctp:178 Template/Setups/view.ctp:116
+#: Template/Layout/default.ctp:177 Template/Setups/view.ctp:116
 msgid "Components"
 msgstr "Componenti"
 
-#: Template/Layout/default.ctp:181 Template/Setups/view.ctp:119
+#: Template/Layout/default.ctp:180 Template/Setups/view.ctp:119
 msgid "More infos"
 msgstr "Ulteriori informazioni"
 
-#: Template/Layout/default.ctp:187
+#: Template/Layout/default.ctp:186
 msgid "Title *"
 msgstr "Titolo *"
 
-#: Template/Layout/default.ctp:188 Template/Setups/view.ctp:127
+#: Template/Layout/default.ctp:187 Template/Setups/view.ctp:127
 msgid "Description"
 msgstr "Descrizione"
 
-#: Template/Layout/default.ctp:188
+#: Template/Layout/default.ctp:187
 msgid "What is the purpose of your setup ? Tell us your setup's story..."
 msgstr "Qual è lo scopo del tuo setup? Dicci la storia del tuo setup..."
 
-#: Template/Layout/default.ctp:193
+#: Template/Layout/default.ctp:192
 msgid "Click to add a featured image *"
 msgstr "Clicca per aggiungere un'immagine prescelta *"
 
-#: Template/Layout/default.ctp:208 Template/Setups/view.ctp:147;149
+#: Template/Layout/default.ctp:207 Template/Setups/view.ctp:147;149
 msgid "Gallery Preview"
 msgstr "Anteprima Galleria"
 
-#: Template/Layout/default.ctp:208 Template/Setups/view.ctp:149
+#: Template/Layout/default.ctp:207 Template/Setups/view.ctp:149
 msgid "Add gallery image"
 msgstr "Aggiungi un'immagine alla galleria"
 
-#: Template/Layout/default.ctp:212
+#: Template/Layout/default.ctp:211
 msgid "required fields"
 msgstr "campi richiesti"
 
-#: Template/Layout/default.ctp:216;231 Template/Setups/view.ctp:154;186
+#: Template/Layout/default.ctp:215;230 Template/Setups/view.ctp:154;186
 msgid "Next step"
 msgstr "Passo prossimo"
 
-#: Template/Layout/default.ctp:218;233;259
+#: Template/Layout/default.ctp:217;232;258
 msgid "Save as draft"
 msgstr "Salva come bozza"
 
-#: Template/Layout/default.ctp:225 Template/Setups/view.ctp:161
+#: Template/Layout/default.ctp:224 Template/Setups/view.ctp:161
 msgid "Search for components..."
 msgstr "Ricerca di componenti..."
 
-#: Template/Layout/default.ctp:242 Template/Setups/view.ctp:199
+#: Template/Layout/default.ctp:241 Template/Setups/view.ctp:199
 msgid "Video (Youtube, Dailymotion, Twitch, ...)"
 msgstr "Video (Youtube, Dailymotion, Twitch, ...)"
 
-#: Template/Layout/default.ctp:247 Template/Setups/view.ctp:209
+#: Template/Layout/default.ctp:246 Template/Setups/view.ctp:209
 msgid "It's not my setup !"
 msgstr "Non è il moi Setup !"
 
-#: Template/Layout/default.ctp:248 Template/Setups/view.ctp:210
+#: Template/Layout/default.ctp:247 Template/Setups/view.ctp:210
 msgid "Setup's owner"
 msgstr "Proprietario del setup"
 
-#: Template/Layout/default.ctp:257 Template/Setups/view.ctp:225
+#: Template/Layout/default.ctp:256 Template/Setups/view.ctp:225
 msgid "Publish"
 msgstr "Pubblica"
 
-#: Template/Layout/default.ctp:308
+#: Template/Layout/default.ctp:306
 msgid "Log in"
 msgstr "Login"
 
-#: Template/Layout/default.ctp:328
+#: Template/Layout/default.ctp:326
 msgid "Partners"
 msgstr "Partner"
 
-#: Template/Layout/default.ctp:336
+#: Template/Layout/default.ctp:334
 msgid "About us"
 msgstr "Riguardo a noi"
 
-#: Template/Layout/default.ctp:338
+#: Template/Layout/default.ctp:336
 msgid "Our Blog"
 msgstr "Il nostro blog"
 
-#: Template/Layout/default.ctp:339 Template/Pages/team.ctp:11
+#: Template/Layout/default.ctp:337 Template/Pages/team.ctp:11
 msgid "Our Team"
 msgstr "La nostra squadra"
 
-#: Template/Layout/default.ctp:340 Template/Pages/legals.ctp:11
+#: Template/Layout/default.ctp:338 Template/Pages/legals.ctp:11
 msgid "Legal Mentions"
 msgstr "Menzioni legali"
 
-#: Template/Layout/default.ctp:344
+#: Template/Layout/default.ctp:342
 msgid "Support"
 msgstr "Supporto"
 
-#: Template/Layout/default.ctp:347
+#: Template/Layout/default.ctp:345
 msgid "Report a bug"
 msgstr "Segnalare un bug"
 
-#: Template/Layout/default.ctp:352
+#: Template/Layout/default.ctp:350
 msgid "All rights reserved"
 msgstr "Tutti i diritti riservati"
 
@@ -1300,14 +1296,6 @@ msgstr ""
 "marchi e marchi registrati su mysetup.co appartengono ai rispettivi "
 "proprietari."
 
-#: Template/Pages/popular.ctp:4
-msgid "Popular this week | mySetup.co"
-msgstr "Famoso questa settimana | mySetup.co"
-
-#: Template/Pages/popular.ctp:6
-msgid "The most popular setups of the week on mySetup.co"
-msgstr "Le setups più popolari della settimana su mySetup.co"
-
 #: Template/Pages/q&a.ctp:4
 msgid "Q&amp;A"
 msgstr "Q&amp;A"
@@ -1425,6 +1413,22 @@ msgstr "Ultimi setups| mySetup.co"
 msgid "See the most recent setups published on mySetup.co"
 msgstr "Guarda le configurazioni più recenti pubblicate su mySetup.co"
 
+#: Template/Pages/search.ctp:6
+msgid "Search for"
+msgstr "Cercare"
+
+#: Template/Pages/search.ctp:21
+msgid "No search query, no results :("
+msgstr "No domanda di ricerca, nessun risultato :("
+
+#: Template/Pages/search.ctp:26
+msgid "We haven't found any results for this query :("
+msgstr "Non abbiamo trovato nessun risultato per questa domanda :("
+
+#: Template/Pages/search.ctp:46
+msgid "Tweets by @mysetup_co"
+msgstr "Tweet di @mysetup_co"
+
 #: Template/Pages/team.ctp:4
 msgid "Our Team | mySetup.co"
 msgstr "La nostra squadra | mySetup.co"
@@ -1440,22 +1444,6 @@ msgstr "Grafica"
 #: Template/Pages/team.ctp:59
 msgid "Translation"
 msgstr "Traduzione"
-
-#: Template/Setups/search.ctp:6
-msgid "Search for"
-msgstr "Cercare"
-
-#: Template/Setups/search.ctp:21
-msgid "No search query, no results :("
-msgstr "No domanda di ricerca, nessun risultato :("
-
-#: Template/Setups/search.ctp:26
-msgid "We haven't found any results for this query :("
-msgstr "Non abbiamo trovato nessun risultato per questa domanda :("
-
-#: Template/Setups/search.ctp:46
-msgid "Tweets by @mysetup_co"
-msgstr "Tweet di @mysetup_co"
 
 #: Template/Setups/view.ctp:42
 msgid "Watch it in video"
@@ -1670,3 +1658,12 @@ msgid "comment"
 msgid_plural "comments"
 msgstr[0] "commento"
 msgstr[1] "commenti"
+
+#~ msgid "Popular this week"
+#~ msgstr "Famoso questa settimana"
+
+#~ msgid "Popular this week | mySetup.co"
+#~ msgstr "Famoso questa settimana | mySetup.co"
+
+#~ msgid "The most popular setups of the week on mySetup.co"
+#~ msgstr "Le setups più popolari della settimana su mySetup.co"
