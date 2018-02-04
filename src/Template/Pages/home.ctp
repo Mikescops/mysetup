@@ -137,28 +137,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                 <?php $i=0; foreach ($popularSetups as $setup): ?>
 
-                <div class="fullitem">
-                    <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                        <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
-                    </a>
-                    <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
-
-                    <div class="fullitem-inner">
-
-                        <div class="row">
-
-                            <div class="column column-90">
-                                <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                    <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
-                                </a>
-
-                                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
 
                 <?php if (++$i == 3) break; endforeach ?>
             </div>
@@ -173,28 +152,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                 <?php $i=0; foreach ($recentSetups as $setup): ?>
 
-                <div class="fullitem">
-                    <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                        <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
-                    </a>
-                    <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
-
-                    <div class="fullitem-inner">
-
-                        <div class="row">
-
-                            <div class="column column-90">
-                                <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                    <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
-                                </a>
-
-                                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
 
                 <?php if (++$i == 8) break; endforeach ?>
             </div>
@@ -209,28 +167,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                 <?php $i = 0; foreach ($amdSetups as $setup): ?>
 
-                <div class="fullitem">
-                    <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                        <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
-                    </a>
-                    <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
-
-                    <div class="fullitem-inner">
-
-                        <div class="row">
-
-                            <div class="column column-90">
-                                <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                    <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
-                                </a>
-
-                                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
 
                 <?php if (++$i == 3) break; endforeach ?>
             </div>
@@ -245,28 +182,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                 <?php $i = 0; foreach ($nvidiaSetups as $setup): ?>
 
-                <div class="fullitem">
-                    <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                        <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
-                    </a>
-                    <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
-
-                    <div class="fullitem-inner">
-
-                        <div class="row">
-
-                            <div class="column column-90">
-                                <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                    <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
-                                </a>
-
-                                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><h3><?= h($setup->title) ?></h3></a>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
 
                 <?php if (++$i == 3) break; endforeach ?>
             </div>
