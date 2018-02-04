@@ -125,6 +125,7 @@ class ResourcesTable extends Table
     }
 
     // A new method to retrieve resources from `Pages@search()` function
+    // Please refer to `SetupsTable@getSetups()` method for advanced documentation.
     public function getResources($query = null)
     {
         $conditions = [
@@ -135,9 +136,14 @@ class ResourcesTable extends Table
                 'CONVERT(title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%'
             ]
         ];
-        foreach(explode('+', urlencode($query)) as $word)
+
+        $words = explode('+', urlencode($query));
+        if(count($words) > 1)
         {
-            array_push($conditions, ['CONVERT(title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
+            foreach($words as $word)
+            {
+                array_push($conditions, ['CONVERT(title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
+            }
         }
 
         return $this->find('all', [

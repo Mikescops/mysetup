@@ -247,6 +247,7 @@ class UsersTable extends Table
     }
 
     // A new method to retrieve users from `Pages@search()` function
+    // Please refer to `SetupsTable@getSetups()` method for advanced documentation.
     public function getUsers($query = null)
     {
         $conditions = [
@@ -257,9 +258,14 @@ class UsersTable extends Table
                 'LOWER(name) LIKE' => '%' . strtolower($query) . '%'
             ]
         ];
-        foreach(explode('+', urlencode($query)) as $word)
+
+        $words = explode('+', urlencode($query));
+        if(count($words) > 1)
         {
-            array_push($conditions, ['LOWER(name) LIKE' => '%' . strtolower($word) . '%']);
+            foreach($words as $word)
+            {
+                array_push($conditions, ['LOWER(name) LIKE' => '%' . strtolower($word) . '%']);
+            }
         }
 
         return $this->find('all', [
