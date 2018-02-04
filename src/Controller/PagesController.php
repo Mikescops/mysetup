@@ -134,7 +134,8 @@ class PagesController extends AppController
                     break;
 
                 default:
-                    $results = null;
+                    // This case is impossible (would throw a 404).
+                    // See `setPatterns()` of `/search/:entity` route.
                     break;
             }
 
@@ -211,12 +212,12 @@ class PagesController extends AppController
                     $this->redirect(['action' => 'recent']);
                     break;
 
-                case 'search':
-                    $this->redirect(['action' => 'search']);
-                    break;
-
                 case 'bugReport':
                     $this->redirect(['action' => 'bugReport']);
+                    break;
+
+                case 'search':
+                    $this->redirect(['action' => 'search']);
                     break;
 
                 default:
