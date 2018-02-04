@@ -124,6 +124,41 @@ class ResourcesTable extends Table
         }
     }
 
+    // A new method to retrieve resources from `Pages@search()` function
+    // Please refer to `SetupsTable@getSetups()` method for advanced documentation.
+    public function getResources($query = null)
+    {
+        $conditions = [
+            [
+                'type' => 'SETUP_PRODUCT'
+            ],
+            [
+                'CONVERT(title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%'
+            ]
+        ];
+
+        $words = explode('+', urlencode($query));
+        if(count($words) > 1)
+        {
+            foreach($words as $word)
+            {
+                array_push($conditions, ['CONVERT(title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
+            }
+        }
+
+        return $this->find('all', [
+            'conditions' => $conditions,
+            'fields' => [
+                'id',
+                'title',
+                'href',
+                'src'
+            ]
+        ])
+        ->distinct()
+        ->toArray();
+    }
+
     public function saveResourceProducts($products, $setup, $flash, $user_id, $edition, $admin = false)
     {
         // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"

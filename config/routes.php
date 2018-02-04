@@ -48,11 +48,17 @@ Router::scope('/', function (RouteBuilder $routes) {
     /* Static pages' routes... */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);
     $routes->connect('/recent', ['controller' => 'Pages', 'action' => 'recent']);
-    $routes->connect('/popular', ['controller' => 'Pages', 'action' => 'popular']);
     $routes->connect('/bugReport', ['controller' => 'Pages', 'action' => 'bugReport']);
     // ... and all the other ones
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     /* _______________________ */
+
+    /* Search special page */
+    $routes
+        ->connect('/search/:entity', ['controller' => 'Pages', 'action' => 'search'])
+        ->setPatterns(['entity' => '|(setups)|(users)|(resources)'])
+        ->setPass(['entity']);
+    /* ___________________ */
 
     /* Setups Controller's routes */
     $routes->scope('/setups', function(RouteBuilder $routes) {

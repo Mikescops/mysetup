@@ -79,7 +79,6 @@
                             <a><?= __('Categories') ?> <i class="fa fa-caret-down"></i></a>
                             <ul>
                                 <li><a href="<?= $this->Url->build('/recent'); ?>"><?= __('Most recent') ?></a></li>
-                                <li><a href="<?= $this->Url->build('/popular'); ?>"><?= __('Popular this week') ?></a></li>
                             </ul>
                         </li>
                         <?php if($authUser): ?>
@@ -294,7 +293,6 @@
                     <li>
                         <ul>
                             <li><a href="<?= $this->Url->build('/recent'); ?>"><?= __('Most recent') ?></a></li>
-                            <li><a href="<?= $this->Url->build('/popular'); ?>"><?= __('Popular this week') ?></a></li>
                         </ul>
                     </li>
                     <li>

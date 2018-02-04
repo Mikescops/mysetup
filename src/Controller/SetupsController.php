@@ -305,29 +305,6 @@ class SetupsController extends AppController
         }
     }
 
-    public function search()
-    {
-        if($this->request->getQuery('q'))
-        {
-            $results = $this->Setups->getSetups([
-                'query' => $this->request->getQuery('q'),
-                'number' => 9999
-            ], $this->Flash);
-
-            if(count($results) == 0)
-            {
-                $results = 'noresult';
-            }
-        }
-
-        else
-        {
-            $results = 'noquery';
-        }
-
-        $this->set('results', $results);
-    }
-
     public function requestOwnership($id = null)
     {
         if($this->request->is('post') and $id != null)

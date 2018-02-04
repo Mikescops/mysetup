@@ -246,6 +246,40 @@ class UsersTable extends Table
         }
     }
 
+    // A new method to retrieve users from `Pages@search()` function
+    // Please refer to `SetupsTable@getSetups()` method for advanced documentation.
+    public function getUsers($query = null)
+    {
+        $conditions = [
+            [
+                'mailVerification IS' => null
+            ],
+            [
+                'LOWER(name) LIKE' => '%' . strtolower($query) . '%'
+            ]
+        ];
+
+        $words = explode('+', urlencode($query));
+        if(count($words) > 1)
+        {
+            foreach($words as $word)
+            {
+                array_push($conditions, ['LOWER(name) LIKE' => '%' . strtolower($word) . '%']);
+            }
+        }
+
+        return $this->find('all', [
+            'conditions' => $conditions,
+            'fields' => [
+                'id',
+                'name',
+                'modificationDate'
+            ]
+        ])
+        ->distinct()
+        ->toArray();
+    }
+
     public function getTwitchAPIID() { return 'zym0nr99v74zljmo6z96st25rj6rzz'; }
     public function getTwitchAPISecret() { return 'b8mrbqfd9vsyjciyec560j44lh1muk'; }
 

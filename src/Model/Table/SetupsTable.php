@@ -215,7 +215,7 @@ class SetupsTable extends Table
             'query' => null,
             'featured' => false,
             'order' => 'DESC',
-            'number' => 8,
+            'number' => 9999,
             'offset' => 0,
             'type' => 'date',
             'weeks' => 999
@@ -261,12 +261,17 @@ class SetupsTable extends Table
             array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($params['query']) . '%']);
 
             // ... and each one of it words to improve matching probability (#fuzzySearch)
-            foreach(explode('+', urlencode($params['query'])) as $word)
+            $words = explode('+', urlencode($params['query']));
+            // Adds "fuzzy search" only if the query contains multiple words to avoid duplicates
+            if(count($words) > 1)
             {
-                array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);
-                array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
-                array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
-                array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
+                foreach($words as $word)
+                {
+                    array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);
+                    array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
+                    array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
+                    array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
+                }
             }
         }
 

@@ -85,13 +85,6 @@ class PagesController extends AppController
         $this->display('recent');
     }
 
-    public function popular()
-    {
-        $this->set('setups', TableRegistry::get('Setups')->getSetups(['number' => 30, 'type' => 'like', 'weeks' => 1]));
-
-        $this->display('popular');
-    }
-
     public function bugReport()
     {
         if($this->request->is('post'))
@@ -123,6 +116,48 @@ class PagesController extends AppController
         }
 
         $this->display('bugReport');
+    }
+
+    public function search($entity = null)
+    {
+        $query = $this->request->getQuery('q');
+        if($query and strlen($query) >= 3)
+        {
+            switch($entity)
+            {
+                case 'setups':
+                    $results = TableRegistry::get('Setups')->getSetups(['query' => $query]);
+                    break;
+
+                case 'users':
+                    $results = TableRegistry::get('Users')->getUsers($query);
+                    break;
+
+                case 'resources':
+                    $results = TableRegistry::get('Resources')->getResources($query);
+                    break;
+
+                default:
+                    // This case is impossible (would throw a 404).
+                    // See `setPatterns()` of `/search/:entity` route.
+                    break;
+            }
+
+            if(count($results) == 0)
+            {
+                $results = 'noresult';
+            }
+        }
+
+        else
+        {
+            $results = 'noquery';
+        }
+
+        // Prepare and send data to the View (`$entity` will label the type of results present)
+        $this->set('results', [$entity => $results]);
+
+        $this->display('search');
     }
 
     /**
@@ -167,7 +202,7 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['display', 'home', 'recent', 'popular', 'bugReport']);
+        $this->Auth->allow(['display', 'home', 'recent', 'bugReport', 'search']);
 
         // Another hook to avoid error pages when an user...
         // ...types directly in an (existing) raw address
@@ -183,12 +218,12 @@ class PagesController extends AppController
                     $this->redirect(['action' => 'recent']);
                     break;
 
-                case 'popular':
-                    $this->redirect(['action' => 'popular']);
-                    break;
-
                 case 'bugReport':
                     $this->redirect(['action' => 'bugReport']);
+                    break;
+
+                case 'search':
+                    $this->redirect(['action' => 'search']);
                     break;
 
                 default:
