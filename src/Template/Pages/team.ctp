@@ -35,7 +35,6 @@ echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block'
         <p><strong>Samuel Forestier</strong> : Treasurer and writer at Geek Mexicain, I manage a personal blog for many years now where you can find all my development activities about my projects. INSA student too !</p>
         <a href="https://horlogeskynet.github.io/" target="_blank"><i class="fa fa-globe"></i> HorlogeSkynet</a> |
         <a href="https://github.com/HorlogeSkynet/" target="_blank"><i class="fa fa-github"></i> GitHub</a> |
-        <a href="https://plus.google.com/+samuelforestier/" target="_blank"><i class="fa fa-google-plus"></i> Google+</a> |
         <a href="https://www.linkedin.com/in/samuelforestier/" target="_blank"><i class="fa fa-linkedin"></i> LinkedIn</a>
 
     </div>
