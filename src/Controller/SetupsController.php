@@ -114,6 +114,12 @@ class SetupsController extends AppController
                     return $this->redirect($this->referer());
                 }
 
+                // The featured image has been created, let's extract its main colors
+                $setup->main_colors = $this->Setups->Resources->extract5MostUsedColorsFromImage(
+                    $this->Setups->Resources->find()->where(['setup_id' => $setup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
+                );
+                $this->Setups->save($setup);
+
                 /* Let's save the gallery images with the adapted function */
                 $this->Setups->Resources->saveGalleryImages($setup, $data, $this->Flash);
 
@@ -196,6 +202,12 @@ class SetupsController extends AppController
                     if($this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $setup->user_id, true, true))
                     {
                         $this->Setups->Resources->delete($image_to_delete);
+
+                        // The featured image has changed, let's re-compute the main used colors !
+                        $setup->main_colors = $this->Setups->Resources->extract5MostUsedColorsFromImage(
+                            $this->Setups->Resources->find()->where(['setup_id' => $setup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
+                        );
+                        $this->Setups->save($setup);
                     }
                 }
 

@@ -137,6 +137,9 @@ class SetupsTable extends Table
         $validator
             ->allowEmpty('like_count');
 
+        $validator
+            ->allowEmpty('main_colors');
+
         return $validator;
     }
 
