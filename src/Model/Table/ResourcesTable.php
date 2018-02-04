@@ -132,12 +132,12 @@ class ResourcesTable extends Table
                 'type' => 'SETUP_PRODUCT'
             ],
             [
-                'CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%'
+                'CONVERT(title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%'
             ]
         ];
         foreach(explode('+', urlencode($query)) as $word)
         {
-            array_push($conditions, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
+            array_push($conditions, ['CONVERT(title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
         }
 
         return $this->find('all', [

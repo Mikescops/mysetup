@@ -249,10 +249,17 @@ class UsersTable extends Table
     // A new method to retrieve users from `Pages@search()` function
     public function getUsers($query = null)
     {
-        $conditions = [['LOWER(Users.name) LIKE' => '%' . strtolower($query) . '%']];
+        $conditions = [
+            [
+                'mailVerification IS' => null
+            ],
+            [
+                'LOWER(name) LIKE' => '%' . strtolower($query) . '%'
+            ]
+        ];
         foreach(explode('+', urlencode($query)) as $word)
         {
-            array_push($conditions, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);
+            array_push($conditions, ['LOWER(name) LIKE' => '%' . strtolower($word) . '%']);
         }
 
         return $this->find('all', [
