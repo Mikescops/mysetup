@@ -309,7 +309,8 @@ class SetupsTable extends Table
                 'title',
                 'creationDate',
                 'status',
-                'like_count'
+                'like_count',
+                'main_colors'
             ],
             'contain' => [
                 'Resources' => [

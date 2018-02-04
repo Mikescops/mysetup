@@ -1,4 +1,21 @@
-<div class="setup-item">
+<?php 
+$rcolor = 0;
+$gcolor = 0;
+$bcolor = 0;
+foreach(json_decode($setup->main_colors) as $colors){
+    $rcolor += $colors[0];
+    $gcolor += $colors[1];
+    $bcolor += $colors[2];
+}
+
+$rcolor = $rcolor/5;
+$gcolor = $gcolor/5;
+$bcolor = $bcolor/5;
+
+?>
+
+
+<div class="setup-item" style="background: rgb(<?= $rcolor.','.$gcolor.','.$bcolor ?>);">
     <a class="setup-pic" href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
         <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
     </a>
