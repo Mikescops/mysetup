@@ -55,7 +55,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     /* Search special page */
     $routes
-        ->connect('/search/:entity/', ['controller' => 'Pages', 'action' => 'search'])
+        ->connect('/search/:entity', ['controller' => 'Pages', 'action' => 'search'])
         ->setPass(['entity']);
     /* ___________________ */
 
