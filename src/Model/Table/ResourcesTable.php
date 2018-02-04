@@ -393,4 +393,26 @@ class ResourcesTable extends Table
             $this->saveResourceImage($data['gallery4'], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
         }
     }
+
+    public function extract5MostUsedColorsFromImage($path)
+    {
+        // This array will store the 5 main colors of the image in RGB format.
+        // [[r_0, g_0, b_0], ..., [[r_4, g_4, b_4]]]
+        // Data are stored in JSON format into DB (order will be kept with JSON arrays).
+        $mainColors = [];
+
+        // We extract the 5 main colors (a palette) from the image given.
+        foreach(array_keys(\League\ColorExtractor\Palette::fromFilename($path)->getMostUsedColors(5)) as $color)
+        {
+            // For each color, we convert from hexadecimal to a RGB formatted array
+            array_push($mainColors, [
+                hexdec(str_repeat(substr($color, 0, 1), 2)),
+                hexdec(str_repeat(substr($color, 1, 1), 2)),
+                hexdec(str_repeat(substr($color, 2, 1), 2))
+            ]);
+        }
+
+        // Let's return these arrays JSON-encoded (string)
+        return json_encode($mainColors);
+    }
 }
