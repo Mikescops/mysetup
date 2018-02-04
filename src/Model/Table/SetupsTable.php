@@ -215,7 +215,7 @@ class SetupsTable extends Table
             'query' => null,
             'featured' => false,
             'order' => 'DESC',
-            'number' => 8,
+            'number' => 9999,
             'offset' => 0,
             'type' => 'date',
             'weeks' => 999

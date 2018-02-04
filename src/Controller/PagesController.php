@@ -119,10 +119,7 @@ class PagesController extends AppController
             switch($entity)
             {
                 case 'setups':
-                    $results = TableRegistry::get('Setups')->getSetups([
-                        'query' => $query,
-                        'number' => 9999
-                    ]);
+                    $results = TableRegistry::get('Setups')->getSetups(['query' => $query]);
                     break;
 
                 case 'users':
