@@ -39,7 +39,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                     <?php foreach ($featuredSetups as $setup): ?>
 
                         <?= $this->element('List/cards', ['setup' => $setup]) ?>
-                        
+
                     <?php endforeach ?>
                     <br clear="all">
                 </div>
@@ -79,13 +79,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <div class="large_search" style="margin-top: -60px"> <i class="fa fa-search"></i>
 
             <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" />
-            <?= $this->Html->scriptBlock(' let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`setups/search?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
+            <?= $this->Html->scriptBlock(' let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`search/resources?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
 
         </div>
 
         <div class="rowfeed">
             <?php foreach ($recentResources as $item): ?>
-                <a href="<?= $this->Url->build('/setups/search?q=' . $item->title) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
+                <a href="<?= $this->Url->build('/search/resources?q=' . $item->title) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
             <?php endforeach?>
         </div>
 
@@ -151,7 +151,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                 <?php if (++$i == 3) break; endforeach ?>
             </div>
-            <a class="home_more float-right" href="<?= $this->Url->build('/setups/search?q=amd'); ?>"><?= __('More AMD setups') ?> <i class="fa fa-chevron-right"></i></a>
+            <a class="home_more float-right" href="<?= $this->Url->build('/search/resources?q=amd'); ?>"><?= __('More AMD setups') ?> <i class="fa fa-chevron-right"></i></a>
         </div>
 
         <br clear='all'>
@@ -166,7 +166,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                 <?php if (++$i == 3) break; endforeach ?>
             </div>
-            <a class="home_more float-right" href="<?= $this->Url->build('/setups/search?q=nvidia'); ?>"><?= __('More Nvidia setups') ?> <i class="fa fa-chevron-right"></i></a>
+            <a class="home_more float-right" href="<?= $this->Url->build('/search/resources?q=nvidia'); ?>"><?= __('More Nvidia setups') ?> <i class="fa fa-chevron-right"></i></a>
         </div>
 
         <br clear='all'>
