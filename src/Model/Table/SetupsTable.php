@@ -254,7 +254,7 @@ class SetupsTable extends Table
                 return null;
             }
 
-            // We add to the conditions search the whole query as a sentence...
+            // We add to the search conditions the whole query as an unique sentence...
             array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($params['query']) . '%']);
             array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($params['query']) . '%']);
             array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($params['query']) . '%']);
