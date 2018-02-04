@@ -31,26 +31,7 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
             ?>
 
             <?php foreach ($results as $setup): ?>
-
-                <div class="fullitem">
-                <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                    <img src="<?= $this->Url->build('/', true)?><?= $setup['resources'][0]['src'] ?>">
-                </a>
-                <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
-                <div class="fullitem-inner">
-                    <div class="row">
-                        <div class="column column-75">
-                            <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-                                <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $setup->user_id ?>.png?<?= $setup->user->modificationDate->format('is') ?>">
-                            </a>
-                            <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-                                <h3><?= h($setup->title) ?></h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-
+                <?= $this->element('List/tiles', ['setup' => $setup]) ?>
             <?php endforeach; }?>
         </div>
 
