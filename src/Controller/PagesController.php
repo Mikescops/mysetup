@@ -150,7 +150,9 @@ class PagesController extends AppController
             $results = 'noquery';
         }
 
-        $this->set('results', $results);
+        // Prepare and send data to the View (`$entity` will label the type of results present)
+        $this->set('results', [$entity => $results]);
+
         $this->display('search');
     }
 
