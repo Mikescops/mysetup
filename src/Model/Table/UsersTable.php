@@ -445,24 +445,28 @@ class UsersTable extends Table
         }
     }
 
-    // A simple getter method to retrieve the "active" users on the website
+    /*
+        A simple getter method to retrieve the "active" users on the website.
+        The returned users :
+            * Have at least one setup
+            * Have a verified email address
+            * Have logged themselves in during the past 2 weeks
+            * ... are shuffled !
+    */
     public function getActiveUsers($n = 8)
     {
-        return $this->Notifications->find('all', [
+        return $this->find('all', [
             'limit' => $n,
+            'order' => 'RAND()',
             'fields' => [
-                'user_id'
+                'id',
+                'name',
+                'modificationDate'
             ],
-            'contain' => [
-                'Users' => [
-                    'fields' => [
-                        'name',
-                        'modificationDate'
-                    ]
-                ]
-            ],
-            'group' => [
-                'user_id'
+            'conditions' => [
+                'mainSetup_id !=' => 0,
+                'mailVerification IS' => null,
+                'lastLogginDate >=' => new \DateTime('-15 days')
             ]
         ])->toArray();
     }
