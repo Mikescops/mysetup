@@ -78,7 +78,8 @@ CREATE TABLE `setups` (
   `creationDate` DATETIME NOT NULL,
   `modifiedDate` DATETIME NOT NULL,
   `status` VARCHAR(255) COLLATE utf8_bin NOT NULL,
-  `like_count` INT(11) NOT NULL DEFAULT 0
+  `like_count` INT(11) NOT NULL DEFAULT 0,
+  `main_colors` VARCHAR(128) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
