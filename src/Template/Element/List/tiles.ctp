@@ -1,14 +1,8 @@
 <?php
-$rgb_colors = [0, 0, 0];
-foreach(json_decode($setup->main_colors) as $colors)
-{
-    $rgb_colors[0] += $colors[0]**2;
-    $rgb_colors[1] += $colors[1]**2;
-    $rgb_colors[2] += $colors[2]**2;
-}
+    $rgb_colors = json_decode($setup->main_colors)[0];
 ?>
 
-<div class="setup-item" style="background: rgb(<?= sqrt($rgb_colors[0] / 5).', '.sqrt($rgb_colors[1] / 5).', '.sqrt($rgb_colors[2] / 5) ?>);">
+<div class="setup-item" style="background: rgb(<?= $rgb_colors[0].', '.$rgb_colors[1].', '.$rgb_colors[2] ?>);">
     <a class="setup-pic" href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
         <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
     </a>

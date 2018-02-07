@@ -115,7 +115,7 @@ class SetupsController extends AppController
                 }
 
                 // The featured image has been created, let's extract its main colors
-                $setup->main_colors = $this->Setups->Resources->extract5MostUsedColorsFromImage(
+                $setup->main_colors = $this->Setups->Resources->extractMostUsedColorsFromImage(
                     $this->Setups->Resources->find()->where(['setup_id' => $setup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
                 );
                 $this->Setups->save($setup);
@@ -204,7 +204,7 @@ class SetupsController extends AppController
                         $this->Setups->Resources->delete($image_to_delete);
 
                         // The featured image has changed, let's re-compute the main used colors !
-                        $setup->main_colors = $this->Setups->Resources->extract5MostUsedColorsFromImage(
+                        $setup->main_colors = $this->Setups->Resources->extractMostUsedColorsFromImage(
                             $this->Setups->Resources->find()->where(['setup_id' => $setup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
                         );
                         $this->Setups->save($setup);

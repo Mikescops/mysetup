@@ -394,25 +394,30 @@ class ResourcesTable extends Table
         }
     }
 
-    public function extract5MostUsedColorsFromImage($path)
+    /*
+        This method extract the most used colors from an image given (with its path).
+        The returned array will be as :
+        [
+            [R, G, B],  // Most used color within the right area of the image (ratio=1/5 from the right)
+            [R, G, B],  // First most used color of the whole image
+            [R, G, B],  // Second most used color of the whole image
+            [R, G, B],  // Third most used color of the whole image
+            // ... and so one, because the package is broken (https://github.com/ksubileau/color-thief-php/issues/5)
+        ]
+    */
+    public function extractMostUsedColorsFromImage($path)
     {
-        // This array will store the 5 main colors of the image in RGB format.
-        // [[r_0, g_0, b_0], ..., [[r_4, g_4, b_4]]]
-        // Data are stored in JSON format into DB (order will be kept with JSON arrays).
-        $mainColors = [];
+        $rgb_colors = \ColorThief\ColorThief::getPalette($path, $colorCount=3, $quality=10);
 
-        // We extract the 5 main colors (a palette) from the image given.
-        foreach(array_keys(\League\ColorExtractor\Palette::fromFilename($path)->getMostUsedColors(5)) as $color)
-        {
-            // For each color, we convert from hexadecimal to a RGB formatted array
-            array_push($mainColors, [
-                hexdec(str_repeat(substr($color, 0, 1), 2)),
-                hexdec(str_repeat(substr($color, 1, 1), 2)),
-                hexdec(str_repeat(substr($color, 2, 1), 2))
-            ]);
-        }
+        // First item (simulates an `array_push` from the head)
+        $size = (new \Imagick($path))->getImageGeometry();
+        array_unshift($rgb_colors, \ColorThief\ColorThief::getPalette($path, $colorCount=3, $quality=2, $area=[
+            'x' => $size['width'] * (4 / 5),
+            'y' => 0,
+            'w' => $size['width'] * (1 / 5),
+            'h' => $size['height']
+        ])[0]);
 
-        // Let's return these arrays JSON-encoded (string)
-        return json_encode($mainColors);
+        return json_encode($rgb_colors);
     }
 }
