@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6d84c7ae5ec395ac98c09252054519ca",
-    "content-hash": "b4f8f1ff152b3fd1cdf8ea97dbe211b7",
+    "hash": "85ba04a2fd12f8f11de307cf7c57aeda",
+    "content-hash": "01c3f9b0b2cf7980a52e6b8bcbb1c4b7",
     "packages": [
         {
             "name": "aura/intl",
@@ -706,58 +706,57 @@
             "time": "2017-03-20 17:10:46"
         },
         {
-            "name": "league/color-extractor",
-            "version": "0.3.2",
+            "name": "ksubileau/color-thief-php",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/color-extractor.git",
-                "reference": "837086ec60f50c84c611c613963e4ad2e2aec806"
+                "url": "https://github.com/ksubileau/color-thief-php.git",
+                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/color-extractor/zipball/837086ec60f50c84c611c613963e4ad2e2aec806",
-                "reference": "837086ec60f50c84c611c613963e4ad2e2aec806",
+                "url": "https://api.github.com/repos/ksubileau/color-thief-php/zipball/a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
+                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
                 "shasum": ""
             },
             "require": {
-                "ext-gd": "*",
-                "php": ">=5.4.0"
-            },
-            "replace": {
-                "matthecat/colorextractor": "*"
+                "php": ">=5.3.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "~2",
-                "phpunit/phpunit": "~5"
+                "phpunit/phpunit": "~4.8|~5.7",
+                "squizlabs/php_codesniffer": "~2.7"
+            },
+            "suggest": {
+                "ext-gd": "to use the GD image adapter.",
+                "ext-gmagick": "to use the Gmagick image adapter.",
+                "ext-imagick": "to use the Imagick image adapter."
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "": "src"
+                    "ColorThief\\": "lib/ColorThief"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "CC-BY-2.5"
             ],
             "authors": [
                 {
-                    "name": "Mathieu Lechat",
-                    "email": "math.lechat@gmail.com",
-                    "homepage": "http://matthecat.com",
-                    "role": "Developer"
+                    "name": "Kevin Subileau",
+                    "homepage": "http://www.kevinsubileau.fr"
                 }
             ],
-            "description": "Extract colors from an image as a human would do.",
-            "homepage": "https://github.com/thephpleague/color-extractor",
+            "description": "Grabs the dominant color or a representative color palette from an image.",
+            "homepage": "http://www.kevinsubileau.fr/projets/color-thief-php",
             "keywords": [
                 "color",
-                "extract",
-                "human",
-                "image",
-                "palette"
+                "dominant",
+                "palette",
+                "php",
+                "thief"
             ],
-            "time": "2016-12-15 09:30:02"
+            "time": "2016-12-18 03:12:25"
         },
         {
             "name": "loadsys/cakephp_sitemap",
