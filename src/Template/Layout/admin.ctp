@@ -103,5 +103,12 @@
             <p class="text-center text-muted">mySetup.co - Admin Panel</p>
         </div>
     </footer>
+
+    <!-- Set the Flash dependencies on this layout (needed for entities related actions) -->
+    <?= $this->Html->script('jquery-3.2.0.min.js') ?>
+    <?= $this->Html->script('lib.min.js?v=2') ?>
+    <?= $this->Html->script('app.min.js') ?>
+    <script>const toast = new siiimpleToast();</script>
+    <?= $this->Flash->render() ?>
 </body>
 </html>
