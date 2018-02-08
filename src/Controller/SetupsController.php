@@ -104,6 +104,9 @@ class SetupsController extends AppController
                 $setup->id = mt_rand() + 1;
             } while($this->Setups->find()->where(['id' => $setup->id])->count() !== 0);
 
+            // Fix for previous versions of MySQL
+            $setup->main_colors = '';
+
             if($this->Setups->save($setup))
             {
                 /* Here we get and save the featured image */
