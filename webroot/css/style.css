@@ -506,35 +506,21 @@ footer a{
   display: inline-block;
 }
 
-.setup-item .setup-pic:before {
-	content: "";
+.setup-item .setup-pic .tile-gradient {
 	top: 0;
 	left: 0;
 	position: absolute;
 	height: 100%;
-	width: 100%;
-	background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, #0e0e0e00 49%, #0e0e0e 100%);
-	/* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(49%, #0e0e0e00), color-stop(100%, #0e0e0e));
-	/* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, #0e0e0e00 49%, #0e0e0e 100%);
-	/* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left, rgba(255, 255, 255, 1) 0%, #0e0e0e00 49%, #0e0e0e 100%);
-	/* Opera 11.10+ */
-	background: -ms-linear-gradient(left, rgba(255, 255, 255, 1) 0%, #0e0e0e00 49%, #0e0e0e 100%);
-	/* IE10+ */
-	  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #0e0e0e00 49%, #0e0e0e 100%);
-	/* W3C */
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
-	/* IE6-9 */
+	width: 102%;
+}
+
+.setup-item .setup-pic{
+	position: relative;
+	float: left;
 }
 
 .setup-item .setup-pic img{
 	height: 150px;
-}
-
-.setup-item .setup-pic{
-	float: left;
 }
 
 .setup-item .featured-user{
