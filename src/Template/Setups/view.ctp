@@ -27,6 +27,10 @@ echo $this->Html->meta(['name' => 'twitter:image', 'content' => $this->Url->buil
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)], null ,['block' => true]);
 ?>
 
+<?php
+    $rgb_colors = json_decode($setup->main_colors)[0];
+?>
+
 <div class="featured-container">
     <div class="featured-gradient" style="background-image: url('<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true) ?>')"></div>
 
@@ -118,8 +122,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             </div>
         </div>
     </div>
-    <div class="container">
-    </div>
 </div>
 
 <div class="container maincontainer setupview">
@@ -150,114 +152,117 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
     </div>
 
-    <div class="row content-section">
-
-        <div class="column column-60 item-meta">
-
-            <div class="section-header">
-                <h4><?= __('About this setup') ?></h4>
-            </div>
-
-            <div class="section-inner">
-
-                <?= preg_replace('/<a (.*)>(.*)<\/a>/', '<a rel="nofollow" $1>$2</a>', $this->Markdown->transform(h($setup->description))) ?>
-
-                <span class="setup-date">
-                    <?php if($setup->creationDate != $setup->modifiedDate): ?>
-                        <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
-                    <?php else: ?>
-                        <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
-                    <?php endif; ?>
-                </span>
-
-            </div>
-
-        </div>
-
-        <div id="comments" class="column column-40">
-
-            <div class="section-header">
-                <h4 class="comment-section-title"><?= __('Wanna share your opinion ?') ?></h4>
-            </div>
-
-            <div class="section-inner">
-
-                <section class="comments">
-                    <?php if (!empty($setup->comments)): ?>
-                        <?php foreach ($setup->comments as $comments): ?>
-                            <article class="comment">
-                                <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
-                                    <img alt="<?= __('Profile picture of') ?> #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $comments->user_id . '.png?' . $this->Time->format($comments->user->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
-                                </a>
-
-                                <div class="comment-body">
-                                    <div class="text" id="comment-<?= $comments->id ?>">
-                                      <p content="<?= h($comments->content) ?>"><?= h($comments->content) ?></p>
-                                      <?= $this->Html->scriptBlock("$(function(){ $('#comment-".  $comments->id ." > p').html(emojione.toImage(`".$comments->content."`)); });", array('block' => 'scriptBottom')) ?>
-                                    </div>
-                                    <p class="attribution"><?= __('by') ?> <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($comments->user['name']) ?></a> <?= __('at') ?> <?= $this->Time->format($comments->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comments->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></p>
-
-                                    <?php if($authUser['id'] == $comments->user_id):
-                                        echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => __('Are you sure you want to delete this comment ?')));
-                                        echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> ' . __('Edit') . ' </a>';
-                                    endif ?>
-                                </div>
-                          </article>
-                      <?php endforeach; ?>
-                    <?php endif; ?>
-                </section>
-
-                <?php if($authUser): ?>
-
-                    <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
-                        <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser->id . '.png?' . $this->Time->format($authUser->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
-                    </a>
-
-                    <?= $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
-                    <fieldset>
-                        <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'...'), 'rows' => "1", 'maxlength' => 500]); ?>
-                    </fieldset>
-                    <div class="g-recaptcha"
-                        data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
-                        data-size="invisible"
-                        data-badge="bottomleft"
-                        data-callback="onSubmit">
-                    </div>
-                    <?= $this->Form->button(__('Post this comment')) ?>
-                    <?= $this->Form->end() ?>
-
-                    <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
-
-                    <div class="lity-hide" id="edit-comment-hidden">
-                        <?php
-                            /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
-                            echo $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'edit']]);
-                            echo $this->Form->control('content', ['label' => '', 'class' => 'textarea-edit-comment','id' => 'textarea-edit', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
-                            echo $this->Form->submit(__('Edit'), ['id' => 'editCommentButton', 'class' => 'float-right' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
-                            echo $this->Form->end();
-                        ?>
-                    </div>
-
-                    <?= $this->Html->scriptBlock('$(document).ready(function() {$("#textarea-edit").emojioneArea({pickerPosition: "top"});});', array('block' => 'scriptBottom')) ?>
-
-                <?php else: ?>
-
-                    <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login', '?' => ['redirect' => '/setups/' . $setup->id]])?>"><?= __('Log me in !') ?></a>
-
-                <?php endif ?>
-
-            </div>
-
-        </div>
-
-        <div class="section-footer">
-            <div id="social-networks"></div>
-        </div>
-
-    </div>
-
 </div>
 
+<div class="colored-bg">
+    <div class="container">
+        <div class="row content-section">
+
+            <div class="column column-60 item-meta">
+
+                <div class="section-header">
+                    <h4><?= __('About this setup') ?></h4>
+                </div>
+
+                <div class="section-inner">
+
+                    <?= preg_replace('/<a (.*)>(.*)<\/a>/', '<a rel="nofollow" $1>$2</a>', $this->Markdown->transform(h($setup->description))) ?>
+
+                    <span class="setup-date">
+                        <?php if($setup->creationDate != $setup->modifiedDate): ?>
+                            <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
+                        <?php else: ?>
+                            <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
+                        <?php endif; ?>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div id="comments" class="column column-40">
+
+                <div class="section-header">
+                    <h4 class="comment-section-title"><?= __('Wanna share your opinion ?') ?></h4>
+                </div>
+
+                <div class="section-inner">
+
+                    <section class="comments">
+                        <?php if (!empty($setup->comments)): ?>
+                            <?php foreach ($setup->comments as $comments): ?>
+                                <article class="comment">
+                                    <a class="comment-img" href="<?= $this->Url->build('/users/'.$comments->user_id)?>">
+                                        <img alt="<?= __('Profile picture of') ?> #<?= $comments->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $comments->user_id . '.png?' . $this->Time->format($comments->user->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
+                                    </a>
+
+                                    <div class="comment-body">
+                                        <div class="text" id="comment-<?= $comments->id ?>">
+                                          <p content="<?= h($comments->content) ?>"><?= h($comments->content) ?></p>
+                                          <?= $this->Html->scriptBlock("$(function(){ $('#comment-".  $comments->id ." > p').html(emojione.toImage(`".$comments->content."`)); });", array('block' => 'scriptBottom')) ?>
+                                        </div>
+                                        <p class="attribution"><?= __('by') ?> <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($comments->user['name']) ?></a> <?= __('at') ?> <?= $this->Time->format($comments->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comments->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></p>
+
+                                        <?php if($authUser['id'] == $comments->user_id):
+                                            echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => __('Are you sure you want to delete this comment ?')));
+                                            echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> ' . __('Edit') . ' </a>';
+                                        endif ?>
+                                    </div>
+                              </article>
+                          <?php endforeach; ?>
+                        <?php endif; ?>
+                    </section>
+
+                    <?php if($authUser): ?>
+
+                        <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
+                            <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser->id . '.png?' . $this->Time->format($authUser->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
+                        </a>
+
+                        <?= $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
+                        <fieldset>
+                            <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'...'), 'rows' => "1", 'maxlength' => 500]); ?>
+                        </fieldset>
+                        <div class="g-recaptcha"
+                            data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
+                            data-size="invisible"
+                            data-badge="bottomleft"
+                            data-callback="onSubmit">
+                        </div>
+                        <?= $this->Form->button(__('Post this comment')) ?>
+                        <?= $this->Form->end() ?>
+
+                        <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
+
+                        <div class="lity-hide" id="edit-comment-hidden">
+                            <?php
+                                /* This is the tricky part : Welcome inside a HIDDEN form. JS'll fill in the content entry, the form URL (with the comment id), and submit it afterwards */
+                                echo $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'edit']]);
+                                echo $this->Form->control('content', ['label' => '', 'class' => 'textarea-edit-comment','id' => 'textarea-edit', 'type' => 'textarea', 'placeholder' => '' /* THIS HAS TO BE FILLED IN WITH THE EDITED CONTENT */]);
+                                echo $this->Form->submit(__('Edit'), ['id' => 'editCommentButton', 'class' => 'float-right' /* THIS HAS TO BE PRESSED, LIKE A SIMPLE BUTTON */]);
+                                echo $this->Form->end();
+                            ?>
+                        </div>
+
+                        <?= $this->Html->scriptBlock('$(document).ready(function() {$("#textarea-edit").emojioneArea({pickerPosition: "top"});});', array('block' => 'scriptBottom')) ?>
+
+                    <?php else: ?>
+
+                        <?= __('You must be logged in to comment') ?> > <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login', '?' => ['redirect' => '/setups/' . $setup->id]])?>"><?= __('Log me in !') ?></a>
+
+                    <?php endif ?>
+
+                </div>
+
+            </div>
+
+            <div class="section-footer">
+                <div id="social-networks"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
 <?= $this->Html->scriptBlock('
     $("#comment-form").submit(function(event) {
         event.preventDefault();
