@@ -34,9 +34,12 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
 
             <?php if(isset($results["resources"])): $resources = $results["resources"]; ?>
                 <div class="rowfeed">
-                    <?php foreach ($resources as $item): ?>
+                    <?php if(count($resources, COUNT_RECURSIVE) == 1): ?>
+                        <a href="<?= $this->Url->build('/search/?q=' . $resources[0]->title) ?>"><div class="item_box" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div></a>
+                        <h3><?= __('All setups related to :') ?> </br><?= urldecode($resources[0]->title) ?></h3>
+                    <?php else: foreach ($resources as $item): ?>
                         <a href="<?= $this->Url->build('/search/?q=' . $item->title) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
-                    <?php endforeach?>
+                    <?php endforeach; endif;?>
                 </div>
             <?php endif;?>
 
