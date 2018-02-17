@@ -138,6 +138,9 @@ class PagesController extends AppController
 
                 case 'resources':
                     $results = TableRegistry::get('Resources')->getResources($query);
+                    if (count($results) == 1) {
+                        return $this->redirect('/search/?q='.$query);
+                    }
                     break;
 
                 default:

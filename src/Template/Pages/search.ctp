@@ -70,15 +70,7 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
         </div>
 
         <div class="column column-25 sidebar sidebar-search">
-            <div class="blog-advert">
-                <a href="<?=$this->Url->build('/blog/')?>">
-                  <h5><i class="fa fa-newspaper-o"></i><br><?= __('Read our latest news') ?></h5>
-                </a>
-            </div>
-
-            <div class="twitter-feed">
-              <a class="twitter-timeline" data-chrome="noscrollbar nofooter noboders" data-height="781" data-dnt="true" data-theme="dark" href="https://twitter.com/mysetup_co"><?= __('Tweets by @mysetup_co') ?></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
+            Here will be the sorting :)
         </div>
     </div>
 </div>
