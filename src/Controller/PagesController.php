@@ -121,6 +121,7 @@ class PagesController extends AppController
     public function search($entity = null)
     {
         $query = $this->request->getQuery('q');
+        $results = null;
         if($query and strlen($query) >= 3)
         {
             switch($entity)
@@ -140,23 +141,30 @@ class PagesController extends AppController
                 default:
                     // This case is impossible (would throw a 404).
                     // See `setPatterns()` of `/search/:entity` route.
+                    $resources = TableRegistry::get('Resources')->getResources($query);
+                    $setups = TableRegistry::get('Setups')->getSetups(['query' => $query]);
+                    $users = TableRegistry::get('Users')->getUsers($query);
                     break;
             }
 
             if(count($results) == 0)
             {
-                $results = 'noresult';
+                $results = null;
             }
         }
-
         else
         {
-            $results = 'noquery';
+            $entity = "noquery";
         }
 
-        // Prepare and send data to the View (`$entity` will label the type of results present)
-        $this->set('results', [$entity => $results]);
-
+        if($entity == null){
+            $this->set('results', ["resources" => $resources, "setups" => $setups, "users" => $users]);
+        }
+        else{
+            // Prepare and send data to the View (`$entity` will label the type of results present)
+            $this->set('results', [$entity => $results]);
+        }
+        
         $this->display('search');
     }
 
