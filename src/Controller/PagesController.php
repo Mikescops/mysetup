@@ -121,7 +121,6 @@ class PagesController extends AppController
     public function search($entity = null)
     {
         $query = $this->request->getQuery('q');
-        $results = null;
         if($query and strlen($query) >= 3)
         {
             switch($entity)
@@ -132,6 +131,9 @@ class PagesController extends AppController
 
                 case 'users':
                     $results = TableRegistry::get('Users')->getUsers($query);
+                    if (count($results) == 1 && $results[0]->name == $query) {
+                        return $this->redirect('/users/'.$results[0]->id);
+                    }
                     break;
 
                 case 'resources':
@@ -140,23 +142,28 @@ class PagesController extends AppController
 
                 default:
                     // See `setPatterns()` of `/search/:entity` route.
+                    $results = "multiple";
                     $resources = TableRegistry::get('Resources')->getResources($query);
                     $setups = TableRegistry::get('Setups')->getSetups(['query' => $query]);
                     $users = TableRegistry::get('Users')->getUsers($query);
                     if (count($users) == 1 && $users[0]->name == $query && count($setups) < 3 && count($resources) == 0) {
                         return $this->redirect('/users/'.$users[0]->id);
                     }
+                    if(count($setups) == 0 && count($resources) == 0 && count($users) == 0)
+                    {
+                        $results = null;
+                    }
                     break;
             }
-
-            if(count($results) == 0)
-            {
-                $results = null;
+            if (count($results) == 0){
+                $entity = "error";
+                $results = "noresult";                
             }
         }
         else
         {
-            $entity = "noquery";
+            $entity = "error";
+            $results = "noquery";
         }
 
         if($entity == null){

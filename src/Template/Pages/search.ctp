@@ -15,22 +15,25 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
                 <?= $this->Html->scriptBlock('let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
             </div>
 
+            <?php dump($results) ?>
+
             <?php
-                if($results == "noquery")
+                if(isset($results["error"]))
                 {
-                    echo "<h4>" . __("No search query, no results :(") . "</h4>";
-                }
+                    if($results["error"] == "noquery")
+                    {
+                        echo "<h4>" . __("No search query, no results :(") . "</h4>";
+                    }
 
-                elseif($results == "noresult")
-                {
-                    echo "<h4>" . __("We haven't found any results for this query :(") . "</h4>";
-                }
+                    elseif($results["error"] == "noresult")
+                    {
+                        echo "<h4>" . __("We haven't found any results for this query :(") . "</h4>";
+                    }
 
+                }
                 else
                 {
             ?>
-
-            <?php dump($results) ?>
 
             <?php if(isset($results["resources"])): $resources = $results["resources"]; ?>
                 <div class="rowfeed">
