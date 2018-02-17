@@ -180,7 +180,7 @@ class ResourcesTable extends Table
                     $resource->user_id  = $user_id;
                     $resource->setup_id = $setup->id;
                     $resource->type     = 'SETUP_PRODUCT';
-                    $resource->title    = $elements[0];
+                    $resource->title    = rawurlencode(urldecode($elements[0])); // Here is the trick to prevent some special characters not encoded in js
                     $resource->href     = $elements[1];
                     $resource->src      = $elements[2];
 
