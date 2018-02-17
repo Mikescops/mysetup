@@ -137,7 +137,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <div id="item-about-<?= $i ?>" style="display: none;">
                     <div class="about-inner">
                       <h5><?= urldecode($item->title) ?></h5>
-                      <a href="<?=  $this->Url->build('/setups/search?q='.urldecode($item->title)); ?>" class="button brelated"><i class="fa fa-search"></i> Find related setups</a>
+                      <a href="<?=  $this->Url->build('/search/?q='.$item->title); ?>" class="button brelated"><i class="fa fa-search"></i> Find related setups</a>
                       <a href="<?= urldecode($item->href) ?>" traget="_blank" class="button amazon-buy">More info on <i class="fa fa-amazon"></i></a>
                   </div>
                 </div>
