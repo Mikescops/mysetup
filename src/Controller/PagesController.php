@@ -143,7 +143,7 @@ class PagesController extends AppController
                     $resources = TableRegistry::get('Resources')->getResources($query);
                     $setups = TableRegistry::get('Setups')->getSetups(['query' => $query]);
                     $users = TableRegistry::get('Users')->getUsers($query);
-                    if (count($users[0]->name == $query && $users) == 1 && count($setups) < 3 && count($resources) == 0) {
+                    if (count($users) == 1 && $users[0]->name == $query && count($setups) < 3 && count($resources) == 0) {
                         return $this->redirect('/users/'.$users[0]->id);
                     }
                     break;
