@@ -50,10 +50,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                     <h3><?= __('Your main setup has') ?> <?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?> !</h3>
                     <p><?= __('Share it to get more') ?> :</p>
 
-                    <a href="#embed_website_script" data-lity class="jssocials-share-link"><i class="fa fa-code"></i> Embed it to your website</a>
-                    <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fa fa-twitch"></i> Integrate on Twitch</a><br>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&t=<?= $mainSetup->title ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-facebook"></i> Post it !</a>
-                    <a href="https://twitter.com/intent/tweet?via=mysetup_co&url=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&text=<?= $mainSetup->title ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-twitter"></i> Tweet it !</a>
+                    <a href="#embed_website_script" data-lity class="jssocials-share-link"><i class="fa fa-code"></i> <?= __('Embed it to your website') ?></a>
+                    <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fa fa-twitch"></i> <?= __('Integrate on Twitch') ?></a><br>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&t=<?= $mainSetup->title ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-facebook"></i> <?= __('Post it !') ?></a>
+                    <a href="https://twitter.com/intent/tweet?via=mysetup_co&url=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&text=<?= $mainSetup->title ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-twitter"></i> <?= __('Tweet it !') ?></a>
                 </div>
 
                 <div class="hero_column">
