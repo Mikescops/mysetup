@@ -131,6 +131,7 @@ class PagesController extends AppController
 
                 case 'users':
                     $results = TableRegistry::get('Users')->getUsers($query);
+                    // Redirect to user profile if only one user and the query match the name
                     if (count($results) == 1 && $results[0]->name == $query) {
                         return $this->redirect('/users/'.$results[0]->id);
                     }
@@ -138,6 +139,7 @@ class PagesController extends AppController
 
                 case 'resources':
                     $results = TableRegistry::get('Resources')->getResources($query);
+                    // Redirect to home search if only one resource
                     if (count($results) == 1) {
                         return $this->redirect('/search/?q='.$query);
                     }
@@ -149,9 +151,11 @@ class PagesController extends AppController
                     $resources = TableRegistry::get('Resources')->getResources($query);
                     $setups = TableRegistry::get('Setups')->getSetups(['query' => $query]);
                     $users = TableRegistry::get('Users')->getUsers($query);
+                    // Redirect to user profile if only one user and the query match the name
                     if (count($users) == 1 && $users[0]->name == $query && count($setups) < 3 && count($resources) == 0) {
                         return $this->redirect('/users/'.$users[0]->id);
                     }
+                    // Handle empty results
                     if(count($setups) == 0 && count($resources) == 0 && count($users) == 0)
                     {
                         $results = null;
@@ -160,7 +164,7 @@ class PagesController extends AppController
             }
             if (count($results) == 0){
                 $entity = "error";
-                $results = "noresult";                
+                $results = "noresult";
             }
         }
         else
