@@ -68,3 +68,9 @@ So as to extract the strings from the source code, and edit them with _Poedit_, 
 4. Keep the **default path** for output (`<...>/src/Locale`)
 5. **Don't merge** all domain strings into the `default.pot` file
 6. Replace existing files if needed
+
+## Authors
+
+| [![twitter/mikescops](https://avatars0.githubusercontent.com/u/4266283?s=100&v=4)](http://twitter.com/mikescops "Follow @mikescops on Twitter") | [![mastodon/horlogeskynet](https://avatars1.githubusercontent.com/u/5331869?s=100&v=4)](https://mastodon.social/@HorlogeSkynet)
+|---|---|
+| [Corentin Mors](https://pixelswap.fr/) | [Samuel Forestier](https://horlogeskynet.github.io/) |
