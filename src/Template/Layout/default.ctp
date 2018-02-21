@@ -13,7 +13,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <?= $this->Html->css('app.min.css') ?>
+    <?= $this->Html->css('main.min.css') ?>
     <?= $this->Html->css('emoji.min.css') ?>
     <?= $this->Html->css('tippy.css') ?>
 

@@ -1,0 +1,153 @@
+/********** TEAM PAGE *********/
+
+.team-page img{
+	float: left;
+	margin-right: 15px;
+	height: 100px;
+	border-radius: 4px;
+}
+
+.team-page p{
+	margin-bottom: 5px;
+}
+
+.team-page .member{
+	margin-bottom: 5px;
+	overflow: auto;
+}
+
+
+
+/************** LOGIN / REGISTER CSS ******************/
+
+.login-form {
+  margin: 50px auto;
+  width: 500px;
+  max-width: 100%;
+  position: relative;
+}
+.login-form .tabs {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+  position: relative;
+  display: block;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.login-form .tabs li {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+.login-form .tabs a {
+  display: block;
+  float: left;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px 18px 8px 18px;
+}
+.login-form .tabs a.active {
+  border-bottom: solid 1px #fff;
+  -webkit-transition: all 0.5s linear;
+	-moz-transition: all 0.5s linear;
+	transition: all 0.5s linear;
+}
+
+.login-form .form-action {
+  position: relative;
+}
+
+.login-form form {
+  padding-right: 20px !important;
+}
+
+.login-form form input[type=text],
+.login-form form input[type=password],
+.login-form form input[type=email] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  background: #fff;
+  border: none;
+  color: #2167bd;
+  outline: none;
+}
+
+.login-form form select{
+	background-color: #fff;
+	color: #000;
+}
+
+.login-form form option{
+	color: #000;
+}
+
+.login-form form ul{
+	list-style: none;
+}
+
+.login-form .dark-box {
+  background: #5e0400;
+  box-shadow: 1px 3px 3px #3d0100 inset;
+  height: 40px;
+  width: 50px;
+}
+.login-form .form-action .dark-box.bottom {
+  position: absolute;
+  right: 0;
+  bottom: -24px;
+}
+.login-form .tabs + .dark-box.top {
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+.login-form .show {
+  display: block;
+}
+.login-form .hide {
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  color: #2167bd;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #2167bd;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #2167bd;
+}
+
+/************** BUG REPORT CSS ******************/
+
+.bug-report-form {
+  margin: 50px auto;
+  width: 750px;
+  max-width: 100%;
+  position: relative;
+}
+.bug-report-form form {
+  padding-right: 20px !important;
+}
+.bug-report-form form textarea,
+.bug-report-form form input[type=email] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  background: #fff;
+  border: none;
+  color: #2167bd;
+  outline: none;
+}
+
+.bug-report-form textarea {
+    min-height: 150px;
+}
