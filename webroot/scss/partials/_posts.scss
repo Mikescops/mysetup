@@ -162,11 +162,24 @@
 	z-index: 11;
 }
 
+.config-items{
+	position: relative;
+	width: 100%;
+}
+
+.config-items :first-child .item_box{
+	margin-left: 0;
+}
+
+.config-items :last-child .item_box{
+	margin-right: 0;
+}
+
 .item_box {
     float:left;
     position: relative;
-    width: 14.666%;
-    padding-bottom : 14.666%; /* = width for a 1:1 aspect ratio */
+    width: 15%;
+    padding-bottom : 15%; /* = width for a 1:1 aspect ratio */
     margin: 1%;
     border: 3px solid #fff;
     border-radius: 4px;
@@ -175,6 +188,7 @@
     background-size:contain; /* you change this to "contain" if you don't want the images to be cropped */
     background-color: #fff;
 }
+
 
 .item_box:hover{
 	opacity: 0.9;

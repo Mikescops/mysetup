@@ -84,9 +84,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         </div>
 
         <div class="rowfeed">
-            <?php foreach ($recentResources as $item): ?>
-                <a href="<?= $this->Url->build('/search/?q=' . $item->title) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
-            <?php endforeach?>
+            <div class="config-items">
+                <?php foreach ($recentResources as $item): ?>
+                    <a href="<?= $this->Url->build('/search/?q=' . $item->title) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
+                <?php endforeach?>
+            </div>
         </div>
 
         <br clear='all'>

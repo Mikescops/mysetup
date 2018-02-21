@@ -124,30 +124,28 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     </div>
 </div>
 
-<div class="container maincontainer setupview">
+<div class="container maincontainer">
     <div class="row config-post">
-        <div class="column">
 
-            <div class="config-items">
+        <div class="config-items">
 
-                <?php $i=0; foreach ($setup['resources']['products'] as $item): ?>
+            <?php $i=0; foreach ($setup['resources']['products'] as $item): ?>
 
-                <div id="item-trigger-<?= $i ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
+            <div id="item-trigger-<?= $i ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
 
-                <div id="item-about-<?= $i ?>" style="display: none;">
-                    <div class="about-inner">
-                      <h5><?= urldecode($item->title) ?></h5>
-                      <a href="<?=  $this->Url->build('/search/?q='.$item->title); ?>" class="button brelated"><i class="fa fa-search"></i> Find related setups</a>
-                      <a href="<?= urldecode($item->href) ?>" traget="_blank" class="button amazon-buy">More info on <i class="fa fa-amazon"></i></a>
-                  </div>
-                </div>
-
-                <?= $this->Html->scriptBlock("new tippy('#item-trigger-$i', {zIndex: 20, html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
-
-                <?php $i++; endforeach ?>
-
+            <div id="item-about-<?= $i ?>" style="display: none;">
+                <div class="about-inner">
+                  <h5><?= urldecode($item->title) ?></h5>
+                  <a href="<?=  $this->Url->build('/search/?q='.$item->title); ?>" class="button brelated"><i class="fa fa-search"></i> Find related setups</a>
+                  <a href="<?= urldecode($item->href) ?>" traget="_blank" class="button amazon-buy">More info on <i class="fa fa-amazon"></i></a>
+              </div>
             </div>
 
+            <?= $this->Html->scriptBlock("new tippy('#item-trigger-$i', {zIndex: 20, html: '#item-about-$i',arrow: true,animation: 'fade',position: 'bottom', interactive: true});", array('block' => 'scriptBottom')) ?>
+
+            <?php $i++; endforeach ?>
+
+            <br clear="all">
         </div>
 
     </div>
