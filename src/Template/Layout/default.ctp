@@ -364,7 +364,7 @@
     <?php if($authUser): ?>
         <?= $this->Html->script('emoji.min.js') ?>
     <?php endif; ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/lib/js/emojione.min.js"></script>
+    <?= $this->Html->script('emojione.min.js') ?>
 
     <!-- App Js async load -->
     <?= $this->Html->script('app.min.js') ?>
