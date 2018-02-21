@@ -274,6 +274,17 @@ class UsersTable extends Table
                 'id',
                 'name',
                 'modificationDate'
+            ],
+            'contain' => [
+                'Setups' => [
+                    'fields' => [
+                        'id',
+                        'user_id'
+                    ],
+                    'conditions' => [
+                        'status' => 'PUBLISHED'
+                    ]
+                ]
             ]
         ])
         ->distinct()
