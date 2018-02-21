@@ -366,6 +366,8 @@
     <?php endif; ?>
     <?= $this->Html->script('emojione.min.js') ?>
 
+    <?= $this->Html->script('cookieconsent.min.js') ?>
+
     <!-- App Js async load -->
     <?= $this->Html->script('app.min.js') ?>
     <script>const toast = new siiimpleToast();</script>
@@ -376,11 +378,6 @@
     <?= $this->Flash->render() ?>
 
     <?= $this->fetch('scriptBottom') ?>
-
-    <!-- CookieConsent -->
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.js"></script>
-    <script>window.addEventListener("load",function(){window.cookieconsent.initialise({"palette":{"popup":{"background":"#000"},"button":{"background":"#328fea"}},"theme":"classic","position":"bottom-left","content":{"href":"https://mysetup.co/pages/legals"}})});</script>
 
     <!-- Piwik -->
     <script type="text/javascript">

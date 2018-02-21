@@ -6,6 +6,9 @@
  * All rights reserved
  */
 
+/** Cookie Consent load **/
+window.addEventListener("load",function(){window.cookieconsent.initialise({"palette":{"popup":{"background":"#000"},"button":{"background":"#328fea"}},"theme":"classic","position":"bottom-left","content":{"href":"https://mysetup.co/pages/legals"}})});
+
 /** MAIN MENU transition effect **/
 
 $(window).scroll(function(){
