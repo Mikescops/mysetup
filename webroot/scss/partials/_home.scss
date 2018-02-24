@@ -417,6 +417,12 @@
     column-count: 3;
 }
 
+.feeditem.userfeed{
+	-webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+}
+
 .feeditem .red_like {
     margin: 7px;
 }
