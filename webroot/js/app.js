@@ -29,7 +29,13 @@ $(function() {
   }
 })
 
-
+function inIframe() {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
+}
 
 /** SLIDERS **/
 
@@ -733,7 +739,8 @@ function logTwitch(lang){
 /********** Notification refresh and read ************/
 
 function checknotification(){
-    $.ajax({
+    if(inIframe() == false){
+      $.ajax({
         url: webRootJs + "notifications/getNotifications",
         data: {
         n: '8'
@@ -758,8 +765,9 @@ function checknotification(){
                 instance.update(notificationcenter);
             }
         }
-    });
-    setTimeout(function(){checknotification();}, 20000);
+      });
+      setTimeout(function(){checknotification();}, 20000);
+    }
 }
 
 function markasread(id) {
