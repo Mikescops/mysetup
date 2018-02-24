@@ -97,7 +97,9 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
                     <?php endif ?>
                 </div>
-                
+
+                <br clear="all">
+
                 <?php if($authUser['admin']): ?>
                     <a class="button" href="#edit_user_admin" data-lity><?= __('Edit this user') ?></a>
                     <?= $this->element('Modal/edit-profile-admin') ?>
