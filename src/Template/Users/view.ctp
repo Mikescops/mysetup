@@ -91,7 +91,9 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                         </div>
                     <?php endforeach; else: ?>
 
-                    <?= __('There is no setup here yet...') ?>
+                        <?php if(!$authUser || $authUser && $authUser->id != $user->id): ?>
+                            <?= __('There is no setup here yet...') ?>
+                        <?php endif; ?>
 
                     <?php endif ?>
 
@@ -142,8 +144,18 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                     <br><br>
 
                     <?php endif ?>
-
                 </div>
+                <?php if($authUser && $authUser->id == $user->id): ?>
+                    <div class="addsetup-suggest">
+                        <i class="fa fa-plus"></i>
+                        <?php if($authUser['mainSetup_id'] == 0): ?>
+                            <p><?= __('Add your first setup !') ?></p>
+                        <?php else: ?>
+                            <p><?= __('Got another setup ? Add it now !') ?></p>
+                        <?php endif; ?>
+                        <a href="#add_setup_modal" data-lity class="hero_calltoaction"><?= __('Create a Setup') ?></a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
