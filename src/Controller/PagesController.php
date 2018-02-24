@@ -120,7 +120,7 @@ class PagesController extends AppController
 
     public function search($entity = null)
     {
-        $query = $this->request->getQuery('q');
+        $query = trim($this->request->getQuery('q'));
         if($query and strlen($query) >= 3)
         {
             switch($entity)
@@ -131,56 +131,86 @@ class PagesController extends AppController
 
                 case 'users':
                     $results = TableRegistry::get('Users')->getUsers($query);
-                    // Redirect to user profile if only one user and the query match the name
-                    if (count($results) == 1 && $results[0]->name == $query) {
-                        return $this->redirect('/users/'.$results[0]->id);
+
+                    // Redirect to user profile if the result is only one entity, matching its name
+                    if(count($results) == 1 && strtolower($results[0]->name) === strtolower($query))
+                    {
+                        return $this->redirect(['controller' => 'Users', 'action' => 'view', $results[0]->id]);
                     }
+
                     break;
 
                 case 'resources':
                     $results = TableRegistry::get('Resources')->getResources($query);
-                    // Redirect to home search if only one resource
-                    if (count($results) == 1) {
-                        return $this->redirect('/search/?q='.$query);
+
+                    // Redirect to home search if the result is only one resource
+                    if(count($results) == 1)
+                    {
+                        return $this->redirect('/search/?q=' . $query);
                     }
+
                     break;
 
                 default:
                     // See `setPatterns()` of `/search/:entity` route.
-                    $results = "multiple";
-                    $resources = TableRegistry::get('Resources')->getResources($query);
-                    $setups = TableRegistry::get('Setups')->getSetups(['query' => $query]);
                     $users = TableRegistry::get('Users')->getUsers($query);
-                    // Redirect to user profile if only one user and the query match the name
-                    if (count($users) == 1 && $users[0]->name == $query && count($setups) < 3 && count($resources) == 0) {
-                        return $this->redirect('/users/'.$users[0]->id);
+                    $setups = TableRegistry::get('Setups')->getSetups(['query' => $query]);
+                    $resources = TableRegistry::get('Resources')->getResources($query);
+
+                    /*
+                        Redirect to user profile if :
+                        * The result is only one user entity
+                        * The query matches its name
+                        * The resulted setups are only his
+                        * No resource can be associated with this query
+                    */
+                    if(count($users) == 1
+                    && strtolower($users[0]->name) === strtolower($query)
+                    && count($setups) == count($users[0]['setups'])
+                    && count($resources) == 0)
+                    {
+                        return $this->redirect(['controller' => 'Users', 'action' => 'view', $users[0]->id]);
                     }
-                    // Handle empty results
+
+                    // Handle empty results here
                     if(count($setups) == 0 && count($resources) == 0 && count($users) == 0)
                     {
                         $results = null;
                     }
+
+                    else
+                    {
+                        // Well well this is X-mas, let's set a labeled multi-dimensional array with all of these results
+                        $results = [
+                            'users' => $users,
+                            'setups' => $setups,
+                            'resources' => $resources
+                        ];
+                    }
+
                     break;
             }
-            if (count($results) == 0){
-                $entity = "error";
-                $results = "noresult";
+
+            if(!$results || count($results) == 0)
+            {
+                $results = ['error' => 'noresult'];
+            }
+
+            else if($entity)  // Does not match here if it matched the `default` case above
+            {
+                // `$entity` will label the type of results present
+                $results = [$entity => $results];
             }
         }
+
         else
         {
-            $entity = "error";
-            $results = "noquery";
+            $results = ['error' => 'noquery'];
         }
 
-        if($entity == null){
-            $this->set('results', ["resources" => $resources, "setups" => $setups, "users" => $users]);
-        }
-        else{
-            // Prepare and send data to the View (`$entity` will label the type of results present)
-            $this->set('results', [$entity => $results]);
-        }
-        
+        // Send data to the View (please, refer to previous `$results` assignments above)
+        $this->set('results', $results);
+
         $this->display('search');
     }
 

@@ -252,11 +252,14 @@ class UsersController extends AppController
                     $this->Users->saveProfilePicture($data['picture'], $user, $this->Flash);
                 }
 
-                // The user may have changed its preferred store (language) and / or its timezone, let's update this into the server's session
-                $this->Users->prepareSessionForUser($this->request->session(), $user);
+                if($this->Auth->user('id') == $user->id)
+                {
+                    // The user may have changed its preferred store (language) and / or its timezone, let's update this into the server's session
+                    $this->Users->prepareSessionForUser($this->request->session(), $user);
 
-                // The user entity has changed, let's update the session one to reflect the modifications everywhere !
-                $this->request->session()->write('Auth.User', $user);
+                    // The user entity has changed, let's update the session one to reflect the modifications everywhere !
+                    $this->request->session()->write('Auth.User', $user);
+                }
 
                 $this->Flash->success(__('The user has been updated.'));
             }

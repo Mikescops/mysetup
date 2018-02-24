@@ -109,7 +109,7 @@ class AppController extends Controller
         // Test if a user is logged in, and if it's the case, give to the view the user entity linked
         if(isset($this->Auth)) {
             $this->loadModel('Users');
-            $user = $this->Users->find()->where(['id' => $this->Auth->user()['id']])->first();
+            $user = $this->Users->find()->where(['id' => $this->Auth->user('id')])->first();
             if($user and $this->isAdmin($user))
             {
                 $user['admin'] = true;
