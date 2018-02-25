@@ -33,8 +33,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                     <a href="<?= $this->Url->build('/blog/'. $article->id . '-' . $this->Text->slug($article->title)) ?>">
 
-                        <div class="img-overlay"></div>
-
                         <div class="article-img">
 
                             <img src="<?= $this->Url->build('/') . $article->picture ?>" alt="<?= h($article->title) ?>">
