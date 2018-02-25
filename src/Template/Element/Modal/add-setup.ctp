@@ -17,7 +17,7 @@
         <div id="basics" class="form-action show">
 
             <?php
-                echo $this->Form->control('title', ['label' => __('Title *'), 'id' => 'title', 'maxlength' => 48, 'required' => 'true']);
+                echo $this->Form->control('title', ['label' => __('Title *'), 'id' => 'title', 'pattern' => '.{4,48}', 'maxlength' => 48, 'required' => 'true']);
                 echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'placeholder' => __('What is the purpose of your setup ? Tell us your setup\'s story...')]);
             ?>
             <span class="float-right link-marksupp"><a target="_blank" href="<?=$this->Url->build('/pages/q&a#q-6')?>"><i class="fa fa-info-circle"></i> Markdown supported</a></span>
