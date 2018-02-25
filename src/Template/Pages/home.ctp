@@ -127,7 +127,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 </div>
 
-<div class="colored-box-3">
+<div class="colored-box-4">
     <div class="container">
         <div class="rowfeed">
             <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
@@ -181,7 +181,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 </div>
 
-<div class="colored-box-4">
+<div class="colored-box-3">
     <div class="container">
         <div class="rowfeed">
             <h4 class="fancy"><span>Nvidia</span></h4>

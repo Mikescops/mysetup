@@ -45,7 +45,13 @@ class PagesController extends AppController
         $amdSetups = $Setups->getSetups(['query' => 'amd', 'number' => 10, 'type' => 'like']);
         $nvidiaSetups = $Setups->getSetups(['query' => 'nvidia', 'number' => 10, 'type' => 'like']);
 
-        $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->order('RAND()')->limit(6)->toArray();
+        if ($this->RequestHandler->isMobile() == true){
+            $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->order('RAND()')->limit(2)->toArray();
+        }
+        else{
+            $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->order('RAND()')->limit(6)->toArray();
+        }
+        
 
         if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {
@@ -71,7 +77,13 @@ class PagesController extends AppController
             ]);
         }
 
-        $activeUsers = TableRegistry::get('Users')->getActiveUsers(8);
+        if ($this->RequestHandler->isMobile() == true){
+            $activeUsers = TableRegistry::get('Users')->getActiveUsers(4);
+        }
+        else{
+            $activeUsers = TableRegistry::get('Users')->getActiveUsers(8);
+        }
+        
 
         $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'amdSetups', 'nvidiaSetups', 'activeUsers', 'recentResources', 'mainSetup'));
 

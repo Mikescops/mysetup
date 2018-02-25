@@ -73,33 +73,16 @@
 }
 
 .fancy {
-  line-height: 1.2;
+  line-height: unset;
   text-align: center;
   width: 100%;
-  overflow-x: hidden;
 }
-// .fancy span {
-//   display: inline-block;
-//   position: relative;
-// }
-// .fancy span:before,
-// .fancy span:after {
-//   content: "";
-//   position: absolute;
-//   height: 12px;
-//   border-bottom: 1px solid #636363;
-//   /*border-top: 1px solid white;*/
-//   top: 0;
-//   width: 800px;
-// }
-// .fancy span:before {
-//   right: 100%;
-//   margin-right: 15px;
-// }
-// .fancy span:after {
-//   left: 100%;
-//   margin-left: 15px;
-// }
+
+.fancy span{
+	padding: .5rem 3rem;
+	background: rgba(0,0,0, .1);
+	border-radius: 6px;
+}
 
 .rowfeed{
 	padding: 20px 0;
@@ -114,8 +97,8 @@
 	-webkit-column-count: 2;
 	-moz-column-count: 2;
 	column-count: 2;
-	margin-top: 10px;
-	height: 130px;
+	margin: 40px 10px;
+	height: 110px;
 }
 
 .rowsocial .blog-advert, .rowsocial .twitch-advert{
@@ -285,6 +268,7 @@
 				flex: 0 0 auto;
 
 				width: 40px;
+				height: 40px;
 				max-width: 100%;
 				border-radius: 100%;
 				display: block;
