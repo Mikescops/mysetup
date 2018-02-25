@@ -70,13 +70,6 @@
 	display: block;
 }
 
-.post-image{
-	max-height: 350px;
-	overflow: hidden;
-	display: block;
-	margin-bottom: 10px;
-}
-
 .button-backtolist{
 	width: 100%;
 }
@@ -94,5 +87,39 @@
 		font-size: .5em;
 		vertical-align: middle;
 		margin: 0 5px;
+	}
+}
+
+.article-post{
+	.post-image{
+		max-height: 350px;
+		overflow: hidden;
+		display: block;
+		margin-bottom: 10px;
+		border-radius: 4px;
+	}
+
+	img{
+		max-width: 100%;
+		height: auto;
+	}
+
+	.category{
+		background: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0);
+		color: #fff;
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+		cursor: pointer;
+
+		&:hover{
+		    background: #fff;
+		    color: #4582EC;
+		}
+
+		-webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 	}
 }
