@@ -9,7 +9,7 @@
 
 $color-blue: #328fea;
 
- /********** GENERAL CSS **********/
+/********** GENERAL CSS **********/
 
 html{
 	background: #000;
@@ -45,27 +45,6 @@ img{
 	-ms-user-select: none;
 }
 
-/*::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    background: #2b2b2b;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #2b2b2b;
-    border-radius: 2px;
-    border: 0;
-    border-right: 0;
-}
-
-::-webkit-scrollbar-track {
-    background: #121212;
-}
-
-::selection {
-    background: #bfbfbf;
-}*/
-
 .sitecontainer{
 	padding-top: 60px;
 }
@@ -78,14 +57,14 @@ footer{
 	margin-top: 40px;
 	padding: 50px 0 50px 0;
 	background-color: #000;
-}
 
-footer ul{
-	list-style-type: none;
-}
+	ul{
+		list-style-type: none;
+	}
 
-footer a{
-	color: #cfcfcf;
+	a{
+		color: #cfcfcf;
+	}
 }
 
 .footer-title{
@@ -97,13 +76,13 @@ footer a{
 .logo_footer{
 	margin-top: 10px;
 	text-align: center;
-}
 
-.logo_footer img{
-	height: 80px;
-	background: #fff;
-	padding: 5px;
-	border-radius: 50%;
+	img{
+		height: 80px;
+		background: #fff;
+		padding: 5px;
+		border-radius: 50%;
+	}
 }
 
 .verified_account{
@@ -116,35 +95,35 @@ footer a{
 
 .rowsocial .social-networks{
 	height: 200px;
-}
 
-.rowsocial .social-networks a{
-	margin: 0;
-    width: 23%;
-    margin-right: 2%;
+	a{
+		margin: 0;
+	    width: 23%;
+	    margin-right: 2%;
+	}
 }
 
 .social-networks{
 	margin: 10px 0;
-}
 
-.social-networks a{
-	margin: 2%;
-	width: 46%;
-	display: block;
-	float: left;
-	background-color: #009cff;
-	border-radius: 4px;
-	color: #fff;
-	text-align: center;
-	height: 100px;
-	font-size: 30px;
-	line-height: 125px;
-	transition: opacity 0.45s;
-}
+	a{
+		margin: 2%;
+		width: 46%;
+		display: block;
+		float: left;
+		background-color: #009cff;
+		border-radius: 4px;
+		color: #fff;
+		text-align: center;
+		height: 100px;
+		font-size: 30px;
+		line-height: 125px;
+		transition: opacity 0.45s;
 
-.social-networks a:hover{
-	opacity: 0.8;
+		&:hover{
+			opacity: 0.8;
+		}
+	}
 }
 
 .tippy-tooltip{
@@ -157,7 +136,7 @@ footer a{
 
 .before-footer{
 	margin-bottom: -40px;
-	margin-top: 20px;
+	margin-top: 30px;
 
 	.container{
 		text-align: center;
