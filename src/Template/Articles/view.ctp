@@ -35,6 +35,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div class="column">
                 <div class="breadcrumb">
                     <a href="<?= $this->Url->build('/') ?>"><?= __('Home') ?></a> <i class="fa fa-chevron-right"></i> <a href="<?= $this->Url->build('/blog') ?>"><?= __('Blog') ?></a> <i class="fa fa-chevron-right"></i> <?= h($article->title) ?>
+
+                    <?php if($authUser['admin']): ?>&nbsp;&nbsp;
+                        <a title="<?= __('Edit this article') ?>" href="<?= $this->Url->build(['action' => 'edit', $article->id]) ?>"><i class="fa fa-pencil"></i></a>
+                        &nbsp;
+                        <?php if($authUser['id'] == $article->user_id): ?>
+                            <?= $this->Form->postLink('', ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete this article ?'), 'class' => 'fa fa-trash', 'title' => __('Delete this article')]) ?>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -69,13 +77,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
         </div>
         <div class="column column-25 sidebar">
-
-        <?php if($authUser['admin']): ?>
-            <a class="button" href="<?= $this->Url->build(['action' => 'edit', $article->id]) ?>"><?= __('Edit this article') ?></a>
-            <?php if($authUser['id'] == $article->user_id): ?>
-                <?= $this->Form->postLink(__('Delete this article'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete this article ?'), 'class' => 'button']) ?>
-            <?php endif; ?>
-        <?php endif; ?>
 
             <a class="button button-backtolist" href="<?= $this->Url->build('/blog') ?>"><i class="fa fa-share"></i> <?= __('Go back to list') ?></a>
 
