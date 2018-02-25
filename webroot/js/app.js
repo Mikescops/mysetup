@@ -817,6 +817,9 @@ function replaceValidationUI( form ) {
         if ( !this.checkValidity() ) {
             event.preventDefault();
         }
+        else{
+          $('#publish-add').replaceWith("<span class='float-right button'><i class='fa fa-circle-o-notch fa-spin fa-fw'></i></span>");
+        }
     });
 
     var submitButton = form.querySelector( "input[type=submit]" );
@@ -834,12 +837,12 @@ function replaceValidationUI( form ) {
                 "</li>";
         }
 
-        // Update the list with the new error messages
-        toast.alert(listHtml);
-
         // If there are errors, give focus to the first invalid field and show
         // the error messages container
         if ( invalidFields.length > 0 ) {
+            // Update the list with the new error messages
+            toast.alert(listHtml);
+
             invalidFields[1].focus();
         }
     });
