@@ -135,68 +135,78 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             </div>
             <a class="home_more float-right" href="<?= $this->Url->build('/pages/popular'); ?>"><?= __('More popular setups') ?> <i class="fa fa-chevron-right"></i></a>
         </div>
-
-        <br clear='all'>
-
-        <div class="rowfeed">
-            <h4 class="fancy"><span><?= __('Latest setups') ?></span></h4>
-            <div class="feeditem">
-
-                <?php $i=0; foreach ($recentSetups as $setup): ?>
-
-                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
-
-                <?php if (++$i == 8) break; endforeach ?>
-            </div>
-            <a class="home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More recent setups') ?> <i class="fa fa-chevron-right"></i></a>
-        </div>
-
-        <br clear='all'>
-
-        <div class="rowfeed">
-            <h4 class="fancy"><span>AMD</span></h4>
-            <div class="feeditem">
-
-                <?php $i = 0; foreach ($amdSetups as $setup): ?>
-
-                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
-
-                <?php if (++$i == 3) break; endforeach ?>
-            </div>
-            <a class="home_more float-right" href="<?= $this->Url->build('/search/resources?q=amd'); ?>"><?= __('More AMD setups') ?> <i class="fa fa-chevron-right"></i></a>
-        </div>
-
-        <br clear='all'>
-
-        <div class="rowfeed">
-            <h4 class="fancy"><span>Nvidia</span></h4>
-            <div class="feeditem">
-
-                <?php $i = 0; foreach ($nvidiaSetups as $setup): ?>
-
-                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
-
-                <?php if (++$i == 3) break; endforeach ?>
-            </div>
-            <a class="home_more float-right" href="<?= $this->Url->build('/search/resources?q=nvidia'); ?>"><?= __('More Nvidia setups') ?> <i class="fa fa-chevron-right"></i></a>
-        </div>
-
-        <br clear='all'>
-
-        <div class="rowfeed">
-            <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
-            <div class="activeUsers">
-                <?php foreach($activeUsers as $activeUser): ?>
-
-                    <a class="featured-user" href="<?=$this->Url->build('/users/'.$activeUser->id)?>">
-                        <img alt="<?= __('Profile picture of') ?> <?= $activeUser->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
-                    </a>
-
-                <?php endforeach ?>
-            </div>
-        </div>
-
-        <br clear='all'>
-
     </div>
+</div>
+        <br clear='all'>
+<div class="container">
+
+    <div class="rowfeed">
+        <h4 class="fancy"><span><?= __('Latest setups') ?></span></h4>
+        <div class="feeditem">
+
+            <?php $i=0; foreach ($recentSetups as $setup): ?>
+
+                <?= $this->element('List/cards', ['setup' => $setup]) ?>
+
+            <?php if (++$i == 8) break; endforeach ?>
+        </div>
+        <a class="home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More recent setups') ?> <i class="fa fa-chevron-right"></i></a>
+    </div>
+
+</div>
+
+<div class="container">
+
+    <br clear='all'>
+
+    <div class="rowfeed">
+        <h4 class="fancy"><span>AMD</span></h4>
+        <div class="feeditem">
+
+            <?php $i = 0; foreach ($amdSetups as $setup): ?>
+
+                <?= $this->element('List/cards', ['setup' => $setup]) ?>
+
+            <?php if (++$i == 3) break; endforeach ?>
+        </div>
+        <a class="home_more float-right" href="<?= $this->Url->build('/search/resources?q=amd'); ?>"><?= __('More AMD setups') ?> <i class="fa fa-chevron-right"></i></a>
+    </div>
+
+</div>
+
+    <br clear='all'>
+
+<div class="container">
+
+    <div class="rowfeed">
+        <h4 class="fancy"><span>Nvidia</span></h4>
+        <div class="feeditem">
+
+            <?php $i = 0; foreach ($nvidiaSetups as $setup): ?>
+
+                <?= $this->element('List/cards', ['setup' => $setup]) ?>
+
+            <?php if (++$i == 3) break; endforeach ?>
+        </div>
+        <a class="home_more float-right" href="<?= $this->Url->build('/search/resources?q=nvidia'); ?>"><?= __('More Nvidia setups') ?> <i class="fa fa-chevron-right"></i></a>
+    </div>
+
+</div>
+    <br clear='all'>
+
+<div class="container">
+
+    <div class="rowfeed">
+        <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
+        <div class="activeUsers">
+            <?php foreach($activeUsers as $activeUser): ?>
+
+                <a class="featured-user" href="<?=$this->Url->build('/users/'.$activeUser->id)?>">
+                    <img alt="<?= __('Profile picture of') ?> <?= $activeUser->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
+                </a>
+
+            <?php endforeach ?>
+        </div>
+    </div>
+
 </div>
