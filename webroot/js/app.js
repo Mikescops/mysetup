@@ -531,7 +531,7 @@ class siiimpleToast {
       minWidth: '17rem',
       maxWidth: '100%',
       marginLeft: '1rem',
-      zIndex: '30',
+      zIndex: '9999',
       borderRadius: '2px',
       color: 'white',
       fontWeight: 300,
@@ -799,4 +799,54 @@ function saveasdraftadd(){
 function saveasdraftedit(){
   $("#status-edit").val('DRAFT');
    $('#publish-edit').click();
+}
+
+
+
+/*** FORM VALIDATION ADD SETUP **/
+
+function replaceValidationUI( form ) {
+    // Suppress the default bubbles
+    form.addEventListener( "invalid", function( event ) {
+        event.preventDefault();
+    }, true );
+
+    // Support Safari, iOS Safari, and the Android browser—each of which do not prevent
+    // form submissions by default
+    form.addEventListener( "submit", function( event ) {
+        if ( !this.checkValidity() ) {
+            event.preventDefault();
+        }
+    });
+
+    var submitButton = form.querySelector( "input[type=submit]" );
+    submitButton.addEventListener( "click", function( event ) {
+        var invalidFields = form.querySelectorAll( ":invalid" ),
+            listHtml = "",
+            label;
+
+        for ( var i = 1; i < invalidFields.length; i++ ) {
+            label = form.querySelector( "label[for=" + invalidFields[i].id + "]" );
+            listHtml += "<li>" + 
+                label.innerHTML +
+                " | " +
+                invalidFields[i].validationMessage +
+                "</li>";
+        }
+
+        // Update the list with the new error messages
+        toast.alert(listHtml);
+
+        // If there are errors, give focus to the first invalid field and show
+        // the error messages container
+        if ( invalidFields.length > 0 ) {
+            invalidFields[1].focus();
+        }
+    });
+}
+
+// Replace the validation UI for all forms
+var forms = document.querySelectorAll( "#add_setup_modal form" );
+for ( var i = 0; i < forms.length; i++ ) {
+    replaceValidationUI( forms[i] );
 }
