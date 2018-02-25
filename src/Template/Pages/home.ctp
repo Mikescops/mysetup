@@ -204,11 +204,15 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
         <div class="activeUsers">
             <?php foreach($activeUsers as $activeUser): ?>
-
-                <a class="featured-user" href="<?=$this->Url->build('/users/'.$activeUser->id)?>">
-                    <img alt="<?= __('Profile picture of') ?> <?= $activeUser->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
-                </a>
-
+                <div class="featured-user">
+                    <a href="<?=$this->Url->build('/users/'.$activeUser->id)?>">
+                        <img alt="<?= __('Profile picture of') ?> <?= $activeUser->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
+                        <span>
+                            <strong><?= $activeUser->name ?></strong>
+                            <span>3 likes</span>
+                        </span>
+                    </a>
+                </div>
             <?php endforeach ?>
         </div>
         <br clear='all'>

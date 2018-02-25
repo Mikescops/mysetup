@@ -71,7 +71,7 @@ class PagesController extends AppController
             ]);
         }
 
-        $activeUsers = TableRegistry::get('Users')->getActiveUsers(12);
+        $activeUsers = TableRegistry::get('Users')->getActiveUsers(8);
 
         $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'amdSetups', 'nvidiaSetups', 'activeUsers', 'recentResources', 'mainSetup'));
 

@@ -149,6 +149,13 @@
 		display: block;
 	}
 
+	.activeUsers{
+		-webkit-column-count: 1!important; /* Chrome, Safari, Opera */
+	    -moz-column-count: 1!important; /* Firefox */
+	    column-count: 1!important;
+	}
+
+
 	/* POST RESPONSIVE */
 
 	.featured-inner .featured-user{
@@ -261,9 +268,9 @@
 	}
 
 	.activeUsers{
-		-webkit-column-count: 4; /* Chrome, Safari, Opera */
-	    -moz-column-count: 4; /* Firefox */
-	    column-count: 4;
+		-webkit-column-count: 2; /* Chrome, Safari, Opera */
+	    -moz-column-count: 2; /* Firefox */
+	    column-count: 2;
 	}
 
 	/* HOME RESPONSIVE */

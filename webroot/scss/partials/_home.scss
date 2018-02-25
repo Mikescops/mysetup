@@ -261,21 +261,56 @@
 }
 
 .activeUsers{
-	-webkit-column-count: 12; /* Chrome, Safari, Opera */
-    -moz-column-count: 12; /* Firefox */
-    column-count: 12;
+	-webkit-column-count: 4; /* Chrome, Safari, Opera */
+    -moz-column-count: 4; /* Firefox */
+    column-count: 4;
     -moz-column-fill: balance;
     column-fill: balance;
-}
 
-.activeUsers .featured-user img{
-	width: 80px;
-	max-width: 100%;
-	border-radius: 100%;
-	display: block;
-	border: solid 2px #328fea;
-	background-color: rgb(0, 0, 0);
-	margin-bottom: 10px;
+    .featured-user{
+    	display: flex;
+    	background: #282d37;
+		border-radius: 4px;
+		padding: 10px;
+		margin-bottom: 10px;
+
+		&:hover{
+			background: #303643;
+		}
+
+		a{
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			width: 100%;
+			color: #d9e1e8;
+			text-decoration: none;
+			line-height: 20px;
+
+			img{
+				-webkit-box-flex: 0;
+				-ms-flex: 0 0 auto;
+				flex: 0 0 auto;
+
+				width: 40px;
+				max-width: 100%;
+				border-radius: 100%;
+				display: block;
+				background-color: rgb(0, 0, 0);
+			}
+
+			strong{
+				display: block;
+			}
+
+			> span{
+				-webkit-box-flex: 1;
+				-ms-flex: 1 1 auto;
+				flex: 1 1 auto;
+				padding-left: 10px;
+			}
+		}
+    }
 }
 
 /* Search Bar */
