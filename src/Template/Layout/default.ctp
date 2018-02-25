@@ -160,6 +160,24 @@
 
     <?= $this->fetch('content') ?>
 
+    <?php if(!$authUser && $this->request->here != '/login'): ?>
+
+        <section class="colored-box before-footer">
+            <svg class="decorative-divider" preserveAspectRatio="none" viewBox=" 0 0 100 100">
+                <polygon points="0 0 100 0 100 100" fill="#151515"></polygon>
+            </svg>
+            <div class="container">
+                <div class="row">
+                    <div class="column">
+                        <h3><?= __('Join us and start building your setup') ?> <i class="fa fa-diamond"></i></h3>
+                        <a href="<?=$this->Url->build('/login')?>" class="hero_calltoaction">Sign me in !</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <?php endif; ?>
+
     <footer>
         <div class="container">
 

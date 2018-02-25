@@ -151,6 +151,37 @@ footer a{
 	font-size: 14px!important;
 }
 
+.before-footer{
+	margin-bottom: -40px;
+	margin-top: 20px;
+
+	.container{
+		text-align: center;
+		padding: 4rem 15px 6rem 15px;
+	}
+}
+
+.colored-container{
+	background-color: #344154;
+	padding-top: 100px;
+	background: linear-gradient(145deg, #344154 0%, #3A62A8 100%);
+}
+
+.colored-box{
+	background-color: #344154;
+	background: linear-gradient(145deg, #344154 0%, #3A62A8 100%);
+}
+
+.decorative-divider {
+	bottom: 1px;
+    height: 3rem;
+    display: block;
+	position: relative;
+	z-index: 0;
+	height: 6rem;
+	width: 100%;
+}
+
 // Imports >>>
 
 @import "home";
