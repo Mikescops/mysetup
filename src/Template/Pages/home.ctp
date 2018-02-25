@@ -209,7 +209,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                         <img alt="<?= __('Profile picture of') ?> <?= $activeUser->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
                         <span>
                             <strong><?= $activeUser->name ?></strong>
-                            <span>3 likes</span>
+                            <span></span>
                         </span>
                     </a>
                 </div>

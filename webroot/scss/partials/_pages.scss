@@ -16,8 +16,6 @@
 	overflow: auto;
 }
 
-
-
 /************** LOGIN / REGISTER CSS ******************/
 
 .login-form {
@@ -125,7 +123,7 @@
   color: #2167bd;
 }
 
-/************** BUG REPORT CSS ******************/
+/************** BUG REPORT CSS **************/
 
 .bug-report-form {
   margin: 50px auto;
@@ -150,4 +148,13 @@
 
 .bug-report-form textarea {
     min-height: 150px;
+}
+
+
+/************** SEARCH CSS **************/
+
+.search-container .activeUsers{
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
 }
