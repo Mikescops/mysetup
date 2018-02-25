@@ -80,3 +80,19 @@
 .button-backtolist{
 	width: 100%;
 }
+
+.breadcrumb{
+	margin-bottom: 15px;
+	font-size: .875em;
+
+	a{
+		color: #fff;
+		font-weight: bold;
+	}
+
+	i{
+		font-size: .5em;
+		vertical-align: middle;
+		margin: 0 5px;
+	}
+}

@@ -29,7 +29,19 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 ?>
 
-<div class="container sitecontainer">
+<div class="colored-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="column">
+                <div class="breadcrumb">
+                    <a href="<?= $this->Url->build('/') ?>"><?= __('Home') ?></a> <i class="fa fa-chevron-right"></i> <a href="<?= $this->Url->build('/blog') ?>"><?= __('Blog') ?></a> <i class="fa fa-chevron-right"></i> <?= h($article->title) ?>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>
+
+<div class="container">
     <div class="maincontainer">
 
     <div class="row">
@@ -65,7 +77,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <?php endif; ?>
         <?php endif; ?>
 
-            <a class="button button-backtolist" href="<?= $this->Url->build('/blog/') ?>"><i class="fa fa-share"></i> <?= __('Go back to list') ?></a>
+            <a class="button button-backtolist" href="<?= $this->Url->build('/blog') ?>"><i class="fa fa-share"></i> <?= __('Go back to list') ?></a>
 
             <div class="social-networks">
                 <a href="https://www.facebook.com/mysetup.co" target="_blank" style="background-color: #3b5998"><i class="fa fa-facebook fa-2x"></i></a>
