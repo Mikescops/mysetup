@@ -30,8 +30,8 @@
                     <td><?= $comment->has('setup') ? $this->Html->link($comment->setup->title, ['controller' => 'Setups', 'action' => 'view', $comment->setup->id]) : '' ?></td>
                     <td><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link('',  ['controller' => 'Setups', 'action' => 'view', $comment->setup->id, '#' => 'comments'], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
-                        <?= $this->Form->postLink('', ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this comment ?')]) ?>
+                        <?= $this->Html->link('<i data-feather="eye"></i>',  ['controller' => 'Setups', 'action' => 'view', $comment->setup->id, '#' => 'comments'], ['title' => __('View'), 'escape' => false]) ?>
+                        <?= $this->Form->postLink('<i data-feather="trash-2"></i>', ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this comment ?'), 'escape' => false]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

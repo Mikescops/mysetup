@@ -30,7 +30,7 @@
                     <td><?= $this->Html->link($resource->setup->title, ['controller' => 'Setups', 'action' => 'view', $resource->setup_id]) ?></td>
                     <td><?= h($resource->type) ?></td>
                     <td><?= urldecode(h($resource->title)) ?></td>
-                    <td><?php if ($resource->href) :?> <a href="<?= urldecode(h($resource->href)) ?>"><i class="fa fa-link"></i></a> <?php endif ?></td>
+                    <td><?php if ($resource->href) :?> <a href="<?= urldecode(h($resource->href)) ?>"><i data-feather="link"></i></a> <?php endif ?></td>
                     <?php
                         $src = urldecode(h($resource->src));
                         if(substr($src, 0, strlen('uploads/files/')) === 'uploads/files/')

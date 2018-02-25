@@ -17,8 +17,6 @@
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 
-    <?= $this->Html->css('font-awesome.min.css') ?>
-
     <?= $this->Html->meta(['link' => '/img/favicon/apple-touch-icon.png', 'rel' => 'apple-touch-icon', 'sizes' => '180x180']) ?>
     <?= $this->Html->meta(['link' => '/img/favicon/favicon-32x32.png', 'rel' => 'icon', 'type' => 'image/png', 'sizes' => '32x32']) ?>
     <?= $this->Html->meta(['link' => '/img/favicon/favicon-16x16.png', 'rel' => 'icon', 'type' => 'image/png', 'sizes' => '16x16']) ?>
@@ -38,8 +36,20 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style type="text/css">
+      a .feather{
+        height: 20px;
+        vertical-align: text-bottom;
+      }
+      .feather{
+        vertical-align: middle;
+      }
+    </style>
 </head>
 
 <body>
@@ -53,24 +63,24 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build('/admin/setups'); ?>"><i class="fa fa-server"></i> <?= __('Setups') ?></a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/setups'); ?>"><i data-feather="hard-drive"></i> <?= __('Setups') ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build('/admin/users'); ?>"><i class="fa fa-user-o"></i> <?= __('Users') ?></a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/users'); ?>"><i data-feather="users"></i> <?= __('Users') ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build('/admin/comments'); ?>"><i class="fa fa-comment-o"></i> <?= __('Comments') ?></a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/comments'); ?>"><i data-feather="message-circle"></i> <?= __('Comments') ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build('/admin/resources'); ?>"><i class="fa fa-database"></i> <?= __('Resources') ?></a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/resources'); ?>"><i data-feather="layers"></i> <?= __('Resources') ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'add']); ?>"><i class="fa fa-pencil-square-o"></i> <?= __('Add Article') ?></a>
+            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'add']); ?>"><i data-feather="edit"></i> <?= __('Add Article') ?></a>
           </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build('/'); ?>"><i class="fa fa-external-link"></i> <?= __('View website') ?></a>
+            <a class="nav-link" href="<?= $this->Url->build('/'); ?>"><i data-feather="external-link"></i> <?= __('View website') ?></a>
           </li>
         </ul>
       </div>
@@ -82,10 +92,10 @@
         <div class="col-12 col-md-3 col-xl-2 d-none d-md-block">
 
             <div class="list-group">
-              <a href="<?=$this->Url->build('/users/'. $authUser['id'])?>" class="list-group-item active"><i class="fa fa-chevron-right"></i> <?= __('Welcome') ?> <?= h($authUser['name']) ?></a>
-              <a href="<?= $this->Url->build('/admin/sendNotification'); ?>" class="list-group-item list-group-item-action"><i class="fa fa-bullhorn"></i> <?= __('Send notification') ?></a>
-              <a href="https://github.com/Mikescops/mysetup" class="list-group-item list-group-item-action"><i class="fa fa-github"></i> Github Repo</a>
-              <a href="https://github.com/Mikescops/mysetup-twitch-extension" class="list-group-item list-group-item-action"><i class="fa fa-twitch"></i> Extension Twitch Repo</a>
+              <a href="<?=$this->Url->build('/users/'. $authUser['id'])?>" class="list-group-item active"><i data-feather="package"></i> <?= __('Welcome') ?> <?= h($authUser['name']) ?></a>
+              <a href="<?= $this->Url->build('/admin/sendNotification'); ?>" class="list-group-item list-group-item-action"><i data-feather="send"></i> <?= __('Send notification') ?></a>
+              <a href="https://github.com/Mikescops/mysetup" class="list-group-item list-group-item-action"><i data-feather="github"></i></i> Github Repo</a>
+              <a href="https://github.com/Mikescops/mysetup-twitch-extension" class="list-group-item list-group-item-action"><i data-feather="git-branch"></i> Extension Twitch Repo</a>
             </div>
 
         </div>
@@ -108,6 +118,9 @@
     <?= $this->Html->script('jquery-3.2.0.min.js') ?>
     <?= $this->Html->script('lib.min.js?v=2') ?>
     <?= $this->Html->script('app.min.js') ?>
+    <script>
+      feather.replace()
+    </script>
     <script>const toast = new siiimpleToast();</script>
     <?= $this->Flash->render() ?>
 </body>

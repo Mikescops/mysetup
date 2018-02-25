@@ -38,8 +38,8 @@
                     <td><?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); ?></td>
                     <td><?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); ?></td>
                     <td class="actions">
-                        <?= $this->Html->link('', ['controller' => 'Setups', 'action' => 'view', $setup->id], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
-                        <?= $this->Form->postLink('', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this setup ?')]) ?>
+                        <?= $this->Html->link('<i data-feather="eye"></i>', ['controller' => 'Setups', 'action' => 'view', $setup->id], ['title' => __('View'), 'escape' => false]) ?>
+                        <?= $this->Form->postLink('<i data-feather="trash-2"></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this setup ?'), 'escape' => false]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

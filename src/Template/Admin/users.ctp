@@ -61,7 +61,7 @@
                         <?php if($user->uwebsite or $user->ufacebook or $user->utwitter or $user->utwitch): ?>
                         <div class="btn-group">
                             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-info"></i>
+                                <i data-feather="info" width="20px" height="20px"></i>
                             </button>
                             <div class="dropdown-menu">
                                 <?php if($user->uwebsite): echo '<a class="dropdown-item" href="' . $user->uwebsite . '" title="' . $user->uwebsite . '" target="_blank">Website</a>'; endif; ?>
@@ -72,8 +72,8 @@
                         <?php endif; ?>
 
                     <td class="actions">
-                        <?= $this->Html->link('', ['controller' => 'Users', 'action' => 'view', $user->id], ['class' => 'fa fa-eye', 'title' => __('View')]) ?>
-                        <?= $this->Form->postLink('', ['controller' => 'Users', 'action' => 'delete', $user->id], ['class' => 'fa fa-trash-o', 'title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this user ?')]) ?>
+                        <?= $this->Html->link('<i data-feather="eye"></i>', ['controller' => 'Users', 'action' => 'view', $user->id], ['title' => __('View'), 'escape' => false]) ?>
+                        <?= $this->Form->postLink('<i data-feather="trash-2"></i>', ['controller' => 'Users', 'action' => 'delete', $user->id], ['title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this user ?'), 'escape' => false]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
