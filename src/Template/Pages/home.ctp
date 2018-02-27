@@ -45,25 +45,20 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 </div>
             </div>
         <?php else: ?>
-            <div class="hero_inner">
-                <div class="hero_column">
-                    <h3><?= __('Your main setup has') ?> <?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?> !</h3>
-                    <p><?= __('Share it to get more') ?> :</p>
+            <div class="hero_mainsetup" alt="<?= h($mainSetup->title) ?>" style="background-image:url(<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg' )) ?>)"></div>
 
+            <div class="hero_hover"> 
+                <h2><?= __('Your main setup has') ?> <?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?> !</h2>
+                <p><?= __('Share it to get more') ?> :</p>
+
+                <div class="embed-links">
                     <a href="#embed_website_script" data-lity class="jssocials-share-link"><i class="fa fa-code"></i> <?= __('Embed it to your website') ?></a>
-                    <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fa fa-twitch"></i> <?= __('Integrate on Twitch') ?></a><br>
+                    <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fa fa-twitch"></i> <?= __('Integrate on Twitch') ?></a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&t=<?= $mainSetup->title ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-facebook"></i> <?= __('Post it !') ?></a>
                     <a href="https://twitter.com/intent/tweet?via=mysetup_co&url=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&text=<?= $mainSetup->title ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-twitter"></i> <?= __('Tweet it !') ?></a>
+                    <a href="<?= $this->Url->build('/setups/'.$mainSetup->id.'-'.$this->Text->slug($mainSetup->title)); ?>">
+                    </a>
                 </div>
-
-                <div class="hero_column">
-                    <div class="fullitem">
-                        <a href="<?= $this->Url->build('/setups/'.$mainSetup->id.'-'.$this->Text->slug($mainSetup->title)); ?>">
-                            <img alt="<?= h($mainSetup->title) ?>" src="<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg' )) ?>">
-                        </a>
-                    </div>
-                </div>
-
             </div>
             <?= $this->element('Modal/twitch', ['setup' => $mainSetup]) ?>
             <?= $this->element('Modal/embed', ['setup' => $mainSetup]) ?>
