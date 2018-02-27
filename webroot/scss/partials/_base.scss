@@ -134,9 +134,12 @@ footer{
 	margin: 0 auto!important;
 }
 
+.calltosignin{
+	margin-top: 30px;
+}
+
 .before-footer{
 	margin-bottom: -40px;
-	margin-top: 30px;
 
 	.container{
 		text-align: center;
@@ -153,6 +156,14 @@ footer{
 .colored-box{
 	background-color: #344154;
 	background: linear-gradient(145deg, #344154 0%, #3A62A8 100%);
+}
+
+.colored-box-1{//blacktoblack gradient
+	background: rgb(11, 11, 11); /* Old Browsers */
+	background: -webkit-linear-gradient(top,rgb(11, 11, 11),rgb(21, 21, 21)); /*Safari 5.1-6*/
+	background: -o-linear-gradient(top,rgb(11, 11, 11),rgb(21, 21, 21)); /*Opera 11.1-12*/
+	background: -moz-linear-gradient(top,rgb(11, 11, 11),rgb(21, 21, 21)); /*Fx 3.6-15*/
+	background: linear-gradient(to bottom, rgb(11, 11, 11), rgb(21, 21, 21)); /*Standard*/
 }
 
 .colored-box-2{

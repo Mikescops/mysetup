@@ -152,7 +152,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
 </div>
 
-<div class="colored-bg">
+<div class="section-social">
+    <div id="social-networks"></div>
+</div>
+
+<div class="colored-box-1">
     <div class="container">
         <div class="row content-section">
 
@@ -227,7 +231,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                             data-badge="bottomleft"
                             data-callback="onSubmit">
                         </div>
-                        <?= $this->Form->button(__('Post this comment')) ?>
+                        <?= $this->Form->button(__('Post this comment'), ['class' => 'float-right']) ?>
                         <?= $this->Form->end() ?>
 
                         <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
@@ -254,11 +258,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             </div>
 
-            <div class="section-footer">
-                <div id="social-networks"></div>
-            </div>
-
         </div>
+    </div>
+</div>
+
+<div class="before-footer">
+    <div class="container">
     </div>
 </div>
 <?= $this->Html->scriptBlock('

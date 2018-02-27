@@ -184,10 +184,27 @@
 
 	.content-section{
 		padding: 0;
+
+		.section-header{
+			padding: 10px 0;
+		}
+
+		.section-inner{
+			padding: 0 0 10px 0;
+		}
+
+		h4{
+			font-size: 1.6rem;
+		}
+
+		.comment-img:last-child{
+			display: none;
+		}
 	}
 
-	.content-section h4{
-		font-size: 1.6rem;
+	#comment-form{
+		margin-left: 0;
+		padding-top: 0;
 	}
 
 	.edit_panel{
@@ -298,11 +315,15 @@
 
 	.content-section{
 		max-height: none;
-	}
 
-	.content-section .column{
-		flex: 0 0 100%!important;
-    	max-width: 100%!important;
+		.item-meta{
+			border-right: 0;
+		}
+
+		.column{
+			flex: 0 0 100%!important;
+	    	max-width: 100%!important;
+		}
 	}
 
 	.featured-inner h3{

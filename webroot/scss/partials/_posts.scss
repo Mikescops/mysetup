@@ -366,12 +366,25 @@
 
 .content-section{
 	position: relative;
-	margin-top: 20px;
 	border-radius: 4px;
-	background-color: rgb(29, 29, 29);
-	overflow-x: hidden;
-	overflow-y: auto;
-	max-height: calc(100vh - 60px);
+	padding: 10px 0;
+
+	flex-flow: row wrap;
+
+	.item-meta{
+		border-right: 1px inset rgba(0,0,0,0.1);
+	}
+
+	.section-inner{
+		padding: 0 20px 10px 20px;
+		height: 100%;
+		overflow: auto;
+		margin-top: 70px;
+
+		overflow-x: hidden;
+		overflow-y: auto;
+		max-height: calc(100vh - 200px);
+	}
 }
 
 .section-inner::-webkit-scrollbar-track
@@ -397,36 +410,27 @@
 	position: relative;
 }
 
-.item-meta .section-inner{
-	border-right: 1px solid rgb(60, 60, 60);
-}
-
 .section-header{
 	position: absolute;
 	top: 0;
 	width: 100%;
-	background: #040404;
 	padding: 10px;
 	text-align: center;
-	border-bottom: 2px solid rgb(60, 60, 60);
 	z-index: 10;
+	 
+	h4{
+		margin-bottom: 0;
+		padding: .5rem 3rem;
+		background: rgba(0,0,0, .1);
+		border-radius: 6px;
+	}
 }
 
-.section-header h4{
-	margin-bottom: 0;
-}
-
-.content-section .section-inner{
-	padding: 70px 20px;
-	height: 100%;
-	overflow: auto;
-}
-
-.section-footer{
-	position: absolute;
-	bottom: 0;
+.section-social{
+	background: #0b0b0b;
+	margin-top: 20px;
+	padding: 10px 0;
 	width: 100%;
-	background: #040404;
 }
 
 .jssocials-shares {
@@ -437,10 +441,10 @@
 .jssocials-share-link{
 	background: #303030 !important;
 	border-radius: 4px;
-}
 
-.jssocials-share-link:hover{
-	background: #3E3E3E !important;
+	&:hover{
+		background: #3E3E3E !important;
+	}
 }
 
 #commentField{
@@ -466,16 +470,16 @@
     margin-right: 20px;
     border-radius: 50%;
     overflow: hidden;
-}
 
-.comment-img img { display: block }
+    img { display: block }
+}
 
 .comment-body{
 	overflow: hidden;
 	margin-top: 6px;
-}
 
-.comment-body a { font-size: 14px; }
+	a { font-size: 14px; }
+}
 
 .comment .text {
     padding: 6px 15px;
