@@ -91,7 +91,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                         </div>
                     <?php endforeach; else: ?>
 
-                        <?php if(!$authUser || $authUser && $authUser->id != $user->id): ?>
+                        <?php if(!$authUser || $authUser->id != $user->id): ?>
                             <?= __('There is no setup here yet...') ?>
                         <?php endif; ?>
 
