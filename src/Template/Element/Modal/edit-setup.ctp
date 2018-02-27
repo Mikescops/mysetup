@@ -40,9 +40,9 @@
 
                 <div class="gallery-holder">
                     <?php $i = 0;foreach ($setup['resources']['gallery_images'] as $image):?>
-                    <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Change gallery image') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/'.$image->src)?>">
+                    <div alt="<?= __('Gallery Preview') ?>" title="<?= __('Change gallery image') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" style="background-image:url(<?= $this->Url->build('/'.$image->src)?>)"></div>
                     <?php $i++; endforeach; for(;$i < 5;$i++): ?>
-                    <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Add gallery image') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" src="<?= $this->Url->build('/img/add_gallery_default.png')?>">
+                    <div class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit"><i class="fa fa-plus"></i></div>
                 <?php endfor ?>
                 </div>
 

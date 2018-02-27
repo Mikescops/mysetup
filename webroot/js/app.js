@@ -336,15 +336,17 @@ function featuredPreview_edit( uploader ) {
 
 function galleryPreview_edit( uploader, number ) {
     if ( uploader.files && uploader.files[0] ){
-          $('#gallery'+number+'image_preview_edit').attr('src',
-             window.URL.createObjectURL(uploader.files[0]) );
+          $('#gallery'+number+'image_preview_edit').attr('style',
+             'background-image:url('+window.URL.createObjectURL(uploader.files[0])+')' );
+          $('#gallery'+number+'image_preview_edit .fa-plus').remove();
     }
 }
 
 function galleryPreview_add( uploader, number ) {
     if ( uploader.files && uploader.files[0] ){
-          $('#gallery'+number+'image_preview_add').attr('src',
-             window.URL.createObjectURL(uploader.files[0]) );
+          $('#gallery'+number+'image_preview_add').attr('style',
+             'background-image:url('+window.URL.createObjectURL(uploader.files[0])+')' );
+          $('#gallery'+number+'image_preview_add .fa-plus').remove();
     }
 }
 
