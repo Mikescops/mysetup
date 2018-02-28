@@ -19,60 +19,60 @@
 /************** LOGIN / REGISTER CSS ******************/
 
 .login-form {
-  margin: 50px auto;
-  width: 500px;
-  max-width: 100%;
-  position: relative;
+	margin: 50px auto;
+	width: 500px;
+	max-width: 100%;
+	position: relative;
 }
 .login-form .tabs {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  width: 100%;
-  position: relative;
-  display: block;
-  margin-bottom: 20px;
-  text-align: center;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	width: 100%;
+	position: relative;
+	display: block;
+	margin-bottom: 20px;
+	text-align: center;
 }
 .login-form .tabs li {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
 }
 .login-form .tabs a {
-  display: block;
-  float: left;
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-  padding: 8px 18px 8px 18px;
+	display: block;
+	float: left;
+	text-decoration: none;
+	color: white;
+	font-size: 16px;
+	padding: 8px 18px 8px 18px;
 }
 .login-form .tabs a.active {
-  border-bottom: solid 1px #fff;
-  -webkit-transition: all 0.5s linear;
+	border-bottom: solid 1px #fff;
+	-webkit-transition: all 0.5s linear;
 	-moz-transition: all 0.5s linear;
 	transition: all 0.5s linear;
 }
 
 .login-form .form-action {
-  position: relative;
+	position: relative;
 }
 
 .login-form form {
-  padding-right: 20px !important;
+	padding-right: 20px !important;
 }
 
 .login-form form input[type=text],
 .login-form form input[type=password],
 .login-form form input[type=email] {
-  width: 100%;
-  height: 40px;
-  margin-bottom: 10px;
-  padding-left: 15px;
-  background: #fff;
-  border: none;
-  color: #2167bd;
-  outline: none;
+	width: 100%;
+	height: 40px;
+	margin-bottom: 10px;
+	padding-left: 15px;
+	background: #fff;
+	border: none;
+	color: #2167bd;
+	outline: none;
 }
 
 .login-form form select{
@@ -89,72 +89,108 @@
 }
 
 .login-form .dark-box {
-  background: #5e0400;
-  box-shadow: 1px 3px 3px #3d0100 inset;
-  height: 40px;
-  width: 50px;
+	background: #5e0400;
+	box-shadow: 1px 3px 3px #3d0100 inset;
+	height: 40px;
+	width: 50px;
 }
 .login-form .form-action .dark-box.bottom {
-  position: absolute;
-  right: 0;
-  bottom: -24px;
+	position: absolute;
+	right: 0;
+	bottom: -24px;
 }
 .login-form .tabs + .dark-box.top {
-  position: absolute;
-  right: 0;
-  top: 0px;
+	position: absolute;
+	right: 0;
+	top: 0px;
 }
 .login-form .show {
-  display: block;
+	display: block;
 }
 .login-form .hide {
-  display: none;
+	display: none;
 }
 
 ::-webkit-input-placeholder {
-  color: #2167bd;
+	color: #2167bd;
 }
 :-moz-placeholder {
-  /* Firefox 18- */
-  color: #2167bd;
+	/* Firefox 18- */
+	color: #2167bd;
 }
 ::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #2167bd;
+	/* Firefox 19+ */
+	color: #2167bd;
 }
 
 /************** BUG REPORT CSS **************/
 
 .bug-report-form {
-  margin: 50px auto;
-  width: 750px;
-  max-width: 100%;
-  position: relative;
+	margin: 50px auto;
+	width: 750px;
+	max-width: 100%;
+	position: relative;
 }
 .bug-report-form form {
-  padding-right: 20px !important;
+	padding-right: 20px !important;
 }
 .bug-report-form form textarea,
 .bug-report-form form input[type=email] {
-  width: 100%;
-  height: 40px;
-  margin-bottom: 10px;
-  padding-left: 15px;
-  background: #fff;
-  border: none;
-  color: #2167bd;
-  outline: none;
+	width: 100%;
+	height: 40px;
+	margin-bottom: 10px;
+	padding-left: 15px;
+	background: #fff;
+	border: none;
+	color: #2167bd;
+	outline: none;
 }
 
 .bug-report-form textarea {
-    min-height: 150px;
+	min-height: 150px;
 }
 
 
 /************** SEARCH CSS **************/
 
 .search-container .activeUsers{
-  -webkit-column-count: 2; /* Chrome, Safari, Opera */
-  -moz-column-count: 2; /* Firefox */
-  column-count: 2;
+	-webkit-column-count: 2; /* Chrome, Safari, Opera */
+	-moz-column-count: 2; /* Firefox */
+	column-count: 2;
+}
+
+.search-tabs{
+	text-align: center;
+	background: #354867;
+	width: 100%;
+	overflow-x: auto;
+
+	ul{
+		list-style: none;
+		margin: 0 auto;
+		display: flex;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: row;
+		flex-direction: row;
+
+		li{
+			display: inline-block;
+			margin-bottom: 0;
+			padding: 1rem 0;
+
+			&:hover, &.active{
+				background: rgba(255,255,255, .1)
+			}
+
+			a{
+				color: #fff;
+				padding: 1rem 2rem;
+			}
+		}
+
+		span.pushli{
+			flex: 1 0 auto;
+		}
+	}
 }

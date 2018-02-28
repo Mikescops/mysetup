@@ -19,6 +19,17 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
     </div>
 </div>
 
+<div class="search-tabs">
+    <ul>
+        <span class="pushli"></span>
+        <li <?php if($this->request->here == '/search/'): ?>class="active"<?php endif; ?>><a href="<?=$this->Url->build('/search/?q='.($this->request->getQuery('q') ? $this->request->getQuery('q') : ""))?>"><?= __('All') ?></a></li>
+        <li <?php if($this->request->here == '/search/setups'): ?>class="active"<?php endif; ?>><a href="<?=$this->Url->build('/search/setups?q='.($this->request->getQuery('q') ? $this->request->getQuery('q') : ""))?>"><?= __('Setups') ?></a></li>
+        <li <?php if($this->request->here == '/search/resources'): ?>class="active"<?php endif; ?>><a href="<?=$this->Url->build('/search/resources?q='.($this->request->getQuery('q') ? $this->request->getQuery('q') : ""))?>"><?= __('Components') ?></a></li>
+        <li <?php if($this->request->here == '/search/users'): ?>class="active"<?php endif; ?>><a href="<?=$this->Url->build('/search/users?q='.($this->request->getQuery('q') ? $this->request->getQuery('q') : ""))?>"><?= __('Users') ?></a></li>
+        <span class="pushli"></span>
+    </ul>
+</div>
+
 <div class="container">
     <div class="maincontainer">
         <div class="row">
