@@ -239,6 +239,7 @@
 
     <?= $this->Flash->render() ?>
 
+    <script>$(window).blur(function(){callnotif=true;pageTitleNotification.on("👋 <?= __('Hey there !') ?>", 5000);});</script>
     <?= $this->fetch('scriptBottom') ?>
 
     <!-- Piwik -->
