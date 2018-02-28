@@ -400,44 +400,41 @@
 	height: 150px;
 	margin-bottom: 20px;
 	background: #0e0e0e;
-	border-radius: 5px;
+	border-radius: 4px;
 	overflow: hidden;
-}
 
-.setup-item .setup-pic{
-  position: relative;
-  display: inline-block;
-}
+	.setup-pic{
+	    position: relative;
+	    display: inline-block;
+		float: left;
 
-.setup-item .setup-pic .tile-gradient {
-	top: 0;
-	left: 0;
-	position: absolute;
-	height: 100%;
-	width: 102%;
-}
+		img{
+			height: 150px;
+			border-radius: 4px;
+		}
 
-.setup-item .setup-pic{
-	position: relative;
-	float: left;
-}
+	    .tile-gradient {
+			top: 0;
+			left: 0;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			border-radius: 4px;
+		}
+	}
 
-.setup-item .setup-pic img{
-	height: 150px;
-	border-radius: 5px;
-}
+	.featured-user{
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		z-index: 20;
 
-.setup-item .featured-user{
-	position: absolute;
-	bottom: 10px;
-	right: 10px;
-	z-index: 20;
-}
-
-.setup-item .featured-user img{
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
+		img{
+			height: 50px;
+			width: 50px;
+			border-radius: 50%;
+		}
+	}
 }
 
 .setup-item .item-inner a:last-child{
