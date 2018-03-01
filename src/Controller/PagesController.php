@@ -139,7 +139,7 @@ class PagesController extends AppController
     public function search($entity = null)
     {
         $query = trim($this->request->getQuery('q'));
-        if($query and strlen($query) >= 3)
+        if($query and strlen($query) >= 2)
         {
             switch($entity)
             {

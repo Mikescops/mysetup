@@ -247,7 +247,7 @@ class SetupsTable extends Table
 
         if($params['query'])
         {
-            if(strlen($params['query']) < 3)
+            if(strlen($params['query']) < 2)
             {
                 if($flash)
                 {
