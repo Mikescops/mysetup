@@ -154,7 +154,7 @@ class ResourcesTable extends Table
                 'src'
             ]
         ])
-        ->distinct()
+        ->distinct('title')
         ->toArray();
     }
 

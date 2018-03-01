@@ -60,7 +60,7 @@ class PagesController extends AppController
                 // Let's load less resources on mobile devices
                 $this->RequestHandler->isMobile() ? 4 : 6
             ),
-        ])->distinct()->order('RAND()')->toArray();
+        ])->distinct('title')->order('RAND()')->toArray();
 
         if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {
