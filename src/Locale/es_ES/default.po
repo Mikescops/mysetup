@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2018-03-01 20:43+0100\n"
-"PO-Revision-Date: 2018-03-01 21:00+0100\n"
+"POT-Creation-Date: 2018-03-02 00:21+0100\n"
+"PO-Revision-Date: 2018-03-02 00:21+0100\n"
 "Last-Translator: \n"
 "Language-Team: support@mysetup.co\n"
 "Language: es\n"
@@ -772,8 +772,8 @@ msgid "by"
 msgstr "por"
 
 #: Template/Element/List/cards.ctp:13 Template/Element/List/tiles.ctp:29
-#: Template/Element/Modal/edit-profile.ctp:8 Template/Layout/default.ctp:84
-#: Template/Likes/index.ctp:43 Template/Pages/home.ctp:203
+#: Template/Element/Modal/edit-profile.ctp:8 Template/Layout/default.ctp:82
+#: Template/Likes/index.ctp:43 Template/Pages/home.ctp:189
 #: Template/Pages/search.ctp:118 Template/Setups/view.ctp:72;198;221
 #: Template/Users/view.ctp:16;68
 msgid "Profile picture of"
@@ -1053,95 +1053,95 @@ msgstr "Ver el sitio web"
 msgid "Welcome"
 msgstr "Bienvenido"
 
-#: Template/Layout/default.ctp:68;127
+#: Template/Layout/default.ctp:66;125
 msgid "Add Setup"
 msgstr "Añadir una setup"
 
-#: Template/Layout/default.ctp:72;131
+#: Template/Layout/default.ctp:70;129
 msgid "Admin Panel"
 msgstr "Panel de Administración"
 
-#: Template/Layout/default.ctp:77
+#: Template/Layout/default.ctp:75
 msgid "Categories"
 msgstr "Categorías"
 
-#: Template/Layout/default.ctp:79;137
+#: Template/Layout/default.ctp:77;135
 msgid "Most recent"
 msgstr "Lo más reciente"
 
-#: Template/Layout/default.ctp:86;143
+#: Template/Layout/default.ctp:84;141
 msgid "My Likes"
 msgstr "Mis Likes"
 
-#: Template/Layout/default.ctp:87;144
+#: Template/Layout/default.ctp:85;142
 msgid "My Setups"
 msgstr "Mis Setups"
 
-#: Template/Layout/default.ctp:88;145
+#: Template/Layout/default.ctp:86;143
 msgid "Edit Profile"
 msgstr "Editar el perfil"
 
-#: Template/Layout/default.ctp:89;146
+#: Template/Layout/default.ctp:87;144
 msgid "Logout"
 msgstr "Cerrar sesión"
 
-#: Template/Layout/default.ctp:99
+#: Template/Layout/default.ctp:97
 msgid "Sign In / Up"
 msgstr "Registro / Entrar"
 
-#: Template/Layout/default.ctp:100;204
+#: Template/Layout/default.ctp:98;202
 msgid "Help - Q&amp;A"
 msgstr "Ayuda - P&amp;R"
 
-#: Template/Layout/default.ctp:103;149 Template/Users/login.ctp:31
+#: Template/Layout/default.ctp:101;147 Template/Users/login.ctp:31
 msgid "Connect with"
 msgstr "Se conectar con"
 
-#: Template/Layout/default.ctp:148
+#: Template/Layout/default.ctp:146
 msgid "Log in"
 msgstr "Iniciar sesión"
 
-#: Template/Layout/default.ctp:172
+#: Template/Layout/default.ctp:170
 msgid "Join us and start building your setup"
 msgstr "Participe y empiece a crear su setup"
 
-#: Template/Layout/default.ctp:173
+#: Template/Layout/default.ctp:171
 msgid "Sign me in !"
 msgstr "Se connectar !"
 
-#: Template/Layout/default.ctp:186
+#: Template/Layout/default.ctp:184
 msgid "Partners"
 msgstr "Socios"
 
-#: Template/Layout/default.ctp:194
+#: Template/Layout/default.ctp:192
 msgid "About us"
 msgstr "Nosotros"
 
-#: Template/Layout/default.ctp:196
+#: Template/Layout/default.ctp:194
 msgid "Our Blog"
 msgstr "Nuestro Blog"
 
-#: Template/Layout/default.ctp:197 Template/Pages/team.ctp:11
+#: Template/Layout/default.ctp:195 Template/Pages/team.ctp:11
 msgid "Our Team"
 msgstr "Nuestro Equipo"
 
-#: Template/Layout/default.ctp:198 Template/Pages/legals.ctp:11
+#: Template/Layout/default.ctp:196 Template/Pages/legals.ctp:11
 msgid "Legal Mentions"
 msgstr "Aviso legal"
 
-#: Template/Layout/default.ctp:202
+#: Template/Layout/default.ctp:200
 msgid "Support"
 msgstr "Soporte"
 
-#: Template/Layout/default.ctp:205
+#: Template/Layout/default.ctp:203
 msgid "Report a bug"
 msgstr "Reportar un error"
 
-#: Template/Layout/default.ctp:210
+#: Template/Layout/default.ctp:208
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
 
-#: Template/Layout/default.ctp:242
+#: Template/Layout/default.ctp:240
 msgid "Hey there !"
 msgstr "¡ Hola !"
 
@@ -1165,19 +1165,19 @@ msgstr "Mis likes"
 msgid "Bug Report | mySetup.co"
 msgstr "Error Informe | mySetup.co"
 
-#: Template/Pages/bug_report.ctp:12
+#: Template/Pages/bug_report.ctp:8
 msgid "Bug Report"
 msgstr "Informe de error"
 
-#: Template/Pages/bug_report.ctp:16
+#: Template/Pages/bug_report.ctp:18
 msgid "An email to contact you, young visitor !"
 msgstr "¡ Un correo electrónico para contactarte, joven visitante !"
 
-#: Template/Pages/bug_report.ctp:20
+#: Template/Pages/bug_report.ctp:22
 msgid "Bug description"
 msgstr "Descripción del error"
 
-#: Template/Pages/bug_report.ctp:20
+#: Template/Pages/bug_report.ctp:22
 msgid ""
 "Please, describe precisely the bug you unfortunately encountered on mySetup."
 "co..."
@@ -1185,7 +1185,7 @@ msgstr ""
 "Por favor, describa con precisión el error que desafortunadamente encontras "
 "en mySetup.co..."
 
-#: Template/Pages/bug_report.ctp:29 Template/Users/login.ctp:91
+#: Template/Pages/bug_report.ctp:31 Template/Users/login.ctp:91
 msgid "Send"
 msgstr "Mandar"
 
@@ -1262,15 +1262,11 @@ msgstr "Ultimas setups"
 msgid "More recent setups"
 msgstr "Otras setups recientes"
 
-#: Template/Pages/home.ctp:172
-msgid "More AMD setups"
-msgstr "Otras setups con AMD"
+#: Template/Pages/home.ctp:174
+msgid "More {0} setups"
+msgstr "Otras setups con {0}"
 
-#: Template/Pages/home.ctp:190
-msgid "More Nvidia setups"
-msgstr "Otras setups con Nvidia"
-
-#: Template/Pages/home.ctp:198
+#: Template/Pages/home.ctp:184
 msgid "Suggested Users"
 msgstr "Perfiles Sugeridos"
 
@@ -1720,6 +1716,12 @@ msgid "comment"
 msgid_plural "comments"
 msgstr[0] "comentario"
 msgstr[1] "comentarios"
+
+#~ msgid "More AMD setups"
+#~ msgstr "Otras setups con AMD"
+
+#~ msgid "More Nvidia setups"
+#~ msgstr "Otras setups con Nvidia"
 
 #~ msgid "OUR LATEST UPDATES"
 #~ msgstr "NUESTRAS LTIMAS NOTICIAS"
