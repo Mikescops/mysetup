@@ -6,6 +6,8 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
+use Cake\ORM\TableRegistry;
+
 /**
  * CloudTags Model
  *
@@ -60,5 +62,61 @@ class CloudTagsTable extends Table
             ->notEmpty('type');
 
         return $validator;
+    }
+
+
+    public function getSetupsByRandomTags($array = [])
+    {
+
+        $params = array_merge([
+            'type' => null,
+            'number_tags' => 1,
+            'limit_setups' => 3
+        ],
+        $array);
+
+        $setupTable = TableRegistry::get('Setups');
+
+        if($params['type'])
+        {
+            $conditions = ['type' => $params['type']];
+        }
+        else
+        {
+            $conditions = null;
+        }
+
+        $results = [];
+
+        $tags = $this->find('all', [
+            'conditions' => $conditions,
+            'order' => 'RAND()'
+        ])->toArray();
+
+        foreach($tags as $tag)
+        {
+            $setups = $setupTable->getSetups([
+                'query' => $tag->name,
+                'number' => $params['limit_setups'],
+                'type' => 'like'
+            ]);
+
+            if(count($setups) >= 3)
+            {
+                $results[$tag->name] = $setups;
+            }
+            else
+            {
+                continue;
+            }
+            //
+
+            if(count($results) >= $params['number_tags'])
+            {
+                break;
+            }
+        }
+
+        return $results;
     }
 }

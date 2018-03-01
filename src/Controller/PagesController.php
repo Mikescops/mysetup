@@ -45,8 +45,8 @@ class PagesController extends AppController
             'type' => 'like'
         ]);
         $recentSetups = $Setups->getSetups(['number' => 3]);
-        $amdSetups = $Setups->getSetups(['query' => 'amd', 'number' => 10, 'type' => 'like']);
-        $nvidiaSetups = $Setups->getSetups(['query' => 'nvidia', 'number' => 10, 'type' => 'like']);
+
+        $brandSetups = TableRegistry::get('cloud_tags')->getSetupsByRandomTags(['type' => 'PRODUCTS_BRAND', 'number_tags' => 3]);
 
         $randomResources = $Setups->Resources->find('all', [
             'fields' => [
@@ -91,7 +91,7 @@ class PagesController extends AppController
             $this->RequestHandler->isMobile() ? 4 : 8
         ));
 
-        $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'amdSetups', 'nvidiaSetups', 'activeUsers', 'randomResources', 'mainSetup'));
+        $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'brandSetups', 'activeUsers', 'randomResources', 'mainSetup'));
 
         $this->display('home');
     }

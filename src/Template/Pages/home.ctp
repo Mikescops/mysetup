@@ -122,7 +122,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 </div>
 
-<div class="colored-box-4">
+<div class="colored-box-8">
     <div class="container">
         <div class="rowfeed">
             <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
@@ -157,41 +157,27 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 </div>
 
-<div class="colored-box-2">
-    <div class="container">
-        <div class="rowfeed">
-            <h4 class="fancy"><span>AMD</span></h4>
-            <div class="feeditem">
+<?php $i = 1;  foreach($brandSetups as $brand => $setups): ?>
 
-                <?php $i = 0; foreach ($amdSetups as $setup): ?>
+    <div class="colored-box-<?= ++$i ?>">
+        <div class="container">
+            <div class="rowfeed">
+                <h4 class="fancy"><span><?= h($brand) ?></span></h4>
+                <div class="feeditem">
 
-                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
+                    <?php foreach ($setups as $setup): ?>
 
-                <?php if (++$i == 3) break; endforeach ?>
+                        <?= $this->element('List/cards', ['setup' => $setup]) ?>
+
+                    <?php endforeach; ?>
+                </div>
+                <a class="home_more float-right" href="<?= $this->Url->build('/search/?q='.$brand); ?>"><?= __('More {0} setups', $brand) ?> <i class="fa fa-chevron-right"></i></a>
+                <br clear='all'>
             </div>
-            <a class="home_more float-right" href="<?= $this->Url->build('/search/resources?q=amd'); ?>"><?= __('More AMD setups') ?> <i class="fa fa-chevron-right"></i></a>
-            <br clear='all'>
         </div>
     </div>
-</div>
 
-<div class="colored-box-3">
-    <div class="container">
-        <div class="rowfeed">
-            <h4 class="fancy"><span>Nvidia</span></h4>
-            <div class="feeditem">
-
-                <?php $i = 0; foreach ($nvidiaSetups as $setup): ?>
-
-                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
-
-                <?php if (++$i == 3) break; endforeach ?>
-            </div>
-            <a class="home_more float-right" href="<?= $this->Url->build('/search/resources?q=nvidia'); ?>"><?= __('More Nvidia setups') ?> <i class="fa fa-chevron-right"></i></a>
-            <br clear='all'>
-        </div>
-    </div>
-</div>
+<?php endforeach; ?>
 
 <div class="container">
     <div class="rowfeed">
