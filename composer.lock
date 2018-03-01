@@ -55,16 +55,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.5.11",
+            "version": "3.5.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "b557240fc11cdce9e60d35d4a911c01c0f28b5ee"
+                "reference": "a6c47f15e2dfbb062fcc547d6eecd0a944dc8b17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/b557240fc11cdce9e60d35d4a911c01c0f28b5ee",
-                "reference": "b557240fc11cdce9e60d35d4a911c01c0f28b5ee",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/a6c47f15e2dfbb062fcc547d6eecd0a944dc8b17",
+                "reference": "a6c47f15e2dfbb062fcc547d6eecd0a944dc8b17",
                 "shasum": ""
             },
             "require": {
@@ -137,7 +137,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2018-01-21 00:04:21"
+            "time": "2018-02-11 02:39:23"
         },
         {
             "name": "cakephp/chronos",
@@ -472,16 +472,16 @@
         },
         {
             "name": "exeu/apai-io",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Exeu/apai-io.git",
-                "reference": "fb171b5654c8a24a075976fc927f488a2ea0c15b"
+                "reference": "ba5bb754f59f744e927a3bdf4b339fa2a0afb44f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Exeu/apai-io/zipball/fb171b5654c8a24a075976fc927f488a2ea0c15b",
-                "reference": "fb171b5654c8a24a075976fc927f488a2ea0c15b",
+                "url": "https://api.github.com/repos/Exeu/apai-io/zipball/ba5bb754f59f744e927a3bdf4b339fa2a0afb44f",
+                "reference": "ba5bb754f59f744e927a3bdf4b339fa2a0afb44f",
                 "shasum": ""
             },
             "require": {
@@ -522,7 +522,7 @@
                 "products",
                 "rest"
             ],
-            "time": "2017-02-24 10:12:27"
+            "time": "2018-02-12 10:44:56"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -811,16 +811,16 @@
         },
         {
             "name": "matthiasmullie/minify",
-            "version": "1.3.58",
+            "version": "1.3.59",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/minify.git",
-                "reference": "aee56fe6c706662c5991bb1f88cabe19430c60fe"
+                "reference": "62dac3bce06de66f0d71fe6490cf1c508d3c3ff7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/aee56fe6c706662c5991bb1f88cabe19430c60fe",
-                "reference": "aee56fe6c706662c5991bb1f88cabe19430c60fe",
+                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/62dac3bce06de66f0d71fe6490cf1c508d3c3ff7",
+                "reference": "62dac3bce06de66f0d71fe6490cf1c508d3c3ff7",
                 "shasum": ""
             },
             "require": {
@@ -867,20 +867,20 @@
                 "minifier",
                 "minify"
             ],
-            "time": "2018-01-08 10:01:42"
+            "time": "2018-02-02 12:44:18"
         },
         {
             "name": "matthiasmullie/path-converter",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/path-converter.git",
-                "reference": "08551ec1b156e923c242a10ab484bd4d6ead6631"
+                "reference": "3082a6838be02b930239a97d38b5c9da4d693aca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/08551ec1b156e923c242a10ab484bd4d6ead6631",
-                "reference": "08551ec1b156e923c242a10ab484bd4d6ead6631",
+                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/3082a6838be02b930239a97d38b5c9da4d693aca",
+                "reference": "3082a6838be02b930239a97d38b5c9da4d693aca",
                 "shasum": ""
             },
             "require": {
@@ -916,20 +916,20 @@
                 "paths",
                 "relative"
             ],
-            "time": "2017-01-26 08:54:49"
+            "time": "2018-02-02 11:30:10"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
-            "version": "2.8.30",
+            "version": "2.8.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/serbanghita/Mobile-Detect.git",
-                "reference": "5500bbbf312fe77ef0c7223858dad84fe49ee0c3"
+                "reference": "adb882ea3b9d154f087ecb2c333180dad6f4dd37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/5500bbbf312fe77ef0c7223858dad84fe49ee0c3",
-                "reference": "5500bbbf312fe77ef0c7223858dad84fe49ee0c3",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/adb882ea3b9d154f087ecb2c333180dad6f4dd37",
+                "reference": "adb882ea3b9d154f087ecb2c333180dad6f4dd37",
                 "shasum": ""
             },
             "require": {
@@ -968,7 +968,7 @@
                 "mobile detector",
                 "php mobile detect"
             ],
-            "time": "2017-12-18 10:38:51"
+            "time": "2018-02-26 19:39:55"
         },
         {
             "name": "psr/http-message",
@@ -1531,16 +1531,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "1.7.0",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "ed6ce7e2105c400ca10277643a8327957c0384b7"
+                "reference": "bf26aff803a11c5cc8eb7c4878a702c403ec67f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/ed6ce7e2105c400ca10277643a8327957c0384b7",
-                "reference": "ed6ce7e2105c400ca10277643a8327957c0384b7",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/bf26aff803a11c5cc8eb7c4878a702c403ec67f1",
+                "reference": "bf26aff803a11c5cc8eb7c4878a702c403ec67f1",
                 "shasum": ""
             },
             "require": {
@@ -1579,7 +1579,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2018-01-04 18:21:48"
+            "time": "2018-02-26 15:44:50"
         }
     ],
     "packages-dev": [
@@ -1756,20 +1756,20 @@
         },
         {
             "name": "cakephp/bake",
-            "version": "1.6.0",
+            "version": "1.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "166f9af9b2acf44de5f674ae3972d05134a36363"
+                "reference": "46c65fdcc3185b4665309266d37f54b6cdf8c77a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/166f9af9b2acf44de5f674ae3972d05134a36363",
-                "reference": "166f9af9b2acf44de5f674ae3972d05134a36363",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/46c65fdcc3185b4665309266d37f54b6cdf8c77a",
+                "reference": "46c65fdcc3185b4665309266d37f54b6cdf8c77a",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^3.5",
+                "cakephp/cakephp": "^3.5.10",
                 "cakephp/plugin-installer": "^1.0",
                 "php": ">=5.6.0",
                 "wyrihaximus/twig-view": "^4.2.1"
@@ -1800,20 +1800,20 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2017-12-29 01:45:25"
+            "time": "2018-02-25 03:49:20"
         },
         {
             "name": "cakephp/debug_kit",
-            "version": "3.12.0",
+            "version": "3.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "064e4d95ef0c601c2097c58234a127d04c30a762"
+                "reference": "f9aedbc9616142138d921011337d785f553f830c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/064e4d95ef0c601c2097c58234a127d04c30a762",
-                "reference": "064e4d95ef0c601c2097c58234a127d04c30a762",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/f9aedbc9616142138d921011337d785f553f830c",
+                "reference": "f9aedbc9616142138d921011337d785f553f830c",
                 "shasum": ""
             },
             "require": {
@@ -1860,7 +1860,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2018-01-24 02:47:18"
+            "time": "2018-02-19 13:01:28"
         },
         {
             "name": "composer/ca-bundle",
@@ -2350,16 +2350,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.2.6",
+            "version": "5.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "d283e11b6e14c6f4664cf080415c4341293e5bbd"
+                "reference": "8560d4314577199ba51bf2032f02cd1315587c23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/d283e11b6e14c6f4664cf080415c4341293e5bbd",
-                "reference": "d283e11b6e14c6f4664cf080415c4341293e5bbd",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/8560d4314577199ba51bf2032f02cd1315587c23",
+                "reference": "8560d4314577199ba51bf2032f02cd1315587c23",
                 "shasum": ""
             },
             "require": {
@@ -2368,7 +2368,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.1",
                 "json-schema/json-schema-test-suite": "1.2.0",
-                "phpunit/phpunit": "^4.8.22"
+                "phpunit/phpunit": "^4.8.35"
             },
             "bin": [
                 "bin/validate-json"
@@ -2412,20 +2412,20 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-10-21 13:15:38"
+            "time": "2018-02-14 22:26:30"
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.1.4",
+            "version": "v3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "e57b3a09784f846411aa7ed664eedb73e3399078"
+                "reference": "bb87e28e7d7b8d9a7fda231d37457c9210faf6ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e57b3a09784f846411aa7ed664eedb73e3399078",
-                "reference": "e57b3a09784f846411aa7ed664eedb73e3399078",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/bb87e28e7d7b8d9a7fda231d37457c9210faf6ce",
+                "reference": "bb87e28e7d7b8d9a7fda231d37457c9210faf6ce",
                 "shasum": ""
             },
             "require": {
@@ -2463,7 +2463,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2018-01-25 21:31:33"
+            "time": "2018-02-28 20:30:58"
         },
         {
             "name": "psy/psysh",
@@ -2953,16 +2953,16 @@
         },
         {
             "name": "wyrihaximus/twig-view",
-            "version": "4.3.1",
+            "version": "4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/TwigView.git",
-                "reference": "0bdce795bbf7f667209a9ed4a2d4b4db485e110c"
+                "reference": "63a5bc4307a5d47b24290013c3c0433903c5757a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/TwigView/zipball/0bdce795bbf7f667209a9ed4a2d4b4db485e110c",
-                "reference": "0bdce795bbf7f667209a9ed4a2d4b4db485e110c",
+                "url": "https://api.github.com/repos/WyriHaximus/TwigView/zipball/63a5bc4307a5d47b24290013c3c0433903c5757a",
+                "reference": "63a5bc4307a5d47b24290013c3c0433903c5757a",
                 "shasum": ""
             },
             "require": {
@@ -2972,7 +2972,7 @@
                 "cakephp/cakephp": "^3.5",
                 "jasny/twig-extensions": "^1.0",
                 "php": "^5.6 || ^7.0",
-                "twig/twig": "^1.18",
+                "twig/twig": "^1.27",
                 "umpirsky/twig-php-function": "0.1"
             },
             "require-dev": {
@@ -3007,7 +3007,7 @@
                 "twig",
                 "view"
             ],
-            "time": "2018-01-28 22:18:29"
+            "time": "2018-02-21 06:55:17"
         }
     ],
     "aliases": [],
