@@ -4,12 +4,14 @@
   */
 $this->assign('title', __('Bug Report | mySetup.co'));
 ?>
-<div class="container sitecontainer">
+<div class="colored-container">
+    <div class="container"><h2 style="text-align: center;"><?= __('Bug Report') ?> <i class="fa fa-bug"></i></h2></div><br>
+</div>
+<div class="container">
 <div class="bug-report-form">
 
     <?= $this->Form->create(null, ['id' => 'bugreport-form']) ?>
     <fieldset style="border:0;">
-        <h4><?= __('Bug Report') ?> <i class="fa fa-bug"></i></h4>
         <?php
             if(!$authUser)
             {
