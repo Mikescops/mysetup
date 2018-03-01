@@ -47,7 +47,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <?php else: ?>
             <div class="hero_mainsetup" alt="<?= h($mainSetup->title) ?>" style="background-image:url(<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg' )) ?>)"></div>
 
-            <div class="hero_hover"> 
+            <div class="hero_hover">
                 <h2><?= __('Your main setup has') ?> <?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?> !</h2>
                 <p><?= __('Share it to get more') ?> :</p>
 
@@ -128,13 +128,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
             <div class="feeditem">
 
-                <?php $i=0; foreach ($popularSetups as $setup): ?>
+                <?php foreach($popularSetups as $setup): ?>
 
                     <?= $this->element('List/cards', ['setup' => $setup]) ?>
 
-                <?php if (++$i == 3) break; endforeach ?>
+                <?php endforeach; ?>
             </div>
-            <a class="home_more float-right" href="<?= $this->Url->build('/pages/popular'); ?>"><?= __('More popular setups') ?> <i class="fa fa-chevron-right"></i></a>
             <br clear='all'>
         </div>
     </div>

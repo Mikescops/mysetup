@@ -40,17 +40,18 @@ class PagesController extends AppController
         $Setups = TableRegistry::get('Setups');
 
         $featuredSetups = $Setups->getSetups(['featured' => true, 'number' => 3]);
-        $popularSetups = $Setups->getSetups(['number' => 20, 'type' => 'like']);
+        $popularSetups = $Setups->getSetups([
+            'number' => ($this->RequestHandler->isMobile() ? 3 : 6),
+            'type' => 'like'
+        ]);
         $recentSetups = $Setups->getSetups(['number' => 3]);
         $amdSetups = $Setups->getSetups(['query' => 'amd', 'number' => 10, 'type' => 'like']);
         $nvidiaSetups = $Setups->getSetups(['query' => 'nvidia', 'number' => 10, 'type' => 'like']);
 
-        if ($this->RequestHandler->isMobile() == true){
-            $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->order('RAND()')->limit(4)->toArray();
-        }
-        else{
-            $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->order('RAND()')->limit(6)->toArray();
-        }
+        // Let's load less resources on Mobiles
+        $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->order('RAND()')->limit((
+            $this->RequestHandler->isMobile() ? 4 : 6
+        ))->toArray();
 
         if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {
@@ -76,13 +77,10 @@ class PagesController extends AppController
             ]);
         }
 
-        if ($this->RequestHandler->isMobile() == true){
-            $activeUsers = TableRegistry::get('Users')->getActiveUsers(4);
-        }
-        else{
-            $activeUsers = TableRegistry::get('Users')->getActiveUsers(8);
-        }
-
+        // Let's load less users on Mobiles
+        $activeUsers = TableRegistry::get('Users')->getActiveUsers((
+            $this->RequestHandler->isMobile() ? 4 : 8
+        ));
 
         $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'amdSetups', 'nvidiaSetups', 'activeUsers', 'recentResources', 'mainSetup'));
 
