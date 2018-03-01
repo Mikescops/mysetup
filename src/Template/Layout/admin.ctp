@@ -116,7 +116,7 @@
 
     <!-- Set the Flash dependencies on this layout (needed for entities related actions) -->
     <?= $this->Html->script('jquery-3.2.0.min.js') ?>
-    <?= $this->Html->script('lib.min.js?v=2') ?>
+    <?= $this->Html->script('lib.min.js') ?>
     <?= $this->Html->script('app.min.js') ?>
     <script>
       feather.replace()

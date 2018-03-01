@@ -24,21 +24,11 @@
 
     <?= $this->Form->end() ?>
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.1/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
 
     <script>
         ClassicEditor
-            .create( document.querySelector( '#editor' ) ),{
-                toolbar: [ 'headings', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
-                plugins: [
-                    Markdown,
-
-                    Essentials,
-                    Bold,
-                    Italic,
-                    // ...
-                ],
-            }
+            .create( document.querySelector( '#editor' ) )
             .then( editor => {
                 console.log( editor );
             } )
