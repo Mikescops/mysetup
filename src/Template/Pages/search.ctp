@@ -68,8 +68,6 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
         <div class="row">
             <div class="column column-75 search-container">
 
-                <?php dump($results) ?>
-
                 <?php
                     if(isset($results["error"]))
                     {
@@ -92,7 +90,7 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
                         <?php if(count($resources, COUNT_RECURSIVE) == 1): ?>
                             <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"><div class="item_box" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div></a>
                             <span><?= __('All setups related to :') ?></span>
-                            <h4><?= urldecode($resources[0]->title) ?> <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"> <i class="fa fa-shopping-basket"></i></a></h4>
+                            <h4><?= urldecode(h($resources[0]->title)) ?> <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"> <i class="fa fa-shopping-basket"></i></a></h4>
                         <?php else:?>
                             <h3><?= __('Found components') ?></h3>
                         <?php foreach ($resources as $item): ?>
@@ -111,15 +109,15 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
                     <br clear='all'>
                 <?php endif;?>
 
-                <?php if(isset($results["users"]) && count($results["users"]) > 0): $foundUsers = $results["users"]; ?>
+                <?php if(isset($results["users"]) && count($results["users"]) > 0): ?>
                     <h3><?= __('Found users') ?></h3>
                     <div class="activeUsers">
-                        <?php foreach($foundUsers as $foundUser): ?>
+                        <?php foreach($results["users"] as $foundUser): ?>
                             <div class="featured-user">
                                 <a href="<?=$this->Url->build('/users/'.$foundUser->id)?>">
                                     <img alt="<?= __('Profile picture of') ?> <?= $foundUser->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $foundUser->id . '.png?' . $this->Time->format($foundUser->modificationDate, 'mmss', null, null)); ?>">
                                 <span>
-                                    <strong><?= $foundUser->name ?></strong>
+                                    <strong><?= h($foundUser->name) ?> <?php if($foundUser->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></strong>
                                     <span></span>
                                 </span>
                                 </a>
@@ -132,6 +130,8 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
                 <?php }?>
             </div>
 
+            <?php
+            /*
             <div class="column column-25 sidebar search-sidebar">
                 <ul class="search-sorting">
                     <li><a href="">Relevance</a></li>
@@ -140,6 +140,8 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
                     <li><a href="">Name</a></li>
                 </ul>
             </div>
+            */
+            ?>
         </div>
     </div>
 </div>

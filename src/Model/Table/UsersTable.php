@@ -273,6 +273,7 @@ class UsersTable extends Table
             'fields' => [
                 'id',
                 'name',
+                'verified',
                 'modificationDate'
             ],
             'contain' => [
