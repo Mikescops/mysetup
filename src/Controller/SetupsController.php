@@ -142,6 +142,8 @@ class SetupsController extends AppController
 
                     $user->setDirty('modificationDate', true);
                     $this->Setups->Users->save($user);
+
+                    $this->Setups->Users->synchronizeSessionWithUserEntity($this->request->session());
                 }
                 // _______________________________________________________________________________________________
 
@@ -253,9 +255,15 @@ class SetupsController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $setup = $this->Setups->get($id);
-        if ($this->Setups->delete($setup)) {
+        if($this->Setups->delete($setup))
+        {
+            // Force user session updating (`mainSetup_id` has changed)
+            $this->Setups->Users->synchronizeSessionWithUserEntity($this->request->session());
+
             $this->Flash->success(__('The setup has been deleted.'));
-        } else {
+        }
+        else
+        {
             $this->Flash->error(__('The setup could not be deleted. Please, try again.'));
         }
 

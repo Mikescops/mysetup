@@ -211,7 +211,7 @@ class UsersTable extends Table
 
         $rules->
             add(function($entity) {
-                // Here we only allow a "NULL" value, or an ID existing in the Setups DB
+                // Here we only allow a "0" value, or an ID existing in the Setups DB
                 if($entity['mainSetup_id'] !== 0 and !$this->Setups->exists(['id' => $entity['mainSetup_id']]))
                 {
                     return false;
@@ -480,5 +480,10 @@ class UsersTable extends Table
                 'lastLogginDate >=' => new \DateTime('-15 days')
             ]
         ])->toArray();
+    }
+
+    public function synchronizeSessionWithUserEntity($session)
+    {
+        $session->write('Auth.User', $this->get($session->read('Auth.User.id')));
     }
 }

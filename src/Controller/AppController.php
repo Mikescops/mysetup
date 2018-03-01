@@ -119,7 +119,7 @@ class AppController extends Controller
             if($user['admin'] XOR $this->request->session()->check('Auth.User.admin'))
             {
                 // ... if not, let's update the session accordingly
-                $this->request->session()->write('Auth.User', $user);
+                $this->Users->synchronizeSessionWithUserEntity($this->request->session());
             }
 
             $this->set('authUser', $user);

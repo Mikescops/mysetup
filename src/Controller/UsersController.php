@@ -258,7 +258,7 @@ class UsersController extends AppController
                     $this->Users->prepareSessionForUser($this->request->session(), $user);
 
                     // The user entity has changed, let's update the session one to reflect the modifications everywhere !
-                    $this->request->session()->write('Auth.User', $user);
+                    $this->Users->synchronizeSessionWithUserEntity($this->request->session());
                 }
 
                 $this->Flash->success(__('The user has been updated.'));

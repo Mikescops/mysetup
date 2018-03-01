@@ -82,7 +82,6 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
                         {
                             echo "<h4>" . __("We haven't found any results for this query :(") . "</h4>";
                         }
-
                     }
                     else
                     {
