@@ -194,3 +194,32 @@
 		}
 	}
 }
+
+.search-sorting{
+	list-style: none;
+	background: rgba(255,255,255,.1);
+	border-radius: 4px;
+	width: 100%;
+	border: 1px solid rgba(255,255,255,.3);
+
+	li{
+		padding: .5rem 1rem;
+		margin-bottom: 0;
+		border-bottom: 1px solid rgba(255,255,255,.3);
+
+		&:hover{
+			background: rgba(255,255,255,.1);
+		}
+
+		a{
+			text-decoration: none;
+			color: #fff;
+			display: block;
+		}
+
+		&:last-child{
+			border: 0;
+		}
+	}
+
+}

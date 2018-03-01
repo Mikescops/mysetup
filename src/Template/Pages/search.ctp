@@ -101,7 +101,12 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
             </div>
 
             <div class="column column-25 sidebar search-sidebar">
-                Here will be the sorting :)
+                <ul class="search-sorting">
+                    <li><a href="">Relevance</a></li>
+                    <li><a href="">Date</a></li>
+                    <li><a href="">Likes</a></li>
+                    <li><a href="">Name</a></li>
+                </ul>
             </div>
         </div>
     </div>
