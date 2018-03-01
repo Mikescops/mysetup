@@ -11,6 +11,25 @@ $color-blue: #328fea;
 
 /********** GENERAL CSS **********/
 
+@font-face {
+    font-family: Roboto;
+    font-weight: 300;
+    src: url(../fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: Roboto;
+    font-weight: 200;
+    src: url(../fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: Roboto;
+    font-weight: 700;
+    src: url(../fonts/Roboto/Roboto-Bold.ttf);
+}
+
+
 html{
 	background: #000;
 	overflow-x: hidden;

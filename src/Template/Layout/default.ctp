@@ -11,8 +11,6 @@
         <?= $this->fetch('title') ?>
     </title>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
     <?= $this->Html->css('main.min.css') ?>
 
     <?= $this->fetch('meta') ?>
