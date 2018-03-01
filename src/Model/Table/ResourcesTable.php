@@ -149,7 +149,6 @@ class ResourcesTable extends Table
         return $this->find('all', [
             'conditions' => $conditions,
             'fields' => [
-                'id',
                 'title',
                 'href',
                 'src'
