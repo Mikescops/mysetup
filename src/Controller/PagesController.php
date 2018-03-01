@@ -51,7 +51,6 @@ class PagesController extends AppController
         else{
             $recentResources = $Setups->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->order('RAND()')->limit(6)->toArray();
         }
-        
 
         if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {
@@ -83,7 +82,7 @@ class PagesController extends AppController
         else{
             $activeUsers = TableRegistry::get('Users')->getActiveUsers(8);
         }
-        
+
 
         $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'amdSetups', 'nvidiaSetups', 'activeUsers', 'recentResources', 'mainSetup'));
 
