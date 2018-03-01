@@ -89,7 +89,7 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
                     <div class="config-items">
                         <?php if(count($resources, COUNT_RECURSIVE) == 1): ?>
                             <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"><div class="item_box" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div></a>
-                            <span><?= __('All setups related to :') ?></span>
+                            <span><?= __('All setups related to') ?> :</span>
                             <h4><?= urldecode(h($resources[0]->title)) ?> <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"> <i class="fa fa-shopping-basket"></i></a></h4>
                         <?php else:?>
                             <h3><?= __('Found components') ?></h3>
