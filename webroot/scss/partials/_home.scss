@@ -499,6 +499,12 @@
 	font-size: 1.1em;
 	padding-left: 5px;
 	display: flex;
+
+	.fa{
+		display: flex;
+	align-self: center;
+	margin: 0 5px;
+	}
 }
 
 
