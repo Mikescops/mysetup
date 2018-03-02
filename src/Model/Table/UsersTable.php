@@ -460,7 +460,7 @@ class UsersTable extends Table
     /*
         A simple getter method to retrieve the "active" users on the website.
         The returned users :
-            * Have at least one setup
+            * Have at least one PUBLISHED setup
             * Have a verified email address
             * Have logged themselves in during the past month
             * ... are shuffled !
@@ -480,7 +480,9 @@ class UsersTable extends Table
                 'mailVerification IS' => null,
                 'lastLogginDate >=' => new \DateTime('-30 days')
             ]
-        ])->toArray();
+        ])->matching('Setups', function($q) {
+            return $q->where(['Setups.status' => 'PUBLISHED']);
+        })->distinct()->toArray();
     }
 
     public function synchronizeSessionWithUserEntity($session)
