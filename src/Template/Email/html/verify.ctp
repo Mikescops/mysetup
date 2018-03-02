@@ -5,6 +5,6 @@
     <br />
     Please, in order to activate your account, click on the following button :
 </p>
-<a href="https://mysetup.co/verify/<?= $id ?>/<?= $token ?>" target="_blank" class="button-a">
+<a href="<?= $this->Url->build('/verify/' . $id . '/' . $token, true) ?>" target="_blank" class="button-a">
     <span style="color: #dddddd;" class="button-link">Verify my account !</span>
 </a>

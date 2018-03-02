@@ -3,7 +3,7 @@
     Hello the support !
     <br />
     <br />
-    <a href="https://mysetup.co/setups/<?= $setup_id ?>">This setup</a> has just been reported by <a href="https://mysetup.co/users/<?= $flagger_id ?>"><?= $flagger_name ?></a> !
+    <a href="<?= $this->Url->build('/setups/' . $setup_id, true) ?>">This setup</a> has just been reported by <a href="<?= $this->Url->build('/users/' . $flagger_id, true) ?>"><?= $flagger_name ?></a> !
     <br />
     You can contact him by mail :
 </p>

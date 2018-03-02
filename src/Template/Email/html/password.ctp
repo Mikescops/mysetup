@@ -7,6 +7,6 @@
     <br />
     Please click on the button below to log you in, and don't forget to <span style="font-weight: bold;">change it as soon as possible</span> :
 </p>
-<a href="https://mysetup.co/login/" target="_blank" class="button-a">
+<a href="<?= $this->Url->build('/login', true) ?>" target="_blank" class="button-a">
     <span style="color: #dddddd;" class="button-link">Show me the login page !</span>
 </a>
