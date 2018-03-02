@@ -153,6 +153,7 @@ class PagesController extends AppController
                     // Redirect to user profile if the result is only one entity, matching its name
                     if(count($results) == 1 && strtolower($results[0]->name) === strtolower($query))
                     {
+                        $this->Flash->success(__('We have found the user you are looking for !'));
                         return $this->redirect(['controller' => 'Users', 'action' => 'view', $results[0]->id]);
                     }
 
@@ -164,6 +165,7 @@ class PagesController extends AppController
                     // Redirect to home search if the result is only one resource
                     if(count($results) == 1)
                     {
+                        $this->Flash->success(__('We have found the component you are looking for !'));
                         return $this->redirect('/search/?q=' . $query);
                     }
 
@@ -187,6 +189,7 @@ class PagesController extends AppController
                     && count($setups) == count($users[0]['setups'])
                     && count($resources) == 0)
                     {
+                        $this->Flash->success(__('We have found the user you are looking for !'));
                         return $this->redirect(['controller' => 'Users', 'action' => 'view', $users[0]->id]);
                     }
 
