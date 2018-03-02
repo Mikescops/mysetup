@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "POT-Creation-Date: 2018-03-02 00:21+0100\n"
-"PO-Revision-Date: 2018-03-02 00:22+0100\n"
+"PO-Revision-Date: 2018-03-02 17:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: support@mysetup.co\n"
 "Language: fr\n"
@@ -1730,7 +1730,7 @@ msgstr "Ajoute ton premier setup !"
 
 #: Template/Users/view.ctp:114
 msgid "Got another setup ? Add it now !"
-msgstr "Tu as un autre setup ? Ajotue-le maintenant !"
+msgstr "Tu as un autre setup ? Ajoute-le maintenant !"
 
 #: Template/Users/view.ctp:116
 msgid "Create a Setup"
