@@ -485,8 +485,19 @@ class UsersTable extends Table
         })->distinct()->toArray();
     }
 
-    public function synchronizeSessionWithUserEntity($session)
+    public function synchronizeSessionWithUserEntity($session, $user = null, $admin = false)
     {
-        $session->write('Auth.User', $this->get($session->read('Auth.User.id')));
+        if(!$user)
+        {
+            $user = $this->get($session->read('Auth.User.id'));
+        }
+
+        // Simply sets a boolean useful in view in the future
+        if($admin)
+        {
+            $user['admin'] = true;
+        }
+
+        $session->write('Auth.User', $user);
     }
 }

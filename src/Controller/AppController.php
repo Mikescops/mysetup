@@ -107,24 +107,11 @@ class AppController extends Controller
         $this->loadModel('Setups');
 
         // Test if a user is logged in, and if it's the case, give to the view the user entity linked
-        if(isset($this->Auth)) {
-            $this->loadModel('Users');
-            $user = $this->Users->find()->where(['id' => $this->Auth->user('id')])->first();
-            if($user and $this->isAdmin($user))
-            {
-                $user['admin'] = true;
-            }
+        if(isset($this->Auth))
+        {
+            $this->set('authUser', $this->Auth->user());
 
-            // Let's check if the the session is "synced" with the user entity...
-            if($user['admin'] XOR $this->request->session()->check('Auth.User.admin'))
-            {
-                // ... if not, let's update the session accordingly
-                $this->Users->synchronizeSessionWithUserEntity($this->request->session());
-            }
-
-            $this->set('authUser', $user);
-
-            // Now, let's send the setups list to the view (to let the user choose a default one)*
+            // Now, let's send the setups list to the view (to let the user choose a default one)
             $setupsList = [];
             foreach($this->Setups->find('all', [
                 'fields' => [
@@ -132,7 +119,7 @@ class AppController extends Controller
                     'title'
                 ],
                 'conditions' => [
-                    'user_id' => $user['id']
+                    'user_id' => $this->Auth->user('id')
                 ],
                 'order' => [
                     'creationDate' => 'DESC'
@@ -140,7 +127,6 @@ class AppController extends Controller
             ]) as $setup) {
                 $setupsList += [$setup->id => $setup->title];
             }
-
             $this->set('setupsList', $setupsList);
 
             // Let's send to the view the list of timezones as well
@@ -148,12 +134,10 @@ class AppController extends Controller
         }
 
         // Before render the view, let's give a new entity for add Setup modal to it
-        $newSetupEntity = $this->Setups->newEntity();
+        $this->set('newSetupEntity', $this->Setups->newEntity());
 
         // We'll need also the setups available status
-        $status = $this->Setups->status;
-
-        $this->set(compact('newSetupEntity', 'status'));
+        $this->set('status', $this->Setups->status);
     }
 
     public function beforeFilter(Event $event)

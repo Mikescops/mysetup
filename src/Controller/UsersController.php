@@ -258,7 +258,7 @@ class UsersController extends AppController
                     $this->Users->prepareSessionForUser($this->request->session(), $user);
 
                     // The user entity has changed, let's update the session one to reflect the modifications everywhere !
-                    $this->Users->synchronizeSessionWithUserEntity($this->request->session());
+                    $this->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
                 }
 
                 $this->Flash->success(__('The user has been updated.'));
@@ -312,7 +312,7 @@ class UsersController extends AppController
 
     public function login()
     {
-        if($this->request->session()->check('Auth.User'))
+        if($this->Auth->user() !== null)
         {
             $this->Flash->warning(__('You are already logged in.'));
             return $this->redirect('/');
@@ -340,6 +340,7 @@ class UsersController extends AppController
                     $this->Flash->success(__('You are successfully logged in !'));
 
                     $this->Users->prepareSessionForUser($this->request->session(), $user);
+                    $this->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
 
                     $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
@@ -355,7 +356,7 @@ class UsersController extends AppController
 
     public function logout()
     {
-        if($this->request->session()->check('Auth.User'))
+        if($this->Auth->user() !== null)
         {
             $this->Flash->success(__('You are now logged out, see you soon !'));
             return $this->redirect($this->Auth->logout());

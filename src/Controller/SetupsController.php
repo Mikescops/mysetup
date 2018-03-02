@@ -143,7 +143,7 @@ class SetupsController extends AppController
                     $user->setDirty('modificationDate', true);
                     $this->Setups->Users->save($user);
 
-                    $this->Setups->Users->synchronizeSessionWithUserEntity($this->request->session());
+                    $this->Setups->Users->synchronizeSessionWithUserEntity($this->request->session(), $user);
                 }
                 // _______________________________________________________________________________________________
 
@@ -388,7 +388,7 @@ class SetupsController extends AppController
                 // ... and the response is YES...
                 if($response)
                 {
-                    // ... let's change the ownership on this setup
+                    // ... let's change the ownership of this setup
                     $setup = $this->Setups->get($request->setup_id);
                     $setup->author  = $this->Setups->Users->get($request->user_id)['name'];
                     $setup->user_id = $request->user_id;
