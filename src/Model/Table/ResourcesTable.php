@@ -92,13 +92,13 @@ class ResourcesTable extends Table
                 // At least one 'id' has to be set
                 if(isset($entity['user_id']) or isset($entity['setup_id']))
                 {
-                    // ... and each set one has to correspond to a existing entity in the DB
-                    if(isset($entity['user_id']) and $this->Users->find()->where(['id' =>  $entity['user_id']])->count() === 0)
+                    // ... and each set one has to correspond to an existing entity in the DB
+                    if(isset($entity['user_id']) and !$this->Users->exists(['id' =>  $entity['user_id']]))
                     {
                         return false;
                     }
 
-                    if(isset($entity['setup_id']) and $this->Setups->find()->where(['id' =>  $entity['setup_id']])->count() === 0)
+                    if(isset($entity['setup_id']) and !$this->Setups->exists(['id' =>  $entity['setup_id']]))
                     {
                         return false;
                     }
