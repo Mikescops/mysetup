@@ -35,5 +35,5 @@
     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
     <?= $this->Form->end(); ?>
 
-    <?= $this->Form->postLink(__('Delete this account'), array('controller' => 'Users','action' => 'delete', $user['id']),array('confirm' => 'You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')) ?>
+    <?= $this->Form->postLink(__('Delete this account'), ['controller' => 'Users', 'action' => 'delete', $user['id']], ['confirm' => __('You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?')]) ?>
 </div>
