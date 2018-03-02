@@ -462,7 +462,7 @@ class UsersTable extends Table
         The returned users :
             * Have at least one setup
             * Have a verified email address
-            * Have logged themselves in during the past 2 weeks
+            * Have logged themselves in during the past month
             * ... are shuffled !
     */
     public function getActiveUsers($n = 8)
@@ -478,7 +478,7 @@ class UsersTable extends Table
             'conditions' => [
                 'mainSetup_id !=' => 0,
                 'mailVerification IS' => null,
-                'lastLogginDate >=' => new \DateTime('-15 days')
+                'lastLogginDate >=' => new \DateTime('-30 days')
             ]
         ])->toArray();
     }
