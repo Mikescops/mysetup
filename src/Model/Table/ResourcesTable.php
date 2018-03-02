@@ -393,6 +393,41 @@ class ResourcesTable extends Table
         }
     }
 
+    // This method will handle a owner change (so as to move images to the new directory)
+    public function changeSetupsImagesOwner($setup_id, $old_user_id, $new_user_id)
+    {
+        // For each resource...
+        foreach($this->find('all', [
+            'conditions' => [
+                'setup_id' => $setup_id,
+                'user_id' => $old_user_id
+            ]
+        ]) as $resource)
+        {
+            // ... we update the `user_id` with the new owner ID
+            $resource->user_id = $new_user_id;
+
+            // If this resource is an image, let's move it into the new owner's directory
+            if(in_array($resource->type, ['SETUP_FEATURED_IMAGE', 'SETUP_GALLERY_IMAGE']))
+            {
+                $new_path = str_replace($old_user_id, $new_user_id, $resource->src);
+
+                if(rename($resource->src, $new_path))
+                {
+                    $resource->src = $new_path;
+                }
+
+                else
+                {
+                    // This image couldn't be moved, let's delete it (?)
+                    $this->delete($resource);
+                }
+            }
+
+            $this->save($resource);
+        }
+    }
+
     /*
         This method extract the most used colors from an image given (with its path).
         The returned array will be as :

@@ -114,9 +114,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                 <?php elseif($authUser && $setup->user_id != $authUser['id']): ?>
                     <div class="edit_panel">
-                            <?= $this->Form->postLink('', ['action' => 'requestOwnership', $setup->id], ['confirm' => __('This will send an ownership-request for this setup, are you really sure ?'), 'title' => __('This is my setup !'), 'class' => 'fa fa-bolt']) ?>
+                            <?= $this->Form->postLink('', ['controller' => 'Requests', 'action' => 'requestOwnership', $setup->id], ['confirm' => __('This will send an ownership-request for this setup, are you really sure ?'), 'title' => __('This is my setup !'), 'class' => 'fa fa-bolt']) ?>
 
-                            <?= $this->Form->postLink('', ['action' => 'requestReport', $setup->id], ['confirm' => __('This will send a report-request against this setup, are you really sure ?'), 'title' => __('Report this setup'), 'class' => 'fa fa-flag']) ?>
+                            <?= $this->Form->postLink('', ['controller' => 'Requests', 'action' => 'requestReport', $setup->id], ['confirm' => __('This will send a report-request against this setup, are you really sure ?'), 'title' => __('Report this setup'), 'class' => 'fa fa-flag']) ?>
                     </div>
                 <?php endif; ?>
             </div>

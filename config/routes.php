@@ -67,7 +67,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             ->setPatterns(['id' => '\d+', 'slug' => '(-.*)?'])
             ->setPass(['id']);
         $routes
-            ->connect('/request/:id/:token/:response', ['controller' => 'Setups', 'action' => 'answerOwnership'])
+            ->connect('/request/:id/:token/:response', ['controller' => 'Requests', 'action' => 'answerOwnership'])
             ->setPatterns(['id' => '\d+'])
             ->setPass(['id', 'token', 'response']);
     });
