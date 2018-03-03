@@ -178,7 +178,6 @@
 
     <footer>
         <div class="container">
-
             <div class="row">
                     <div class="column column-25">
                       <div class="footer-title"><?= __('Partners') ?></div>
@@ -222,6 +221,7 @@
     <?php if($authUser): ?>
         <?= $this->Html->script('emoji.min.js') ?>
     <?php endif; ?>
+
     <script>const toast = new siiimpleToast();</script>
     <?php if($authUser): ?>
         <script>const instance = new tippy('#notifications-trigger', {html: '#notifications-pop',sticky: false,flipDuration:0,position:'bottom',arrow: true,appendTo: document.body,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false,performance: true});const notificationcenter = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification();tippy('.button.draft');tippy('.setup-unpublished');tippy('.setup-default');tippy('.setup-star');</script>
@@ -230,23 +230,12 @@
     <?= $this->Flash->render() ?>
 
     <script>$(window).blur(function(){callnotif=true;pageTitleNotification.on("👋 <?= __('Hey there !') ?>", 5000);});</script>
+
     <?= $this->fetch('scriptBottom') ?>
 
-    <!-- Piwik -->
-    <script type="text/javascript">
-      var _paq = _paq || [];
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//analytics.geek-mexicain.net/";
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', '2']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
+    <!-- Analytics -->
+    <script type="text/javascript">var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){var u="//analytics.geek-mexicain.net/";_paq.push(['setTrackerUrl',u+'piwik.php']);_paq.push(['setSiteId','2']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=!0;g.defer=!0;g.src=u+'piwik.js';s.parentNode.insertBefore(g,s)})();</script>
     <noscript><p><img src="//analytics.geek-mexicain.net/piwik.php?idsite=2&rec=1" style="border:0;" alt="" /></p></noscript>
-    <!-- End Piwik Code -->
 
 </body>
 </html>

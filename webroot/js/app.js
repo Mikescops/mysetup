@@ -1,5 +1,5 @@
 /*!
- * mySetup v1.1.0
+ * mySetup v3.0.1
  * https://mysetup.co
  *
  * Copyright (c) 2017 Corentin Mors / Samuel Forestier
