@@ -278,11 +278,12 @@
     column-fill: balance;
 
     .featured-user{
-    	display: flex;
+    	display: inline-flex;
     	background: #282d37;
 		border-radius: 4px;
 		padding: 10px;
 		margin-bottom: 10px;
+		width: 100%;
 
 		&:hover{
 			background: #303643;
