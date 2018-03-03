@@ -215,21 +215,13 @@
 
     <div id="notifications-pop" style="display: none;"><div id="notif-container"></div><div id="no-notif">You have no notifications.</div></div>
 
-    <!-- Jquery async load -->
-    <?= $this->Html->script('jquery-3.2.0.min.js') ?>
-    <?= $this->Html->script('lib.min.js') ?>
-    <?= $this->Html->script('tippy.min.js') ?>
+    <!-- App Js async load -->
+    <?= $this->Html->script('app.min.js') ?>
 
     <!-- Emoji handling -->
     <?php if($authUser): ?>
         <?= $this->Html->script('emoji.min.js') ?>
     <?php endif; ?>
-    <?= $this->Html->script('emojione.min.js') ?>
-
-    <?= $this->Html->script('cookieconsent.min.js') ?>
-
-    <!-- App Js async load -->
-    <?= $this->Html->script('app.min.js') ?>
     <script>const toast = new siiimpleToast();</script>
     <?php if($authUser): ?>
         <script>const instance = new tippy('#notifications-trigger', {html: '#notifications-pop',sticky: false,flipDuration:0,position:'bottom',arrow: true,appendTo: document.body,trigger: 'click',interactive: true,animation: 'fade',hideOnClick: false,performance: true});const notificationcenter = instance.getPopperElement(document.querySelector('#notifications-trigger'));checknotification();tippy('.button.draft');tippy('.setup-unpublished');tippy('.setup-default');tippy('.setup-star');</script>
