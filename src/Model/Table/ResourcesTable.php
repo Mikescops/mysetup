@@ -394,7 +394,7 @@ class ResourcesTable extends Table
     }
 
     // This method will handle a owner change (so as to move images to the new directory)
-    public function changeSetupsImagesOwner($setup_id, $old_user_id, $new_user_id)
+    public function changeSetupsImagesOwner($setup_id, $old_user_id, $new_user_id, $flash)
     {
         // For each resource...
         foreach($this->find('all', [
@@ -422,6 +422,8 @@ class ResourcesTable extends Table
                 {
                     // This image couldn't be moved, let's delete it (?)
                     $this->delete($resource);
+
+                    $flash->warning(__('One of the setup images could not be migrated.'));
                 }
             }
 

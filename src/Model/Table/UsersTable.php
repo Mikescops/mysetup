@@ -391,25 +391,25 @@ class UsersTable extends Table
         // `FR-*` locales
         if(preg_match('/^fr([-_].*)?$/i', $country_id))
         {
-            $locale = 'fr-FR';
+            $locale = 'fr_FR';
         }
 
         // `ES-*` locales
         elseif(preg_match('/^es([-_].*)?$/i', $country_id))
         {
-            $locale = 'es-ES';
+            $locale = 'es_ES';
         }
 
         // `IT-*` locales
         elseif(preg_match('/^it([-_].*)?$/i', $country_id))
         {
-            $locale = 'it-IT';
+            $locale = 'it_IT';
         }
 
         // All the others (yet)
         else
         {
-            $locale = 'en-GB';
+            $locale = 'en_GB';
         }
 
         return $locale;
