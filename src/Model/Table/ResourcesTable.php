@@ -410,7 +410,8 @@ class ResourcesTable extends Table
             // If this resource is an image, let's move it into the new owner's directory
             if(in_array($resource->type, ['SETUP_FEATURED_IMAGE', 'SETUP_GALLERY_IMAGE']))
             {
-                $new_path = str_replace($old_user_id, $new_user_id, $resource->src);
+                // Only replaces the first value found (in order to avoid a bug with UIID members, not likely but possible).
+                $new_path = str_replace($old_user_id, $new_user_id, $resource->src, 1);
 
                 if(rename($resource->src, $new_path))
                 {
