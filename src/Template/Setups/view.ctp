@@ -102,7 +102,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?php if($authUser['id'] == $setup->user_id or $authUser['admin']): ?>
                     <div class="edit_panel">
                         <a href="#edit_setup_modal" data-lity title="<?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup"><i class="fa fa-wrench"></i></a>
-                        <a href="#embed_twitch_modal" data-lity title="<?= __('Embed it in Twitch') ?>"><i class="fa fa-twitch"></i></a>
+                        <a href="#embed_twitch_modal" data-lity title="<?= __('Embed on Twitch') ?>"><i class="fa fa-twitch"></i></a>
                         <a href="#embed_website_script" data-lity title="<?= __('Embed on your website') ?>"><i class="fa fa-code"></i></a>
                     </div>
 
