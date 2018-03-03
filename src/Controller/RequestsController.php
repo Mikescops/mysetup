@@ -87,7 +87,7 @@ class RequestsController extends AppController
                     else
                     {
                         // The setup has been updated, let's now move the images to the new owner's directory
-                        $this->Requests->Setups->Resources->changeSetupsImagesOwner($setup->id, $old_user_id, $setup->user_id);
+                        $this->Requests->Setups->Resources->changeSetupsImagesOwner($setup->id, $old_user_id, $setup->user_id, $this->Flash);
 
                         $this->Flash->success(__('Your voice has been heard !'));
 
