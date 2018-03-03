@@ -60,14 +60,11 @@ If you wanna add a translation for a foreign language :
 1. Add `default.po` and `core.po` files into `src/Locale/xx_XX/`
 2. Add a corresponding test case into `src/Table/UsersTable.php@getLocaleByCountryID()` for the locale you added
 
-So as to extract the strings from the source code, and edit them with _Poedit_, just follow this scenario :
+So as to extract the strings from the source code, and edit them with _Poedit_, just run this command :
 
-1. `$ bin/cake i18n extract`
-2. Keep the **default path** for extraction (`<...>/src/`)
-3. **Do extract** the CakePHP core's strings
-4. Keep the **default path** for output (`<...>/src/Locale`)
-5. **Don't merge** all domain strings into the `default.pot` file
-6. Replace existing files if needed
+`$ bin/cake i18n extract --paths src --output src/Locale --extract-core yes --merge no --overwrite`
+
+Output files will be under `src/Locale/`, as : `{cake,default}.pot`
 
 ## Authors
 
