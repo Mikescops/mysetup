@@ -17,7 +17,7 @@
             <div class="card text-white bg-danger h-100">
                 <div class="card-body bg-danger">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= __('SETUPS') ?>
+                        <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= __('SETUPS') ?>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <div class="card bg-success text-white h-100">
                 <div class="card-body bg-success">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-feather="users" width="50px" height="50px"></i></h1> <?= __('USERS') ?>
+                        <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="users" width="50px" height="50px"></i></h1> <?= __('USERS') ?>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <div class="card text-white bg-info h-100">
                 <div class="card-body bg-info">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['comments'] ?> <i data-feather="message-circle" width="50px" height="50px"></i></h1> <?= __('COMMENTS') ?>
+                        <h1 class="display-4"><?= $stats['count']['comments'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="message-circle" width="50px" height="50px"></i></h1> <?= __('COMMENTS') ?>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
             <div class="card text-white bg-warning h-100">
                 <div class="card-body bg-warning">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['resources'] ?> <i data-feather="layers" width="50px" height="50px"></i></h1> <?= __('RESOURCES') ?>
+                        <h1 class="display-4"><?= $stats['count']['resources'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="layers" width="50px" height="50px"></i></h1> <?= __('RESOURCES') ?>
                     </div>
 
                 </div>
@@ -90,10 +90,10 @@
                             <div class="media-body">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><?= h($user->name) ?>
-                                        <?php if(is_null($user->mailVerification)):?><i data-feather="mail" title="<?= __('Mail verified') ?>"></i><?php endif;?>
-                                        <?php if($user->twitchToken):?><i data-feather="at-sign" title="<?= __('Twitch user id') ?> : <?= $user->twitchUserId ?>"></i><?php endif;?>
-                                        <?php if($user->verified == "1"):?><i data-feather="check-circle" title="<?= __('Certified user') ?>"></i><?php endif;?>
-                                        <?php if($user->verified == "125"):?><i data-feather="award" title="<?= __('Admin user') ?>"></i><?php endif;?>
+                                        <?php if(is_null($user->mailVerification)):?><i data-toggle="tooltip" data-placement="top" data-feather="mail" title="<?= __('Mail verified') ?>"></i><?php endif;?>
+                                        <?php if($user->twitchToken):?><i data-toggle="tooltip" data-placement="top" data-feather="at-sign" title="<?= __('Twitch user id') ?> : <?= $user->twitchUserId ?>"></i><?php endif;?>
+                                        <?php if($user->verified == "1"):?><i data-toggle="tooltip" data-placement="top" data-feather="check-circle" title="<?= __('Certified user') ?>"></i><?php endif;?>
+                                        <?php if($user->verified == "125"):?><i data-toggle="tooltip" data-placement="top" data-feather="award" title="<?= __('Admin user') ?>"></i><?php endif;?>
                                     </h5>
                                     <small><?= $this->Time->format($user->lastLogginDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']) ?></small>
                                 </div>
@@ -116,10 +116,10 @@
                             <div class="media-body">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><?= h($user->name) ?>
-                                        <?php if(is_null($user->mailVerification)):?><i data-feather="mail" title="<?= __('Mail verified') ?>"></i><?php endif;?>
-                                        <?php if($user->twitchToken):?><i data-feather="at-sign" title="<?= __('Twitch user id') ?> : <?= $user->twitchUserId ?>"></i><?php endif;?>
-                                        <?php if($user->verified == "1"):?><i data-feather="check-circle" title="<?= __('Certified user') ?>"></i><?php endif;?>
-                                        <?php if($user->verified == "125"):?><i data-feather="award" title="<?= __('Admin user') ?>"></i><?php endif;?>
+                                        <?php if(is_null($user->mailVerification)):?><i data-toggle="tooltip" data-placement="top" data-feather="mail" title="<?= __('Mail verified') ?>"></i><?php endif;?>
+                                        <?php if($user->twitchToken):?><i data-toggle="tooltip" data-placement="top" data-feather="at-sign" title="<?= __('Twitch user id') ?> : <?= $user->twitchUserId ?>"></i><?php endif;?>
+                                        <?php if($user->verified == "1"):?><i data-toggle="tooltip" data-placement="top" data-feather="check-circle" title="<?= __('Certified user') ?>"></i><?php endif;?>
+                                        <?php if($user->verified == "125"):?><i data-toggle="tooltip" data-placement="top" data-feather="award" title="<?= __('Admin user') ?>"></i><?php endif;?>
                                     </h5>
                                     <small><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']) ?></small>
                                 </div>
