@@ -91,7 +91,7 @@ class AppController extends Controller
         }
         $lang = $this->loadModel('Users')->getLocaleByCountryID($lang);
         I18n::setLocale($lang);
-        $this->set('lang', substr($lang, 0, strpos($lang, '_')));
+        $this->set('lang', explode('_', $lang)[0]);
         /* __________________________________________________________ */
     }
 
