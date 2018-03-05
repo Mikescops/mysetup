@@ -14,6 +14,7 @@
  */
 namespace App\Controller;
 
+use Cake\Core\Configure;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\I18n\I18n;
@@ -210,7 +211,7 @@ class AppController extends Controller
     {
         // Is this user authorized by Google invisible CAPTCHA ?
         $response = (new Client())->post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => '6LcLKx0UAAAAACDyDI7Jtmkm0IX9ni3cWN5amwx3',
+            'secret' => Configure::read('Credentials.Google.CAPTCHA.secret'),
             'response' => $data['g-recaptcha-response']
         ]);
 

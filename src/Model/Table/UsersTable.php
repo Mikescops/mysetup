@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\Core\Configure;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -83,7 +84,6 @@ class UsersTable extends Table
                 ]
             ]
         ]);
-
         $this->addBehavior('Sitemap.Sitemap', [
             'changefreq' => 'daily',
             'lastmod' => 'modificationDate'
@@ -292,29 +292,24 @@ class UsersTable extends Table
         ->toArray();
     }
 
-    public function getTwitchAPIID() { return 'zym0nr99v74zljmo6z96st25rj6rzz'; }
-    public function getTwitchAPISecret() { return 'b8mrbqfd9vsyjciyec560j44lh1muk'; }
+    public function getTwitchAPIID()
+    {
+        return Configure::read('Credentials.Twitch.id');
+    }
+    public function getTwitchAPISecret()
+    {
+        return Configure::read('Credentials.Twitch.secret');
+    }
 
     public function getEmailObject($receiver, $subject)
     {
-        Email::setConfigTransport('Zoho', [
-            'host' => 'smtp.zoho.eu',
-            'port' => 587,
-            'username' => 'support@mysetup.co',
-            'password' => 'Lsc\'etb1',
-            'className' => 'Smtp',
-            'tls' => true
-        ]);
-
-        $email = (new Email())
-                    ->setTransport('Zoho')
-                    ->setFrom(['webmaster@mysetup.co' => 'mySetup.co | Support'])
-                    ->setEmailFormat('html')
-                    ->setLayout('layout')
-                    ->setTo($receiver)
-                    ->setSubject($subject);
-
-        return $email;
+        return (
+            (new Email())
+                ->setEmailFormat('html')
+                ->setLayout('layout')
+                ->setTo($receiver)
+                ->setSubject($subject)
+        );
     }
 
     public function saveDefaultProfilePicture($user, $flash)
@@ -327,7 +322,7 @@ class UsersTable extends Table
 
         if(!(new File('img/profile-default.png'))->copy('uploads/files/pics/profile_picture_' . strval($user->id) . '.png'))
         {
-            $flash->warning(__("Your default picture could not be set... Please contact an administrator."));
+            $flash->warning(__('Your default picture could not be set... Please contact an administrator.'));
         }
     }
 
@@ -363,7 +358,7 @@ class UsersTable extends Table
 
         else
         {
-            $flash->warning(__("The file you uploaded does not validate our rules... Please contact an administrator."));
+            $flash->warning(__('The file you uploaded does not validate our rules... Please contact an administrator.'));
         }
     }
 

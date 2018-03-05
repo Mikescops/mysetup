@@ -194,14 +194,14 @@ class ResourcesTable extends Table
 
                         else
                         {
-                            $flash->warning(__("One of your resources could not be saved... Please contact an administrator."));
+                            $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
                         }
                     }
                 }
 
                 else
                 {
-                    $flash->warning(__("One of the products you chose does not validate our rules... Please contact an administrator."));
+                    $flash->warning(__('One of the products you chose does not validate our rules... Please contact an administrator.'));
                 }
             }
         }
@@ -216,12 +216,12 @@ class ResourcesTable extends Table
                 if(!$edition)
                 {
                     $this->Setups->delete($setup);
-                    $flash->error(__("An internal error occurred while saving your images... Please contact an administrator."));
+                    $flash->error(__('An internal error occurred while saving your images... Please contact an administrator.'));
                 }
 
                 else
                 {
-                    $flash->warning(__("One of your resources could not be saved... Please contact an administrator."));
+                    $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
                 }
             }
 
@@ -246,7 +246,7 @@ class ResourcesTable extends Table
 
                 if(!$image->setImageFormat('jpg') || !$image->setImageCompressionQuality(85) /*|| !$image->gaussianBlurImage(0.8, 10) */|| !$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
                 {
-                    $flash->warning(__("One of your image could not be converted to JPG, compressed, resized or saved... Please contact an administrator."));
+                    $flash->warning(__('One of your image could not be converted to JPG, compressed, resized or saved... Please contact an administrator.'));
                 }
 
                 $resource = $this->newEntity();
@@ -267,7 +267,7 @@ class ResourcesTable extends Table
 
                     else
                     {
-                        $flash->warning(__("One of your resources could not be saved... Please contact an administrator."));
+                        $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
                     }
                 }
 
@@ -285,7 +285,7 @@ class ResourcesTable extends Table
 
         else
         {
-            $flash->warning(__("One of the files you uploaded does not validate our rules... Please contact an administrator."));
+            $flash->warning(__('One of the files you uploaded does not validate our rules... Please contact an administrator.'));
         }
 
         return false;
@@ -323,20 +323,20 @@ class ResourcesTable extends Table
 
                     else
                     {
-                        $flash->warning(__("One of your resources could not be saved... Please contact an administrator."));
+                        $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
                     }
                 }
             }
 
             else
             {
-                $flash->warning(__("The video link you chose does not validate our rules... Please contact an administrator."));
+                $flash->warning(__('The video link you chose does not validate our rules... Please contact an administrator.'));
             }
         }
 
         else
         {
-            $flash->warning(__("The video link you chose does not validate our rules... Please contact an administrator."));
+            $flash->warning(__('The video link you chose does not validate our rules... Please contact an administrator.'));
         }
     }
 
