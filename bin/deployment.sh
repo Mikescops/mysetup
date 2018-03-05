@@ -5,10 +5,9 @@
 rm -rf tmp/*
 
 # Sync the vendor packages with the `composer.lock` specifications
-composer install -n
+COMPOSER_ALLOW_SUPERUSER=true composer install -o -n --no-dev --profile
 
 # Some CakePHP optimizations
-composer dumpautoload -o
 bin/cake plugin assets symlink
 
 # Has the model changed ?
@@ -17,9 +16,7 @@ bin/cake migrations migrate --no-lock
 
 # Update the translation binary catalogs from sources !
 for file in src/Locale/*_*/*.po; do
-
     msgfmt -o $(dirname "${file}")"/"$(basename "${file}" .po)".mo" "${file}"
-
 done
 
 
