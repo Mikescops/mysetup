@@ -1,4 +1,6 @@
 <?php
+namespace config;
+
 return [
     /**
      * Debug Level:
@@ -206,6 +208,23 @@ return [
             'from' => 'you@localhost',
             //'charset' => 'utf-8',
             //'headerCharset' => 'utf-8',
+        ],
+    ],
+
+    /**
+     * A simple array to store app-specific credentials for third-party service providers.
+
+     * Twitch : `id` and `secret` for Twitch's OAuth provider
+     */
+    'Credentials' => [
+        'Google' => [
+            'CAPTCHA' => [
+                'secret' => 'YOUR_GOOGLE_CAPTCHA_SECRET_GOES_HERE',
+            ],
+        ],
+        'Twitch' => [
+            'id' => 'YOUR_TWITCH_ID_GOES_HERE',
+            'secret' => 'YOUR_TWITCH_SECRET_GOES_HERE',
         ],
     ],
 
