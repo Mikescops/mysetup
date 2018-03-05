@@ -5,14 +5,14 @@ session_start();
 
 if($_SESSION['Auth'])
 {
-    $name = 'Shared by ' . $_GET['name'];
-	$setup = $_GET['setup'];
+    $name = 'Shared by ' . escapeshellcmd($_GET['name']);
+    $setup = escapeshellcmd($_GET['setup']);
 
-    $pfile = '../uploads/files/pics/profile_picture_' . $_GET['id'] . '.png';
+    $pfile = '../uploads/files/pics/profile_picture_' . escapeshellcmd($_GET['id']) . '.png';
     $profile = ImageCreateFromPNG($pfile);
     list($pwidth, $pheight) = GetImageSize($pfile);
 
-	$image = ImageCreateFromJPEG("partner_banner.jpg");
+    $image = ImageCreateFromJPEG('partner_banner.jpg');
     ImageAlphaBlending($image, true);
     ImageSaveAlpha($image, true);
     ImageCopyResampled($image, $profile, 0, 239, 0, 0, 81, 81, $pwidth, $pheight);
@@ -31,17 +31,17 @@ if($_SESSION['Auth'])
     {
         ImageTTFText($image, 17, 0, 88, 277, $color, './corbel.ttf', $setup);
         ImageTTFText($image, 11, 0, 88, 300, $color, './corbel.ttf', $name);
-	}
+    }
 
     header('Content-type: image/jpeg');
     header('Content-Disposition: inline; filename="' . $setup . '.jpeg"');
 
-	// Return output.
-	ImageJPEG($image, NULL, 93);
-	ImageDestroy($image);
+    // Return output.
+    ImageJPEG($image, NULL, 93);
+    ImageDestroy($image);
 }
 
 else
 {
-	header('location: ../');
+    header('location: ../');
 }
