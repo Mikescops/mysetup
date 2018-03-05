@@ -302,6 +302,7 @@ class UsersController extends AppController
         // Only disconnects someone who is deleting himself (and not an admin !) :O
         if($user->id == $this->Auth->user('id'))
         {
+            $this->request->session()->destroy();
             return $this->redirect($this->Auth->logout());
         }
 
