@@ -5,7 +5,7 @@
 rm -rf tmp/*
 
 # Sync the vendor packages with the `composer.lock` specifications
-COMPOSER_ALLOW_SUPERUSER=true composer install -o -n --no-dev --profile
+COMPOSER_ALLOW_SUPERUSER=true composer install -o -n --profile
 
 # Some CakePHP optimizations
 bin/cake plugin assets symlink
