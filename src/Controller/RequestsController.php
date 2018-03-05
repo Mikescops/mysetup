@@ -89,6 +89,41 @@ class RequestsController extends AppController
                         // The setup has been updated, let's now move the images to the new owner's directory
                         $this->Requests->Setups->Resources->changeSetupsImagesOwner($setup->id, $old_user_id, $setup->user_id, $this->Flash);
 
+                        // Argh, a case is missing : The new owner didn't have any setup.
+                        // This new one will become its default one ;)
+                        $new_owner = $this->Requests->Users->get($setup->user_id);
+                        if($new_owner->mainSetup_id === 0)
+                        {
+                            $new_owner->mainSetup_id = $setup->id;
+
+                            $new_owner->setDirty('modificationDate', true);
+                            $this->Requests->Users->save($new_owner);
+
+                            $this->Requests->Users->synchronizeSessionWithUserEntity($this->session(), $new_owner);
+                        }
+
+                        // If the same setup was the main one of the previous owner, let's affect him one other (or none)
+                        $old_owner = $this->Requests->Users->get($old_user_id);
+                        if($old_owner->mainSetup_id === $setup->id)
+                        {
+                            $newMainSetup = $this->Requests->Setups->find('all', [
+                                'fields' => [
+                                    'id'
+                                ],
+                                'conditions' => [
+                                    'user_id' => $old_owner->id
+                                ],
+                                'order' => [
+                                    'creationDate' => 'DESC'
+                                ],
+                                'limit' => 1
+                            ])->first();
+                            $old_owner->mainSetup_id = ($newMainSetup ? $newMainSetup->id : 0);
+
+                            $old_owner->setDirty('modificationDate', true);
+                            $this->Requests->Users->save($old_owner);
+                        }
+
                         $this->Flash->success(__('Your voice has been heard !'));
 
                         if(!$this->Requests->delete($request))

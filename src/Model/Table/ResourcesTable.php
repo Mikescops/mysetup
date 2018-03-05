@@ -396,6 +396,13 @@ class ResourcesTable extends Table
     // This method will handle a owner change (so as to move images to the new directory)
     public function changeSetupsImagesOwner($setup_id, $old_user_id, $new_user_id, $flash)
     {
+        // First, let's check the existence (or add) a new folder to store setup images
+        if(!file_exists('uploads/files/' . $new_user_id) and !mkdir('uploads/files/' . $new_user_id, 0755))
+        {
+            // Well... We have to hope this does not fail :/
+            // Sorry for the new owner as he'll surely lose its images...
+        }
+
         // For each resource...
         foreach($this->find('all', [
             'conditions' => [
@@ -411,7 +418,7 @@ class ResourcesTable extends Table
             if(in_array($resource->type, ['SETUP_FEATURED_IMAGE', 'SETUP_GALLERY_IMAGE']))
             {
                 // Only replaces the first value found (in order to avoid a bug with UIID members, not likely but possible).
-                $new_path = str_replace($old_user_id, $new_user_id, $resource->src, 1);
+                $new_path = preg_replace('/' . $old_user_id . '/', $new_user_id, $resource->src, 1);
 
                 if(rename($resource->src, $new_path))
                 {
