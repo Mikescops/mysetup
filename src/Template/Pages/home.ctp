@@ -52,12 +52,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <p><?= __('Share it to get more') ?> :</p>
 
                 <div class="embed-links">
+                    <a href="<?= $this->Url->build('/setups/'.$mainSetup->id.'-'.$this->Text->slug($mainSetup->title)) ?>" class="jssocials-share-link"><i class="fa fa-laptop"></i> <?= __('See it in action') ?></a>
                     <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fa fa-twitch"></i> <?= __('Embed on Twitch') ?></a>
                     <a href="#embed_website_script" data-lity class="jssocials-share-link"><i class="fa fa-code"></i> <?= __('Embed on your website') ?></a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&t=<?= $mainSetup->title ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-facebook"></i> <?= __('Post it !') ?></a>
                     <a href="https://twitter.com/intent/tweet?via=mysetup_co&url=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&text=<?= $mainSetup->title ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-twitter"></i> <?= __('Tweet it !') ?></a>
-                    <a href="<?= $this->Url->build('/setups/'.$mainSetup->id.'-'.$this->Text->slug($mainSetup->title)); ?>">
-                    </a>
                 </div>
             </div>
             <?= $this->element('Modal/twitch', ['setup' => $mainSetup]) ?>
