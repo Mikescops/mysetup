@@ -121,7 +121,7 @@ class APIController extends AppController
 
         // Here we'll get each resource linked to this setup, and set them up into the existing entity
         $setup['resources'] = [
-            'products' => $Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->toArray(),
+            'products' => $Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray(),
             'featured_image' => $Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
         ];
         // ___________________________________________________________________________________________

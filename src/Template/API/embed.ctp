@@ -11,25 +11,25 @@ abbr,acronym,address,applet,aside,audio,big,blockquote,body,canvas,caption,cite,
 </head>
 <body>
 
-	<div class="embed-frame">
-		<a target="_blank" href="<?= $this->Url->build('/setups/'.$setup->id.'?ref=embedProgram', true)?>">
-			<div class="box-image">
+    <div class="embed-frame">
+        <a target="_blank" href="<?= $this->Url->build('/setups/'.$setup->id.'?ref=embedProgram', true)?>">
+            <div class="box-image">
 
-			    <img alt="<?= $setup->title ?>" class="main-image" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>">
+                <img alt="<?= $setup->title ?>" class="main-image" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>">
 
-			    <div class="box-overlay"><h3><?= __('Setup of') ?> <?= $setup->user['name'] ?></h3></div>
-			</div>
-		</a>
+                <div class="box-overlay"><h3><?= __('Setup of') ?> <?= $setup->user['name'] ?></h3></div>
+            </div>
+        </a>
 
-		<a href="<?= $this->Url->build('/?ref=embedProgram', true)?>" class="watermark"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mysetup.co')); ?></a>
+        <a href="<?= $this->Url->build('/?ref=embedProgram', true)?>" class="watermark"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mysetup.co')); ?></a>
 
-	    <div class="config-items">
-	        <?php $i=0; foreach ($setup['resources']['products'] as $item): ?>
+        <div class="config-items">
+            <?php foreach($setup['resources']['products'] as $item): ?>
 
-	            <a target="_blank" href="<?= $this->Url->build('/setups/'.$setup->id.'?ref=embedProgram', true)?>" id="item-trigger-<?= $i ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></a>
+                <a target="_blank" href="<?= $this->Url->build('/setups/'.$setup->id.'?ref=embedProgram', true) ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></a>
 
-	        <?php $i++; if($i == 4) break; endforeach ?>
-	    </div>
-	</div>
+            <?php endforeach ?>
+        </div>
+    </div>
 
 </body>
