@@ -153,6 +153,18 @@ CREATE TABLE `requests` (
   `setup_id` INT(11) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cloud_tags`
+--
+
+CREATE TABLE `cloud_tags` (
+  `id` INT(11) NOT NULL,
+  `name` VARCHAR(64) NOT NULL,
+  `type` VARCHAR(64) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
 --
 -- Dumping data for table `users`
 --
@@ -214,6 +226,12 @@ ALTER TABLE `requests`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `requests`
+--
+ALTER TABLE `cloud_tags`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -256,6 +274,11 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `cloud_tags`
+--
+ALTER TABLE `cloud_tags`
   MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
