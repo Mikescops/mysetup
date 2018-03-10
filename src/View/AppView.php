@@ -14,6 +14,7 @@
 namespace App\View;
 
 use Cake\View\View;
+use Cake\Core\Configure;
 
 /**
  * Application View
@@ -27,6 +28,8 @@ class AppView extends View
 
     public function initialize()
     {
+        $this->set('debug', Configure::read('debug'));
+
         if($this->request->action === 'view')
         {
             // We'll only load our Markdown Helper for '{Setups,Articles}.view' pages !

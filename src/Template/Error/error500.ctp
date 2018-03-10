@@ -4,7 +4,7 @@ use Cake\Error\Debugger;
 
 $this->layout = 'default';
 
-if (Configure::read('debug')):
+if ($debug):
     $this->layout = 'dev_error';
 
     $this->assign('title', $message);
