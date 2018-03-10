@@ -9,7 +9,7 @@
     <div class="display-preview">
         
         <script async src="<?= $this->Url->build('/api/widgets.js') ?>"></script>
-        <div id="mysetup-embed" ms-setup="<?= $setup->id ?>" ms-width="350">Setup shared by <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?> at <a href="<?= $this->Url->build('/', true) ?>">mySetup.co</a></div>
+        <div id="mysetup-embed" dev="on" ms-setup="<?= $setup->id ?>" ms-width="350">Setup shared by <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?> at <a href="<?= $this->Url->build('/', true) ?>">mySetup.co</a></div>
 
     </div>
 
