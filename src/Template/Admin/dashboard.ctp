@@ -67,7 +67,7 @@
         </div>
         <div class="col-xl-6 col-sm-6">
             <br>
-            <h3>Analytics</h3>
+            <h3>Analytics (Production)</h3>
             <div id="widgetIframe">
                 <iframe
                     width="100%" height="350"
@@ -140,7 +140,7 @@
                 <?php foreach ($stats['comments']['recentCreated'] as $comment):?>
                     <a href="<?=$this->Url->build('/setups/'.$comment->setup_id.'#comments')?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><strong><?= h($comment->user->name) ?></strong> on <strong><?= h($comment->setup->title) ?></strong></h5>
+                            <h5 class="mb-1"><strong><?= h($comment->user->name) ?></strong> <?= __x('commentaire "sur" un setup', 'on') ?> <strong><?= h($comment->setup->title) ?></strong></h5>
                             <small><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']) ?></small>
                         </div>
                         <p class="mb-1"><?= h($comment->content) ?></p>
@@ -157,7 +157,7 @@
                 <?php foreach ($stats['requests']['onGoing'] as $request):?>
                     <a href="<?=$this->Url->build('/setups/'.$request->setup_id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><strong><?= h($request->user->name) ?></strong> ask for ownership on <strong><?= h($request->setup->title) ?></strong></h5>
+                            <h5 class="mb-1"><strong><?= h($request->user->name) ?></strong> <?= __('asks for ownership on') ?> <strong><?= h($request->setup->title) ?></strong></h5>
                             <small>#<?= $request->token ?></small>
                         </div>
                         <p class="mb-1"><?= h($request->content) ?></p>
