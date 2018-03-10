@@ -104,13 +104,15 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
-        // We'll need this Model below...
-        $this->loadModel('Setups');
+        $user = $this->Auth->user();
+        // Even if the user is disconnected, give `null` to the view to avoid some errors...
+        $this->set('authUser', $user);
 
-        // Test if a user is logged in, and if it's the case, give to the view the user entity linked
-        if(isset($this->Auth))
+        // Test if a user is logged in, and if it's the case, fetch some more data
+        if($user !== null)
         {
-            $this->set('authUser', $this->Auth->user());
+            // We'll need this Model below...
+            $this->loadModel('Setups');
 
             // Now, let's send the setups list to the view (to let the user choose a default one)
             $setupsList = [];
@@ -120,7 +122,7 @@ class AppController extends Controller
                     'title'
                 ],
                 'conditions' => [
-                    'user_id' => $this->Auth->user('id')
+                    'user_id' => $user->id
                 ],
                 'order' => [
                     'creationDate' => 'DESC'
