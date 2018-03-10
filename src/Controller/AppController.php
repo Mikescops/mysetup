@@ -132,13 +132,13 @@ class AppController extends Controller
 
             // Let's send to the view the list of timezones as well
             $this->set('timezones', $this->Users->timezones);
+
+            // Before render the view, let's give a new entity for add Setup modal to it
+            $this->set('newSetupEntity', $this->Setups->newEntity());
+
+            // We'll need also the setups available status
+            $this->set('status', $this->Setups->status);
         }
-
-        // Before render the view, let's give a new entity for add Setup modal to it
-        $this->set('newSetupEntity', $this->Setups->newEntity());
-
-        // We'll need also the setups available status
-        $this->set('status', $this->Setups->status);
     }
 
     public function beforeFilter(Event $event)
