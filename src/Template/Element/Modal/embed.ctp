@@ -9,10 +9,10 @@
     <div class="display-preview">
         
         <script async src="<?= $this->Url->build('/api/widgets.js') ?>"></script>
-        <div id="mysetup-embed" dev="on" ms-setup="<?= $setup->id ?>" ms-width="350">Setup shared by <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?> at <a href="<?= $this->Url->build('/', true) ?>">mySetup.co</a></div>
+        <div id="mysetup-embed" dev="on" ms-width="responsive" ms-setup="<?= $setup->id ?>">Setup shared by <?php if($setup->user['name']){echo $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]);}else{echo "Unknown";} ?> at <a href="<?= $this->Url->build('/', true) ?>">mySetup.co</a></div>
 
     </div>
 
     <br>
-    <p><?= __('You can customize the size of your embedded setup by editing the value of ms-width.') ?></p>
+    <p><?= __('The embedded setup is responsive by default. You can set a fix size by editing the attribute ms-width with the width of your choice.') ?></p>
 </div>

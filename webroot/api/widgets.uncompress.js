@@ -7,14 +7,16 @@ r(function() {
     var iframe = document.createElement('iframe');
     iframe.frameBorder = 0;
     iframe.scrolling = "no";
-    iframe.setAttribute("style", "display:block;")
     iframe.height = 0;
-    if (frame.getAttribute('ms-width')) {
-        iframe.width = frame.getAttribute('ms-width')
+    if (frame.getAttribute('ms-width') && frame.getAttribute('ms-width') != 'responsive') {
+        iframe.width = frame.getAttribute('ms-width');
+        iframe.height = (iframe.width * 75) / 100;
     } else {
-        iframe.width = 400
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.setAttribute("style", "display:block;position:absolute;top:0;left:0"); 
+        frame.setAttribute("style", "position:relative;padding-bottom: 75%"); 
     }
-    iframe.height = (iframe.width * 75) / 100;
     if (frame.getAttribute('dev') == 'on') {
         iframe.src = document.location.origin + '/api/embed/' + frame.getAttribute('ms-setup');
     } else {

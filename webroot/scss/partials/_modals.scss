@@ -280,7 +280,7 @@ input[type="checkbox"]:checked + label.checkbox::after{
 }
 
 .display-preview{
-	width: 350px;
+	max-width: 400px;
 	margin: 0 auto;
 	border-radius: 15px;
 	overflow: hidden;
