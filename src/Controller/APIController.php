@@ -43,7 +43,10 @@ class APIController extends AppController
                         'id',
                         'name',
                         'mainSetup_id',
-                        'twitchUserId'
+                        'twitchUserId',
+                        'uwebsite',
+                        'ufacebook',
+                        'utwitter'
                     ],
                     'conditions' => [
                         'Users.twitchUserId' => $this->request->getQuery('twitchId')
