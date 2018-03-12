@@ -381,6 +381,10 @@ class UsersController extends AppController
 
             if($user)
             {
+                // So as to limit race condition exploitation on the "reset password" feature, let's wait a bit before generating a new password.
+                // The duration will be picked randomly between `0` and `3` seconds.
+                sleep(mt_rand(0, 3));
+
                 // Let's generate a new random password, and send it to the email address specified
                 $temp = $this->Users->getRandomString();
                 $user->password = $temp;
