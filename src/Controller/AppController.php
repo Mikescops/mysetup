@@ -105,8 +105,6 @@ class AppController extends Controller
     public function beforeRender(Event $event)
     {
         $user = $this->Auth->user();
-        // Even if the user is disconnected, give `null` to the view to avoid some errors...
-        $this->set('authUser', $user);
 
         // Test if a user is logged in, and if it's the case, fetch some more data
         if($user !== null)
@@ -141,6 +139,10 @@ class AppController extends Controller
             // We'll need also the setups available status
             $this->set('status', $this->Setups->status);
         }
+
+        // Just give the session user entity to the front...
+        // This object is supposed to be synchronize with the "real" one.
+        $this->set('authUser', $this->request->session()->read('Auth.User'));
     }
 
     public function beforeFilter(Event $event)
