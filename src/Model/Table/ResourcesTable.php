@@ -67,7 +67,7 @@ class ResourcesTable extends Table
         $validator
             ->allowEmpty('title');
 
-        $Validator
+        $validator
             ->allowEmpty('href');
 
         $validator
