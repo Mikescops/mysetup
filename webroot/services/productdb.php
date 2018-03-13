@@ -9,19 +9,14 @@ function cleanString($string) {
 	return $string;
 }
 
-session_name('CAKEPHP');
-session_start();
-
-if($_SESSION['Auth'])
-{
+function curlUrl($url){
 	$client_id = '1361';
 	$secret_key = '5dd52298d90c03dc30a67eb1664e81c707c8e64a';
-
 
 	$curl = curl_init();
 
 	curl_setopt_array($curl, array(
-		CURLOPT_URL => "https://api.ledenicheur.fr/v1/auth/token",
+		CURLOPT_URL => $url,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => "",
 		CURLOPT_MAXREDIRS => 10,
@@ -47,22 +42,65 @@ if($_SESSION['Auth'])
 	} 
 	else
 	{
-	  //echo $response;
-		header('Content-Type: application/json');
+	  return json_decode($response, true)['access_token'];
+	}
+}
+
+function getToken($file,$url,$hours = 24,$fn = '',$fn_args = '') {
+	//vars
+	$current_time = time(); $expire_time = $hours * 60 * 60; $file_time = filemtime($file);
+	//decisions, decisions
+	if(file_exists($file) && ($current_time - $expire_time < $file_time)) {
+		//echo 'returning from cached file';
+		return json_decode(file_get_contents($file), true)['token'];
+	}
+	else {
+		$content = curlUrl($url);
+		if($fn) { $content = $fn($content,$fn_args); }
+		$content = '{"token":"'.$content.'", "cached":"'.time().'"}';
+		file_put_contents($file,$content);
+		//echo 'retrieved fresh from '.$url.':: '.$content;
+		return json_decode($content, true)['token'];
+	}
+}
+
+function outputProductsJSON($raw){
+	$json = json_decode($raw, true);
+	$output = "[";
+	foreach ($json['resources']['products']['items'] as $product => $value) {
+		$output .= '{"name":"'. $value['name'] . '", "href":"'. $value['web_uri']. '","src":"'. $value['media']['product_images']['first'][280] .'"},';
 	}
 
-	$token = json_decode($response, true)['access_token'];
+	$output .= '{"descriptor": "EOF"}]';
+	return $output;
+}
+
+
+session_name('CAKEPHP');
+session_start();
+
+if($_SESSION['Auth'])
+{
+	$url_token = "https://api.ledenicheur.fr/v1/auth/token";
+	$cache_file = "tokencached.txt";
+
+	$token = getToken($cache_file, $url_token, 20, null, array('file'=>$cache_file));
 
 	if(isset($_GET['q']) && !empty($_GET['q'])) {
 
+		header('Content-Type: application/json');
+
 		$query = urlencode(cleanString($_GET['q']));
 
-		$url = "https://api.ledenicheur.fr/v1/search?modes=products&query=". $query ."&suggestions=false&access_token=".$token;
+		$url = "https://api.ledenicheur.fr/v1/search?modes=products&query=". $query ."&suggestions=false&access_token=". $token;
 		$raw = file_get_contents($url);
 		file_put_contents($dir . '/' . $motRecherche . '.json', $raw);
-        // $json = json_decode($raw, true);
 
-		echo $raw;
+		// echo $raw;
+
+		// die();
+
+		echo outputProductsJSON($raw);
 	}
 }
 else
