@@ -798,7 +798,7 @@ msgstr "Image de profil de"
 #: Template/Element/List/tiles.ctp:36 Template/Setups/view.ctp:77
 #: Template/Users/view.ctp:75
 msgid "Only you can see this setup"
-msgstr "Seul vous pouvez voir ce setup"
+msgstr "Vous seulement pouvez voir ce setup"
 
 #: Template/Element/List/tiles.ctp:39 Template/Setups/view.ctp:80
 #: Template/Users/view.ctp:78
