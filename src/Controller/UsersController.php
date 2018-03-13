@@ -86,8 +86,6 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $user = $this->Users->newEntity();
-
         if ($this->request->is('post')) {
 
             $data = $this->request->getData();
@@ -100,7 +98,7 @@ class UsersController extends AppController
 
             if($data['password'] === $data['password2'])
             {
-                $user = $this->Users->patchEntity($user, $data);
+                $user = $this->Users->patchEntity($this->Users->newEntity(), $data);
 
                 if(!isset($user['preferredStore']) or $user['preferredStore'] === '')
                 {
@@ -553,20 +551,20 @@ class UsersController extends AppController
                 return $this->redirect($this->referer());
             }
 
-            $user = $this->Users->newEntity();
+            $user = $this->Users->newEntity([
+                'id'             => $this->Users->getNewRandomID(),
+                'name'           => $response->json['display_name'],
+                'mail'           => $response->json['email'],
+                'password'       => $this->Users->getRandomString(),
+                // Fetches the language formatted in the query by the JS
+                'preferredStore' => strtoupper(substr($this->request->getQuery('state'), 0, 2)),
+                'timeZone'       => 'Europe/London',
+                'twitchToken'    => $token,
+                'twitchUserId'   => $response->json['_id'],
+                'verified'       => 0,
+                'mainSetup_id'   => 0
+            ]);
 
-            $user->id             = $this->Users->getNewRandomID();
-            $user->name           = $response->json['display_name'];
-            $user->mail           = $response->json['email'];
-            $user->password       = $this->Users->getRandomString();
-            $user->preferredStore = strtoupper((substr($this->request->getQuery('state'), 0, 2)));
-            $user->timeZone       = 'Europe/London';
-            $user->twitchToken    = $token;
-            $user->twitchUserId   = $response->json['_id'];
-            $user->verified       = 0;
-            $user->mainSetup_id   = 0;
-
-            // Fix a very weird behavior (un-debug-gable) if the `EN` language comes from the JS
             // As this Amazon Store does not exist, we just replace it by the `US` one
             if($user->preferredStore === 'EN')
             {

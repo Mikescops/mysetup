@@ -31,10 +31,11 @@ class RequestsController extends AppController
 
             if($setup->user_id != $user->id and !$this->Requests->exists(['user_id' => $user->id, 'setup_id' => $setup->id]))
             {
-                $request = $this->Requests->newEntity();
-                $request->token    = $this->Requests->Users->getRandomString();
-                $request->user_id  = $user->id;
-                $request->setup_id = $setup->id;
+                $request = $this->Requests->newEntity([
+                    'token_name' => $this->Requests->Users->getRandomString(),
+                    'user_id'    => $user->id,
+                    'setup_id'   => $setup->id
+                ]);
 
                 if($this->Requests->save($request))
                 {
@@ -164,7 +165,7 @@ class RequestsController extends AppController
             $user = $this->Requests->Users->get($this->Auth->user('id'));
             $setup = $this->Requests->Setups->get($id);
 
-            if($setup['user_id'] != $user['id'])
+            if($setup->user_id != $user->id)
             {
                 $email = $this->Requests->Users->getEmailObject('report@mysetup.co', 'A setup has been flagged !');
                 $email->setTemplate('report')

@@ -174,14 +174,15 @@ class ResourcesTable extends Table
                 if((isset($parsing_2['host']) && strstr($parsing_2['host'], "amazon") && isset($parsing_3['host']) && strstr($parsing_3['host'], "amazon")) or $admin)
                 {
                     // Let's create a new entity to store these data !
-                    $resource = $this->newEntity();
-
-                    $resource->user_id  = $user_id;
-                    $resource->setup_id = $setup->id;
-                    $resource->type     = 'SETUP_PRODUCT';
-                    $resource->title    = rawurlencode(urldecode($elements[0])); // Here is the trick to prevent some special characters not encoded in js
-                    $resource->href     = $elements[1];
-                    $resource->src      = $elements[2];
+                    $resource = $this->newEntity([
+                        'user_id'  => $user_id,
+                        'setup_id' => $setup->id,
+                        'type'     => 'SETUP_PRODUCT',
+                        // Here is the trick to prevent some special characters not encoded in JS
+                        'title'    => rawurlencode(urldecode($elements[0])),
+                        'href'     => $elements[1],
+                        'src'      => $elements[2]
+                    ]);
 
                     // If the resource can't be saved atm, we rollback and throw an error...
                     if(!$this->save($resource))
@@ -249,13 +250,14 @@ class ResourcesTable extends Table
                     $flash->warning(__('One of your image could not be converted to JPG, compressed, resized or saved... Please contact an administrator.'));
                 }
 
-                $resource = $this->newEntity();
-                $resource->user_id  = $user_id;
-                $resource->setup_id = $setup->id;
-                $resource->type     = $type;
-                $resource->title    = null;
-                $resource->href     = null;
-                $resource->src      = $destination;
+                $resource = $this->newEntity([
+                    'user_id'  => $user_id,
+                    'setup_id' => $setup->id,
+                    'type'     => $type,
+                    'title'    => null,
+                    'href'     => null,
+                    'src'      => $destination
+                ]);
 
                 if(!$this->save($resource))
                 {
@@ -303,14 +305,14 @@ class ResourcesTable extends Table
             if(in_array($parsing['host'], ['dailymotion.com', 'dai.ly', 'flickr.com', 'flic.kr', 'player.twitch.tv', 'youtube.com', 'youtu.be', 'vimeo.com', 'rutube.ru']))
             {
                 // Let's create a new entity to store these data !
-                $resource = $this->newEntity();
-
-                $resource->user_id  = $user_id;
-                $resource->setup_id = $setup->id;
-                $resource->type     = 'SETUP_VIDEO_LINK';
-                $resource->title    = null;
-                $resource->href     = null;
-                $resource->src      = $video;
+                $resource = $this->newEntity([
+                    'user_id'  => $user_id,
+                    'setup_id' => $setup->id,
+                    'type'     => 'SETUP_VIDEO_LINK',
+                    'title'    => null,
+                    'href'     => null,
+                    'src'      => $video
+                ]);
 
                 // If the resource can't be saved atm, we rollback and throw an error...
                 if(!$this->save($resource))

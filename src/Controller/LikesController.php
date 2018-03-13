@@ -102,11 +102,11 @@ class LikesController extends AppController
             {
                 if(!$this->Likes->exists(['setup_id' => $setup_id, 'user_id' => $this->Auth->user('id')]))
                 {
-                    $like = $this->Likes->newEntity();
-
                     // When an user likes a setup, we just create an entity with its id, and the setup's one
-                    $like['setup_id'] = $setup_id;
-                    $like['user_id']  = $this->Auth->user('id');
+                    $like = $this->Likes->newEntity([
+                        'setup_id' => $setup_id,
+                        'user_id' => $this->Auth->user('id')
+                    ]);
 
                     if($this->Likes->save($like))
                     {
@@ -115,10 +115,10 @@ class LikesController extends AppController
 
                         // If it's not him, let's inform the setup owner of this new like
                         $setup = $this->Likes->Setups->get($setup_id);
-                        if($like['user_id'] !== $setup->user_id)
+                        if($like->user_id !== $setup->user_id)
                         {
                             $this->loadModel('Notifications');
-                            $this->Notifications->createNotificationLink($this->Likes->Users->get($like['user_id']), $setup, $this->Notifications->types['like']);
+                            $this->Notifications->createNotificationLink($this->Likes->Users->get($like->user_id), $setup, $this->Notifications->types['like']);
                         }
                     }
 

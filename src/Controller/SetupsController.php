@@ -68,8 +68,6 @@ class SetupsController extends AppController
      */
     public function add()
     {
-        $setup = $this->Setups->newEntity();
-
         if($this->request->is('post'))
         {
             // Let's get the data from the form
@@ -96,8 +94,8 @@ class SetupsController extends AppController
             // On Setups.add, `featured` is impossible
             $data['featured'] = false;
 
-            // Classical patch entity operation
-            $setup = $this->Setups->patchEntity($setup, $data);
+            // Regular entity patching operation
+            $setup = $this->Setups->patchEntity($this->Setups->newEntity(), $data);
 
             // Here we'll assign a random id to this new setup
             do {

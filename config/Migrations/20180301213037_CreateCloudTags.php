@@ -67,10 +67,12 @@ class CreateCloudTags extends AbstractMigration
             'DJI'
         ] as $brand)
         {
-            $tag = $table->newEntity();
-            $tag->name = $brand;
-            $tag->type = 'PRODUCTS_BRAND';
-            $table->save($tag);
+            $table->save(
+                $table->newEntity([
+                    'name' => $brand,
+                    'type' => 'PRODUCTS_BRAND'
+                ])
+            );
         }
     }
 }
