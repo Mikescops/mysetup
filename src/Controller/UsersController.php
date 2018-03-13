@@ -494,7 +494,7 @@ class UsersController extends AppController
         $token = $response->json['access_token'];
 
         // We run a query through Twitch's API, in order to gather some information about this user
-        $response = $http->get('https://api.twitch.tv/kraken/user', ['q' => 'widget'], [
+        $response = $http->get('https://api.twitch.tv/kraken/user', [], [
             'headers' => [
                 'Accept' => 'application/vnd.twitchtv.v5+json',
                 'Client-ID' => $client_id,
