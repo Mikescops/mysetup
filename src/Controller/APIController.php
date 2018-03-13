@@ -24,6 +24,29 @@ class APIController extends AppController
         $this->Auth->allow();
     }
 
+    /* A public endpoint to retrieve setups in a JSON format */
+    public function getSetups()
+    {
+        if($this->request->is('ajax') or $this->request->is('get'))
+        {
+            $results = TableRegistry::get('Setups')->getSetups([
+                'query'    => $this->request->getQuery('q'),
+                'featured' => $this->request->getQuery('f'),
+                'order'    => $this->request->getQuery('o'),
+                'number'   => $this->request->getQuery('n', 8),
+                'offset'   => $this->request->getQuery('p'),
+                'type'     => $this->request->getQuery('t'),
+                'weeks'    => $this->request->getQuery('w')
+            ]);
+
+            return new Response([
+                'status' => 200,
+                'type'   => 'json',
+                'body'   => json_encode($results)
+            ]);
+        }
+    }
+
     /* A simple method to handle the new Twitch extension (EBS) */
     public function twitchSetup()
     {

@@ -719,7 +719,7 @@ if ($(window).data('ajaxready') == false) return; //permet de couper les trigger
 if(($(window).scrollTop() + $(window).height()) + 250 > $(document).height()) {
 	$(window).data('ajaxready', false);
 	$.ajax({
-		url: webRootJs + "setups/getSetups",
+		url: webRootJs + "api/getSetups",
 		data: {
 			p: offset,
 			n: nbtodisplay,
@@ -863,7 +863,7 @@ submitButton.addEventListener( "click", function( event ) {
 
 	for ( var i = 1; i < invalidFields.length; i++ ) {
 		label = form.querySelector( "label[for=" + invalidFields[i].id + "]" );
-		listHtml += "<li>" + 
+		listHtml += "<li>" +
 		label.innerHTML +
 		" | " +
 		invalidFields[i].validationMessage +
