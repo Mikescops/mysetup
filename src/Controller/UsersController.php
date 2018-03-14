@@ -487,7 +487,7 @@ class UsersController extends AppController
             'client_id'     => $client_id,
             'client_secret' => $client_secret,
             'grant_type'    => 'authorization_code',
-            'redirect_uri'  => Router::url('/twitch/'),
+            'redirect_uri'  => Router::url('/twitch/', true),
             'code'          => $this->request->getQuery('code'),
             'state'         => $this->request->getQuery('state')
         ]);
