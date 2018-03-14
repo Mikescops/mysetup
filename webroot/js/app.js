@@ -385,6 +385,10 @@ $( '.form-action-edit' ).on( 'click', '.next', function(e){
 
  				var products = response['products'];
 
+ 				if(products[0] == null){
+ 					$(".search_results."+action).append("No products found...");
+ 				}
+
  				$.each(products,function(key, value) {
  					var list = $('<li></li>');
 
