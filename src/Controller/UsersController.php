@@ -557,6 +557,9 @@ class UsersController extends AppController
                     if($response->json['email_verified'])
                     {
                         $user->mail = $response->json['email'];
+
+                        // Whatever the account status was, this email address can be considered verified...
+                        $user->mailVerification = null;
                     }
                     else
                     {
