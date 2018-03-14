@@ -499,12 +499,14 @@ class UsersController extends AppController
             return $this->redirect('/');
         }
 
+        $token = $response->json['access_token'];
+
         // We run a query through Twitch's API, in order to gather some information about this user
         $response = $http->get('https://api.twitch.tv/kraken/user', [], [
             'headers' => [
                 'Accept'        => 'application/vnd.twitchtv.v5+json',
                 'Client-ID'     => $client_id,
-                'Authorization' => 'OAuth ' . $response->json['access_token']
+                'Authorization' => 'OAuth ' . $token
             ]
         ]);
 
@@ -531,7 +533,7 @@ class UsersController extends AppController
                 $oldToken = $user->twitchToken;
 
                 // The token will be revoked below, so we replace it within the DB by the one we just received
-                $user->twitchToken = $response->json['access_token'];
+                $user->twitchToken = $token;
 
                 // If we got two user entities...
                 if($user_by_email !== null)
@@ -577,7 +579,7 @@ class UsersController extends AppController
                 $user = $user_by_email;
 
                 // Let's set the token and the Twitch ID of the user
-                $user->twitchToken  = $response->json['access_token'];
+                $user->twitchToken  = $token;
                 $user->twitchUserId = $response->json['_id'];
 
                 // This is a[n] [ambiguous] toast message (it does not fit entirely with the reality)
@@ -606,7 +608,7 @@ class UsersController extends AppController
                 // Fetches the language formatted in the query by the JS
                 'preferredStore' => strtoupper(substr($this->request->getQuery('state'), 0, 2)),
                 'timeZone'       => 'Europe/London',
-                'twitchToken'    => $response->json['access_token'],
+                'twitchToken'    => $token,
                 'twitchUserId'   => $response->json['_id'],
                 'verified'       => 0,
                 'mainSetup_id'   => 0
