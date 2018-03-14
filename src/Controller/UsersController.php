@@ -560,6 +560,8 @@ class UsersController extends AppController
 
                         // Whatever the account status was, this email address can be considered verified...
                         $user->mailVerification = null;
+
+                        $this->Flash->success(__('Your email address has been synchronized with the one from your Twitch account'));
                     }
                     else
                     {
