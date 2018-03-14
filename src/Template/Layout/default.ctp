@@ -1,3 +1,6 @@
+<?php
+use Cake\Core\Configure;
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="<?= $lang ?>"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="<?= $lang ?>"> <![endif]-->
@@ -210,7 +213,10 @@
           </div>
     </footer>
 
-    <script>var webRootJs = "<?= $this->Url->build('/'); ?>";</script>
+    <script>
+        const webRootJs = "<?= $this->Url->build('/', true); ?>";
+        const twitchClientId = "<?= Configure::read('Credentials.Twitch.id'); ?>";
+    </script>
 
     <div id="notifications-pop" style="display: none;"><div id="notif-container"></div><div id="no-notif">You have no notifications.</div></div>
 

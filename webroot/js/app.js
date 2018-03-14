@@ -766,7 +766,7 @@ if(($(window).scrollTop() + $(window).height()) + 250 > $(document).height()) {
 /************ TWITCH LOGIN **************/
 function logTwitch(lang){
 	var rand_state = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
-	window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?client_id=zym0nr99v74zljmo6z96st25rj6rzz&redirect_uri=https://mysetup.co/twitch/&response_type=code&scope=user_read&state='+lang+rand_state;
+	window.location = 'https://api.twitch.tv/kraken/oauth2/authorize?client_id='+twitchClientId+'&redirect_uri='+webRootJs+'twitch/&response_type=code&scope=user_read&state='+lang+rand_state;
 }
 
 /********** Notification refresh and read ************/

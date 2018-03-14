@@ -242,7 +242,11 @@ class UsersTable extends Table
         // Let's revoke the Twitch token access !
         if($entity['twitchToken'])
         {
-            (new Client())->post('https://api.twitch.tv/kraken/oauth2/revoke?client_id=' . $this->getTwitchAPIID() . '&client_secret=' . $this->getTwitchAPISecret() . '&token=' . $entity['twitchToken']);
+            (new Client())->post('https://api.twitch.tv/kraken/oauth2/revoke', [
+                'client_id'     => $this->getTwitchAPIID(),
+                'client_secret' => $this->getTwitchAPISecret(),
+                'token'         => $entity['twitchToken']
+            ]);
         }
     }
 
