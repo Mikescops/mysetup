@@ -66,12 +66,12 @@ function getToken($file,$url,$hours = 24,$fn = '',$fn_args = '') {
 
 function outputProductsJSON($raw){
 	$json = json_decode($raw, true);
-	$output = "[";
+	$output = '{"products": [';
 	foreach ($json['resources']['products']['items'] as $product => $value) {
-		$output .= '{"name":"'. $value['name'] . '", "href":"'. $value['web_uri']. '","src":"'. $value['media']['product_images']['first'][280] .'"},';
+		$output .= '{"title":"'. $value['name'] . '", "href":"'. $value['web_uri']. '","src":"'. $value['media']['product_images']['first'][280] .'"},';
 	}
 
-	$output .= '{"descriptor": "EOF"}]';
+	$output = substr($output, 0, -1) . ']}';
 	return $output;
 }
 

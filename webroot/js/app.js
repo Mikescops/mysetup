@@ -364,48 +364,39 @@ $( '.form-action-edit' ).on( 'click', '.next', function(e){
  }
 
 
- /* AMAZON ADD ITEM */
+ /* API PRODUCT ADD ITEM */
 
  var timer;
 
  function searchItem(query, region, action) {
  	clearTimeout(timer);
- 	timer=setTimeout(function validate(){
+ 	timer=setTimeout(function validate() {
 
  		$.ajax({
- 			url: webRootJs +'amazon/index.php',
+ 			url: webRootJs +'services/productdb.php',
  			type: 'get',
- 			data: { "q": query, "lang": region},
+ 			data: { 
+ 				"q": query, 
+ 				"lang": region
+ 			},
  			success: function(response) {
 
- 				$( ".search_results."+action ).html("");
+ 				$(".search_results."+action).html("");
 
- 				var el = $( '<div></div>' );
- 				el.html(response);
+ 				var products = response['products'];
 
- 				var items = $('item', el);
-
- 				if(items[0] == null){
- 					$( ".search_results."+action ).append("No items found...");
- 				}
-
- 				$.each(items,function(key, value) {
+ 				$.each(products,function(key, value) {
  					var list = $('<li></li>');
 
- 					var mediumimage = $('mediumimage', value);
- 					var attributes = $('itemattributes', value);
  					var img = $('<img>');
- 					var src = $('url', mediumimage).html();
-
+ 					var src = value['src'];
  					img.attr('src', src);
 
- 					var title = $('title', attributes).html();
+ 					var title = value['title'];
  					img.attr('title', title);
 
- 					if(title.length > 48){
- 						var shorttitle = title.substring(0,48) + '..';
- 					}
- 					var url = $('detailpageurl', value).html();
+ 					var url = value['url'];
+
  					var encodedUrl = encodeURIComponent(url);
  					var encodedTitle = encodeURIComponent(title);
  					var encodedSrc = encodeURIComponent(src);
@@ -419,40 +410,42 @@ $( '.form-action-edit' ).on( 'click', '.next', function(e){
  				var image = $('mediumimage')
 
  			}
- 		});}, 500);};
+ 		});
 
- 	function addToBasket(title, url, src, action) {
+ 	}, 500);};
 
- 		$('.hiddenInput.'+action).val($('.hiddenInput.'+action).val() + title + ';'+ url + ';' + src + ',');
+function addToBasket(title, url, src, action) {
 
- 		$( ".search_results."+action ).html("");
- 		$( ".liveInput."+action ).val("");
+	$('.hiddenInput.'+action).val($('.hiddenInput.'+action).val() + title + ';'+ url + ';' + src + ',');
 
- 		decodedTitle = decodeURIComponent(title);
- 		decodedSrc = decodeURIComponent(src);
+	$( ".search_results."+action ).html("");
+	$( ".liveInput."+action ).val("");
 
- 		var list = $('<li></li>');
- 		var img = $('<img>');
- 		img.attr('src', decodedSrc);
- 		list.html('<a onclick="deleteFromBasket(\`'+title+'\`,this,\''+action+'\')"><p>' + decodedTitle + '</p><i class="fa fa-check-square-o" aria-hidden="true"></i></a>');
- 		list.find('a').prepend(img);
- 		$( ".basket_items."+action ).append(list);
- 	}
+	decodedTitle = decodeURIComponent(title);
+	decodedSrc = decodeURIComponent(src);
+
+	var list = $('<li></li>');
+	var img = $('<img>');
+	img.attr('src', decodedSrc);
+	list.html('<a onclick="deleteFromBasket(\`'+title+'\`,this,\''+action+'\')"><p>' + decodedTitle + '</p><i class="fa fa-check-square-o" aria-hidden="true"></i></a>');
+	list.find('a').prepend(img);
+	$( ".basket_items."+action ).append(list);
+}
 
 
- 	function deleteFromBasket(title, parent, action) {
+function deleteFromBasket(title, parent, action) {
 
- 		var ResearchArea = $('.hiddenInput.'+action).val();
+	var ResearchArea = $('.hiddenInput.'+action).val();
 
- 		var splitTextInput = ResearchArea.split(",");
+	var splitTextInput = ResearchArea.split(",");
 
-new_arr = $.grep(splitTextInput, function(n, i){ // just use arr
-	return n.split(";")[0] != title;
-});
+	new_arr = $.grep(splitTextInput, function(n, i){ // just use arr
+		return n.split(";")[0] != title;
+	});
 
-$('.hiddenInput.'+action).val(new_arr);
+	$('.hiddenInput.'+action).val(new_arr);
 
-parent.closest('li').remove();
+	parent.closest('li').remove();
 
 }
 
