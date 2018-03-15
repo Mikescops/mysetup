@@ -226,6 +226,11 @@ return [
             'id' => 'YOUR_TWITCH_ID_GOES_HERE',
             'secret' => 'YOUR_TWITCH_SECRET_GOES_HERE',
         ],
+        'LeDenicheur' => [
+            'id' => 'YOUR_LEDENICHEUR_ID_GOES_HERE',
+            'secret' => 'YOUR_LEDENICHEUR_SECRET_GOES_HERE',
+            'endpoint' => 'YOUR_LEDENICHEUR_API_ENDPOINT_GOES_HERE',
+        ],
     ],
 
     /**
