@@ -185,7 +185,9 @@ class ThirdPartiesController extends AppController
                     }
                     else
                     {
-                        $src = null;
+                        // Well well... This item looks not having any image for us :-\
+                        // We drop it and jump directly to the next iteration thus.
+                        continue;
                     }
 
                     array_push($results['products'], [
