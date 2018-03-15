@@ -795,6 +795,10 @@ function infiniteScroll(nbtodisplay) {
 							let user_name = value['user']['name'];
 							let user_src = webRootJs + `uploads/files/pics/profile_picture_` + value['user_id'] + `.png?` + ("0" + (new Date(value['user']['modificationDate'])).getMinutes()).slice(-2) + ("0" + (new Date(value['user']['modificationDate'])).getSeconds()).slice(-2);
 							let user_url = webRootJs + `users/` + value['user_id'];
+							let main_color = $.parseJSON(value['main_colors'])[0];
+							let rgb_1 = main_color[0];
+							let rgb_2 = main_color[1];
+							let rgb_3 = main_color[2];
 
 							listHtml += templateHtml.replace(/{{ title }}/g, title)
 								.replace(/{{ url }}/g, url)
@@ -802,7 +806,10 @@ function infiniteScroll(nbtodisplay) {
 								.replace(/{{ likes }}/g, likes)
 								.replace(/{{ user_name }}/g, user_name)
 								.replace(/{{ user_src }}/g, user_src)
-								.replace(/{{ user_url }}/g, user_url);
+								.replace(/{{ user_url }}/g, user_url)
+								.replace(/{{ rgb_1 }}/g, rgb_1)
+								.replace(/{{ rgb_2 }}/g, rgb_2)
+								.replace(/{{ rgb_3 }}/g, rgb_3);
 						});
 
 						$('.fullitem_holder').append(listHtml);
