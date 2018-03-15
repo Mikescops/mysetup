@@ -57,6 +57,12 @@ class ThirdPartiesController extends AppController
 
     public function searchProducts()
     {
+        // Limit HTTP actions possible here
+        if(!$this->request->is('get') && !$this->request->is('ajax'))
+        {
+            die();
+        }
+
         $query = $this->request->getQuery('q');
         // No query ? Just die bro'
         if(!$query)
