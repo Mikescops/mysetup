@@ -54,7 +54,7 @@
 
             <div id="components-edit" class="form-action-edit hide-edit">
 
-                <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, '<?= $authUser['preferredStore'] ?>' ,'edit_setup');" placeholder="<?= __('Search for components...') ?>">
+                <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, 'edit_setup');" placeholder="<?= __('Search for components...') ?>">
 
                 <?php if($authUser['admin']): ?>
 

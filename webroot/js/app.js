@@ -372,13 +372,12 @@ function galleryPreview_add(uploader, number) {
  * @name searchItem
  * @description Search Products over API
  * @param {string} [query] [Keyword to search]
- * @param {string} [region] [Selected country to query products > select right store]
  * @param {string} [action] [Define where the function is called (add or edit)]
  *
  * @const timer
  */
 var timer;
-function searchItem(query, region, action) {
+function searchItem(query, action) {
 	clearTimeout(timer);
 	timer = setTimeout(function validate() {
 		if (query.length < 2) {
@@ -388,8 +387,7 @@ function searchItem(query, region, action) {
 			url: webRootJs + 'thirdParties/searchProducts',
 			type: 'get',
 			data: {
-				"q": query,
-				"lang": region
+				"q": query
 			},
 			success: function(response) {
 

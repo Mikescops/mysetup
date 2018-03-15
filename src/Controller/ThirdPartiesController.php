@@ -120,11 +120,11 @@ class ThirdPartiesController extends AppController
 
         else
         {
-            // If no lang is set, we'll query the US Store
-            $store = strtoupper($this->request->getQuery('lang', 'US'));
+            // If no lang is set, we'll use the user's language to address the best store
+            $store = strtoupper($this->request->getQuery('lang', $user->preferredStore));
 
-            // Prepares an configuration object to communicate to Amazon stores
-            // The statement below will voluntary fail without any error if the `lang` parameter specified does not exist.
+            // Prepares a configuration object to communicate with Amazon stores
+            // The statement below will voluntary fail with an error 500 on the production if the `lang` parameter specified does not exist.
             $conf = (new GenericConfiguration())
                         ->setCountry(
                             Configure::read('Credentials.Amazon.Stores.' . $store . '.country')
