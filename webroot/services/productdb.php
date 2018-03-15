@@ -68,7 +68,7 @@ function outputProductsJSON($raw){
 	$json = json_decode($raw, true);
 	$output = '{"products": [ ';
 	foreach ($json['resources']['products']['items'] as $product => $value) {
-		$output .= '{"title":"'. $value['name'] . '", "href":"'. $value['web_uri']. '","src":"'. $value['media']['product_images']['first'][280] .'"},';
+		$output .= '{"title":"'. rawUrlEncode($value['name']) . '", "href":"'. $value['web_uri']. '","src":"'. $value['media']['product_images']['first'][280] .'"},';
 	}
 
 	$output = substr($output, 0, -1) . ' ]}';
@@ -95,10 +95,6 @@ if($_SESSION['Auth'])
 		$url = "https://api.ledenicheur.fr/v1/search?modes=products&query=". $query ."&suggestions=false&access_token=". $token;
 		$raw = file_get_contents($url);
 		file_put_contents($dir . '/' . $motRecherche . '.json', $raw);
-
-		// echo $raw;
-
-		// die();
 
 		echo outputProductsJSON($raw);
 	}

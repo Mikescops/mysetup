@@ -403,21 +403,19 @@ function searchItem(query, region, action) {
 
 				$.each(products, function(key, value) {
 					var list = $('<li></li>');
-
 					var img = $('<img>');
+
 					var src = value['src'];
+					var encodedSrc = encodeURIComponent(src);
 					img.attr('src', src);
 
-					var title = value['title'];
+					var encodedTitle = value['title'];
+					var title = decodeURIComponent(encodedTitle);
 					img.attr('title', title);
 
 					var url = value['url'];
-
 					var encodedUrl = encodeURIComponent(url);
-					var encodedTitle = encodeURIComponent(title);
-					var encodedSrc = encodeURIComponent(src);
-
-
+					
 					list.html('<a onclick="addToBasket(\`' + encodedTitle + '\`, \'' + encodedUrl + '\', \'' + encodedSrc + '\', \'' + action + '\')"><p>' + title + '</p><i class="fa fa-square-o" aria-hidden="true"></i></a>');
 					list.find('a').prepend(img);
 					$(".search_results." + action).append(list);

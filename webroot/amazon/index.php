@@ -8,6 +8,17 @@ use ApaiIO\Request\GuzzleRequest;
 use ApaiIO\Configuration\GenericConfiguration;
 use GuzzleHttp\Client;
 
+function outputProductsJSON($raw){
+    $json = json_decode($raw, true);
+    $output = '{"products": [ ';
+    foreach ($json['Items']['Item'] as $product => $value) {
+        $output .= '{"title":"'. rawUrlEncode($value['ItemAttributes']['Title']) . '", "href":"'. $value['DetailPageURL']. '","src":"'. $value['MediumImage']['URL'] .'"},';
+    }
+
+    $output = substr($output, 0, -1) . ' ]}';
+    return $output;
+}
+
 session_name('CAKEPHP');
 session_start();
 
@@ -64,7 +75,12 @@ if($_SESSION['Auth'])
                 ->setKeywords($_GET['q'])
                 ->setResponsegroup(['Small', 'Images']);
 
-    echo (new ApaiIO($conf))->runOperation($search);
+
+    header('Content-Type: application/json');
+
+    $xml = simplexml_load_string((new ApaiIO($conf))->runOperation($search));
+    $json = json_encode($xml);
+    echo outputProductsJSON($json);
 }
 
 else
