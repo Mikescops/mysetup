@@ -37,6 +37,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
             <?= $this->Html->scriptBlock('infiniteScroll(6);', array('block' => 'scriptBottom')); ?>
 
+            <script id="template-list-item" type="text/template">
+                <?= $this->element('List/tiles-js-template') ?>
+            </script>
 
         </div>
         <div class="column column-25 sidebar">

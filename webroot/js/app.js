@@ -779,27 +779,34 @@ function infiniteScroll(nbtodisplay) {
 				success: function(json) {
 					setups = $.parseJSON(json);
 					if (setups[0]) {
+						// Cache of the template
+						var template = document.getElementById("template-list-item");
+						// Get the contents of the template
+						var templateHtml = template.innerHTML;
+						// Final HTML variable as empty string
+						var listHtml = "";
+
 						$.each(setups, function(key, value) {
-							$('.fullitem_holder').append(`
-						<div class="fullitem">
-						<a href="` + webRootJs + `setups/` + value['id'] + `-` + convertToSlug(value['title']) + `">
-						<img src="` + webRootJs + value['resources'][0]['src'] + `">
-						<\/a>
-						<div class="red_like"><i class="fa fa-heart"><\/i> ` + value['like_count'] + `<\/div>
-						<div class="fullitem-inner">
-						<div class="row">
-						<div class="column column-75">
-						<a class="featured-user" href="` + webRootJs + `users/` + value['user_id'] + `">
-						<img src="` + webRootJs + `uploads/files/pics/profile_picture_` + value['user_id'] + `.png?` + ("0" + (new Date(value['user']['modificationDate'])).getMinutes()).slice(-2) + ("0" + (new Date(value['user']['modificationDate'])).getSeconds()).slice(-2) + `">
-						<\/a>
-						<a href="` + webRootJs + `setups/` + value['id'] + `-` + convertToSlug(value['title']) + `">
-						<h3>` + value['title'] + `<\/h3>
-						<\/a>
-						<\/div>
-						<\/div>
-						<\/div>
-						<\/div>`);
+
+							let title = value['title'];
+							let url = webRootJs + `setups/` + value['id'] + `-` + convertToSlug(value['title']);
+							let img_src = webRootJs + value['resources'][0]['src'];
+							let likes = value['like_count'];
+							let user_name = value['user']['name'];
+							let user_src = webRootJs + `uploads/files/pics/profile_picture_` + value['user_id'] + `.png?` + ("0" + (new Date(value['user']['modificationDate'])).getMinutes()).slice(-2) + ("0" + (new Date(value['user']['modificationDate'])).getSeconds()).slice(-2);
+							let user_url = webRootJs + `users/` + value['user_id'];
+
+							listHtml += templateHtml.replace(/{{ title }}/g, title)
+								.replace(/{{ url }}/g, url)
+								.replace(/{{ img_src }}/g, img_src)
+								.replace(/{{ likes }}/g, likes)
+								.replace(/{{ user_name }}/g, user_name)
+								.replace(/{{ user_src }}/g, user_src)
+								.replace(/{{ user_url }}/g, user_url);
 						});
+
+						$('.fullitem_holder').append(listHtml);
+
 						$(window).data('ajaxready', true);
 					} else {
 						$('.no_more_setups').html("No more setups to display...");
