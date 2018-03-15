@@ -381,7 +381,9 @@ var timer;
 function searchItem(query, region, action) {
 	clearTimeout(timer);
 	timer = setTimeout(function validate() {
-
+		if (query.length < 2) {
+			return;
+		}
 		$.ajax({
 			url: webRootJs + 'services/productdb.php',
 			type: 'get',
@@ -426,7 +428,7 @@ function searchItem(query, region, action) {
 			}
 		});
 
-	}, 500);
+	}, 400);
 }
 
 /**
