@@ -8,6 +8,10 @@ use Cake\Network\Response;
 use Cake\Network\Http\Client;
 use Cake\Cache\Cache;
 use Cake\I18n\Time;
+use ApaiIO\ApaiIO;
+use ApaiIO\Operations\Search;
+use ApaiIO\Request\GuzzleRequest;
+use ApaiIO\Configuration\GenericConfiguration;
 
 /**
  * ThirdParties Controller
@@ -116,7 +120,75 @@ class ThirdPartiesController extends AppController
 
         else
         {
-            // Amazon goes here !
+            // If no lang is set, we'll query the US Store
+            $store = strtoupper($this->request->getQuery('lang', 'US'));
+
+            // Prepares an configuration object to communicate to Amazon stores
+            // The statement below will voluntary fail without any error if the `lang` parameter specified does not exist.
+            $conf = (new GenericConfiguration())
+                        ->setCountry(
+                            Configure::read('Credentials.Amazon.Stores.' . $store . '.country')
+                        )
+                        ->setAccessKey(
+                            Configure::read('Credentials.Amazon.Stores.' . $store . '.access')
+                        )
+                        ->setSecretKey(
+                            Configure::read('Credentials.Amazon.Stores.' . $store . '.secret')
+                        )
+                        ->setAssociateTag(
+                            Configure::read('Credentials.Amazon.Stores.' . $store . '.associate_tag')
+                        )
+                        ->setRequest((new GuzzleRequest((new \GuzzleHttp\Client()))));
+
+            // Our query will be set in another object here
+            $search = (new Search())
+                        ->setCategory('All')
+                        ->setKeywords($query)
+                        ->setResponsegroup(['Small', 'Images']);
+
+            // What a weird way to convert XML response to a PHP object to iterate on !
+            $response = json_decode(
+                json_encode(
+                    simplexml_load_string(
+                        (new ApaiIO($conf))->runOperation($search)
+                    )
+                ),
+                true
+            );
+
+            // The resulted products will be stored there !
+            $results['products'] = [];
+
+            // Let's build a cool object with these data
+            if(isset($response['Items']['Item']))
+            {
+                foreach($response['Items']['Item'] as $product => $value)
+                {
+                    // Sometimes the Amazon API does not set the image directly within the first object...
+                    if(isset($value['MediumImage']))
+                    {
+                        $src = $value['MediumImage']['URL'];
+                    }
+                    elseif(isset($value['ImageSets']['ImageSet']['MediumImage']))
+                    {
+                        $src = $value['ImageSets']['ImageSet']['MediumImage']['URL'];
+                    }
+                    elseif(isset($value['ImageSets']['ImageSet'][0]['MediumImage']))
+                    {
+                        $src = $value['ImageSets']['ImageSet'][0]['MediumImage']['URL'];
+                    }
+                    else
+                    {
+                        $src = null;
+                    }
+
+                    array_push($results['products'], [
+                        'title' => rawUrlEncode($value['ItemAttributes']['Title']),
+                        'href'  => $value['DetailPageURL'],
+                        'src'   => $src
+                    ]);
+                }
+            }
         }
 
         return new Response([

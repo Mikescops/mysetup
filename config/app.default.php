@@ -226,6 +226,46 @@ return [
             'id' => 'YOUR_TWITCH_ID_GOES_HERE',
             'secret' => 'YOUR_TWITCH_SECRET_GOES_HERE',
         ],
+        'Amazon' => [
+            'Stores' => [
+                'FR' => [
+                    'id'            => 'YOUR_AMAZON_FR_ACCESS_GOES_HERE',
+                    'secret'        => 'YOUR_AMAZON_FR_SECRET_GOES_HERE',
+                    'country'       => 'YOUR_AMAZON_FR_COUNTRY_CODE_GOES_HERE',
+                    'associate_tag' => 'YOUR_AMAZON_FR_ASSOCIATE_TAG_GOES_HERE',
+                ],
+                'IT' => [
+                    'id'            => 'YOUR_AMAZON_IT_ACCESS_GOES_HERE',
+                    'secret'        => 'YOUR_AMAZON_IT_SECRET_GOES_HERE',
+                    'country'       => 'YOUR_AMAZON_IT_COUNTRY_CODE_GOES_HERE',
+                    'associate_tag' => 'YOUR_AMAZON_IT_ASSOCIATE_TAG_GOES_HERE',
+                ],
+                'ES' => [
+                    'id'            => 'YOUR_AMAZON_ES_ACCESS_GOES_HERE',
+                    'secret'        => 'YOUR_AMAZON_ES_SECRET_GOES_HERE',
+                    'country'       => 'YOUR_AMAZON_ES_COUNTRY_CODE_GOES_HERE',
+                    'associate_tag' => 'YOUR_AMAZON_ES_ASSOCIATE_TAG_GOES_HERE',
+                ],
+                'DE' => [
+                    'id'            => 'YOUR_AMAZON_DE_ACCESS_GOES_HERE',
+                    'secret'        => 'YOUR_AMAZON_DE_SECRET_GOES_HERE',
+                    'country'       => 'YOUR_AMAZON_DE_COUNTRY_CODE_GOES_HERE',
+                    'associate_tag' => 'YOUR_AMAZON_DE_ASSOCIATE_TAG_GOES_HERE',
+                ],
+                'UK' => [
+                    'id'            => 'YOUR_AMAZON_UK_ACCESS_GOES_HERE',
+                    'secret'        => 'YOUR_AMAZON_UK_SECRET_GOES_HERE',
+                    'country'       => 'YOUR_AMAZON_UK_COUNTRY_CODE_GOES_HERE',
+                    'associate_tag' => 'YOUR_AMAZON_UK_ASSOCIATE_TAG_GOES_HERE',
+                ],
+                'US' => [
+                    'id'            => 'YOUR_AMAZON_US_ACCESS_GOES_HERE',
+                    'secret'        => 'YOUR_AMAZON_US_SECRET_GOES_HERE',
+                    'country'       => 'YOUR_AMAZON_US_COUNTRY_CODE_GOES_HERE',
+                    'associate_tag' => 'YOUR_AMAZON_US_ASSOCIATE_TAG_GOES_HERE',
+                ],
+            ],
+        ],
         'LeDenicheur' => [
             'id' => 'YOUR_LEDENICHEUR_ID_GOES_HERE',
             'secret' => 'YOUR_LEDENICHEUR_SECRET_GOES_HERE',

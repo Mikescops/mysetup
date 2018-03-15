@@ -41,7 +41,7 @@ window.addEventListener("load", function() {
 	})
 });
 
-/** 
+/**
  * MAIN MENU transition effect
  */
 $(window).scroll(function() {
@@ -385,7 +385,7 @@ function searchItem(query, region, action) {
 			return;
 		}
 		$.ajax({
-			url: webRootJs + 'services/productdb.php',
+			url: webRootJs + 'thirdParties/searchProducts',
 			type: 'get',
 			data: {
 				"q": query,
@@ -415,7 +415,7 @@ function searchItem(query, region, action) {
 
 					var url = value['url'];
 					var encodedUrl = encodeURIComponent(url);
-					
+
 					list.html('<a onclick="addToBasket(\`' + encodedTitle + '\`, \'' + encodedUrl + '\', \'' + encodedSrc + '\', \'' + action + '\')"><p>' + title + '</p><i class="fa fa-square-o" aria-hidden="true"></i></a>');
 					list.find('a').prepend(img);
 					$(".search_results." + action).append(list);
