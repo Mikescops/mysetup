@@ -6,6 +6,8 @@
  * All rights reserved
  */
 
+/*jshint esversion: 6 */
+
 // @koala-prepend "jquery-3.2.0.min.js"
 
 /*** Ex lib.min.js ***/
@@ -38,7 +40,7 @@ window.addEventListener("load", function() {
 		"content": {
 			"href": "https://mysetup.co/pages/legals"
 		}
-	})
+	});
 });
 
 /**
@@ -393,7 +395,7 @@ function searchItem(query, action) {
 
 				$(".search_results." + action).html("");
 
-				var products = response['products'];
+				var products = response.products;
 
 				if (products[0] == null) {
 					$(".search_results." + action).append("No products found...");
@@ -403,15 +405,15 @@ function searchItem(query, action) {
 					var list = $('<li></li>');
 					var img = $('<img>');
 
-					var src = value['src'];
+					var src = value.src;
 					var encodedSrc = encodeURIComponent(src);
 					img.attr('src', src);
 
-					var encodedTitle = value['title'];
+					var encodedTitle = value.title;
 					var title = decodeURIComponent(encodedTitle);
 					img.attr('title', title);
 
-					var url = value['url'];
+					var url = value.url;
 					var encodedUrl = encodeURIComponent(url);
 
 					list.html('<a onclick="addToBasket(\`' + encodedTitle + '\`, \'' + encodedUrl + '\', \'' + encodedSrc + '\', \'' + action + '\')"><p>' + title + '</p><i class="fa fa-square-o" aria-hidden="true"></i></a>');
@@ -419,7 +421,7 @@ function searchItem(query, action) {
 					$(".search_results." + action).append(list);
 				});
 
-				var image = $('mediumimage')
+				var image = $('mediumimage');
 
 			}
 		});
@@ -570,7 +572,7 @@ class siiimpleToast {
 			settings = {
 				vertical: 'bottom',
 				horizontal: 'right'
-			}
+			};
 		}
 		// throw Parameter Error
 		if (!settings.vertical) throw new Error('Please set parameter "vertical" ex) bottom, top ');
@@ -595,7 +597,7 @@ class siiimpleToast {
 			boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)',
 			transform: 'scale(0.5)',
 			transition: 'all 0.4s ease-out'
-		}
+		};
 		// set vertical direction
 		this.verticalStyle = this.setVerticalStyle()[this._settings.vertical];
 		// set horizontal direction
@@ -609,7 +611,7 @@ class siiimpleToast {
 			bottom: {
 				bottom: '-100px'
 			}
-		}
+		};
 	}
 	setHorizontalStyle() {
 		return {
@@ -623,14 +625,14 @@ class siiimpleToast {
 			right: {
 				right: '1rem'
 			}
-		}
+		};
 	}
 	setMessageStyle() {
 		return {
 			default: '#323232',
 			success: '#005f84',
 			alert: '#db2828',
-		}
+		};
 	}
 	init(state, message) {
 		const root = document.querySelector('body');
@@ -786,14 +788,14 @@ function infiniteScroll(nbtodisplay) {
 
 						$.each(setups, function(key, value) {
 
-							let title = value['title'];
-							let url = webRootJs + `setups/` + value['id'] + `-` + convertToSlug(value['title']);
-							let img_src = webRootJs + value['resources'][0]['src'];
-							let likes = value['like_count'];
-							let user_name = value['user']['name'];
-							let user_src = webRootJs + `uploads/files/pics/profile_picture_` + value['user_id'] + `.png?` + ("0" + (new Date(value['user']['modificationDate'])).getMinutes()).slice(-2) + ("0" + (new Date(value['user']['modificationDate'])).getSeconds()).slice(-2);
-							let user_url = webRootJs + `users/` + value['user_id'];
-							let main_color = $.parseJSON(value['main_colors'])[0];
+							let title = value.title;
+							let url = webRootJs + `setups/` + value.id + `-` + convertToSlug(value.title);
+							let img_src = webRootJs + value.resources[0].src;
+							let likes = value.like_count;
+							let user_name = value.user.name;
+							let user_src = webRootJs + `uploads/files/pics/profile_picture_` + value.user_id + `.png?` + ("0" + (new Date(value.user.modificationDate)).getMinutes()).slice(-2) + ("0" + (new Date(value.user.modificationDate)).getSeconds()).slice(-2);
+							let user_url = webRootJs + `users/` + value.user_id;
+							let main_color = $.parseJSON(value.main_colors)[0];
 							let rgb_1 = main_color[0];
 							let rgb_2 = main_color[1];
 							let rgb_3 = main_color[2];
@@ -851,7 +853,7 @@ function checknotification() {
 				$('#notif-container').html('');
 				if (notifs[0] != null) {
 					$.each(notifs, function(key, value) {
-						$('#notif-container').append('<div onclick="markasread(' + value['id'] + ')" class="notif notifnb-' + value['id'] + '">' + value['content'] + '<div class="notif-close"><span onclick="markasread(' + value['id'] + ')">×</span></div></div>');
+						$('#notif-container').append('<div onclick="markasread(' + value.id + ')" class="notif notifnb-' + value.id + '">' + value.content + '<div class="notif-close"><span onclick="markasread(' + value.id + ')">×</span></div></div>');
 					});
 
 					$('#notifications-trigger').addClass('notif-trigger');
@@ -972,14 +974,14 @@ for (var i = 0; i < forms.length; i++) {
 		return {
 			on: function(i, l) {
 				e.interval || (e.currentTitle = n.title, e.interval = t.setInterval(function() {
-					n.title = e.currentTitle === n.title ? i : e.currentTitle
+					n.title = e.currentTitle === n.title ? i : e.currentTitle;
 				}, l || 1e3))
 			},
 			off: function() {
-				t.clearInterval(e.interval), e.interval = null, n.title = e.currentTitle
+				t.clearInterval(e.interval), e.interval = null, n.title = e.currentTitle;
 			}
-		}
-	}()
+		};
+	}();
 }(window, document);
 
 var callnotif = false;
