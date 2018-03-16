@@ -67,7 +67,6 @@ $(function() {
 	}
 });
 
-
 /**
  * @name inIframe
  * @description Dectects if the current window is running under an iframe
@@ -108,7 +107,7 @@ $('.post_slider').slick({
 });
 
 /**
- * Login ADD EDIT area tabs
+ * ADD SETUP tabs
  */
 $(function() {
 	// constants
@@ -157,6 +156,9 @@ $(function() {
 	});
 });
 
+/**
+ * EDIT SETUP tabs
+ */
 $(function() {
 	// constants
 	var SHOW_CLASS = 'show-edit',
@@ -275,7 +277,7 @@ $(function() {
 		galleryPreview_edit(this, 4);
 	});
 
-	/* Same for add */
+	/***** Preview galery add *****/
 	$("#gallery0image_preview_add").click(function(e) {
 		$("#gallery0add").click();
 	});
@@ -416,7 +418,7 @@ function searchItem(query, action) {
 					var url = value.href;
 					var encodedUrl = encodeURIComponent(url);
 
-					list.html('<a onclick="addToBasket(\`' + encodedTitle + '\`, \'' + encodedUrl + '\', \'' + encodedSrc + '\', \'' + action + '\')"><p>' + title + '</p><i class="fa fa-square-o" aria-hidden="true"></i></a>');
+					list.html(`<a onclick="addToBasket(\`${encodedTitle}\`, '${encodedUrl}', '${encodedSrc}', '${action}')"><p>${title}</p><i class="fa fa-square-o" aria-hidden="true"></i></a>`);
 					list.find('a').prepend(img);
 					$(".search_results." + action).append(list);
 				});
@@ -450,7 +452,7 @@ function addToBasket(title, url, src, action) {
 	var list = $('<li></li>');
 	var img = $('<img>');
 	img.attr('src', decodedSrc);
-	list.html('<a onclick="deleteFromBasket(\`' + title + '\`,this,\'' + action + '\')"><p>' + decodedTitle + '</p><i class="fa fa-check-square-o" aria-hidden="true"></i></a>');
+	list.html(`<a onclick="deleteFromBasket(\`${title}\`,this,'${action}')"><p>${decodedTitle}</p><i class="fa fa-check-square-o" aria-hidden="true"></i></a>`);
 	list.find('a').prepend(img);
 	$(".basket_items." + action).append(list);
 }
@@ -789,11 +791,11 @@ function infiniteScroll(nbtodisplay) {
 						$.each(setups, function(key, value) {
 
 							let title = value.title;
-							let url = webRootJs + `setups/` + value.id + `-` + convertToSlug(value.title);
+							let url = webRootJs + `setups/${value.id}-${convertToSlug(value.title)}`;
 							let img_src = webRootJs + value.resources[0].src;
 							let likes = value.like_count;
 							let user_name = value.user.name;
-							let user_src = webRootJs + `uploads/files/pics/profile_picture_` + value.user_id + `.png?` + ("0" + (new Date(value.user.modificationDate)).getMinutes()).slice(-2) + ("0" + (new Date(value.user.modificationDate)).getSeconds()).slice(-2);
+							let user_src = webRootJs + `uploads/files/pics/profile_picture_${value.user_id}.png?` + ("0" + (new Date(value.user.modificationDate)).getMinutes()).slice(-2) + ("0" + (new Date(value.user.modificationDate)).getSeconds()).slice(-2);
 							let user_url = webRootJs + `users/` + value.user_id;
 							let main_color = $.parseJSON(value.main_colors)[0];
 							let rgb_1 = main_color[0];
