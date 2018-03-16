@@ -182,9 +182,9 @@
                     <div class="column column-25">
                       <div class="footer-title"><?= __('Partners') ?></div>
                       <ul>
-                        <li><a href="https://pixelswap.fr/" target="_blank" class="item">PixelSwap</a></li>
                         <li><a href="https://geek-mexicain.net/" target="_blank">Geek Mexicain</a></li>
-                        <li><a href="https://horlogeskynet.github.io/" target="_blank" class="item">HorlogeSkynet</a></li>
+                        <li><a href="https://hardwakening.fr/" target="_blank" class="item">HardWakening</a></li>
+                        <li><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img style="max-width: 140px" alt="Partner LeDenicheur" src="<?=$this->Url->build('/img/partners/ledenicheur.png')?>"></a></li>
                       </ul>
                     </div>
                     <div class="column column-25">
