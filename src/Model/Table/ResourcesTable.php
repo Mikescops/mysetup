@@ -172,9 +172,9 @@ class ResourcesTable extends Table
                 $parsing_3 = parse_url(urldecode($elements[2]));
 
                 // Check that the domain names of the current URLs are accepted !
-                if(((!isset($parsing_2['host']) || !in_array($parsing_2['host'], array_values(Configure::read('WhiteList.Resources.Products.href')))) ||
-                    (!isset($parsing_3['host']) || !in_array($parsing_3['host'], array_values(Configure::read('WhiteList.Resources.Products.src'))))) ||
-                    $admin)
+                if(((!isset($parsing_2['host']) || !in_array($parsing_2['host'], Configure::read('WhiteList.Resources.Products.href'))) ||
+                    (!isset($parsing_3['host']) || !in_array($parsing_3['host'], Configure::read('WhiteList.Resources.Products.src')))) &&
+                    !$admin)
                 {
                     $flash->warning(__('One of the products you chose does not validate our rules... Please contact an administrator.'));
                     continue;
@@ -298,7 +298,7 @@ class ResourcesTable extends Table
         $parsing = parse_url($video);
 
         if(isset($parsing['host']) &&
-           in_array(str_replace('www.', '', $parsing['host']), array_values(Configure::read('WhiteList.Resources.Video'))))
+           in_array(str_replace('www.', '', $parsing['host']), Configure::read('WhiteList.Resources.Video')))
         {
             // Let's create a new entity to store these data !
             $resource = $this->newEntity();
