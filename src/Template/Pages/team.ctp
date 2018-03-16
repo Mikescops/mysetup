@@ -18,7 +18,7 @@ echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block'
 
     <div class="member">
 
-        <img alt="Corentin Mors" src="https://mysetup.co/uploads/files/pics/profile_picture_994774516.png">
+        <img alt="Corentin Mors" src="<?= $this->Url->build('/img/contributors/corentin-mors.png') ?>">
 
         <p><strong>Corentin Mors</strong>: Student at INSA Centre Val de Loire, president of Geek Mexicain et developer of website like Uzzy.me and Pixelswap. I started to work on web development very young and now I manage plenty of projects over the net.</p>
         <a href="https://pixelswap.fr/" target="_blank"><i class="fa fa-globe"></i> PixelSwap</a> |
@@ -30,7 +30,7 @@ echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block'
 
     <div class="member">
 
-        <img alt="Samuel Forestier" src="https://mysetup.co/uploads/files/pics/profile_picture_274832608.png">
+        <img alt="Samuel Forestier" src="<?= $this->Url->build('/img/contributors/samuel-forestier.png') ?>">
 
         <p><strong>Samuel Forestier</strong> : Treasurer and writer at Geek Mexicain, I manage a personal blog for many years now where you can find all my development activities about my projects. INSA student too !</p>
         <a href="https://horlogeskynet.github.io/" target="_blank"><i class="fa fa-globe"></i> HorlogeSkynet</a> |
@@ -44,7 +44,7 @@ echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block'
 
     <div class="member">
 
-        <img alt="Jeff Gbeho" src="https://mysetup.co/uploads/files/pics/profile_picture_1301137618.png">
+        <img alt="Jeff Gbeho" src="<?= $this->Url->build('/img/contributors/jeff-gbeho.png') ?>">
 
         <p><strong>Jeff Gbeho</strong> : Young graphic designer and illustrator based at Toulouse. I'm specialized in branding and illustration but I like to diversify by realizing projects such as typography, photography, web design, etc... I like challenges and finding solutions to problems through image.</p>
 
