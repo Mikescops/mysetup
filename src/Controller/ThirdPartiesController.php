@@ -71,10 +71,11 @@ class ThirdPartiesController extends AppController
             die();
         }
 
-        $user = $this->Auth->user();
+        // If no lang is set, we'll use the user's language to address the best store
+        $store = strtoupper($this->request->getQuery('lang', $this->Auth->user('preferredStore')));
 
         // Is the user French ? Let's use the "LeDénicheur"'s API !
-        if($user->preferredStore === 'FR')
+        if($store === 'FR')
         {
             // API endpoint
             $APIBaseURL = Configure::read('Credentials.LeDenicheur.endpoint', 'ThirdPartiesCacheConfig');
@@ -127,9 +128,6 @@ class ThirdPartiesController extends AppController
 
         else
         {
-            // If no lang is set, we'll use the user's language to address the best store
-            $store = strtoupper($this->request->getQuery('lang', $user->preferredStore));
-
             // Prepares a configuration object to communicate with Amazon stores
             // The statement below will voluntary fail with an error 500 on the production if the `lang` parameter specified does not exist.
             $conf = (new GenericConfiguration())
