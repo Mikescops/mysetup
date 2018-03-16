@@ -32,7 +32,7 @@ class RequestsController extends AppController
             if($setup->user_id != $user->id and !$this->Requests->exists(['user_id' => $user->id, 'setup_id' => $setup->id]))
             {
                 $request = $this->Requests->newEntity([
-                    'token_name' => $this->Requests->Users->getRandomString(),
+                    'token' => $this->Requests->Users->getRandomString(),
                     'user_id'    => $user->id,
                     'setup_id'   => $setup->id
                 ]);
@@ -74,13 +74,22 @@ class RequestsController extends AppController
                 // ... and the response is YES...
                 if($response)
                 {
-                    // ... let's change the ownership of this setup
-                    $setup = $this->Requests->Setups->get($request->setup_id);
-                    $old_user_id = $setup->user_id;
-                    $setup->author  = $this->Requests->Users->get($request->user_id)['name'];
-                    $setup->user_id = $request->user_id;
+                    // ... let's change the ownership of this setup !
 
-                    if(!$this->Requests->delete($request) || !$this->Requests->Setups->save($setup))
+                    /* First, we fetch the concerned entities */
+                    // The very setup
+                    $setup = $this->Requests->Setups->get($request->setup_id);
+                    // Its actual owner
+                    $old_owner = $this->Requests->Users->get($setup->user_id);
+                    // The user who will gain ownership about it
+                    $new_owner = $this->Requests->Users->get($request->user_id);
+
+                    // Let's change the setup attributes to reflect this change...
+                    $setup->author  = $new_owner->name;
+                    $setup->user_id = $new_owner->id;
+
+                    // ... and save everything (the request is deleted only if the changes have been saved !).
+                    if(!$this->Requests->Setups->save($setup) || !$this->Requests->delete($request))
                     {
                         $this->Flash->error(__('An error occurred while processing your answer.'));
                     }
@@ -90,11 +99,10 @@ class RequestsController extends AppController
                         $this->Flash->success(__('Your voice has been heard !'));
 
                         // The setup has been updated, let's now move the images to the new owner's directory
-                        $this->Requests->Setups->Resources->changeSetupsImagesOwner($setup->id, $old_user_id, $setup->user_id, $this->Flash);
+                        $this->Requests->Setups->Resources->changeSetupsImagesOwner($setup->id, $old_owner->id, $setup->user_id, $this->Flash);
 
                         // Argh, a case is missing : The new owner didn't have any setup.
                         // This new one will become its default one ;)
-                        $new_owner = $this->Requests->Users->get($setup->user_id);
                         if($new_owner->mainSetup_id == 0)
                         {
                             $new_owner->mainSetup_id = $setup->id;
@@ -110,7 +118,6 @@ class RequestsController extends AppController
                         }
 
                         // If the same setup was the main one of the previous owner, let's affect him one other (or none)
-                        $old_owner = $this->Requests->Users->get($old_user_id);
                         if($old_owner->mainSetup_id == $setup->id)
                         {
                             $newMainSetup = $this->Requests->Setups->find('all', [
