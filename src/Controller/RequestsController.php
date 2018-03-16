@@ -80,13 +80,15 @@ class RequestsController extends AppController
                     $setup->author  = $this->Requests->Users->get($request->user_id)['name'];
                     $setup->user_id = $request->user_id;
 
-                    if(!$this->Requests->Setups->save($setup))
+                    if(!$this->Requests->delete($request) || !$this->Requests->Setups->save($setup))
                     {
                         $this->Flash->error(__('An error occurred while processing your answer.'));
                     }
 
                     else
                     {
+                        $this->Flash->success(__('Your voice has been heard !'));
+
                         // The setup has been updated, let's now move the images to the new owner's directory
                         $this->Requests->Setups->Resources->changeSetupsImagesOwner($setup->id, $old_user_id, $setup->user_id, $this->Flash);
 
@@ -127,13 +129,6 @@ class RequestsController extends AppController
 
                             $old_owner->setDirty('modificationDate', true);
                             $this->Requests->Users->save($old_owner);
-                        }
-
-                        $this->Flash->success(__('Your voice has been heard !'));
-
-                        if(!$this->Requests->delete($request))
-                        {
-                            $this->Flash->warning(__('Your request couldn\'t be deleted as well.'));
                         }
                     }
                 }
