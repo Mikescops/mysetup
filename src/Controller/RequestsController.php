@@ -95,7 +95,7 @@ class RequestsController extends AppController
                         // Argh, a case is missing : The new owner didn't have any setup.
                         // This new one will become its default one ;)
                         $new_owner = $this->Requests->Users->get($setup->user_id);
-                        if($new_owner->mainSetup_id === 0)
+                        if($new_owner->mainSetup_id == 0)
                         {
                             $new_owner->mainSetup_id = $setup->id;
 
@@ -111,7 +111,7 @@ class RequestsController extends AppController
 
                         // If the same setup was the main one of the previous owner, let's affect him one other (or none)
                         $old_owner = $this->Requests->Users->get($old_user_id);
-                        if($old_owner->mainSetup_id === $setup->id)
+                        if($old_owner->mainSetup_id == $setup->id)
                         {
                             $newMainSetup = $this->Requests->Setups->find('all', [
                                 'fields' => [

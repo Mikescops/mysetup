@@ -170,12 +170,12 @@ class AdminController extends AppController
                         }
                     }
 
-                    if($i === 0)
+                    if($i == 0)
                     {
                         $this->Flash->success($nbUsers . ' ' . __n('notification have been sent !', 'notifications have been sent !', $nbUsers));
                     }
 
-                    elseif($i === $nbUsers)
+                    elseif($i == $nbUsers)
                     {
                         $this->Flash->error(__('No notification could be sent...'));
                     }
