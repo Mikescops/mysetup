@@ -274,6 +274,40 @@ return [
     ],
 
     /**
+     * This array will represent a white-list for domain names we accept for URLs specified "by the users".
+     */
+    'WhiteList' => [
+        'Resources' => [
+            'Products' => [
+                'href' => [
+                    'ledenicheur.fr',
+                    'www.amazon.co.uk',
+                    'www.amazon.es',
+                    'www.amazon.it',
+                    'www.amazon.de',
+                    'www.amazon.com',
+                    'www.amazon.fr',
+                ],
+                'src' => [
+                    'cdn.pji.nu',
+                    'images-eu.ssl-images-amazon.com',
+                ],
+            ],
+            'Video' => [
+                'youtube.com',
+                'youtu.be',
+                'dailymotion.com',
+                'dai.ly',
+                'player.twitch.tv',
+                'vimeo.com',
+                'flic.kr',
+                'flickr.com',
+                'rutube.ru',
+            ],
+        ],
+    ],
+
+    /**
      * Connection information used by the ORM to connect
      * to your application's datastores.
      * Do not use periods in database name - it may lead to error.
