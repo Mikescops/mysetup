@@ -413,7 +413,7 @@ function searchItem(query, action) {
 					var title = decodeURIComponent(encodedTitle);
 					img.attr('title', title);
 
-					var url = value.url;
+					var url = value.href;
 					var encodedUrl = encodeURIComponent(url);
 
 					list.html('<a onclick="addToBasket(\`' + encodedTitle + '\`, \'' + encodedUrl + '\', \'' + encodedSrc + '\', \'' + action + '\')"><p>' + title + '</p><i class="fa fa-square-o" aria-hidden="true"></i></a>');
