@@ -27,12 +27,13 @@ class ThirdPartiesController extends AppController
     {
         parent::initialize();
 
-        // We'll store our tokens for "LeDénicheur"'s API for 20 hours !
-        Cache::config('short', [
-            'className' => 'File',
-            'duration'  => '+20 hours',
-            'path'      => CACHE,
-            'prefix'    => 'cake_short_'
+        // We'll store some data used within this Model for 20 hours !
+        Cache::config('ThirdPartiesCacheConfig', [
+            'className'   => 'File',
+            'duration'    => '+20 hours',
+            'path'        => CACHE . 'thirdParties' . DS,
+            'prefix'      => 'token_',
+            'probability' => 0
         ]);
     }
 
@@ -76,17 +77,17 @@ class ThirdPartiesController extends AppController
         if($user->preferredStore === 'FR')
         {
             // API endpoint
-            $APIBaseURL = Configure::read('Credentials.LeDenicheur.endpoint');
+            $APIBaseURL = Configure::read('Credentials.LeDenicheur.endpoint', 'ThirdPartiesCacheConfig');
 
             // Is the token still cached ?
-            $token = Cache::read('tokenLeDenicheur');
+            $token = Cache::read('LeDenicheur');
             if($token === false)
             {
                 // If not, let's retrieve a new one !
                 $response = (new Client())->post($APIBaseURL . 'auth/token', [
                     'grant_type'    => 'client_credentials',
-                    'client_id'     => Configure::read('Credentials.LeDenicheur.id'),
-                    'client_secret' => Configure::read('Credentials.LeDenicheur.secret'),
+                    'client_id'     => Configure::read('Credentials.LeDenicheur.id', 'ThirdPartiesCacheConfig'),
+                    'client_secret' => Configure::read('Credentials.LeDenicheur.secret', 'ThirdPartiesCacheConfig'),
                     'audience'      => $APIBaseURL
                 ]);
 
@@ -95,7 +96,7 @@ class ThirdPartiesController extends AppController
                     'cached' => Time::now()
                 ];
 
-                Cache::write('tokenLeDenicheur', $token);
+                Cache::write('LeDenicheur', $token, 'ThirdPartiesCacheConfig');
             }
 
             // Okay, so we got a token ! Let's search for this query !
