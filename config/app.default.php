@@ -217,6 +217,9 @@ return [
      * Twitch : `id` and `secret` for Twitch's OAuth provider
      */
     'Credentials' => [
+        'Matomo' => [
+            'token' => 'YOUR_MATOMO_TOKEN_GOES_HERE',
+        ],
         'Google' => [
             'CAPTCHA' => [
                 'secret' => 'YOUR_GOOGLE_CAPTCHA_SECRET_GOES_HERE',

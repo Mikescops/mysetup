@@ -1,4 +1,7 @@
 <?php
+
+use Cake\Core\Configure;
+
 /**
   * @var \App\View\AppView $this
   */
@@ -71,7 +74,7 @@
             <div id="widgetIframe">
                 <iframe
                     width="100%" height="350"
-                    src="https://analytics.geek-mexicain.net/index.php?module=Widgetize&action=iframe&forceView=1&viewDataTable=graphEvolution&widget=1&moduleToWidgetize=VisitsSummary&actionToWidgetize=getEvolutionGraph&idSite=2&period=day&date=today&disableLink=1&widget=1&token_auth=546a282fb9d3b7eedacaea7c4a8a1d5f&language=<?= strtolower($authUser['preferredStore']) ?>"
+                    src="https://analytics.geek-mexicain.net/index.php?module=Widgetize&action=iframe&forceView=1&viewDataTable=graphEvolution&widget=1&moduleToWidgetize=VisitsSummary&actionToWidgetize=getEvolutionGraph&idSite=2&period=day&date=today&disableLink=1&widget=1&token_auth=<?= Configure::read('Credentials.Matomo.token') ?>&language=<?= strtolower($authUser['preferredStore']) ?>"
                     scrolling="no" frameborder="0" marginheight="0" marginwidth="0">
                 </iframe>
             </div>
