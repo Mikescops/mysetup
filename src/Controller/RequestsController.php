@@ -100,7 +100,11 @@ class RequestsController extends AppController
                             $new_owner->setDirty('modificationDate', true);
                             $this->Requests->Users->save($new_owner);
 
-                            $this->Requests->Users->synchronizeSessionWithUserEntity($this->session(), $new_owner);
+                            // If the new owner is the current user (another case is not very likely, but who knows ?)
+                            if($this->Auth->user('id') == $new_owner->id)
+                            {
+                                $this->Requests->Users->synchronizeSessionWithUserEntity($this->session(), $new_owner, parent::isAdmin($new_owner));
+                            }
                         }
 
                         // If the same setup was the main one of the previous owner, let's affect him one other (or none)
