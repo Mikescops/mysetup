@@ -170,6 +170,16 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <?= preg_replace('/<a (.*)>(.*)<\/a>/', '<a rel="nofollow" $1>$2</a>', $this->Markdown->transform(h($setup->description))) ?>
 
+                    <br>
+
+                    <div class="setup-colors">
+                        <?php foreach (json_decode($setup->main_colors) as $color): ?>
+                            <div class="setup-color-box" title="RGB <?= $color[0].', '.$color[1].', '.$color[2] ?>" style="background: rgba(<?= $color[0].', '.$color[1].', '.$color[2] ?>,1);"></div>
+                        <?php endforeach ?>
+                    </div>
+
+                    <br>
+
                     <span class="setup-date">
                         <?php if($setup->creationDate != $setup->modifiedDate): ?>
                             <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>

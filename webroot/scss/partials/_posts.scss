@@ -360,6 +360,30 @@
 
 }
 
+.setup-colors{
+	display: flex;
+
+	.setup-color-box{
+		flex: 1 0 auto;
+		-webkit-box-sizing: border-box;
+		-webkit-transition: all .12s ease-out;
+		border: 2px solid rgba(255,255,255,.1);
+		border-radius: 2px;
+		box-sizing: border-box;
+		height: 100px;
+		position: relative;
+		top: 0;
+		transition: all .12s ease-out;
+		margin: 4px;
+
+		&:hover {
+		    -webkit-box-shadow: 0 4px 14px 0 rgba(0,0,0,.4);
+		    box-shadow: 0 4px 14px 0 rgba(0,0,0,.4);
+		    top: -4px;
+		}
+	}
+}
+
 .setup-date{
 	text-align: center;
 }
