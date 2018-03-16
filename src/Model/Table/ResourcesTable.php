@@ -8,6 +8,7 @@ use Cake\Filesystem\File;
 use Cake\Event\Event;
 use Cake\Datasource\EntityInterface;
 use Cake\Utility\Text;
+use Cake\Core\Configure;
 
 /**
  * Resources Model
@@ -166,43 +167,44 @@ class ResourcesTable extends Table
             $elements = explode(';', $elements);
             if(count($elements) == 3)
             {
-                // Let's parse the URls provided, in order to check their authenticity
+                // Let's parse the URLs provided, in order to check their authenticity
                 $parsing_2 = parse_url(urldecode($elements[1]));
                 $parsing_3 = parse_url(urldecode($elements[2]));
 
-                // Let's check if the resources selected by the user are from Amazon
-                if((isset($parsing_2['host']) && strstr($parsing_2['host'], "amazon") && isset($parsing_3['host']) && strstr($parsing_3['host'], "amazon")) or $admin)
-                {
-                    // Let's create a new entity to store these data !
-                    $resource = $this->newEntity([
-                        'user_id'  => $user_id,
-                        'setup_id' => $setup->id,
-                        'type'     => 'SETUP_PRODUCT',
-                        // Here is the trick to prevent some special characters not encoded in JS
-                        'title'    => rawurlencode(urldecode($elements[0])),
-                        'href'     => $elements[1],
-                        'src'      => $elements[2]
-                    ]);
-
-                    // If the resource can't be saved atm, we rollback and throw an error...
-                    if(!$this->save($resource))
-                    {
-                        if(!$edition)
-                        {
-                            $this->Setups->delete($setup);
-                            $flash->error(__('Internal error, we couldn\'t save your setup.'));
-                        }
-
-                        else
-                        {
-                            $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
-                        }
-                    }
-                }
-
-                else
+                // Check that the domain names of the current URLs are accepted !
+                if(((!isset($parsing_2['host']) || !in_array($parsing_2['host'], Configure::read('WhiteList.Resources.Products.href'))) ||
+                    (!isset($parsing_3['host']) || !in_array($parsing_3['host'], Configure::read('WhiteList.Resources.Products.src')))) &&
+                    !$admin)
                 {
                     $flash->warning(__('One of the products you chose does not validate our rules... Please contact an administrator.'));
+                    continue;
+                }
+
+                // Let's create a new entity to store these data !
+                $resource = $this->newEntity([
+                    'user_id'  => $user_id,
+                    'setup_id' => $setup->id,
+                    'type'     => 'SETUP_PRODUCT',
+                    // Here is the trick to prevent some special characters not encoded in JS
+                    'title'    => rawurlencode(urldecode($elements[0])),
+                    'href'     => $elements[1],
+                    'src'      => $elements[2]
+                ]);
+
+                // If the resource can't be saved atm, we rollback and throw an error...
+                if(!$this->save($resource))
+                {
+                    if(!$edition)
+                    {
+                        $this->Setups->delete($setup);
+                        $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                        return;
+                    }
+
+                    else
+                    {
+                        $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
+                    }
                 }
             }
         }
@@ -297,42 +299,33 @@ class ResourcesTable extends Table
     {
         $parsing = parse_url($video);
 
-        if(isset($parsing['host']))
+        if(isset($parsing['host']) &&
+           in_array(str_replace('www.', '', $parsing['host']), Configure::read('WhiteList.Resources.Video')))
         {
-            // The host will contain only the DN without 'www.' if present
-            $parsing['host'] = str_replace('www.', '', $parsing['host']);
+            // Let's create a new entity to store these data !
+            $resource = $this->newEntity([
+                'user_id'  => $user_id,
+                'setup_id' => $setup->id,
+                'type'     => 'SETUP_VIDEO_LINK',
+                'title'    => null,
+                'href'     => null,
+                'src'      => $video
+            ]);
 
-            if(in_array($parsing['host'], ['dailymotion.com', 'dai.ly', 'flickr.com', 'flic.kr', 'player.twitch.tv', 'youtube.com', 'youtu.be', 'vimeo.com', 'rutube.ru']))
+            // If the resource can't be saved atm, we rollback and throw an error...
+            if(!$this->save($resource))
             {
-                // Let's create a new entity to store these data !
-                $resource = $this->newEntity([
-                    'user_id'  => $user_id,
-                    'setup_id' => $setup->id,
-                    'type'     => 'SETUP_VIDEO_LINK',
-                    'title'    => null,
-                    'href'     => null,
-                    'src'      => $video
-                ]);
-
-                // If the resource can't be saved atm, we rollback and throw an error...
-                if(!$this->save($resource))
+                if(!$edition)
                 {
-                    if(!$edition)
-                    {
-                        $this->Setups->delete($setup);
-                        $flash->error(__('Internal error, we couldn\'t save your setup.'));
-                    }
-
-                    else
-                    {
-                        $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
-                    }
+                    $this->Setups->delete($setup);
+                    $flash->error(__('Internal error, we couldn\'t save your setup.'));
+                    return;
                 }
-            }
 
-            else
-            {
-                $flash->warning(__('The video link you chose does not validate our rules... Please contact an administrator.'));
+                else
+                {
+                    $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
+                }
             }
         }
 
