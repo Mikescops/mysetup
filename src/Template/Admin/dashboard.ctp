@@ -20,7 +20,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-danger h-100">
                 <div class="card-body bg-danger">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= __('SETUPS') ?>
+                        <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Setup', 'Setups', $stats['count']['setups'])) ?>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@ use Cake\Core\Configure;
             <div class="card bg-success text-white h-100">
                 <div class="card-body bg-success">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="users" width="50px" height="50px"></i></h1> <?= __('USERS') ?>
+                        <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="users" width="50px" height="50px"></i></h1> <?= strtoupper(__n('User', 'Users', $stats['count']['users'])) ?>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-info h-100">
                 <div class="card-body bg-info">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['comments'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="message-circle" width="50px" height="50px"></i></h1> <?= __('COMMENTS') ?>
+                        <h1 class="display-4"><?= $stats['count']['comments'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="message-circle" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Comment', 'Comments', $stats['count']['comments'])) ?>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-warning h-100">
                 <div class="card-body bg-warning">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['resources'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="layers" width="50px" height="50px"></i></h1> <?= __('RESOURCES') ?>
+                        <h1 class="display-4"><?= $stats['count']['resources'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="layers" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Resource', 'Resources', $stats['count']['resources'])) ?>
                     </div>
 
                 </div>
