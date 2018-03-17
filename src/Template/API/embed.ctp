@@ -17,11 +17,11 @@ abbr,acronym,address,applet,aside,audio,big,blockquote,body,canvas,caption,cite,
 
                 <img alt="<?= $setup->title ?>" class="main-image" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>">
 
-                <div class="box-overlay"><h3><?= __('Setup of') ?> <?= $setup->user['name'] ?></h3></div>
+                <div class="box-overlay"><h3><?= __('Setup of') ?> <?= h($setup->user['name']) ?></h3></div>
             </div>
         </a>
 
-        <a href="<?= $this->Url->build('/?ref=embedProgram', true)?>" class="watermark"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mysetup.co')); ?></a>
+        <a href="<?= $this->Url->build('/?ref=embedProgram', true)?>" class="watermark"><?= $this->Html->image('mySetup_logo.svg', ['alt' => 'mySetup.co']) ?></a>
 
         <div class="config-items">
             <?php foreach($setup['resources']['products'] as $item): ?>
