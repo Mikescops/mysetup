@@ -154,4 +154,69 @@ class APIController extends AppController
 
         $this->set('setup', $setup);
     }
+
+    /* Twitch-promote image generation ! */
+    public function twitchPromote()
+    {
+        // Limits queries to GET request
+        if(!$this->request->is('get'))
+        {
+            die();
+        }
+
+        // Only logged in users will be able to generate their image
+        if($this->Auth->user() === null)
+        {
+            $this->Flash->error(__('You are not authorized to access that location.'));
+            return $this->redirect('/');
+        }
+
+        // Verifies authenticity of the setup id specified (would throw a 404 if these entities could not be found)
+        $setup = TableRegistry::get('Setups')->get($this->request->getQuery('id'), [
+            'fields' => [
+                'title',
+                'user_id'
+            ],
+            'contain' => [
+                'Users' => [
+                    'fields' => [
+                        'id',
+                        'name'
+                    ]
+                ]
+            ]
+        ]);
+
+        $pfile = 'uploads/files/pics/profile_picture_' . $setup->user->id . '.png';
+        $profile = ImageCreateFromPNG($pfile);
+        list($pwidth, $pheight) = GetImageSize($pfile);
+
+        $image = ImageCreateFromJPEG('img/partner_banner.jpg');
+        ImageAlphaBlending($image, true);
+        ImageSaveAlpha($image, true);
+        ImageCopyResampled($image, $profile, 0, 239, 0, 0, 81, 81, $pwidth, $pheight);
+
+        $color = ImageColorAllocate($image, 255, 255, 255);
+
+        // Write names.
+        if(strlen($setup->title) > 20)
+        {
+            $setup = wordwrap(substr($setup->title, 0, 38), 20, "\n");
+            ImageTTFText($image, 15, 0, 88, 260, $color, 'fonts/corbel.ttf', $setup->title);
+            ImageTTFText($image, 11, 0, 88, 308, $color, 'fonts/corbel.ttf', 'Shared by ' . $setup->user->name);
+        }
+
+        else
+        {
+            ImageTTFText($image, 17, 0, 88, 277, $color, 'fonts/corbel.ttf', $setup->title);
+            ImageTTFText($image, 11, 0, 88, 300, $color, 'fonts/corbel.ttf', 'Shared by ' . $setup->user->name);
+        }
+
+        header('Content-type: image/jpeg');
+        header('Content-Disposition: inline; filename="' . $setup->title . '.jpeg"');
+
+        // Return output.
+        ImageJPEG($image, NULL, 93);
+        ImageDestroy($image);
+    }
 }
