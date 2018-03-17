@@ -209,7 +209,7 @@ class APIController extends AppController
            $setup->modifiedDate != $data['timestamps']['setup_date'] ||
            $setup->user->modificationDate != $data['timestamps']['user_date'])
         {
-            // Seems not, let's generate and store it as Base64'd data !
+            // Seems not, let's generate and store it directly as JPEG-formatted string !
 
             // At first, we load the profile picture of the setup owner
             $profile_picture = new \Imagick('uploads/files/pics/profile_picture_' . $setup->user->id . '.png');
@@ -247,10 +247,10 @@ class APIController extends AppController
             // Let's compress just a bit this image
             $image->setImageCompressionQuality(93);
 
-            // Finally, we store the image into a JPEG format raw string
+            // Finally, we store the image into a JPEG-formatted raw string
             $data['image'] = $image->getImageBlob();
 
-            // Let's store it into our cache (+ two timestamps to check entities changes) !
+            // Let's store it into our cache (+ two timestamps to handle entities modification) !
             Cache::write($setup->id, [
                 'image'      => $data['image'],
                 'timestamps' => [
