@@ -6,6 +6,7 @@ use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 use Cake\Network\Response;
 use Cake\Network\Exception\NotFoundException;
+use Cake\Cache\Cache;
 
 /**
  * API Controller
@@ -15,6 +16,19 @@ use Cake\Network\Exception\NotFoundException;
  */
 class APIController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+
+        // We'll store Twitch promote images generated for some hours !
+        Cache::config('TwitchPromoteCacheConfig', [
+            'className'   => 'File',
+            'duration'    => '+1 day',
+            'path'        => CACHE . 'twitchPromote' . DS,
+            'prefix'      => 'twitchPromote_'
+        ]);
+    }
+
     /* /!\ Each method present in this very file will be authorized /!\ */
     public function beforeFilter(Event $event)
     {
@@ -167,56 +181,98 @@ class APIController extends AppController
         // Verifies authenticity of the setup id specified (would throw a 404 if these entities could not be found)
         $setup = TableRegistry::get('Setups')->get($this->request->getQuery('id'), [
             'fields' => [
+                'id',
                 'title',
-                'user_id'
+                'modifiedDate'
             ],
             'contain' => [
                 'Users' => [
                     'fields' => [
                         'id',
-                        'name'
+                        'name',
+                        'modificationDate'
                     ]
                 ]
             ]
         ]);
 
         // Only logged in users will be able to generate THEIR image
-        if($this->Auth->user() === null || $this->Auth->user('id') != $setup->user_id)
+        if($this->Auth->user('id') != $setup->user->id)
         {
             $this->Flash->error(__('You are not authorized to access that location.'));
             return $this->redirect('/');
         }
 
-        $pfile = 'uploads/files/pics/profile_picture_' . $setup->user->id . '.png';
-        $profile = ImageCreateFromPNG($pfile);
-        list($pwidth, $pheight) = GetImageSize($pfile);
-
-        $image = ImageCreateFromJPEG('img/partner_banner.jpg');
-        ImageAlphaBlending($image, true);
-        ImageSaveAlpha($image, true);
-        ImageCopyResampled($image, $profile, 0, 239, 0, 0, 81, 81, $pwidth, $pheight);
-
-        $color = ImageColorAllocate($image, 255, 255, 255);
-
-        // Write names.
-        if(strlen($setup->title) > 20)
+        // Is the image missing from the cache ? Has the setup recently changed ? Has the user recently changed ?
+        $data = Cache::read($setup->id, 'TwitchPromoteCacheConfig');
+        if($data === false ||
+           $setup->modifiedDate != $data['timestamps']['setup_date'] ||
+           $setup->user->modificationDate != $data['timestamps']['user_date'])
         {
-            $setup = wordwrap(substr($setup->title, 0, 38), 20, "\n");
-            ImageTTFText($image, 15, 0, 88, 260, $color, 'fonts/corbel.ttf', $setup->title);
-            ImageTTFText($image, 11, 0, 88, 308, $color, 'fonts/corbel.ttf', 'Shared by ' . $setup->user->name);
+            // Seems not, let's generate and store it as Base64'd data !
+
+            // At first, we load the profile picture of the setup owner
+            $profile_picture = new \Imagick('uploads/files/pics/profile_picture_' . $setup->user->id . '.png');
+            $profile_picture->cropThumbnailImage(81, 81);
+
+            // We'll also need this beautiful promote banner for Twitch :)
+            $image = new \Imagick('img/twitch_promote.jpg');
+            $image->compositeImage($profile_picture, \Imagick::COMPOSITE_COPY, 0, 239);
+
+            // We'll write down the setup title and the user name directly on the image !
+            $text = new \ImagickDraw();
+            $text->setFillColor('white');
+            $text->setFont('fonts/corbel.ttf');
+
+            // Let's make a beautiful truncation of the setup title if it's too long
+            if(strlen($setup->title) > 24)
+            {
+                $matches = [];
+                preg_match('/.{1,24}(?:\W|$)/', $setup->title, $matches);
+                $setup->title = rtrim($matches[0]) . '...';
+            }
+            $text->setFontSize(22);
+            $image->annotateImage($text, 88, 282, 0, $setup->title);
+
+            // Same thing with the user name :S
+            if(strlen($setup->user->name) > 22)
+            {
+                $matches = [];
+                preg_match('/.{1,22}(?:\W|$)/', $setup->user->name, $matches);
+                $setup->user->name = rtrim($matches[0]) . '...';
+            }
+            $text->setFontSize(15);
+            $image->annotateImage($text, 88, 310, 0, 'Shared by ' . $setup->user->name);
+
+            // Let's compress just a bit this image
+            $image->setImageCompressionQuality(93);
+
+            // Finally, we store the image into a JPEG format raw string
+            $data['image'] = $image->getImageBlob();
+
+            // Let's store it into our cache (+ two timestamps to check entities changes) !
+            Cache::write($setup->id, [
+                'image'      => $data['image'],
+                'timestamps' => [
+                    'setup_date' => $setup->modifiedDate,
+                    'user_date'  => $setup->user->modificationDate
+                ]
+            ], 'TwitchPromoteCacheConfig');
+
+            // Destroy elements used above...
+            $image->clear();
+            $profile_picture->clear();
         }
 
-        else
-        {
-            ImageTTFText($image, 17, 0, 88, 277, $color, 'fonts/corbel.ttf', $setup->title);
-            ImageTTFText($image, 11, 0, 88, 300, $color, 'fonts/corbel.ttf', 'Shared by ' . $setup->user->name);
-        }
-
-        header('Content-type: image/jpeg');
-        header('Content-Disposition: inline; filename="' . $setup->title . '.jpeg"');
-
-        // Return output.
-        ImageJPEG($image, NULL, 93);
-        ImageDestroy($image);
+        // Let's return this image to the user, with a beautiful filename ;)
+        $response = new Response([
+            'status' => 200,
+            'type'   => 'jpeg',
+            'body'   => $data['image']
+        ]);
+        $response->header([
+            'Content-Disposition' => 'inline; filename="' . str_replace('...', '', $setup->title) . '".jpeg'
+        ]);
+        return $response;
     }
 }
