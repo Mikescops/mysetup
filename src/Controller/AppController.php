@@ -131,7 +131,7 @@ class AppController extends Controller
             $this->set('setupsList', $setupsList);
 
             // Let's send to the view the list of timezones as well
-            $this->set('timezones', $this->Users->timezones);
+            $this->set('timezones', $this->Setups->Users->timezones);
 
             // Before render the view, let's give a new entity for add Setup modal to it
             $this->set('newSetupEntity', $this->Setups->newEntity());
@@ -147,11 +147,8 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-        // By default, no page is allowed. Please check special authorizations in the others controller
+        // By default, no page is allowed. Please check special authorizations in the other controllers
         $this->Auth->deny();
-
-        // Allow request on public functions
-        $this->Auth->allow(['reportBug']);
 
         // Let's remove the tampering protection on the hidden `resources` field (handled by JS), and files inputs
         $this->Security->setConfig('unlockedFields', [
@@ -219,7 +216,7 @@ class AppController extends Controller
             'response' => $data['g-recaptcha-response']
         ]);
 
-        if(!$response or !$response->json or !$response->json['success'])
+        if(!$response or !isset($response->json['success']) or !$response->json['success'])
         {
             return false;
         }
