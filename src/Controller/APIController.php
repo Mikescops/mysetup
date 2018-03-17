@@ -164,13 +164,6 @@ class APIController extends AppController
             die();
         }
 
-        // Only logged in users will be able to generate their image
-        if($this->Auth->user() === null)
-        {
-            $this->Flash->error(__('You are not authorized to access that location.'));
-            return $this->redirect('/');
-        }
-
         // Verifies authenticity of the setup id specified (would throw a 404 if these entities could not be found)
         $setup = TableRegistry::get('Setups')->get($this->request->getQuery('id'), [
             'fields' => [
@@ -186,6 +179,13 @@ class APIController extends AppController
                 ]
             ]
         ]);
+
+        // Only logged in users will be able to generate THEIR image
+        if($this->Auth->user() === null || $this->Auth->user('id') != $setup->user_id)
+        {
+            $this->Flash->error(__('You are not authorized to access that location.'));
+            return $this->redirect('/');
+        }
 
         $pfile = 'uploads/files/pics/profile_picture_' . $setup->user->id . '.png';
         $profile = ImageCreateFromPNG($pfile);
