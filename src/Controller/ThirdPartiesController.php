@@ -78,17 +78,17 @@ class ThirdPartiesController extends AppController
         if($store === 'FR')
         {
             // API endpoint
-            $APIBaseURL = Configure::read('Credentials.LeDenicheur.endpoint', 'ThirdPartiesCacheConfig');
+            $APIBaseURL = Configure::read('Credentials.LeDenicheur.endpoint');
 
             // Is the token still cached ?
-            $token = Cache::read('LeDenicheur');
+            $token = Cache::read('LeDenicheur', 'ThirdPartiesCacheConfig');
             if($token === false)
             {
                 // If not, let's retrieve a new one !
                 $response = (new Client())->post($APIBaseURL . 'auth/token', [
                     'grant_type'    => 'client_credentials',
-                    'client_id'     => Configure::read('Credentials.LeDenicheur.id', 'ThirdPartiesCacheConfig'),
-                    'client_secret' => Configure::read('Credentials.LeDenicheur.secret', 'ThirdPartiesCacheConfig'),
+                    'client_id'     => Configure::read('Credentials.LeDenicheur.id'),
+                    'client_secret' => Configure::read('Credentials.LeDenicheur.secret'),
                     'audience'      => $APIBaseURL
                 ]);
 
