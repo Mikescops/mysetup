@@ -50,7 +50,11 @@ endif;
         <div class="large_search" style="margin-top: -60px"> <i class="fa fa-search"></i>
 
             <input type="text" id="keyword-search" placeholder="<?= __('Search component, user or setup...') ?>" />
-            <?= $this->Html->scriptBlock('let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`setups/search?q=${word}`, "_self"));', ['block' => 'scriptBottom']); ?>
+            <?= $this->Html->scriptBlock('
+                let searchInput = new AmazonAutocomplete("#keyword-search");
+                searchInput.onSelectedWord(word => window.open(`' . $this->Url->build('/search/') . '?q=${word}`, "_self"));
+                ', ['block' => 'scriptBottom']
+            ); ?>
 
         </div>
         <br><br><br><br>
