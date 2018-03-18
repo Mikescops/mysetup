@@ -33,9 +33,10 @@ class AppView extends View
         if($this->request->action === 'view')
         {
             // We'll only load our Markdown Helper for '{Setups,Articles}.view' pages !
-            if(in_array($this->request->controller, ['Setups', 'Articles']))
+            if(in_array($this->request->controller, ['Setups', 'Articles', 'Users']))
             {
                 $this->loadHelper('Tanuck/Markdown.Markdown');
+                $this->loadHelper('MySetupTools');
             }
 
             // Here we'll apply special templates for our modal check-boxes

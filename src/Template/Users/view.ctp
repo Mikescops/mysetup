@@ -17,16 +17,10 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
                 <div><h2><?= h($user->name) ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
                     <ul>
-                        <?php
-                            function urlPrettifying($url) {
-                               return preg_replace('/https?:\/\/(www\.)?/', '', $url);
-                            }
-                        ?>
-
-                        <?php if($user->uwebsite): ?><li><i class="fa fa-globe" style="margin-right: 2px;"></i> <a href="<?= h($user->uwebsite) ?>" rel="nofollow" target="_blank"><?= h(urlPrettifying($user->uwebsite)) ?></a></li><?php endif ?>
-                        <?php if($user->ufacebook): ?><li><i class="fa fa-facebook" style="margin-right: 6px;"></i> <a href="<?= h($user->ufacebook) ?>" rel="nofollow" target="_blank"><?= h(urlPrettifying($user->ufacebook)) ?></a></li><?php endif ?>
-                        <?php if($user->utwitter): ?><li><i class="fa fa-twitter"></i> <a href="<?= h($user->utwitter) ?>" rel="nofollow" target="_blank"><?= h(urlPrettifying($user->utwitter)) ?></a></li><?php endif ?>
-                        <?php if($user->utwitch): ?><li><i class="fa fa-twitch"></i> <a href="<?= h($user->utwitch) ?>" rel="nofollow" target="_blank"><?= h(urlPrettifying($user->utwitch)) ?></a></li><?php endif ?>
+                        <?php if($user->uwebsite): ?><li><i class="fa fa-globe" style="margin-right: 2px;"></i> <a href="<?= h($user->uwebsite) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->uwebsite)) ?></a></li><?php endif ?>
+                        <?php if($user->ufacebook): ?><li><i class="fa fa-facebook" style="margin-right: 6px;"></i> <a href="<?= h($user->ufacebook) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->ufacebook)) ?></a></li><?php endif ?>
+                        <?php if($user->utwitter): ?><li><i class="fa fa-twitter"></i> <a href="<?= h($user->utwitter) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->utwitter)) ?></a></li><?php endif ?>
+                        <?php if($user->utwitch): ?><li><i class="fa fa-twitch"></i> <a href="<?= h($user->utwitch) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->utwitch)) ?></a></li><?php endif ?>
                     </ul>
                 </div>
             </div>
