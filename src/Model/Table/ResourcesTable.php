@@ -116,7 +116,8 @@ class ResourcesTable extends Table
 
     public function beforeDelete(Event $event, EntityInterface $entity)
     {
-        if($entity['type'] === 'SETUP_GALLERY_IMAGE' or $entity['type'] === 'SETUP_FEATURED_IMAGE')
+        // If this resource is an image, let's REALLY delete it !
+        if(in_array($entity['type'], ['SETUP_GALLERY_IMAGE', 'SETUP_FEATURED_IMAGE']))
         {
             if(!(new File($entity['src']))->delete())
             {
@@ -159,8 +160,10 @@ class ResourcesTable extends Table
         ->toArray();
     }
 
-    public function saveResourceProducts($products, $setup, $flash, $user_id, $edition, $admin = false)
+    public function saveResourceProducts($products, $setup, $flash, $admin = false)
     {
+        $is_okay = true;
+
         // "Title_1;href_1;src_1,Title_2;href_2;src_2,...,Title_n;href_n;src_n"
         foreach(explode(',', $products) as $elements)
         {
@@ -182,7 +185,7 @@ class ResourcesTable extends Table
 
                 // Let's create a new entity to store these data !
                 $resource = $this->newEntity([
-                    'user_id'  => $user_id,
+                    'user_id'  => $setup->user_id,
                     'setup_id' => $setup->id,
                     'type'     => 'SETUP_PRODUCT',
                     // Here is the trick to prevent some special characters not encoded in JS
@@ -191,69 +194,60 @@ class ResourcesTable extends Table
                     'src'      => $elements[2]
                 ]);
 
-                // If the resource can't be saved atm, we rollback and throw an error...
+                // If the resource can't be saved atm, we throw an error...
                 if(!$this->save($resource))
                 {
-                    if(!$edition)
-                    {
-                        $this->Setups->delete($setup);
-                        $flash->error(__('Internal error, we couldn\'t save your setup.'));
-                        return;
-                    }
-
-                    else
-                    {
-                        $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
-                    }
+                    $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
+                    $is_okay = false;
                 }
             }
         }
+
+        // We'll be ignored for sure, but at least it'll be implemented :100:
+        return $is_okay;
     }
 
-    public function saveResourceImage($file, $setup, $type, $flash, $user_id, $edition, $featured)
+    public function saveResourceImage($file, $setup, $type, $flash)
     {
         if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg') && !strpos($file['type'], 'gif'))
         {
-            if(!file_exists('uploads/files/' . $user_id) and !mkdir('uploads/files/' . $user_id, 0755))
+            if(!file_exists('uploads/files/' . $setup->user_id) and !mkdir('uploads/files/' . $setup->user_id, 0755))
             {
-                if(!$edition)
-                {
-                    $this->Setups->delete($setup);
-                    $flash->error(__('An internal error occurred while saving your images... Please contact an administrator.'));
-                }
-
-                else
-                {
-                    $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
-                }
+                $flash->error(__('An internal error occurred while saving your images... Please contact an administrator.'));
+                return false;
             }
 
             /*
                 Note to developers: The following is a bit tricky, be careful to read this to understand everything.
 
-                As Imagick library has many problems with PNG images (compression is none, even worst sometimes, with wide images), we decided to convert then into JPG format. This is the scenario:
+                As Imagick library has many problems with PNG images (compression is none, even worst sometimes, with wide images), we decided to convert them into JPG format. This is the scenario:
 
                 * Whatever the file format is, we move the image into the owner's directory, and renamed it as 'UUID.jpg' (even if it's a PNG !!) ;
                 * We convert the image into a JPG format ;
                 * We compress it ;
-                //* We apply a little Gaussian blur to optimize a little more without much lost ;
+                //* We apply a little Gaussian blur to optimize a little more without much loss ;
                 * We crop the image into featured / gallery format (depends on the case) ;
                 * We save the new obtained image.
             */
 
-            $destination = 'uploads/files/' . $user_id . '/' . Text::uuid() . '.jpg';
+            $destination = 'uploads/files/' . $setup->user_id . '/' . Text::uuid() . '.jpg';
 
             if(move_uploaded_file($file['tmp_name'], $destination))
             {
+                // Simple shortcut for below ternaries
+                $featured = ($type === 'SETUP_FEATURED_IMAGE' ? true : false);
+
                 $image = new \Imagick($destination);
 
                 if(!$image->setImageFormat('jpg') || !$image->setImageCompressionQuality(85) /*|| !$image->gaussianBlurImage(0.8, 10) */|| !$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
                 {
                     $flash->warning(__('One of your image could not be converted to JPG, compressed, resized or saved... Please contact an administrator.'));
+                    return false;
                 }
 
+                // The image operations were successful, let's save this resource entity into the DB !
                 $resource = $this->newEntity([
-                    'user_id'  => $user_id,
+                    'user_id'  => $setup->user_id,
                     'setup_id' => $setup->id,
                     'type'     => $type,
                     'title'    => null,
@@ -263,16 +257,8 @@ class ResourcesTable extends Table
 
                 if(!$this->save($resource))
                 {
-                    if(!$edition)
-                    {
-                        $this->Setups->delete($setup);
-                        $flash->error(__('Internal error, we couldn\'t save your setup.'));
-                    }
-
-                    else
-                    {
-                        $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
-                    }
+                    $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
+                    return false;
                 }
 
                 else
@@ -284,18 +270,18 @@ class ResourcesTable extends Table
             else
             {
                 $flash->warning(__('One of the file you uploaded could not be saved.'));
+                return false;
             }
         }
 
         else
         {
             $flash->warning(__('One of the files you uploaded does not validate our rules... Please contact an administrator.'));
+            return false;
         }
-
-        return false;
     }
 
-    public function saveResourceVideo($video, $setup, $type, $flash, $user_id, $edition)
+    public function saveResourceVideo($video, $setup, $type, $flash)
     {
         $parsing = parse_url($video);
 
@@ -304,7 +290,7 @@ class ResourcesTable extends Table
         {
             // Let's create a new entity to store these data !
             $resource = $this->newEntity([
-                'user_id'  => $user_id,
+                'user_id'  => $setup->user_id,
                 'setup_id' => $setup->id,
                 'type'     => 'SETUP_VIDEO_LINK',
                 'title'    => null,
@@ -312,32 +298,31 @@ class ResourcesTable extends Table
                 'src'      => $video
             ]);
 
-            // If the resource can't be saved atm, we rollback and throw an error...
+            // If the resource can't be saved atm, we throw an error...
             if(!$this->save($resource))
             {
-                if(!$edition)
-                {
-                    $this->Setups->delete($setup);
-                    $flash->error(__('Internal error, we couldn\'t save your setup.'));
-                    return;
-                }
+                $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
+                return false;
+            }
 
-                else
-                {
-                    $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
-                }
+            else
+            {
+                return true;
             }
         }
 
         else
         {
             $flash->warning(__('The video link you chose does not validate our rules... Please contact an administrator.'));
+            return false;
         }
     }
 
     /* This function fetches images from `gallery0, gallery1, ..., gallery4` inputs, and replaces old ones if existing ! */
     public function saveGalleryImages($setup, $data, $flash)
     {
+        $is_okay = true;
+
         /* Here we'll compare the uploaded images to the new ones (in the 5 hidden inputs) */
         $galleries = $this->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $setup->user_id, 'type' => 'SETUP_GALLERY_IMAGE'])->toArray();
 
@@ -348,7 +333,7 @@ class ResourcesTable extends Table
                 $this->delete($galleries[0]);
             }
 
-            $this->saveResourceImage($data['gallery0'], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
+            $is_okay = $this->saveResourceImage($data['gallery0'], $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
         if(isset($data['gallery1']) and $data['gallery1'] !== '' and (int)$data['gallery1']['error'] === 0)
         {
@@ -357,7 +342,7 @@ class ResourcesTable extends Table
                 $this->delete($galleries[1]);
             }
 
-            $this->saveResourceImage($data['gallery1'], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
+            $is_okay = $this->saveResourceImage($data['gallery1'], $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
         if(isset($data['gallery2']) and $data['gallery2'] !== '' and (int)$data['gallery2']['error'] === 0)
         {
@@ -366,7 +351,7 @@ class ResourcesTable extends Table
                 $this->delete($galleries[2]);
             }
 
-            $this->saveResourceImage($data['gallery2'], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
+            $is_okay = $this->saveResourceImage($data['gallery2'], $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
         if(isset($data['gallery3']) and $data['gallery3'] !== '' and (int)$data['gallery3']['error'] === 0)
         {
@@ -375,7 +360,7 @@ class ResourcesTable extends Table
                 $this->delete($galleries[3]);
             }
 
-            $this->saveResourceImage($data['gallery3'], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
+            $is_okay = $this->saveResourceImage($data['gallery3'], $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
         if(isset($data['gallery4']) and $data['gallery4'] !== '' and (int)$data['gallery4']['error'] === 0)
         {
@@ -384,8 +369,10 @@ class ResourcesTable extends Table
                 $this->delete($galleries[4]);
             }
 
-            $this->saveResourceImage($data['gallery4'], $setup, 'SETUP_GALLERY_IMAGE', $flash, $setup->user_id, true, false);
+            $is_okay = $this->saveResourceImage($data['gallery4'], $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
+
+        return $is_okay;
     }
 
     // This method will handle an owner change (so as to move images to the new directory)

@@ -73,13 +73,13 @@ class SetupsController extends AppController
             // Let's get the data from the form
             $data = $this->request->getData();
 
-            // Let's set the id of the current logged in user
-            $data['user_id'] = $this->Auth->user('id');
-
             // Here we fetch the user entity, 'cause we'll need it later
-            $user = $this->Setups->Users->get($data['user_id']);
+            $user = $this->Setups->Users->get($this->Auth->user('id'));
 
-            // Here we'll assign automatically the owner of the setup to the entity
+            // Let's set the setup owner !
+            $data['user_id'] = $user->id;
+
+            // Here we'll assign automatically the owner name of the setup
             if(!isset($data['author']) or $data['author'] === '')
             {
                 $data['author'] = $user->name;
@@ -91,9 +91,6 @@ class SetupsController extends AppController
                 $data['status'] = 'PUBLISHED';
             }
 
-            // On Setups.add, `featured` is impossible
-            $data['featured'] = false;
-
             // Regular entity patching operation
             $setup = $this->Setups->patchEntity($this->Setups->newEntity(), $data);
 
@@ -102,20 +99,24 @@ class SetupsController extends AppController
                 $setup->id = mt_rand() + 1;
             } while($this->Setups->find()->where(['id' => $setup->id])->count() !== 0);
 
-            // Fix for previous versions of MySQL
+            // Set some default values for Setups.add
+            $setup->featured    = false;
             $setup->main_colors = '';
 
+            // So, before registering Resources entities, we need to save the setup in the DB, for foreign-dependency reasons
             if($this->Setups->save($setup))
             {
                 /* Here we get and save the featured image */
-                if(!isset($data['featuredImage']) or $data['featuredImage']['tmp_name'] === '' or !$this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $data['user_id'], false, true))
+                if(!isset($data['featuredImage']) or
+                   $data['featuredImage']['tmp_name'] === '' or
+                   !$this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
                 {
                     $this->Setups->delete($setup);
                     $this->Flash->warning(__('You need a featured image with this setup !'));
                     return $this->redirect($this->referer());
                 }
 
-                // The featured image has been created, let's extract its main colors
+                // The featured image has been created, let's extract and save its main colors
                 $setup->main_colors = $this->Setups->Resources->extractMostUsedColorsFromImage(
                     $this->Setups->Resources->find()->where(['setup_id' => $setup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
                 );
@@ -125,22 +126,21 @@ class SetupsController extends AppController
                 $this->Setups->Resources->saveGalleryImages($setup, $data, $this->Flash);
 
                 /* Here we save each product that has been selected by the user */
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $data['user_id'], false, parent::isAdminBySession($this->request->session()));
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, parent::isAdminBySession($this->request->session()));
 
-                /* Here we save the setup video URL */
+                /* Here we save the setup video URL (if it exists) */
                 if(isset($data['video']) and $data['video'] !== '')
                 {
-                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $data['user_id'], false);
+                    // We ignore the return of this method, 'cause its failing is not relevant here
+                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash);
                 }
 
                 // User's main Setup feature : If this user does not have currently any, let's assign this new one
-                if(!$user->mainSetup_id)
+                if($user->mainSetup_id == 0)
                 {
                     $user->mainSetup_id = $setup->id;
-
                     $user->setDirty('modificationDate', true);
                     $this->Setups->Users->save($user);
-
                     $this->Setups->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
                 }
                 // _______________________________________________________________________________________________
@@ -173,7 +173,7 @@ class SetupsController extends AppController
             // Let's fetch the form's data
             $data = $this->request->getData();
 
-            // Here we'll assign automatically the owned of the setup to the entity, if in the setup it has not be filled
+            // Here we'll assign automatically the owner name if the user has removed the old one
             if(!isset($data['author']) or $data['author'] === '')
             {
                 $data['author'] = $this->Setups->Users->get($setup->user_id)['name'];
@@ -185,6 +185,7 @@ class SetupsController extends AppController
                 $data['status'] = 'PUBLISHED';
             }
 
+            // Only administrators can change the featured aspect of a setup
             if(!isset($data['featured']) or !parent::isAdminBySession($this->request->session()))
             {
                 $data['featured'] = $setup['featured'];
@@ -194,41 +195,71 @@ class SetupsController extends AppController
 
             if($this->Setups->save($setup))
             {
-                /* Here we delete all products then save each product that has been selected by the user */
+                /* Here we delete all products then save again each product that has been selected by the user */
                 $this->Setups->Resources->deleteAll(['Resources.user_id' => $setup->user_id, 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, $setup->user_id, true, parent::isAdminBySession($this->request->session()));
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, parent::isAdminBySession($this->request->session()));
 
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage']) and $data['featuredImage'] !== '' and (int)$data['featuredImage']['error'] === 0)
                 {
-                    $image_to_delete = $this->Setups->Resources->find()->where(['Resources.user_id' => $setup->user_id, 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_FEATURED_IMAGE'])->first();
-                    if($this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash, $setup->user_id, true, true))
+                    // We fetch the CURRENT featured image, so as to delete it afterwards
+                    $image_to_delete = $this->Setups->Resources->find()->where([
+                        'Resources.user_id'  => $setup->user_id,
+                        'Resources.setup_id' => $id,
+                        'Resources.type'     => 'SETUP_FEATURED_IMAGE']
+                    )->first();
+
+                    // We try to save the new image chosen by the user !
+                    if($this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
                     {
+                        // If it's OK, we just delete the old one, and re-compute the main colors !
                         $this->Setups->Resources->delete($image_to_delete);
 
-                        // The featured image has changed, let's re-compute the main used colors !
                         $setup->main_colors = $this->Setups->Resources->extractMostUsedColorsFromImage(
-                            $this->Setups->Resources->find()->where(['setup_id' => $setup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
+                            $this->Setups->Resources->find()->where([
+                                'setup_id' => $setup->id,
+                                'type'     => 'SETUP_FEATURED_IMAGE'
+                            ])->first()['src']
                         );
                         $this->Setups->save($setup);
                     }
                 }
 
+                // Replace the gallery images (handle in the Resources model)
                 $this->Setups->Resources->saveGalleryImages($setup, $data, $this->Flash);
 
-                /* Here we save the setup video URL */
+                /* Here we handle video link modification */
+                // First, we retrieve the current, if any
+                $video_to_delete = $this->Setups->Resources->find()->where([
+                    'setup_id' => $setup->id,
+                    'type'     => 'SETUP_VIDEO_LINK'
+                ])->first();
+                // If the user has specified a new one...
                 if(isset($data['video']) and $data['video'] !== '')
                 {
-                    // Here we get the current video link, if present
-                    $video_to_delete = $this->Setups->Resources->find()->where(['setup_id' => $setup->id, 'type' => 'SETUP_VIDEO_LINK'])->first();
-
-                    if($video_to_delete && $video_to_delete !== $data['video'])
+                    // ... that is equal to the old one
+                    if($video_to_delete && $video_to_delete->src === $data['video'])
                     {
-                        $this->Setups->Resources->delete($video_to_delete);
+                        // We won't delete it !
+                        $video_to_delete = null;
                     }
-
-                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash, $setup->user_id, true);
+                    else
+                    {
+                        // ... if not, we save this new link (the old one will be delete just below)
+                        if(!$this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash))
+                        {
+                            // If we are here, the NEW link could not be saved...
+                            // Let's be kind and don't delete the old one ;)
+                            $video_to_delete = null;
+                        }
+                    }
                 }
+                // We delete the old one (if we still have to) !
+                if($video_to_delete !== null)
+                {
+                    $this->Setups->Resources->delete($video_to_delete);
+                }
+                /* ______________________________________ */
 
                 $this->Flash->success(__('The setup has been updated.'));
             }
@@ -238,7 +269,7 @@ class SetupsController extends AppController
                 $this->Flash->error(__('The setup could not be saved. Please, try again.'));
             }
 
-            return $this->redirect($this->referer());
+            return $this->redirect(['action' => 'view', $setup->id]);
         }
     }
 
