@@ -388,8 +388,8 @@ class ResourcesTable extends Table
         }
     }
 
-    // This method will handle a owner change (so as to move images to the new directory)
-    public function changeSetupsImagesOwner($setup_id, $old_user_id, $new_user_id, $flash)
+    // This method will handle an owner change (so as to move images to the new directory)
+    public function changeSetupsResourcesOwner($setup_id, $old_user_id, $new_user_id, $flash)
     {
         // First, let's check the existence (or add) a new folder to store setup images
         if(!file_exists('uploads/files/' . $new_user_id) and !mkdir('uploads/files/' . $new_user_id, 0755))
