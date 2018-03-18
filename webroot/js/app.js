@@ -764,7 +764,7 @@ function convertToSlug(str)
 function infiniteScroll(nbtodisplay) {
 	var offset = nbtodisplay;
 	$(window).data('ajaxready', true);
-	// on déclence une fonction lorsque l'utilisateur utilise sa molette
+	// On déclenche une fonction lorsque l'utilisateur utilise sa molette
 	$(window).scroll(function() {
 		if ($(window).data('ajaxready') == false) return; //permet de couper les trigger parallèles
 		if (($(window).scrollTop() + $(window).height()) + 250 > $(document).height()) {
@@ -792,7 +792,15 @@ function infiniteScroll(nbtodisplay) {
 
 							let title = value.title;
 							let url = webRootJs + `setups/${value.id}-${convertToSlug(value.title)}`;
-							let img_src = webRootJs + value.resources[0].src;
+							// It's possible that some setups have lost their featured image...
+							let img_src = webRootJs;
+							if (value.resources[0]) {
+								img_src += value.resources[0].src;
+							}
+							else
+							{
+								img_src += "img/not_found.jpg";
+							}
 							let likes = value.like_count;
 							let user_name = value.user.name;
 							let user_src = webRootJs + `uploads/files/pics/profile_picture_${value.user_id}.png?` + ("0" + (new Date(value.user.modificationDate)).getMinutes()).slice(-2) + ("0" + (new Date(value.user.modificationDate)).getSeconds()).slice(-2);
@@ -829,7 +837,7 @@ function infiniteScroll(nbtodisplay) {
 
 /**
  * @name logTwitch
- * @description Trigger login of Twitch trought Oauth2
+ * @description Trigger login of Twitch through OAuth2
  * @param {string} [lang] [Language of user]
  */
 function logTwitch(lang) {
