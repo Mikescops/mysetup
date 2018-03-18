@@ -10,7 +10,7 @@
     <p><?= __('Go to your Twitch channel and toggle panel edition.') ?></p>
     <?= $this->Html->image('howto_twitch.png', array('alt' => 'Twitch Panel Edition')) ?> <br>
     <p><?= __('Copy the following url in the link field') ?> :</p>
-    <pre><code><span><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title).'?ref='.urlencode($setup->user['name']), true)?></span></code></pre>
+    <pre><code><span><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title).'?ref='.urlencode(h($setup->user['name'])), true)?></span></code></pre>
     <p><?= __('And add your personal mySetup.co banner image !') ?></p>
     <p style="text-align: center;"><img alt="<?= ('Advert - Setup by') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build(['controller' => 'api', 'action' => 'twitchPromote', '?' => ['id' => $setup->id]]) ?>"></p>
 

@@ -14,7 +14,7 @@
  */
 ?>
 <?php
-$content = explode("\n", $content);
+$content = explode("\n", h($content));
 
 foreach ($content as $line):
     echo '<p> ' . $line . "</p>\n";

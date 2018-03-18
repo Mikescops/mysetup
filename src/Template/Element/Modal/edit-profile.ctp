@@ -5,7 +5,7 @@
     <div class="row">
     <div class="column column-25">
     <div class="profile-container">
-       <img id="profileImage" alt="<?= __('Profile picture of') ?> <?= $authUser['name'] ?>" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $authUser['id'] ?>.png?<?= $authUser['modificationDate']->format('is') ?>" />
+       <img id="profileImage" alt="<?= __('Profile picture of') ?> <?= h($authUser['name']) ?>" src="<?= $this->Url->build('/'); ?>uploads/files/pics/profile_picture_<?= $authUser['id'] ?>.png?<?= $authUser['modificationDate']->format('is') ?>" />
     </div>
 
     <div class="profilepicup">

@@ -82,7 +82,7 @@ use Cake\Core\Configure;
                         </li>
                         <?php if($authUser): ?>
                         <li style="margin-right: 19px;">
-                                <a class="navbar-user"><?= h($authUser['name']) ?> <img class="current-profile-user" alt="<?= __('Profile picture of') ?> <?= $authUser['name'] ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser['id'] . '.png?' . $authUser['modificationDate']->format('is')) ?>"></a>
+                                <a class="navbar-user"><?= h($authUser['name']) ?> <img class="current-profile-user" alt="<?= __('Profile picture of') ?> <?= h($authUser['name']) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser['id'] . '.png?' . $authUser['modificationDate']->format('is')) ?>"></a>
                                 <ul style="left: auto;right: -20px;">
                                     <li><a href="<?=$this->Url->build('/likes')?>"><?= __('My Likes') ?></a></li>
                                     <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
@@ -207,7 +207,7 @@ use Cake\Core\Configure;
                     </div>
                     <div class="column column-25 logo_footer">
                         <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mysetup.co')); ?>
-                        <p><?= __('All rights reserved') ?> – mysetup.co<br> © 2017 - 2018</p>
+                        <p><?= __('All rights reserved') ?> – mySetup.co<br> © 2017 - 2018</p>
                     </div>
               </div>
           </div>

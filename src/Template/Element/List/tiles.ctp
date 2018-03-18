@@ -26,11 +26,11 @@
 
     <div class="item-inner">
         <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
-            <img alt="<?= __('Profile picture of') ?> <?= $setup->user->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
+            <img alt="<?= __('Profile picture of') ?> <?= h($setup->user->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
         </a>
 
         <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
-            <h3>                                    
+            <h3>
                 <?= h($setup->title) ?>
                 <?php if($setup->status == 'DRAFT'): ?>
                     <i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i>

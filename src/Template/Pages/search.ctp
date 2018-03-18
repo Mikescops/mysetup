@@ -40,22 +40,22 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
             }
         ?>
         <li <?php if($this->request->url == 'search/'): ?>class="active"<?php endif; ?>>
-            <a href="<?=$this->Url->build('/search/' . $queries)?>">
+            <a href="<?=$this->Url->build('/search/' . h($queries))?>">
                 <?= __('All') ?>
             </a>
         </li>
         <li <?php if($this->request->url == 'search/setups'): ?>class="active"<?php endif; ?>>
-            <a href="<?=$this->Url->build('/search/setups' . $queries)?>">
+            <a href="<?=$this->Url->build('/search/setups' . h($queries))?>">
                 <?= __('Setups') ?>
             </a>
         </li>
         <li <?php if($this->request->url == 'search/resources'): ?>class="active"<?php endif; ?>>
-            <a href="<?=$this->Url->build('/search/resources' . $queries)?>">
+            <a href="<?=$this->Url->build('/search/resources' . h($queries))?>">
                 <?= __('Components') ?>
             </a>
         </li>
         <li <?php if($this->request->url == 'search/users'): ?>class="active"<?php endif; ?>>
-            <a href="<?=$this->Url->build('/search/users' . $queries)?>">
+            <a href="<?=$this->Url->build('/search/users' . h($queries))?>">
                 <?= __('Users') ?>
             </a>
         </li>
@@ -94,7 +94,7 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
                         <?php else:?>
                             <h3><?= __('Found components') ?></h3>
                         <?php foreach ($resources as $item): ?>
-                            <a href="<?= $this->Url->build('/search/?q=' . $item->title) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
+                            <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
                         <?php endforeach; endif;?>
                         <br clear="all">
                     </div>
@@ -115,7 +115,7 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
                         <?php foreach($results["users"] as $foundUser): ?>
                             <div class="featured-user">
                                 <a href="<?=$this->Url->build('/users/'.$foundUser->id)?>">
-                                    <img alt="<?= __('Profile picture of') ?> <?= $foundUser->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $foundUser->id . '.png?' . $this->Time->format($foundUser->modificationDate, 'mmss', null, null)); ?>">
+                                    <img alt="<?= __('Profile picture of') ?> <?= h($foundUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $foundUser->id . '.png?' . $this->Time->format($foundUser->modificationDate, 'mmss', null, null)); ?>">
                                 <span>
                                     <strong><?= h($foundUser->name) ?> <?php if($foundUser->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></strong>
                                     <span></span>
@@ -129,19 +129,6 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
 
                 <?php }?>
             </div>
-
-            <?php
-            /*
-            <div class="column column-25 sidebar search-sidebar">
-                <ul class="search-sorting">
-                    <li><a href="">Relevance</a></li>
-                    <li><a href="">Date</a></li>
-                    <li><a href="">Likes</a></li>
-                    <li><a href="">Name</a></li>
-                </ul>
-            </div>
-            */
-            ?>
         </div>
     </div>
 </div>

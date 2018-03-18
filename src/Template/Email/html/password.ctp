@@ -1,6 +1,6 @@
 
 <p style="color: #dddddd; font-size: 18px; font-family: sans-serif; line-height: 20px">
-    Hello <?= $name ?> !
+    Hello <?= h($name) ?> !
     <br />
     <br />
     Your password has been reseted and set to : <span style="color: black; font-size: 95%; font-weight: bold; text-decoration: line-through;"><?= $password ?></span><br />

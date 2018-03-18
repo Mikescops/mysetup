@@ -1,6 +1,6 @@
 
 <p style="color: #dddddd; font-size: 18px; font-family: sans-serif; line-height: 20px">
-    Hello <?= $name ?> !
+    Hello <?= h($name) ?> !
     <br />
     <br />
     Please, in order to activate your account, click on the following button :

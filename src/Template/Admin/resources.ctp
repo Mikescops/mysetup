@@ -32,7 +32,7 @@
                     <td><?= urldecode(h($resource->title)) ?></td>
                     <td><?php if ($resource->href) :?> <a href="<?= urldecode(h($resource->href)) ?>"><i data-feather="link"></i></a> <?php endif ?></td>
                     <?php
-                        $src = urldecode(h($resource->src));
+                        $src = urldecode($resource->src);
                         if(substr($src, 0, strlen('uploads/files/')) === 'uploads/files/')
                         {
                             $src = $this->Url->build('/') . $src;

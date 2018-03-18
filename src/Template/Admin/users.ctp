@@ -64,10 +64,10 @@
                                 <i data-feather="info" width="20px" height="20px"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <?php if($user->uwebsite): echo '<a class="dropdown-item" href="' . $user->uwebsite . '" title="' . $user->uwebsite . '" target="_blank">Website</a>'; endif; ?>
-                                <?php if($user->ufacebook): echo '<a class="dropdown-item" href="' . $user->ufacebook . '" title="' . $user->ufacebook . '" target="_blank">Facebook</a>'; endif; ?>
-                                <?php if($user->utwitter): echo '<a class="dropdown-item" href="' . $user->utwitter . '" title="' . $user->utwitter . '" target="_blank">Twitter</a>'; endif; ?>
-                                <?php if($user->utwitch): echo '<a class="dropdown-item" href="' . $user->utwitch . '" title="' . $user->utwitch . '" target="_blank">Twitch</a>'; endif; ?>
+                                <?php if($user->uwebsite): echo '<a class="dropdown-item" href="' . h($user->uwebsite) . '" title="' . h($user->uwebsite) . '" target="_blank">Website</a>'; endif; ?>
+                                <?php if($user->ufacebook): echo '<a class="dropdown-item" href="' . h($user->ufacebook) . '" title="' . h($user->ufacebook) . '" target="_blank">Facebook</a>'; endif; ?>
+                                <?php if($user->utwitter): echo '<a class="dropdown-item" href="' . h($user->utwitter) . '" title="' . h($user->utwitter) . '" target="_blank">Twitter</a>'; endif; ?>
+                                <?php if($user->utwitch): echo '<a class="dropdown-item" href="' . h($user->utwitch) . '" title="' . h($user->utwitch) . '" target="_blank">Twitch</a>'; endif; ?>
                             </div>
                         <?php endif; ?>
 

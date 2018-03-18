@@ -40,7 +40,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                         <div class="column column-75">
                             <a class="featured-user" href="<?=$this->Url->build('/users/'.$like->setup->user->id)?>">
-                                <img alt="<?= __('Profile picture of') ?> #<?= $like->setup->user->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $like->setup->user->id . '.png?' . $this->Time->format($like->setup->user->modificationDate, 'mmss', null, null)); ?>">
+                                <img alt="<?= __('Profile picture of') ?> <?= h($like->setup->user->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $like->setup->user->id . '.png?' . $this->Time->format($like->setup->user->modificationDate, 'mmss', null, null)); ?>">
                             </a>
 
                             <a href="<?= $this->Url->build('/setups/'.$like->setup->id.'-'.$this->Text->slug($like->setup->title)); ?>"><h3><?= h($like->setup->title) ?></h3></a>

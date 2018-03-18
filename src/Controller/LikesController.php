@@ -40,6 +40,7 @@ class LikesController extends AppController
                         'Users' => [
                             'fields' => [
                                 'id',
+                                'name',
                                 'modificationDate'
                             ]
                         ],

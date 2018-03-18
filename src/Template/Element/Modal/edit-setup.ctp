@@ -67,9 +67,9 @@
                     <?php foreach ($setup['resources']['products'] as $item): ?>
 
                         <li>
-                            <a onclick="deleteFromBasket('<?= $item->title ?>',this,'edit_setup')">
+                            <a onclick="deleteFromBasket('<?= h($item->title) ?>',this,'edit_setup')">
                                 <img src="<?= urldecode($item->src) ?>">
-                                <p><?= urldecode($item->title) ?></p>
+                                <p><?= h(urldecode($item->title)) ?></p>
                                 <i class="fa fa-check-square-o" aria-hidden="true"></i>
                             </a>
                         </li>

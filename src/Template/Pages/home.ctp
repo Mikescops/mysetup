@@ -55,8 +55,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                     <a href="<?= $this->Url->build('/setups/'.$mainSetup->id.'-'.$this->Text->slug($mainSetup->title)) ?>" class="jssocials-share-link"><i class="fa fa-laptop"></i> <?= __('See it in action') ?></a>
                     <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fa fa-twitch"></i> <?= __('Embed on Twitch') ?></a>
                     <a href="#embed_website_script" data-lity class="jssocials-share-link"><i class="fa fa-code"></i> <?= __('Embed on your website') ?></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&t=<?= $mainSetup->title ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-facebook"></i> <?= __('Post it !') ?></a>
-                    <a href="https://twitter.com/intent/tweet?via=mysetup_co&url=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&text=<?= $mainSetup->title ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-twitter"></i> <?= __('Tweet it !') ?></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&t=<?= h($mainSetup->title )?>" target="_blank" class="jssocials-share-link"><i class="fa fa-facebook"></i> <?= __('Post it !') ?></a>
+                    <a href="https://twitter.com/intent/tweet?via=mysetup_co&url=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&text=<?= h($mainSetup->title) ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-twitter"></i> <?= __('Tweet it !') ?></a>
                 </div>
             </div>
             <?= $this->element('Modal/twitch', ['setup' => $mainSetup]) ?>
@@ -79,7 +79,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
         <div class="config-items">
             <?php foreach ($randomResources as $item): ?>
-                <a href="<?= $this->Url->build('/search/?q=' . $item->title) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
+                <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
             <?php endforeach?>
         </div>
 
@@ -185,9 +185,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             <?php foreach($activeUsers as $activeUser): ?>
                 <div class="featured-user">
                     <a href="<?=$this->Url->build('/users/'.$activeUser->id)?>">
-                        <img alt="<?= __('Profile picture of') ?> <?= $activeUser->name ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
+                        <img alt="<?= __('Profile picture of') ?> <?= h($activeUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
                         <span>
-                            <strong><?= $activeUser->name ?></strong>
+                            <strong><?= h($activeUser->name) ?></strong>
                             <span></span>
                         </span>
                     </a>

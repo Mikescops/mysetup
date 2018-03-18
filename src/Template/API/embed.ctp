@@ -15,7 +15,7 @@ abbr,acronym,address,applet,aside,audio,big,blockquote,body,canvas,caption,cite,
         <a target="_blank" href="<?= $this->Url->build('/setups/'.$setup->id.'?ref=embedProgram', true)?>">
             <div class="box-image">
 
-                <img alt="<?= $setup->title ?>" class="main-image" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>">
+                <img alt="<?= h($setup->title) ?>" class="main-image" src="<?= $this->Url->build('/'.$setup['resources']['featured_image'], true) ?>">
 
                 <div class="box-overlay"><h3><?= __('Setup of') ?> <?= h($setup->user['name']) ?></h3></div>
             </div>
