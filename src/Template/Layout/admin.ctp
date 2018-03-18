@@ -107,6 +107,10 @@
         </div>
     </footer>
 
+    <script>
+        const webRootJs = "<?= $this->Url->build('/', true); ?>";
+    </script>
+
     <!-- Set the Flash dependencies on this layout (needed for entities related actions) -->
     <?= $this->Html->script('app.min.js') ?>
 
