@@ -48,6 +48,9 @@ echo $this->Html->meta('description', __('Legal mentions about your personal dat
 	<p>
 		<?= __('mySetup.co is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program. In other terms, links to Amazon Stores use an affiliate identification.') ?>
 	</p>
+	<p>
+		<?= __('mySetup.co is in partnership with leDénicheur, a prices comparator service. In other terms, links to leDénicheur services use an affiliate identification.') ?>
+	</p>
 
 	<h3><?= __('Hosting') ?></h3>
 	<p>
