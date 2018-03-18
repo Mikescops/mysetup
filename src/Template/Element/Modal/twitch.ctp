@@ -12,7 +12,7 @@
     <p><?= __('Copy the following url in the link field') ?> :</p>
     <pre><code><span><?= $this->Url->build('/setups/'.$setup->id."-".$this->Text->slug($setup->title).'?ref='.urlencode($setup->user['name']), true)?></span></code></pre>
     <p><?= __('And add your personal mySetup.co banner image !') ?></p>
-    <p style="text-align: center;"><img alt="<?= ('Advert - Setup by') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/imgeneration/twitch-promote.php?id='. $setup->user_id . '&name=' . $setup->user['name'] . '&setup=' . $setup->title)?>"></p>
+    <p style="text-align: center;"><img alt="<?= ('Advert - Setup by') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build(['controller' => 'api', 'action' => 'twitchPromote', '?' => ['id' => $setup->id]]) ?>"></p>
 
     <p><?= __('You can even configure your Twitch Chat bot to display your link or image.') ?></p>
 </div>
