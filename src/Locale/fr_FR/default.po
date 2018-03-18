@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2018-03-18 19:10+0000\n"
-"PO-Revision-Date: 2018-03-18 20:31+0100\n"
+"POT-Creation-Date: 2018-03-18 20:16+0000\n"
+"PO-Revision-Date: 2018-03-18 21:21+0100\n"
 "Last-Translator: \n"
 "Language-Team: support@mysetup.co\n"
 "Language: fr\n"
@@ -270,13 +270,13 @@ msgstr ""
 "Cette adresse mail n'existe pas dans notre base de données. Avez-vous déjà "
 "créé un compte ?"
 
-#: Controller/UsersController.php:440;642
+#: Controller/UsersController.php:440;666
 msgid "We advise you to edit your profile (use the panel at the top)..."
 msgstr ""
 "Nous vous conseillons d'éditer votre profil (utilisez le menu situé en tête "
 "de page)"
 
-#: Controller/UsersController.php:441;643
+#: Controller/UsersController.php:441;667
 msgid "... in order to add a profile picture ! You'd look better :P"
 msgstr ""
 "... de façon à ajouter une image de profil ! Vous aurez une meilleure tête :P"
@@ -322,11 +322,28 @@ msgstr ""
 "La nouvelle adresse email de ton compte Twitch n'a pas été vérifiée. Nous ne "
 "l'avons pas mise à jour ici en attendant"
 
-#: Controller/UsersController.php:591
+#: Controller/UsersController.php:599
+msgid ""
+"Your unverified existing account cannot be linked to Twitch because your "
+"email address is not verified either. Please verify it before retrying (you "
+"will receive a new email soon)."
+msgstr ""
+"Ton compte existant n'a pas pu être lié à Twitch car ton adresse email n'est "
+"pas vérifiée sur celui-là non plus. Merci de la vérifier avant de ré-essayer "
+"(tu vas recevoir un email bientôt)."
+
+#: Controller/UsersController.php:606
+msgid ""
+"Your existing account has been verified during this first Twitch connection !"
+msgstr ""
+"Ton compte existant vient a été vérifié durant la première connexion avec "
+"Twitch !"
+
+#: Controller/UsersController.php:615
 msgid "Your account has just been linked to your Twitch one !"
 msgstr "Votre compte mySetup.co est maintenant lié à votre compte Twitch !"
 
-#: Controller/UsersController.php:604
+#: Controller/UsersController.php:628
 msgid ""
 "The email address of your Twitch account has not been verified. We can't "
 "create your account yet"
@@ -334,12 +351,12 @@ msgstr ""
 "L'adresse email de votre compte Twitch n'a pas été vérifiée. Nous ne pouvons "
 "pas vous créer de compte actuellement"
 
-#: Controller/UsersController.php:639
+#: Controller/UsersController.php:663
 msgid "Your account is now activated, and you have been logged in ;)"
 msgstr ""
 "Ton compte est maintenant activé, et tu as été connecté automatiquement !"
 
-#: Controller/UsersController.php:652
+#: Controller/UsersController.php:676
 msgid ""
 "An error occurred while saving your account. Please contact an administrator."
 msgstr ""
