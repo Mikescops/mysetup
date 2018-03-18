@@ -1,5 +1,12 @@
 <div id="embed_twitch_modal" class="lity-hide">
     <h4><?= __('How to embed your setup in Twitch ?') ?></h4>
+    <p><?= __('The simpliest way to add your setup under your Twitch stream is to use our official extension.') ?></p>
+
+    <a class="button" href="https://www.twitch.tv/ext/nx4cn1zq653a759wfy4aku0fgmql8l-1.0.1" target="_blank"><i class="fa fa-shopping-bag"></i>  <?= __('Install via Twitch MarketPlace') ?></a>
+
+    <br clear="all"><hr>
+
+    <h5><?= __('Or, use an image instead of the extension') ?></h5>
     <p><?= __('Go to your Twitch channel and toggle panel edition.') ?></p>
     <?= $this->Html->image('howto_twitch.png', array('alt' => 'Twitch Panel Edition')) ?> <br>
     <p><?= __('Copy the following url in the link field') ?> :</p>
