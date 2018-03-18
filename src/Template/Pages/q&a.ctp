@@ -65,7 +65,7 @@ echo $this->Html->meta('description', __('We answer common questions and issues 
 
     <h4 id="q-8"><?= __("How can I use the API you provide ?") ?></h4>
     <p>
-        <?= __("It's pretty easy, just add the code below to your page (and set the setup id accordingly)") ?>
+        <?= __("It's pretty easy, just add the code below to your page (and set the setup id accordingly).") ?><br />
         <?= __("You may also retrieve the setups posted on the website with HTTP calls (details are provided below too)") ?> :
         <style>.gist{width:990px!important}.gist-file .gist-data{max-height:990px;max-width:990px}</style>
         <script src="https://gist.github.com/HorlogeSkynet/e9a5f7a0a4da8014035238786c288f2a.js"></script>
