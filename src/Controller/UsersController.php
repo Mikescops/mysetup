@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Network\Exception\NotFoundException;
 use Cake\Network\Http\Client;
 use Cake\Event\Event;
 use Cake\I18n\Time;
