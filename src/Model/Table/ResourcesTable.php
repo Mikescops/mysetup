@@ -449,7 +449,7 @@ class ResourcesTable extends Table
         catch(\RuntimeException $e)
         {
             $rgb_colors = [
-                [255, 255, 255]
+                [0, 0, 0]
             ];
         }
 
