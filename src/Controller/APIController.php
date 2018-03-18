@@ -270,9 +270,10 @@ class APIController extends AppController
             'type'   => 'jpeg',
             'body'   => $data['image']
         ]);
-        $response->header([
-            'Content-Disposition' => 'inline; filename="' . str_replace('...', '', $setup->title) . '".jpeg'
-        ]);
-        return $response;
+        $setup->title = preg_replace(['/\W+/', '/\.\.\./', '/^(.*)_$/'], ['_', '', '$1'], $setup->title);
+        return $response->withHeader(
+            'Content-Disposition',
+            'inline; filename="' . $setup->title . '".jpeg'
+        );
     }
 }
