@@ -63,7 +63,7 @@ If you wanna add a translation for a foreign language :
 
 So as to extract the strings from the source code, and edit them with _Poedit_, just run this command :
 
-`$ bin/cake i18n extract --paths src --output src/Locale --extract-core yes --merge no --overwrite`
+`$ bin/cake i18n extract --paths ./src --output ./src/Locale --extract-core yes --merge no --overwrite`
 
 Output files will be under `src/Locale/`, as : `{cake,default}.pot`
 
