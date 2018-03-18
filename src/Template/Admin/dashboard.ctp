@@ -164,7 +164,7 @@ use Cake\Core\Configure;
                             <small>#<?= $request->token ?></small>
                         </div>
                         <p class="mb-1"><?= h($request->content) ?></p>
-                        <small><?= h($user->mail) ?></small>
+                        <small><?= h($request->user->mail) ?></small>
                     </a>
                 <?php endforeach ?>
             </div>
