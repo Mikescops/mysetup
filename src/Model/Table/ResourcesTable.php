@@ -433,16 +433,25 @@ class ResourcesTable extends Table
     */
     public function extractMostUsedColorsFromImage($path)
     {
-        $rgb_colors = \ColorThief\ColorThief::getPalette($path, $colorCount=3, $quality=10);
+        try
+        {
+            $rgb_colors = \ColorThief\ColorThief::getPalette($path, $colorCount=3, $quality=10);
 
-        // First item (simulates an `array_push` from the head)
-        $size = (new \Imagick($path))->getImageGeometry();
-        array_unshift($rgb_colors, \ColorThief\ColorThief::getPalette($path, $colorCount=3, $quality=2, $area=[
-            'x' => $size['width'] * (4 / 5),
-            'y' => 0,
-            'w' => $size['width'] * (1 / 5),
-            'h' => $size['height']
-        ])[0]);
+            // First item (simulates an `array_push` from the head)
+            $size = (new \Imagick($path))->getImageGeometry();
+            array_unshift($rgb_colors, \ColorThief\ColorThief::getPalette($path, $colorCount=3, $quality=2, $area=[
+                'x' => $size['width'] * (4 / 5),
+                'y' => 0,
+                'w' => $size['width'] * (1 / 5),
+                'h' => $size['height']
+            ])[0]);
+        }
+        catch(\RuntimeException $e)
+        {
+            $rgb_colors = [
+                [255, 255, 255]
+            ];
+        }
 
         return json_encode($rgb_colors);
     }
