@@ -3,6 +3,7 @@
 namespace App\Shell;
 
 use Cake\Console\Shell;
+use Cake\Filesystem\File;
 
 class CleanDatabaseShell extends Shell
 {
@@ -55,10 +56,26 @@ class CleanDatabaseShell extends Shell
     protected function _cleanUsers()
     {
         // Gets rid of unverified users, which have created their account 1 month ago (or later).
-        return $this->Users->deleteAll([
-            'mailVerification IS NOT' => null,
-            'creationDate <' => new \DateTime('-1 month')
-        ]);
+        // As `Table::deleteAll` method does not proc hook methods, we imitate their behavior here...
+        // This method will still return the number of users deleted.
+
+        $i = 0;
+        foreach($this->Users->find('all', [
+            'conditions' => [
+                'mailVerification IS NOT' => null,
+                'creationDate <' => new \DateTime('-1 month')
+            ]
+        ]) as $user)
+        {
+            if($this->Users->delete($user))
+            {
+                // An unverified user can't have any other images than its default profile picture. Let's remove it !
+                (new File('webroot/uploads/files/pics/profile_picture_' . $user->id . '.png'))->delete();
+                $i++;
+            }
+        }
+
+        return $i;
     }
 
     protected function _cleanRequests()
