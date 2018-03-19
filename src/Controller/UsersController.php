@@ -679,6 +679,7 @@ class UsersController extends AppController
 
         // Let's log this user in !
         $this->Users->prepareSessionForUser($this->request->session(), $user);
+        $this->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
         $this->Auth->setUser($user);
         return $this->redirect($this->Auth->redirectUrl());
     }
