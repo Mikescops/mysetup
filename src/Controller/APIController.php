@@ -196,8 +196,8 @@ class APIController extends AppController
             ]
         ]);
 
-        // Only logged in users will be able to generate THEIR image
-        if($this->Auth->user('id') != $setup->user->id)
+        // Only logged in users will be able to generate THEIR image (or administrators)
+        if($this->Auth->user('id') != $setup->user->id && !$this->Auth->user('admin'))
         {
             $this->Flash->error(__('You are not authorized to access that location.'));
             return $this->redirect('/');
