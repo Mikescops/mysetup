@@ -1,12 +1,12 @@
 
 <p style="color: #dddddd; font-size: 18px; font-family: sans-serif; line-height: 20px">
-    Hello <?= h($name) ?> !
+    <?= __('Hello') ?> <?= h($name) ?> !
     <br />
     <br />
-    Your password has been reseted and set to : <span style="color: black; font-size: 95%; font-weight: bold; text-decoration: line-through;"><?= $password ?></span><br />
+    <?= __('Your password has been reseted and set to') ?> : <span style="color: black; font-size: 95%; font-weight: bold; text-decoration: line-through;"><?= $password ?></span><br />
     <br />
-    Please click on the button below to log you in, and don't forget to <span style="font-weight: bold;">change it as soon as possible</span> :
+    <?= __('Please click on the button below to log you in, and don\'t forget to change it as soon as possible') ?> :
 </p>
 <a href="<?= $this->Url->build('/login', true) ?>" target="_blank" class="button-a">
-    <span style="color: #dddddd;" class="button-link">Show me the login page !</span>
+    <span style="color: #dddddd;" class="button-link"><?= __('Show me the login page !') ?></span>
 </a>

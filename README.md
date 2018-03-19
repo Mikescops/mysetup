@@ -33,8 +33,9 @@ In order to deploy this website on your web server :
 9. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and create a new database with `utf8mb4_bin` as collation.
 10. Configure a new user with required rights on this database (**Data** & **Structure**), and set it up in the `config/app.php` file, in the **Datasources** section.
 11. You may also want to set several **third party services credentials** within the same file !
-12. Now run our deployment script : `$ bash bin/deployment.sh`
-13. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page is supposed to appear !
+12. Now run our deployment script : `$ sudo bash bin/deployment.sh`
+13. If everything went fine, please run `# crontab -u www-data -e` and add the following line : `@daily /var/www/html/mysetup/bin/cake clean_database -q`
+14. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page is supposed to appear !
 
 ## Notes to developers
 
