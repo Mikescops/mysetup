@@ -20,5 +20,13 @@ class RequestsTable extends Table
         $this->belongsTo('Setups', [
             'foreignKey' => 'setup_id'
         ]);
+
+        $this->addBehavior('Timestamp', [
+            'events' => [
+                'Model.beforeSave' => [
+                    'dateTime' => 'new'
+                ]
+            ]
+        ]);
     }
 }
