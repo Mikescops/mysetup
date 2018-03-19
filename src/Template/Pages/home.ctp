@@ -73,7 +73,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <div class="large_search" style="margin-top: -60px"> <i class="fa fa-search"></i>
 
             <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" />
-            <?= $this->Html->scriptBlock(' let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`search/?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
+            <?= $this->Html->scriptBlock('
+                let searchInput = new AmazonAutocomplete("#keyword-search");
+                searchInput.onSelectedWord(word => window.open(`' . $this->Url->build('/search/') . '?q=${word}`, "_self"));
+                ', ['block' => 'scriptBottom']
+            ); ?>
 
         </div>
 
