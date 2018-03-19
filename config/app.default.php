@@ -222,11 +222,12 @@ return [
         ],
         'Google' => [
             'CAPTCHA' => [
-                'secret' => 'YOUR_GOOGLE_CAPTCHA_SECRET_GOES_HERE',
+                'site'   => 'YOUR_GOOGLE_CAPTCHA_SITE_KEY_GOES_HERE',
+                'secret' => 'YOUR_GOOGLE_CAPTCHA_SECRET_KEY_GOES_HERE',
             ],
         ],
         'Twitch' => [
-            'id' => 'YOUR_TWITCH_ID_GOES_HERE',
+            'id'     => 'YOUR_TWITCH_ID_GOES_HERE',
             'secret' => 'YOUR_TWITCH_SECRET_GOES_HERE',
         ],
         'Amazon' => [
@@ -270,8 +271,8 @@ return [
             ],
         ],
         'LeDenicheur' => [
-            'id' => 'YOUR_LEDENICHEUR_ID_GOES_HERE',
-            'secret' => 'YOUR_LEDENICHEUR_SECRET_GOES_HERE',
+            'id'       => 'YOUR_LEDENICHEUR_ID_GOES_HERE',
+            'secret'   => 'YOUR_LEDENICHEUR_SECRET_GOES_HERE',
             'endpoint' => 'YOUR_LEDENICHEUR_API_ENDPOINT_GOES_HERE',
         ],
     ],

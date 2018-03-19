@@ -1,4 +1,7 @@
 <?php
+
+use Cake\Core\Configure;
+
 /**
   * @var \App\View\AppView $this
   */
@@ -225,7 +228,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                             <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'...'), 'rows' => "1", 'maxlength' => 500]); ?>
                         </fieldset>
                         <div class="g-recaptcha"
-                            data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
+                            data-sitekey="<?= Configure::read('Credentials.Google.CAPTCHA.site') ?>"
                             data-size="invisible"
                             data-badge="bottomleft"
                             data-callback="onSubmit">

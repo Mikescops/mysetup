@@ -1,4 +1,7 @@
 <?php
+
+use Cake\Core\Configure;
+
 /**
   * @var \App\View\AppView $this
   */
@@ -22,7 +25,7 @@ $this->assign('title', __('Bug Report | mySetup.co'));
         <?= $this->Form->control('bugDescription', ['label' => __('Bug description'), 'class' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'placeholder' => __('Please, describe precisely the bug you unfortunately encountered on mySetup.co...'), 'required' => true]) ?>
 
         <div class="g-recaptcha"
-            data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
+            data-sitekey="<?= Configure::read('Credentials.Google.CAPTCHA.site') ?>"
             data-size="invisible"
             data-badge="bottomleft"
             data-callback="onSubmit">

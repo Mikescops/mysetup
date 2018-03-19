@@ -1,4 +1,7 @@
 <?php
+
+use Cake\Core\Configure;
+
 /**
   * @var \App\View\AppView $this
   */
@@ -51,7 +54,7 @@ $this->assign('title', __('Login | mySetup.co'));
                 </li>
                 <li>
                     <div class="g-recaptcha"
-                        data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
+                        data-sitekey="<?= Configure::read('Credentials.Google.CAPTCHA.site') ?>"
                         data-size="invisible"
                         data-badge="bottomleft"
                         data-callback="onSubmit">
