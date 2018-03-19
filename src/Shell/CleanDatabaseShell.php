@@ -18,12 +18,12 @@ class CleanDatabaseShell extends Shell
 
     public function main()
     {
-        $this->cleanDatabase();
+        $this->_cleanDatabase();
 
         return true;
     }
 
-    protected function cleanDatabase()
+    protected function _cleanDatabase()
     {
         $this->out($this->nl(1));
 
@@ -32,19 +32,19 @@ class CleanDatabaseShell extends Shell
         $this->out(
             '<success>' .
             'Users deleted : ' .
-            $this->cleanUsers() .
+            $this->_cleanUsers() .
             '</success>'
         );
         $this->out(
             '<success>' .
             'Requests deleted : ' .
-            $this->cleanRequests() .
+            $this->_cleanRequests() .
             '</success>'
         );
         $this->out(
             '<success>' .
             'Notifications deleted : ' .
-            $this->cleanNotifications() .
+            $this->_cleanNotifications() .
             '</success>'
         );
         $this->hr();
@@ -52,7 +52,7 @@ class CleanDatabaseShell extends Shell
         $this->out($this->nl(1));
     }
 
-    protected function cleanUsers()
+    protected function _cleanUsers()
     {
         // Gets rid of unverified users, which have created their account 1 month ago (or later).
         return $this->Users->deleteAll([
@@ -61,7 +61,7 @@ class CleanDatabaseShell extends Shell
         ]);
     }
 
-    protected function cleanRequests()
+    protected function _cleanRequests()
     {
         // Gets rid of pending requests for setup ownership, which have been emitted for more than 1 month.
         return $this->Requests->deleteAll([
@@ -69,7 +69,7 @@ class CleanDatabaseShell extends Shell
         ]);
     }
 
-    protected function cleanNotifications()
+    protected function _cleanNotifications()
     {
         // Gets rid of read notifications, older than 1 month.
         return $this->Notifications->deleteAll([
