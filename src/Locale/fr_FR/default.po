@@ -1102,7 +1102,7 @@ msgid ""
 "The simpliest way to add your setup under your Twitch stream is to use our "
 "official extension."
 msgstr ""
-"Le moyen le plus simple pour ajouter ton setup sous ton stream Twitch et "
+"Le moyen le plus simple pour ajouter ton setup sous ton stream Twitch est "
 "d'utiliser l'extension officielle."
 
 #: Template/Element/Modal/twitch.ctp:5
