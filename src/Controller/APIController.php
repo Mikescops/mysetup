@@ -69,6 +69,7 @@ class APIController extends AppController
             $Users = TableRegistry::get('Users');
             $user = $Users->find('all', [
                 'conditions' => [
+                    'mainSetup_id !=' => 0,
                     'twitchUserId' => $this->request->getQuery('twitchId')
                 ]
             ])->first();
