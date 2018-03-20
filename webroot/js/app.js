@@ -1023,8 +1023,7 @@ function recaptchaDeferedLoading(){
 	}
 }
 
-function addCommentModal(){
-	recaptchaDeferedLoading();
-	lity(document.getElementById('add-comment-script').innerHTML);
-	$(`#commentField`).emojioneArea({pickerPosition: `top`});
+function commentModal(action){
+	lity(document.getElementById(action + '-comment-script').innerHTML);
+	$('#'+ action + '-comment-field').emojioneArea({pickerPosition: `top`});
 }

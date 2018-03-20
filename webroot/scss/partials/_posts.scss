@@ -471,16 +471,6 @@
 	}
 }
 
-#commentField{
-	border-radius: 4px;
-	background-color: #fff;
-	padding: 7px;
-	height: 34px;
-	font-family: inherit;
-	margin: 0;
-	min-height: auto;
-}
-
 .comment {
     overflow: hidden;
     padding: 0 0 1em;
@@ -535,11 +525,6 @@
 }
 
 .comments, .comment { position: relative }
-
-#comment-form{
-	margin-left: 70px;
-	padding-top: 8px;
-}
 
 #add-comment-hidden, #edit-comment-hidden{
 	width: 550px;
