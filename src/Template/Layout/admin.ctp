@@ -114,7 +114,7 @@
     <!-- Set the Flash dependencies on this layout (needed for entities related actions) -->
     <?= $this->Html->script('app.min.js') ?>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.1/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
@@ -125,5 +125,6 @@
     <script>const toast = new siiimpleToast();</script>
     <script>$(function () {$('[data-toggle="tooltip"]').tooltip()})</script>
     <?= $this->Flash->render() ?>
+    <?= $this->fetch('scriptBottom') ?>
 </body>
 </html>

@@ -76,6 +76,12 @@
 
 </style>
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js', ['block' => 'scriptBottom']) ?>
+
 <div class="col-12" style="max-width: 800px;">
 	<h3><?= __('Send notification') ?></h3>
     <?= $this->Form->create(null); ?>
@@ -90,11 +96,4 @@
 		<button type="submit" class="btn btn-primary"><?= __('Push notification') ?></button>
     </fieldset>
 	<?= $this->Form->end(); ?>
-
 </div>
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
