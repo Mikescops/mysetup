@@ -1,7 +1,7 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', $article->title. ' | mySetup.co');
+$this->assign('title', h($article->title) . ' | mySetup.co');
 
 echo $this->Html->meta('description', $this->Text->truncate($this->MySetupTools->getPlainTextIntroFromHTML($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true]), ['block' => true]);
 

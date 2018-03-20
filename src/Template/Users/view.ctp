@@ -3,7 +3,7 @@
   * @var \App\View\AppView $this
   */
 
-$this->assign('title', __('Setups by ') . $user->name . ' | mySetup.co');
+$this->assign('title', __('Setups by ') . h($user->name) . ' | mySetup.co');
 echo $this->Html->meta('description', __('All the setups shared by ') . $user->name, ['block' => true]);
 ?>
 

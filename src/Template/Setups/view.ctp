@@ -6,7 +6,7 @@ use Cake\Core\Configure;
   * @var \App\View\AppView $this
   */
 
-$this->assign('title', $setup->title.' | mySetup.co');
+$this->assign('title', h($setup->title) . ' | mySetup.co');
 
 echo $this->Html->meta('description', $this->Text->truncate($this->MySetupTools->getPlainTextIntroFromHTML($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true]), ['block' => true]);
 
@@ -34,7 +34,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <div class="slider-item">
             <div class="featured-img-setup slider-item-inner">
 
-                <img alt="<?= $setup->title ?>" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true) ?>">
+                <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true) ?>">
                 <?php if(!empty($setup['resources']['video_link'])): ?>
                     <div class="overlay">
                         <a class="videoplayer-icon" href="<?= $setup['resources']['video_link']?>" title="<?= __('Watch it in video') ?>" data-lity>
