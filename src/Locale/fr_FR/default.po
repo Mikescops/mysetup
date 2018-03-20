@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2018-03-19 20:46+0000\n"
-"PO-Revision-Date: 2018-03-19 21:58+0100\n"
+"POT-Creation-Date: 2018-03-20 17:11+0000\n"
+"PO-Revision-Date: 2018-03-20 18:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: support@mysetup.co\n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: Controller/APIController.php:128;156;202 Controller/SetupsController.php:47
+#: Controller/APIController.php:140;168;214 Controller/SetupsController.php:47
 msgid "You are not authorized to access that location."
 msgstr "Vous n'êtes pas autorisé à accéder à cette page."
 
@@ -71,28 +71,19 @@ msgstr "L'article a été supprimé."
 msgid "The article could not be deleted. Please, try again."
 msgstr "L'article n'a pas pu être supprimé."
 
-#: Controller/CommentsController.php:37;79
+#: Controller/CommentsController.php:34;72
 msgid "The comment has been saved."
 msgstr "Le commentaire a été publié."
 
-#: Controller/CommentsController.php:50;84
+#: Controller/CommentsController.php:47;77
 msgid "The comment could not be saved. Please, try again."
 msgstr "Le commentaire n'a pas pu être publié. Ré-essayez."
 
-#: Controller/CommentsController.php:56 Controller/PagesController.php:114
-#: Controller/UsersController.php:97
-msgid ""
-"Google's CAPTCHA has detected you as a bot, sorry ! If you're a REAL human, "
-"please re-try :)"
-msgstr ""
-"Le CAPTCHA de Google vous a détecté comme un robot, désolé ! Si vous êtes "
-"réellement un humain, ré-essayez"
-
-#: Controller/CommentsController.php:103
+#: Controller/CommentsController.php:96
 msgid "The comment has been deleted."
 msgstr "Le commentaire a bien été supprimé."
 
-#: Controller/CommentsController.php:105
+#: Controller/CommentsController.php:98
 msgid "The comment could not be deleted. Please, try again."
 msgstr "Le commentaire n'a pas pu être supprimé. Ré-essayez."
 
@@ -111,6 +102,14 @@ msgstr "Image de profil du commentateur"
 #: Controller/NotificationsController.php:45
 msgid "commented your setup"
 msgstr "a commenté votre setup"
+
+#: Controller/PagesController.php:114 Controller/UsersController.php:97
+msgid ""
+"Google's CAPTCHA has detected you as a bot, sorry ! If you're a REAL human, "
+"please re-try :)"
+msgstr ""
+"Le CAPTCHA de Google vous a détecté comme un robot, désolé ! Si vous êtes "
+"réellement un humain, ré-essayez"
 
 #: Controller/PagesController.php:127
 msgid "Your bug has been correctly sent ! Thanks for this report :)"
@@ -708,15 +707,15 @@ msgstr "Titre"
 msgid "Send Notification | myAdmin"
 msgstr "Envoyer une Notification | myAdmin"
 
-#: Template/Admin/send_notification.ctp:80 Template/Layout/admin.ctp:89
+#: Template/Admin/send_notification.ctp:86 Template/Layout/admin.ctp:89
 msgid "Send notification"
 msgstr "Envoyer une notification"
 
-#: Template/Admin/send_notification.ctp:88
+#: Template/Admin/send_notification.ctp:94
 msgid "Content of notification (you can use HTML)"
 msgstr "Contenu de la notification (compatible HTML)"
 
-#: Template/Admin/send_notification.ctp:90
+#: Template/Admin/send_notification.ctp:96
 msgid "Push notification"
 msgstr "Envoyer la notification"
 
@@ -817,7 +816,7 @@ msgstr "Soumettre"
 msgid "Edit post"
 msgstr "Éditer un article"
 
-#: Template/Articles/edit.ctp:23 Template/Setups/view.ctp:98;212;246
+#: Template/Articles/edit.ctp:23 Template/Setups/view.ctp:98;212;241
 msgid "Edit"
 msgstr "Éditer"
 
@@ -858,7 +857,7 @@ msgstr "par"
 #: Template/Element/List/tiles.ctp:29 Template/Element/Modal/edit-profile.ctp:8
 #: Template/Layout/default.ctp:85 Template/Likes/index.ctp:43
 #: Template/Pages/home.ctp:192 Template/Pages/search.ctp:118
-#: Template/Setups/view.ctp:66;200;223 Template/Users/view.ctp:16;62
+#: Template/Setups/view.ctp:66;200 Template/Users/view.ctp:16;62
 msgid "Profile picture of"
 msgstr "Image de profil de"
 
@@ -887,7 +886,7 @@ msgstr "Ce setup est mis en-avant sur mySetup.co !"
 msgid "Basics"
 msgstr "Détails"
 
-#: Template/Element/Modal/add-setup.ctp:11
+#: Template/Element/Modal/add-setup.ctp:11;86
 #: Template/Element/Modal/edit-setup.ctp:12 Template/Pages/search.ctp:54
 msgid "Components"
 msgstr "Composants"
@@ -937,7 +936,7 @@ msgstr "champs requis"
 msgid "Next step"
 msgstr "Étape suivante"
 
-#: Template/Element/Modal/add-setup.ctp:51;66;92
+#: Template/Element/Modal/add-setup.ctp:51;66;96
 msgid "Save as draft"
 msgstr "Enregistrer en tant que brouillon"
 
@@ -951,17 +950,17 @@ msgstr "Chercher des composants..."
 msgid "Video (Youtube, Dailymotion, Twitch, ...)"
 msgstr "Vidéo (Youtube, Dailymotion, Twitch, ...)"
 
-#: Template/Element/Modal/add-setup.ctp:80
+#: Template/Element/Modal/add-setup.ctp:77
 #: Template/Element/Modal/edit-setup.ctp:105
 msgid "It's not my setup !"
 msgstr "Ce n'est pas mon setup !"
 
-#: Template/Element/Modal/add-setup.ctp:81
+#: Template/Element/Modal/add-setup.ctp:78
 #: Template/Element/Modal/edit-setup.ctp:106
 msgid "Setup's owner"
 msgstr "Propriétaire du setup"
 
-#: Template/Element/Modal/add-setup.ctp:90
+#: Template/Element/Modal/add-setup.ctp:94
 #: Template/Element/Modal/edit-setup.ctp:121
 msgid "Publish"
 msgstr "Publier"
@@ -1840,19 +1839,23 @@ msgstr "Envie de laisser votre avis ?"
 msgid "at"
 msgstr "le"
 
+#: Template/Setups/view.ctp:222
+msgid "Add a comment"
+msgstr "Ajouter un commentaire"
+
 #: Template/Setups/view.ctp:228
 msgid "Nice config'..."
 msgstr "Jolie config'..."
 
-#: Template/Setups/view.ctp:236
+#: Template/Setups/view.ctp:230
 msgid "Post this comment"
 msgstr "Publier ce commentaire"
 
-#: Template/Setups/view.ctp:255
+#: Template/Setups/view.ctp:249
 msgid "You must be logged in to comment"
 msgstr "Vous devez être connecté(e) pour commenter ce setup"
 
-#: Template/Setups/view.ctp:255
+#: Template/Setups/view.ctp:249
 msgid "Log me in !"
 msgstr "Se connecter !"
 
