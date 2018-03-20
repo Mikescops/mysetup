@@ -73,17 +73,21 @@
 
             <?php
                 echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)')]);
-
-                // A hidden entry to gather the item resources
-                echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'type' => 'hidden']);
             ?>
             <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
             <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
             <?php
                 echo $this->Form->control('author', ['class' => 'setup_author', 'label' => false]);
-
-                echo $this->Form->select('status', $status, ['id' => 'status-add', 'class' => 'hidden']);
             ?>
+
+            <div class="hidden">
+                <?php
+                    // A hidden entry to gather the item resources
+                    echo $this->Form->control('resources', ['class' => 'hiddenInput add_setup', 'required' => 'true', 'label' => __('Components')]);
+
+                    echo $this->Form->select('status', $status, ['id' => 'status-add', 'class' => 'hidden']);
+                ?>
+            </div>
 
             <div class="modal-footer">
 
