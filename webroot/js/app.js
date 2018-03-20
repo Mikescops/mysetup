@@ -13,7 +13,7 @@
 /*** Ex lib.min.js ***/
 // @koala-prepend "amazon-autocomplete.js"
 // @koala-prepend "jssocials.min.js"
-// @koala-prepend "lity.min.js"
+// @koala-prepend "lity.js"
 // @koala-prepend "slick.min.js"
 
 // @koala-prepend "tippy.min.js"
