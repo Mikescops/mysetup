@@ -234,7 +234,7 @@ class ArticlesController extends AppController
             }
 
             // Each admin can add a new article, or edit an existing one
-            else if(in_array($this->request->action, ['add', 'edit']))
+            elseif(in_array($this->request->action, ['add', 'edit']))
             {
                 return true;
             }

@@ -217,7 +217,7 @@ class PagesController extends AppController
                 $results = ['error' => 'noresult'];
             }
 
-            else if($entity)  // Does not match here if it matched the `default` case above
+            elseif($entity)  // Does not match here if it matched the `default` case above
             {
                 // `$entity` will label the type of results present
                 $results = [$entity => $results];

@@ -329,7 +329,7 @@ class SetupsController extends AppController
                 }
             }
 
-            else if($this->request->action === 'add')
+            elseif($this->request->action === 'add')
             {
                 return true;
             }

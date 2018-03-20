@@ -62,8 +62,10 @@ class CommentsController extends AppController
     {
         if($this->request->is(['patch', 'post', 'put']))
         {
-            $comment = $this->Comments->get($id);
-            $comment = $this->Comments->patchEntity($comment, $this->request->getData());
+            $comment = $this->Comments->patchEntity(
+                $this->Comments->get($id),
+                $this->request->getData()
+            );
 
             if($this->Comments->save($comment))
             {
@@ -119,7 +121,7 @@ class CommentsController extends AppController
                 }
             }
 
-            else if($this->request->action === 'add')
+            elseif($this->request->action === 'add')
             {
                 return true;
             }
