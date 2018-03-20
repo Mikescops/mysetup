@@ -73,6 +73,13 @@ class SetupsController extends AppController
             // Let's get the data from the form
             $data = $this->request->getData();
 
+            // Before anything else, let's check whether or not this new setup has a featured image and at least one resource !
+            if((!isset($data['featuredImage']) or $data['featuredImage']['tmp_name'] === '') or (!isset($data['resources']) or $data['resources'] === ''))
+            {
+                $this->Flash->error(__('It looks like you missed something...'));
+                return $this->redirect($this->referer());
+            }
+
             // Here we fetch the user entity, 'cause we'll need it later
             $user = $this->Setups->Users->get($this->Auth->user('id'));
 
@@ -107,12 +114,10 @@ class SetupsController extends AppController
             if($this->Setups->save($setup))
             {
                 /* Here we get and save the featured image */
-                if(!isset($data['featuredImage']) or
-                   $data['featuredImage']['tmp_name'] === '' or
-                   !$this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
+                if(!$this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
                 {
                     $this->Setups->delete($setup);
-                    $this->Flash->warning(__('You need a featured image with this setup !'));
+                    $this->Flash->warning(__('Your featured image could not be saved, and it is needed for your setup...'));
                     return $this->redirect($this->referer());
                 }
 
