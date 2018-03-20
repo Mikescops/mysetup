@@ -150,7 +150,8 @@ CREATE TABLE `requests` (
   `id` INT(11) NOT NULL,
   `token` VARCHAR(255) NOT NULL,
   `user_id` INT(11) NOT NULL,
-  `setup_id` INT(11) NOT NULL
+  `setup_id` INT(11) NOT NULL,
+  `dateTime` DATETIME NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------

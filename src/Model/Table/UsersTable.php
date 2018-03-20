@@ -477,7 +477,7 @@ class UsersTable extends Table
             'conditions' => [
                 'mainSetup_id !=' => 0,
                 'mailVerification IS' => null,
-                'lastLogginDate >=' => new \DateTime('-30 days')
+                'lastLogginDate >=' => new \DateTime('-1 month')
             ]
         ])->matching('Setups', function($q) {
             return $q->where(['Setups.status' => 'PUBLISHED']);

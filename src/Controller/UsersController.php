@@ -427,12 +427,12 @@ class UsersController extends AppController
 
             if($user)
             {
-                if($user['mailVerification'] == $token)
+                if($user->mailVerification === $token)
                 {
-                    $user['mailVerification'] = null;
+                    $user->mailVerification = null;
 
-                    // Let's set his first loggin date btw
-                    $user['lastLogginDate'] = Time::now();
+                    // Let's set his first login date btw
+                    $user->lastLogginDate = Time::now();
 
                     $this->Users->save($user);
 
@@ -583,7 +583,31 @@ class UsersController extends AppController
             {
                 $user = $user_by_email;
 
-                // Let's set the token and the Twitch ID of the user
+                // It's possible that this user already has an UNVERIFIED account...
+                if($user->mailVerification !== null)
+                {
+                    // ... with also an unverified email address on its Twitch account :/
+                    if(!$response->json['email_verified'])
+                    {
+                        // If it's true, let's send him a (new) email to verify it, and redirect him with a message
+                        $user->mailVerification = $this->Users->getRandomString(32);
+                        $this->Users->save($user);
+                        $email = $this->Users->getEmailObject($user->mail, 'Verify your account !');
+                        $email->setTemplate('verify')
+                              ->viewVars(['name' => $user->name, 'id' => $user->id, 'token' => $user->mailVerification])
+                              ->send();
+                        $this->Flash->warning(__('Your unverified existing account cannot be linked to Twitch because your email address is not verified either. Please verify it before retrying (you will receive a new email soon).'));
+                        return $this->redirect('/');
+                    }
+                    else
+                    {
+                        // If the Twitch address is verified, let's do the same into our DB
+                        $user->mailVerification = null;
+                        $this->Flash->success(__('Your existing account has been verified during this first Twitch connection !'));
+                    }
+                }
+
+                // If we could verify its email address, let's just "link" its account with Twitch by setting these data
                 $user->twitchToken  = $token;
                 $user->twitchUserId = $response->json['_id'];
 
@@ -655,6 +679,7 @@ class UsersController extends AppController
 
         // Let's log this user in !
         $this->Users->prepareSessionForUser($this->request->session(), $user);
+        $this->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
         $this->Auth->setUser($user);
         return $this->redirect($this->Auth->redirectUrl());
     }

@@ -1,4 +1,7 @@
 <?php
+
+use Cake\Core\Configure;
+
 /**
   * @var \App\View\AppView $this
   */
@@ -206,7 +209,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                                         <?php if($authUser['id'] == $comments->user_id):
                                             echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => __('Are you sure you want to delete this comment ?')));
-                                            echo ' - <a class="edit-comment" source="comment-'.$comments->id.'" href="#edit-comment-hidden" data-lity> ' . __('Edit') . ' </a>';
+                                            echo ' - <a class="edit-comment" source="comment-'.$comments->id.'"onclick="recaptchaDeferedLoading()" href="#edit-comment-hidden" data-lity> ' . __('Edit') . ' </a>';
                                         endif ?>
                                     </div>
                               </article>
@@ -216,11 +219,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <?php if($authUser): ?>
 
-                        <a class="comment-img" href="<?= $this->Url->build('/users/'.$authUser->id)?>">
-                            <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser->id . '.png?' . $this->Time->format($authUser->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
-                        </a>
-
-                        <a class="button float-right" data-lity href="#add-comment-hidden"><?= __('Add a comment') ?></a>
+                        <a class="button large-button float-right" data-lity onclick="recaptchaDeferedLoading()" href="#add-comment-hidden"><?= __('Add a comment') ?></a>
 
                         <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
 
@@ -230,14 +229,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                             <fieldset>
                                 <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'...'), 'rows' => "1", 'maxlength' => 500]); ?>
                             </fieldset>
-                            <div class="g-recaptcha"
-                                data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
-                                data-size="invisible"
-                                data-badge="bottomleft"
-                                data-callback="onSubmit">
-                            </div>
-                            <?= $this->Form->button(__('Post this comment'), ['id' => 'addCommentButton', 'class' => 'float-right']) ?>
-                            <?= $this->Form->end() ?>
+                                <?= $this->Form->button(__('Post this comment'), ['id' => 'addCommentButton', 'class' => 'float-right']) ?>
+                                <?= $this->Form->end() ?>
                         </div>
 
                         <div class="lity-hide" id="edit-comment-hidden">
@@ -251,6 +244,24 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                         </div>
 
                         <?= $this->Html->scriptBlock('$(document).ready(function() {$("#textarea-edit").emojioneArea({pickerPosition: "top"});});', array('block' => 'scriptBottom')) ?>
+
+                        <div class="g-recaptcha"
+                                data-sitekey="<?= Configure::read('Credentials.Google.CAPTCHA.site') ?>"
+                                data-size="invisible"
+                                data-badge="bottomleft"
+                                data-callback="onSubmit">
+                        </div>
+                            <?= $this->Html->scriptBlock('
+                                $("#comment-form").submit(function(event) {
+                                    event.preventDefault();
+                                    grecaptcha.reset();
+                                    grecaptcha.execute();
+                                });
+
+                                function onSubmit(token) {
+                                    document.getElementById("comment-form").submit();
+                                }
+                            ', ['block' => 'scriptBottom']); ?>
 
                     <?php else: ?>
 
@@ -266,19 +277,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     </div>
 </div>
 
+
 <div class="before-footer">
     <div class="container">
     </div>
 </div>
-<?= $this->Html->scriptBlock('
-    $("#comment-form").submit(function(event) {
-        event.preventDefault();
-        grecaptcha.reset();
-        grecaptcha.execute();
-    });
-
-    function onSubmit(token) {
-        document.getElementById("comment-form").submit();
-    }
-', ['block' => 'scriptBottom']); ?>
-<script src='https://www.google.com/recaptcha/api.js' async defer></script>

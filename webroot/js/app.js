@@ -1001,3 +1001,11 @@ $(window).focus(function() {
 		callnotif = false;
 	}
 });
+
+var recaptchaStatus = 0;
+function recaptchaDeferedLoading(){
+	if(recaptchaStatus == 0){
+		$.getScript('https://www.google.com/recaptcha/api.js');
+		recaptchaStatus = 1;
+	}
+}

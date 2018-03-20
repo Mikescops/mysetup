@@ -43,11 +43,22 @@ class APIController extends AppController
     {
         if($this->request->is('ajax') or $this->request->is('get'))
         {
+            // By default, we'll return a maximum of 8 results
+            $n = $this->request->getQuery('n', 8);
+            if($n < 0)
+            {
+                $n = 0;
+            }
+            elseif($n > 16)
+            {
+                $n = 16;
+            }
+
             $results = TableRegistry::get('Setups')->getSetups([
                 'query'    => $this->request->getQuery('q'),
                 'featured' => $this->request->getQuery('f'),
                 'order'    => $this->request->getQuery('o'),
-                'number'   => $this->request->getQuery('n', 8),
+                'number'   => $n,
                 'offset'   => $this->request->getQuery('p'),
                 'type'     => $this->request->getQuery('t'),
                 'weeks'    => $this->request->getQuery('w')
@@ -69,6 +80,7 @@ class APIController extends AppController
             $Users = TableRegistry::get('Users');
             $user = $Users->find('all', [
                 'conditions' => [
+                    'mainSetup_id !=' => 0,
                     'twitchUserId' => $this->request->getQuery('twitchId')
                 ]
             ])->first();
@@ -196,8 +208,8 @@ class APIController extends AppController
             ]
         ]);
 
-        // Only logged in users will be able to generate THEIR image
-        if($this->Auth->user('id') != $setup->user->id)
+        // Only logged in users will be able to generate THEIR image (or administrators)
+        if($this->Auth->user('id') != $setup->user->id && !$this->Auth->user('admin'))
         {
             $this->Flash->error(__('You are not authorized to access that location.'));
             return $this->redirect('/');
