@@ -295,6 +295,7 @@ return [
                 'src' => [
                     'cdn.pji.nu',
                     'images-eu.ssl-images-amazon.com',
+                    'images-na.ssl-images-amazon.com',
                 ],
             ],
             'Video' => [
