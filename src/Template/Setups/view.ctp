@@ -220,20 +220,25 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                             <img alt="<?= __('Profile picture of') ?> #<?= $authUser->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser->id . '.png?' . $this->Time->format($authUser->modificationDate, 'mmss', null, null)) ?>" width="50" height="50" />
                         </a>
 
-                        <?= $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
-                        <fieldset>
-                            <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'...'), 'rows' => "1", 'maxlength' => 500]); ?>
-                        </fieldset>
-                        <div class="g-recaptcha"
-                            data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
-                            data-size="invisible"
-                            data-badge="bottomleft"
-                            data-callback="onSubmit">
-                        </div>
-                        <?= $this->Form->button(__('Post this comment'), ['class' => 'float-right']) ?>
-                        <?= $this->Form->end() ?>
+                        <a class="button float-right" data-lity href="#add-comment-hidden"><?= __('Add a comment') ?></a>
 
                         <?= $this->Html->scriptBlock('$(document).ready(function() {$("#commentField").emojioneArea();});', array('block' => 'scriptBottom')) ?>
+
+
+                        <div class="lity-hide" id="add-comment-hidden">
+                            <?= $this->Form->create(null, ['url' => ['controller' => 'Comments', 'action' => 'add', $setup->id], 'id' => 'comment-form']); ?>
+                            <fieldset>
+                                <?php echo $this->Form->control('content', ['label' => '', 'id' => 'commentField', 'type' => 'textarea', 'placeholder' => __('Nice config\'...'), 'rows' => "1", 'maxlength' => 500]); ?>
+                            </fieldset>
+                            <div class="g-recaptcha"
+                                data-sitekey="6LcLKx0UAAAAADiwOqPFCNOhy-UxotAtktP5AaEJ"
+                                data-size="invisible"
+                                data-badge="bottomleft"
+                                data-callback="onSubmit">
+                            </div>
+                            <?= $this->Form->button(__('Post this comment'), ['id' => 'addCommentButton', 'class' => 'float-right']) ?>
+                            <?= $this->Form->end() ?>
+                        </div>
 
                         <div class="lity-hide" id="edit-comment-hidden">
                             <?php
