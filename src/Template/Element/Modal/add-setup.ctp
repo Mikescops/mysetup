@@ -56,7 +56,7 @@
 
         <div id="components" class="form-action hide">
 
-            <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, 'add_setup');" placeholder="<?= __('Search for components...') ?>">
+            <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, 'add_setup');" placeholder="<?= __('Search for components...') ?> *">
             <ul class="search_results add_setup"></ul>
             <ul class="basket_items add_setup"></ul>
 
