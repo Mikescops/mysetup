@@ -22,6 +22,7 @@
             ?>
             <span class="float-right link-marksupp"><a target="_blank" href="<?=$this->Url->build('/pages/q&a#q-6')?>"><i class="fa fa-info-circle"></i> <?= __('Markdown supported') ?></a></span>
             <br>
+            <i class="fa fa-camera"></i> <?= __('We only accept images lighter than 5 MB !') ?>
             <?php
                 echo $this->Form->control('featuredImage', ['type' => 'file', 'label' => ['class' => 'label_fimage label_fimage_add', 'text' => __('Click to add a featured image *')], 'class' => 'inputfile', 'required' => 'true']);
             ?>
