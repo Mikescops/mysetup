@@ -109,7 +109,7 @@ class PagesController extends AppController
         {
             $data = $this->request->getData();
 
-            if(!parent::captchaValidation($data))
+            if(!$this->Captcha->validation($data))
             {
                 $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
                 return $this->redirect('/');

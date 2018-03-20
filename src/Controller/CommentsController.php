@@ -21,39 +21,30 @@ class CommentsController extends AppController
     {
         if($this->request->is('post'))
         {
-            $comment = $this->Comments->newEntity();
             $data = $this->request->getData();
 
-            if(parent::captchaValidation($data))
+            // Let's set the id of the current logged in user
+            $data['user_id'] = $this->Auth->user('id');
+            $data['setup_id'] = $setup_id;
+
+            $comment = $this->Comments->patchEntity($this->Comments->newEntity(), $data);
+
+            if($this->Comments->save($comment))
             {
-                // Let's set the id of the current logged in user
-                $data['user_id'] = $this->Auth->user('id');
-                $data['setup_id'] = $setup_id;
+                $this->Flash->success(__('The comment has been saved.'));
 
-                $comment = $this->Comments->patchEntity($comment, $data);
-
-                if($this->Comments->save($comment))
+                // If it's not him, let's inform the setup owner of this new comment
+                $setup = $this->Comments->Setups->get($setup_id);
+                if($data['user_id'] !== $setup->user_id)
                 {
-                    $this->Flash->success(__('The comment has been saved.'));
-
-                    // If it's not him, let's inform the setup owner of this new comment
-                    $setup = $this->Comments->Setups->get($setup_id);
-                    if($data['user_id'] !== $setup->user_id)
-                    {
-                        $this->loadModel('Notifications');
-                        $this->Notifications->createNotificationLink($this->Comments->Users->get($data['user_id']), $setup, $this->Notifications->types['comment']);
-                    }
-                }
-
-                else
-                {
-                    $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+                    $this->loadModel('Notifications');
+                    $this->Notifications->createNotificationLink($this->Comments->Users->get($data['user_id']), $setup, $this->Notifications->types['comment']);
                 }
             }
 
             else
             {
-                $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
+                $this->Flash->error(__('The comment could not be saved. Please, try again.'));
             }
 
             return $this->redirect($this->referer() . '#comment' . ($comment->id ? '-' . $comment->id : 's'));

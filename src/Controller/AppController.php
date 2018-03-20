@@ -14,11 +14,9 @@
  */
 namespace App\Controller;
 
-use Cake\Core\Configure;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\I18n\I18n;
-use Cake\Network\Http\Client;
 
 /**
  * Application Controller
@@ -68,6 +66,7 @@ class AppController extends Controller
                 'action' => 'home'
             ]
         ]);
+        $this->loadComponent('Captcha');
 
         /* Here let's adapt the website language !
          *
@@ -206,25 +205,4 @@ class AppController extends Controller
         }
     }
     /* _______________*/
-
-    /* GOOGLE'S CAPTCHA VERIFICATION */
-    protected function captchaValidation($data)
-    {
-        // Is this user authorized by Google invisible CAPTCHA ?
-        $response = (new Client())->post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => Configure::read('Credentials.Google.CAPTCHA.secret'),
-            'response' => $data['g-recaptcha-response']
-        ]);
-
-        if(!$response or !isset($response->json['success']) or !$response->json['success'])
-        {
-            return false;
-        }
-
-        else
-        {
-            return true;
-        }
-    }
-    /* _____________________________ */
 }
