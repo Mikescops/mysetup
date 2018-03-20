@@ -209,7 +209,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                                         <?php if($authUser['id'] == $comments->user_id):
                                             echo ' - ' . $this->Form->postLink(__('Delete'), array('controller' => 'Comments','action' => 'delete', $comments->id),array('confirm' => __('Are you sure you want to delete this comment ?')));
-                                            echo ' - <a class="edit-comment" source="comment-'.$comments->id.'"onclick="recaptchaDeferedLoading();lity(document.getElementById(`edit-comment-script`).innerHTML);$(`#textarea-edit`).emojioneArea({pickerPosition: `top`});"> ' . __('Edit') . ' </a>';
+                                            echo ' - <a class="edit-comment" source="comment-'.$comments->id.'"onclick="lity(document.getElementById(`edit-comment-script`).innerHTML);$(`#textarea-edit`).emojioneArea({pickerPosition: `top`});"> ' . __('Edit') . ' </a>';
                                         endif ?>
                                     </div>
                               </article>
@@ -219,8 +219,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <?php if($authUser): ?>
 
-                        <button id="add-comment-button" class="button large-button float-right" onclick="recaptchaDeferedLoading();lity(document.getElementById('add-comment-script').innerHTML);$(`#commentField`).emojioneArea({pickerPosition: `top`});"><?= __('Add a comment') ?></button>
-
+                        <button id="add-comment-button" class="button large-button float-right" onclick="addCommentModal()"><?= __('Add a comment') ?></button>
 
                         <script type="text/template" id="add-comment-script">
                             <div id="add-comment-hidden">
@@ -252,17 +251,17 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                                 data-badge="bottomleft"
                                 data-callback="onSubmit">
                         </div>
-                            <?= $this->Html->scriptBlock('
-                                $("#comment-form").submit(function(event) {
-                                    event.preventDefault();
-                                    grecaptcha.reset();
-                                    grecaptcha.execute();
-                                });
+                        <?= $this->Html->scriptBlock('
+                            $("#comment-form").submit(function(event) {
+                                grecaptcha.reset();
+                                grecaptcha.execute();
+                                alert("test");
+                            });
 
-                                function onSubmit(token) {
-                                    document.getElementById("comment-form").submit();
-                                }
-                            ', ['block' => 'scriptBottom']); ?>
+                            function onSubmit(token) {
+                                $("#comment-form").submit();
+                            }
+                        ', ['block' => 'scriptBottom']); ?>
 
                     <?php else: ?>
 

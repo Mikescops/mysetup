@@ -1009,3 +1009,9 @@ function recaptchaDeferedLoading(){
 		recaptchaStatus = 1;
 	}
 }
+
+function addCommentModal(){
+	recaptchaDeferedLoading();
+	lity(document.getElementById('add-comment-script').innerHTML);
+	$(`#commentField`).emojioneArea({pickerPosition: `top`});
+}
