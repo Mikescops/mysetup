@@ -121,4 +121,23 @@ class NotificationsTable extends Table
 
         $this->createNotification($setup['user_id'], $content);
     }
+
+    /**
+     * This method will create a notification based on an `user_id` and a link to warn the administrators about a possible misconfiguration.
+     *
+     */
+    public function warnAdminAboutUnsavedLink($user_id, $link)
+    {
+        $content =
+        '<a href="' . Router::url(['controller' => 'Users', 'action' => 'view', $user_id]) . '" onclick="markasread(' . $this->types['id'] . ')">
+            <img src="' . Router::url('/') . 'uploads/files/pics/profile_picture_' . $user_id . '.png" alt="' . $this->types['alt'] . '" />
+        </a>
+        <span>A link could not be saved : <strong>' . h($link) . '</strong></span>';
+
+        // Let's iterate over the administrators to send them this notification !
+        foreach($this->Users->find()->where(['verified' => 125]) as $user)
+        {
+            $this->createNotification($user->id, $content);
+        }
+    }
 }

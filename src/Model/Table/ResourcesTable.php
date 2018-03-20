@@ -180,6 +180,7 @@ class ResourcesTable extends Table
                     !$admin)
                 {
                     $flash->warning(__('One of the products you chose does not validate our rules... Please contact an administrator.'));
+                    $this->Users->Notifications->warnAdminAboutUnsavedLink($setup->user_id, $elements[1] . ' OR ' . $elements[2]);
                     continue;
                 }
 
@@ -314,6 +315,7 @@ class ResourcesTable extends Table
         else
         {
             $flash->warning(__('The video link you chose does not validate our rules... Please contact an administrator.'));
+            $this->Users->Notifications->warnAdminAboutUnsavedLink($setup->user_id, $video);
             return false;
         }
     }

@@ -209,8 +209,10 @@ class UsersController extends AppController
             // Let's check the social inputs links !
             if(isset($data['uwebsite']) and $data['uwebsite'] != '' and !isset(parse_url($data['uwebsite'])['host']))
             {
-                $data['uwebsite'] = $user['uwebsite'];
+                $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['uwebsite']);
                 $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+
+                $data['uwebsite'] = $user['uwebsite'];
             }
             if(isset($data['ufacebook']) and $data['ufacebook'] != '')
             {
@@ -218,8 +220,10 @@ class UsersController extends AppController
 
                 if(!isset($temp['host']) or $temp['host'] !== 'facebook.com')
                 {
-                    $data['ufacebook'] = $user['ufacebook'];
+                    $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['ufacebook']);
                     $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+
+                    $data['ufacebook'] = $user['ufacebook'];
                 }
             }
             if(isset($data['utwitter']) and $data['utwitter'] != '')
@@ -228,8 +232,10 @@ class UsersController extends AppController
 
                 if(!isset($temp['host']) or $temp['host'] !== 'twitter.com')
                 {
-                    $data['utwitter'] = $user['utwitter'];
+                    $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['utwitter']);
                     $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+
+                    $data['utwitter'] = $user['utwitter'];
                 }
             }
             if(isset($data['utwitch']) and $data['utwitch'] != '')
@@ -238,8 +244,10 @@ class UsersController extends AppController
 
                 if(!isset($temp['host']) or !in_array($temp['host'], ['twitch.tv', 'go.twitch.tv']))
                 {
-                    $data['utwitch'] = $user['utwitch'];
+                    $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['utwitch']);
                     $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+
+                    $data['utwitch'] = $user['utwitch'];
                 }
             }
 
