@@ -225,7 +225,7 @@ use Cake\Core\Configure;
 
     <!-- Emoji handling -->
     <?php if($authUser): ?>
-        <?= $this->Html->script('emoji.min.js') ?>
+        <?= $this->Html->script('emojiarea.min.js') ?>
     <?php endif; ?>
 
     <script>const toast = new siiimpleToast();</script>
