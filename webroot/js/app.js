@@ -787,11 +787,24 @@ function infiniteScroll(nbtodisplay) {
 						var templateHtml = template.innerHTML;
 						// Final HTML variable as empty string
 						var listHtml = "";
+						// Simple sanitizer for HTML entities
+						var escapeHtml = function(text) {
+							var map = {
+								'&': '&amp;',
+								'<': '&lt;',
+								'>': '&gt;',
+								'"': '&quot;',
+								"'": '&#039;'
+							};
+							return text.replace(/[&<>"']/g, function(match) {
+								return map[match];
+							});
+						};
 
 						$.each(setups, function(key, value) {
 
-							let title = value.title;
-							let url = webRootJs + `setups/${value.id}-${convertToSlug(value.title)}`;
+							let title = escapeHtml(value.title);
+							let url = webRootJs + `setups/${value.id}-${convertToSlug(escapeHtml(value.title))}`;
 							// It's possible that some setups have lost their featured image...
 							let img_src = webRootJs;
 							if (value.resources[0]) {
@@ -802,7 +815,7 @@ function infiniteScroll(nbtodisplay) {
 								img_src += "img/not_found.jpg";
 							}
 							let likes = value.like_count;
-							let user_name = value.user.name;
+							let user_name = escapeHtml(value.user.name);
 							let user_src = webRootJs + `uploads/files/pics/profile_picture_${value.user_id}.png?` + ("0" + (new Date(value.user.modificationDate)).getMinutes()).slice(-2) + ("0" + (new Date(value.user.modificationDate)).getSeconds()).slice(-2);
 							let user_url = webRootJs + `users/` + value.user_id;
 							let main_color = $.parseJSON(value.main_colors)[0];
