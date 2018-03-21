@@ -78,7 +78,7 @@ class AdminController extends AppController
                 ]
             ],
             'order' => [
-                'Requests.id' => 'DESC'
+                'dateTime' => 'DESC'
             ]
         ])->toArray();
 
