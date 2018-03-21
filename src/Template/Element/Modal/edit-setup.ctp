@@ -118,7 +118,7 @@
                 ?>
 
                 <div class="<?php if(!$authUser['admin']): ?>hidden<?php endif; ?>">
-                    <?php echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit']); ?>
+                    <?php echo $this->Form->select('status', $status, ['default' => $setup->status, 'id' => 'status-edit']); ?>
                 </div>
 
                 <div class="modal-footer">
