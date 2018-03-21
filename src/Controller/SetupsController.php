@@ -92,10 +92,11 @@ class SetupsController extends AppController
                 $data['author'] = $user->name;
             }
 
-            // See the `edit` method for the explanations of the below statements
-            if(!isset($data['status']) or ($data['status'] !== 'PUBLISHED' and $data['status'] !== 'DRAFT' and !parent::isAdminBySession($this->request->session())))
+            // We'll only allow `PUBLISHED` and `DRAFT` status on Setups.add
+            if(!isset($data['status']) or !in_array($data['status'], ['PUBLISHED', 'DRAFT']))
             {
-                $data['status'] = 'PUBLISHED';
+                // If this dude tried to play us, he'll receive a little gift :
+                $data['status'] = 'REJECTED';
             }
 
             // Regular entity patching operation
@@ -185,9 +186,10 @@ class SetupsController extends AppController
             }
 
             // A regular user should have the right to submit its setups with PUBLISHED and DRAFT status values
-            if(!isset($data['status']) or ($data['status'] !== 'PUBLISHED' and $data['status'] !== 'DRAFT' and !parent::isAdminBySession($this->request->session())))
+            if(!isset($data['status']) or
+               (!in_array($data['status'], ['PUBLISHED', 'DRAFT']) && !parent::isAdminBySession($this->request->session())))
             {
-                $data['status'] = 'PUBLISHED';
+                $data['status'] = $setup['status'];
             }
 
             // Only administrators can change the featured aspect of a setup
@@ -211,8 +213,8 @@ class SetupsController extends AppController
                     $image_to_delete = $this->Setups->Resources->find()->where([
                         'Resources.user_id'  => $setup->user_id,
                         'Resources.setup_id' => $id,
-                        'Resources.type'     => 'SETUP_FEATURED_IMAGE']
-                    )->first();
+                        'Resources.type'     => 'SETUP_FEATURED_IMAGE'
+                    ])->first();
 
                     // We try to save the new image chosen by the user !
                     if($this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
