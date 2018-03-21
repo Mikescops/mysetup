@@ -241,8 +241,13 @@ $(function() {
 	});
 
 	$("#featuredimage_preview").click(function(e) {
-		$(".label_fimage").click();
+		$(".label_fimage_add").click();
 	});
+
+	$("#featuredimage_preview_edit").click(function(e) {
+		$(".label_fimage_edit").click();
+	});
+
 
 	/***** Preview galery edit *****/
 	$("#gallery0image_preview_edit").click(function(e) {

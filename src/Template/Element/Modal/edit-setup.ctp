@@ -25,9 +25,11 @@
                 <span class="float-right link-marksupp"><a target="_blank" href="<?=$this->Url->build('/pages/q&a#q-6')?>"><i class="fa fa-info-circle"></i> <?= __('Markdown supported') ?></a></span>
                 <br />
                 <i class="fa fa-camera"></i> <?= __('We only accept images lighter than 5 MB !') ?>
-                <?php
-                echo $this->Form->control('featuredImage', ['type' => 'file', 'id' => 'featuredImage_edit', 'label' => ['class' => 'label_fimage', 'text' => __('Change featured image')], 'class' => 'inputfile']);
-                ?>
+                <div class="hidden">
+                    <?php
+                    echo $this->Form->control('featuredImage', ['type' => 'file', 'id' => 'featuredImage_edit', 'label' => ['class' => 'label_fimage label_fimage_edit', 'text' => __('Change featured image')], 'class' => 'inputfile']);
+                    ?>
+                </div>
                 <img alt="<?= __('Featured Preview') ?>" id="featuredimage_preview_edit" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg')) ?>">
                 <div class="hidden_five_inputs">
                     <?php
@@ -113,9 +115,11 @@
                 {
                     echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => ['text' => __('Feature this setup !'), 'class' => 'checkbox'], 'default' => $setup->featured, 'hiddenField' => true]);
                 }
-
-                echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit', 'class' => 'hidden']);
                 ?>
+
+                <div class="<?php if(!$authUser['admin']): ?>hidden<?php endif; ?>">
+                    <?php echo $this->Form->select('status', $status, ['default' => 'PUBLISHED', 'id' => 'status-edit']); ?>
+                </div>
 
                 <div class="modal-footer">
 
