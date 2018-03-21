@@ -167,11 +167,10 @@ class AdminController extends AppController
     public function sendNotification()
     {
         // Let's just build an array as ['user_id' => 'user_name'] for each user...
-        $usersList = [];
-        foreach($this->Users->find()->select(['id', 'name']) as $user)
-        {
-            $usersList += [$user->id => $user->name];
-        }
+        $usersList = $this->Users->find('list', [
+            'keyField'   => 'id',
+            'valueField' => 'name'
+        ])->toArray();
 
         if($this->request->is('post'))
         {
@@ -231,6 +230,7 @@ class AdminController extends AppController
             }
         }
 
+        // Adds a special value (`global`) which targets each existing user.
         $usersList = ['global' => __('Everyone')] + $usersList;
         $this->set('usersList', $usersList);
     }

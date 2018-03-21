@@ -111,23 +111,17 @@ class AppController extends Controller
             // We'll need this Model below...
             $this->loadModel('Setups');
 
-            // Now, let's send the setups list to the view (to let the user choose a default one)
-            $setupsList = [];
-            foreach($this->Setups->find('all', [
-                'fields' => [
-                    'id',
-                    'title'
-                ],
+            // Now, let's send the setups list to the view (to let the user choose a default one);
+            $this->set('setupsList', $this->Setups->find('list', [
+                'keyField'   => 'id',
+                'valueField' => 'title',
                 'conditions' => [
                     'user_id' => $user->id
                 ],
-                'order' => [
+                'order'      => [
                     'creationDate' => 'DESC'
                 ]
-            ]) as $setup) {
-                $setupsList += [$setup->id => $setup->title];
-            }
-            $this->set('setupsList', $setupsList);
+            ])->toArray());
 
             // Let's send to the view the list of timezones as well
             $this->set('timezones', $this->Setups->Users->timezones);
