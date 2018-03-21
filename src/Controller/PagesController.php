@@ -19,7 +19,6 @@ use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
-use Cake\ORM\TableRegistry;
 
 /**
  * Static content controller
@@ -30,6 +29,14 @@ use Cake\ORM\TableRegistry;
  */
 class PagesController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadModel('Users');
+        $this->loadModel('Setups');
+    }
+
     /**
      * Simple "hooks" hand-made (see `config/routes.php`).
      * This allows us to put some data into the view easily !
@@ -37,18 +44,16 @@ class PagesController extends AppController
     public function home()
     {
         // Set some variables here, and give back the control to the `display()` method
-        $Setups = TableRegistry::get('Setups');
-
-        $featuredSetups = $Setups->getSetups(['featured' => true, 'number' => 3]);
-        $popularSetups = $Setups->getSetups([
+        $featuredSetups = $this->Setups->getSetups(['featured' => true, 'number' => 3]);
+        $popularSetups  = $this->Setups->getSetups([
             'number' => ($this->RequestHandler->isMobile() ? 3 : 6),
             'type' => 'like'
         ]);
-        $recentSetups = $Setups->getSetups(['number' => 3]);
+        $recentSetups = $this->Setups->getSetups(['number' => 3]);
 
-        $brandSetups = TableRegistry::get('cloud_tags')->getSetupsByRandomTags(['type' => 'PRODUCTS_BRAND', 'number_tags' => 3]);
+        $brandSetups = $this->loadModel('cloud_tags')->getSetupsByRandomTags(['type' => 'PRODUCTS_BRAND', 'number_tags' => 3]);
 
-        $randomResources = $Setups->Resources->find('all', [
+        $randomResources = $this->Setups->Resources->find('all', [
             'fields' => [
                 'title',
                 'src'
@@ -64,7 +69,7 @@ class PagesController extends AppController
 
         if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {
-            $mainSetup = $Setups->get($this->Auth->user('mainSetup_id'), [
+            $mainSetup = $this->Setups->get($this->Auth->user('mainSetup_id'), [
                 'contain' => [
                     'Resources' => [
                         'fields' => [
@@ -87,7 +92,7 @@ class PagesController extends AppController
         }
 
         // Let's load less users on mobile devices
-        $activeUsers = TableRegistry::get('Users')->getActiveUsers((
+        $activeUsers = $this->Users->getActiveUsers((
             $this->RequestHandler->isMobile() ? 4 : 8
         ));
 
@@ -98,7 +103,7 @@ class PagesController extends AppController
 
     public function recent()
     {
-        $this->set('setups', TableRegistry::get('Setups')->getSetups(['number' => 6]));
+        $this->set('setups', $this->Setups->getSetups(['number' => 6]));
 
         $this->display('recent');
     }
@@ -141,14 +146,16 @@ class PagesController extends AppController
         $query = trim($this->request->getQuery('q'));
         if($query and strlen($query) >= 2)
         {
+            $this->loadModel('Resources');
+
             switch($entity)
             {
                 case 'setups':
-                    $results = TableRegistry::get('Setups')->getSetups(['query' => $query]);
+                    $results = $this->Setups->getSetups(['query' => $query]);
                     break;
 
                 case 'users':
-                    $results = TableRegistry::get('Users')->getUsers($query);
+                    $results = $this->Users->getUsers($query);
 
                     // Redirect to user profile if the result is only one entity, matching its name
                     if(count($results) == 1 && strtolower($results[0]->name) === strtolower($query))
@@ -160,7 +167,7 @@ class PagesController extends AppController
                     break;
 
                 case 'resources':
-                    $results = TableRegistry::get('Resources')->getResources($query);
+                    $results = $this->Resources->getResources($query);
 
                     // Redirect to home search if the result is only one resource
                     if(count($results) == 1)
@@ -173,9 +180,9 @@ class PagesController extends AppController
 
                 default:
                     // See `setPatterns()` of `/search/:entity` route.
-                    $users = TableRegistry::get('Users')->getUsers($query);
-                    $setups = TableRegistry::get('Setups')->getSetups(['query' => $query]);
-                    $resources = TableRegistry::get('Resources')->getResources($query);
+                    $users     = $this->Users->getUsers($query);
+                    $setups    = $this->Setups->getSetups(['query' => $query]);
+                    $resources = $this->Resources->getResources($query);
 
                     /*
                         Redirect to user profile if :

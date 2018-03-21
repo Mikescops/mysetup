@@ -9,7 +9,6 @@ use Cake\ORM\Entity;
 use Cake\Event\Event;
 use Cake\Utility\Text;
 use Cake\Routing\Router;
-use Cake\ORM\TableRegistry;
 
 /**
  * Setups Model
@@ -184,7 +183,7 @@ class SetupsTable extends Table
     public function afterDelete(Event $event, EntityInterface $entity)
     {
         // Read or not, we just get rid of each notification referencing this (deleted) setup
-        TableRegistry::get('Notifications')->deleteAll(['content LIKE' => '%' . $entity['id'] . '%']);
+        $this->Users->Notifications->deleteAll(['content LIKE' => '%' . $entity['id'] . '%']);
 
         // This setup has just been deleted, let's update the main setup of this user accordingly
         $user = $this->Users->get($entity['user_id']);
