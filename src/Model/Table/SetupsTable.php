@@ -307,6 +307,7 @@ class SetupsTable extends Table
                 'user_id',
                 'title',
                 'creationDate',
+                'featured',
                 'status',
                 'like_count',
                 'main_colors'
