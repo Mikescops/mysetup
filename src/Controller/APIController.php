@@ -79,71 +79,85 @@ class APIController extends AppController
         if($this->request->is('get') and $this->request->getQuery('twitchId'))
         {
             $this->loadModel('Users');
-            $user = $this->Users->find('all', [
-                'conditions' => [
-                    'mainSetup_id !=' => 0,
-                    'twitchUserId'    => $this->request->getQuery('twitchId')
-                ]
-            ])->matching('Setups', function($q) {
-                return $q->where(['Setups.status' => 'PUBLISHED']);
-            })->first();
 
-            if($user)
+            $twitch_id = $this->request->getQuery('twitchId');
+
+            if($this->Users->exists(['twitchUserId' => $twitch_id]))
             {
-                $setup = $this->Users->find('all', [
-                    'fields' => [
-                        'id',
-                        'name',
-                        'mainSetup_id',
-                        'twitchUserId',
-                        'uwebsite',
-                        'ufacebook',
-                        'utwitter'
-                    ],
+                $user = $this->Users->find('all', [
                     'conditions' => [
-                        'Users.twitchUserId' => $this->request->getQuery('twitchId')
-                    ],
-                    'contain' => [
-                        'Setups' => [
-                            'conditions' => [
-                                'Setups.id' => $user->mainSetup_id
-                            ],
-                            'Resources' => [
-                                'fields' => [
-                                    'user_id',
-                                    'setup_id',
-                                    'src',
-                                    'href'
-                                ],
+                        'mainSetup_id !=' => 0,
+                        'twitchUserId'    => $twitch_id
+                    ]
+                ])->matching('Setups', function($q) {
+                    return $q->where(['Setups.status' => 'PUBLISHED']);
+                })->first();
+
+                if($user)
+                {
+                    $results = $this->Users->find('all', [
+                        'fields' => [
+                            'id',
+                            'name',
+                            'mainSetup_id',
+                            'twitchUserId'
+                        ],
+                        'conditions' => [
+                            'Users.twitchUserId' => $twitch_id
+                        ],
+                        'contain' => [
+                            'Setups' => [
                                 'conditions' => [
-                                    'OR' => [
-                                        [
-                                            'type' => 'SETUP_FEATURED_IMAGE'
-                                        ],
-                                        [
-                                            'type' => 'SETUP_PRODUCT'
-                                        ]
-                                    ]
+                                    'Setups.id' => $user->mainSetup_id
                                 ],
-                                'sort' => ['type' => 'ASC'],
+                                'Resources' => [
+                                    'fields' => [
+                                        'user_id',
+                                        'setup_id',
+                                        'src',
+                                        'href'
+                                    ],
+                                    'conditions' => [
+                                        'OR' => [
+                                            [
+                                                'type' => 'SETUP_FEATURED_IMAGE'
+                                            ],
+                                            [
+                                                'type' => 'SETUP_PRODUCT'
+                                            ]
+                                        ]
+                                    ],
+                                    'sort' => [
+                                        'type' => 'ASC'
+                                    ]
+                                ]
                             ]
                         ]
-                    ]
-                ])->first();
+                    ])->first();
+                }
 
-                return new Response([
-                    'status' => 200,
-                    'type' => 'json',
-                    'body' => json_encode($setup)
-                ]);
+                else
+                {
+                    $results = ['error' => 'no_main_setup_published'];
+                }
             }
 
             else
             {
-                // Just throw a 404 exception here to make the `iframe` voluntary crash
-                throw new NotFoundException();
+                $results = ['error' => 'user_not_found'];
             }
         }
+
+        else
+        {
+            $results = ['error' => 'bad_query'];
+        }
+
+        return new Response([
+            'status' => 200,
+            'type' => 'json',
+            'body' => json_encode($results)
+        ]);
     }
 
     /* Our embed JS API logic */
