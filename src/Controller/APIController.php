@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\ORM\TableRegistry;
 use Cake\Network\Response;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Cache\Cache;
@@ -19,6 +18,8 @@ class APIController extends AppController
     public function initialize()
     {
         parent::initialize();
+
+        $this->loadModel('Setups');
 
         // We'll store Twitch promote images generated for some hours !
         Cache::config('TwitchPromoteCacheConfig', [
@@ -54,7 +55,7 @@ class APIController extends AppController
                 $n = 16;
             }
 
-            $results = TableRegistry::get('Setups')->getSetups([
+            $results = $this->Setups->getSetups([
                 'query'    => $this->request->getQuery('q'),
                 'featured' => $this->request->getQuery('f'),
                 'order'    => $this->request->getQuery('o'),
@@ -77,8 +78,8 @@ class APIController extends AppController
     {
         if($this->request->is('get') and $this->request->getQuery('twitchId'))
         {
-            $Users = TableRegistry::get('Users');
-            $user = $Users->find('all', [
+            $this->loadModel('Users');
+            $user = $this->Users->find('all', [
                 'conditions' => [
                     'mainSetup_id !=' => 0,
                     'twitchUserId' => $this->request->getQuery('twitchId')
@@ -87,7 +88,7 @@ class APIController extends AppController
 
             if($user)
             {
-                $setup = $Users->find('all', [
+                $setup = $this->Users->find('all', [
                     'fields' => [
                         'id',
                         'name',
@@ -148,8 +149,7 @@ class APIController extends AppController
     public function embed($id = null)
     {
         // This should be below, but we wanna throw a 404 on the production if the user tries to have access to a non-existing setup...
-        $Setups = TableRegistry::get('Setups');
-        $setup = $Setups->get($id, [
+        $setup = $this->Setups->get($id, [
             'contain' => [
                 'Users' => [
                     'fields' => [
@@ -163,7 +163,9 @@ class APIController extends AppController
 
         // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner, nor an administrator...
         $session = $this->request->session();
-        if(!$Setups->isPublic($id) and (!$session->read('Auth.User.id') or !$Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and !parent::isAdminBySession($session))
+        if(!$this->Setups->isPublic($id) and
+           (!$session->read('Auth.User.id') or!$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and
+           !parent::isAdminBySession($session))
         {
             $this->Flash->error(__('You are not authorized to access that location.'));
             // Just throw a 404-like exception here to make the `iframe` voluntary crash
@@ -173,8 +175,8 @@ class APIController extends AppController
 
         // Here we'll get each resource linked to this setup, and set them up into the existing entity
         $setup['resources'] = [
-            'products' => $Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray(),
-            'featured_image' => $Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
+            'products' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray(),
+            'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
         ];
         // ___________________________________________________________________________________________
 
@@ -191,7 +193,7 @@ class APIController extends AppController
         }
 
         // Verifies authenticity of the setup id specified (would throw a 404 if these entities could not be found)
-        $setup = TableRegistry::get('Setups')->get($this->request->getQuery('id'), [
+        $setup = $this->Setups->get($this->request->getQuery('id'), [
             'fields' => [
                 'id',
                 'title',
