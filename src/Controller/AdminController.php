@@ -13,6 +13,17 @@ use Cake\Event\Event;
 class AdminController extends AppController
 {
 
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadModel('Setups');
+        $this->loadModel('Users');
+        $this->loadModel('Comments');
+        $this->loadModel('Resources');
+        $this->loadModel('Requests');
+    }
+
     // Let's explicit the fact that we delegate this decision to the `AppController`
     public function isAuthorized($user)
     {
@@ -27,20 +38,34 @@ class AdminController extends AppController
     public function dashboard()
     {
         // Here we'll just gather some global counters about the data we have !
-        $this->loadModel('Setups');
-        $stats['count']['users'] = $this->Setups->Users->find()->count();
-        $stats['count']['setups'] = $this->Setups->find()->count();
-        $stats['count']['comments'] = $this->Setups->Comments->find()->count();
-        $stats['count']['resources'] = $this->Setups->Resources->find()->count();
+        $stats['count']['users']     = $this->Users->find()->count();
+        $stats['count']['setups']    = $this->Setups->find()->count();
+        $stats['count']['comments']  = $this->Comments->find()->count();
+        $stats['count']['resources'] = $this->Resources->find()->count();
 
-        // Some more information !
-        $stats['users']['certified'] = ($stats['count']['users'] !== 0 ? round($this->Setups->Users->find()->where(['mailVerification IS' => null])->count() / $stats['count']['users'] * 100, 2) : 0);
-        $stats['users']['twitch'] = ($stats['count']['users'] !== 0 ? round($this->Setups->Users->find()->where(['twitchToken IS NOT' => null])->count() / $stats['count']['users'] * 100, 2) : 0);
+        // Some more information  !
+        // We assume that this page can't be accesses if there is not any user
+        $stats['users']['certified'] = round($this->Users->find()->where(['mailVerification IS' => null])->count() / $stats['count']['users'] * 100, 2);
+        $stats['users']['twitch']    = round($this->Users->find()->where(['twitchToken IS NOT' => null])->count() / $stats['count']['users'] * 100, 2);
 
-        $stats['users']['recentConnected'] = $this->Setups->Users->find()->order(['lastLogginDate' => 'DESC'])->limit(5)->toArray();
-        $stats['users']['recentCreated'] = $this->Setups->Users->find()->order(['creationDate' => 'DESC'])->limit(5)->toArray();
+        // Don't log users with same dates of creation and last login equal (redundancy)
+        $stats['users']['recentConnected'] = $this->Users->find('all', [
+            'conditions' => [
+                'creationDate !=' => 'lastLogginDate'
+            ],
+            'limit' => 5,
+            'order' => [
+                'lastLogginDate' => 'DESC'
+            ]
+        ])->toArray();
+        $stats['users']['recentCreated'] = $this->Users->find('all', [
+            'limit' => 5,
+            'order' => [
+                'creationDate' => 'DESC'
+            ]
+        ])->toArray();
 
-        $stats['comments']['recentCreated'] = $this->Setups->Comments->find('all', [
+        $stats['comments']['recentCreated'] = $this->Comments->find('all', [
             'contain' => [
                 'Users' => [
                     'fields' => [
@@ -60,8 +85,7 @@ class AdminController extends AppController
             ],
             'limit' => 5
         ])->toArray();
-
-        $stats['requests']['onGoing'] = $this->Setups->Requests->find('all', [
+        $stats['requests']['onGoing'] = $this->Requests->find('all', [
             'contain' => [
                 'Users' => [
                     'fields' => [
@@ -87,7 +111,7 @@ class AdminController extends AppController
 
     public function setups()
     {
-        $setups = $this->paginate($this->loadModel('Setups'), [
+        $setups = $this->paginate($this->Setups, [
             'order' => [
                 'creationDate' => 'DESC'
             ],
@@ -101,7 +125,7 @@ class AdminController extends AppController
 
     public function users()
     {
-        $users = $this->paginate($this->loadModel('Users'), [
+        $users = $this->paginate($this->Users, [
             'order' => [
                 'creationDate' => 'DESC'
             ]
@@ -112,7 +136,7 @@ class AdminController extends AppController
 
     public function comments()
     {
-        $comments = $this->paginate($this->loadModel('Comments'), [
+        $comments = $this->paginate($this->Comments, [
             'contain' => [
                 'Users',
                 'Setups'
@@ -127,7 +151,7 @@ class AdminController extends AppController
 
     public function resources()
     {
-        $resources = $this->paginate($this->loadModel('Resources'), [
+        $resources = $this->paginate($this->Resources, [
             'contain' => [
                 'Users',
                 'Setups'
@@ -144,7 +168,7 @@ class AdminController extends AppController
     {
         // Let's just build an array as ['user_id' => 'user_name'] for each user...
         $usersList = [];
-        foreach($this->loadModel('Users')->find('all')->select(['id', 'name']) as $user)
+        foreach($this->Users->find()->select(['id', 'name']) as $user)
         {
             $usersList += [$user->id => $user->name];
         }
