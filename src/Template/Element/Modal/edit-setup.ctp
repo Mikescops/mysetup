@@ -149,14 +149,11 @@
         </div>
 
         <script type="text/javascript">
-            function manualAddToBasket(){
-                var title = $('#manual-product-edit input[name="manual-title"]').val();
-                var href = $('#manual-product-edit input[name="manual-href"]').val();
-                var src = $('#manual-product-edit input[name="manual-src"]').val();
-                var encodedHref = encodeURIComponent(href);
-                var encodedTitle = encodeURIComponent(title);
-                var encodedSrc = encodeURIComponent(src);
-                addToBasket(title, href, src, 'edit_setup');
+            function manualAddToBasket() {
+                var encodedTitle = encodeURIComponent($('#manual-product-edit input[name="manual-title"]').val());
+                var encodedHref = encodeURIComponent($('#manual-product-edit input[name="manual-href"]').val());
+                var encodedSrc = encodeURIComponent($('#manual-product-edit input[name="manual-src"]').val());
+                addToBasket(encodedTitle, encodedHref, encodedSrc, 'edit_setup');
             }
         </script>
 
