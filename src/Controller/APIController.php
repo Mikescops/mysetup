@@ -82,9 +82,11 @@ class APIController extends AppController
             $user = $this->Users->find('all', [
                 'conditions' => [
                     'mainSetup_id !=' => 0,
-                    'twitchUserId' => $this->request->getQuery('twitchId')
+                    'twitchUserId'    => $this->request->getQuery('twitchId')
                 ]
-            ])->first();
+            ])->matching('Setups', function($q) {
+                return $q->where(['Setups.status' => 'PUBLISHED']);
+            })->first();
 
             if($user)
             {
@@ -138,8 +140,7 @@ class APIController extends AppController
 
             else
             {
-                $this->Flash->error(__('You are not authorized to access that location.'));
-                // Just throw a 404-like exception here to make the `iframe` voluntary crash
+                // Just throw a 404 exception here to make the `iframe` voluntary crash
                 throw new NotFoundException();
             }
         }
