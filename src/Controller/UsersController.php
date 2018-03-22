@@ -618,6 +618,7 @@ class UsersController extends AppController
                 // If we could verify its email address, let's just "link" its account with Twitch by setting these data
                 $user->twitchToken  = $token;
                 $user->twitchUserId = $response->json['_id'];
+                $user->utwitch      = 'https://www.twitch.tv/' . $response->json['display_name'];
 
                 // This is a[n] [ambiguous] toast message (it does not fit entirely with the reality)
                 $this->Flash->success(__('Your account has just been linked to your Twitch one !'));
@@ -648,7 +649,8 @@ class UsersController extends AppController
                 'twitchToken'    => $token,
                 'twitchUserId'   => $response->json['_id'],
                 'verified'       => 0,
-                'mainSetup_id'   => 0
+                'mainSetup_id'   => 0,
+                'utwitch'        => 'https://www.twitch.tv/' . $response->json['display_name']
             ]);
 
             // As this Amazon Store does not exist, we just replace it by the `US` one
