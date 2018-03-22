@@ -13,6 +13,9 @@ trim_trailing_whitespace = true
 [*.min.*]
 insert_final_newline = false
 
+[**/Element/**.ctp]
+insert_final_newline = false
+
 [*.bat]
 end_of_line = crlf
 
