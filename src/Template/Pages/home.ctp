@@ -70,8 +70,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
     <div class="maincontainer">
 
-        <div class="large_search" style="margin-top: -60px"> <i class="fa fa-search"></i>
-
+        <div class="large_search" style="margin-top: -60px">
+            
+            <i class="fa fa-search"></i>
             <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" />
             <?= $this->Html->scriptBlock('
                 let searchInput = new AmazonAutocomplete("#keyword-search");

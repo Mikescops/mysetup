@@ -11,6 +11,7 @@ $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') 
         <h2><?= __('Search for') ?> :</h2>
 
         <div class="large_search">
+            <i class="fa fa-search"></i>
             <input type="text" id="keyword-search" value="<?= h(($this->request->getQuery('q') ? $this->request->getQuery('q') : "")) ?>" placeholder="<?= __('Search a component... Find a cool setup !') ?>" />
             <?= $this->Html->scriptBlock('let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
         </div>
