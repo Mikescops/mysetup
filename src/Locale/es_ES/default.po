@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2018-03-24 17:57+0000\n"
-"PO-Revision-Date: 2018-03-24 19:04+0100\n"
+"POT-Creation-Date: 2018-03-24 19:08+0000\n"
+"PO-Revision-Date: 2018-03-24 20:21+0100\n"
 "Last-Translator: \n"
 "Language-Team: support@mysetup.co\n"
 "Language: es\n"
@@ -555,11 +555,11 @@ msgid "View"
 msgstr "Ver"
 
 #: Template/Admin/comments.ctp:34 Template/Admin/setups.ctp:42
-#: Template/Admin/users.ctp:76 Template/Setups/view.ctp:213
+#: Template/Admin/users.ctp:76 Template/Setups/view.ctp:211
 msgid "Delete"
 msgstr "Eliminar"
 
-#: Template/Admin/comments.ctp:34 Template/Setups/view.ctp:213
+#: Template/Admin/comments.ctp:34 Template/Setups/view.ctp:211
 msgid "Are you sure you want to delete this comment ?"
 msgstr "¿ Estás seguro que quieres eliminar este comentario ?"
 
@@ -712,7 +712,7 @@ msgid "Setups | myAdmin"
 msgstr "Setups | myAdmin"
 
 #: Template/Admin/setups.ctp:12 Template/Layout/admin.ctp:59
-#: Template/Pages/search.ctp:49
+#: Template/Pages/search.ctp:52
 msgid "Setups"
 msgstr "Setups"
 
@@ -732,7 +732,7 @@ msgstr "Estatus"
 msgid "Created on"
 msgstr "Creado le"
 
-#: Template/Admin/setups.ctp:25 Template/Setups/view.ctp:179
+#: Template/Admin/setups.ctp:25 Template/Setups/view.ctp:177
 msgid "Modified on"
 msgstr "Modificado le"
 
@@ -753,7 +753,7 @@ msgid "Users | myAdmin"
 msgstr "Usuarios | myAdmin"
 
 #: Template/Admin/users.ctp:11 Template/Layout/admin.ctp:62
-#: Template/Pages/search.ctp:59
+#: Template/Pages/search.ctp:62
 msgid "Users"
 msgstr "Usuarios"
 
@@ -804,7 +804,7 @@ msgstr "Subir"
 msgid "Edit post"
 msgstr "Editar publicación"
 
-#: Template/Articles/edit.ctp:23 Template/Setups/view.ctp:100;214;243
+#: Template/Articles/edit.ctp:23 Template/Setups/view.ctp:98;212;241
 msgid "Edit"
 msgstr "Editar"
 
@@ -812,31 +812,31 @@ msgstr "Editar"
 msgid "Our latest updates"
 msgstr "Nuestras últimas actualizaciones"
 
-#: Template/Articles/view.ctp:24
+#: Template/Articles/view.ctp:23
 msgid "Home"
 msgstr "Recepción"
 
-#: Template/Articles/view.ctp:24
+#: Template/Articles/view.ctp:23
 msgid "Blog"
 msgstr "Blog"
 
-#: Template/Articles/view.ctp:27
+#: Template/Articles/view.ctp:26
 msgid "Edit this article"
 msgstr "Editar esta publicación"
 
-#: Template/Articles/view.ctp:30
+#: Template/Articles/view.ctp:29
 msgid "Are you sure you want to delete this article ?"
 msgstr "¿ Estás seguro que quieres eliminar este publicacion ?"
 
-#: Template/Articles/view.ctp:30
+#: Template/Articles/view.ctp:29
 msgid "Delete this article"
 msgstr "Eliminar esta publicación"
 
-#: Template/Articles/view.ctp:62 Template/Setups/view.ctp:181
+#: Template/Articles/view.ctp:61 Template/Setups/view.ctp:179
 msgid "Published on"
 msgstr "Publicado el"
 
-#: Template/Articles/view.ctp:62 Template/Setups/view.ctp:210
+#: Template/Articles/view.ctp:61 Template/Setups/view.ctp:208
 msgid "by"
 msgstr "por"
 
@@ -844,8 +844,8 @@ msgstr "por"
 #: Template/Element/List/tiles-js-template.ctp:26
 #: Template/Element/List/tiles.ctp:29 Template/Element/Modal/edit-profile.ctp:8
 #: Template/Layout/default.ctp:85 Template/Likes/index.ctp:43
-#: Template/Pages/home.ctp:192 Template/Pages/search.ctp:118
-#: Template/Setups/view.ctp:66;202 Template/Users/view.ctp:16;62
+#: Template/Pages/home.ctp:193 Template/Pages/search.ctp:121
+#: Template/Setups/view.ctp:64;200 Template/Users/view.ctp:16;62
 msgid "Profile picture of"
 msgstr "Foto del perfil de"
 
@@ -855,7 +855,7 @@ msgid "Basics"
 msgstr "Lo Esencial"
 
 #: Template/Element/Modal/add-setup.ctp:11;87
-#: Template/Element/Modal/edit-setup.ctp:12 Template/Pages/search.ctp:54
+#: Template/Element/Modal/edit-setup.ctp:12 Template/Pages/search.ctp:57
 msgid "Components"
 msgstr "Componentes"
 
@@ -1103,7 +1103,7 @@ msgstr ""
 "También puedes configurar tu robot de Twitch Chat para fijar tu enlace o tu "
 "foto."
 
-#: Template/Element/Structure/sidebar.ctp:3 Template/Pages/home.ctp:100
+#: Template/Element/Structure/sidebar.ctp:3 Template/Pages/home.ctp:101
 msgid "Read our latest news"
 msgstr "Lea nuestras últimas noticias"
 
@@ -1304,19 +1304,27 @@ msgstr "Mis likes"
 msgid "Bug Report | mySetup.co"
 msgstr "Error Informe | mySetup.co"
 
-#: Template/Pages/bug_report.ctp:11
+#: Template/Pages/bug_report.ctp:9
+msgid ""
+"You found an issue on mySetup.co ? Report us and we will analyze this as "
+"soon as possible."
+msgstr ""
+"¿ Encontraste un problema en mySetup.co ? Infórmenos y lo analizaremos lo "
+"antes posible."
+
+#: Template/Pages/bug_report.ctp:13
 msgid "Bug Report"
 msgstr "Informe de error"
 
-#: Template/Pages/bug_report.ctp:21
+#: Template/Pages/bug_report.ctp:23
 msgid "An email to contact you, young visitor !"
 msgstr "¡ Un correo electrónico para contactarte, joven visitante !"
 
-#: Template/Pages/bug_report.ctp:25
+#: Template/Pages/bug_report.ctp:27
 msgid "Bug description"
 msgstr "Descripción del error"
 
-#: Template/Pages/bug_report.ctp:25
+#: Template/Pages/bug_report.ctp:27
 msgid ""
 "Please, describe precisely the bug you unfortunately encountered on mySetup."
 "co..."
@@ -1324,7 +1332,7 @@ msgstr ""
 "Por favor, describa con precisión el error que desafortunadamente encontras "
 "en mySetup.co..."
 
-#: Template/Pages/bug_report.ctp:34 Template/Users/login.ctp:94
+#: Template/Pages/bug_report.ctp:36 Template/Users/login.ctp:94
 msgid "Send"
 msgstr "Mandar"
 
@@ -1369,11 +1377,11 @@ msgstr "Compártelo para obtener más de ellos"
 msgid "See it in action"
 msgstr "Véalo en acción"
 
-#: Template/Pages/home.ctp:56 Template/Setups/view.ctp:101
+#: Template/Pages/home.ctp:56 Template/Setups/view.ctp:99
 msgid "Embed on Twitch"
 msgstr "Incrustar en Twitch"
 
-#: Template/Pages/home.ctp:57 Template/Setups/view.ctp:102
+#: Template/Pages/home.ctp:57 Template/Setups/view.ctp:100
 msgid "Embed on your website"
 msgstr "Incrustar en tu sitio web"
 
@@ -1385,31 +1393,31 @@ msgstr "¡ Púlsalo !"
 msgid "Tweet it !"
 msgstr "¡ Tweet !"
 
-#: Template/Pages/home.ctp:75 Template/Pages/search.ctp:14
+#: Template/Pages/home.ctp:76 Template/Pages/search.ctp:17
 msgid "Search a component... Find a cool setup !"
 msgstr "Buscar un componente... ¡ Encontrar una setup que mola !"
 
-#: Template/Pages/home.ctp:95
+#: Template/Pages/home.ctp:96
 msgid "Login with Twitch and create my Setup !"
 msgstr "¡ Inicia sesión con Twitch y crea mi programa de setup !"
 
-#: Template/Pages/home.ctp:131
+#: Template/Pages/home.ctp:132
 msgid "Popular setups"
 msgstr "Setups populares"
 
-#: Template/Pages/home.ctp:148 Template/Pages/recent.ctp:18
+#: Template/Pages/home.ctp:149 Template/Pages/recent.ctp:18
 msgid "Latest setups"
 msgstr "Ultimas setups"
 
-#: Template/Pages/home.ctp:157
+#: Template/Pages/home.ctp:158
 msgid "More recent setups"
 msgstr "Otras setups recientes"
 
-#: Template/Pages/home.ctp:177
+#: Template/Pages/home.ctp:178
 msgid "More {0} setups"
 msgstr "Otras setups con {0}"
 
-#: Template/Pages/home.ctp:187
+#: Template/Pages/home.ctp:188
 msgid "Suggested Users"
 msgstr "Perfiles Sugeridos"
 
@@ -1684,35 +1692,39 @@ msgstr "Últimas Setups | mySetup.co"
 msgid "See the most recent setups published on mySetup.co"
 msgstr "Consulte las setups más recientes publicadas en mySetup.co"
 
-#: Template/Pages/search.ctp:6;11
+#: Template/Pages/search.ctp:6;13
 msgid "Search for"
 msgstr "Buscar por"
 
-#: Template/Pages/search.ctp:44
+#: Template/Pages/search.ctp:8
+msgid "Find all setups, components or users related to "
+msgstr "Encuentres todas las setups, componentes o usuarios relacionados con "
+
+#: Template/Pages/search.ctp:47
 msgid "All"
 msgstr "Todos"
 
-#: Template/Pages/search.ctp:76
+#: Template/Pages/search.ctp:79
 msgid "No search query, no results :("
 msgstr "Sin consulta de búsqueda, no resultados :("
 
-#: Template/Pages/search.ctp:81
+#: Template/Pages/search.ctp:84
 msgid "We haven't found any results for this query :("
 msgstr "No se han encontrado resultados para esta consulta :("
 
-#: Template/Pages/search.ctp:92
+#: Template/Pages/search.ctp:95
 msgid "All setups related to"
 msgstr "Todas las setups relacionadas con"
 
-#: Template/Pages/search.ctp:95
+#: Template/Pages/search.ctp:98
 msgid "Found components"
 msgstr "Componentes encontrados"
 
-#: Template/Pages/search.ctp:105
+#: Template/Pages/search.ctp:108
 msgid "Found setups"
 msgstr "Setups encontrados"
 
-#: Template/Pages/search.ctp:113
+#: Template/Pages/search.ctp:116
 msgid "Found users"
 msgstr "Usuarios encontrados"
 
@@ -1732,113 +1744,113 @@ msgstr "Gráficos"
 msgid "Translation"
 msgstr "Traducción"
 
-#: Template/Setups/view.ctp:40
+#: Template/Setups/view.ctp:38
 msgid "Watch it in video"
 msgstr "Mirarlo en vídeo"
 
-#: Template/Setups/view.ctp:52
+#: Template/Setups/view.ctp:50
 msgid "Setup picture of"
 msgstr "Imagen de setup de"
 
-#: Template/Setups/view.ctp:71 Template/Users/view.ctp:69
+#: Template/Setups/view.ctp:69 Template/Users/view.ctp:69
 msgid "This is the main setup of"
 msgstr "Esta es la configuración principal de"
 
-#: Template/Setups/view.ctp:71 Template/Users/view.ctp:69
+#: Template/Setups/view.ctp:69 Template/Users/view.ctp:69
 msgid "This is your main setup"
 msgstr "Esta es tu configuratión principal"
 
-#: Template/Setups/view.ctp:74 Template/Users/view.ctp:72
+#: Template/Setups/view.ctp:72 Template/Users/view.ctp:72
 msgid "This setup is featured on mySetup.co !"
 msgstr "Esta configuración es destacada en mySetup. co!"
 
-#: Template/Setups/view.ctp:77 Template/Users/view.ctp:75
+#: Template/Setups/view.ctp:75 Template/Users/view.ctp:75
 msgid "Only you can see this setup"
 msgstr "Sólo tu puede ver esta setup"
 
-#: Template/Setups/view.ctp:79 Template/Users/view.ctp:77
+#: Template/Setups/view.ctp:77 Template/Users/view.ctp:77
 msgid ""
 "Your setup has been rejected. You will find the reason within its "
 "description."
 msgstr "Tu setup ha sido rechazada. Encontrará la razón en su descripción."
 
-#: Template/Setups/view.ctp:83
+#: Template/Setups/view.ctp:81
 msgid "Shared by"
 msgstr "Compartido por"
 
-#: Template/Setups/view.ctp:83
+#: Template/Setups/view.ctp:81
 msgid "created by "
 msgstr "creado por "
 
-#: Template/Setups/view.ctp:87
+#: Template/Setups/view.ctp:85
 msgid "You must be logged in to like !"
 msgstr "¡ Tienes que estar conectado para darle \"me gusta\" !"
 
-#: Template/Setups/view.ctp:100
+#: Template/Setups/view.ctp:98
 msgid "your"
 msgstr "el tuyo"
 
-#: Template/Setups/view.ctp:100
+#: Template/Setups/view.ctp:98
 msgid "this"
 msgstr "esto"
 
-#: Template/Setups/view.ctp:113
+#: Template/Setups/view.ctp:111
 msgid ""
 "This will send an ownership-request for this setup, are you really sure ?"
 msgstr ""
 "Esto le enviará solicitud de propiedad para ese setup, ¿ está realmente "
 "seguro ?"
 
-#: Template/Setups/view.ctp:113
+#: Template/Setups/view.ctp:111
 msgid "This is my setup !"
 msgstr "Reclamar ese setup !"
 
-#: Template/Setups/view.ctp:115
+#: Template/Setups/view.ctp:113
 msgid ""
 "This will send a report-request against this setup, are you really sure ?"
 msgstr "Esto informara nos de ese setup, ¿ estás realmente seguro ?"
 
-#: Template/Setups/view.ctp:115
+#: Template/Setups/view.ctp:113
 msgid "Report this setup"
 msgstr "Reportar ese setup"
 
-#: Template/Setups/view.ctp:135
+#: Template/Setups/view.ctp:133
 msgid "Find related setups"
 msgstr "Buscar setups relacionados"
 
-#: Template/Setups/view.ctp:136
+#: Template/Setups/view.ctp:134
 msgid "More info"
 msgstr "Más información"
 
-#: Template/Setups/view.ctp:162
+#: Template/Setups/view.ctp:160
 msgid "About this setup"
 msgstr "Acerca de esta setup"
 
-#: Template/Setups/view.ctp:192
+#: Template/Setups/view.ctp:190
 msgid "Wanna share your opinion ?"
 msgstr "¿ Quieres compartir tu opinión ?"
 
-#: Template/Setups/view.ctp:210
+#: Template/Setups/view.ctp:208
 msgid "at"
 msgstr "el"
 
-#: Template/Setups/view.ctp:224
+#: Template/Setups/view.ctp:222
 msgid "Add a comment"
 msgstr "Añadir un comentario"
 
-#: Template/Setups/view.ctp:230
+#: Template/Setups/view.ctp:228
 msgid "Nice config'..."
 msgstr "Buena config'..."
 
-#: Template/Setups/view.ctp:232
+#: Template/Setups/view.ctp:230
 msgid "Post this comment"
 msgstr "Postear este comentario"
 
-#: Template/Setups/view.ctp:251
+#: Template/Setups/view.ctp:249
 msgid "You must be logged in to comment"
 msgstr "Tienes que estar conectado para comentar"
 
-#: Template/Setups/view.ctp:251
+#: Template/Setups/view.ctp:249
 msgid "Log me in !"
 msgstr "¡ Quiero conectarme !"
 
