@@ -6,7 +6,6 @@ $this->assign('title', h($article->title) . ' | mySetup.co');
 echo $this->Html->meta('description', $this->Text->truncate($this->MySetupTools->getPlainTextIntroFromHTML($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true]), ['block' => true]);
 
 echo $this->Html->meta(['rel' => 'canonical', 'href' => $this->Url->build("/blog/".$article->id."-".$this->Text->slug($article->title), true)], null, ['block' => true]);
-echo $this->Html->meta(['name' => 'canonical', 'content' => 'summary_large_image'], null, ['block' => true]);
 echo $this->Html->meta(['property' => 'og:title', 'content' =>  $article->title. ' | mySetup.co'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text->truncate($this->MySetupTools->getPlainTextIntroFromHTML($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
 echo $this->Html->meta(['name' => 'twitter:description', 'content' => $this->Text->truncate($this->MySetupTools->getPlainTextIntroFromHTML($this->Markdown->transform($article->content)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);

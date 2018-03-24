@@ -4,6 +4,8 @@
   */
 
 $this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') ? $this->request->getQuery('q') : "") . '" | mySetup.co');
+
+echo $this->Html->meta('description', __('Find all setups, components or users related to ') . ($this->request->getQuery('q') ? $this->request->getQuery('q') : ""), ['block' => true]);
 ?>
 
 <div class="colored-container">

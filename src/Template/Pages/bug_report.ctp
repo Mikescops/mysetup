@@ -6,6 +6,8 @@ use Cake\Core\Configure;
   * @var \App\View\AppView $this
   */
 $this->assign('title', __('Bug Report | mySetup.co'));
+echo $this->Html->meta('description', __('You found an issue on mySetup.co ? Report us and we will analyse this as soon as possible.'), ['block' => true]);
+
 ?>
 <div class="colored-container">
     <div class="container"><h2 style="text-align: center;"><?= __('Bug Report') ?> <i class="fa fa-bug"></i></h2></div><br>

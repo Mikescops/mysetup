@@ -41,7 +41,7 @@ use Cake\Core\Configure;
         echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'de', 'href' => $this->Url->build(null, true)."?lang=de"));
     ?>
 
-    <meta name="twitter:card" value="summary">
+    <meta name="twitter:card" value="summary_large_image">
     <meta property="og:type" content="article" />
     <meta name="twitter:site" content="@mysetup_co">
     <meta property="og:site_name" content="mySetup.co" />

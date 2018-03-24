@@ -10,8 +10,6 @@ $this->assign('title', h($setup->title) . ' | mySetup.co');
 
 echo $this->Html->meta('description', $this->Text->truncate($this->MySetupTools->getPlainTextIntroFromHTML($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true]), ['block' => true]);
 
-echo $this->Html->meta(array('name' => 'canonical', 'content' => 'summary_large_image'), null, ['block' => true]);
-
 echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("/setups/".$setup->id."-".$this->Text->slug($setup->title), true)), null, ['block' => true]);
 echo $this->Html->meta(['property' => 'og:title', 'content' => $setup->title.' | mySetup.co'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text->truncate($this->MySetupTools->getPlainTextIntroFromHTML($this->Markdown->transform($setup->description)),150,['ellipsis' => '..','exact' => true])], null ,['block' => true]);
