@@ -3,9 +3,9 @@
   * @var \App\View\AppView $this
   */
 
-$this->assign('title', __('Search for') . ' "' . ($this->request->getQuery('q') ? $this->request->getQuery('q') : "") . '" | mySetup.co');
+$this->assign('title', __('Search for') . ' "' . h($this->request->getQuery('q') ? $this->request->getQuery('q') : "") . '" | mySetup.co');
 
-echo $this->Html->meta('description', __('Find all setups, components or users related to ') . ($this->request->getQuery('q') ? $this->request->getQuery('q') : ""), ['block' => true]);
+echo $this->Html->meta('description', __('Find all setups, components or users related to ') . h($this->request->getQuery('q') ? $this->request->getQuery('q') : ""), ['block' => true]);
 ?>
 
 <div class="colored-container">
