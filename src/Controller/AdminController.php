@@ -48,10 +48,10 @@ class AdminController extends AppController
         $stats['users']['certified'] = round($this->Users->find()->where(['mailVerification IS' => null])->count() / $stats['count']['users'] * 100, 2);
         $stats['users']['twitch']    = round($this->Users->find()->where(['twitchToken IS NOT' => null])->count() / $stats['count']['users'] * 100, 2);
 
-        // Don't log users with same dates of creation and last login equal (redundancy)
+        // Log only users with dates of creation and last login "not closed" (more than ~10 minutes)
         $stats['users']['recentConnected'] = $this->Users->find('all', [
             'conditions' => [
-                'creationDate !=' => 'lastLogginDate'
+                'TIMESTAMPDIFF(MINUTE, creationDate, lastLogginDate) >' => 10
             ],
             'limit' => 5,
             'order' => [
