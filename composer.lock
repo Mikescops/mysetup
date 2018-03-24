@@ -54,16 +54,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.5.13",
+            "version": "3.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "7d52085e6f3874abb18a5de6df73c0c1332054ad"
+                "reference": "c97820e14ee8e34ee27a93df934412a55d4aed4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/7d52085e6f3874abb18a5de6df73c0c1332054ad",
-                "reference": "7d52085e6f3874abb18a5de6df73c0c1332054ad",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/c97820e14ee8e34ee27a93df934412a55d4aed4b",
+                "reference": "c97820e14ee8e34ee27a93df934412a55d4aed4b",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2018-03-04T01:58:53+00:00"
+            "time": "2018-03-20T01:08:53+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -759,16 +759,16 @@
         },
         {
             "name": "loadsys/cakephp_sitemap",
-            "version": "4.0.1",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap.git",
-                "reference": "ffe91f78545c477fe3cb747d8bdcf124f54b4f86"
+                "reference": "57145bb0a750734597305c0895b467fde0e662fd"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap/archive/master.zip",
-                "reference": "ffe91f78545c477fe3cb747d8bdcf124f54b4f86",
+                "reference": "57145bb0a750734597305c0895b467fde0e662fd",
                 "shasum": ""
             },
             "require": {
@@ -2738,16 +2738,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.35.2",
+            "version": "v1.35.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "9c24f2cd39dc1906b76879e099970b7e53724601"
+                "reference": "b48680b6eb7d16b5025b9bfc4108d86f6b8af86f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9c24f2cd39dc1906b76879e099970b7e53724601",
-                "reference": "9c24f2cd39dc1906b76879e099970b7e53724601",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/b48680b6eb7d16b5025b9bfc4108d86f6b8af86f",
+                "reference": "b48680b6eb7d16b5025b9bfc4108d86f6b8af86f",
                 "shasum": ""
             },
             "require": {
@@ -2755,8 +2755,8 @@
             },
             "require-dev": {
                 "psr/container": "^1.0",
-                "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~3.3@dev"
+                "symfony/debug": "^2.7",
+                "symfony/phpunit-bridge": "^3.3"
             },
             "type": "library",
             "extra": {
@@ -2799,7 +2799,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-03-03T16:21:29+00:00"
+            "time": "2018-03-20T04:25:58+00:00"
         },
         {
             "name": "umpirsky/twig-php-function",
@@ -2844,16 +2844,16 @@
         },
         {
             "name": "wyrihaximus/twig-view",
-            "version": "4.3.2",
+            "version": "4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/TwigView.git",
-                "reference": "63a5bc4307a5d47b24290013c3c0433903c5757a"
+                "reference": "f9be3b19c63ad1cf8bbf43ce39278e2d81ab4ba3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/TwigView/zipball/63a5bc4307a5d47b24290013c3c0433903c5757a",
-                "reference": "63a5bc4307a5d47b24290013c3c0433903c5757a",
+                "url": "https://api.github.com/repos/WyriHaximus/TwigView/zipball/f9be3b19c63ad1cf8bbf43ce39278e2d81ab4ba3",
+                "reference": "f9be3b19c63ad1cf8bbf43ce39278e2d81ab4ba3",
                 "shasum": ""
             },
             "require": {
@@ -2898,7 +2898,7 @@
                 "twig",
                 "view"
             ],
-            "time": "2018-02-21T06:55:17+00:00"
+            "time": "2018-03-14T12:31:27+00:00"
         }
     ],
     "aliases": [],
