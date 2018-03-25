@@ -59,7 +59,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 <div class="featured-inner">
     <div class="container">
         <div class="row">
-            <div class="column column-70">
+            <div class="column column-60">
                 <a class="featured-user" href="<?= $this->Url->build('/users/'.$setup->user['id']) ?>">
                     <img alt="<?= __('Profile picture of') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)) ?>">
                 </a>
@@ -81,7 +81,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <?= __('Shared by') ?> <?= $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]) ?><?php if($setup->user['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user['name'] != $setup->author and $setup->author !== ''): echo ", " . __("created by ") . h($setup->author) ; endif?>
                 </p>
             </div>
-            <div class="column column-25">
+            <div class="column column-35">
                 <a class="red_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('" . __('You must be logged in to like !') . "');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
                     <div class="labeled_button">
                         <i class="fa fa-heart"></i> <span>Like</span>
@@ -91,26 +91,24 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     </span>
                 </a>
                 <?= $this->Html->scriptBlock('$(document).ready(function() {printLikes("' . $setup->id . '");});', array('block' => 'scriptBottom')); ?>
-                <?php if($authUser): echo $this->Html->scriptBlock('$(document).ready(function() {doesLike("' . $setup->id . '");});', array('block' => 'scriptBottom'));endif; ?>
 
-                <?php if($authUser['id'] == $setup->user_id or $authUser['admin']): ?>
+                <?php if($authUser) : ?>
+                    <?= $this->Html->scriptBlock('$(document).ready(function() {doesLike("' . $setup->id . '");});', array('block' => 'scriptBottom')) ?>
+
                     <div class="edit_panel">
-                        <a href="#edit_setup_modal" data-lity title="<?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup"><i class="fa fa-wrench"></i></a>
-                        <a href="#embed_twitch_modal" data-lity title="<?= __('Embed on Twitch') ?>"><i class="fa fa-twitch"></i></a>
-                        <a href="#embed_website_script" data-lity title="<?= __('Embed on your website') ?>"><i class="fa fa-code"></i></a>
-                    </div>
+                        <?php if($authUser['id'] == $setup->user_id or $authUser['admin']): ?>
+                            <a href="#edit_setup_modal" data-lity title="<?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup"><i class="fa fa-wrench"></i></a>
+                            <a href="#embed_twitch_modal" data-lity title="<?= __('Embed on Twitch') ?>"><i class="fa fa-twitch"></i></a>
+                            <a href="#embed_website_script" data-lity title="<?= __('Embed on your website') ?>"><i class="fa fa-code"></i></a>
+                            <?= $this->element('Modal/edit-setup') ?>
+                            <?= $this->element('Modal/twitch') ?>
+                            <?= $this->element('Modal/embed') ?>
+                        <?php endif; ?>
 
-                    <?= $this->element('Modal/edit-setup') ?>
-
-                    <?= $this->element('Modal/twitch') ?>
-
-                    <?= $this->element('Modal/embed') ?>
-
-                <?php elseif($authUser && $setup->user_id != $authUser['id']): ?>
-                    <div class="edit_panel">
+                        <?php if($setup->user_id != $authUser['id']): ?>
                             <?= $this->Form->postLink('', ['controller' => 'Requests', 'action' => 'requestOwnership', $setup->id], ['confirm' => __('This will send an ownership-request for this setup, are you really sure ?'), 'title' => __('This is my setup !'), 'class' => 'fa fa-bolt']) ?>
-
                             <?= $this->Form->postLink('', ['controller' => 'Requests', 'action' => 'requestReport', $setup->id], ['confirm' => __('This will send a report-request against this setup, are you really sure ?'), 'title' => __('Report this setup'), 'class' => 'fa fa-flag']) ?>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
             </div>
