@@ -16,17 +16,17 @@ use Cake\Core\Configure;
 <div class="col-12 col-md-9 col-xl-10">
 
     <div class="row mb-3">
-        <div class="col-xl-3 col-sm-6">
-            <div class="card text-white bg-danger h-100">
-                <div class="card-body bg-danger">
+        <div class="col-xl-2 col-sm-6">
+            <div class="card text-white bg-dark h-100">
+                <div class="card-body bg-dark">
                     <div class="rotate">
                         <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Setup', 'Setups', $stats['count']['setups'])) ?>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
-            <div class="card bg-success text-white h-100">
+        <div class="col-xl-2 col-sm-6">
+            <div class="card text-white bg-success h-100">
                 <div class="card-body bg-success">
                     <div class="rotate">
                         <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="users" width="50px" height="50px"></i></h1> <?= strtoupper(__n('User', 'Users', $stats['count']['users'])) ?>
@@ -34,7 +34,7 @@ use Cake\Core\Configure;
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
+        <div class="col-xl-2 col-sm-6">
             <div class="card text-white bg-info h-100">
                 <div class="card-body bg-info">
                     <div class="rotate">
@@ -43,13 +43,30 @@ use Cake\Core\Configure;
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
+        <div class="col-xl-2 col-sm-6">
+            <div class="card text-white bg-danger h-100">
+                <div class="card-body bg-danger">
+                    <div class="rotate">
+                        <h1 class="display-4"><?= $stats['count']['likes'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="heart" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Like', 'Likes', $stats['count']['likes'])) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-sm-6">
             <div class="card text-white bg-warning h-100">
                 <div class="card-body bg-warning">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['resources'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="layers" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Resource', 'Resources', $stats['count']['resources'])) ?>
+                        <h1 class="display-4"><?= $stats['count']['resources']['images'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="image" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Image', 'Images', $stats['count']['resources']['images'])) ?>
                     </div>
-
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-sm-6">
+            <div class="card text-white bg-secondary h-100">
+                <div class="card-body bg-secondary">
+                    <div class="rotate">
+                        <h1 class="display-4"><?= $stats['count']['resources']['products'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="package" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Product', 'Products', $stats['count']['resources']['products'])) ?>
+                    </div>
                 </div>
             </div>
         </div>

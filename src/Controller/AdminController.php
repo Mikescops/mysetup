@@ -20,6 +20,7 @@ class AdminController extends AppController
         $this->loadModel('Setups');
         $this->loadModel('Users');
         $this->loadModel('Comments');
+        $this->loadModel('Likes');
         $this->loadModel('Resources');
         $this->loadModel('Requests');
     }
@@ -41,14 +42,17 @@ class AdminController extends AppController
         $stats['count']['users']     = $this->Users->find()->count();
         $stats['count']['setups']    = $this->Setups->find()->count();
         $stats['count']['comments']  = $this->Comments->find()->count();
-        $stats['count']['resources'] = $this->Resources->find()->count();
+        $stats['count']['likes']     = $this->Likes->find()->count();
+        // We split the resources in two distinct sets : images and products !
+        $stats['count']['resources']['products'] = $this->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->count();
+        $stats['count']['resources']['images']   = $this->Resources->find()->where(['type' => 'SETUP_FEATURED_IMAGE'])->orWhere(['type' => 'SETUP_GALLERY_IMAGE'])->count();
 
         // Some more information  !
         // We assume that this page can't be accesses if there is not any user
         $stats['users']['certified'] = round($this->Users->find()->where(['mailVerification IS' => null])->count() / $stats['count']['users'] * 100, 2);
-        $stats['users']['twitch']    = round($this->Users->find()->where(['twitchToken IS NOT' => null])->count() / $stats['count']['users'] * 100, 2);
+        $stats['users']['twitch']    = round($this->Users->find()->where(['twitchToken IS NOT'  => null])->count() / $stats['count']['users'] * 100, 2);
 
-        // Log only users with dates of creation and last login "not closed" (more than ~10 minutes)
+        // Log only users with creation and last login dates "not closed" in time (more than ~10 minutes of difference)
         $stats['users']['recentConnected'] = $this->Users->find('all', [
             'conditions' => [
                 'TIMESTAMPDIFF(MINUTE, creationDate, lastLogginDate) >' => 10
