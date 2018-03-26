@@ -7,7 +7,7 @@
 
 In order to deploy this website on your web server :
 
-1. `# aptitude install git apache2 php7.0 php7.0-intl php7.0-mbstring php7.0-imagick php7.0-sqlite3 phpmyadmin composer gettext`
+1. `# aptitude install git apache2 php7.1 php7.1-intl php7.1-mbstring php7.1-sqlite3 php7.1-apcu php-imagick phpmyadmin composer gettext`
 2.
     1. `# nano /etc/apache2/site-available/mysetup.conf`
         ```apacheconf
@@ -23,7 +23,7 @@ In order to deploy this website on your web server :
         ```
     2. `# a2ensite mysetup`
     3. `# a2enmod expires headers rewrite filter deflate`
-    4. `# service apache2 restart`
+    4. `# systemctl restart apache2`
 3. `$ cd /var/www/html/`
 4. `$ git clone https://github.com/MikeScops/mysetup.git`
 5. `$ cd mysetup/`
