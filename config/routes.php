@@ -51,7 +51,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->registerMiddleware('throttle', new ThrottleMiddleware([
         'limit'      => 100,
         'interval'   => '+1 minute',
-        'message'    => 'Rate limit exceeded',
+        'message'    => json_encode(['error' => 'Rate limit reached']),
         'identifier' => function($request) { return $request->clientIp(); }
     ]));
     /* _________________________________________________________________ */
