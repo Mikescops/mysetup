@@ -1,11 +1,11 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', __('mySetup | Share your own setup'));
+$this->assign('title', 'mySetup.co | ' . __('Share your own setup'));
 
 echo $this->Html->meta('description', __('The best place to share your computer setup with your community ! Inspire others or get inspired with gaming setups, battlestations...'), ['block' => true]);
 
-echo $this->Html->meta(['property' => 'og:title', 'content' => 'mySetup | Share your own setup'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:title', 'content' => 'mySetup.co | ' . __('Share your own setup')], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:description', 'content' => 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
@@ -71,7 +71,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="maincontainer">
 
         <div class="large_search" style="margin-top: -60px">
-            
+
             <i class="fa fa-search"></i>
             <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" />
             <?= $this->Html->scriptBlock('
