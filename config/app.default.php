@@ -120,6 +120,12 @@ return [
             'duration' => '+1 years',
             'url' => env('CACHE_CAKEMODEL_URL', null),
         ],
+
+        /* A dedicated cache for Muffin's Throttle */
+        'throttle' => [
+            'className' => 'Apc',
+            'prefix' => 'throttle_'
+        ],
     ],
 
     /**

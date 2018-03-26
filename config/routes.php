@@ -23,6 +23,8 @@ use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
 
+use Muffin\Throttle\Middleware\ThrottleMiddleware;
+
 /**
  * The default class to use for all routes
  *
@@ -45,6 +47,15 @@ Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
 
+    /* Muffin's Throttle middleware to limit requests on our APIs routes */
+    $routes->registerMiddleware('throttle', new ThrottleMiddleware([
+        'limit'      => 100,
+        'interval'   => '+1 minute',
+        'message'    => 'Rate limit exceeded',
+        'identifier' => function($request) { return $request->clientIp(); }
+    ]));
+    /* _________________________________________________________________ */
+
     /* Static pages' routes... */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);
     $routes->connect('/recent', ['controller' => 'Pages', 'action' => 'recent']);
@@ -61,7 +72,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     /* ___________________ */
 
     /* Setups Controller's routes */
-    $routes->scope('/setups', function(RouteBuilder $routes) {
+    $routes->scope('/setups', function($routes) {
         $routes
             ->connect('/:id:slug', ['controller' => 'Setups', 'action' => 'view'])
             ->setPatterns(['id' => '\d+', 'slug' => '(-.*)?'])
@@ -87,12 +98,19 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/twitch/*', ['controller' => 'Users', 'action' => 'twitch']);
     /* _________________________ */
 
-    /* Allows the usage of 'api' in lowercase */
-    $routes->connect('/api/:action/*', ['controller' => 'API', 'action' => 'action']);
+    /* Allows the usage of 'api' in lowercase and connect the Throttle middleware */
+    $routes->scope('/api', function($routes) {
+        $routes->applyMiddleware('throttle');
+        $routes->connect('/:action/*', ['controller' => 'API', 'action' => 'action']);
+    });
+    $routes->scope('/API', function($routes) {
+        $routes->applyMiddleware('throttle');
+        $routes->connect('/:action/*', ['controller' => 'API', 'action' => 'action']);
+    });
     /* ______________________________________ */
 
     /* Articles Controller's routes */
-    $routes->scope('/blog', function(RouteBuilder $routes) {
+    $routes->scope('/blog', function($routes) {
         $routes->connect('/', ['controller' => 'Articles']);
         $routes
             ->connect('/:id:slug', ['controller' => 'Articles', 'action' => 'view'])

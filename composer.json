@@ -13,7 +13,8 @@
 	    "exeu/apai-io": "~2.0",
         "loadsys/cakephp_sitemap": "4.*",
         "tanuck/cakephp-markdown": "dev-master",
-        "ksubileau/color-thief-php": "^1.3"
+        "ksubileau/color-thief-php": "^1.3",
+        "muffin/throttle": "^1.1"
     },
     "require-dev": {
         "psy/psysh": "@stable",
