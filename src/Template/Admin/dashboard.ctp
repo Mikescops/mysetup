@@ -128,6 +128,8 @@ use Cake\Core\Configure;
                     </a>
                 <?php endforeach ?>
             </div>
+            <hr>
+            <a href="<?=$this->Url->build('/admin/users?sort=lastLogginDate&direction=desc')?>"><?= __('View more') ?><i data-toggle="tooltip" data-placement="bottom" data-feather="chevron-right"></i></a>
         </div>
 
         <div class="col-xl-6 col-sm-6">
@@ -154,6 +156,8 @@ use Cake\Core\Configure;
                     </a>
                 <?php endforeach ?>
             </div>
+            <hr>
+            <a href="<?=$this->Url->build('/admin/users?sort=creationDate&direction=desc')?>"><?= __('View more') ?><i data-toggle="tooltip" data-placement="bottom" data-feather="chevron-right"></i></a>
         </div>
     </div>
 
