@@ -20,7 +20,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-dark h-100">
                 <div class="card-body bg-dark">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Setup', 'Setups', $stats['count']['setups'])) ?> (+10)
+                        <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Setup', 'Setups', $stats['count']['setups'])) ?> (+<?= $stats['count']['today']['setups'] ?>)
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-success h-100">
                 <div class="card-body bg-success">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="users" width="50px" height="50px"></i></h1> <?= strtoupper(__n('User', 'Users', $stats['count']['users'])) ?> (+ 30)
+                        <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="users" width="50px" height="50px"></i></h1> <?= strtoupper(__n('User', 'Users', $stats['count']['users'])) ?> (+<?= $stats['count']['today']['users'] ?>)
                     </div>
                 </div>
             </div>
