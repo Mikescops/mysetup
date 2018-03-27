@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2018-03-24 19:08+0000\n"
-"PO-Revision-Date: 2018-03-24 20:16+0100\n"
+"POT-Creation-Date: 2018-03-27 20:15+0000\n"
+"PO-Revision-Date: 2018-03-27 22:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: support@mysetup.co\n"
 "Language: fr\n"
@@ -15,33 +15,33 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: Controller/AdminController.php:203
+#: Controller/AdminController.php:210
 msgid "No notification could be sent..."
 msgstr "Aucune notification n'a pu être envoyée."
 
-#: Controller/AdminController.php:217
+#: Controller/AdminController.php:224
 msgid "The notification has just been sent !"
 msgstr "La notification vient d'être envoyée !"
 
-#: Controller/AdminController.php:222
+#: Controller/AdminController.php:229
 msgid "The notification couldn't be sent."
 msgstr "La notification n'a pas pu être envoyée."
 
-#: Controller/AdminController.php:229
+#: Controller/AdminController.php:236
 msgid "One information is missing to send this notification."
 msgstr "Une information est manquante pour envoyer cette notification."
 
-#: Controller/AdminController.php:234
+#: Controller/AdminController.php:241
 msgid "Everyone"
 msgstr "Tout le monde"
 
-#: Controller/AdminController.php:198
+#: Controller/AdminController.php:205
 msgid "notification have been sent !"
 msgid_plural "notifications have been sent !"
 msgstr[0] "notification a été envoyée !"
 msgstr[1] "notifications ont été envoyées !"
 
-#: Controller/AdminController.php:208
+#: Controller/AdminController.php:215
 msgid "notification couldn't be sent..."
 msgid_plural "notifications couldn't be sent..."
 msgstr[0] "notification n'a pas pu être envoyée..."
@@ -545,7 +545,7 @@ msgstr "Commentaires"
 msgid "Content"
 msgstr "Contenu"
 
-#: Template/Admin/comments.ctp:18 Template/Admin/dashboard.ctp:32
+#: Template/Admin/comments.ctp:18 Template/Admin/dashboard.ctp:55
 #: Template/Admin/resources.ctp:17 Template/Admin/setups.ctp:19
 msgid "User"
 msgid_plural "Users"
@@ -574,11 +574,11 @@ msgid "View"
 msgstr "Voir"
 
 #: Template/Admin/comments.ctp:34 Template/Admin/setups.ctp:42
-#: Template/Admin/users.ctp:76 Template/Setups/view.ctp:211
+#: Template/Admin/users.ctp:76 Template/Setups/view.ctp:209
 msgid "Delete"
 msgstr "Supprimer"
 
-#: Template/Admin/comments.ctp:34 Template/Setups/view.ctp:211
+#: Template/Admin/comments.ctp:34 Template/Setups/view.ctp:209
 msgid "Are you sure you want to delete this comment ?"
 msgstr "Êtes-vous vraiment sûr(e) de vouloir supprimer ce commentaire ?"
 
@@ -615,75 +615,91 @@ msgstr ""
 msgid "Dashboard | myAdmin"
 msgstr "Tableau de bord | myAdmin"
 
-#: Template/Admin/dashboard.ctp:63;175;177
+#: Template/Admin/dashboard.ctp:85;201;203
 msgid "Certified users"
 msgstr "Utilisateurs certifiés"
 
-#: Template/Admin/dashboard.ctp:68;177
+#: Template/Admin/dashboard.ctp:90;203
 msgid "Twitch users"
 msgstr "Utilisateurs de Twitch"
 
-#: Template/Admin/dashboard.ctp:87
+#: Template/Admin/dashboard.ctp:109
 msgid "Recently connected"
 msgstr "Récemment connectés"
 
-#: Template/Admin/dashboard.ctp:96;122
+#: Template/Admin/dashboard.ctp:118;146
 msgid "Mail verified"
 msgstr "Email vérifié"
 
-#: Template/Admin/dashboard.ctp:97;123
+#: Template/Admin/dashboard.ctp:119;147
 msgid "Twitch user id"
 msgstr "Identifiant utilisateur Twitch"
 
-#: Template/Admin/dashboard.ctp:98;124
+#: Template/Admin/dashboard.ctp:120;148
 msgid "Certified user"
 msgstr "Certifié"
 
-#: Template/Admin/dashboard.ctp:99;125
+#: Template/Admin/dashboard.ctp:121;149
 msgid "Admin user"
 msgstr "Administrateur"
 
-#: Template/Admin/dashboard.ctp:113
+#: Template/Admin/dashboard.ctp:132;160
+msgid "View more"
+msgstr "Voir plus"
+
+#: Template/Admin/dashboard.ctp:137
 msgid "Recently registered"
 msgstr "Récemment inscrits"
 
-#: Template/Admin/dashboard.ctp:141
+#: Template/Admin/dashboard.ctp:167
 msgid "Latest comments"
 msgstr "Derniers commentaires"
 
-#: Template/Admin/dashboard.ctp:158
+#: Template/Admin/dashboard.ctp:184
 msgid "Ownership requests"
 msgstr "Demandes de propriété"
 
-#: Template/Admin/dashboard.ctp:163
+#: Template/Admin/dashboard.ctp:189
 msgid "asks for ownership on"
 msgstr "demande la propriété de"
 
-#: Template/Admin/dashboard.ctp:175
+#: Template/Admin/dashboard.ctp:201
 msgid "Certified"
 msgstr "Certifié"
 
-#: Template/Admin/dashboard.ctp:175
+#: Template/Admin/dashboard.ctp:201
 msgid "Not certified"
 msgstr "Non-certifié"
 
-#: Template/Admin/dashboard.ctp:177
+#: Template/Admin/dashboard.ctp:203
 msgid "Other users"
 msgstr "Autres utilisateurs"
 
+#: Template/Admin/dashboard.ctp:32
+msgid "Image"
+msgid_plural "Images"
+msgstr[0] "Image"
+msgstr[1] "Images"
+
 #: Template/Admin/dashboard.ctp:41
+msgid "Product"
+msgid_plural "Products"
+msgstr[0] "Produit"
+msgstr[1] "Produits"
+
+#: Template/Admin/dashboard.ctp:64
 msgid "Comment"
 msgid_plural "Comments"
 msgstr[0] "Commentaire"
 msgstr[1] "Commentaires"
 
-#: Template/Admin/dashboard.ctp:50
-msgid "Resource"
-msgid_plural "Resources"
-msgstr[0] "Ressource"
-msgstr[1] "Ressources"
+#: Template/Admin/dashboard.ctp:73
+msgid "Like"
+msgid_plural "Likes"
+msgstr[0] "Like"
+msgstr[1] "Likes"
 
-#: Template/Admin/dashboard.ctp:146
+#: Template/Admin/dashboard.ctp:172
 msgctxt "commentaire \"sur\" un setup"
 msgid "on"
 msgstr "about"
@@ -751,7 +767,7 @@ msgstr "Status"
 msgid "Created on"
 msgstr "Créé le"
 
-#: Template/Admin/setups.ctp:25 Template/Setups/view.ctp:177
+#: Template/Admin/setups.ctp:25 Template/Setups/view.ctp:175
 msgid "Modified on"
 msgstr "Modifié le"
 
@@ -823,7 +839,7 @@ msgstr "Soumettre"
 msgid "Edit post"
 msgstr "Éditer un article"
 
-#: Template/Articles/edit.ctp:23 Template/Setups/view.ctp:98;212;241
+#: Template/Articles/edit.ctp:23 Template/Setups/view.ctp:100;210;239
 msgid "Edit"
 msgstr "Éditer"
 
@@ -851,11 +867,11 @@ msgstr "Êtes-vous sûr(e) de vouloir supprimer cet article ?"
 msgid "Delete this article"
 msgstr "Supprimer cet article"
 
-#: Template/Articles/view.ctp:61 Template/Setups/view.ctp:179
+#: Template/Articles/view.ctp:61 Template/Setups/view.ctp:177
 msgid "Published on"
 msgstr "Publié le"
 
-#: Template/Articles/view.ctp:61 Template/Setups/view.ctp:208
+#: Template/Articles/view.ctp:61 Template/Setups/view.ctp:206
 msgid "by"
 msgstr "par"
 
@@ -864,7 +880,7 @@ msgstr "par"
 #: Template/Element/List/tiles.ctp:29 Template/Element/Modal/edit-profile.ctp:8
 #: Template/Layout/default.ctp:85 Template/Likes/index.ctp:43
 #: Template/Pages/home.ctp:193 Template/Pages/search.ctp:121
-#: Template/Setups/view.ctp:64;200 Template/Users/view.ctp:16;62
+#: Template/Setups/view.ctp:64;198 Template/Users/view.ctp:16;62
 msgid "Profile picture of"
 msgstr "Image de profil de"
 
@@ -1357,9 +1373,9 @@ msgstr ""
 msgid "Send"
 msgstr "Soumettre"
 
-#: Template/Pages/home.ctp:4
-msgid "mySetup | Share your own setup"
-msgstr "mySetup.co | Partage ton setup pc"
+#: Template/Pages/home.ctp:4;8
+msgid "Share your own setup"
+msgstr "Partage ton setup"
 
 #: Template/Pages/home.ctp:6
 msgid ""
@@ -1398,11 +1414,11 @@ msgstr "Partage-le pour en avoir plus"
 msgid "See it in action"
 msgstr "Voir en action"
 
-#: Template/Pages/home.ctp:56 Template/Setups/view.ctp:99
+#: Template/Pages/home.ctp:56 Template/Setups/view.ctp:101
 msgid "Embed on Twitch"
 msgstr "Intégrer à Twitch"
 
-#: Template/Pages/home.ctp:57 Template/Setups/view.ctp:100
+#: Template/Pages/home.ctp:57 Template/Setups/view.ctp:102
 msgid "Embed on your website"
 msgstr "Intégrer sur votre site Internet"
 
@@ -1815,73 +1831,73 @@ msgstr "créé par "
 msgid "You must be logged in to like !"
 msgstr "Vous devez être connecté(e) pour aimer ce setup !"
 
-#: Template/Setups/view.ctp:98
+#: Template/Setups/view.ctp:100
 msgid "your"
 msgstr "votre"
 
-#: Template/Setups/view.ctp:98
+#: Template/Setups/view.ctp:100
 msgid "this"
 msgstr "ce"
 
-#: Template/Setups/view.ctp:111
+#: Template/Setups/view.ctp:109
 msgid ""
 "This will send an ownership-request for this setup, are you really sure ?"
 msgstr ""
 "Cela va envoyer une demande à la personne ayant posté ce setup pour que vous "
 "en deveniez le propriétaire, êtes-vous vraiment sûr(e) ?"
 
-#: Template/Setups/view.ctp:111
+#: Template/Setups/view.ctp:109
 msgid "This is my setup !"
 msgstr "Réclamer ce setup !"
 
-#: Template/Setups/view.ctp:113
+#: Template/Setups/view.ctp:110
 msgid ""
 "This will send a report-request against this setup, are you really sure ?"
 msgstr ""
 "Cela va signaler ce setup auprès de notre équipe de modération, êtes-vous "
 "vraiment sûr(e) ?"
 
-#: Template/Setups/view.ctp:113
+#: Template/Setups/view.ctp:110
 msgid "Report this setup"
 msgstr "Signaler ce setup"
 
-#: Template/Setups/view.ctp:133
+#: Template/Setups/view.ctp:131
 msgid "Find related setups"
 msgstr "Chercher des setups liés"
 
-#: Template/Setups/view.ctp:134
+#: Template/Setups/view.ctp:132
 msgid "More info"
 msgstr "Plus d'informations"
 
-#: Template/Setups/view.ctp:160
+#: Template/Setups/view.ctp:158
 msgid "About this setup"
 msgstr "À propos de ce setup"
 
-#: Template/Setups/view.ctp:190
+#: Template/Setups/view.ctp:188
 msgid "Wanna share your opinion ?"
 msgstr "Envie de laisser votre avis ?"
 
-#: Template/Setups/view.ctp:208
+#: Template/Setups/view.ctp:206
 msgid "at"
 msgstr "le"
 
-#: Template/Setups/view.ctp:222
+#: Template/Setups/view.ctp:220
 msgid "Add a comment"
 msgstr "Ajouter un commentaire"
 
-#: Template/Setups/view.ctp:228
+#: Template/Setups/view.ctp:226
 msgid "Nice config'..."
 msgstr "Jolie config'..."
 
-#: Template/Setups/view.ctp:230
+#: Template/Setups/view.ctp:228
 msgid "Post this comment"
 msgstr "Publier ce commentaire"
 
-#: Template/Setups/view.ctp:249
+#: Template/Setups/view.ctp:247
 msgid "You must be logged in to comment"
 msgstr "Vous devez être connecté(e) pour commenter ce setup"
 
-#: Template/Setups/view.ctp:249
+#: Template/Setups/view.ctp:247
 msgid "Log me in !"
 msgstr "Se connecter !"
 
