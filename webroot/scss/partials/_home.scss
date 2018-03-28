@@ -10,12 +10,50 @@
 }
 
 .hero_image{
-	position: relative;
 	text-align: center;
+	max-width: 100%;
+	padding: 0;
+	width: 100%;
+}
+
+.hero_container{
+	position: relative;
+	overflow: hidden;
+	margin: 0 -20px;
+	height: 430px;
 }
 
 .hero_image img{
-	max-width: 100%;
+	position: absolute;
+	left: 50%;
+	max-width: unset;
+
+	-webkit-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.hero-setup{
+	margin-left: -375px;
+}
+
+.hero-mouse{
+	position: absolute;
+	top: 183px;
+	margin-left: 180px;
+
+	animation: float-mouse 5s ease-in-out infinite;
+}
+
+@keyframes float-mouse {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-16px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
 }
 
 .hero_inner{
@@ -94,7 +132,7 @@
 	position: absolute;
 	margin: 0 auto;
     width: 240px;
-    bottom: 110px;
+    bottom: 40px;
 	left: 0;
 	right: 30px;
 }

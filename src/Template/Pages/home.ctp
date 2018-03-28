@@ -18,7 +18,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="container">
     <?php if(!$authUser): ?>
         <div class="hero_image">
-            <?= $this->Html->image('hero.svg', ['alt' => 'Hero mySetup.co', 'class' => 'hero-image']) ?>
+            <div class="hero_container">
+                <?= $this->Html->image('hero.svg', ['alt' => 'Hero mySetup.co', 'class' => 'hero-setup']) ?>
+                <?= $this->Html->image('mouse.svg', ['alt' => 'Mouse mySetup.co', 'class' => 'hero-mouse']) ?>
+            </div>
             <?= $this->Html->link(__('Add my setup'), '/login', ['class' => 'hero_calltoaction']) ?>
         </div>
     <?php else: ?>
