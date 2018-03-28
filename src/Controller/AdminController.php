@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\I18n\Date;
 
 /**
  * Admin Controller
@@ -47,8 +48,8 @@ class AdminController extends AppController
         $stats['count']['resources']['products'] = $this->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->count();
         $stats['count']['resources']['images']   = $this->Resources->find()->where(['type' => 'SETUP_FEATURED_IMAGE'])->orWhere(['type' => 'SETUP_GALLERY_IMAGE'])->count();
         // Let's prepare the number of "new" users and setups
-        $stats['count']['today']['setups'] = $this->Setups->find()->where(['creationDate >=' => new \Datetime('-1 day')])->count();
-        $stats['count']['today']['users']  = $this->Users->find()->where(['creationDate >=' => new \Datetime('-1 day')])->count();
+        $stats['count']['today']['setups'] = $this->Setups->find()->where(['creationDate >=' => new Date()])->count();
+        $stats['count']['today']['users']  = $this->Users->find()->where(['creationDate >=' => new Date()])->count();
 
         // Some more information  !
         // We assume that this page can't be accesses if there is not any user
