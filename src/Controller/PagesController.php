@@ -65,7 +65,13 @@ class PagesController extends AppController
                 // Let's load less resources on mobile devices
                 $this->RequestHandler->isMobile() ? 4 : 6
             ),
-        ])->distinct(['title', 'src'])->order('RAND()')->toArray();
+        ])
+        ->matching('Setups', function($q) {
+            return $q->where(['Setups.status' => 'PUBLISHED']);
+        })
+        ->distinct(['Resources.title', 'Resources.src'])
+        ->order('RAND()')
+        ->toArray();
 
         if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {

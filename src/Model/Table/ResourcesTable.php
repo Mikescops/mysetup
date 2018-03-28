@@ -135,7 +135,7 @@ class ResourcesTable extends Table
                 'type' => 'SETUP_PRODUCT'
             ],
             [
-                'CONVERT(title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%'
+                'CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%'
             ]
         ];
 
@@ -144,7 +144,7 @@ class ResourcesTable extends Table
         {
             foreach($words as $word)
             {
-                array_push($conditions, ['CONVERT(title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
+                array_push($conditions, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
             }
         }
 
@@ -156,7 +156,10 @@ class ResourcesTable extends Table
                 'src'
             ]
         ])
-        ->distinct('title')
+        ->matching('Setups', function($q) {
+            return $q->where(['Setups.status' => 'PUBLISHED']);
+        })
+        ->distinct('Resources.title')
         ->toArray();
     }
 
