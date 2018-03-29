@@ -33,6 +33,8 @@ class PagesController extends AppController
     {
         parent::initialize();
 
+        $this->loadComponent('Captcha');
+
         $this->loadModel('Users');
         $this->loadModel('Setups');
     }

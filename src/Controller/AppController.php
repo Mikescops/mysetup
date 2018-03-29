@@ -66,7 +66,6 @@ class AppController extends Controller
                 'action' => 'home'
             ]
         ]);
-        $this->loadComponent('Captcha');
 
         /* Here let's adapt the website language !
          *
