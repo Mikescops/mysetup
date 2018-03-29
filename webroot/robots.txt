@@ -1,13 +1,10 @@
 User-Agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /embed/
-Disallow: /verify/
+Disallow: /api/
 Disallow: /twitch/
 Disallow: /likes/
 Disallow: /comments/
 Disallow: /notifications/
-Disallow: /users/logout
-Disallow: /setups/request/
+Disallow: /requests/
 
 Sitemap: https://mysetup.co/sitemap/
