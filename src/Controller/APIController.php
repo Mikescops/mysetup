@@ -76,69 +76,83 @@ class APIController extends AppController
     /* A simple method to handle the new Twitch extension (EBS) */
     public function twitchSetup()
     {
-        if($this->request->is('get') and $this->request->getQuery('twitchId'))
+        $twitch_id = $this->request->getQuery('twitchId');
+
+        if($this->request->is('get') and $twitch_id)
         {
             $this->loadModel('Users');
 
-            $twitch_id = $this->request->getQuery('twitchId');
-
-            if($this->Users->exists(['twitchUserId' => $twitch_id]))
-            {
-                $user = $this->Users->find('all', [
-                    'conditions' => [
-                        'mainSetup_id !=' => 0,
-                        'twitchUserId'    => $twitch_id
-                    ]
-                ])->matching('Setups', function($q) {
-                    return $q->where(['Setups.status' => 'PUBLISHED']);
-                })->first();
-
-                if($user)
-                {
-                    $results = $this->Users->find('all', [
-                        'fields' => [
-                            'id',
-                            'name',
-                            'mainSetup_id',
-                            'twitchUserId'
-                        ],
-                        'conditions' => [
-                            'Users.twitchUserId' => $twitch_id
-                        ],
-                        'contain' => [
-                            'Setups' => [
-                                'conditions' => [
-                                    'Setups.id' => $user->mainSetup_id
-                                ],
-                                'Resources' => [
-                                    'fields' => [
-                                        'user_id',
-                                        'setup_id',
-                                        'src',
-                                        'href'
+            $user = $this->Users->find('all', [
+                'fields' => [
+                    'id',
+                    'name',
+                    'mainSetup_id',
+                    'twitchUserId'
+                ],
+                'conditions' => [
+                    'twitchUserId' => $twitch_id
+                ],
+                'contain' => [
+                    'Setups' => [
+                        'Resources' => [
+                            'fields' => [
+                                'user_id',
+                                'setup_id',
+                                'src',
+                                'href'
+                            ],
+                            'conditions' => [
+                                'OR' => [
+                                    [
+                                        'type' => 'SETUP_FEATURED_IMAGE'
                                     ],
-                                    'conditions' => [
-                                        'OR' => [
-                                            [
-                                                'type' => 'SETUP_FEATURED_IMAGE'
-                                            ],
-                                            [
-                                                'type' => 'SETUP_PRODUCT'
-                                            ]
-                                        ]
-                                    ],
-                                    'sort' => [
-                                        'type' => 'ASC'
+                                    [
+                                        'type' => 'SETUP_PRODUCT'
                                     ]
                                 ]
+                            ],
+                            'sort' => [
+                                'type' => 'ASC'
                             ]
                         ]
-                    ])->first();
+                    ]
+                ]
+            ]);
+
+            // The user has been found !
+            if($user !== null)
+            {
+                // The user got a main setup set !
+                if($user->mainSetup_id != 0)
+                {
+                    // We iterate over the user setups to keep only the main one.
+                    foreach($user->setup as $setup)
+                    {
+                        if($setup->id != $user->mainSetup_id)
+                        {
+                            unset($setup);
+                        }
+                    }
+
+                    // Last check to ensure the setup is not unpublished !
+                    if($user->setup[0]->status !== 'PUBLISHED')
+                    {
+                        $results = ['error' => 'unpublished_main_setup'];
+                    }
                 }
 
                 else
                 {
-                    $results = ['error' => 'no_main_setup_published'];
+                    // Does the user have a setup "set-able" as main ?
+                    if(!count($user->setup))
+                    {
+                        $results = ['error' => 'no_setup'];
+                    }
+
+                    else
+                    {
+                        $results = ['error' => 'no_main_setup_set'];
+                    }
                 }
             }
 
