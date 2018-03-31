@@ -117,7 +117,7 @@ class APIController extends AppController
                         ]
                     ]
                 ]
-            ]);
+            ])->first();
 
             // The user has been found !
             if($user !== null)
@@ -125,26 +125,35 @@ class APIController extends AppController
                 // The user got a main setup set !
                 if($user->mainSetup_id != 0)
                 {
-                    // We iterate over the user setups to keep only the main one.
-                    foreach($user->setup as $setup)
+                    // We iterate over the user's setups to keep only the main one.
+                    foreach($user->setups as $key => $setup)
                     {
                         if($setup->id != $user->mainSetup_id)
                         {
-                            unset($setup);
+                            unset($user->setups[$key]);
                         }
                     }
 
+                    // Use `array_values` to reorder the keys (useful when some setups have been deleted above).
+                    $user->setups = array_values($user->setups);
+
                     // Last check to ensure the setup is not unpublished !
-                    if($user->setup[0]->status !== 'PUBLISHED')
+                    if($user->setups[0]->status !== 'PUBLISHED')
                     {
-                        $results = ['error' => 'unpublished_main_setup'];
+                        // "(draft)|(rejected)_main_setup"
+                        $results = ['error' => strtolower($user->setups[0]->status) . '_main_setup'];
+                    }
+
+                    else
+                    {
+                        $results = $user;
                     }
                 }
 
                 else
                 {
                     // Does the user have a setup "set-able" as main ?
-                    if(!count($user->setup))
+                    if(!count($user->setups))
                     {
                         $results = ['error' => 'no_setup'];
                     }
