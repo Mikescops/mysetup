@@ -108,8 +108,17 @@ class UsersTable extends Table
         $validator
             ->notEmpty('mail')
             ->add('mail', 'unique', [
-                'rule' => function($email) {
-                    return !$this->exists(['mail' => strtolower($email)]);
+                'rule' => function($email, $context) {
+                    if($context['newRecord'])
+                    {
+                        // For Users.{add,twitch}, we just check the non-existence of an entity already having this email address.
+                        return !$this->exists(['mail' => strtolower($email)]);
+                    }
+                    else
+                    {
+                        // This is for Users.edit, we check that ONLY ONE entity got this (new ?) email address.
+                        return ($this->find()->where(['mail' => strtolower($email), 'id !=' => $context['data']['id']])->count() === 0);
+                    }
                 },
                 'message' => __('This E-mail address is already used')
             ])
