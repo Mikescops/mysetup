@@ -328,4 +328,29 @@ class APIController extends AppController
             'inline; filename="' . $setup->title . '".jpeg'
         );
     }
+
+    /*
+     * This method is here to bother Twitch and its limitation for links pointing to other domains.
+     * We simply fetch a product from its ID, and redirect the client to its URL !
+     */
+    public function pLink()
+    {
+        // Allows only GET requests
+        if(!$this->request->is('get'))
+        {
+            die();
+        }
+
+        // This would throw a 404 if the Resource ID does not exist for a setup product !
+        $resource = $this->Setups->Resources->get($this->request->getQuery('id'), [
+            'fields' => [
+                'href'
+            ],
+            'conditions' => [
+                'type' => 'SETUP_PRODUCT'
+            ]
+        ]);
+
+        return $this->redirect(urldecode($resource->href));
+    }
 }
