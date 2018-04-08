@@ -98,6 +98,7 @@ class APIController extends AppController
                             'fields' => [
                                 'user_id',
                                 'setup_id',
+                                'id',
                                 'title',
                                 'src',
                                 'href'
