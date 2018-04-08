@@ -101,7 +101,6 @@ class APIController extends AppController
                                 'id',
                                 'title',
                                 'src',
-                                'href'
                             ],
                             'conditions' => [
                                 'OR' => [
