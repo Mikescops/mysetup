@@ -338,7 +338,8 @@ class APIController extends AppController
         // Allows only GET requests
         if(!$this->request->is('get'))
         {
-            die();
+            // Just throw a 404-like exception here...
+            throw new NotFoundException();
         }
 
         // This would throw a 404 if the Resource ID does not exist for a setup product !
