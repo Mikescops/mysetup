@@ -227,6 +227,11 @@ class UsersTable extends Table
         return $rules;
     }
 
+    public function beforeSave(Event $event, EntityInterface $entity)
+    {
+        $entity->mail = strtolower($entity->mail);
+    }
+
     public function afterDelete(Event $event, EntityInterface $entity)
     {
         if(!(new File('uploads/files/pics/profile_picture_' . $entity['id'] . '.png'))->delete())
