@@ -121,7 +121,7 @@ msgstr "Nous avons trouvé l'utilisateur que tu recherches !"
 
 #: Controller/PagesController.php:175
 msgid "We have found the component you are looking for !"
-msgstr "Nous avons trouvé le composants que tu recherches !"
+msgstr "Nous avons trouvé le composant que tu recherches !"
 
 #: Controller/RequestsController.php:47
 msgid ""
