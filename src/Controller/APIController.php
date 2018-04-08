@@ -100,7 +100,7 @@ class APIController extends AppController
                                 'setup_id',
                                 'id',
                                 'title',
-                                'src',
+                                'src'
                             ],
                             'conditions' => [
                                 'OR' => [
