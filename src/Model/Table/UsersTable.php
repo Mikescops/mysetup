@@ -107,7 +107,12 @@ class UsersTable extends Table
 
         $validator
             ->notEmpty('mail')
-            ->add('mail', 'unique', ['rule' => 'validateUnique', 'provider' => 'table'])
+            ->add('mail', 'unique', [
+                'rule' => function($email) {
+                    return !$this->exists(['mail' => strtolower($email)]);
+                },
+                'message' => __('This E-mail address is already used')
+            ])
             ->add('mail', 'validFormat', [
                 'rule' => 'email',
                 'message' => __('We need a valid E-mail address')]);
