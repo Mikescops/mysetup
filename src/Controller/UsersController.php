@@ -336,6 +336,10 @@ class UsersController extends AppController
 
         if($this->request->is('post'))
         {
+            // This statement is super-important : It allows the users to type their email address with some UPPERCASES...
+            // CakePHP 4.X compliant, of course ;)
+            $this->request = $this->request->withData('mail', strtolower($this->request->getData('mail')));
+
             if($user = $this->Auth->identify())
             {
                 if($user['mailVerification'])
