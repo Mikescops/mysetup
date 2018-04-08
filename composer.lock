@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f3f25f4bea559f5e333badd17ba4962e",
+    "content-hash": "23ee6a0154a9716f5750b739121cce60",
     "packages": [
         {
             "name": "aura/intl",
@@ -468,6 +468,60 @@
                 "zikula"
             ],
             "time": "2017-12-29T09:13:20+00:00"
+        },
+        {
+            "name": "dereuromark/cakephp-setup",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-setup.git",
+                "reference": "1e8b34249c3f9e0a93f74fa1252c6ba28de21f9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/1e8b34249c3f9e0a93f74fa1252c6ba28de21f9e",
+                "reference": "1e8b34249c3f9e0a93f74fa1252c6ba28de21f9e",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.5",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "cakephp/chronos": "^1.0.1",
+                "dereuromark/cakephp-tools": "^1.1",
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Setup\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Author"
+                }
+            ],
+            "description": "A CakePHP plugin containing lots of useful management tools",
+            "homepage": "https://github.com/dereuromark/cakephp-setup",
+            "keywords": [
+                "backup",
+                "bake",
+                "cakephp",
+                "maintenance",
+                "management",
+                "plugin",
+                "setup",
+                "templates"
+            ],
+            "time": "2018-03-29T17:11:51+00:00"
         },
         {
             "name": "exeu/apai-io",

@@ -217,6 +217,8 @@ Plugin::load('Migrations');
 
 Plugin::load('Muffin/Throttle');
 
+Plugin::load('Setup', ['bootstrap' => true]);
+
 /*
  * Only try to load DebugKit in development mode
  * Debug Kit should not be installed on a production system
