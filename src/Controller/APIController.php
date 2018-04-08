@@ -351,6 +351,6 @@ class APIController extends AppController
             ]
         ]);
 
-        return $this->redirect(urldecode($resource->href));
+        return $this->redirect(htmlspecialchars_decode(urldecode($resource->href)));
     }
 }
