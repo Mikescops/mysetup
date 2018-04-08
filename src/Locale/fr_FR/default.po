@@ -665,11 +665,11 @@ msgstr "demande la propriété de"
 
 #: Template/Admin/dashboard.ctp:201
 msgid "Certified"
-msgstr "Certifié"
+msgstr "Certifiés"
 
 #: Template/Admin/dashboard.ctp:201
 msgid "Not certified"
-msgstr "Non-certifié"
+msgstr "Non-certifiés"
 
 #: Template/Admin/dashboard.ctp:203
 msgid "Other users"

@@ -646,11 +646,11 @@ msgstr "pide la apropiación de"
 
 #: Template/Admin/dashboard.ctp:201
 msgid "Certified"
-msgstr "Certificado"
+msgstr "Certificados"
 
 #: Template/Admin/dashboard.ctp:201
 msgid "Not certified"
-msgstr "No certificado"
+msgstr "No certificados"
 
 #: Template/Admin/dashboard.ctp:203
 msgid "Other users"
