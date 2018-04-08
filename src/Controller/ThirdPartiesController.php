@@ -56,7 +56,11 @@ class ThirdPartiesController extends AppController
         return parent::isAuthorized($user);
     }
 
-    public function searchProducts()
+    /*
+     * The parameters of this method will NEVER BE PASSED THROUGH ROUTING.
+     * They exist only for "internal" logic purpose (search for "store redirection" on this lint).
+     */
+    public function searchProducts($query = null, $store_redirection = null)
     {
         // Limit HTTP actions possible here
         if(!$this->request->is('get') && !$this->request->is('ajax'))
@@ -64,15 +68,24 @@ class ThirdPartiesController extends AppController
             die();
         }
 
-        $query = $this->request->getQuery('q');
+        $query = $this->request->getQuery('q', $query);
         // No query ? Just die bro'
         if(!$query)
         {
             die();
         }
 
-        // If no lang is set, we'll use the user's language to address the best store
-        $store = strtoupper($this->request->getQuery('lang', $this->Auth->user('preferredStore')));
+        // This test handles the "store redirection" feature.
+        if($store_redirection === null)
+        {
+            // If no lang is set, we'll use the user's language to address the best store
+            $store = strtoupper($this->request->getQuery('lang', $this->Auth->user('preferredStore')));
+        }
+        else
+        {
+            // If the back-end specified a store to search on, let's set it here.
+            $store = $store_redirection;
+        }
 
         // Is the user French ? Let's use the "LeDénicheur"'s API !
         if($store === 'FR')
@@ -123,6 +136,14 @@ class ThirdPartiesController extends AppController
                         'src'   => $value['media']['product_images']['first'][280]
                     ]);
                 }
+            }
+
+            /* SPECIAL TREATMENT FOR "NO RESULT OUTPUT" */
+            if(!count($results['products']))
+            {
+                // If the research gave no result with LeDenicheur API, we "redirect" the query to the US Amazon store.
+                // We should not be redirecting the calling procedure on a public method, but its logic allows us to take some risks :)
+                return $this->searchProducts($query, 'US');
             }
         }
 
