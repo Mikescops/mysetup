@@ -81,6 +81,32 @@ function inIframe() {
 }
 
 /**
+ * This function will detect if a add_setup_modal anchor is used in the URL
+ */
+$(function() {
+	if(window.location.hash && window.location.hash.substring(1) == "add_setup_modal") {
+		eventFire(document.getElementById('menu_trigger_add_modal'), 'click');
+  	}
+});
+
+/**
+ * @name eventFire
+ * @description Dectects if the current window is running under an iframe
+ * @param {DOM element} [el] [Define which element will receive the action]
+ * @param {event} [etype] [Type of event to use on the element]
+ * @type {HELPER}
+ */
+function eventFire(el, etype){
+  if (el.fireEvent) {
+    el.fireEvent('on' + etype);
+  } else {
+    var evObj = document.createEvent('Events');
+    evObj.initEvent(etype, true, false);
+    el.dispatchEvent(evObj);
+  }
+}
+
+/**
  * @description Slick slider on post page
  */
 $('.post_slider').slick({

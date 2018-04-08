@@ -66,7 +66,7 @@ use Cake\Core\Configure;
                                 <a id="notifications-trigger"><i class="fa fa-bell-o fa-fw" aria-hidden="true"></i></a>
                             </li>
                             <li>
-                                <a href="#add_setup_modal" data-lity><?= __('Add Setup') ?></a>
+                                <a id="menu_trigger_add_modal" href="#add_setup_modal" data-lity><?= __('Add Setup') ?></a>
                             </li>
                             <?php if($authUser['admin']): ?>
                                 <li>
