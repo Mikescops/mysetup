@@ -75,11 +75,19 @@ class ThirdPartiesController extends AppController
             die();
         }
 
+        $user = $this->Auth->user();
+        // User not connected ? Just die bro'
+        if($user === null)
+        {
+            $this->Flash->error(__('You are not authorized to access that location.'));
+            return $this->redirect('/');
+        }
+
         // This test handles the "store redirection" feature.
         if($store_redirection === null)
         {
             // If no lang is set, we'll use the user's language to address the best store
-            $store = strtoupper($this->request->getQuery('lang', $this->Auth->user('preferredStore')));
+            $store = strtoupper($this->request->getQuery('lang', $user->preferredStore));
         }
         else
         {
