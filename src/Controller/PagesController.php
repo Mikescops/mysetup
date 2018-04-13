@@ -19,6 +19,7 @@ use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
+use Cake\Cache\Cache;
 
 /**
  * Static content controller
@@ -37,6 +38,13 @@ class PagesController extends AppController
 
         $this->loadModel('Users');
         $this->loadModel('Setups');
+
+        // Set home page's cache (12 hours, but GC is voluntary not disabled)
+        Cache::config('HomePageCacheConfig', [
+            'className'   => 'Apc',
+            'duration'    => '+12 hours',
+            'prefix'      => 'homePage_'
+        ]);
     }
 
     /**
@@ -53,27 +61,41 @@ class PagesController extends AppController
         ]);
         $recentSetups = $this->Setups->getSetups(['number' => 3]);
 
-        $brandSetups = $this->loadModel('cloud_tags')->getSetupsByRandomTags(['type' => 'PRODUCTS_BRAND', 'number_tags' => 3]);
+        /* The two setups retrieval below are very slow, let's cache 'em */
+        $brandSetups = Cache::read('brandSetups', 'HomePageCacheConfig');
+        if($brandSetups === false)
+        {
+            $brandSetups = $this->loadModel('cloud_tags')->getSetupsByRandomTags(['type' => 'PRODUCTS_BRAND', 'number_tags' => 3]);
 
-        $randomResources = $this->Setups->Resources->find('all', [
-            'fields' => [
-                'title',
-                'src'
-            ],
-            'conditions' => [
-                'type' => 'SETUP_PRODUCT'
-            ],
-            'limit' => (
-                // Let's load less resources on mobile devices
-                $this->RequestHandler->isMobile() ? 4 : 6
-            ),
-        ])
-        ->matching('Setups', function($q) {
-            return $q->where(['Setups.status' => 'PUBLISHED']);
-        })
-        ->distinct(['Resources.title', 'Resources.src'])
-        ->order('RAND()')
-        ->toArray();
+            Cache::write('brandSetups', $brandSetups, 'HomePageCacheConfig');
+        }
+
+        $randomResources = Cache::read('randomResources', 'HomePageCacheConfig');
+        if($randomResources === false)
+        {
+            $randomResources = $this->Setups->Resources->find('all', [
+                'fields' => [
+                    'title',
+                    'src'
+                ],
+                'conditions' => [
+                    'type' => 'SETUP_PRODUCT'
+                ],
+                'limit' => (
+                    // Let's load less resources on mobile devices
+                    $this->RequestHandler->isMobile() ? 4 : 6
+                ),
+            ])
+            ->matching('Setups', function($q) {
+                return $q->where(['Setups.status' => 'PUBLISHED']);
+            })
+            ->distinct(['Resources.title', 'Resources.src'])
+            ->order('RAND()')
+            ->toArray();
+
+            Cache::write('randomResources', $randomResources, 'HomePageCacheConfig');
+        }
+        /* _____________________________________________________________ */
 
         if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {
