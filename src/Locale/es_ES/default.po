@@ -1,13 +1,13 @@
-# LANGUAGE translation of CakePHP Application
+# Spanish translation of CakePHP Application
 # Copyright 2017 - 2018 mysetup.co <support@mysetup.co>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
+"Project-Id-Version: 3.2\n"
 "POT-Creation-Date: 2018-03-27 20:15+0000\n"
 "PO-Revision-Date: 2018-03-27 22:29+0200\n"
 "Last-Translator: \n"
-"Language-Team: support@mysetup.co\n"
+"Language-Team: fr <support@mysetup.com>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
