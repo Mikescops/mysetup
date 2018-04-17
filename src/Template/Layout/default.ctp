@@ -235,7 +235,7 @@ use Cake\Core\Configure;
 
     <?= $this->Flash->render() ?>
 
-    <script>$(window).blur(function(){callnotif=true;pageTitleNotification.on("👋 <?= __('Hey there !') ?>", 5000);});</script>
+    <script>$(function(){nb_not = 2;if(nb_not > 0){pageTitleNotification(nb_not);}});</script>
 
     <?= $this->fetch('scriptBottom') ?>
 

@@ -1019,32 +1019,9 @@ for (var i = 0; i < forms.length; i++) {
  * @name pageTitleNotification
  * @description Display flashing notification in the page title
  */
-! function(t, n) {
-	t.pageTitleNotification = function() {
-		var e = {
-			currentTitle: null,
-			interval: null
-		};
-		return {
-			on: function(i, l) {
-				e.interval || (e.currentTitle = n.title, e.interval = t.setInterval(function() {
-					n.title = e.currentTitle === n.title ? i : e.currentTitle;
-				}, l || 1e3))
-			},
-			off: function() {
-				t.clearInterval(e.interval), e.interval = null, n.title = e.currentTitle;
-			}
-		};
-	}();
-}(window, document);
-
-var callnotif = false;
-$(window).focus(function() {
-	if (callnotif) {
-		pageTitleNotification.off();
-		callnotif = false;
-	}
-});
+function pageTitleNotification(n){
+	document.title = "(" + n + ") " + document.title
+}
 
 var recaptchaStatus = 0;
 function recaptchaDeferedLoading(){
