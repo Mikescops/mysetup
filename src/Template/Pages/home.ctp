@@ -19,6 +19,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <?php if(!$authUser): ?>
         <div class="hero_image">
             <div class="hero_container">
+                <h2>Share<br> your setup,<br> get inspired</h2>
                 <?= $this->Html->image('hero.svg', ['alt' => 'Hero mySetup.co', 'class' => 'hero-setup']) ?>
                 <?= $this->Html->image('mouse.svg', ['alt' => 'Mouse mySetup.co', 'class' => 'hero-mouse']) ?>
             </div>

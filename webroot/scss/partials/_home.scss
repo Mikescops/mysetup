@@ -21,6 +21,18 @@
 	overflow: hidden;
 	margin: 0 -20px;
 	height: 430px;
+
+	h2{
+		position: absolute;
+		left: 50%;
+		z-index: 100;
+		font-variant: small-caps;
+		font-size: 3.2em;
+		font-weight: bold;
+		top: 40px;
+		text-align: left;
+		margin-left: -366px;
+	}
 }
 
 .hero_image img{
@@ -38,8 +50,8 @@
 
 .hero-mouse{
 	position: absolute;
-	top: 183px;
-	margin-left: 180px;
+	top: 225px;
+	margin-left: 278px;
 
 	animation: float-mouse 5s ease-in-out infinite;
 }
