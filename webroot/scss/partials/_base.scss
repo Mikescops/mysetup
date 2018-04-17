@@ -74,7 +74,7 @@ img{
 
 footer{
 	margin-top: 40px;
-	padding: 50px 0 50px 0;
+	padding-bottom: 50px;
 	background-color: #000;
 
 	ul{
@@ -83,6 +83,28 @@ footer{
 
 	a{
 		color: #cfcfcf;
+	}
+}
+
+.partners-row{
+	background: #111;
+	text-align: center;
+	align-items: center;
+	padding: 10px 0;
+	margin-bottom: 50px;
+
+	.column{
+		margin: 0;
+		max-height: 60px;
+	}
+
+	img{
+		padding: 10px;
+		max-height: 60px;
+
+		&:hover{
+			opacity: 0.8;
+		}
 	}
 }
 

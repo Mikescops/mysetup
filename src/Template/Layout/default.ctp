@@ -180,37 +180,37 @@ use Cake\Core\Configure;
     <?php endif; ?>
 
     <footer>
+        <div class="row partners-row">
+            <div class="column"><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img alt="Partner LeDenicheur" src="<?=$this->Url->build('/img/partners/ledenicheur.png')?>"></a></div>
+            <div class="column"><a href="https://www.twitch.tv/" target="_blank" class="item"><img alt="Partner Twitch" src="<?=$this->Url->build('/img/partners/twitch-white.png')?>"></a></div>
+            <div class="column"><a href="https://geek-mexicain.net/" target="_blank" class="item"><img alt="Partner Geek Mexicain" src="<?=$this->Url->build('/img/partners/geekmexicain.png')?>"></a></div>
+            <div class="column"><a href="https://www.ikoula.com/" target="_blank" class="item"><img alt="Partner Ikoula" src="<?=$this->Url->build('/img/partners/ikoula-white.png')?>"></a></div>
+        </div>
         <div class="container">
             <div class="row">
-                    <div class="column column-25">
-                      <div class="footer-title"><?= __('Partners') ?></div>
-                      <ul>
-                        <li><a href="https://geek-mexicain.net/" target="_blank">Geek Mexicain</a></li>
-                        <li><a href="https://hardwakening.fr/" target="_blank" class="item">HardWakening</a></li>
-                        <li><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img style="max-width: 140px" alt="Partner LeDenicheur" src="<?=$this->Url->build('/img/partners/ledenicheur.png')?>"></a></li>
-                      </ul>
-                    </div>
-                    <div class="column column-25">
-                      <div class="footer-title"><?= __('About us') ?></div>
-                      <ul>
+                <div class="column column-25">
+                    <div class="footer-title"><?= __('About us') ?></div>
+                    <ul>
                         <li><a href="<?=$this->Url->build('/blog/')?>" class="item"><?= __('Our Blog') ?></a></li>
                         <li><a href="<?= $this->Url->build('/pages/team'); ?>"><?= __('Our Team') ?></a></li>
                         <li><a href="<?= $this->Url->build('/pages/legals'); ?>"><?= __('Legal Mentions') ?></a></li>
-                      </ul>
-                    </div>
-                    <div class="column column-25">
-                      <div class="footer-title"><?= __('Support') ?></div>
-                      <ul>
+                    </ul>
+                </div>
+                <div class="column column-25">
+                    <div class="footer-title"><?= __('Support') ?></div>
+                    <ul>
                         <li><a href="<?=$this->Url->build('/pages/q&a')?>"><?= __('Help - Q&amp;A') ?></a></li>
                         <li><a href="<?= $this->Url->build('/bugReport') ?>"><?= __('Report a bug') ?></a></li>
-                      </ul>
-                    </div>
-                    <div class="column column-25 logo_footer">
-                        <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mysetup.co')); ?>
-                        <p><?= __('All rights reserved') ?> – mySetup.co<br> © 2017 - 2018</p>
-                    </div>
-              </div>
-          </div>
+                    </ul>
+                </div>
+                <div class="column column-25">
+                </div>
+                <div class="column column-25 logo_footer">
+                    <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mysetup.co')); ?>
+                    <p><?= __('All rights reserved') ?> – mySetup.co<br> © 2017 - 2018</p>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
