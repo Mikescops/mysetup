@@ -17,34 +17,49 @@ class NotificationsController extends AppController
     {
         if($this->request->is('ajax'))
         {
-            $results = $this->Notifications->find('all', [
+            $notifications = $this->Notifications->find('all', [
                 'conditions' => [
                     'user_id' => $this->Auth->user('id'),
                     'new' => 1
                 ],
                 'order' => [
-                    'dateTime' => 'DESC'
+                    'dateTime' => 'ASC'
                 ],
                 'limit' => $this->request->getQuery('n', 4)
             ]);
 
+            $results['notifications'] = [];
+
             // Here we'll concatenate 'on-the-go' a "time ago with words" to the notifications content and makes some translations (it was the actually the goal of this method...)
-            foreach($results as $result)
+            foreach($notifications as $notification)
             {
-                $result->content = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $result->dateTime->timeAgoInWords() . '</span></a>', $result->content);
+                $notification->content = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $notification->dateTime->timeAgoInWords() . '</span></a>', $notification->content);
 
-                if(strpos($result->content, $this->Notifications->types['like']))
+                if(strpos($notification->content, $this->Notifications->types['like']))
                 {
-                    $result->content = str_replace($this->Notifications->types['alt'], __('Liker\'s profile picture'), $result->content);
-                    $result->content = str_replace($this->Notifications->types['like'], __('liked your setup'), $result->content);
+                    $notification->content = str_replace($this->Notifications->types['alt'], __('Liker\'s profile picture'), $notification->content);
+                    $notification->content = str_replace($this->Notifications->types['like'], __('liked your setup'), $notification->content);
                 }
 
-                elseif(strpos($result->content, $this->Notifications->types['comment']))
+                elseif(strpos($notification->content, $this->Notifications->types['comment']))
                 {
-                    $result->content = str_replace($this->Notifications->types['alt'], __('Commenter\'s profile picture'), $result->content);
-                    $result->content = str_replace($this->Notifications->types['comment'], __('commented your setup'), $result->content);
+                    $notification->content = str_replace($this->Notifications->types['alt'], __('Commenter\'s profile picture'), $notification->content);
+                    $notification->content = str_replace($this->Notifications->types['comment'], __('commented your setup'), $notification->content);
                 }
+
+                else  // Other notifications...
+                {
+                    $notification->content = str_replace($this->Notifications->types['alt'], __('An user profile picture'), $notification->content);
+                }
+
+                array_push($results['notifications'], $notification);
             }
+
+            // Adds the unread notifications count to the output
+            $results['count'] = $this->Notifications->find()->where([
+                'new'     => 1,
+                'user_id' => $this->Auth->user('id')
+            ])->count();
 
             return new Response([
                 'status' => 200,
