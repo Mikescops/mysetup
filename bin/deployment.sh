@@ -11,7 +11,7 @@ COMPOSER_ALLOW_SUPERUSER=true composer install -o -n --profile
 bin/cake plugin assets symlink
 
 # Has the model changed ?
-bin/cake orm_cache clear
+bin/cake schema_cache clear
 bin/cake migrations migrate --no-lock
 
 # Update the translation binary catalogs from sources !

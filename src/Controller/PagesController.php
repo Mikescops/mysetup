@@ -15,8 +15,8 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Network\Exception\ForbiddenException;
-use Cake\Network\Exception\NotFoundException;
+use Cake\Http\Exception\ForbiddenException;
+use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
 use Cake\Cache\Cache;
@@ -40,8 +40,8 @@ class PagesController extends AppController
         $this->loadModel('Setups');
 
         // Set home page's cache (12 hours, but GC is voluntary not disabled)
-        Cache::config('HomePageCacheConfig', [
-            'className'   => 'Apc',
+        Cache::setConfig('HomePageCacheConfig', [
+            'className'   => 'Apcu',
             'duration'    => '+12 hours',
             'prefix'      => 'homePage_'
         ]);
@@ -278,7 +278,7 @@ class PagesController extends AppController
      * @param string ...$path Path segments.
      * @return void|\Cake\Network\Response
      * @throws \Cake\Network\Exception\ForbiddenException When a directory traversal attempt.
-     * @throws \Cake\Network\Exception\NotFoundException When the view file could not
+     * @throws \Cake\Http\Exception\NotFoundException When the view file could not
      *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
      */
     public function display(...$path)
@@ -318,7 +318,7 @@ class PagesController extends AppController
 
         // Another hook to avoid error pages when an user...
         // ...types directly in an (existing) raw address
-        if($this->request->controller === 'Pages' and $this->request->action === 'display')
+        if($this->request->getParam('controller') === 'Pages' and $this->request->getParam('action') === 'display')
         {
             switch($this->request->getAttribute('params')['pass'][0])
             {

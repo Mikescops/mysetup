@@ -113,7 +113,7 @@ class RequestsController extends AppController
                             // If the new owner is the current user (another case is not very likely, but who knows ?)
                             if($this->Auth->user('id') == $new_owner->id)
                             {
-                                $this->Requests->Users->synchronizeSessionWithUserEntity($this->session(), $new_owner, parent::isAdmin($new_owner));
+                                $this->Requests->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $new_owner, parent::isAdmin($new_owner));
                             }
                         }
 
@@ -201,7 +201,7 @@ class RequestsController extends AppController
     {
         if(isset($user))
         {
-            if(in_array($this->request->action, ['requestOwnership', 'requestReport']))
+            if(in_array($this->request->getParam('action'), ['requestOwnership', 'requestReport']))
             {
                 return true;
             }

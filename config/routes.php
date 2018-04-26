@@ -49,8 +49,11 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     /* Muffin's Throttle middleware to limit requests on our APIs routes */
     $routes->registerMiddleware('throttle', new ThrottleMiddleware([
-        'limit'   => 100,
-        'message' => json_encode(['error' => 'Rate limit reached'])
+        'limit'    => 100,
+        'response' => [
+            'body' => json_encode(['error' => 'Rate limit reached']),
+            'type' => 'json'
+        ]
     ]));
     /* _________________________________________________________________ */
 

@@ -27,7 +27,7 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
         <span class="pushli"></span>
         <?php
             $queries = '';
-            foreach($this->request->query as $id => $query)
+            foreach($this->request->getQuery() as $id => $query)
             {
                 if($queries)
                 {
@@ -42,22 +42,22 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                 $queries = '?' . $queries;
             }
         ?>
-        <li <?php if($this->request->url == 'search/'): ?>class="active"<?php endif; ?>>
+        <li <?php if($this->request->getPath() == '/search/'): ?>class="active"<?php endif; ?>>
             <a href="<?=$this->Url->build('/search/' . h($queries))?>">
                 <?= __('All') ?>
             </a>
         </li>
-        <li <?php if($this->request->url == 'search/setups'): ?>class="active"<?php endif; ?>>
+        <li <?php if($this->request->getPath() == '/search/setups'): ?>class="active"<?php endif; ?>>
             <a href="<?=$this->Url->build('/search/setups' . h($queries))?>">
                 <?= __('Setups') ?>
             </a>
         </li>
-        <li <?php if($this->request->url == 'search/resources'): ?>class="active"<?php endif; ?>>
+        <li <?php if($this->request->getPath() == '/search/resources'): ?>class="active"<?php endif; ?>>
             <a href="<?=$this->Url->build('/search/resources' . h($queries))?>">
                 <?= __('Components') ?>
             </a>
         </li>
-        <li <?php if($this->request->url == 'search/users'): ?>class="active"<?php endif; ?>>
+        <li <?php if($this->request->getPath() == '/search/users'): ?>class="active"<?php endif; ?>>
             <a href="<?=$this->Url->build('/search/users' . h($queries))?>">
                 <?= __('Users') ?>
             </a>

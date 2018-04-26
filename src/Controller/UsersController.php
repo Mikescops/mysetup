@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Network\Exception\NotFoundException;
+use Cake\Http\Exception\NotFoundException;
 use Cake\Network\Http\Client;
 use Cake\Event\Event;
 use Cake\I18n\Time;
@@ -34,7 +34,7 @@ class UsersController extends AppController
     {
         // If the visitor is not the owner (nor an admin), let's send only to the View the PUBLISHED setups (+ the count will be good with this method ;))
         $conditions = null;
-        if($id != $this->Auth->user('id') and !parent::isAdminBySession($this->request->session()))
+        if($id != $this->Auth->user('id') and !parent::isAdminBySession($this->request->getSession()))
         {
             $conditions = ['Setups.status' => 'PUBLISHED'];
         }
@@ -173,7 +173,7 @@ class UsersController extends AppController
      *
      * @param string|null $id User id.
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @throws \Cake\Http\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
@@ -208,7 +208,7 @@ class UsersController extends AppController
                 }
             }
 
-            if(!isset($data['verified']) or !parent::isAdminBySession($this->request->session()))
+            if(!isset($data['verified']) or !parent::isAdminBySession($this->request->getSession()))
             {
                 $data['verified'] = $user['verified'];
             }
@@ -270,10 +270,10 @@ class UsersController extends AppController
                 if($this->Auth->user('id') == $user->id)
                 {
                     // The user may have changed its preferred store (language) and / or its timezone, let's update this into the server's session
-                    $this->Users->prepareSessionForUser($this->request->session(), $user);
+                    $this->Users->prepareSessionForUser($this->request->getSession(), $user);
 
                     // The user entity has changed, let's update the session one to reflect the modifications everywhere !
-                    $this->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
+                    $this->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $user, parent::isAdmin($user));
                 }
 
                 $this->Flash->success(__('The user has been updated.'));
@@ -359,8 +359,8 @@ class UsersController extends AppController
 
                     $this->Flash->success(__('You are successfully logged in !'));
 
-                    $this->Users->prepareSessionForUser($this->request->session(), $user);
-                    $this->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
+                    $this->Users->prepareSessionForUser($this->request->getSession(), $user);
+                    $this->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $user, parent::isAdmin($user));
 
                     $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
@@ -461,7 +461,7 @@ class UsersController extends AppController
 
                     $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
 
-                    $this->Users->prepareSessionForUser($this->request->session(), $user);
+                    $this->Users->prepareSessionForUser($this->request->getSession(), $user);
 
                     $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
@@ -699,8 +699,8 @@ class UsersController extends AppController
         }
 
         // Let's log this user in !
-        $this->Users->prepareSessionForUser($this->request->session(), $user);
-        $this->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
+        $this->Users->prepareSessionForUser($this->request->getSession(), $user);
+        $this->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $user, parent::isAdmin($user));
         $this->Auth->setUser($user);
         return $this->redirect($this->Auth->redirectUrl());
     }
@@ -716,7 +716,7 @@ class UsersController extends AppController
 
     public function isAuthorized($user)
     {
-        if(isset($user) && in_array($this->request->action, ['edit', 'delete']) && (int)$this->request->getAttribute('params')['pass'][0] === $user['id'])
+        if(isset($user) && in_array($this->request->getParam('action'), ['edit', 'delete']) && (int)$this->request->getAttribute('params')['pass'][0] === $user['id'])
         {
             return true;
         }

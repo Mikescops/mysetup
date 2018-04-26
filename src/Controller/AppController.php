@@ -42,7 +42,9 @@ class AppController extends Controller
     {
         parent::initialize();
 
-        $this->loadComponent('RequestHandler');
+        $this->loadComponent('RequestHandler', [
+            'enableBeforeRedirect' => false
+        ]);
         $this->loadComponent('Flash');
         $this->loadComponent('Security');
         $this->loadComponent('Auth', [
@@ -80,9 +82,9 @@ class AppController extends Controller
         {
             $lang = $this->request->getQuery('lang');
         }
-        elseif($this->request->session()->check('Config.language'))
+        elseif($this->request->getSession()->check('Config.language'))
         {
-            $lang = $this->request->session()->read('Config.language');
+            $lang = $this->request->getSession()->read('Config.language');
         }
         else
         {
@@ -134,7 +136,7 @@ class AppController extends Controller
 
         // Just give the session user entity to the front...
         // This object is supposed to be synchronize with the "real" one.
-        $this->set('authUser', $this->request->session()->read('Auth.User'));
+        $this->set('authUser', $this->request->getSession()->read('Auth.User'));
     }
 
     public function beforeFilter(Event $event)
