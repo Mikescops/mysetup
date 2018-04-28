@@ -78,6 +78,7 @@ use Cake\Core\Configure;
                             <a><?= __('Categories') ?> <i class="fa fa-caret-down"></i></a>
                             <ul>
                                 <li><a href="<?= $this->Url->build('/recent'); ?>"><?= __('Most recent') ?></a></li>
+                                <li><a href="<?= $this->Url->build('/staffpicks'); ?>"><?= __('Staff Picks') ?></a></li>
                             </ul>
                         </li>
                         <?php if($authUser): ?>

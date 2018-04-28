@@ -138,6 +138,13 @@ class PagesController extends AppController
         $this->display('recent');
     }
 
+    public function staffpicks()
+    {
+        $this->set('setups', $this->Setups->getSetups(['featured' => true, 'number' => 20]));
+
+        $this->display('staffpicks');
+    }
+
     public function bugReport()
     {
         if($this->request->is('post'))
@@ -314,7 +321,7 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['display', 'home', 'recent', 'bugReport', 'search']);
+        $this->Auth->allow(['display', 'home', 'recent', 'staffpicks', 'bugReport', 'search']);
 
         // Another hook to avoid error pages when an user...
         // ...types directly in an (existing) raw address
@@ -328,6 +335,10 @@ class PagesController extends AppController
 
                 case 'recent':
                     $this->redirect(['action' => 'recent']);
+                    break;
+
+                case 'staffpicks':
+                    $this->redirect(['action' => 'staffpicks']);
                     break;
 
                 case 'bugReport':
