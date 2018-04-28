@@ -1015,21 +1015,6 @@ for (var i = 0; i < forms.length; i++) {
 	replaceValidationUI(forms[i]);
 }
 
-/**
- * @name pageTitleNotification
- * @description Display flashing notification in the page title
- */
-function pageTitleNotification(n){
-	document.title = "(" + n + ") " + document.title
-}
-
-var recaptchaStatus = 0;
-function recaptchaDeferedLoading(){
-	if(recaptchaStatus == 0){
-		$.getScript('https://www.google.com/recaptcha/api.js');
-		recaptchaStatus = 1;
-	}
-}
 
 function commentModal(action){
 	lity(document.getElementById(action + '-comment-script').innerHTML);

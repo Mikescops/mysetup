@@ -235,8 +235,6 @@ use Cake\Core\Configure;
 
     <?= $this->Flash->render() ?>
 
-    <script>$(function(){nb_not = 2;if(nb_not > 0){pageTitleNotification(nb_not);}});</script>
-
     <?= $this->fetch('scriptBottom') ?>
 
     <!-- Analytics -->
