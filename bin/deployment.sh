@@ -19,5 +19,8 @@ for file in src/Locale/*_*/*.po; do
     msgfmt -o $(dirname "${file}")"/"$(basename "${file}" .po)".mo" "${file}"
 done
 
+# Vendor packages manual patches for newer versions of CakePHP
+sed -i 's/->config/->getConfig/1' vendor/tanuck/cakephp-markdown/src/View/Helper/MarkdownHelper.php
+
 
 exit 0
