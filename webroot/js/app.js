@@ -905,8 +905,8 @@ function checknotification() {
 			success: function(json) {
 				notifs = $.parseJSON(json);
 				$('#notif-container').html('');
-				if (notifs[0] != null) {
-					$.each(notifs, function(key, value) {
+				if (notifs['notificaions'] != null) {
+					$.each(notifs['notificaions'], function(key, value) {
 						$('#notif-container').append('<div onclick="markasread(' + value.id + ')" class="notif notifnb-' + value.id + '">' + value.content + '<div class="notif-close"><span onclick="markasread(' + value.id + ')">×</span></div></div>');
 					});
 
