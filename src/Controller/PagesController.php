@@ -81,10 +81,7 @@ class PagesController extends AppController
                 'conditions' => [
                     'type' => 'SETUP_PRODUCT'
                 ],
-                'limit' => (
-                    // Let's load less resources on mobile devices
-                    $this->RequestHandler->isMobile() ? 4 : 6
-                ),
+                'limit' => 6
             ])
             ->matching('Setups', function($q) {
                 return $q->where(['Setups.status' => 'PUBLISHED']);
@@ -96,6 +93,13 @@ class PagesController extends AppController
             Cache::write('randomResources', $randomResources, 'HomePageCacheConfig');
         }
         /* _____________________________________________________________ */
+
+        /* Let's load less resources (4 instead of 6 [see just above]) on mobile devices */
+        if($this->RequestHandler->isMobile())
+        {
+            array_pop($randomResources);
+            array_pop($randomResources);
+        }
 
         if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {
