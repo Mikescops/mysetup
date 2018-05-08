@@ -162,7 +162,7 @@ use Cake\Core\Configure;
 
     <?= $this->fetch('content') ?>
 
-    <?php if(!$authUser && $this->request->url != 'login'): ?>
+    <?php if(!$authUser && $this->request->url != 'login' && $this->request->url != ''): ?>
 
         <section class="colored-box before-footer calltosignin">
             <svg class="decorative-divider" preserveAspectRatio="none" viewBox="0 0 100 100">
@@ -181,13 +181,6 @@ use Cake\Core\Configure;
     <?php endif; ?>
 
     <footer>
-        <div class="row partners-row">
-            <div class="column"><a href="https://www.lafrenchtech.com/" target="_blank" class="item"><img alt="Partner French Tech" src="<?=$this->Url->build('/img/partners/french-tech.png')?>"></a></div>
-            <div class="column"><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img alt="Partner LeDenicheur" src="<?=$this->Url->build('/img/partners/ledenicheur.png')?>"></a></div>
-            <div class="column"><a href="https://www.twitch.tv/" target="_blank" class="item"><img alt="Partner Twitch" src="<?=$this->Url->build('/img/partners/twitch-white.png')?>"></a></div>
-            <div class="column"><a href="https://geek-mexicain.net/" target="_blank" class="item"><img alt="Partner Geek Mexicain" src="<?=$this->Url->build('/img/partners/geekmexicain.png')?>"></a></div>
-            <div class="column"><a href="https://www.ikoula.com/" target="_blank" class="item"><img alt="Partner Ikoula" src="<?=$this->Url->build('/img/partners/ikoula-white.png')?>"></a></div>
-        </div>
         <div class="container">
             <div class="row">
                 <div class="column column-25">
