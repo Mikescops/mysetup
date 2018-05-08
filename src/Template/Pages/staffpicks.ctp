@@ -1,7 +1,7 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', __('Staff Picks | mySetup.co'));
+$this->assign('title', __('Staff Picks') . ' | mySetup.co');
 
 echo $this->Html->meta('description', __('See the best setups selected by our staff on mySetup.co'), ['block' => true]);
 
