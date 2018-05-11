@@ -233,8 +233,8 @@ use Cake\Core\Configure;
     <?= $this->fetch('scriptBottom') ?>
 
     <!-- Analytics -->
-    <script type="text/javascript">var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){var u="//analytics.geek-mexicain.net/";_paq.push(['setTrackerUrl',u+'piwik.php']);_paq.push(['setSiteId','2']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=!0;g.defer=!0;g.src=u+'piwik.js';s.parentNode.insertBefore(g,s)})();</script>
-    <noscript><p><img src="//analytics.geek-mexicain.net/piwik.php?idsite=2&rec=1" style="border:0;" alt="" /></p></noscript>
+    <script type="text/javascript">var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){var u="//<?= Configure::read('Credentials.Matomo.domain_name') ?>/";_paq.push(['setTrackerUrl',u+'piwik.php']);_paq.push(['setSiteId','2']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=!0;g.defer=!0;g.src=u+'piwik.js';s.parentNode.insertBefore(g,s)})();</script>
+    <noscript><p><img src="//<?= Configure::read('Credentials.Matomo.domain_name') ?>/piwik.php?idsite=2&rec=1" style="border:0;" alt="" /></p></noscript>
 
 </body>
 </html>
