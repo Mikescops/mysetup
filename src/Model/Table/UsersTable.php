@@ -85,8 +85,9 @@ class UsersTable extends Table
             ]
         ]);
         $this->addBehavior('Sitemap.Sitemap', [
-            'changefreq' => 'daily',
-            'lastmod' => 'modificationDate'
+            'changefreq' => 'weekly',
+            'priority'   => 0.5,
+            'lastmod'    => 'modificationDate'
         ]);
     }
 
