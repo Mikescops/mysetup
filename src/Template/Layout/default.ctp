@@ -78,6 +78,7 @@ use Cake\Core\Configure;
                             <a><?= __('Categories') ?> <i class="fa fa-caret-down"></i></a>
                             <ul>
                                 <li><a href="<?= $this->Url->build('/recent'); ?>"><?= __('Most recent') ?></a></li>
+                                <li><a href="<?= $this->Url->build('/staffpicks'); ?>"><?= __('Staff Picks') ?></a></li>
                             </ul>
                         </li>
                         <?php if($authUser): ?>
@@ -161,7 +162,7 @@ use Cake\Core\Configure;
 
     <?= $this->fetch('content') ?>
 
-    <?php if(!$authUser && $this->request->getPath() != '/login'): ?>
+    <?php if(!$authUser && $this->request->getPath() != '' && $this->request->getPath() != '/login'): ?>
 
         <section class="colored-box before-footer calltosignin">
             <svg class="decorative-divider" preserveAspectRatio="none" viewBox="0 0 100 100">
@@ -180,12 +181,6 @@ use Cake\Core\Configure;
     <?php endif; ?>
 
     <footer>
-        <div class="row partners-row">
-            <div class="column"><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img alt="Partner LeDenicheur" src="<?=$this->Url->build('/img/partners/ledenicheur.png')?>"></a></div>
-            <div class="column"><a href="https://www.twitch.tv/" target="_blank" class="item"><img alt="Partner Twitch" src="<?=$this->Url->build('/img/partners/twitch-white.png')?>"></a></div>
-            <div class="column"><a href="https://geek-mexicain.net/" target="_blank" class="item"><img alt="Partner Geek Mexicain" src="<?=$this->Url->build('/img/partners/geekmexicain.png')?>"></a></div>
-            <div class="column"><a href="https://www.ikoula.com/" target="_blank" class="item"><img alt="Partner Ikoula" src="<?=$this->Url->build('/img/partners/ikoula-white.png')?>"></a></div>
-        </div>
         <div class="container">
             <div class="row">
                 <div class="column column-25">
@@ -235,13 +230,11 @@ use Cake\Core\Configure;
 
     <?= $this->Flash->render() ?>
 
-    <script>$(function(){nb_not = 2;if(nb_not > 0){pageTitleNotification(nb_not);}});</script>
-
     <?= $this->fetch('scriptBottom') ?>
 
     <!-- Analytics -->
-    <script type="text/javascript">var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){var u="//analytics.geek-mexicain.net/";_paq.push(['setTrackerUrl',u+'piwik.php']);_paq.push(['setSiteId','2']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=!0;g.defer=!0;g.src=u+'piwik.js';s.parentNode.insertBefore(g,s)})();</script>
-    <noscript><p><img src="//analytics.geek-mexicain.net/piwik.php?idsite=2&rec=1" style="border:0;" alt="" /></p></noscript>
+    <script type="text/javascript">var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){var u="//<?= Configure::read('Credentials.Matomo.domain_name') ?>/";_paq.push(['setTrackerUrl',u+'piwik.php']);_paq.push(['setSiteId','2']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=!0;g.defer=!0;g.src=u+'piwik.js';s.parentNode.insertBefore(g,s)})();</script>
+    <noscript><p><img src="//<?= Configure::read('Credentials.Matomo.domain_name') ?>/piwik.php?idsite=2&rec=1" style="border:0;" alt="" /></p></noscript>
 
 </body>
 </html>

@@ -73,7 +73,7 @@ img{
 }
 
 footer{
-	margin-top: 40px;
+	padding-top: 40px;
 	padding-bottom: 50px;
 	background-color: #000;
 
@@ -91,16 +91,20 @@ footer{
 	text-align: center;
 	align-items: center;
 	padding: 10px 0;
-	margin-bottom: 50px;
 
 	.column{
 		margin: 0;
 		max-height: 60px;
 	}
 
+	a{
+		display: inline-block;
+	}
+
 	img{
 		padding: 10px;
 		max-height: 60px;
+		vertical-align: middle;
 
 		&:hover{
 			opacity: 0.8;
@@ -184,7 +188,6 @@ footer{
 }
 
 .before-footer{
-	margin-bottom: -40px;
 
 	.container{
 		text-align: center;
@@ -196,6 +199,11 @@ footer{
 	background-color: #344154;
 	padding-top: 100px;
 	background: linear-gradient(145deg, #344154 0%, #3A62A8 100%);
+
+	p{
+		margin: -20px 0 0 0;
+		font-size: 1.1em;
+	}
 }
 
 .colored-box{

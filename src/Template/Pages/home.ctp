@@ -206,3 +206,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <br clear='all'>
     </div>
 </div>
+<div class="row partners-row">
+    <div class="column"><a href="https://www.lafrenchtech.com/" target="_blank" class="item"><img alt="Partner French Tech" src="<?=$this->Url->build('/img/partners/french-tech.png')?>"></a></div>
+    <div class="column"><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img alt="Partner LeDenicheur" src="<?=$this->Url->build('/img/partners/ledenicheur.png')?>"></a></div>
+    <div class="column"><a href="https://www.twitch.tv/" target="_blank" class="item"><img alt="Partner Twitch" src="<?=$this->Url->build('/img/partners/twitch-white.png')?>"></a></div>
+    <div class="column"><a href="https://geek-mexicain.net/" target="_blank" class="item"><img alt="Partner Geek Mexicain" src="<?=$this->Url->build('/img/partners/geekmexicain.png')?>"></a></div>
+    <div class="column"><a href="https://www.ikoula.com/" target="_blank" class="item"><img alt="Partner Ikoula" src="<?=$this->Url->build('/img/partners/ikoula-white.png')?>"></a></div>
+</div>

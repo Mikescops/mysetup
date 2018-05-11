@@ -905,8 +905,8 @@ function checknotification() {
 			success: function(json) {
 				notifs = $.parseJSON(json);
 				$('#notif-container').html('');
-				if (notifs[0] != null) {
-					$.each(notifs, function(key, value) {
+				if (notifs['notifications'].length) {
+					$.each(notifs['notifications'], function(key, value) {
 						$('#notif-container').append('<div onclick="markasread(' + value.id + ')" class="notif notifnb-' + value.id + '">' + value.content + '<div class="notif-close"><span onclick="markasread(' + value.id + ')">×</span></div></div>');
 					});
 
@@ -1015,21 +1015,6 @@ for (var i = 0; i < forms.length; i++) {
 	replaceValidationUI(forms[i]);
 }
 
-/**
- * @name pageTitleNotification
- * @description Display flashing notification in the page title
- */
-function pageTitleNotification(n){
-	document.title = "(" + n + ") " + document.title
-}
-
-var recaptchaStatus = 0;
-function recaptchaDeferedLoading(){
-	if(recaptchaStatus == 0){
-		$.getScript('https://www.google.com/recaptcha/api.js');
-		recaptchaStatus = 1;
-	}
-}
 
 function commentModal(action){
 	lity(document.getElementById(action + '-comment-script').innerHTML);

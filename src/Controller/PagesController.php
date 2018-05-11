@@ -81,10 +81,7 @@ class PagesController extends AppController
                 'conditions' => [
                     'type' => 'SETUP_PRODUCT'
                 ],
-                'limit' => (
-                    // Let's load less resources on mobile devices
-                    $this->RequestHandler->isMobile() ? 4 : 6
-                ),
+                'limit' => 6
             ])
             ->matching('Setups', function($q) {
                 return $q->where(['Setups.status' => 'PUBLISHED']);
@@ -96,6 +93,13 @@ class PagesController extends AppController
             Cache::write('randomResources', $randomResources, 'HomePageCacheConfig');
         }
         /* _____________________________________________________________ */
+
+        /* Let's load less resources (4 instead of 6 [see just above]) on mobile devices */
+        if($this->RequestHandler->isMobile())
+        {
+            array_pop($randomResources);
+            array_pop($randomResources);
+        }
 
         if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {
@@ -136,6 +140,13 @@ class PagesController extends AppController
         $this->set('setups', $this->Setups->getSetups(['number' => 6]));
 
         $this->display('recent');
+    }
+
+    public function staffpicks()
+    {
+        $this->set('setups', $this->Setups->getSetups(['featured' => true, 'number' => 20]));
+
+        $this->display('staffpicks');
     }
 
     public function bugReport()
@@ -314,7 +325,7 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['display', 'home', 'recent', 'bugReport', 'search']);
+        $this->Auth->allow(['display', 'home', 'recent', 'staffpicks', 'bugReport', 'search']);
 
         // Another hook to avoid error pages when an user...
         // ...types directly in an (existing) raw address
@@ -328,6 +339,10 @@ class PagesController extends AppController
 
                 case 'recent':
                     $this->redirect(['action' => 'recent']);
+                    break;
+
+                case 'staffpicks':
+                    $this->redirect(['action' => 'staffpicks']);
                     break;
 
                 case 'bugReport':

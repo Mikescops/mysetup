@@ -219,12 +219,11 @@ return [
 
     /**
      * A simple array to store app-specific credentials for third-party service providers.
-
-     * Twitch : `id` and `secret` for Twitch's OAuth provider
      */
     'Credentials' => [
         'Matomo' => [
-            'token' => 'YOUR_MATOMO_TOKEN_GOES_HERE',
+            'domain_name' => 'YOUR_MATOMO_DOMAIN_NAME_GOES_HERE',
+            'token'       => 'YOUR_MATOMO_TOKEN_GOES_HERE',
         ],
         'Google' => [
             'CAPTCHA' => [
