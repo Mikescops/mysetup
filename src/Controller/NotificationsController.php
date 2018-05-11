@@ -23,7 +23,7 @@ class NotificationsController extends AppController
                     'new' => 1
                 ],
                 'order' => [
-                    'dateTime' => 'ASC'
+                    'dateTime' => 'DESC'
                 ],
                 'limit' => $this->request->getQuery('n', 4)
             ]);
