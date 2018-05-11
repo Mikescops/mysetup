@@ -12,6 +12,28 @@ use Cake\Event\Event;
  */
 class NotificationsController extends AppController
 {
+    /* /!\ Careful /!\
+     * This is not a 'regular' `index()` method :
+     * This one will list the notifications of the current user.
+     * It's only available 'privately'.
+     */
+    public function index()
+    {
+        if($this->request->is('get'))
+        {
+            $notifications = $this->paginate($this->Notifications, [
+                'conditions' => [
+                    'user_id' => $this->Auth->user('id')
+                ],
+                'order' => [
+                    'dateTime' => 'DESC'
+                ]
+            ]);
+
+            $this->set('notifications', $notifications);
+        }
+    }
+
     /* AJAX CALLS */
     public function getNotifications()
     {
