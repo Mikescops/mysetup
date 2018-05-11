@@ -138,11 +138,7 @@ class NotificationsController extends AppController
         }
     }
 
-    /**
-     * This method is currently not used within the app.
-     * Maybe in the future ?
-     */
-    public function markAsNonRead()
+    public function markAsUnread()
     {
         if($this->request->is('ajax'))
         {
@@ -190,11 +186,7 @@ class NotificationsController extends AppController
         }
     }
 
-    /**
-     * This method is currently not used within the app.
-     * Maybe in the future ?
-     */
-    public function deleteNotification()
+    public function delete()
     {
         if($this->request->is('ajax'))
         {
