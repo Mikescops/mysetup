@@ -19,6 +19,7 @@
 // @koala-prepend "tippy.min.js"
 // @koala-prepend "emojione.min.js"
 // @koala-prepend "cookieconsent.min.js"
+// @koala-prepend "slim.min.js"
 
 
 /**
@@ -259,87 +260,7 @@ $(function() {
 	$("#profileUpload").change(function() {
 		fasterPreview(this);
 	});
-	$("#featuredimage").change(function() {
-		featuredPreview(this);
-	});
-	$("#featuredImage_edit").change(function() {
-		featuredPreview_edit(this);
-	});
 
-	$("#featuredimage_preview").click(function(e) {
-		$(".label_fimage_add").click();
-	});
-
-	$("#featuredimage_preview_edit").click(function(e) {
-		$(".label_fimage_edit").click();
-	});
-
-
-	/***** Preview galery edit *****/
-	$("#gallery0image_preview_edit").click(function(e) {
-		$("#gallery0").click();
-	});
-	$("#gallery1image_preview_edit").click(function(e) {
-		$("#gallery1").click();
-	});
-	$("#gallery2image_preview_edit").click(function(e) {
-		$("#gallery2").click();
-	});
-	$("#gallery3image_preview_edit").click(function(e) {
-		$("#gallery3").click();
-	});
-	$("#gallery4image_preview_edit").click(function(e) {
-		$("#gallery4").click();
-	});
-
-	$("#gallery0").change(function() {
-		galleryPreview_edit(this, 0);
-	});
-	$("#gallery1").change(function() {
-		galleryPreview_edit(this, 1);
-	});
-	$("#gallery2").change(function() {
-		galleryPreview_edit(this, 2);
-	});
-	$("#gallery3").change(function() {
-		galleryPreview_edit(this, 3);
-	});
-	$("#gallery4").change(function() {
-		galleryPreview_edit(this, 4);
-	});
-
-	/***** Preview galery add *****/
-	$("#gallery0image_preview_add").click(function(e) {
-		$("#gallery0add").click();
-	});
-	$("#gallery1image_preview_add").click(function(e) {
-		$("#gallery1add").click();
-	});
-	$("#gallery2image_preview_add").click(function(e) {
-		$("#gallery2add").click();
-	});
-	$("#gallery3image_preview_add").click(function(e) {
-		$("#gallery3add").click();
-	});
-	$("#gallery4image_preview_add").click(function(e) {
-		$("#gallery4add").click();
-	});
-
-	$("#gallery0add").change(function() {
-		galleryPreview_add(this, 0);
-	});
-	$("#gallery1add").change(function() {
-		galleryPreview_add(this, 1);
-	});
-	$("#gallery2add").change(function() {
-		galleryPreview_add(this, 2);
-	});
-	$("#gallery3add").change(function() {
-		galleryPreview_add(this, 3);
-	});
-	$("#gallery4add").change(function() {
-		galleryPreview_add(this, 4);
-	});
 
 	$(".edit-comment").click(function(e) {
 		var $comment = $(this),
@@ -352,36 +273,10 @@ $(function() {
 	});
 });
 
-/**
- * @name fasterPreview
- * @description Update Profile Picture on Upload
- */
-function fasterPreview(uploader) {
-	if (uploader.files && uploader.files[0]) {
-		$('#profileImage').attr('src',
-			window.URL.createObjectURL(uploader.files[0]));
-	}
-}
-
-/**
- * @name featuredPreview*
- * @description Featured Image preview on modal
- */
-function featuredPreview(uploader) {
-	if (uploader.files && uploader.files[0]) {
-		$('#featuredimage_preview').attr('src',
-			window.URL.createObjectURL(uploader.files[0]));
-	}
-	$(".label_fimage_add").hide();
+function featuredPreviewChange(){
 	$(".gallery-holder.homide").show();
 }
 
-function featuredPreview_edit(uploader) {
-	if (uploader.files && uploader.files[0]) {
-		$('#featuredimage_preview_edit').attr('src',
-			window.URL.createObjectURL(uploader.files[0]));
-	}
-}
 
 /**
  * @name galleryPreview*

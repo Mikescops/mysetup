@@ -73,8 +73,11 @@ class SetupsController extends AppController
             // Let's get the data from the form
             $data = $this->request->getData();
 
+            //var_dump(json_decode($data['featuredImage'][0])->output);
+            //die();
+
             // Before anything else, let's check whether or not this new setup has a featured image and at least one resource !
-            if((!isset($data['featuredImage']) or $data['featuredImage']['tmp_name'] === '') or (!isset($data['resources']) or $data['resources'] === ''))
+            if((!isset($data['featuredImage']) or json_decode($data['featuredImage'][0])->output->name === '') or (!isset($data['resources']) or $data['resources'] === ''))
             {
                 $this->Flash->error(__('It looks like you missed something...'));
                 return $this->redirect($this->referer());
@@ -91,6 +94,7 @@ class SetupsController extends AppController
             {
                 $data['author'] = $user->name;
             }
+
 
             // We'll only allow `PUBLISHED` and `DRAFT` status on Setups.add
             if(!isset($data['status']) or !in_array($data['status'], ['PUBLISHED', 'DRAFT']))
@@ -115,7 +119,7 @@ class SetupsController extends AppController
             if($this->Setups->save($setup))
             {
                 /* Here we get and save the featured image */
-                if(!$this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
+                if(!$this->Setups->Resources->saveResourceImage((array) json_decode($data['featuredImage'][0])->output, $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
                 {
                     $this->Setups->delete($setup);
                     $this->Flash->warning(__('Your featured image could not be saved, and it is needed for your setup...'));
@@ -207,7 +211,7 @@ class SetupsController extends AppController
                 $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, parent::isAdminBySession($this->request->session()));
 
                 /* Here we get and save the featured image */
-                if(isset($data['featuredImage']) and $data['featuredImage'] !== '' and (int)$data['featuredImage']['error'] === 0)
+                if(!empty($data['featuredImage'][0]))
                 {
                     // We fetch the CURRENT featured image, so as to delete it afterwards
                     $image_to_delete = $this->Setups->Resources->find()->where([
@@ -217,7 +221,7 @@ class SetupsController extends AppController
                     ])->first();
 
                     // We try to save the new image chosen by the user !
-                    if($this->Setups->Resources->saveResourceImage($data['featuredImage'], $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
+                    if($this->Setups->Resources->saveResourceImage((array) json_decode($data['featuredImage'][0])->output, $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
                     {
                         // If it's OK, we just delete the old one, and re-compute the main colors !
                         $this->Setups->Resources->delete($image_to_delete);
