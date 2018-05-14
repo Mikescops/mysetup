@@ -7,6 +7,7 @@ use Cake\Http\Client;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 use Cake\Routing\Router;
+use Cake\Utility\Security;
 
 /**
  * Users Controller
@@ -118,7 +119,7 @@ class UsersController extends AppController
                 $user->id = $this->Users->getNewRandomID();
 
                 // ... and generate a token to verify its mail address =)
-                $user->mailVerification = $this->Users->getRandomString(32);
+                $user->mailVerification = Security::randomString(32);
 
                 // By default, an user will have as timezone the Europe/London one (GMT + 0)
                 $user->timeZone = 'Europe/London';
@@ -404,7 +405,7 @@ class UsersController extends AppController
                 sleep(mt_rand(0, 3));
 
                 // Let's generate a new random password, and send it to the email address specified
-                $temp = $this->Users->getRandomString();
+                $temp = Security::randomString(16);
                 $user->password = $temp;
                 if($this->Users->save($user))
                 {
@@ -609,7 +610,7 @@ class UsersController extends AppController
                     if(!$response->json['email_verified'])
                     {
                         // If it's true, let's send him a (new) email to verify it, and redirect him with a message
-                        $user->mailVerification = $this->Users->getRandomString(32);
+                        $user->mailVerification = Security::randomString(32);
                         $this->Users->save($user);
                         $email = $this->Users->getEmailObject($user->mail, 'Verify your account !');
                         $email->setTemplate('verify')
@@ -653,7 +654,7 @@ class UsersController extends AppController
                 'id'             => $this->Users->getNewRandomID(),
                 'name'           => $response->json['display_name'],
                 'mail'           => $response->json['email'],
-                'password'       => $this->Users->getRandomString(),
+                'password'       => Security::randomString(16),
                 // Fetches the language formatted in the query by the JS
                 'preferredStore' => strtoupper(substr($this->request->getQuery('state'), 0, 2)),
                 'timeZone'       => 'Europe/London',

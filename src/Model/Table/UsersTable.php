@@ -398,11 +398,6 @@ class UsersTable extends Table
         return $id;
     }
 
-    public function getRandomString($length = 16)
-    {
-        return substr(md5(mt_rand()), 0, $length);
-    }
-
     public function getLocaleByCountryID($country_id)
     {
         $locale = null;

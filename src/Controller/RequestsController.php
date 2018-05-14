@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Utility\Security;
 
 /**
  * Requests Controller
@@ -32,7 +33,7 @@ class RequestsController extends AppController
             if($setup->user_id != $user->id and !$this->Requests->exists(['user_id' => $user->id, 'setup_id' => $setup->id]))
             {
                 $request = $this->Requests->newEntity([
-                    'token' => $this->Requests->Users->getRandomString(),
+                    'token'      => Security::randomString(),
                     'user_id'    => $user->id,
                     'setup_id'   => $setup->id
                 ]);
