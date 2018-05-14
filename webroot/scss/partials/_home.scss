@@ -514,6 +514,7 @@
 	justify-content: flex-start;
 	flex-flow: row wrap;
 	width: 100%;
+	margin-bottom: 10px;
 }
 
 .feeditem.userfeed{
@@ -556,8 +557,8 @@
 .fullitem {
     position: relative;
     flex: auto;
-    width: 20em;
-    margin: 1em;
+    width: 16em;
+    margin: .5em;
 
     max-height: 372.68px;
     border-radius: 4px;
