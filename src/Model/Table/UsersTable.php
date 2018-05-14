@@ -10,7 +10,7 @@ use Cake\Datasource\EntityInterface;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
 use Cake\Mailer\Email;
-use Cake\Network\Http\Client;
+use Cake\Http\Client;
 
 /**
  * Users Model

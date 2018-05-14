@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Http\Exception\NotFoundException;
-use Cake\Network\Http\Client;
+use Cake\Http\Client;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 use Cake\Routing\Router;

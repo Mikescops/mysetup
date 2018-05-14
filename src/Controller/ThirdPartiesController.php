@@ -5,7 +5,7 @@ use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Network\Response;
-use Cake\Network\Http\Client;
+use Cake\Http\Client;
 use Cake\Cache\Cache;
 use Cake\I18n\Time;
 use ApaiIO\ApaiIO;
