@@ -508,19 +508,12 @@
 	height: 35px;
 }
 
-.fullitem {
-    position: relative;
-    margin-bottom: 20px;
-    max-height: 372.68px;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
 .feeditem{
-	-webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
-    position: sticky;
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	flex-flow: row wrap;
+	width: 100%;
 }
 
 .feeditem.userfeed{
@@ -560,6 +553,16 @@
 	}
 }
 
+.fullitem {
+    position: relative;
+    flex: auto;
+    width: 20em;
+    margin: 1em;
+
+    max-height: 372.68px;
+    border-radius: 4px;
+    overflow: hidden;
+}
 
 .fullitem a:first-child{
 	line-height: 0;

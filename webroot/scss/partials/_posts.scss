@@ -97,6 +97,7 @@
 	width: 100%;
 	padding: 10px;
 	z-index: 9;
+	margin-bottom: 10px;
 }
 
 .featured-inner h3{
@@ -164,26 +165,26 @@
 
 .config-items{
 	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-flow: row wrap;
 	width: 100%;
+	overflow: hidden;
 }
 
-.config-items :first-child .item_box{
-	margin-left: 0;
-}
-
-.config-items :last-child .item_box{
-	margin-right: 0;
+.maincontainer .config-items{
+	max-height: 11.2em;
 }
 
 .item_box {
-    float:left;
     position: relative;
-    width: 15%;
-    padding-bottom : 15%; /* = width for a 1:1 aspect ratio */
-    margin: 1%;
+    flex: auto;
+    width: 10em;
+    padding-bottom: 10em; /* = width for a 1:1 aspect ratio */
+    margin: .5em;
     border: 3px solid #fff;
     border-radius: 4px;
-    background-position:center center;
+    background-position: center center;
     background-repeat:no-repeat;
     background-size:contain; /* you change this to "contain" if you don't want the images to be cropped */
     background-color: #fff;

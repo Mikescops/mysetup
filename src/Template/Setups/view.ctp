@@ -28,7 +28,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
     <div class="post_slider">
 
-
         <div class="slider-item">
             <div class="featured-img-setup slider-item-inner">
 
@@ -116,7 +115,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     </div>
 </div>
 
-<div class="container maincontainer">
+<div class="container">
     <div class="row config-post">
 
         <div class="config-items">
