@@ -236,46 +236,40 @@ class ResourcesTable extends Table
 
             $destination = 'uploads/files/' . $setup->user_id . '/' . Text::uuid() . '.jpg';
 
-            if(1)
+            // Simple shortcut for below ternaries
+            $featured = ($type === 'SETUP_FEATURED_IMAGE' ? true : false);
+
+            // Let's create an Imagick instance
+            $image = new \Imagick();
+
+            // We read the blob in base64 from the array
+            $image->readImageBlob(base64_decode(explode(",", $file['image'])[1]));
+
+            if(!$image->setImageFormat('jpg') || !$image->setImageCompressionQuality(85) /*|| !$image->gaussianBlurImage(0.8, 10) */|| !$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
             {
-                // Simple shortcut for below ternaries
-                $featured = ($type === 'SETUP_FEATURED_IMAGE' ? true : false);
+                $flash->warning(__('One of your image could not be converted to JPG, compressed, resized or saved... Please contact an administrator.'));
+                return false;
+            }
 
-                $image = new \Imagick();
-                $image->readImageBlob(base64_decode(explode(",", $file['image'])[1]));
+            // The image operations were successful, let's save this resource entity into the DB !
+            $resource = $this->newEntity([
+                'user_id'  => $setup->user_id,
+                'setup_id' => $setup->id,
+                'type'     => $type,
+                'title'    => null,
+                'href'     => null,
+                'src'      => $destination
+            ]);
 
-                if(!$image->setImageFormat('jpg') || !$image->setImageCompressionQuality(85) /*|| !$image->gaussianBlurImage(0.8, 10) */|| !$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
-                {
-                    $flash->warning(__('One of your image could not be converted to JPG, compressed, resized or saved... Please contact an administrator.'));
-                    return false;
-                }
-
-                // The image operations were successful, let's save this resource entity into the DB !
-                $resource = $this->newEntity([
-                    'user_id'  => $setup->user_id,
-                    'setup_id' => $setup->id,
-                    'type'     => $type,
-                    'title'    => null,
-                    'href'     => null,
-                    'src'      => $destination
-                ]);
-
-                if(!$this->save($resource))
-                {
-                    $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
-                    return false;
-                }
-
-                else
-                {
-                    return true;
-                }
+            if(!$this->save($resource))
+            {
+                $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
+                return false;
             }
 
             else
             {
-                $flash->warning(__('One of the file you uploaded could not be saved.'));
-                return false;
+                return true;
             }
         }
 

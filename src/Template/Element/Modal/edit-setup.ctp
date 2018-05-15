@@ -38,7 +38,11 @@
                             <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Change gallery image') ?>" src="<?= $this->Url->build('/'.$image->src)?>">
                             <?php echo $this->Form->control('gallery'.$i, ['name' => 'gallery'.$i.'[]', 'hidden', 'type' => 'file', 'label' => '']); ?>
                         </div>
-                    <?php endforeach; ?>
+                    <?php $i++; endforeach; for($i; $i < 5; $i++):?>
+                        <div class="slim slim-round" data-download="true" data-ratio="16:9" data-size="1366,768">
+                            <?php echo $this->Form->control('gallery'.$i, ['name' => 'gallery'.$i.'[]', 'hidden', 'type' => 'file', 'label' => '']); ?>
+                        </div>
+                    <?php endfor; ?>
                 </div>
 
                 <div class="modal-footer">
