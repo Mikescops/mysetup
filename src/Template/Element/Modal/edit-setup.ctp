@@ -25,7 +25,7 @@
                 <span class="float-right link-marksupp"><a target="_blank" href="<?=$this->Url->build('/pages/q&a#q-6')?>"><i class="fa fa-info-circle"></i> <?= __('Markdown supported') ?></a></span>
                 <br />
                 <i class="fa fa-camera"></i> <?= __('We only accept images lighter than 5 MB !') ?>
-                <div class="slim" data-download="true" data-ratio="22:10" data-size="1080,500">
+                <div class="slim slim-round" data-download="true" data-ratio="22:10" data-size="1080,500">
                     <img alt="<?= __('Featured Preview') ?>" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg')) ?>">
                     <?php
                     echo $this->Form->control('featuredImage', ['name' => 'featuredImage[]', 'hidden','type' => 'file', 'label' => '']);
@@ -34,7 +34,7 @@
 
                 <div class="gallery-holder">
                     <?php $i = 0;foreach ($setup['resources']['gallery_images'] as $image):?>
-                        <div class="slim" data-download="true" data-ratio="16:9" data-size="1366,768">
+                        <div class="slim slim-round" data-download="true" data-ratio="16:9" data-size="1366,768">
                             <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Change gallery image') ?>" src="<?= $this->Url->build('/'.$image->src)?>">
                             <?php echo $this->Form->control('gallery'.$i, ['name' => 'gallery'.$i.'[]', 'hidden', 'type' => 'file', 'label' => '']); ?>
                         </div>

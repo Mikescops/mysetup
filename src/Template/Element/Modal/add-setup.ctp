@@ -25,25 +25,25 @@
             <i class="fa fa-camera"></i> <?= __('We only accept images lighter than 5 MB !') ?>
             
 
-            <div class="slim" data-did-save="featuredPreviewChange" data-ratio="22:10" data-size="1080,500">
+            <div class="slim slim-round" data-did-save="featuredPreviewChange" data-ratio="22:10" data-size="1080,500">
                 <?php
                     echo $this->Form->control('featuredImage', ['name' => 'featuredImage[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => 'Featured Image', 'required' => 'true']);
                 ?>
             </div>
             <div class="gallery-holder homide">
-                <div class="slim" data-ratio="16:9" data-size="1366,768">
+                <div class="slim slim-round" data-ratio="16:9" data-size="1366,768">
                     <?php echo $this->Form->control('gallery0', ['name' => 'gallery0[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => '']); ?>
                 </div>
-                <div class="slim" data-ratio="16:9" data-size="1366,768">
+                <div class="slim slim-round" data-ratio="16:9" data-size="1366,768">
                     <?php echo $this->Form->control('gallery1', ['name' => 'gallery1[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => '']); ?>
                 </div>
-                <div class="slim" data-ratio="16:9" data-size="1366,768">
+                <div class="slim slim-round" data-ratio="16:9" data-size="1366,768">
                     <?php echo $this->Form->control('gallery2', ['name' => 'gallery2[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => '']); ?>
                 </div>
-                <div class="slim" data-ratio="16:9" data-size="1366,768">
+                <div class="slim slim-round" data-ratio="16:9" data-size="1366,768">
                     <?php echo $this->Form->control('gallery3', ['name' => 'gallery3[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => '']); ?>
                 </div>
-                <div class="slim" data-ratio="16:9" data-size="1366,768">
+                <div class="slim slim-round" data-ratio="16:9" data-size="1366,768">
                     <?php echo $this->Form->control('gallery4', ['name' => 'gallery4[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => '']); ?>
                 </div>
             </div>

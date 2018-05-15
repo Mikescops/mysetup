@@ -274,7 +274,7 @@ $(function() {
 });
 
 function featuredPreviewChange(){
-	$(".gallery-holder.homide").show();
+	$(".gallery-holder.homide").removeClass('homide');
 }
 
 

@@ -49,6 +49,16 @@
 	margin-bottom: 15px;
 }
 
+.gallery-holder{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+
+	.slim{
+		flex: auto;
+		width: 12em;
+	}
+}
 
 .gallery-holder.homide{
 	display: none;
@@ -59,8 +69,17 @@
 	height: 0;
 }
 
+.slim-round{
+	border-radius: 6px;
+	margin: .5em;
+}
+
 .add-form .input.file, .edit-form .input.file{
 	height: 0;
+
+	label{
+		display: none;
+	}
 }
 
 .is_author{
