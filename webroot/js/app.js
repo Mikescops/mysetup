@@ -277,24 +277,14 @@ function featuredPreviewChange(){
 	$(".gallery-holder.homide").removeClass('homide');
 }
 
-
 /**
- * @name galleryPreview*
- * @description Gallery Image preview on modal
+ * @name fasterPreview
+ * @description Update Profile Picture on Upload
  */
-function galleryPreview_edit(uploader, number) {
+function fasterPreview(uploader) {
 	if (uploader.files && uploader.files[0]) {
-		$('#gallery' + number + 'image_preview_edit').attr('style',
-			'background-image:url(' + window.URL.createObjectURL(uploader.files[0]) + ')');
-		$('#gallery' + number + 'image_preview_edit .fa-plus').remove();
-	}
-}
-
-function galleryPreview_add(uploader, number) {
-	if (uploader.files && uploader.files[0]) {
-		$('#gallery' + number + 'image_preview_add').attr('style',
-			'background-image:url(' + window.URL.createObjectURL(uploader.files[0]) + ')');
-		$('#gallery' + number + 'image_preview_add .fa-plus').remove();
+		$('#profileImage').attr('src',
+			window.URL.createObjectURL(uploader.files[0]));
 	}
 }
 
