@@ -89,18 +89,21 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                 ?>
 
                 <?php if(isset($results["resources"]) && count($results["resources"]) > 0): $resources = $results["resources"]; ?>
-                    <div class="config-items">
+                    
                         <?php if(count($resources, COUNT_RECURSIVE) == 1): ?>
-                            <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"><div class="item_box" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div></a>
+                            <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"><div class="item_box float-left" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div></a>
                             <span><?= __('All setups related to') ?> :</span>
                             <h4><?= urldecode(h($resources[0]->title)) ?> <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"> <i class="fa fa-shopping-basket"></i></a></h4>
                         <?php else:?>
                             <h3><?= __('Found components') ?></h3>
-                        <?php foreach ($resources as $item): ?>
-                            <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
-                        <?php endforeach; endif;?>
+                            <div class="config-items">
+                                <?php foreach ($resources as $item): ?>
+                                    <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
+                                <?php endforeach;?>
+                            </div>
+                        <?php endif;?>
                         <br clear="all">
-                    </div>
+                        
                     <br clear="all">
                 <?php endif;?>
 

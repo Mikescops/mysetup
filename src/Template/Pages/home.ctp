@@ -92,8 +92,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             <?php endforeach?>
         </div>
 
-        <br clear='all'>
-
         <div class="rowsocial">
           <?php if(!$authUser): ?>
             <div class="twitch-advert" onclick="logTwitch('<?= $lang ?>')">

@@ -23,6 +23,8 @@ use Cake\I18n\Middleware\LocaleSelectorMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Http\Middleware\SecurityHeadersMiddleware;
 
+use Setup\Middleware\MaintenanceMiddleware;
+
 /**
  * Application setup class.
  *
@@ -61,7 +63,10 @@ class Application extends BaseApplication
             ->add((new SecurityHeadersMiddleware())
                   ->setCrossDomainPolicy()
                   ->setReferrerPolicy()
-                  ->setXssProtection());
+                  ->setXssProtection())
+
+            // Loads the Setup-plugin's "Maintenance mode" (see `bin/deployment.sh` script)
+            ->add(MaintenanceMiddleware::class);
 
         return $middlewareQueue;
     }

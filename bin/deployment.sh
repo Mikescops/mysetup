@@ -1,6 +1,9 @@
 #!/bin/bash
 
 
+# Enable maintenance mode !
+bin/cake Setup.MaintenanceMode activate
+
 # This OUR method to clean the cache :P
 rm -rf tmp/*
 
@@ -21,6 +24,9 @@ done
 
 # Vendor packages manual patches for newer versions of CakePHP
 sed -i 's/->config/->getConfig/1' vendor/tanuck/cakephp-markdown/src/View/Helper/MarkdownHelper.php
+
+# Disable maintenance mode !
+bin/cake Setup.MaintenanceMode deactivate
 
 
 exit 0
