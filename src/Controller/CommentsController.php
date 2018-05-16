@@ -56,7 +56,7 @@ class CommentsController extends AppController
      *
      * @param string|null $id Comment id.
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @throws \Cake\Http\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
@@ -113,7 +113,7 @@ class CommentsController extends AppController
     {
         if(isset($user))
         {
-            if(in_array($this->request->action, ['edit', 'delete']))
+            if(in_array($this->request->getParam('action'), ['edit', 'delete']))
             {
                 if($this->Comments->isOwnedBy((int)$this->request->getAttribute('params')['pass'][0], $user['id']))
                 {
@@ -121,7 +121,7 @@ class CommentsController extends AppController
                 }
             }
 
-            elseif($this->request->action === 'add')
+            elseif($this->request->getParam('action') === 'add')
             {
                 return true;
             }

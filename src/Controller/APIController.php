@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Network\Response;
-use Cake\Network\Exception\NotFoundException;
+use Cake\Http\Exception\NotFoundException;
 use Cake\Cache\Cache;
 
 /**
@@ -22,7 +22,7 @@ class APIController extends AppController
         $this->loadModel('Setups');
 
         // We'll store Twitch promote images generated for some hours !
-        Cache::config('TwitchPromoteCacheConfig', [
+        Cache::setConfig('TwitchPromoteCacheConfig', [
             'className'   => 'File',
             'duration'    => '+1 day',
             'path'        => CACHE . 'twitchPromote' . DS,
@@ -201,7 +201,7 @@ class APIController extends AppController
         ]);
 
         // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner, nor an administrator...
-        $session = $this->request->session();
+        $session = $this->request->getSession();
         if(!$this->Setups->isPublic($id) and
            (!$session->read('Auth.User.id') or!$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and
            !parent::isAdminBySession($session))

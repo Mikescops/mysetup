@@ -162,7 +162,7 @@ use Cake\Core\Configure;
 
     <?= $this->fetch('content') ?>
 
-    <?php if(!$authUser && $this->request->url != 'login' && $this->request->url != ''): ?>
+    <?php if(!$authUser && $this->request->getPath() != '' && $this->request->getPath() != '/login'): ?>
 
         <section class="colored-box before-footer calltosignin">
             <svg class="decorative-divider" preserveAspectRatio="none" viewBox="0 0 100 100">

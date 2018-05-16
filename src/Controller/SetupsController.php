@@ -41,7 +41,7 @@ class SetupsController extends AppController
         ]);
 
         // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner, nor an administrator...
-        $session = $this->request->session();
+        $session = $this->request->getSession();
         if(!$this->Setups->isPublic($id) and (!$session->check('Auth.User') or !$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and !parent::isAdminBySession($session))
         {
             $this->Flash->error(__('You are not authorized to access that location.'));
@@ -132,7 +132,7 @@ class SetupsController extends AppController
                 $this->Setups->Resources->saveGalleryImages($setup, $data, $this->Flash);
 
                 /* Here we save each product that has been selected by the user */
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, parent::isAdminBySession($this->request->session()));
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, parent::isAdminBySession($this->request->getSession()));
 
                 /* Here we save the setup video URL (if it exists) */
                 if(isset($data['video']) and $data['video'] !== '')
@@ -147,7 +147,7 @@ class SetupsController extends AppController
                     $user->mainSetup_id = $setup->id;
                     $user->setDirty('modificationDate', true);
                     $this->Setups->Users->save($user);
-                    $this->Setups->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
+                    $this->Setups->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $user, parent::isAdmin($user));
                 }
                 // _______________________________________________________________________________________________
 
@@ -168,7 +168,7 @@ class SetupsController extends AppController
      *
      * @param string|null $id Setup id.
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @throws \Cake\Http\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
@@ -187,13 +187,13 @@ class SetupsController extends AppController
 
             // A regular user should have the right to submit its setups with PUBLISHED and DRAFT status values
             if(!isset($data['status']) or
-               (!in_array($data['status'], ['PUBLISHED', 'DRAFT']) && !parent::isAdminBySession($this->request->session())))
+               (!in_array($data['status'], ['PUBLISHED', 'DRAFT']) && !parent::isAdminBySession($this->request->getSession())))
             {
                 $data['status'] = $setup['status'];
             }
 
             // Only administrators can change the featured aspect of a setup
-            if(!isset($data['featured']) or !parent::isAdminBySession($this->request->session()))
+            if(!isset($data['featured']) or !parent::isAdminBySession($this->request->getSession()))
             {
                 $data['featured'] = $setup['featured'];
             }
@@ -204,7 +204,7 @@ class SetupsController extends AppController
             {
                 /* Here we delete all products then save again each product that has been selected by the user */
                 $this->Setups->Resources->deleteAll(['Resources.user_id' => $setup->user_id, 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
-                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, parent::isAdminBySession($this->request->session()));
+                $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, parent::isAdminBySession($this->request->getSession()));
 
                 /* Here we get and save the featured image */
                 if(isset($data['featuredImage']) and $data['featuredImage'] !== '' and (int)$data['featuredImage']['error'] === 0)
@@ -296,7 +296,7 @@ class SetupsController extends AppController
             // Force user session updating (`mainSetup_id` may have changed)
             if($this->Auth->user('id') == $setup->user_id)
             {
-                $this->Setups->Users->synchronizeSessionWithUserEntity($this->request->session(), null, parent::isAdmin($this->Auth->user()));
+                $this->Setups->Users->synchronizeSessionWithUserEntity($this->request->getSession(), null, parent::isAdmin($this->Auth->user()));
             }
 
             $this->Flash->success(__('The setup has been deleted.'));
@@ -328,7 +328,7 @@ class SetupsController extends AppController
     {
         if(isset($user))
         {
-            if(in_array($this->request->action, ['edit', 'delete']))
+            if(in_array($this->request->getParam('action'), ['edit', 'delete']))
             {
                 if($this->Setups->isOwnedBy((int)$this->request->getAttribute('params')['pass'][0], $user['id']))
                 {
@@ -336,7 +336,7 @@ class SetupsController extends AppController
                 }
             }
 
-            elseif($this->request->action === 'add')
+            elseif($this->request->getParam('action') === 'add')
             {
                 return true;
             }

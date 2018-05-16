@@ -45,7 +45,7 @@ class AdminController extends AppController
         $stats['count']['likes']     = $this->Likes->find()->count();
         // We split the resources in two distinct sets : images and products !
         $stats['count']['resources']['products'] = $this->Resources->find()->where(['type' => 'SETUP_PRODUCT'])->count();
-        $stats['count']['resources']['images']   = $this->Resources->find()->where(['type' => 'SETUP_FEATURED_IMAGE'])->orWhere(['type' => 'SETUP_GALLERY_IMAGE'])->count();
+        $stats['count']['resources']['images']   = $this->Resources->find()->where(['OR' => [['type' => 'SETUP_FEATURED_IMAGE'], ['type' => 'SETUP_GALLERY_IMAGE']]])->count();
         // Let's prepare the number of "new" users and setups
         $stats['count']['today']['setups'] = $this->Setups->find()->where(['creationDate >=' => new \Datetime('-1 day')])->count();
         $stats['count']['today']['users']  = $this->Users->find()->where(['creationDate >=' => new \Datetime('-1 day')])->count();

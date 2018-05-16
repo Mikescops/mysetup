@@ -2,11 +2,12 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Network\Exception\NotFoundException;
-use Cake\Network\Http\Client;
+use Cake\Http\Exception\NotFoundException;
+use Cake\Http\Client;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 use Cake\Routing\Router;
+use Cake\Utility\Security;
 
 /**
  * Users Controller
@@ -34,7 +35,7 @@ class UsersController extends AppController
     {
         // If the visitor is not the owner (nor an admin), let's send only to the View the PUBLISHED setups (+ the count will be good with this method ;))
         $conditions = null;
-        if($id != $this->Auth->user('id') and !parent::isAdminBySession($this->request->session()))
+        if($id != $this->Auth->user('id') and !parent::isAdminBySession($this->request->getSession()))
         {
             $conditions = ['Setups.status' => 'PUBLISHED'];
         }
@@ -118,7 +119,7 @@ class UsersController extends AppController
                 $user->id = $this->Users->getNewRandomID();
 
                 // ... and generate a token to verify its mail address =)
-                $user->mailVerification = $this->Users->getRandomString(32);
+                $user->mailVerification = Security::randomString(32);
 
                 // By default, an user will have as timezone the Europe/London one (GMT + 0)
                 $user->timeZone = 'Europe/London';
@@ -173,7 +174,7 @@ class UsersController extends AppController
      *
      * @param string|null $id User id.
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @throws \Cake\Http\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
@@ -208,7 +209,7 @@ class UsersController extends AppController
                 }
             }
 
-            if(!isset($data['verified']) or !parent::isAdminBySession($this->request->session()))
+            if(!isset($data['verified']) or !parent::isAdminBySession($this->request->getSession()))
             {
                 $data['verified'] = $user['verified'];
             }
@@ -270,10 +271,10 @@ class UsersController extends AppController
                 if($this->Auth->user('id') == $user->id)
                 {
                     // The user may have changed its preferred store (language) and / or its timezone, let's update this into the server's session
-                    $this->Users->prepareSessionForUser($this->request->session(), $user);
+                    $this->Users->prepareSessionForUser($this->request->getSession(), $user);
 
                     // The user entity has changed, let's update the session one to reflect the modifications everywhere !
-                    $this->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
+                    $this->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $user, parent::isAdmin($user));
                 }
 
                 $this->Flash->success(__('The user has been updated.'));
@@ -359,8 +360,8 @@ class UsersController extends AppController
 
                     $this->Flash->success(__('You are successfully logged in !'));
 
-                    $this->Users->prepareSessionForUser($this->request->session(), $user);
-                    $this->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
+                    $this->Users->prepareSessionForUser($this->request->getSession(), $user);
+                    $this->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $user, parent::isAdmin($user));
 
                     $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
@@ -404,7 +405,7 @@ class UsersController extends AppController
                 sleep(mt_rand(0, 3));
 
                 // Let's generate a new random password, and send it to the email address specified
-                $temp = $this->Users->getRandomString();
+                $temp = Security::randomString(16);
                 $user->password = $temp;
                 if($this->Users->save($user))
                 {
@@ -461,7 +462,7 @@ class UsersController extends AppController
 
                     $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
 
-                    $this->Users->prepareSessionForUser($this->request->session(), $user);
+                    $this->Users->prepareSessionForUser($this->request->getSession(), $user);
 
                     $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
@@ -609,7 +610,7 @@ class UsersController extends AppController
                     if(!$response->json['email_verified'])
                     {
                         // If it's true, let's send him a (new) email to verify it, and redirect him with a message
-                        $user->mailVerification = $this->Users->getRandomString(32);
+                        $user->mailVerification = Security::randomString(32);
                         $this->Users->save($user);
                         $email = $this->Users->getEmailObject($user->mail, 'Verify your account !');
                         $email->setTemplate('verify')
@@ -653,7 +654,7 @@ class UsersController extends AppController
                 'id'             => $this->Users->getNewRandomID(),
                 'name'           => $response->json['display_name'],
                 'mail'           => $response->json['email'],
-                'password'       => $this->Users->getRandomString(),
+                'password'       => Security::randomString(16),
                 // Fetches the language formatted in the query by the JS
                 'preferredStore' => strtoupper(substr($this->request->getQuery('state'), 0, 2)),
                 'timeZone'       => 'Europe/London',
@@ -699,8 +700,8 @@ class UsersController extends AppController
         }
 
         // Let's log this user in !
-        $this->Users->prepareSessionForUser($this->request->session(), $user);
-        $this->Users->synchronizeSessionWithUserEntity($this->request->session(), $user, parent::isAdmin($user));
+        $this->Users->prepareSessionForUser($this->request->getSession(), $user);
+        $this->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $user, parent::isAdmin($user));
         $this->Auth->setUser($user);
         return $this->redirect($this->Auth->redirectUrl());
     }
@@ -716,7 +717,7 @@ class UsersController extends AppController
 
     public function isAuthorized($user)
     {
-        if(isset($user) && in_array($this->request->action, ['edit', 'delete']) && (int)$this->request->getAttribute('params')['pass'][0] === $user['id'])
+        if(isset($user) && in_array($this->request->getParam('action'), ['edit', 'delete']) && (int)$this->request->getAttribute('params')['pass'][0] === $user['id'])
         {
             return true;
         }

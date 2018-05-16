@@ -5,7 +5,7 @@ use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Network\Response;
-use Cake\Network\Http\Client;
+use Cake\Http\Client;
 use Cake\Cache\Cache;
 use Cake\I18n\Time;
 use ApaiIO\ApaiIO;
@@ -28,8 +28,8 @@ class ThirdPartiesController extends AppController
         parent::initialize();
 
         // We'll store some data used within this Model for 20 hours !
-        Cache::config('ThirdPartiesCacheConfig', [
-            'className'   => 'Apc',
+        Cache::setConfig('ThirdPartiesCacheConfig', [
+            'className'   => 'Apcu',
             'duration'    => '+20 hours',
             'prefix'      => 'token_',
             'probability' => 0

@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Utility\Security;
 
 /**
  * Requests Controller
@@ -32,7 +33,7 @@ class RequestsController extends AppController
             if($setup->user_id != $user->id and !$this->Requests->exists(['user_id' => $user->id, 'setup_id' => $setup->id]))
             {
                 $request = $this->Requests->newEntity([
-                    'token' => $this->Requests->Users->getRandomString(),
+                    'token'      => Security::randomString(),
                     'user_id'    => $user->id,
                     'setup_id'   => $setup->id
                 ]);
@@ -113,7 +114,7 @@ class RequestsController extends AppController
                             // If the new owner is the current user (another case is not very likely, but who knows ?)
                             if($this->Auth->user('id') == $new_owner->id)
                             {
-                                $this->Requests->Users->synchronizeSessionWithUserEntity($this->session(), $new_owner, parent::isAdmin($new_owner));
+                                $this->Requests->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $new_owner, parent::isAdmin($new_owner));
                             }
                         }
 
@@ -201,7 +202,7 @@ class RequestsController extends AppController
     {
         if(isset($user))
         {
-            if(in_array($this->request->action, ['requestOwnership', 'requestReport']))
+            if(in_array($this->request->getParam('action'), ['requestOwnership', 'requestReport']))
             {
                 return true;
             }

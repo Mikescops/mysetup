@@ -30,17 +30,17 @@ class AppView extends View
     {
         $this->set('debug', Configure::read('debug'));
 
-        if($this->request->action === 'view')
+        if($this->request->getParam('action') === 'view')
         {
             // We'll only load our Markdown Helper for '{Setups,Articles}.view' pages !
-            if(in_array($this->request->controller, ['Setups', 'Articles', 'Users']))
+            if(in_array($this->request->getParam('controller'), ['Setups', 'Articles', 'Users']))
             {
                 $this->loadHelper('Tanuck/Markdown.Markdown');
                 $this->loadHelper('MySetupTools');
             }
 
             // Here we'll apply special templates for our modal check-boxes
-            if(in_array($this->request->controller, ['Setups', 'Users']))
+            if(in_array($this->request->getParam('controller'), ['Setups', 'Users']))
             {
                 $this->Form->setTemplates([
                     'checkboxContainer' => '
@@ -59,7 +59,7 @@ class AppView extends View
         }
 
         // Let's set a beautiful template for the Admin pages `Paginator`
-        if($this->request->controller === 'Admin')
+        if($this->request->getParam('controller') === 'Admin')
         {
             $this->Paginator->setTemplates([
                 'current' => '<li class="page-item active"><a class="page-link" href="{{url}}">{{text}}</a></li>',

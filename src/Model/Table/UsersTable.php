@@ -10,7 +10,7 @@ use Cake\Datasource\EntityInterface;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
 use Cake\Mailer\Email;
-use Cake\Network\Http\Client;
+use Cake\Http\Client;
 
 /**
  * Users Model
@@ -85,8 +85,9 @@ class UsersTable extends Table
             ]
         ]);
         $this->addBehavior('Sitemap.Sitemap', [
-            'changefreq' => 'daily',
-            'lastmod' => 'modificationDate'
+            'changefreq' => 'weekly',
+            'priority'   => 0.5,
+            'lastmod'    => 'modificationDate'
         ]);
     }
 
@@ -395,11 +396,6 @@ class UsersTable extends Table
         } while($this->find()->where(['id' => $id])->count() !== 0);
 
         return $id;
-    }
-
-    public function getRandomString($length = 16)
-    {
-        return substr(md5(mt_rand()), 0, $length);
     }
 
     public function getLocaleByCountryID($country_id)
