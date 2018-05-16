@@ -1,6 +1,9 @@
 #!/bin/bash
 
 
+# Enable maintenance mode !
+bin/cake Setup.MaintenanceMode activate
+
 # This OUR method to clean the cache :P
 rm -rf tmp/*
 
@@ -18,6 +21,9 @@ bin/cake migrations migrate --no-lock
 for file in src/Locale/*_*/*.po; do
     msgfmt -o $(dirname "${file}")"/"$(basename "${file}" .po)".mo" "${file}"
 done
+
+# Disable maintenance mode !
+bin/cake Setup.MaintenanceMode deactivate
 
 
 exit 0
