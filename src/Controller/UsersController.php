@@ -710,6 +710,11 @@ class UsersController extends AppController
     // Portability right of personal data (GDPR compliance)
     public function getPersonalData()
     {
+        if(!$this->request->is('get'))
+        {
+            die();
+        }
+
         $user = $this->Users->get($this->Auth->user('id'), [
             'fields' => [
                 'id',
@@ -740,8 +745,6 @@ class UsersController extends AppController
                     'Resources' => [
                         'fields' =>[
                             'title',
-                            'href',
-                            'src',
                             'setup_id'
                         ]
                     ],
