@@ -35,5 +35,5 @@
     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>
     <?= $this->Form->end(); ?>
 
-    <?= $this->Form->postLink('<i class="fa fa-trash" aria-hidden="true"></i> ' . __('Delete my account'), ['controller' => 'Users', 'action' => 'delete', $user['id']], ['confirm' => __('You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?'), 'escape' => false]) ?>
+    <?= $this->Form->postLink('<i class="fa fa-trash" aria-hidden="true"></i> ' . __('Delete this account'), ['controller' => 'Users', 'action' => 'delete', $user['id']], ['confirm' => __('You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?'), 'escape' => false]) ?>
 </div>
