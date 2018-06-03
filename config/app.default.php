@@ -450,6 +450,7 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
-        'timeout' => 0
+        'cookie'   => 'MYSETUPCO',
+        'timeout'  => 0
     ],
 ];
