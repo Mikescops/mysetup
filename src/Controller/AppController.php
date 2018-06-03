@@ -131,6 +131,11 @@ class AppController extends Controller
             $this->set('newSetupEntity', $this->Setups->newEntity());
 
             // We'll need also the setups available status
+            if(!$this->isAdmin($user))
+            {
+                // ... but if the user is not an admin, let's hide from him the `REJECTED` status.
+                unset($this->Setups->status['REJECTED']);
+            }
             $this->set('status', $this->Setups->status);
         }
 
