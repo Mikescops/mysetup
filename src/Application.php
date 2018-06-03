@@ -57,7 +57,10 @@ class Application extends BaseApplication
             ->add(new LocaleSelectorMiddleware(['*']))
 
             // Since CakePHP 3.5, CSRF protection should be handled by a middleware
-            ->add(new CsrfProtectionMiddleware(['secure' => !Configure::read('debug')]))
+            ->add(new CsrfProtectionMiddleware([
+                'secure'   => !Configure::read('debug'),
+                'httpOnly' => true
+            ]))
 
             // Set here some security headers
             ->add((new SecurityHeadersMiddleware())
