@@ -744,13 +744,23 @@ class UsersController extends AppController
                     ],
                     'Resources' => [
                         'fields' =>[
-                            'title',
+                            'src',
                             'setup_id'
+                        ],
+                        'conditions' => [
+                            'title IS' => null
                         ]
                     ],
                     'Likes' => [
                         'fields' => [
-                            'setup_id'
+                            'setup_id',
+                            'user_id'
+                        ],
+                        'Users' => [
+                            'fields' => [
+                                'id',
+                                'name'
+                            ]
                         ]
                     ]
                 ],
@@ -758,6 +768,20 @@ class UsersController extends AppController
                     'fields' => [
                         'setup_id',
                         'user_id'
+                    ],
+                    'Setups' => [
+                        'fields' => [
+                            'id',
+                            'title',
+                            'user_id',
+                            'like_count'
+                        ],
+                        'Users' => [
+                            'fields' => [
+                                'id',
+                                'name'
+                            ]
+                        ]
                     ]
                 ],
                 'Comments' => [
@@ -766,6 +790,19 @@ class UsersController extends AppController
                         'setup_id',
                         'content',
                         'dateTime'
+                    ],
+                    'Setups' => [
+                        'fields' => [
+                            'id',
+                            'title',
+                            'user_id'
+                        ],
+                        'Users' => [
+                            'fields' => [
+                                'id',
+                                'name'
+                            ]
+                        ]
                     ]
                 ]
                 /* TO ADD ONCE REMADE */
