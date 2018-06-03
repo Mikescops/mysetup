@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e30780c51edcc1f43300efd0f621468",
+    "content-hash": "695875a2a87d46d1ccdc146d11bd2f35",
     "packages": [
         {
             "name": "aura/intl",
@@ -350,126 +350,6 @@
             "time": "2018-03-26T11:15:02+00:00"
         },
         {
-            "name": "composer/installers",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/composer/installers.git",
-                "reference": "049797d727261bf27f2690430d935067710049c2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/049797d727261bf27f2690430d935067710049c2",
-                "reference": "049797d727261bf27f2690430d935067710049c2",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0"
-            },
-            "replace": {
-                "roundcube/plugin-installer": "*",
-                "shama/baton": "*"
-            },
-            "require-dev": {
-                "composer/composer": "1.0.*@dev",
-                "phpunit/phpunit": "^4.8.36"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Composer\\Installers\\Plugin",
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Composer\\Installers\\": "src/Composer/Installers"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kyle Robinson Young",
-                    "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama"
-                }
-            ],
-            "description": "A multi-framework Composer library installer",
-            "homepage": "https://composer.github.io/installers/",
-            "keywords": [
-                "Craft",
-                "Dolibarr",
-                "Eliasis",
-                "Hurad",
-                "ImageCMS",
-                "Kanboard",
-                "Lan Management System",
-                "MODX Evo",
-                "Mautic",
-                "Maya",
-                "OXID",
-                "Plentymarkets",
-                "Porto",
-                "RadPHP",
-                "SMF",
-                "Thelia",
-                "WolfCMS",
-                "agl",
-                "aimeos",
-                "annotatecms",
-                "attogram",
-                "bitrix",
-                "cakephp",
-                "chef",
-                "cockpit",
-                "codeigniter",
-                "concrete5",
-                "croogo",
-                "dokuwiki",
-                "drupal",
-                "eZ Platform",
-                "elgg",
-                "expressionengine",
-                "fuelphp",
-                "grav",
-                "installer",
-                "itop",
-                "joomla",
-                "kohana",
-                "laravel",
-                "lavalite",
-                "lithium",
-                "magento",
-                "majima",
-                "mako",
-                "mediawiki",
-                "modulework",
-                "modx",
-                "moodle",
-                "osclass",
-                "phpbb",
-                "piwik",
-                "ppi",
-                "puppet",
-                "pxcms",
-                "reindex",
-                "roundcube",
-                "shopware",
-                "silverstripe",
-                "sydes",
-                "symfony",
-                "typo3",
-                "wordpress",
-                "yawik",
-                "zend",
-                "zikula"
-            ],
-            "time": "2017-12-29T09:13:20+00:00"
-        },
-        {
             "name": "dereuromark/cakephp-setup",
             "version": "1.3.1",
             "source": {
@@ -810,57 +690,6 @@
                 "thief"
             ],
             "time": "2016-12-18T03:12:25+00:00"
-        },
-        {
-            "name": "loadsys/cakephp_sitemap",
-            "version": "4.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap.git",
-                "reference": "04f87859ecd9efb5a21713ee4004eed0ae87b3ea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap/archive/master.zip",
-                "reference": "04f87859ecd9efb5a21713ee4004eed0ae87b3ea",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "~3.1",
-                "composer-plugin-api": "~1.0",
-                "composer/installers": "~1.0",
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "loadsys/loadsys_codesniffer": "~3.0",
-                "phpunit/phpunit": "~4.8",
-                "satooshi/php-coveralls": "dev-master"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Sitemap\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Justin Yost",
-                    "email": "justin@loadsys.com",
-                    "homepage": "https://github.com/jtyost2",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A CakePHP Plugin for adding automatic XML and HTML Sitemaps to an app",
-            "homepage": "https://github.com/loadsys/CakePHP-Sitemap",
-            "keywords": [
-                "Sitemap",
-                "cakephp"
-            ],
-            "time": "2016-05-27T09:36:07+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
