@@ -25,28 +25,24 @@
                 <span class="float-right link-marksupp"><a target="_blank" href="<?=$this->Url->build('/pages/q&a#q-6')?>"><i class="fa fa-info-circle"></i> <?= __('Markdown supported') ?></a></span>
                 <br />
                 <i class="fa fa-camera"></i> <?= __('We only accept images lighter than 5 MB !') ?>
-                <div class="hidden">
+                <div class="slim slim-round" data-download="true" data-ratio="22:10" data-size="1080,500">
+                    <img alt="<?= __('Featured Preview') ?>" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg')) ?>">
                     <?php
-                    echo $this->Form->control('featuredImage', ['type' => 'file', 'id' => 'featuredImage_edit', 'label' => ['class' => 'label_fimage label_fimage_edit', 'text' => __('Change featured image')], 'class' => 'inputfile']);
-                    ?>
-                </div>
-                <img alt="<?= __('Featured Preview') ?>" id="featuredimage_preview_edit" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg')) ?>">
-                <div class="hidden_five_inputs">
-                    <?php
-                    echo $this->Form->control('gallery0', ['id' => 'gallery0', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                    echo $this->Form->control('gallery1', ['id' => 'gallery1', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                    echo $this->Form->control('gallery2', ['id' => 'gallery2', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                    echo $this->Form->control('gallery3', ['id' => 'gallery3', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                    echo $this->Form->control('gallery4', ['id' => 'gallery4', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                    echo $this->Form->control('featuredImage', ['name' => 'featuredImage[]', 'hidden','type' => 'file', 'label' => '']);
                     ?>
                 </div>
 
                 <div class="gallery-holder">
                     <?php $i = 0;foreach ($setup['resources']['gallery_images'] as $image):?>
-                    <div alt="<?= __('Gallery Preview') ?>" title="<?= __('Change gallery image') ?>" class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit" style="background-image:url(<?= $this->Url->build('/'.$image->src)?>)"></div>
-                    <?php $i++; endforeach; for(;$i < 5;$i++): ?>
-                    <div class="gallery_edit_preview" id="gallery<?= $i ?>image_preview_edit"><i class="fa fa-plus"></i></div>
-                <?php endfor ?>
+                        <div class="slim slim-round" data-download="true" data-ratio="16:9" data-size="1366,768">
+                            <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Change gallery image') ?>" src="<?= $this->Url->build('/'.$image->src)?>">
+                            <?php echo $this->Form->control('gallery'.$i, ['name' => 'gallery'.$i.'[]', 'hidden', 'type' => 'file', 'label' => '']); ?>
+                        </div>
+                    <?php $i++; endforeach; for($i; $i < 5; $i++):?>
+                        <div class="slim slim-round" data-download="true" data-ratio="16:9" data-size="1366,768">
+                            <?php echo $this->Form->control('gallery'.$i, ['name' => 'gallery'.$i.'[]', 'hidden', 'type' => 'file', 'label' => '']); ?>
+                        </div>
+                    <?php endfor; ?>
                 </div>
 
                 <div class="modal-footer">

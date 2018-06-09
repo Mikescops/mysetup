@@ -213,7 +213,7 @@ class ResourcesTable extends Table
 
     public function saveResourceImage($file, $setup, $type, $flash)
     {
-        if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg') && !strpos($file['type'], 'gif'))
+        if(substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg') && !strpos($file['type'], 'gif'))
         {
             if(!file_exists('uploads/files/' . $setup->user_id) and !mkdir('uploads/files/' . $setup->user_id, 0755))
             {
@@ -236,45 +236,40 @@ class ResourcesTable extends Table
 
             $destination = 'uploads/files/' . $setup->user_id . '/' . Text::uuid() . '.jpg';
 
-            if(move_uploaded_file($file['tmp_name'], $destination))
+            // Simple shortcut for below ternaries
+            $featured = ($type === 'SETUP_FEATURED_IMAGE' ? true : false);
+
+            // Let's create an Imagick instance
+            $image = new \Imagick();
+
+            // We read the blob in base64 from the array
+            $image->readImageBlob(base64_decode(explode(",", $file['image'])[1]));
+
+            if(!$image->setImageFormat('jpg') || !$image->setImageCompressionQuality(85) /*|| !$image->gaussianBlurImage(0.8, 10) */|| !$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
             {
-                // Simple shortcut for below ternaries
-                $featured = ($type === 'SETUP_FEATURED_IMAGE' ? true : false);
+                $flash->warning(__('One of your image could not be converted to JPG, compressed, resized or saved... Please contact an administrator.'));
+                return false;
+            }
 
-                $image = new \Imagick($destination);
+            // The image operations were successful, let's save this resource entity into the DB !
+            $resource = $this->newEntity([
+                'user_id'  => $setup->user_id,
+                'setup_id' => $setup->id,
+                'type'     => $type,
+                'title'    => null,
+                'href'     => null,
+                'src'      => $destination
+            ]);
 
-                if(!$image->setImageFormat('jpg') || !$image->setImageCompressionQuality(85) /*|| !$image->gaussianBlurImage(0.8, 10) */|| !$image->cropThumbnailImage(($featured ? 1080 : 1366), ($featured ? 500 : 768)) || !$image->writeImage($destination))
-                {
-                    $flash->warning(__('One of your image could not be converted to JPG, compressed, resized or saved... Please contact an administrator.'));
-                    return false;
-                }
-
-                // The image operations were successful, let's save this resource entity into the DB !
-                $resource = $this->newEntity([
-                    'user_id'  => $setup->user_id,
-                    'setup_id' => $setup->id,
-                    'type'     => $type,
-                    'title'    => null,
-                    'href'     => null,
-                    'src'      => $destination
-                ]);
-
-                if(!$this->save($resource))
-                {
-                    $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
-                    return false;
-                }
-
-                else
-                {
-                    return true;
-                }
+            if(!$this->save($resource))
+            {
+                $flash->warning(__('One of your resources could not be saved... Please contact an administrator.'));
+                return false;
             }
 
             else
             {
-                $flash->warning(__('One of the file you uploaded could not be saved.'));
-                return false;
+                return true;
             }
         }
 
@@ -331,50 +326,50 @@ class ResourcesTable extends Table
         /* Here we'll compare the uploaded images to the new ones (in the 5 hidden inputs) */
         $galleries = $this->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $setup->user_id, 'type' => 'SETUP_GALLERY_IMAGE'])->toArray();
 
-        if(isset($data['gallery0']) and $data['gallery0'] !== '' and (int)$data['gallery0']['error'] === 0)
+        if(!empty($data['gallery0'][0]))
         {
             if(isset($galleries[0]))
             {
                 $this->delete($galleries[0]);
             }
 
-            $is_okay = $this->saveResourceImage($data['gallery0'], $setup, 'SETUP_GALLERY_IMAGE', $flash);
+            $is_okay = $this->saveResourceImage((array) json_decode($data['gallery0'][0])->output, $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
-        if(isset($data['gallery1']) and $data['gallery1'] !== '' and (int)$data['gallery1']['error'] === 0)
+        if(!empty($data['gallery1'][0]))
         {
             if(isset($galleries[1]))
             {
                 $this->delete($galleries[1]);
             }
 
-            $is_okay = $this->saveResourceImage($data['gallery1'], $setup, 'SETUP_GALLERY_IMAGE', $flash);
+            $is_okay = $this->saveResourceImage((array) json_decode($data['gallery1'][0])->output, $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
-        if(isset($data['gallery2']) and $data['gallery2'] !== '' and (int)$data['gallery2']['error'] === 0)
+        if(!empty($data['gallery2'][0]))
         {
             if(isset($galleries[2]))
             {
                 $this->delete($galleries[2]);
             }
 
-            $is_okay = $this->saveResourceImage($data['gallery2'], $setup, 'SETUP_GALLERY_IMAGE', $flash);
+            $is_okay = $this->saveResourceImage((array) json_decode($data['gallery2'][0])->output, $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
-        if(isset($data['gallery3']) and $data['gallery3'] !== '' and (int)$data['gallery3']['error'] === 0)
+        if(!empty($data['gallery3'][0]))
         {
             if(isset($galleries[3]))
             {
                 $this->delete($galleries[3]);
             }
 
-            $is_okay = $this->saveResourceImage($data['gallery3'], $setup, 'SETUP_GALLERY_IMAGE', $flash);
+            $is_okay = $this->saveResourceImage((array) json_decode($data['gallery3'][0])->output, $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
-        if(isset($data['gallery4']) and $data['gallery4'] !== '' and (int)$data['gallery4']['error'] === 0)
+        if(!empty($data['gallery4'][0]))
         {
             if(isset($galleries[4]))
             {
                 $this->delete($galleries[4]);
             }
 
-            $is_okay = $this->saveResourceImage($data['gallery4'], $setup, 'SETUP_GALLERY_IMAGE', $flash);
+            $is_okay = $this->saveResourceImage((array) json_decode($data['gallery4'][0])->output, $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
 
         return $is_okay;

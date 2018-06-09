@@ -23,24 +23,29 @@
             <span class="float-right link-marksupp"><a target="_blank" href="<?=$this->Url->build('/pages/q&a#q-6')?>"><i class="fa fa-info-circle"></i> <?= __('Markdown supported') ?></a></span>
             <br>
             <i class="fa fa-camera"></i> <?= __('We only accept images lighter than 5 MB !') ?>
-            <?php
-                echo $this->Form->control('featuredImage', ['type' => 'file', 'label' => ['class' => 'label_fimage label_fimage_add', 'text' => __('Click to add a featured image *')], 'class' => 'inputfile', 'required' => 'true']);
-            ?>
-            <img id="featuredimage_preview">
-            <div class="hidden_five_inputs">
+            
+
+            <div class="slim slim-round" data-did-save="featuredPreviewChange" data-ratio="22:10" data-size="1080,500">
                 <?php
-                    echo $this->Form->control('gallery0', ['id' => 'gallery0add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                    echo $this->Form->control('gallery1', ['id' => 'gallery1add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                    echo $this->Form->control('gallery2', ['id' => 'gallery2add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                    echo $this->Form->control('gallery3', ['id' => 'gallery3add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
-                    echo $this->Form->control('gallery4', ['id' => 'gallery4add', 'type' => 'file', 'hidden', 'class' => 'inputfile', 'label' => '']);
+                    echo $this->Form->control('featuredImage', ['name' => 'featuredImage[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => 'Featured Image', 'required' => 'true']);
                 ?>
             </div>
-
             <div class="gallery-holder homide">
-            <?php for($i = 0; $i < 5; $i++): ?>
-                <div alt="<?= __('Gallery Preview') ?>" title="<?= __('Add gallery image') ?>" class="gallery_add_preview" id="gallery<?= $i ?>image_preview_add"><i class="fa fa-plus"></i></div>
-            <?php endfor ?>
+                <div class="slim slim-round" data-ratio="16:9" data-size="1366,768">
+                    <?php echo $this->Form->control('gallery0', ['name' => 'gallery0[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => '']); ?>
+                </div>
+                <div class="slim slim-round" data-ratio="16:9" data-size="1366,768">
+                    <?php echo $this->Form->control('gallery1', ['name' => 'gallery1[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => '']); ?>
+                </div>
+                <div class="slim slim-round" data-ratio="16:9" data-size="1366,768">
+                    <?php echo $this->Form->control('gallery2', ['name' => 'gallery2[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => '']); ?>
+                </div>
+                <div class="slim slim-round" data-ratio="16:9" data-size="1366,768">
+                    <?php echo $this->Form->control('gallery3', ['name' => 'gallery3[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => '']); ?>
+                </div>
+                <div class="slim slim-round" data-ratio="16:9" data-size="1366,768">
+                    <?php echo $this->Form->control('gallery4', ['name' => 'gallery4[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => '']); ?>
+                </div>
             </div>
 
             <span class="float-right">* <?= __('required fields') ?></span>
