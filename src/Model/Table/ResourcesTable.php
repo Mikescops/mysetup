@@ -326,49 +326,48 @@ class ResourcesTable extends Table
         /* Here we'll compare the uploaded images to the new ones (in the 5 hidden inputs) */
         $galleries = $this->find('all', ['order' => ['id' => 'ASC']])->where(['setup_id' => $setup->id, 'user_id' => $setup->user_id, 'type' => 'SETUP_GALLERY_IMAGE'])->toArray();
 
+        if(isset($galleries[0]))
+        {
+            $this->delete($galleries[0]);
+        }
         if(!empty($data['gallery0'][0]))
         {
-            if(isset($galleries[0]))
-            {
-                $this->delete($galleries[0]);
-            }
-
             $is_okay = $this->saveResourceImage((array) json_decode($data['gallery0'][0])->output, $setup, 'SETUP_GALLERY_IMAGE', $flash);
+        }
+
+        if(isset($galleries[1]))
+        {
+            $this->delete($galleries[1]);
         }
         if(!empty($data['gallery1'][0]))
         {
-            if(isset($galleries[1]))
-            {
-                $this->delete($galleries[1]);
-            }
-
             $is_okay = $this->saveResourceImage((array) json_decode($data['gallery1'][0])->output, $setup, 'SETUP_GALLERY_IMAGE', $flash);
+        }
+
+        if(isset($galleries[2]))
+        {
+            $this->delete($galleries[2]);
         }
         if(!empty($data['gallery2'][0]))
         {
-            if(isset($galleries[2]))
-            {
-                $this->delete($galleries[2]);
-            }
-
             $is_okay = $this->saveResourceImage((array) json_decode($data['gallery2'][0])->output, $setup, 'SETUP_GALLERY_IMAGE', $flash);
+        }
+
+        if(isset($galleries[3]))
+        {
+            $this->delete($galleries[3]);
         }
         if(!empty($data['gallery3'][0]))
         {
-            if(isset($galleries[3]))
-            {
-                $this->delete($galleries[3]);
-            }
-
             $is_okay = $this->saveResourceImage((array) json_decode($data['gallery3'][0])->output, $setup, 'SETUP_GALLERY_IMAGE', $flash);
+        }
+
+        if(isset($galleries[4]))
+        {
+            $this->delete($galleries[4]);
         }
         if(!empty($data['gallery4'][0]))
         {
-            if(isset($galleries[4]))
-            {
-                $this->delete($galleries[4]);
-            }
-
             $is_okay = $this->saveResourceImage((array) json_decode($data['gallery4'][0])->output, $setup, 'SETUP_GALLERY_IMAGE', $flash);
         }
 

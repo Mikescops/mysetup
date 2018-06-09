@@ -34,7 +34,7 @@
 
                 <div class="gallery-holder">
                     <?php $i = 0;foreach ($setup['resources']['gallery_images'] as $image):?>
-                        <div class="slim slim-round" data-download="true" data-ratio="16:9" data-size="1366,768">
+                        <div class="slim slim-round" data-download="true" data-save-initial-image="true" data-ratio="16:9" data-size="1366,768">
                             <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Change gallery image') ?>" src="<?= $this->Url->build('/'.$image->src)?>">
                             <?php echo $this->Form->control('gallery'.$i, ['name' => 'gallery'.$i.'[]', 'hidden', 'type' => 'file', 'label' => '']); ?>
                         </div>
