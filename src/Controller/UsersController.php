@@ -737,31 +737,22 @@ class UsersController extends AppController
                     'fields' => [
                         'id',
                         'title',
-                        'user_id'
+                        'user_id',
+                        'like_count'
                     ],
                     'Resources' => [
                         'fields' =>[
-                            'setup_id'
+                            'setup_id',
+                            'src'
                         ],
                         'conditions' => [
                             'title IS' => null
-                        ]
-                    ],
-                    'Likes' => [
-                        'fields' => [
-                            'setup_id',
-                            'user_id'
-                        ],
-                        'Users' => [
-                            'fields' => [
-                                'id',
-                                'name'
-                            ]
                         ]
                     ]
                 ],
                 'Likes' => [
                     'fields' => [
+                        'user_id',
                         'setup_id'
                     ],
                     'Setups' => [
@@ -773,6 +764,7 @@ class UsersController extends AppController
                 ],
                 'Comments' => [
                     'fields' => [
+                        'user_id',
                         'setup_id',
                         'content',
                         'dateTime'
