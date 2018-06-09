@@ -737,14 +737,10 @@ class UsersController extends AppController
                     'fields' => [
                         'id',
                         'title',
-                        'user_id',
-                        'status',
-                        'featured',
-                        'like_count'
+                        'user_id'
                     ],
                     'Resources' => [
                         'fields' =>[
-                            'src',
                             'setup_id'
                         ],
                         'conditions' => [
@@ -766,27 +762,17 @@ class UsersController extends AppController
                 ],
                 'Likes' => [
                     'fields' => [
-                        'setup_id',
-                        'user_id'
+                        'setup_id'
                     ],
                     'Setups' => [
                         'fields' => [
                             'id',
                             'title',
-                            'user_id',
-                            'like_count'
-                        ],
-                        'Users' => [
-                            'fields' => [
-                                'id',
-                                'name'
-                            ]
                         ]
                     ]
                 ],
                 'Comments' => [
                     'fields' => [
-                        'user_id',
                         'setup_id',
                         'content',
                         'dateTime'
@@ -796,12 +782,6 @@ class UsersController extends AppController
                             'id',
                             'title',
                             'user_id'
-                        ],
-                        'Users' => [
-                            'fields' => [
-                                'id',
-                                'name'
-                            ]
                         ]
                     ]
                 ]
