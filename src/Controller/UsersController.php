@@ -8,6 +8,7 @@ use Cake\Event\Event;
 use Cake\I18n\Time;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
+use Cake\Network\Response;
 
 /**
  * Users Controller
@@ -706,6 +707,96 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->redirectUrl());
     }
 
+    // Portability right of personal data (GDPR compliance)
+    public function getPersonalData()
+    {
+        if(!$this->request->is('get'))
+        {
+            die();
+        }
+
+        $user = $this->Users->get($this->Auth->user('id'), [
+            'fields' => [
+                'id',
+                'name',
+                'mail',
+                'preferredStore',
+                'timeZone',
+                'creationDate',
+                'modificationDate',
+                'lastLogginDate',
+                'mainSetup_id',
+                'twitchUserId',
+                'uwebsite',
+                'ufacebook',
+                'utwitter',
+                'utwitch'
+            ],
+            'contain' => [
+                'Setups' => [
+                    'fields' => [
+                        'id',
+                        'title',
+                        'user_id'
+                    ],
+                    'Resources' => [
+                        'fields' =>[
+                            'setup_id'
+                        ],
+                        'conditions' => [
+                            'title IS' => null
+                        ]
+                    ],
+                    'Likes' => [
+                        'fields' => [
+                            'setup_id',
+                            'user_id'
+                        ],
+                        'Users' => [
+                            'fields' => [
+                                'id',
+                                'name'
+                            ]
+                        ]
+                    ]
+                ],
+                'Likes' => [
+                    'fields' => [
+                        'setup_id'
+                    ],
+                    'Setups' => [
+                        'fields' => [
+                            'id',
+                            'title',
+                        ]
+                    ]
+                ],
+                'Comments' => [
+                    'fields' => [
+                        'setup_id',
+                        'content',
+                        'dateTime'
+                    ],
+                    'Setups' => [
+                        'fields' => [
+                            'id',
+                            'title',
+                            'user_id'
+                        ]
+                    ]
+                ]
+                /* TO ADD ONCE REMADE */
+                // 'Notifications'
+            ]
+        ]);
+
+        return new Response([
+            'status' => 200,
+            'type' => 'json',
+            'body' => json_encode($user)
+        ]);
+    }
+
     /* __________ */
 
     public function beforeFilter(Event $event)
@@ -718,6 +809,11 @@ class UsersController extends AppController
     public function isAuthorized($user)
     {
         if(isset($user) && in_array($this->request->getParam('action'), ['edit', 'delete']) && (int)$this->request->getAttribute('params')['pass'][0] === $user['id'])
+        {
+            return true;
+        }
+
+        if(isset($user) && $this->request->getParam('action') === 'getPersonalData')
         {
             return true;
         }
