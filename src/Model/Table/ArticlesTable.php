@@ -110,7 +110,7 @@ class ArticlesTable extends Table
 
     public function savePicture($file, $flash)
     {
-        if($file['error'] === 0 && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg') && !strpos($file['type'], 'gif'))
+        if($file['error'] === UPLOAD_ERR_OK && $file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg') && !strpos($file['type'], 'gif'))
         {
             $path = 'uploads/files/articles';
 

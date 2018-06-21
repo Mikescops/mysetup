@@ -264,7 +264,7 @@ class UsersController extends AppController
 
             if($this->Users->save($user))
             {
-                if(isset($data['picture']) and $data['picture'] !== '' and (int)$data['picture']['error'] === 0)
+                if(isset($data['picture']) and $data['picture'] !== '' and (int)$data['picture']['error'] === UPLOAD_ERR_OK)
                 {
                     $this->Users->saveProfilePicture($data['picture'], $user, $this->Flash);
                 }
