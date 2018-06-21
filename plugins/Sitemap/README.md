@@ -9,52 +9,7 @@ The Sitemap provides a mechanism for displaying Sitemap style information (the U
 
 ## Installation
 
-1. Add the official package as a required one :
-	```bash
-	$ composer require loadsys/cakephp_sitemap
-	```
-
-2. You'll have to tweak _Composer_ files to fetch our sources :
-	1. `package.json` :  
-		```diff
-		-        "loadsys/cakephp_sitemap": "^3.1",
-		+        "loadsys/cakephp_sitemap": "4.*",
-		```
-
-	2. `package.lock` :  
-		```diff
-		        "name": "loadsys/cakephp_sitemap",
-		-       "version": "OFFICIAL_VERSION",
-		+       "version": "OUR_LATEST_VERSION",
-		        "source": {
-		             "type": "git",
-		-            "url": "https://github.com/loadsys/CakePHP-Sitemap.git",
-		-            "reference": "OFFICIAL_COMMIT_SHA"
-		+            "url": "https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap.git",
-		+            "reference": "OUR_LATEST_COMMIT_SHA"
-		        },
-		        "dist": {
-		             "type": "zip",
-		-            "url": "https://api.github.com/repos/loadsys/CakePHP-Sitemap/zipball/OFFICIAL_COMMIT_SHA",
-		-            "reference": "OFFICIAL_COMMIT_SHA",
-		+            "url": "https://labs.pixelswap.fr/HorlogeSkynet/CakePHP_Sitemap/archive/master.zip",
-		+            "reference": "OUR_LATEST_COMMIT_SHA",
-		```
-
-	3. Run `$ composer install`
-
-	4. You'll be able in the future to run `$ composer update` as well !
-
-3. In your `config/bootstrap.php` file, add:
-	```php
-	Plugin::load('Sitemap', ['bootstrap' => false, 'routes' => true]);
-	```
-
-	OR
-
-	```php
-	bin/cake plugin load Sitemap -r
-	```
+Please see [here](https://book.cakephp.org/3.0/en/plugins.html).
 
 ## Usage
 
