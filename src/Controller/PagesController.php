@@ -45,6 +45,13 @@ class PagesController extends AppController
             'duration'    => '+12 hours',
             'prefix'      => 'homePage_'
         ]);
+        // Set a cache with a shorter time to live to handle "recent" entities
+        Cache::setConfig('RecentPageCacheConfig', [
+            'className'   => 'Apcu',
+            'duration'    => '+30 minutes',
+            'prefix'      => 'recentPage_'
+        ]);
+
     }
 
     /**
@@ -53,19 +60,44 @@ class PagesController extends AppController
      */
     public function home()
     {
-        // Set some variables here, and give back the control to the `display()` method
-        $featuredSetups = $this->Setups->getSetups(['featured' => true, 'number' => 3]);
-        $popularSetups  = $this->Setups->getSetups([
-            'number' => ($this->RequestHandler->isMobile() ? 3 : 6),
-            'type' => 'like'
-        ]);
-        $recentSetups = $this->Setups->getSetups(['number' => 3]);
+        // Set some variables here, and give back the control to the `display()` method (see at the end).
 
-        /* The two setups retrieval below are very slow, let's cache 'em */
+        // Our BD now contains too many elements, we'll store all of them in cache for some times !
+        $featuredSetups = Cache::read('featuredSetups', 'HomePageCacheConfig');
+        if($featuredSetups === false)
+        {
+            $featuredSetups = $this->Setups->getSetups(['featured' => true, 'number' => 3]);
+
+            Cache::write('featuredSetups', $featuredSetups, 'HomePageCacheConfig');
+        }
+
+        $popularSetups = Cache::read('popularSetups', 'HomePageCacheConfig');
+        if($popularSetups === false)
+        {
+            $popularSetups  = $this->Setups->getSetups([
+                'number' => 6,
+                'type'   => 'like'
+            ]);
+
+            Cache::write('popularSetups', $popularSetups, 'HomePageCacheConfig');
+        }
+
+        // For this one we use the other Cache config (these entities change often !)
+        $recentSetups = Cache::read('recentSetups', 'RecentPageCacheConfig');
+        if($recentSetups === false)
+        {
+            $recentSetups = $this->Setups->getSetups(['number' => 3]);
+
+            Cache::write('recentSetups', $recentSetups, 'RecentPageCacheConfig');
+        }
+
         $brandSetups = Cache::read('brandSetups', 'HomePageCacheConfig');
         if($brandSetups === false)
         {
-            $brandSetups = $this->loadModel('cloud_tags')->getSetupsByRandomTags(['type' => 'PRODUCTS_BRAND', 'number_tags' => 3]);
+            $brandSetups = $this->loadModel('cloud_tags')->getSetupsByRandomTags([
+                'type'        => 'PRODUCTS_BRAND',
+                'number_tags' => 3
+            ]);
 
             Cache::write('brandSetups', $brandSetups, 'HomePageCacheConfig');
         }
@@ -94,12 +126,28 @@ class PagesController extends AppController
         }
         /* _____________________________________________________________ */
 
-        /* Let's load less resources (4 instead of 6 [see just above]) on mobile devices */
+
+        $activeUsers = Cache::read('activeUsers', 'HomePageCacheConfig');
+        if($activeUsers === false)
+        {
+            $activeUsers = $this->Users->getActiveUsers(8);
+
+            Cache::write('activeUsers', $activeUsers, 'HomePageCacheConfig');
+        }
+
+        /* Let's load less elements on mobile devices */
         if($this->RequestHandler->isMobile())
         {
-            array_pop($randomResources);
-            array_pop($randomResources);
+            // Only 3 popular setups !
+            $popularSetups = array_slice($popularSetups, 0, 3);
+
+            // Only 4 resources !
+            $randomResources = array_slice($randomResources, 0, 4);
+
+            // Only 4 users !
+            $activeUsers = array_slice($activeUsers, 0, 4);
         }
+        /* __________________________________________ */
 
         if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
         {
@@ -125,11 +173,6 @@ class PagesController extends AppController
             ]);
         }
 
-        // Let's load less users on mobile devices
-        $activeUsers = $this->Users->getActiveUsers((
-            $this->RequestHandler->isMobile() ? 4 : 8
-        ));
-
         $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'brandSetups', 'activeUsers', 'randomResources', 'mainSetup'));
 
         $this->display('home');
@@ -137,7 +180,15 @@ class PagesController extends AppController
 
     public function recent()
     {
-        $this->set('setups', $this->Setups->getSetups(['number' => 6]));
+        $recentSetups = Cache::read('recentSetupsPage', 'RecentPageCacheConfig');
+        if($recentSetups === false)
+        {
+            $recentSetups = $this->Setups->getSetups(['number' => 6]);
+
+            Cache::write('recentSetupsPage', $recentSetups, 'RecentPageCacheConfig');
+        }
+
+        $this->set('setups', $recentSetups);
 
         $this->display('recent');
     }
