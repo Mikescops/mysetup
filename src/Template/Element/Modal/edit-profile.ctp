@@ -53,5 +53,5 @@
 
     <?= $this->Form->postLink('<i class="fa fa-trash" aria-hidden="true"></i> ' . __('Delete my account'), ['controller' => 'Users', 'action' => 'delete', $authUser['id']], ['confirm' => __('You are going to delete your account and all its content (profile, setups, comments, likes) ! Are you sure ?'), 'escape' => false]) ?>
     |
-    <?= $this->Html->link('<i class="fa fa-database" aria-hidden="true"></i> ' . __('Retrieve my data'), ['controller' => 'Users', 'action' => 'getPersonalData'], ['escape' => false, 'target' => '_blank']) ?>
+    <?= $this->Form->postLink('<i class="fa fa-database" aria-hidden="true"></i> ' . __('Retrieve my data'), ['controller' => 'Users', 'action' => 'getPersonalData'], ['escape' => false, 'target' => '_blank']) ?>
 </div>

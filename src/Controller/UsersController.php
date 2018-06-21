@@ -710,7 +710,7 @@ class UsersController extends AppController
     // Portability right of personal data (GDPR compliance)
     public function getPersonalData()
     {
-        if(!$this->request->is('get'))
+        if(!$this->request->is('post'))
         {
             die();
         }
