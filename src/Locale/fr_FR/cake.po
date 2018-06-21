@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
-"POT-Creation-Date: 2017-10-16 14:18-0400\n"
-"PO-Revision-Date: 2017-10-24 17:54-0400\n"
+"POT-Creation-Date: 2018-06-21 16:10+0000\n"
+"PO-Revision-Date: 2018-06-21 18:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: fr <support@mysetup.co>\n"
 "Language: fr\n"
@@ -13,35 +13,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.8\n"
 
-#: Controller/Component/AuthComponent.php:496
+#: Controller/Component/AuthComponent.php:500
 msgid "You are not authorized to access that location."
-msgstr "Vous n'êtes pas autorisé(e) à accéder à cette page"
+msgstr "Vous n'êtes pas autorisé(e) à accéder à cette page."
 
-#: Controller/Component/CsrfComponent.php:157
+#: Controller/Component/CsrfComponent.php:162
 #: Http/Middleware/CsrfProtectionMiddleware.php:190
 msgid "Missing CSRF token cookie"
 msgstr "Cookie CSRF manquant"
 
-#: Controller/Component/CsrfComponent.php:161
+#: Controller/Component/CsrfComponent.php:166
 #: Http/Middleware/CsrfProtectionMiddleware.php:194
 msgid "CSRF token mismatch."
-msgstr "Jeton CSRF invalide"
+msgstr "Jeton CSRF invalide."
 
-#: Error/ExceptionRenderer.php:258
+#: Error/ExceptionRenderer.php:262
 msgid "Not Found"
-msgstr "Non trouvée !"
+msgstr "Non trouvée"
 
-#: Error/ExceptionRenderer.php:260
+#: Error/ExceptionRenderer.php:264
 msgid "An Internal Error Has Occurred."
-msgstr "Une erreur interne est survenue :("
+msgstr "Une erreur interne est survenue."
 
-#: Http/Response.php:2389
+#: Http/Response.php:2603
 msgid "The requested file contains `..` and will not be read."
-msgstr "Le fichier demandé contient `...` et ne sera pas lu"
+msgstr "Le fichier demandé contient `..` et ne sera pas lu."
 
-#: Http/Response.php:2400
+#: Http/Response.php:2624
 msgid "The requested file was not found"
 msgstr "Le fichier demandé n'a pas été trouvé"
 
@@ -209,7 +209,7 @@ msgstr "Cette valeur n'existe pas"
 msgid "The count does not match {0}{1}"
 msgstr "Le compte ne correspond pas {0}{1}"
 
-#: Utility/Text.php:902
+#: Utility/Text.php:917
 msgid "and"
 msgstr "et"
 
@@ -221,23 +221,23 @@ msgstr "Ce champ est requis"
 msgid "This field cannot be left empty"
 msgstr "Ce champ ne put pas être laissé vide"
 
-#: Validation/Validator.php:1885
+#: Validation/Validator.php:2054
 msgid "The provided value is invalid"
 msgstr "La valeur renseignée est invalide"
 
-#: View/Helper/FormHelper.php:1040
-msgid "New %s"
-msgstr "Nouveau %s"
+#: View/Helper/FormHelper.php:1097
+msgid "Edit {0}"
+msgstr "Éditer {0}"
 
-#: View/Helper/FormHelper.php:1043
-msgid "Edit %s"
-msgstr "Éditer %s"
+#: View/Helper/FormHelper.php:1099
+msgid "New {0}"
+msgstr "Ajouter {0}"
 
-#: View/Helper/FormHelper.php:1920
+#: View/Helper/FormHelper.php:1986
 msgid "Submit"
 msgstr "Soumettre"
 
-#: View/Helper/HtmlHelper.php:795
+#: View/Helper/HtmlHelper.php:815
 msgid "Home"
 msgstr "Accueil"
 
