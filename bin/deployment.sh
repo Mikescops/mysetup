@@ -4,8 +4,8 @@
 # Enable maintenance mode !
 bin/cake Setup.MaintenanceMode activate
 
-# This OUR method to clean the cache :P
-rm -rf tmp/*
+# Clear the application caches
+bin/cake cache clear_all
 
 # Sync the vendor packages with the `composer.lock` specifications
 COMPOSER_ALLOW_SUPERUSER=true composer install -o -n
@@ -13,7 +13,8 @@ COMPOSER_ALLOW_SUPERUSER=true composer install -o -n
 # Some CakePHP optimizations
 bin/cake plugin assets symlink
 
-# Has the model changed ?
+# Clear the model caches and start the migrations process
+bin/cake orm_cache    clear
 bin/cake schema_cache clear
 bin/cake migrations migrate --no-lock
 
