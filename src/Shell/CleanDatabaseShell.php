@@ -69,8 +69,6 @@ class CleanDatabaseShell extends Shell
         {
             if($this->Users->delete($user))
             {
-                // An unverified user can't have any other images than its default profile picture. Let's remove it !
-                (new File('webroot/uploads/files/pics/profile_picture_' . $user->id . '.png'))->delete();
                 $i++;
             }
         }
