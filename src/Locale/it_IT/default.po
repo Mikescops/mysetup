@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
-"POT-Creation-Date: 2018-06-21 16:10+0000\n"
-"PO-Revision-Date: 2018-06-21 18:45+0200\n"
+"POT-Creation-Date: 2018-06-24 08:27+0000\n"
+"PO-Revision-Date: 2018-06-24 10:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: fr <support@mysetup.co>\n"
 "Language: it_IT\n"
@@ -15,33 +15,33 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.8\n"
 
-#: Controller/AdminController.php:210
+#: Controller/AdminController.php:207
 msgid "No notification could be sent..."
 msgstr "No notifica potrebbe essere inviata ..."
 
-#: Controller/AdminController.php:224
+#: Controller/AdminController.php:221
 msgid "The notification has just been sent !"
 msgstr "La notifica è stata appena inviata!"
 
-#: Controller/AdminController.php:229
+#: Controller/AdminController.php:226
 msgid "The notification couldn't be sent."
 msgstr "La notifica non può essere inviata."
 
-#: Controller/AdminController.php:236
+#: Controller/AdminController.php:233
 msgid "One information is missing to send this notification."
 msgstr "Manca una informazione per inviare questa notifica."
 
-#: Controller/AdminController.php:241
+#: Controller/AdminController.php:238
 msgid "Everyone"
 msgstr "Tutti"
 
-#: Controller/AdminController.php:205
+#: Controller/AdminController.php:202
 msgid "notification have been sent !"
 msgid_plural "notifications have been sent !"
 msgstr[0] "la notifica è stata inviata!"
 msgstr[1] "le notifiche sono state inviate!"
 
-#: Controller/AdminController.php:215
+#: Controller/AdminController.php:212
 msgid "notification couldn't be sent..."
 msgid_plural "notifications couldn't be sent..."
 msgstr[0] "la notifica non può essere inviata ..."
@@ -103,7 +103,7 @@ msgstr "ha fato un commento sul tuo setup"
 msgid "An user profile picture"
 msgstr "Un'immagine del profilo utente"
 
-#: Controller/PagesController.php:160 Controller/UsersController.php:106
+#: Controller/PagesController.php:210 Controller/UsersController.php:106
 msgid ""
 "Google's CAPTCHA has detected you as a bot, sorry ! If you're a REAL human, "
 "please re-try :)"
@@ -111,19 +111,19 @@ msgstr ""
 "Il CAPTCHA di Google ti ha rilevato come un bot, mi dispiace! Se sei un vero "
 "umano, per favore riprova :)"
 
-#: Controller/PagesController.php:173
+#: Controller/PagesController.php:223
 msgid "Your bug has been correctly sent ! Thanks for this report :)"
 msgstr "Il tuo bug è stato inviato correttamente! Grazie per questo report :)"
 
-#: Controller/PagesController.php:178
+#: Controller/PagesController.php:228
 msgid "You didn't report anything (or have missed something) :("
 msgstr "Non hai segnalato nulla (o hai perso qualcosa) :("
 
-#: Controller/PagesController.php:204;240
+#: Controller/PagesController.php:254;290
 msgid "We have found the user you are looking for !"
 msgstr "Abbiamo trovato l'utente che stai cercando !"
 
-#: Controller/PagesController.php:216
+#: Controller/PagesController.php:266
 msgid "We have found the component you are looking for !"
 msgstr "Abbiamo trovato il componente che stai cercando !"
 
@@ -524,10 +524,6 @@ msgstr ""
 "L'immagine del tuo profilo non può essere ridimensionata, convertita in "
 "formato PNG o salvata ... Si prage di contattare un amministratore."
 
-#: Template/API/embed.ctp:20
-msgid "Setup of"
-msgstr "Setup of"
-
 #: Template/Admin/comments.ctp:7
 msgid "Comments | myAdmin"
 msgstr "Commenti| myAdmin"
@@ -819,6 +815,10 @@ msgstr "Admin"
 #: Template/Admin/users.ctp:76
 msgid "Are you sure you want to delete this user ?"
 msgstr "Sei sicuro di volere cancellare questo utente ?"
+
+#: Template/Api/embed.ctp:20
+msgid "Setup of"
+msgstr "Setup di"
 
 #: Template/Articles/add.ctp:11
 msgid "Add post"
