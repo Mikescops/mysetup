@@ -100,14 +100,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/twitch/*', ['controller' => 'Users', 'action' => 'twitch']);
     /* _________________________ */
 
-    /* Allows the usage of 'api' in lowercase and connect the Throttle middleware */
+    /* Our API routes, we connect the Throttle middleware */
     $routes->scope('/api', function($routes) {
         $routes->applyMiddleware('throttle');
-        $routes->connect('/:action/*', ['controller' => 'API', 'action' => 'action']);
-    });
-    $routes->scope('/API', function($routes) {
-        $routes->applyMiddleware('throttle');
-        $routes->connect('/:action/*', ['controller' => 'API', 'action' => 'action']);
     });
     /* ______________________________________ */
 
