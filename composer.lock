@@ -140,16 +140,16 @@
         },
         {
             "name": "cakephp/chronos",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/chronos.git",
-                "reference": "a0293d2cd157d1b47844f882a65a9cba11a72c72"
+                "reference": "243bb7bc3411b549e190703dbef49a96be5b4233"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/chronos/zipball/a0293d2cd157d1b47844f882a65a9cba11a72c72",
-                "reference": "a0293d2cd157d1b47844f882a65a9cba11a72c72",
+                "url": "https://api.github.com/repos/cakephp/chronos/zipball/243bb7bc3411b549e190703dbef49a96be5b4233",
+                "reference": "243bb7bc3411b549e190703dbef49a96be5b4233",
                 "shasum": ""
             },
             "require": {
@@ -193,33 +193,33 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-06-21T02:02:26+00:00"
+            "time": "2018-06-23T01:51:58+00:00"
         },
         {
             "name": "cakephp/migrations",
-            "version": "1.8.1",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "cd65daa9fae933bc0ccc69d5b5d92460375da9e2"
+                "reference": "928389e10edd16bae834f4d56336e1e66deb525a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/cd65daa9fae933bc0ccc69d5b5d92460375da9e2",
-                "reference": "cd65daa9fae933bc0ccc69d5b5d92460375da9e2",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/928389e10edd16bae834f4d56336e1e66deb525a",
+                "reference": "928389e10edd16bae834f4d56336e1e66deb525a",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cache": "^3.6.0",
                 "cakephp/orm": "^3.6.0",
                 "php": ">=5.6.0",
-                "robmorgan/phinx": "0.8.1"
+                "robmorgan/phinx": "~0.10.3"
             },
             "require-dev": {
                 "cakephp/bake": "^1.7.0",
                 "cakephp/cakephp": "^3.6.0",
                 "cakephp/cakephp-codesniffer": "^3.0",
-                "phpunit/phpunit": "^5.7.14"
+                "phpunit/phpunit": "^5.7.14|^6.0"
             },
             "suggest": {
                 "cakephp/bake": "Required if you want to generate migrations."
@@ -246,7 +246,7 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2018-04-16T01:35:59+00:00"
+            "time": "2018-06-22T13:22:45+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -905,26 +905,30 @@
         },
         {
             "name": "robmorgan/phinx",
-            "version": "v0.8.1",
+            "version": "0.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "7a19de5bebc59321edd9613bc2a667e7f96224ec"
+                "reference": "25c5197af1b49fb1a4029fe943858a9e63b3c335"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/7a19de5bebc59321edd9613bc2a667e7f96224ec",
-                "reference": "7a19de5bebc59321edd9613bc2a667e7f96224ec",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/25c5197af1b49fb1a4029fe943858a9e63b3c335",
+                "reference": "25c5197af1b49fb1a4029fe943858a9e63b3c335",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4",
-                "symfony/config": "~2.8|~3.0",
-                "symfony/console": "~2.8|~3.0",
-                "symfony/yaml": "~2.8|~3.0"
+                "cakephp/collection": "^3.6",
+                "cakephp/database": "^3.6",
+                "php": ">=5.6",
+                "symfony/config": "^2.8|^3.0|^4.0",
+                "symfony/console": "^2.8|^3.0|^4.0",
+                "symfony/yaml": "^2.8|^3.0|^4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.26|^5.0"
+                "cakephp/cakephp-codesniffer": "^3.0",
+                "phpunit/phpunit": ">=5.7",
+                "sebastian/comparator": ">=1.2.3"
             },
             "bin": [
                 "bin/phinx"
@@ -932,7 +936,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Phinx\\": "src/Phinx"
+                    "Phinx\\": "src/Phinx/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -956,6 +960,10 @@
                     "name": "Richard Quadling",
                     "email": "rquadling@gmail.com",
                     "role": "Developer"
+                },
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "https://github.com/cakephp/phinx/graphs/contributors"
                 }
             ],
             "description": "Phinx makes it ridiculously easy to manage the database migrations for your PHP app.",
@@ -967,36 +975,35 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2017-06-05T13:30:19+00:00"
+            "time": "2018-06-22T12:02:01+00:00"
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.11",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "73e055cf2e6467715f187724a0347ea32079967c"
+                "reference": "5ceefc256caecc3e25147c4e5b933de71d0020c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/73e055cf2e6467715f187724a0347ea32079967c",
-                "reference": "73e055cf2e6467715f187724a0347ea32079967c",
+                "url": "https://api.github.com/repos/symfony/config/zipball/5ceefc256caecc3e25147c4e5b933de71d0020c4",
+                "reference": "5ceefc256caecc3e25147c4e5b933de71d0020c4",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9|>=7.0.8",
-                "symfony/filesystem": "~2.8|~3.0|~4.0",
+                "php": "^7.1.3",
+                "symfony/filesystem": "~3.4|~4.0",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "conflict": {
-                "symfony/dependency-injection": "<3.3",
-                "symfony/finder": "<3.3"
+                "symfony/finder": "<3.4"
             },
             "require-dev": {
-                "symfony/dependency-injection": "~3.3|~4.0",
-                "symfony/event-dispatcher": "~3.3|~4.0",
-                "symfony/finder": "~3.3|~4.0",
-                "symfony/yaml": "~3.0|~4.0"
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/event-dispatcher": "~3.4|~4.0",
+                "symfony/finder": "~3.4|~4.0",
+                "symfony/yaml": "~3.4|~4.0"
             },
             "suggest": {
                 "symfony/yaml": "To use the yaml reference dumper"
@@ -1004,7 +1011,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.4-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -1031,25 +1038,24 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-14T16:49:53+00:00"
+            "time": "2018-05-16T14:33:22+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.11",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27"
+                "reference": "2d5d973bf9933d46802b01010bd25c800c87c242"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/36f83f642443c46f3cf751d4d2ee5d047d757a27",
-                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27",
+                "url": "https://api.github.com/repos/symfony/console/zipball/2d5d973bf9933d46802b01010bd25c800c87c242",
+                "reference": "2d5d973bf9933d46802b01010bd25c800c87c242",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9|>=7.0.8",
-                "symfony/debug": "~2.8|~3.0|~4.0",
+                "php": "^7.1.3",
                 "symfony/polyfill-mbstring": "~1.0"
             },
             "conflict": {
@@ -1058,11 +1064,11 @@
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~3.3|~4.0",
+                "symfony/config": "~3.4|~4.0",
                 "symfony/dependency-injection": "~3.4|~4.0",
-                "symfony/event-dispatcher": "~2.8|~3.0|~4.0",
+                "symfony/event-dispatcher": "~3.4|~4.0",
                 "symfony/lock": "~3.4|~4.0",
-                "symfony/process": "~3.3|~4.0"
+                "symfony/process": "~3.4|~4.0"
             },
             "suggest": {
                 "psr/log-implementation": "For using the console logger",
@@ -1073,7 +1079,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.4-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -1100,63 +1106,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T08:49:21+00:00"
-        },
-        {
-            "name": "symfony/debug",
-            "version": "v4.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/debug.git",
-                "reference": "449f8b00b28ab6e6912c3e6b920406143b27193b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/449f8b00b28ab6e6912c3e6b920406143b27193b",
-                "reference": "449f8b00b28ab6e6912c3e6b920406143b27193b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3",
-                "psr/log": "~1.0"
-            },
-            "conflict": {
-                "symfony/http-kernel": "<3.4"
-            },
-            "require-dev": {
-                "symfony/http-kernel": "~3.4|~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Debug\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Debug Component",
-            "homepage": "https://symfony.com",
-            "time": "2018-05-16T14:33:22+00:00"
+            "time": "2018-05-30T07:26:09+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -1324,20 +1274,20 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.11",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "c5010cc1692ce1fa328b1fb666961eb3d4a85bb0"
+                "reference": "80e4bfa9685fc4a09acc4a857ec16974a9cd944e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/c5010cc1692ce1fa328b1fb666961eb3d4a85bb0",
-                "reference": "c5010cc1692ce1fa328b1fb666961eb3d4a85bb0",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/80e4bfa9685fc4a09acc4a857ec16974a9cd944e",
+                "reference": "80e4bfa9685fc4a09acc4a857ec16974a9cd944e",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9|>=7.0.8",
+                "php": "^7.1.3",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "conflict": {
@@ -1352,7 +1302,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.4-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -1379,7 +1329,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-03T23:18:14+00:00"
+            "time": "2018-05-30T07:26:09+00:00"
         },
         {
             "name": "tanuck/cakephp-markdown",
