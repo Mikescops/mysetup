@@ -51,7 +51,6 @@ class PagesController extends AppController
             'duration'    => '+30 minutes',
             'prefix'      => 'recentPage_'
         ]);
-
     }
 
     /**
@@ -218,7 +217,7 @@ class PagesController extends AppController
             {
                 $email = $this->loadModel('Users')->getEmailObject('beta@mysetup.co', '[mySetup.co] There is a bug !');
                 $email->setTemplate('bug')
-                      ->viewVars(['content' => $data['bugDescription'], 'email' => ($auth ? $auth['mail'] : $data['bugMail'])])
+                      ->setViewVars(['content' => $data['bugDescription'], 'email' => ($auth ? $auth['mail'] : $data['bugMail'])])
                       ->send();
 
                 $this->Flash->success(__('Your bug has been correctly sent ! Thanks for this report :)'));

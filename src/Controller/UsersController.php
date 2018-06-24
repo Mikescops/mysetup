@@ -148,7 +148,7 @@ class UsersController extends AppController
 
                     $email = $this->Users->getEmailObject($user->mail, 'Verify your account !');
                     $email->setTemplate('verify')
-                          ->viewVars(['name' => $data['name'], 'id' => $user->id, 'token' => $user->mailVerification])
+                          ->setViewVars(['name' => $data['name'], 'id' => $user->id, 'token' => $user->mailVerification])
                           ->send();
 
                     $this->Flash->success(__('Your account has been created, check your email to verify your account'));
@@ -412,7 +412,7 @@ class UsersController extends AppController
                 {
                     $email = $this->Users->getEmailObject($data['mailReset'], 'Your password has been reseted !');
                     $email->setTemplate('password')
-                          ->viewVars(['name' => $user->name, 'password' => $temp])
+                          ->setViewVars(['name' => $user->name, 'password' => $temp])
                           ->send();
 
                     $this->Flash->success(__("An email has been sent to this email address !"));
@@ -615,7 +615,7 @@ class UsersController extends AppController
                         $this->Users->save($user);
                         $email = $this->Users->getEmailObject($user->mail, 'Verify your account !');
                         $email->setTemplate('verify')
-                              ->viewVars(['name' => $user->name, 'id' => $user->id, 'token' => $user->mailVerification])
+                              ->setViewVars(['name' => $user->name, 'id' => $user->id, 'token' => $user->mailVerification])
                               ->send();
                         $this->Flash->warning(__('Your unverified existing account cannot be linked to Twitch because your email address is not verified either. Please verify it before retrying (you will receive a new email soon).'));
                         return $this->redirect('/');
@@ -680,7 +680,7 @@ class UsersController extends AppController
 
             $email = $this->Users->getEmailObject($user->mail, 'Your account has been created !');
             $email->setTemplate('welcome')
-                  ->viewVars(['name' => $user->name])
+                  ->setViewVars(['name' => $user->name])
                   ->send();
 
             $this->Flash->success(__('Your account is now activated, and you have been logged in ;)'));

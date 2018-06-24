@@ -42,7 +42,7 @@ class RequestsController extends AppController
                 {
                     $email = $this->Requests->Users->getEmailObject($setup->user->mail, $user->name . ' has claimed your setup !');
                     $email->setTemplate('ownership')
-                          ->viewVars(['setup_id' => $setup->id, 'setup_title' => $setup->title, 'owner_name' => $setup->user->name, 'requester_id' => $user->id, 'requester_name' => $user->name, 'requester_mail' => $user->mail, 'token' => $request->token])
+                          ->setViewVars(['setup_id' => $setup->id, 'setup_title' => $setup->title, 'owner_name' => $setup->user->name, 'requester_id' => $user->id, 'requester_name' => $user->name, 'requester_mail' => $user->mail, 'token' => $request->token])
                           ->send();
 
                     $this->Flash->success(__('Your request has just been sent. Let\'s wait for the owner\'s approval for now.'));
@@ -176,7 +176,7 @@ class RequestsController extends AppController
             {
                 $email = $this->Requests->Users->getEmailObject('report@mysetup.co', 'A setup has been flagged !');
                 $email->setTemplate('report')
-                      ->viewVars(['setup_id' => $setup->id, 'flagger_id' => $user->id, 'flagger_name' => $user->name, 'flagger_mail' => $user->mail])
+                      ->setViewVars(['setup_id' => $setup->id, 'flagger_id' => $user->id, 'flagger_name' => $user->name, 'flagger_mail' => $user->mail])
                       ->send();
 
                 $this->Flash->success(__('Your request has just been sent, we may contact you in the future.'));
