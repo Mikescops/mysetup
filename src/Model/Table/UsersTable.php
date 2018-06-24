@@ -91,6 +91,12 @@ class UsersTable extends Table
         ]);
     }
 
+    /** Let's get the real url of setup **/
+    public function getUrl(Entity $entity)
+    {
+        return Router::url('/users/' . $entity->id . '-' . Text::slug($entity->name), true);
+    }
+
     /**
      * Default validation rules.
      *
