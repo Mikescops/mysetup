@@ -114,8 +114,6 @@ class AppController extends Controller
 
             // Now, let's send the setups list to the view (to let the user choose a default one);
             $this->set('setupsList', $this->Setups->find('list', [
-                'keyField'   => 'id',
-                'valueField' => 'title',
                 'conditions' => [
                     'user_id' => $user->id
                 ],

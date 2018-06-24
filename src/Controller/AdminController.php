@@ -174,10 +174,7 @@ class AdminController extends AppController
     public function sendNotification()
     {
         // Let's just build an array as ['user_id' => 'user_name'] for each user...
-        $usersList = $this->Users->find('list', [
-            'keyField'   => 'id',
-            'valueField' => 'name'
-        ])->toArray();
+        $usersList = $this->Users->find('list')->toArray();
 
         if($this->request->is('post'))
         {
