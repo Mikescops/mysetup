@@ -317,14 +317,23 @@ class UsersController extends AppController
         }
 
         // Only disconnects someone who is deleting himself (and not an admin !) :O
-        if($user->id == $this->Auth->user('id'))
+        if($user->id === $this->Auth->user('id'))
         {
             return $this->redirect($this->Auth->logout());
         }
 
         else
         {
-            return $this->redirect('/');
+            // If the user is consulting this very entity, let's redirect him to the home page.
+            if(strpos($this->referer(), (string)$user->id) !== false)
+            {
+                return $this->redirect('/');
+            }
+
+            else
+            {
+                return $this->redirect($this->referer());
+            }
         }
     }
 
