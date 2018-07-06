@@ -32,7 +32,7 @@
     <meta property="og:site_name" content="mySetup.co" />
     <meta property="fb:admins" content="1912097312403661" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" crossorigin="anonymous">
 
     <style type="text/css">
       a .feather{
@@ -87,7 +87,7 @@
             <div class="list-group">
               <a href="<?=$this->Url->build('/users/'. $authUser['id'])?>" class="list-group-item active"><i data-feather="package"></i> <?= __('Welcome') ?> <?= h($authUser['name']) ?></a>
               <a href="<?= $this->Url->build('/admin/sendNotification'); ?>" class="list-group-item list-group-item-action"><i data-feather="send"></i> <?= __('Send notification') ?></a>
-              <a href="https://github.com/Mikescops/mysetup" class="list-group-item list-group-item-action"><i data-feather="github"></i></i> Github Repo</a>
+              <a href="https://github.com/Mikescops/mysetup" class="list-group-item list-group-item-action"><i data-feather="github"></i> Github Repo</a>
               <a href="https://github.com/Mikescops/mysetup-twitch-extension" class="list-group-item list-group-item-action"><i data-feather="git-branch"></i> Extension Twitch Repo</a>
             </div>
 
@@ -114,9 +114,9 @@
     <!-- Set the Flash dependencies on this layout (needed for entities related actions) -->
     <?= $this->Html->script('app.min.js') ?>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.1/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script>
