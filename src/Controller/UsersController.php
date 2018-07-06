@@ -637,6 +637,15 @@ class UsersController extends AppController
                     }
                 }
 
+                // This user entity has a verified email address, but an unverified one on Twitch.
+                // /!\ This might be an account high-jacking /!\
+                // Thanks to @Garkolym for the restricted disclosure.
+                else if(!$response->json['email_verified'])
+                {
+                    $this->Flash->warning(__('The email address of your Twitch account is not verified. We can\'t link your accounts yet'));
+                    return $this->redirect($this->referer());
+                }
+
                 // If we could verify its email address, let's just "link" its account with Twitch by setting these data
                 $user->twitchToken  = $token;
                 $user->twitchUserId = $response->json['_id'];
