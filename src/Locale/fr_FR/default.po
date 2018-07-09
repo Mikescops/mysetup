@@ -1691,7 +1691,7 @@ msgid ""
 "v=dQw4w9WgXcQ\" or \"https://player.twitch.tv/?channel=mikescops\""
 msgstr ""
 "Les liens vidéo doivent être du type : \"https://www.youtube.com/XXXXX\" "
-"pour YouTube, ou bien \"https://player.twitch.tv/XXXX\" pour Twitch. "
+"pour YouTube, ou bien \"https://player.twitch.tv/XXXXX\" pour Twitch. "
 "D'autres hébergeurs sont disponibles, n'hésitez pas à nous contacter."
 
 #: Template/Pages/q&a.ctp:57
@@ -1928,7 +1928,7 @@ msgstr "Répéter le mot de passe"
 
 #: Template/Users/login.ctp:53
 msgid "Password should be at least 8 characters."
-msgstr "Le mot de passe doit contenir au moins 8 caractère."
+msgstr "Le mot de passe doit contenir au moins 8 caractères."
 
 #: Template/Users/login.ctp:62
 msgid "Sign up"
@@ -1940,7 +1940,7 @@ msgid ""
 "password."
 msgstr ""
 "Pour réinitialiser votre mot de passe, entrez votre adresse email et nous "
-"vous enverrons un code temporaire pour vous connecter et le modifier."
+"vous enverrons un code temporaire afin de vous connecter pour le modifier."
 
 #: Template/Users/view.ctp:6
 msgid "Setups by "
