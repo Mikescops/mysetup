@@ -82,7 +82,7 @@ class APIController extends AppController
                 'offset'   => $this->request->getQuery('p', 0),
                 'type'     => $this->request->getQuery('t', 'like'),
                 'weeks'    => $this->request->getQuery('w'),
-                'fuzzy'    => $this->request->getQuery('x', true)
+                'fuzzy'    => $this->request->getQuery('x', false)
             ]);
 
             return new Response([

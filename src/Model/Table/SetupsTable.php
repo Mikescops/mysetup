@@ -221,7 +221,7 @@ class SetupsTable extends Table
             'offset'   => 0,
             'type'     => 'date',
             'weeks'    => 999,
-            'fuzzy'    => true
+            'fuzzy'    => false
         ],
         $array);
 
@@ -246,21 +246,25 @@ class SetupsTable extends Table
 
         if($params['query'])
         {
-            // We add to the search conditions the whole query as an unique sentence...
-            array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($params['query']) . '%']);
-            array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($params['query']) . '%']);
+            $params['query'] = strtolower($params['query']);
 
-            // ... and each one of it words to improve matching probability (#fuzzySearch)
-            $words = explode('+', urlencode($params['query']));
-            // Adds "fuzzy search" only if the query contains multiple words to avoid duplicates
-            if(count($words) > 1 && $params['fuzzy'])
+            if($params['fuzzy'])
             {
-                foreach($words as $word)
+                // If the "fuzzy" parameter is enabled, search for each word to improve matching probability (#fuzzySearch).
+                foreach(explode('+', urlencode($params['query'])) as $word)
                 {
-                    array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
+                    array_push($title_cond,     ['LOWER(Setups.title)                                         LIKE' => '%' . $word . '%']);
                     array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
                 }
             }
+
+            else
+            {
+                // If not, we add to the search conditions the whole query as an unique sentence...
+                array_push($title_cond,     ['LOWER(Setups.title)                                         LIKE' => '%' .              $params['query']  . '%']);
+                array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($params['query']) . '%']);
+            }
+
         }
 
         $orders = [];
@@ -285,7 +289,15 @@ class SetupsTable extends Table
                 * We pick only the public setups !
         */
         $results = $this->find('all', [
-            'conditions' => $conditions,
+            'conditions' => [
+                'AND' => [
+                    'AND' => $conditions,
+                    'OR'  => [
+                        'OR' => $title_cond,
+                        'OR' => $resources_cond
+                    ]
+                ]
+            ],
             'order' => $orders,
             'limit' => $params['number'],
             'offset' => $params['offset'],
@@ -318,13 +330,7 @@ class SetupsTable extends Table
                 ]
             ]
         ])
-        ->where([
-            'OR' => [
-                'OR' => $title_cond,
-                'OR' => $resources_cond
-            ]
-        ])
-        ->leftJoinWith('Resources')
+        ->innerJoinWith('Resources')
         ->distinct()
         ->toArray();
 
