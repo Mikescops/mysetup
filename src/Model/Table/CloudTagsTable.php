@@ -98,7 +98,8 @@ class CloudTagsTable extends Table
             $setups = $setupTable->getSetups([
                 'query'  => $tag->name,
                 'number' => $params['limit_setups'],
-                'type'   => 'like'
+                'type'   => 'like',
+                'fuzzy'  => false
             ]);
 
             if(count($setups) >= 3)

@@ -214,13 +214,14 @@ class SetupsTable extends Table
     {
         // Here we just 'merge' our default values with the parameters given
         $params = array_merge([
-            'query' => null,
+            'query'    => null,
             'featured' => false,
-            'order' => 'DESC',
-            'number' => 9999,
-            'offset' => 0,
-            'type' => 'date',
-            'weeks' => 999
+            'order'    => 'DESC',
+            'number'   => 9999,
+            'offset'   => 0,
+            'type'     => 'date',
+            'weeks'    => 999,
+            'fuzzy'    => true
         ],
         $array);
 
@@ -261,7 +262,7 @@ class SetupsTable extends Table
             // ... and each one of it words to improve matching probability (#fuzzySearch)
             $words = explode('+', urlencode($params['query']));
             // Adds "fuzzy search" only if the query contains multiple words to avoid duplicates
-            if(count($words) > 1)
+            if(count($words) > 1 && $params['fuzzy'])
             {
                 foreach($words as $word)
                 {
