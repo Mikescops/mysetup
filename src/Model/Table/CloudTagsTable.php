@@ -69,8 +69,8 @@ class CloudTagsTable extends Table
     {
 
         $params = array_merge([
-            'type' => null,
-            'number_tags' => 1,
+            'type'         => null,
+            'number_tags'  => 1,
             'limit_setups' => 3
         ],
         $array);
@@ -90,15 +90,15 @@ class CloudTagsTable extends Table
 
         $tags = $this->find('all', [
             'conditions' => $conditions,
-            'order' => 'RAND()'
+            'order'      => 'RAND()'
         ])->toArray();
 
         foreach($tags as $tag)
         {
             $setups = $setupTable->getSetups([
-                'query' => $tag->name,
+                'query'  => $tag->name,
                 'number' => $params['limit_setups'],
-                'type' => 'like'
+                'type'   => 'like'
             ]);
 
             if(count($setups) >= 3)
@@ -109,7 +109,6 @@ class CloudTagsTable extends Table
             {
                 continue;
             }
-            //
 
             if(count($results) >= $params['number_tags'])
             {
