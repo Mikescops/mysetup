@@ -182,7 +182,7 @@ class PagesController extends AppController
         $recentSetups = Cache::read('recentSetupsPage', 'RecentPageCacheConfig');
         if($recentSetups === false)
         {
-            $recentSetups = $this->Setups->getSetups(['number' => 6]);
+            $recentSetups = $this->Setups->getSetups(['number' => 20]);
 
             Cache::write('recentSetupsPage', $recentSetups, 'RecentPageCacheConfig');
         }
