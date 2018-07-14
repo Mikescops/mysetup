@@ -283,25 +283,10 @@ class UsersTable extends Table
     // Please refer to `SetupsTable@getSetups()` method for advanced documentation.
     public function getUsers($query = null)
     {
-        $conditions = [
-            ['LOWER(name) LIKE' => '%' . strtolower($query) . '%']
-        ];
-
-        $words = explode('+', urlencode($query));
-        if(count($words) > 1)
-        {
-            foreach($words as $word)
-            {
-                array_push($conditions, ['LOWER(name) LIKE' => '%' . strtolower($word) . '%']);
-            }
-        }
-
         return $this->find('all', [
             'conditions' => [
-                'AND' => [
-                    ['mailVerification IS' => null],
-                    ['OR' => $conditions]
-                ]
+                'mailVerification IS' => null,
+                'LOWER(name)    LIKE' => '%' . strtolower($query) . '%'
             ],
             'fields' => [
                 'id',

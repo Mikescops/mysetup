@@ -130,25 +130,10 @@ class ResourcesTable extends Table
     // Please refer to `SetupsTable@getSetups()` method for advanced documentation.
     public function getResources($query = null)
     {
-        $conditions = [
-            ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%']
-        ];
-
-        $words = explode('+', urlencode($query));
-        if(count($words) > 1)
-        {
-            foreach($words as $word)
-            {
-                array_push($conditions, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
-            }
-        }
-
         return $this->find('all', [
             'conditions' => [
-                'AND' => [
-                    ['type' => 'SETUP_PRODUCT'],
-                    ['OR'   => $conditions    ]
-                ]
+                    'type'                                                             => 'SETUP_PRODUCT',
+                    'CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%'
             ],
             'fields' => [
                 'title',
