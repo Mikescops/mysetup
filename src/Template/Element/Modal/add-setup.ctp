@@ -25,7 +25,7 @@
             <i class="fa fa-camera"></i> <?= __('We only accept images lighter than 5 MB !') ?>
             
 
-            <div class="slim slim-round" data-did-save="featuredPreviewChange" data-ratio="22:10" data-size="1080,500">
+            <div class="slim slim-round" data-did-save="featuredPreviewChange" data-ratio="1080:500" data-size="1080,500">
                 <?php
                     echo $this->Form->control('featuredImage', ['name' => 'featuredImage[]', 'type' => 'file', 'class' => 'input_hidden', 'label' => 'Featured Image', 'required' => 'true']);
                 ?>
