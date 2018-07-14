@@ -73,10 +73,7 @@ class PagesController extends AppController
         $popularSetups = Cache::read('popularSetups', 'HomePageCacheConfig');
         if($popularSetups === false)
         {
-            $popularSetups  = $this->Setups->getSetups([
-                'number' => 6,
-                'type'   => 'like'
-            ]);
+            $popularSetups  = $this->Setups->getSetups(['number' => 6, 'type' => 'like']);
 
             Cache::write('popularSetups', $popularSetups, 'HomePageCacheConfig');
         }

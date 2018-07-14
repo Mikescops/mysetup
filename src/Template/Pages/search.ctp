@@ -89,7 +89,7 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                 ?>
 
                 <?php if(isset($results["resources"]) && count($results["resources"]) > 0): $resources = $results["resources"]; ?>
-                    
+
                         <?php if(count($resources, COUNT_RECURSIVE) == 1): ?>
                             <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"><div class="item_box float-left" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div></a>
                             <span><?= __('All setups related to') ?> :</span>
@@ -103,7 +103,7 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                             </div>
                         <?php endif;?>
                         <br clear="all">
-                        
+
                     <br clear="all">
                 <?php endif;?>
 
