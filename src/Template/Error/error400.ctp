@@ -1,9 +1,10 @@
 <?php
 use Cake\Error\Debugger;
+use Cake\Core\Configure;
 
 $this->layout = 'default';
 
-if ($debug):
+if (Configure::read('debug')):
     $this->layout = 'dev_error';
 
     $this->assign('title', $message);
