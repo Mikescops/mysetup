@@ -131,12 +131,7 @@ class ResourcesTable extends Table
     public function getResources($query = null)
     {
         $conditions = [
-            [
-                'type' => 'SETUP_PRODUCT'
-            ],
-            [
-                'CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%'
-            ]
+            ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%']
         ];
 
         $words = explode('+', urlencode($query));
@@ -149,7 +144,12 @@ class ResourcesTable extends Table
         }
 
         return $this->find('all', [
-            'conditions' => $conditions,
+            'conditions' => [
+                'AND' => [
+                    ['type' => 'SETUP_PRODUCT'],
+                    ['OR'   => $conditions    ]
+                ]
+            ],
             'fields' => [
                 'title',
                 'href',

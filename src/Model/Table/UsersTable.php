@@ -284,12 +284,7 @@ class UsersTable extends Table
     public function getUsers($query = null)
     {
         $conditions = [
-            [
-                'mailVerification IS' => null
-            ],
-            [
-                'LOWER(name) LIKE' => '%' . strtolower($query) . '%'
-            ]
+            ['LOWER(name) LIKE' => '%' . strtolower($query) . '%']
         ];
 
         $words = explode('+', urlencode($query));
@@ -302,7 +297,12 @@ class UsersTable extends Table
         }
 
         return $this->find('all', [
-            'conditions' => $conditions,
+            'conditions' => [
+                'AND' => [
+                    ['mailVerification IS' => null],
+                    ['OR' => $conditions]
+                ]
+            ],
             'fields' => [
                 'id',
                 'name',

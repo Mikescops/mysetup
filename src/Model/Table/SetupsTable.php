@@ -327,7 +327,12 @@ class SetupsTable extends Table
                 ]
             ]
         ])
-        ->where(['OR' => [$title_cond, $resources_cond]])
+        ->where([
+            'OR' => [
+                'OR' => $title_cond,
+                'OR' => $resources_cond
+            ]
+        ])
         ->leftJoinWith('Resources')
         ->distinct()
         ->toArray();
