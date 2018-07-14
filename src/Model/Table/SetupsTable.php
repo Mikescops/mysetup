@@ -210,7 +210,7 @@ class SetupsTable extends Table
         }
     }
 
-    public function getSetups($array = [], $flash = null)
+    public function getSetups($array = [])
     {
         // Here we just 'merge' our default values with the parameters given
         $params = array_merge([
@@ -225,12 +225,13 @@ class SetupsTable extends Table
         ],
         $array);
 
-        // We'll stock some conditions in this array
-        $conditions = [
-            'Setups.status' => 'PUBLISHED',
-            'Setups.creationDate >' => date('Y-m-d', strtotime("-" . $params['weeks'] . "weeks")),
-            'Setups.creationDate <=' => date('Y-m-d', strtotime("+ 1 day"))
-        ];
+        // We'll only return the `PUBLISHED` setups with this call.
+        $conditions = ['Setups.status' => 'PUBLISHED'];
+
+        if($params['weeks'])
+        {
+            $conditions += ['Setups.creationDate >' => new \DateTime('-' . $params['weeks'] . ' weeks')];
+        }
 
         // If the query specified only the featured ones...
         if($params['featured'])
@@ -245,16 +246,6 @@ class SetupsTable extends Table
 
         if($params['query'])
         {
-            if(strlen($params['query']) < 2)
-            {
-                if($flash)
-                {
-                    $flash->warning(__('Your query does not contain enough characters.'));
-                }
-
-                return null;
-            }
-
             // We add to the search conditions the whole query as an unique sentence...
             array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($params['query']) . '%']);
             array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($params['query']) . '%']);
