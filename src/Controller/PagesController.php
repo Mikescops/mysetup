@@ -81,15 +81,6 @@ class PagesController extends AppController
             Cache::write('popularSetups', $popularSetups, 'HomePageCacheConfig');
         }
 
-        // For this one we use the other Cache config (these entities change often !)
-        $recentSetups = Cache::read('recentSetups', 'RecentPageCacheConfig');
-        if($recentSetups === false)
-        {
-            $recentSetups = $this->Setups->getSetups(['number' => 3]);
-
-            Cache::write('recentSetups', $recentSetups, 'RecentPageCacheConfig');
-        }
-
         $brandSetups = Cache::read('brandSetups', 'HomePageCacheConfig');
         if($brandSetups === false)
         {
@@ -172,7 +163,7 @@ class PagesController extends AppController
             ]);
         }
 
-        $this->set(compact('featuredSetups', 'popularSetups', 'recentSetups', 'brandSetups', 'activeUsers', 'randomResources', 'mainSetup'));
+        $this->set(compact('featuredSetups', 'popularSetups', 'brandSetups', 'activeUsers', 'randomResources', 'mainSetup'));
 
         $this->display('home');
     }

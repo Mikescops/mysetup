@@ -145,24 +145,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 </div>
 
-<div class="colored-box-6">
-    <div class="container">
-        <div class="rowfeed">
-            <h4 class="fancy"><span><?= __('Latest setups') ?></span></h4>
-            <div class="feeditem">
-
-                <?php $i=0; foreach ($recentSetups as $setup): ?>
-
-                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
-
-                <?php if (++$i == 8) break; endforeach ?>
-            </div>
-            <a class="home_more float-right" href="<?= $this->Url->build('/pages/recent'); ?>"><?= __('More recent setups') ?> <i class="fa fa-chevron-right"></i></a>
-            <br clear='all'>
-        </div>
-    </div>
-</div>
-
 <?php $i = 1;  foreach($brandSetups as $brand => $setups): ?>
 
     <div class="colored-box-<?= ++$i ?>">
