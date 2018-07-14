@@ -7,10 +7,13 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Event\Event;
 use Cake\Datasource\EntityInterface;
+use Cake\ORM\Entity;
+use Cake\Utility\Text;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
 use Cake\Mailer\Email;
 use Cake\Http\Client;
+use Cake\Routing\Router;
 
 /**
  * Users Model
@@ -91,7 +94,7 @@ class UsersTable extends Table
         ]);
     }
 
-    /** Let's get the real url of setup **/
+    /** Let's get the real url of user **/
     public function getUrl(Entity $entity)
     {
         return Router::url('/users/' . $entity->id . '-' . Text::slug($entity->name), true);

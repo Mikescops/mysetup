@@ -90,9 +90,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/login',  ['controller' => 'Users', 'action' => 'login']);
     $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
     $routes
-        ->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'])
-        ->setPatterns(['id' => '\d+'])
+        ->connect('/users/:id:slug', ['controller' => 'Users', 'action' => 'view'])
+        ->setPatterns(['id' => '\d+', 'slug' => '(-.*)?'])
         ->setPass(['id']);
+
     $routes
         ->connect('/verify/:id/:token', ['controller' => 'Users', 'action' => 'verifyAccount'])
         ->setPatterns(['id' => '\d+'])

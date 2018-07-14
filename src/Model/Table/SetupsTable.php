@@ -85,7 +85,6 @@ class SetupsTable extends Table
         ]);
     }
 
-
     /** Let's get the real url of setup **/
     public function getUrl(Entity $entity)
     {
