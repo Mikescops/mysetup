@@ -239,8 +239,6 @@ class SetupsTable extends Table
         }
 
         // Some empty arrays in which we'll set the SQL conditions to match a setup... or not
-        $name_cond      = [];
-        $author_cond    = [];
         $title_cond     = [];
         $resources_cond = [];
 
@@ -257,8 +255,6 @@ class SetupsTable extends Table
             }
 
             // We add to the search conditions the whole query as an unique sentence...
-            array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($params['query']) . '%']);
-            array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($params['query']) . '%']);
             array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($params['query']) . '%']);
             array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($params['query']) . '%']);
 
@@ -269,22 +265,22 @@ class SetupsTable extends Table
             {
                 foreach($words as $word)
                 {
-                    array_push($name_cond, ['LOWER(Users.name) LIKE' => '%' . strtolower($word) . '%']);
-                    array_push($author_cond, ['LOWER(Setups.author) LIKE' => '%' . strtolower($word) . '%']);
                     array_push($title_cond, ['LOWER(Setups.title) LIKE' => '%' . strtolower($word) . '%']);
                     array_push($resources_cond, ['CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . $word . '%']);
                 }
             }
         }
 
-        // By default, we'll order the setups by creation dates
-        $orders = ['Setups.creationDate' => $params['order']];
+        $orders = [];
 
         // If the query specified a ranking by number of "likes", let's order them in the query below
         if($params['type'] === 'like')
         {
-            $orders = ['Setups.like_count' => 'DESC'] + $orders;
+            $orders += ['Setups.like_count' => 'DESC'];
         }
+
+        // But we'll order the setups by creation dates anyway
+        $orders += ['Setups.creationDate' => $params['order']];
 
         /*
             This query is just ESSENTIAL. Some explanations are required:
@@ -292,8 +288,7 @@ class SetupsTable extends Table
                 * We select only the columns that we'll need #optimization
                 * Featured image (for each setup) will be directly available  ($setup['resources'][0]['src'])
                 * Number of likes for each setup will be directly available ($setup->like_count)
-                * We browse the Users table (in order to gather some setups with the user name)
-                * We browse the Setups table (in order to gather some setups with their author name and title)
+                * We browse the Setups table (in order to gather some setups with their title)
                 * We browse the Resources table (in order to gather some setups with their resources title [=== product name])
                 * We pick only the public setups !
         */
@@ -331,7 +326,7 @@ class SetupsTable extends Table
                 ]
             ]
         ])
-        ->where(['OR' => [$name_cond, $author_cond, $title_cond, $resources_cond]])
+        ->where(['OR' => [$title_cond, $resources_cond]])
         ->leftJoinWith('Resources')
         ->distinct()
         ->toArray();
