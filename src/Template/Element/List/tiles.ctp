@@ -25,7 +25,7 @@
     <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
 
     <div class="item-inner">
-        <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
+        <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id.'-'.$this->Text->slug($setup->user->name))?>">
             <img alt="<?= __('Profile picture of') ?> <?= h($setup->user->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
         </a>
 

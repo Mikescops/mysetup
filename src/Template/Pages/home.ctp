@@ -191,7 +191,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <div class="activeUsers">
             <?php foreach($activeUsers as $activeUser): ?>
                 <div class="featured-user">
-                    <a href="<?=$this->Url->build('/users/'.$activeUser->id)?>">
+                    <a href="<?=$this->Url->build('/users/'.$activeUser->id.'-'.$this->Text->slug($activeUser->name))?>">
                         <img alt="<?= __('Profile picture of') ?> <?= h($activeUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
                         <span>
                             <strong><?= h($activeUser->name) ?></strong>

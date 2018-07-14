@@ -9,7 +9,7 @@
         <div class="row">
 
             <div class="column column-90">
-                <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
+                <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id.'-'.$this->Text->slug($setup->user->name))?>">
                     <img alt="<?= __('Profile picture of') ?> <?= h($setup->user->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)); ?>">
                 </a>
 

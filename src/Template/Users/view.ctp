@@ -58,7 +58,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                                 <div class="row">
 
                                     <div class="column column-75">
-                                        <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id)?>">
+                                        <a class="featured-user" href="<?=$this->Url->build('/users/'.$user->id.'-'.$this->Text->slug($user->name))?>">
                                             <img alt="<?= __('Profile picture of') ?> #<?= $setup->user_id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
                                         </a>
 

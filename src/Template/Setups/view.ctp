@@ -59,8 +59,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
     <div class="container">
         <div class="row">
             <div class="column column-60">
-                <a class="featured-user" href="<?= $this->Url->build('/users/'.$setup->user['id']) ?>">
-                    <img alt="<?= __('Profile picture of') ?> <?= h($setup->user['name']) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)) ?>">
+                <a class="featured-user" href="<?= $this->Url->build('/users/'.$setup->user->id.'-'.$this->Text->slug($setup->user->name)) ?>">
+                    <img alt="<?= __('Profile picture of') ?> <?= h($setup->user->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)) ?>">
                 </a>
                 <h3>
                     <?= h($setup->title) ?>
@@ -77,7 +77,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <?php endif ?>
                 </h3>
                 <p>
-                    <?= __('Shared by') ?> <?= $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id']]) ?><?php if($setup->user['verified']): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user['name'] != $setup->author and $setup->author !== ''): echo ", " . __("created by ") . h($setup->author) ; endif?>
+                    <?= __('Shared by') ?> <?= $this->Html->link($setup->user->name, $this->Url->build('/users/'.$setup->user_id.'-'.$this->Text->slug($setup->user->name))) ?><?php if($setup->user->verified): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user->name != $setup->author and $setup->author !== ''): echo ", " . __("created by ") . h($setup->author) ; endif?>
                 </p>
             </div>
             <div class="column column-35">
