@@ -46,23 +46,43 @@ class APIController extends AppController
         {
             // By default, we'll return a maximum of 8 results
             $n = $this->request->getQuery('n', 8);
-            if($n < 0)
+            if($n < 1)
             {
-                $n = 0;
+                $n = 1;
             }
             elseif($n > 16)
             {
                 $n = 16;
             }
 
+            // Treat `q` parameter here...
+            $q = trim($this->request->getQuery('q'));
+            if($q)
+            {
+                if(strlen($q) < 3)
+                {
+                    return new Response([
+                        'status' => 412,
+                        'type'   => 'json',
+                        'body'   => json_encode(['error' => 'Query too short'])
+                    ]);
+                }
+            }
+            else
+            {
+                // If the query is an empty string, we force to `null` to reduce query complexity afterwards.
+                $q = null;
+            }
+
             $results = $this->Setups->getSetups([
-                'query'    => $this->request->getQuery('q'),
-                'featured' => $this->request->getQuery('f'),
-                'order'    => $this->request->getQuery('o'),
+                'query'    => $q,
+                'featured' => $this->request->getQuery('f', false),
+                'order'    => $this->request->getQuery('o', 'DESC'),
                 'number'   => $n,
-                'offset'   => $this->request->getQuery('p'),
-                'type'     => $this->request->getQuery('t'),
-                'weeks'    => $this->request->getQuery('w')
+                'offset'   => $this->request->getQuery('p', 0),
+                'type'     => $this->request->getQuery('t', 'like'),
+                'weeks'    => $this->request->getQuery('w'),
+                'fuzzy'    => $this->request->getQuery('x', true)
             ]);
 
             return new Response([
