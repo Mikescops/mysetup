@@ -683,7 +683,7 @@ function infiniteScroll(nbtodisplay) {
 	// On déclenche une fonction lorsque l'utilisateur utilise sa molette
 	$(window).scroll(function() {
 		if ($(window).data('ajaxready') == false) return; //permet de couper les trigger parallèles
-		if (($(window).scrollTop() + $(window).height()) + 250 > $(document).height()) {
+		if (($(window).scrollTop() + $(window).height()) + 500 > $(document).height()) {
 			$(window).data('ajaxready', false);
 			$.ajax({
 				url: webRootJs + "api/getSetups",
@@ -692,10 +692,9 @@ function infiniteScroll(nbtodisplay) {
 					n: nbtodisplay,
 					o: 'DESC'
 				},
-				dataType: 'html',
+				dataType: 'json',
 				type: 'get',
-				success: function(json) {
-					setups = $.parseJSON(json);
+				success: function(setups) {
 					if (setups[0]) {
 						// Cache of the template
 						var template = document.getElementById("template-list-item");
@@ -734,7 +733,10 @@ function infiniteScroll(nbtodisplay) {
 							let user_name = escapeHtml(value.user.name);
 							let user_src = webRootJs + `uploads/files/pics/profile_picture_${value.user_id}.png?` + ("0" + (new Date(value.user.modificationDate)).getMinutes()).slice(-2) + ("0" + (new Date(value.user.modificationDate)).getSeconds()).slice(-2);
 							let user_url = webRootJs + `users/` + value.user_id;
-							let main_color = $.parseJSON(value.main_colors)[0];
+							let main_color = [0,0,0];
+							if(value.main_colors){
+								main_color = $.parseJSON(value.main_colors)[0];
+							}
 							let rgb_1 = main_color[0];
 							let rgb_2 = main_color[1];
 							let rgb_3 = main_color[2];

@@ -35,7 +35,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
             <p class="no_more_setups"></p>
 
-            <?= $this->Html->scriptBlock('infiniteScroll(6);', array('block' => 'scriptBottom')); ?>
+            <?= $this->Html->scriptBlock('infiniteScroll(16);', array('block' => 'scriptBottom')); ?>
 
             <script id="template-list-item" type="text/template">
                 <?= $this->element('List/tiles-js-template') ?>
