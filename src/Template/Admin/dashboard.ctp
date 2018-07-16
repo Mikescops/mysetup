@@ -104,6 +104,7 @@ use Cake\Core\Configure;
     </div>
 
     <div class="row mb-3">
+        <?php if($stats['users']['recentConnected']): ?>
         <div class="col-xl-6 col-sm-6">
             <br>
             <h3><?= __('Recently connected') ?></h3>
@@ -131,7 +132,9 @@ use Cake\Core\Configure;
             <hr>
             <a href="<?=$this->Url->build('/admin/users?sort=lastLogginDate&direction=desc')?>"><?= __('View more') ?><i data-toggle="tooltip" data-placement="bottom" data-feather="chevron-right"></i></a>
         </div>
+        <?php endif; ?>
 
+        <?php if($stats['users']['recentCreated']): ?>
         <div class="col-xl-6 col-sm-6">
             <br>
             <h3><?= __('Recently registered') ?></h3>
@@ -159,9 +162,11 @@ use Cake\Core\Configure;
             <hr>
             <a href="<?=$this->Url->build('/admin/users?sort=creationDate&direction=desc')?>"><?= __('View more') ?><i data-toggle="tooltip" data-placement="bottom" data-feather="chevron-right"></i></a>
         </div>
+        <?php endif; ?>
     </div>
 
     <div class="row mb-3">
+        <?php if($stats['comments']['recentCreated']): ?>
         <div class="col-xl-6 col-sm-6">
             <br>
             <h3><?= __('Latest comments') ?></h3>
@@ -178,7 +183,9 @@ use Cake\Core\Configure;
                 <?php endforeach ?>
             </div>
         </div>
+        <?php endif; ?>
 
+        <?php if($stats['requests']['onGoing']): ?>
         <div class="col-xl-6 col-sm-6">
             <br>
             <h3><?= __('Ownership requests') ?></h3>
@@ -195,6 +202,7 @@ use Cake\Core\Configure;
                 <?php endforeach ?>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 
     <script>
