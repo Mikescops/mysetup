@@ -167,12 +167,12 @@ class PagesController extends AppController
 
     public function recent()
     {
-        $recentSetups = Cache::read('recentSetupsPage', 'RecentPageCacheConfig');
+        $recentSetups = Cache::read('recentSetups', 'RecentPageCacheConfig');
         if($recentSetups === false)
         {
             $recentSetups = $this->Setups->getSetups(['number' => 16]);
 
-            Cache::write('recentSetupsPage', $recentSetups, 'RecentPageCacheConfig');
+            Cache::write('recentSetups', $recentSetups, 'RecentPageCacheConfig');
         }
 
         $this->set('setups', $recentSetups);
