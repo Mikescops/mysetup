@@ -20,7 +20,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-dark h-100">
                 <div class="card-body bg-dark">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Setup', 'Setups', $stats['count']['setups'])) ?> (+<?= $stats['count']['today']['setups'] ?>)
+                        <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Setup', 'Setups', $stats['count']['setups'])) ?> <?php if($stats['count']['today']['setups']): ?>(+<?= $stats['count']['today']['setups'] ?>)<?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-success h-100">
                 <div class="card-body bg-success">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="users" width="50px" height="50px"></i></h1> <?= strtoupper(__n('User', 'Users', $stats['count']['users'])) ?> (+<?= $stats['count']['today']['users'] ?>)
+                        <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="users" width="50px" height="50px"></i></h1> <?= strtoupper(__n('User', 'Users', $stats['count']['users'])) ?> <?php if($stats['count']['today']['users']): ?>(+<?= $stats['count']['today']['users'] ?>)<?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-info h-100">
                 <div class="card-body bg-info">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['comments'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="message-circle" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Comment', 'Comments', $stats['count']['comments'])) ?>
+                        <h1 class="display-4"><?= $stats['count']['comments'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="message-circle" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Comment', 'Comments', $stats['count']['comments'])) ?> <?php if($stats['count']['today']['comments']): ?>(+<?= $stats['count']['today']['comments'] ?>)<?php endif; ?>
                     </div>
                 </div>
             </div>
