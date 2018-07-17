@@ -26,7 +26,8 @@ class APIController extends AppController
             'className'   => 'File',
             'duration'    => '+1 day',
             'path'        => CACHE . 'twitchPromote' . DS,
-            'prefix'      => 'twitchPromote_'
+            'prefix'      => 'twitchPromote_',
+            'probability' => 75
         ]);
     }
 

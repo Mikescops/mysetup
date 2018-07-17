@@ -29,10 +29,9 @@ class ThirdPartiesController extends AppController
 
         // We'll store some data used within this Model for 20 hours !
         Cache::setConfig('ThirdPartiesCacheConfig', [
-            'className'   => 'Apcu',
-            'duration'    => '+20 hours',
-            'prefix'      => 'token_',
-            'probability' => 0
+            'className' => 'Apcu',
+            'duration'  => '+20 hours',
+            'prefix'    => 'token_'
         ]);
     }
 

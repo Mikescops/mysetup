@@ -43,13 +43,15 @@ class PagesController extends AppController
         Cache::setConfig('HomePageCacheConfig', [
             'className'   => 'Apcu',
             'duration'    => '+12 hours',
-            'prefix'      => 'homePage_'
+            'prefix'      => 'homePage_',
+            'probability' => 50
         ]);
         // Set a cache with a shorter time to live to handle "recent" entities
         Cache::setConfig('RecentPageCacheConfig', [
             'className'   => 'Apcu',
             'duration'    => '+30 minutes',
-            'prefix'      => 'recentPage_'
+            'prefix'      => 'recentPage_',
+            'probability' => 50
         ]);
     }
 
