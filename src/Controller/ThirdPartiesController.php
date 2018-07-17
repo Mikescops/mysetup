@@ -227,7 +227,6 @@ class ThirdPartiesController extends AppController
         }
 
         return new Response([
-            'status' => 200,
             'type' => 'json',
             'body' => json_encode($results)
         ]);

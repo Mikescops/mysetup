@@ -72,7 +72,6 @@ class LikesController extends AppController
         if($this->request->is('ajax'))
         {
             return new Response([
-                'status' => 200,
                 'type' => 'json',
                 'body' => json_encode($this->Likes->find()->where(['setup_id' => $this->request->getQuery('setup_id')])->count())
             ]);
@@ -84,7 +83,6 @@ class LikesController extends AppController
         if($this->request->is('ajax'))
         {
             return new Response([
-                'status' => 200,
                 'type' => 'json',
                 'body' => json_encode($this->Likes->hasBeenLikedBy($this->request->getQuery('setup_id'), $this->Auth->user('id')))
             ]);
