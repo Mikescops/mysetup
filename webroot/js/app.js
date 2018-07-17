@@ -809,7 +809,7 @@ function checknotification() {
 		});
 		setTimeout(function() {
 			checknotification();
-		}, 20000);
+		}, 30000);
 	}
 }
 
