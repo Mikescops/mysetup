@@ -185,8 +185,8 @@ class UsersController extends AppController
         {
             $data = $this->request->getData();
 
-            // Here we'll block the 'Users.mail' modification
-            if(!isset($data['mail']) || $data['mail'] != $user['mail'])
+            // Here we'll block the 'Users.mail' modification (unless for Administrators)
+            if(!isset($data['mail']) || ($data['mail'] != $user['mail'] && !parent::isAdminBySession($this->request->getSession())))
             {
                 $data['mail'] = $user['mail'];
             }
