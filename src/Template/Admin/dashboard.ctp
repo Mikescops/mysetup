@@ -194,7 +194,7 @@ use Cake\Core\Configure;
                     <a href="<?=$this->Url->build('/setups/'.$request->setup_id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><strong><?= h($request->user->name) ?></strong> <?= __('asks for ownership on') ?> <strong><?= h($request->setup->title) ?></strong></h5>
-                            <small>#<?= $request->token ?></small>
+                            <small><?= $this->Time->format($request->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $request->dateTime, $authUser['timeZone']) ?></small>
                         </div>
                         <p class="mb-1"><?= h($request->content) ?></p>
                         <small><?= h($request->user->mail) ?></small>
