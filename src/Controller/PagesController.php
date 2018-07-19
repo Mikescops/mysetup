@@ -85,7 +85,7 @@ class PagesController extends AppController
         {
             $brandSetups = $this->loadModel('cloud_tags')->getSetupsByRandomTags([
                 'type'        => 'PRODUCTS_BRAND',
-                'number_tags' => 3
+                'number_tags' => 5
             ]);
 
             Cache::write('brandSetups', $brandSetups, 'HomePageCacheConfig');
