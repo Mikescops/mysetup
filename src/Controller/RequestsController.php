@@ -137,6 +137,11 @@ class RequestsController extends AppController
 
                             $old_owner->setDirty('modificationDate', true);
                             $this->Requests->Users->save($old_owner);
+
+                            if($this->Auth->user('id') === $old_owner->id)
+                            {
+                                $this->Requests->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $old_owner, parent::isAdmin($old_owner));
+                            }
                         }
                     }
                 }
