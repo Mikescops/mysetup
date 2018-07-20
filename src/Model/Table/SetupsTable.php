@@ -10,6 +10,8 @@ use Cake\Event\Event;
 use Cake\Utility\Text;
 use Cake\Routing\Router;
 
+use Cake\Datasource\Exception\RecordNotFoundException;
+
 /**
  * Setups Model
  *
@@ -356,37 +358,54 @@ class SetupsTable extends Table
         return $query->distinct()->toArray();
     }
 
-    public function fetchSetupById($setup_id)
+    public function fetchSetupById($setup_id, $filter_array)
     {
-        return $this->get($setup_id, [
-            'fields' => [
-                'id',
-                'user_id',
-                'title',
-                'creationDate',
-                'featured',
-                'status',
-                'like_count',
-                'main_colors'
-            ],
-            'contain' => [
-                'Resources' => [
-                    'fields' => [
-                        'setup_id',
-                        'src'
-                    ],
-                    'conditions' => [
-                        'type' => 'SETUP_FEATURED_IMAGE'
-                    ]
+        try {
+            $setup = $this->get($setup_id, [
+                'fields' => [
+                    'id',
+                    'user_id',
+                    'title',
+                    'creationDate',
+                    'featured',
+                    'status',
+                    'like_count',
+                    'main_colors'
                 ],
-                'Users' => [
-                    'fields' => [
-                        'id',
-                        'name',
-                        'modificationDate'
+                'contain' => [
+                    'Resources' => [
+                        'fields' => [
+                            'setup_id',
+                            'src'
+                        ],
+                        'conditions' => [
+                            'type' => 'SETUP_FEATURED_IMAGE'
+                        ]
+                    ],
+                    'Users' => [
+                        'fields' => [
+                            'id',
+                            'name',
+                            'modificationDate'
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
+
+            if($setup->status !== 'PUBLISHED')
+            {
+                $setup = null;
+            }
+
+        } catch (RecordNotFoundException $e) {
+            $setup = null;
+        }
+
+        if($setup === null)
+        {
+            $setup = $this->getSetups($filter_array + ['number' => 1])[0];
+        }
+
+        return $setup;
     }
 }

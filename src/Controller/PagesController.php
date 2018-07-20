@@ -83,7 +83,7 @@ class PagesController extends AppController
             $featuredSetups = [];
             foreach($featuredSetups_ids as $featuredSetups_id)
             {
-                array_push($featuredSetups, $this->Setups->fetchSetupById($featuredSetups_id));
+                array_push($featuredSetups, $this->Setups->fetchSetupById($featuredSetups_id, ['featured' => true, 'offset' => 4]));
             }
         }
 
@@ -106,7 +106,7 @@ class PagesController extends AppController
             $popularSetups = [];
             foreach($popularSetups_ids as $popularSetups_id)
             {
-                array_push($popularSetups, $this->Setups->fetchSetupById($popularSetups_id));
+                array_push($popularSetups, $this->Setups->fetchSetupById($popularSetups_id, ['type' => 'like', 'offset' => 7]));
             }
         }
 
@@ -139,7 +139,7 @@ class PagesController extends AppController
                 $brandSetups[$brand_tag] = [];
                 foreach($brandSetups_ids as $brandSetups_id)
                 {
-                    array_push($brandSetups[$brand_tag], $this->Setups->fetchSetupById($brandSetups_id));
+                    array_push($brandSetups[$brand_tag], $this->Setups->fetchSetupById($brandSetups_id, ['query' => $brand_tag]));
                 }
             }
         }
@@ -241,7 +241,7 @@ class PagesController extends AppController
             $recentSetups = [];
             foreach($recentSetups_ids as $recentSetups_id)
             {
-                array_push($recentSetups, $this->Setups->fetchSetupById($recentSetups_id));
+                array_push($recentSetups, $this->Setups->fetchSetupById($recentSetups_id, ['offset' => 17]));
             }
         }
 
