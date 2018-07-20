@@ -358,9 +358,10 @@ class SetupsTable extends Table
         return $query->distinct()->toArray();
     }
 
-    public function fetchSetupById($setup_id, $filter_array)
+    public function fetchSetupById($setup_id)
     {
-        try {
+        try
+        {
             $setup = $this->get($setup_id, [
                 'fields' => [
                     'id',
@@ -396,14 +397,11 @@ class SetupsTable extends Table
             {
                 $setup = null;
             }
-
-        } catch (RecordNotFoundException $e) {
-            $setup = null;
         }
 
-        if($setup === null)
+        catch(RecordNotFoundException $e)
         {
-            $setup = $this->getSetups($filter_array + ['number' => 1])[0];
+            $setup = null;
         }
 
         return $setup;

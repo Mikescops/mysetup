@@ -83,7 +83,11 @@ class PagesController extends AppController
             $featuredSetups = [];
             foreach($featuredSetups_ids as $featuredSetups_id)
             {
-                array_push($featuredSetups, $this->Setups->fetchSetupById($featuredSetups_id, ['featured' => true, 'offset' => 4]));
+                $tmp_setup = $this->Setups->fetchSetupById($featuredSetups_id, ['featured' => true]);
+                if($tmp_setup !== null)
+                {
+                    array_push($featuredSetups, $tmp_setup);
+                }
             }
         }
 
@@ -106,7 +110,11 @@ class PagesController extends AppController
             $popularSetups = [];
             foreach($popularSetups_ids as $popularSetups_id)
             {
-                array_push($popularSetups, $this->Setups->fetchSetupById($popularSetups_id, ['type' => 'like', 'offset' => 7]));
+                $tmp_setup = $this->Setups->fetchSetupById($popularSetups_id, ['type' => 'like']);
+                if($tmp_setup !== null)
+                {
+                    array_push($popularSetups, $tmp_setup);
+                }
             }
         }
 
@@ -139,7 +147,11 @@ class PagesController extends AppController
                 $brandSetups[$brand_tag] = [];
                 foreach($brandSetups_ids as $brandSetups_id)
                 {
-                    array_push($brandSetups[$brand_tag], $this->Setups->fetchSetupById($brandSetups_id, ['query' => $brand_tag]));
+                    $tmp_setup = $this->Setups->fetchSetupById($brandSetups_id, ['query' => $brand_tag]);
+                    if($tmp_setup !== null)
+                    {
+                        array_push($brandSetups[$brand_tag], $tmp_setup);
+                    }
                 }
             }
         }
@@ -241,7 +253,11 @@ class PagesController extends AppController
             $recentSetups = [];
             foreach($recentSetups_ids as $recentSetups_id)
             {
-                array_push($recentSetups, $this->Setups->fetchSetupById($recentSetups_id, ['offset' => 17]));
+                $tmp_setup = $this->Setups->fetchSetupById($recentSetups_id);
+                if($tmp_setup !== null)
+                {
+                    array_push($recentSetups, $tmp_setup);
+                }
             }
         }
 
