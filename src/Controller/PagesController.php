@@ -49,7 +49,7 @@ class PagesController extends AppController
         // Set a cache with a shorter time to live to handle "recent" entities
         Cache::setConfig('RecentPageCacheConfig', [
             'className'   => 'Apcu',
-            'duration'    => '+30 minutes',
+            'duration'    => '+15 minutes',
             'prefix'      => 'recentPage_',
             'probability' => 50
         ]);
@@ -61,34 +61,87 @@ class PagesController extends AppController
      */
     public function home()
     {
-        // Set some variables here, and give back the control to the `display()` method (see at the end).
+        // Set some variables below, and give back the control to the `display()` method (see at the end).
 
         // Our BD now contains too many elements, we'll store all of them in cache for some times !
-        $featuredSetups = Cache::read('featuredSetups', 'HomePageCacheConfig');
-        if($featuredSetups === false)
+        $featuredSetups_ids = Cache::read('featuredSetups_ids', 'HomePageCacheConfig');
+        if($featuredSetups_ids === false)
         {
             $featuredSetups = $this->Setups->getSetups(['featured' => true, 'number' => 3]);
 
-            Cache::write('featuredSetups', $featuredSetups, 'HomePageCacheConfig');
+            $featuredSetups_ids = [];
+            foreach($featuredSetups as $featuredSetup)
+            {
+                array_push($featuredSetups_ids, $featuredSetup->id);
+            }
+
+            Cache::write('featuredSetups_ids', $featuredSetups_ids, 'HomePageCacheConfig');
         }
 
-        $popularSetups = Cache::read('popularSetups', 'HomePageCacheConfig');
-        if($popularSetups === false)
+        else
         {
-            $popularSetups  = $this->Setups->getSetups(['number' => 6, 'type' => 'like']);
-
-            Cache::write('popularSetups', $popularSetups, 'HomePageCacheConfig');
+            $featuredSetups = [];
+            foreach($featuredSetups_ids as $featuredSetups_id)
+            {
+                array_push($featuredSetups, $this->Setups->fetchSetupById($featuredSetups_id));
+            }
         }
 
-        $brandSetups = Cache::read('brandSetups', 'HomePageCacheConfig');
-        if($brandSetups === false)
+        $popularSetups_ids = Cache::read('popularSetups_ids', 'HomePageCacheConfig');
+        if($popularSetups_ids === false)
+        {
+            $popularSetups = $this->Setups->getSetups(['type' => 'like', 'number' => 6]);
+
+            $popularSetups_ids = [];
+            foreach($popularSetups as $featuredSetup)
+            {
+                array_push($popularSetups_ids, $featuredSetup->id);
+            }
+
+            Cache::write('popularSetups_ids', $popularSetups_ids, 'HomePageCacheConfig');
+        }
+
+        else
+        {
+            $popularSetups = [];
+            foreach($popularSetups_ids as $popularSetups_id)
+            {
+                array_push($popularSetups, $this->Setups->fetchSetupById($popularSetups_id));
+            }
+        }
+
+        $brandSetups_ids = Cache::read('brandSetups_ids', 'HomePageCacheConfig');
+        if($brandSetups_ids === false)
         {
             $brandSetups = $this->loadModel('cloud_tags')->getSetupsByRandomTags([
                 'type'        => 'PRODUCTS_BRAND',
                 'number_tags' => 5
             ]);
 
-            Cache::write('brandSetups', $brandSetups, 'HomePageCacheConfig');
+            $brandSetups_ids = [];
+            foreach($brandSetups as $brand_tag => $brand_setups)
+            {
+                $brandSetups_ids[$brand_tag] = [];
+                foreach($brand_setups as $brand_setup)
+                {
+                    array_push($brandSetups_ids[$brand_tag], $brand_setup->id);
+                }
+            }
+
+            Cache::write('brandSetups_ids', $brandSetups_ids, 'HomePageCacheConfig');
+        }
+
+        else
+        {
+            $brandSetups = [];
+            foreach($brandSetups_ids as $brand_tag => $brandSetups_ids)
+            {
+                $brandSetups[$brand_tag] = [];
+                foreach($brandSetups_ids as $brandSetups_id)
+                {
+                    array_push($brandSetups[$brand_tag], $this->Setups->fetchSetupById($brandSetups_id));
+                }
+            }
         }
 
         $randomResources = Cache::read('randomResources', 'HomePageCacheConfig');
@@ -169,12 +222,27 @@ class PagesController extends AppController
 
     public function recent()
     {
-        $recentSetups = Cache::read('recentSetups', 'RecentPageCacheConfig');
-        if($recentSetups === false)
+        $recentSetups_ids = Cache::read('recentSetups_ids', 'HomePageCacheConfig');
+        if($recentSetups_ids === false)
         {
             $recentSetups = $this->Setups->getSetups(['number' => 16]);
 
-            Cache::write('recentSetups', $recentSetups, 'RecentPageCacheConfig');
+            $recentSetups_ids = [];
+            foreach($recentSetups as $recentSetup)
+            {
+                array_push($recentSetups_ids, $recentSetup->id);
+            }
+
+            Cache::write('recentSetups_ids', $recentSetups_ids, 'HomePageCacheConfig');
+        }
+
+        else
+        {
+            $recentSetups = [];
+            foreach($recentSetups_ids as $recentSetups_id)
+            {
+                array_push($recentSetups, $this->Setups->fetchSetupById($recentSetups_id));
+            }
         }
 
         $this->set('setups', $recentSetups);
