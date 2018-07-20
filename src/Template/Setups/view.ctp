@@ -64,9 +64,6 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 </a>
                 <h3>
                     <?= h($setup->title) ?>
-                    <?php if($setup->id == $setup->user->mainSetup_id): ?>
-                        <i title="<?= ($authUser['id'] != $setup->user_id ? __('This is the main setup of') . ' ' . h($setup->user->name) : __('This is your main setup')) ?>" class="fa fa-diamond setup-default"></i>
-                    <?php endif ?>
                     <?php if($setup->featured): ?>
                         <i title="<?= __('This setup is featured on mySetup.co !')?>" class="fa fa-star setup-star"></i>
                     <?php endif ?>                    
@@ -159,7 +156,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
             <div class="column column-60 item-meta">
 
                 <div class="section-header">
-                    <h4><?= __('About this setup') ?></h4>
+                    <h4>
+                        <?= __('About this setup') ?>
+                        <?php if($setup->id == $setup->user->mainSetup_id): ?>
+                            <i title="<?= ($authUser['id'] != $setup->user_id ? __('This is the main setup of') . ' ' . h($setup->user->name) : __('This is your main setup')) ?>" class="fa fa-diamond setup-default"></i>
+                        <?php endif ?>
+                    </h4>
                 </div>
 
                 <div class="section-inner">
