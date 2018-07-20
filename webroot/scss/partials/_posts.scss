@@ -159,6 +159,22 @@
     display: block;
 }
 
+.post_status_banner{
+	margin-top: 10px;
+	padding: 0 2.0rem;
+	text-align: center;
+	border-radius: 4px;
+	background-color: #292929;
+
+	&.status_draft{
+		background-color: #d18007;
+	}
+
+	&.status_rejected{
+		background-color: #d11507;
+	}
+}
+
 .grecaptcha-badge{
 	z-index: 9991;
 }

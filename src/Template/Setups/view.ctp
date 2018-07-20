@@ -69,12 +69,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <?php endif ?>
                     <?php if($setup->featured): ?>
                         <i title="<?= __('This setup is featured on mySetup.co !')?>" class="fa fa-star setup-star"></i>
-                    <?php endif ?>
-                    <?php if($setup->status == 'DRAFT'): ?>
-                        <i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i>
-                    <?php elseif($setup->status == 'REJECTED'): ?>
-                        <i title="<?= __('Your setup has been rejected. You will find the reason within its description.') ?>" class="fa fa-ban setup-rejected"></i>
-                    <?php endif ?>
+                    <?php endif ?>                    
                 </h3>
                 <p>
                     <?= __('Shared by') ?> <?= $this->Html->link($setup->user->name, $this->Url->build('/users/'.$setup->user_id.'-'.$this->Text->slug($setup->user->name))) ?><?php if($setup->user->verified): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user->name != $setup->author and $setup->author !== ''): echo ", " . __("created by ") . h($setup->author) ; endif?>
@@ -112,8 +107,18 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <?php endif; ?>
             </div>
         </div>
+        <?php if($setup->status == 'DRAFT'): ?>
+            <div class="post_status_banner status_draft">
+                <i class="fa fa-eye-slash setup-unpublished"></i> <?= __('Only you can see this setup') ?>
+            </div>
+        <?php elseif($setup->status == 'REJECTED'): ?>
+            <div class="post_status_banner status_rejected">
+                <i class="fa fa-ban setup-rejected"></i> <?= __('Your setup has been rejected. You will find the reason within its description.') ?>
+            </div>
+        <?php endif ?>
     </div>
 </div>
+
 
 <div class="container">
     <div class="row config-post">
