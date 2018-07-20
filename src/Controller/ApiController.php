@@ -77,13 +77,13 @@ class APIController extends AppController
 
             $results = $this->Setups->getSetups([
                 'query'    => $q,
-                'featured' => $this->request->getQuery('f', false),
-                'order'    => $this->request->getQuery('o', 'DESC'),
+                'featured' => $this->request->getQuery('f'),
+                'order'    => $this->request->getQuery('o'),
                 'number'   => $n,
-                'offset'   => $this->request->getQuery('p', 0),
-                'type'     => $this->request->getQuery('t', 'like'),
+                'offset'   => $this->request->getQuery('p'),
+                'type'     => $this->request->getQuery('t'),
                 'weeks'    => $this->request->getQuery('w'),
-                'fuzzy'    => $this->request->getQuery('x', false)
+                'fuzzy'    => $this->request->getQuery('x')
             ]);
 
             return new Response([

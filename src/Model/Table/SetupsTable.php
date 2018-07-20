@@ -215,22 +215,22 @@ class SetupsTable extends Table
         // Here we just 'merge' our default values with the parameters given
         $params = array_merge([
             'query'    => null,
-            'featured' => false,
-            'order'    => 'DESC',
-            'number'   => 9999,
-            'offset'   => 0,
-            'type'     => 'date',
-            'weeks'    => 999,
-            'fuzzy'    => false
+            'featured' => null,
+            'order'    => null,
+            'number'   => null,
+            'offset'   => null,
+            'type'     => null,
+            'weeks'    => null,
+            'fuzzy'    => null
         ],
         $array);
 
         // We'll only return the `PUBLISHED` setups with this call.
         $conditions = ['Setups.status' => 'PUBLISHED'];
 
-        if($params['weeks'])
+        if($params['weeks'] and intval($params['weeks']))
         {
-            $conditions += ['Setups.creationDate >' => new \DateTime('-' . $params['weeks'] . ' weeks')];
+            $conditions += ['Setups.creationDate >' => new \DateTime('-' . intval($params['weeks']) . ' weeks')];
         }
 
         // If the query specified only the featured ones...
@@ -267,16 +267,24 @@ class SetupsTable extends Table
 
         }
 
+        /* ORDER */
+        if($params['order'] === null or !in_array(strtoupper($params['order']), ['ASC', 'DESC']))
+        {
+            // `DESC` by default
+            $params['order'] = 'DESC';
+        }
+
         $orders = [];
 
         // If the query specified a ranking by number of "likes", let's order them in the query below
         if($params['type'] === 'like')
         {
-            $orders += ['Setups.like_count' => 'DESC'];
+            $orders += ['Setups.like_count' => $params['order']];
         }
 
         // But we'll order the setups by creation dates anyway
         $orders += ['Setups.creationDate' => $params['order']];
+        /* _____ */
 
         /*
             This query is just ESSENTIAL. Some explanations are required:
@@ -288,7 +296,7 @@ class SetupsTable extends Table
                 * We browse the Resources table (in order to gather some setups with their resources title [=== product name])
                 * We pick only the public setups !
         */
-        $results = $this->find('all', [
+        $query = $this->find('all', [
             'conditions' => [
                 'AND' => [
                     'AND' => $conditions,
@@ -299,8 +307,6 @@ class SetupsTable extends Table
                 ]
             ],
             'order' => $orders,
-            'limit' => $params['number'],
-            'offset' => $params['offset'],
             'fields' => [
                 'id',
                 'user_id',
@@ -329,11 +335,24 @@ class SetupsTable extends Table
                     ]
                 ]
             ]
-        ])
-        ->innerJoinWith('Resources')
-        ->distinct()
-        ->toArray();
+        ]);
 
-        return $results;
+        // Unless a query is specified, we actually don't have to join the Resources and the Setups tables !
+        if($params['query'])
+        {
+            $query->innerJoinWith('Resources');
+        }
+
+        // Don't add useless params to query if they are actually null...
+        if($params['number'])
+        {
+            $query->limit($params['number']);
+        }
+        if($params['offset'])
+        {
+            $query->offset($params['offset']);
+        }
+
+        return $query->distinct()->toArray();
     }
 }
