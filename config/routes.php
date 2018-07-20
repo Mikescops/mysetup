@@ -47,8 +47,15 @@ Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
 
-    /* Muffin's Throttle middleware to limit requests on our APIs routes */
-    $routes->registerMiddleware('throttle', new ThrottleMiddleware([
+    /* Muffin's Throttle middleware to limit requests on some of our routes */
+    $routes->registerMiddleware('throttle_api', new ThrottleMiddleware([
+        'limit'    => 100,
+        'response' => [
+            'body' => json_encode(['error' => 'Rate limit reached']),
+            'type' => 'json'
+        ]
+    ]));
+    $routes->registerMiddleware('throttle_ajax', new ThrottleMiddleware([
         'limit'    => 100,
         'response' => [
             'body' => json_encode(['error' => 'Rate limit reached']),
@@ -103,10 +110,25 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     /* Our API routes, we connect the Throttle middleware */
     $routes->scope('/api', function($routes) {
-        $routes->applyMiddleware('throttle');
+        $routes->applyMiddleware('throttle_api');
         $routes->connect('/:action/*', ['controller' => 'Api', 'action' => 'action']);
     });
+    $routes->scope('/thirdParties', function($routes) {
+        $routes->applyMiddleware('throttle_api');
+        $routes->connect('/:action/*', ['controller' => 'ThirdParties', 'action' => 'action']);
+    });
     /* ______________________________________ */
+
+    // /* Let's plug the Throttle middleware on our AJAX routes too */
+    // $routes->scope('/notifications', function($routes) {
+    //     $routes->applyMiddleware('throttle_ajax');
+    //     $routes->connect('/:action/*', ['controller' => 'Notifications', 'action' => 'action']);
+    // });
+    // $routes->scope('/likes', function($routes) {
+    //     $routes->applyMiddleware('throttle_ajax');
+    //     $routes->connect('/:action/*', ['controller' => 'Likes', 'action' => 'action']);
+    // });
+    // /* _______________________________________________________ */
 
     /* Articles Controller's routes */
     $routes->scope('/blog', function($routes) {
