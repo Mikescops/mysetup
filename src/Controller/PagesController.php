@@ -43,13 +43,15 @@ class PagesController extends AppController
         Cache::setConfig('HomePageCacheConfig', [
             'className'   => 'Apcu',
             'duration'    => '+12 hours',
-            'prefix'      => 'homePage_'
+            'prefix'      => 'homePage_',
+            'probability' => 50
         ]);
         // Set a cache with a shorter time to live to handle "recent" entities
         Cache::setConfig('RecentPageCacheConfig', [
             'className'   => 'Apcu',
             'duration'    => '+30 minutes',
-            'prefix'      => 'recentPage_'
+            'prefix'      => 'recentPage_',
+            'probability' => 50
         ]);
     }
 
@@ -83,7 +85,7 @@ class PagesController extends AppController
         {
             $brandSetups = $this->loadModel('cloud_tags')->getSetupsByRandomTags([
                 'type'        => 'PRODUCTS_BRAND',
-                'number_tags' => 3
+                'number_tags' => 5
             ]);
 
             Cache::write('brandSetups', $brandSetups, 'HomePageCacheConfig');
@@ -167,12 +169,12 @@ class PagesController extends AppController
 
     public function recent()
     {
-        $recentSetups = Cache::read('recentSetupsPage', 'RecentPageCacheConfig');
+        $recentSetups = Cache::read('recentSetups', 'RecentPageCacheConfig');
         if($recentSetups === false)
         {
             $recentSetups = $this->Setups->getSetups(['number' => 16]);
 
-            Cache::write('recentSetupsPage', $recentSetups, 'RecentPageCacheConfig');
+            Cache::write('recentSetups', $recentSetups, 'RecentPageCacheConfig');
         }
 
         $this->set('setups', $recentSetups);

@@ -20,7 +20,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-dark h-100">
                 <div class="card-body bg-dark">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Setup', 'Setups', $stats['count']['setups'])) ?> (+<?= $stats['count']['today']['setups'] ?>)
+                        <h1 class="display-4"><?= $stats['count']['setups'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="hard-drive" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Setup', 'Setups', $stats['count']['setups'])) ?> <?php if($stats['count']['today']['setups']): ?>(+<?= $stats['count']['today']['setups'] ?>)<?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-success h-100">
                 <div class="card-body bg-success">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="users" width="50px" height="50px"></i></h1> <?= strtoupper(__n('User', 'Users', $stats['count']['users'])) ?> (+<?= $stats['count']['today']['users'] ?>)
+                        <h1 class="display-4"><?= $stats['count']['users'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="users" width="50px" height="50px"></i></h1> <?= strtoupper(__n('User', 'Users', $stats['count']['users'])) ?> <?php if($stats['count']['today']['users']): ?>(+<?= $stats['count']['today']['users'] ?>)<?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@ use Cake\Core\Configure;
             <div class="card text-white bg-info h-100">
                 <div class="card-body bg-info">
                     <div class="rotate">
-                        <h1 class="display-4"><?= $stats['count']['comments'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="message-circle" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Comment', 'Comments', $stats['count']['comments'])) ?>
+                        <h1 class="display-4"><?= $stats['count']['comments'] ?> <i data-toggle="tooltip" data-placement="top" data-feather="message-circle" width="50px" height="50px"></i></h1> <?= strtoupper(__n('Comment', 'Comments', $stats['count']['comments'])) ?> <?php if($stats['count']['today']['comments']): ?>(+<?= $stats['count']['today']['comments'] ?>)<?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -104,6 +104,7 @@ use Cake\Core\Configure;
     </div>
 
     <div class="row mb-3">
+        <?php if($stats['users']['recentConnected']): ?>
         <div class="col-xl-6 col-sm-6">
             <br>
             <h3><?= __('Recently connected') ?></h3>
@@ -131,7 +132,9 @@ use Cake\Core\Configure;
             <hr>
             <a href="<?=$this->Url->build('/admin/users?sort=lastLogginDate&direction=desc')?>"><?= __('View more') ?><i data-toggle="tooltip" data-placement="bottom" data-feather="chevron-right"></i></a>
         </div>
+        <?php endif; ?>
 
+        <?php if($stats['users']['recentCreated']): ?>
         <div class="col-xl-6 col-sm-6">
             <br>
             <h3><?= __('Recently registered') ?></h3>
@@ -159,9 +162,11 @@ use Cake\Core\Configure;
             <hr>
             <a href="<?=$this->Url->build('/admin/users?sort=creationDate&direction=desc')?>"><?= __('View more') ?><i data-toggle="tooltip" data-placement="bottom" data-feather="chevron-right"></i></a>
         </div>
+        <?php endif; ?>
     </div>
 
     <div class="row mb-3">
+        <?php if($stats['comments']['recentCreated']): ?>
         <div class="col-xl-6 col-sm-6">
             <br>
             <h3><?= __('Latest comments') ?></h3>
@@ -178,7 +183,9 @@ use Cake\Core\Configure;
                 <?php endforeach ?>
             </div>
         </div>
+        <?php endif; ?>
 
+        <?php if($stats['requests']['onGoing']): ?>
         <div class="col-xl-6 col-sm-6">
             <br>
             <h3><?= __('Ownership requests') ?></h3>
@@ -187,7 +194,7 @@ use Cake\Core\Configure;
                     <a href="<?=$this->Url->build('/setups/'.$request->setup_id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><strong><?= h($request->user->name) ?></strong> <?= __('asks for ownership on') ?> <strong><?= h($request->setup->title) ?></strong></h5>
-                            <small>#<?= $request->token ?></small>
+                            <small><?= $this->Time->format($request->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $request->dateTime, $authUser['timeZone']) ?></small>
                         </div>
                         <p class="mb-1"><?= h($request->content) ?></p>
                         <small><?= h($request->user->mail) ?></small>
@@ -195,6 +202,7 @@ use Cake\Core\Configure;
                 <?php endforeach ?>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 
     <script>

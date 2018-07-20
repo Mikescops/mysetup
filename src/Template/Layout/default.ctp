@@ -53,15 +53,20 @@ use Cake\Core\Configure;
     <nav class="heavy-nav">
         <div class="row container">
             <div class="column column-20">
-
-                <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('mySetup_logo.svg', array('alt' => 'mySetup', 'class' => 'ms-logo', 'height' => '100%')); ?></a>
-
+                <a href="<?= $this->Url->build('/', true); ?>">
+                    <?= $this->Html->image('mySetup_logo.svg', ['alt' => 'mySetup', 'class' => 'ms-logo', 'height' => '100%']); ?>
+                </a>
             </div>
             <div class="column column-80">
                 <div class="right-nav">
 
                     <ul>
                         <?php if($authUser): ?>
+                            <?php if($debug): ?>
+                                <li>
+                                    <a style="color: red; cursor: initial;"><i class="fa fa-code-fork" aria-hidden="true"></i> <?= __('Development Instance') ?></a>
+                                </li>
+                            <?php endif; ?>
                             <li>
                                 <a id="notifications-trigger"><i class="fa fa-bell-o fa-fw" aria-hidden="true"></i></a>
                             </li>

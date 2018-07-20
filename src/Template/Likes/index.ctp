@@ -16,7 +16,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
 <div class="colored-container">
     <div class="container">
-        <br><h2><?= __('My likes') ?></h2><br>
+        <br><h2><?= __('My likes') ?> <?php if(count($likes)): ?>(<?= count($likes) ?>)<?php endif; ?></h2><br>
     </div>
 </div>
 <div class="container">

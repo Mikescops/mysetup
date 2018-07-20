@@ -62,7 +62,6 @@ class NotificationsController extends AppController
             ])->count();
 
             return new Response([
-                'status' => 200,
                 'type' => 'json',
                 'body' => json_encode($results)
             ]);

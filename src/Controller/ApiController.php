@@ -26,7 +26,8 @@ class APIController extends AppController
             'className'   => 'File',
             'duration'    => '+1 day',
             'path'        => CACHE . 'twitchPromote' . DS,
-            'prefix'      => 'twitchPromote_'
+            'prefix'      => 'twitchPromote_',
+            'probability' => 75
         ]);
     }
 
@@ -86,7 +87,6 @@ class APIController extends AppController
             ]);
 
             return new Response([
-                'status' => 200,
                 'type'   => 'json',
                 'body'   => json_encode($results)
             ]);
@@ -198,7 +198,6 @@ class APIController extends AppController
         }
 
         return new Response([
-            'status' => 200,
             'type' => 'json',
             'body' => json_encode($results)
         ]);
@@ -337,7 +336,6 @@ class APIController extends AppController
 
         // Let's return this image to the user, with a beautiful filename ;)
         $response = new Response([
-            'status' => 200,
             'type'   => 'jpeg',
             'body'   => $data['image']
         ]);

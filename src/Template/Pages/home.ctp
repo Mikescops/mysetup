@@ -145,9 +145,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 </div>
 
-<?php $i = 1;  foreach($brandSetups as $brand => $setups): ?>
+<?php $i = 0;  foreach($brandSetups as $brand => $setups): ?>
 
-    <div class="colored-box-<?= ++$i ?>">
+    <div class="colored-box-<?= (++$i % 8) + 1 ?>">
         <div class="container">
             <div class="rowfeed">
                 <h4 class="fancy"><span><?= h($brand) ?></span></h4>
