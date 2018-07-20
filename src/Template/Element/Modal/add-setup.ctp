@@ -78,7 +78,7 @@
         <div id="infos" class="form-action hide">
 
             <?php
-                echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)')]);
+                echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'placeholder' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ']);
             ?>
             <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
             <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>

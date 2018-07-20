@@ -91,7 +91,7 @@
                 <?php
                 /* Fill the video source if exist */
                 if(!empty($setup['resources']['video_link'])){$video_field = $setup['resources']['video_link'];}else{$video_field = '';}
-                echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'default' => $video_field]);
+                echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'placeholder' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'default' => $video_field]);
 
                 /* Fill the current items in the field before edit */
                 $item_field = '';
