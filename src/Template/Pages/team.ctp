@@ -33,7 +33,8 @@ echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block'
         <?= $this->Html->image('/img/contributors/samuel-forestier.png', ['alt' => 'Samuel Forestier']) ?>
 
         <p><strong>Samuel Forestier</strong> : Treasurer and writer at Geek Mexicain, I manage a personal blog for many years now where you can find all my development activities about my projects. During some of my spare time, I handle system administration and back-end development of this website.</p>
-        <a href="https://blog.samuel.domains/" target="_blank"><i class="fa fa-globe"></i> HorlogeSkynet</a> |
+        <a href="https://blog.samuel.domains/" target="_blank"><i class="fa fa-globe"></i> Blog</a> |
+        <a href="https://mastodon.social/@HorlogeSkynet" target="_blank"><i class="fab fa-mastodon"></i> @HorlogeSkynet</a> |
         <a href="https://github.com/HorlogeSkynet/" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
         <a href="https://www.linkedin.com/in/samuelforestier/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
 
