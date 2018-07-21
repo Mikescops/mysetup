@@ -93,7 +93,7 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                         <?php if(count($resources, COUNT_RECURSIVE) == 1): ?>
                             <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"><div class="item_box float-left" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div></a>
                             <span><?= __('All setups related to') ?> :</span>
-                            <h4><?= urldecode(h($resources[0]->title)) ?> <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"> <i class="fa fa-shopping-basket"></i></a></h4>
+                            <h4><?= urldecode(h($resources[0]->title)) ?> <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"> <i class="fa fa-shopping-bag"></i></a></h4>
                         <?php else:?>
                             <h3><?= __('Found components') ?></h3>
                             <div class="config-items">
@@ -123,7 +123,7 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                                 <a href="<?=$this->Url->build('/users/'.$foundUser->id)?>">
                                     <img alt="<?= __('Profile picture of') ?> <?= h($foundUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $foundUser->id . '.png?' . $this->Time->format($foundUser->modificationDate, 'mmss', null, null)); ?>">
                                 <span>
-                                    <strong><?= h($foundUser->name) ?> <?php if($foundUser->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></strong>
+                                    <strong><?= h($foundUser->name) ?> <?php if($foundUser->verified): echo '<i class="fa fa-check-circle verified_account"></i>'; endif ?></strong>
                                     <span></span>
                                 </span>
                                 </a>

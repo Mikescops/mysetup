@@ -15,12 +15,12 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
             <div class="column column-50">
                 <img alt="<?= __('Profile picture of') ?> #<?= $user->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
 
-                <div><h2><?= h($user->name) ?> <?php if($user->verified): echo '<i class="fa fa-check-square verified_account"></i>'; endif ?></h2>
+                <div><h2><?= h($user->name) ?> <?php if($user->verified): echo '<i class="fa fa-check-circle verified_account"></i>'; endif ?></h2>
                     <ul>
                         <?php if($user->uwebsite): ?><li><i class="fa fa-globe" style="margin-right: 2px;"></i> <a href="<?= h($user->uwebsite) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->uwebsite)) ?></a></li><?php endif ?>
-                        <?php if($user->ufacebook): ?><li><i class="fa fa-facebook" style="margin-right: 6px;"></i> <a href="<?= h($user->ufacebook) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->ufacebook)) ?></a></li><?php endif ?>
-                        <?php if($user->utwitter): ?><li><i class="fa fa-twitter"></i> <a href="<?= h($user->utwitter) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->utwitter)) ?></a></li><?php endif ?>
-                        <?php if($user->utwitch): ?><li><i class="fa fa-twitch"></i> <a href="<?= h($user->utwitch) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->utwitch)) ?></a></li><?php endif ?>
+                        <?php if($user->ufacebook): ?><li><i class="fab fa-facebook" style="margin-right: 6px;"></i> <a href="<?= h($user->ufacebook) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->ufacebook)) ?></a></li><?php endif ?>
+                        <?php if($user->utwitter): ?><li><i class="fab fa-twitter"></i> <a href="<?= h($user->utwitter) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->utwitter)) ?></a></li><?php endif ?>
+                        <?php if($user->utwitch): ?><li><i class="fab fa-twitch"></i> <a href="<?= h($user->utwitch) ?>" rel="nofollow" target="_blank"><?= h($this->MySetupTools->urlPrettifying($user->utwitch)) ?></a></li><?php endif ?>
                     </ul>
                 </div>
             </div>
@@ -65,12 +65,6 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                                         <a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>">
                                             <h3>
                                                 <?= h($setup->title) ?>
-                                                <?php if($setup->id == $user->mainSetup_id): ?>
-                                                    <i title="<?= ($authUser['id'] != $setup->user_id ? __('This is the main setup of') . ' ' . h($user->name) : __('This is your main setup')) ?>" class="fa fa-diamond setup-default"></i>
-                                                <?php endif ?>
-                                                <?php if($setup->featured): ?>
-                                                    <i title="<?= __('This setup is featured on mySetup.co !')?>" class="fa fa-star setup-star"></i>
-                                                <?php endif ?>
                                                 <?php if($setup->status == 'DRAFT'): ?>
                                                     <i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i>
                                                 <?php elseif($setup->status == 'REJECTED'): ?>
@@ -103,7 +97,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
 
                 <?php if($authUser && $authUser->id == $user->id): ?>
                     <div class="addsetup-suggest">
-                        <i class="fa fa-plus"></i>
+                        <i class="fa fa-plus-circle"></i>
                         <?php if($authUser['mainSetup_id'] == 0): ?>
                             <p><?= __('Add your first setup !') ?></p>
                         <?php else: ?>

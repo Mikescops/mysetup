@@ -15,9 +15,9 @@
 
         <?php
             echo $this->Form->control('uwebsite', ['label' => ['text' => '', 'class' => 'fa fa-globe'], 'placeholder' => "https://website.me", 'default' => $user['uwebsite']]);
-            echo $this->Form->control('ufacebook', ['label' => ['text' => '', 'class' => 'fa fa-facebook'], 'placeholder' => "https://facebook.com/me", 'default' => $user['ufacebook']]);
-            echo $this->Form->control('utwitter', ['label' => ['text' => '', 'class' => 'fa fa-twitter'], 'placeholder' => "https://twitter.com/me", 'default' => $user['utwitter']]);
-            echo $this->Form->control('utwitch', ['label' => ['text' => '', 'class' => 'fa fa-twitch'], 'placeholder' => "https://www.twitch.tv/me", 'default' => $user['utwitch']]);
+            echo $this->Form->control('ufacebook', ['label' => ['text' => '', 'class' => 'fab fa-facebook'], 'placeholder' => "https://facebook.com/me", 'default' => $user['ufacebook']]);
+            echo $this->Form->control('utwitter', ['label' => ['text' => '', 'class' => 'fab fa-twitter'], 'placeholder' => "https://twitter.com/me", 'default' => $user['utwitter']]);
+            echo $this->Form->control('utwitch', ['label' => ['text' => '', 'class' => 'fab fa-twitch'], 'placeholder' => "https://www.twitch.tv/me", 'default' => $user['utwitch']]);
         ?>
 
         <?php
@@ -29,7 +29,7 @@
             echo $this->Form->control('verified', ['type' => 'checkbox', 'label' => ['text' => __('User verified'), 'class' => 'checkbox'], 'default' => $user['verified'], 'required' => false, 'hiddenField' => true]);
         ?>
 
-        <a class="reset_pwd float-right"><i class="fa fa-repeat"></i> <?= __('Change the user password') ?></a>
+        <a class="reset_pwd float-right"><i class="fa fa-redo-alt"></i> <?= __('Change the user password') ?></a>
     </div>
     </fieldset>
     <?= $this->Form->submit(__('Submit'), ['class' => 'float-right']); ?>

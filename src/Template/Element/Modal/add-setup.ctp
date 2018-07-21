@@ -54,7 +54,7 @@
             <div class="modal-footer">
                 <a href="#components" class="button next float-right"><?= __('Next step') ?></a>
 
-                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
+                <a class="button draft float-left fa fa-file-alt fa-lg" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
             </div>
 
         </div>
@@ -69,7 +69,7 @@
 
                 <a href="#infos" class="button next float-right"><?= __('Next step') ?></a>
                 <a href="#basics" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
+                <a class="button draft float-left fa fa-file-alt fa-lg" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
 
             </div>
 
@@ -80,7 +80,7 @@
             <?php
                 echo $this->Form->control('video', ['label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'placeholder' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ']);
             ?>
-            <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
+            <a class="is_author"><i class="far fa-square"></i> <?= __("It's not my setup !") ?></a>
             <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
             <?php
                 echo $this->Form->control('author', ['class' => 'setup_author', 'label' => false]);
@@ -99,7 +99,7 @@
 
                 <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-add']); ?>
                 <a href="#components" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
+                <a class="button draft float-left fa fa-file-alt fa-lg" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
 
             </div>
 

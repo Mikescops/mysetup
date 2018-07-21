@@ -57,10 +57,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                 <div class="embed-links">
                     <a href="<?= $this->Url->build('/setups/'.$mainSetup->id.'-'.$this->Text->slug($mainSetup->title)) ?>" class="jssocials-share-link"><i class="fa fa-laptop"></i> <?= __('See it in action') ?></a>
-                    <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fa fa-twitch"></i> <?= __('Embed on Twitch') ?></a>
+                    <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fab fa-twitch"></i> <?= __('Embed on Twitch') ?></a>
                     <a href="#embed_website_script" data-lity class="jssocials-share-link"><i class="fa fa-code"></i> <?= __('Embed on your website') ?></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&t=<?= h($mainSetup->title )?>" target="_blank" class="jssocials-share-link"><i class="fa fa-facebook"></i> <?= __('Post it !') ?></a>
-                    <a href="https://twitter.com/intent/tweet?via=mysetup_co&url=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&text=<?= h($mainSetup->title) ?>" target="_blank" class="jssocials-share-link"><i class="fa fa-twitter"></i> <?= __('Tweet it !') ?></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&t=<?= h($mainSetup->title )?>" target="_blank" class="jssocials-share-link"><i class="fab fa-facebook-square"></i> <?= __('Post it !') ?></a>
+                    <a href="https://twitter.com/intent/tweet?via=mysetup_co&url=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&text=<?= h($mainSetup->title) ?>" target="_blank" class="jssocials-share-link"><i class="fab fa-twitter"></i> <?= __('Tweet it !') ?></a>
                 </div>
             </div>
             <?= $this->element('Modal/twitch', ['setup' => $mainSetup]) ?>
@@ -95,12 +95,12 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <div class="rowsocial">
           <?php if(!$authUser): ?>
             <div class="twitch-advert" onclick="logTwitch('<?= $lang ?>')">
-              <h4><i class="fa fa-twitch"></i> <?= __('Login with Twitch and create my Setup !') ?></h4>
+              <h4><i class="fab fa-twitch"></i> <?= __('Login with Twitch and create my Setup !') ?></h4>
             </div>
           <?php else: ?>
               <div class="blog-advert">
                 <a href="<?=$this->Url->build('/blog/')?>">
-                  <h5><i class="fa fa-newspaper-o"></i> <?= __('Read our latest news') ?></h5>
+                  <h5><i class="far fa-newspaper"></i> <?= __('Read our latest news') ?></h5>
                 </a>
               </div>
           <?php endif ?>
@@ -109,9 +109,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
               <a href="https://www.facebook.com/mysetup.co" target="_blank" style="background: #00c6ff;
                 background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);
                 background: linear-gradient(to right, #0072ff, #00c6ff);
-                "><i class="fa fa-facebook fa-2x"></i></a>
-              <a href="https://twitter.com/mysetup_co" target="_blank" style="background-color: #55acee"><i class="fa fa-twitter fa-2x"></i></a>
-              <a href="https://geeks.one/@mysetup_co" title="Mastodon" target="_blank" style="background-color: #282c37"><img style="height:50px;margin-top:25px" src="<?= $this->Url->build('/img/mastodon_logo.svg')?>"></a>
+                "><i class="fab fa-facebook-f fa-2x"></i></a>
+              <a href="https://twitter.com/mysetup_co" target="_blank" style="background-color: #55acee"><i class="fab fa-twitter fa-2x"></i></a>
+              <a href="https://geeks.one/@mysetup_co" title="Mastodon" target="_blank" style="background-color: #282c37"><i class="fab fa-mastodon fa-2x"></i></a>
               <a href="https://www.instagram.com/mysetup.co/" target="_blank" style="background:
                 radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%),
                 radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),
@@ -121,7 +121,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%),
                 radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
                 linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
-                "><i class="fa fa-instagram fa-2x"></i></a>
+                "><i class="fab fa-instagram fa-2x"></i></a>
           </div>
         </div>
 

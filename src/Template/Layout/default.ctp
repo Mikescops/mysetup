@@ -64,11 +64,11 @@ use Cake\Core\Configure;
                         <?php if($authUser): ?>
                             <?php if($debug): ?>
                                 <li>
-                                    <a style="color: red; cursor: initial;"><i class="fa fa-code-fork" aria-hidden="true"></i> <?= __('Development Instance') ?></a>
+                                    <a style="color: red; cursor: initial;"><i class="fa fa-code-branch" aria-hidden="true"></i> <?= __('Development Instance') ?></a>
                                 </li>
                             <?php endif; ?>
                             <li>
-                                <a id="notifications-trigger"><i class="fa fa-bell-o fa-fw" aria-hidden="true"></i></a>
+                                <a id="notifications-trigger"><i class="far fa-bell fa-fw" aria-hidden="true"></i></a>
                             </li>
                             <li>
                                 <a id="menu_trigger_add_modal" href="#add_setup_modal" data-lity><?= __('Add Setup') ?></a>
@@ -107,7 +107,7 @@ use Cake\Core\Configure;
                                     <li><a href="<?= $this->Url->build('/pages/q&a')?>"><?= __('Help - Q&amp;A') ?></a></li>
                                 </ul>
                             </li>
-                            <li><a class="twitch-login" onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i> </a></li>
+                            <li><a class="twitch-login" onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fab fa-twitch"></i> </a></li>
                             <?php endif; ?>
 
                     </ul>
@@ -123,7 +123,7 @@ use Cake\Core\Configure;
             </div>
 
             <div class="mobile-nav float-right">
-                <a href="#mobile-nav" data-lity><i class="fa fa-bars fa-4"></i></a>
+                <a href="#mobile-nav" data-lity><i class="fa fa-ellipsis-v fa-4"></i></a>
             </div>
 
             <div id="mobile-nav" class="lity-hide">
@@ -131,7 +131,7 @@ use Cake\Core\Configure;
                 <ul>
                     <?php if($authUser): ?>
                         <li>
-                            <a href="#add_setup_modal" data-lity><i class="fa fa-plus"></i> <?= __('Add Setup') ?></a>
+                            <a href="#add_setup_modal" data-lity><i class="fa fa-plus-circle"></i> <?= __('Add Setup') ?></a>
                         </li>
                         <?php if($authUser['admin']): ?>
                             <li>
@@ -153,7 +153,7 @@ use Cake\Core\Configure;
                                 <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
                             <?php else: ?>
                                 <li><a href="<?= $this->Url->build('/login'); ?>"><?= __('Log in') ?></a></li>
-                                <li><a onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fa fa-twitch"></i></a></li>
+                                <li><a onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fab fa-twitch"></i></a></li>
                                 <li><a href="<?=$this->Url->build('/pages/q&a')?>">Help - Q&amp;A</a></li>
                             <?php endif; ?>
                         </ul>
@@ -176,7 +176,7 @@ use Cake\Core\Configure;
             <div class="container">
                 <div class="row">
                     <div class="column">
-                        <h3><?= __('Join us and start building your setup') ?> <i class="fa fa-diamond"></i></h3>
+                        <h3><?= __('Join us and start building your setup') ?> <i class="fa fa-gem"></i></h3>
                         <a href="<?=$this->Url->build('/login')?>" class="hero_calltoaction"><?= __('Sign me in !') ?></a>
                     </div>
                 </div>

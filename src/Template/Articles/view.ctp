@@ -23,7 +23,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <a href="<?= $this->Url->build('/') ?>"><?= __('Home') ?></a> <i class="fa fa-chevron-right"></i> <a href="<?= $this->Url->build('/blog') ?>"><?= __('Blog') ?></a> <i class="fa fa-chevron-right"></i> <?= h($article->title) ?>
 
                     <?php if($authUser['admin']): ?>&nbsp;&nbsp;
-                        <a title="<?= __('Edit this article') ?>" href="<?= $this->Url->build(['action' => 'edit', $article->id]) ?>"><i class="fa fa-pencil"></i></a>
+                        <a title="<?= __('Edit this article') ?>" href="<?= $this->Url->build(['action' => 'edit', $article->id]) ?>"><i class="fa fa-pencil-alt"></i></a>
                         &nbsp;
                         <?php if($authUser['id'] == $article->user_id): ?>
                             <?= $this->Form->postLink('', ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete this article ?'), 'class' => 'fa fa-trash', 'title' => __('Delete this article')]) ?>
@@ -58,7 +58,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
         <br />
 
         <p class="setup-date">
-            <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($article->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $article->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?> <?= __('by') ?> <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view', $article->user->id]); ?>"><?= h($article->user->name) ?></a>
+            <i class='fa fa-clock'></i> <?= __('Published on') ?> <?= $this->Time->format($article->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $article->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?> <?= __('by') ?> <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view', $article->user->id]); ?>"><?= h($article->user->name) ?></a>
         </p>
 
         </div>
