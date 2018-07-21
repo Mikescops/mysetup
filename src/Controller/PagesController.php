@@ -39,13 +39,6 @@ class PagesController extends AppController
         $this->loadModel('Users');
         $this->loadModel('Setups');
 
-        // Set home page's cache (12 hours, but GC is voluntary not disabled)
-        Cache::setConfig('HomePageCacheConfig', [
-            'className'   => 'Apcu',
-            'duration'    => '+12 hours',
-            'prefix'      => 'homePage_',
-            'probability' => 50
-        ]);
         // Set a cache with a shorter time to live to handle "recent" entities
         Cache::setConfig('RecentPageCacheConfig', [
             'className'   => 'Apcu',
@@ -234,7 +227,7 @@ class PagesController extends AppController
 
     public function recent()
     {
-        $recentSetups_ids = Cache::read('recentSetups_ids', 'HomePageCacheConfig');
+        $recentSetups_ids = Cache::read('recentSetups_ids', 'RecentPageCacheConfig');
         if($recentSetups_ids === false)
         {
             $recentSetups = $this->Setups->getSetups(['number' => 16]);
@@ -245,7 +238,7 @@ class PagesController extends AppController
                 array_push($recentSetups_ids, $recentSetup->id);
             }
 
-            Cache::write('recentSetups_ids', $recentSetups_ids, 'HomePageCacheConfig');
+            Cache::write('recentSetups_ids', $recentSetups_ids, 'RecentPageCacheConfig');
         }
 
         else

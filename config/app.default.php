@@ -126,6 +126,23 @@ return [
             'className' => 'Apcu',
             'prefix' => 'throttle_'
         ],
+
+        /* Our application-specific caches */
+        // We'll store Twitch promote images generated for one day !
+        'TwitchPromoteCacheConfig' => [
+            'className'   => 'Cake\Cache\Engine\FileEngine',
+            'duration'    => '+1 day',
+            'path'        => CACHE . 'twitchPromote' . DS,
+            'prefix'      => 'twitchPromote_',
+            'probability' => 75
+        ],
+        // Set the home page cache for 6 hours
+        'HomePageCacheConfig' => [
+            'className'   => 'Apcu',
+            'duration'    => '+6 hours',
+            'prefix'      => 'homePage_',
+            'probability' => 50
+        ],
     ],
 
     /**

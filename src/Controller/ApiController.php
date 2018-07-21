@@ -20,15 +20,6 @@ class APIController extends AppController
         parent::initialize();
 
         $this->loadModel('Setups');
-
-        // We'll store Twitch promote images generated for some hours !
-        Cache::setConfig('TwitchPromoteCacheConfig', [
-            'className'   => 'File',
-            'duration'    => '+1 day',
-            'path'        => CACHE . 'twitchPromote' . DS,
-            'prefix'      => 'twitchPromote_',
-            'probability' => 75
-        ]);
     }
 
     /* /!\ Each method present in this very file will be authorized /!\ */
