@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 
+use Cake\Console\ShellDispatcher;
+
 /**
  * Admin Controller
  *
@@ -238,5 +240,24 @@ class AdminController extends AppController
         // Adds a special value (`global`) which targets each existing user.
         $usersList = ['global' => __('Everyone')] + $usersList;
         $this->set('usersList', $usersList);
+    }
+
+    public function clearCaches()
+    {
+        if($this->request->is('post'))
+        {
+            $output = (new ShellDispatcher())->run(['cake', 'cache', 'clear_all']);
+
+            if($output === 0)
+            {
+                $this->Flash->success(__('The application caches have been cleared !'));
+            }
+            else
+            {
+                $this->Flash->success(__('The application caches could not be cleared. Code returned :') . ' ' . $output);
+            }
+
+            return $this->redirect($this->referer());
+        }
     }
 }

@@ -87,6 +87,7 @@
             <div class="list-group">
               <a href="<?=$this->Url->build('/users/'. $authUser['id'])?>" class="list-group-item active"><i data-feather="package"></i> <?= __('Welcome') ?> <?= h($authUser['name']) ?></a>
               <a href="<?= $this->Url->build('/admin/sendNotification'); ?>" class="list-group-item list-group-item-action"><i data-feather="send"></i> <?= __('Send notification') ?></a>
+              <?= $this->Form->postLink('<i data-feather="rotate-ccw"></i> ' . __('Clear applications caches'), ['controller' => 'Admin', 'action' => 'clear_caches'], ['class' => 'list-group-item list-group-item-action', 'confirm' => __('Are you sure you want to clear the application caches ?'), 'escape' => false]) ?>
               <a href="https://github.com/Mikescops/mysetup" class="list-group-item list-group-item-action" target="_blank"><i data-feather="github"></i> Github Repo</a>
               <a href="https://github.com/Mikescops/mysetup-twitch-extension" class="list-group-item list-group-item-action" target="_blank"><i data-feather="airplay"></i> Extension Twitch Repo</a>
               <?php if($debug): ?>
