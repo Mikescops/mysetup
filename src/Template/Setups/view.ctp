@@ -69,7 +69,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <?php endif ?>                    
                 </h3>
                 <p>
-                    <?= __('Shared by') ?> <?= $this->Html->link($setup->user->name, $this->Url->build('/users/'.$setup->user_id.'-'.$this->Text->slug($setup->user->name))) ?><?php if($setup->user->verified): echo ' <i class="fa fa-check-square verified_account"></i> '; endif; if($setup->user->name != $setup->author and $setup->author !== ''): echo ", " . __("created by ") . h($setup->author) ; endif?>
+                    <?= __('Shared by') ?> <?= $this->Html->link($setup->user->name, $this->Url->build('/users/'.$setup->user_id.'-'.$this->Text->slug($setup->user->name))) ?><?php if($setup->user->verified): echo ' <i class="fa fa-check-circle verified_account"></i> '; endif; if($setup->user->name != $setup->author and $setup->author !== ''): echo ", " . __("created by ") . h($setup->author) ; endif?>
                 </p>
             </div>
             <div class="column column-35">
@@ -89,7 +89,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <div class="edit_panel">
                         <?php if($authUser['id'] == $setup->user_id or $authUser['admin']): ?>
                             <a href="#edit_setup_modal" data-lity title="<?= __('Edit') ?> <?php echo ($authUser['id'] == $setup->user_id ? __("your") : __("this")) ?> setup"><i class="fa fa-wrench"></i></a>
-                            <a href="#embed_twitch_modal" data-lity title="<?= __('Embed on Twitch') ?>"><i class="fa fa-twitch"></i></a>
+                            <a href="#embed_twitch_modal" data-lity title="<?= __('Embed on Twitch') ?>"><i class="fab fa-twitch"></i></a>
                             <a href="#embed_website_script" data-lity title="<?= __('Embed on your website') ?>"><i class="fa fa-code"></i></a>
                             <?= $this->element('Modal/edit-setup') ?>
                             <?= $this->element('Modal/twitch') ?>
@@ -159,7 +159,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <h4>
                         <?= __('About this setup') ?>
                         <?php if($setup->id == $setup->user->mainSetup_id): ?>
-                            <i title="<?= ($authUser['id'] != $setup->user_id ? __('This is the main setup of') . ' ' . h($setup->user->name) : __('This is your main setup')) ?>" class="fa fa-diamond setup-default"></i>
+                            <i title="<?= ($authUser['id'] != $setup->user_id ? __('This is the main setup of') . ' ' . h($setup->user->name) : __('This is your main setup')) ?>" class="fa fa-gem setup-default"></i>
                         <?php endif ?>
                     </h4>
                 </div>
@@ -178,9 +178,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
                     <span class="setup-date">
                         <?php if($setup->creationDate != $setup->modifiedDate): ?>
-                            <i class='fa fa-clock-o'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
+                            <i class='fa fa-clock'></i> <?= __('Modified on') ?> <?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
                         <?php else: ?>
-                            <i class='fa fa-clock-o'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
+                            <i class='fa fa-clock'></i> <?= __('Published on') ?> <?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?>
                         <?php endif; ?>
                     </span>
 

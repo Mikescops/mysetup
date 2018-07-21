@@ -47,7 +47,7 @@
 
                 <div class="modal-footer">
                     <a href="#components-edit" class="button next float-right"><?= __('Next step') ?></a>
-                    <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
+                    <a class="button draft float-left fa fa-file-alt fa-lg" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
                             <a onclick="deleteFromBasket('<?= h($item->title) ?>',this,'edit_setup')">
                                 <img src="<?= urldecode($item->src) ?>">
                                 <p><?= h(urldecode($item->title)) ?></p>
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                <i class="far fa-check-square" aria-hidden="true"></i>
                             </a>
                         </li>
 
@@ -80,7 +80,7 @@
 
                     <a href="#infos-edit" class="button next float-right"><?= __('Next step') ?></a>
                     <a href="#basics-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                    <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
+                    <a class="button draft float-left fa fa-file-alt fa-lg" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
 
                 </div>
 
@@ -101,7 +101,7 @@
                 // A hidden entry to gather the item resources
                 echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden', 'default' => $item_field]);
                 ?>
-                <a class="is_author"><i class="fa fa-square-o"></i> <?= __("It's not my setup !") ?></a>
+                <a class="is_author"><i class="far fa-square"></i> <?= __("It's not my setup !") ?></a>
                 <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
                 <?php
                 echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
@@ -120,8 +120,8 @@
                     <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-edit']); ?>
                     <?= $this->Form->end(); ?>
                     <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
-                    <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left fa fa-trash-o']) ?>
-                    <a class="button draft float-left fa fa-file-text-o" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
+                    <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left far fa-trash-alt fa-lg']) ?>
+                    <a class="button draft float-left fa fa-file-alt fa-lg" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
 
                 </div>
             </div>
