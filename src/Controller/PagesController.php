@@ -38,14 +38,6 @@ class PagesController extends AppController
 
         $this->loadModel('Users');
         $this->loadModel('Setups');
-
-        // Set a cache with a shorter time to live to handle "recent" entities
-        Cache::setConfig('RecentPageCacheConfig', [
-            'className'   => 'Apcu',
-            'duration'    => '+15 minutes',
-            'prefix'      => 'recentPage_',
-            'probability' => 50
-        ]);
     }
 
     /**
@@ -227,34 +219,7 @@ class PagesController extends AppController
 
     public function recent()
     {
-        $recentSetups_ids = Cache::read('recentSetups_ids', 'RecentPageCacheConfig');
-        if($recentSetups_ids === false)
-        {
-            $recentSetups = $this->Setups->getSetups(['number' => 16]);
-
-            $recentSetups_ids = [];
-            foreach($recentSetups as $recentSetup)
-            {
-                array_push($recentSetups_ids, $recentSetup->id);
-            }
-
-            Cache::write('recentSetups_ids', $recentSetups_ids, 'RecentPageCacheConfig');
-        }
-
-        else
-        {
-            $recentSetups = [];
-            foreach($recentSetups_ids as $recentSetups_id)
-            {
-                $tmp_setup = $this->Setups->fetchSetupById($recentSetups_id);
-                if($tmp_setup !== null)
-                {
-                    array_push($recentSetups, $tmp_setup);
-                }
-            }
-        }
-
-        $this->set('setups', $recentSetups);
+        $this->set('setups', $this->Setups->getSetups(['number' => 16]));
 
         $this->display('recent');
     }
