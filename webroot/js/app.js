@@ -334,7 +334,7 @@ function searchItem(query, action) {
 					var url = value.href;
 					var encodedUrl = encodeURIComponent(url);
 
-					list.html(`<a onclick="addToBasket(\`${encodedTitle}\`, '${encodedUrl}', '${encodedSrc}', '${action}')"><p>${title}</p><i class="fa fa-square-o" aria-hidden="true"></i></a>`);
+					list.html(`<a onclick="addToBasket(\`${encodedTitle}\`, '${encodedUrl}', '${encodedSrc}', '${action}')"><p>${title}</p><i class="far fa-square" aria-hidden="true"></i></a>`);
 					list.find('a').prepend(img);
 					$(".search_results." + action).append(list);
 				});
@@ -368,7 +368,7 @@ function addToBasket(title, url, src, action) {
 	var list = $('<li></li>');
 	var img = $('<img>');
 	img.attr('src', decodedSrc);
-	list.html(`<a onclick="deleteFromBasket(\`${title}\`,this,'${action}')"><p>${decodedTitle}</p><i class="fa fa-check-square-o" aria-hidden="true"></i></a>`);
+	list.html(`<a onclick="deleteFromBasket(\`${title}\`,this,'${action}')"><p>${decodedTitle}</p><i class="far fa-check-square" aria-hidden="true"></i></a>`);
 	list.find('a').prepend(img);
 	$(".basket_items." + action).append(list);
 }
