@@ -14,7 +14,6 @@ COMPOSER_ALLOW_SUPERUSER=true composer install -o -n
 bin/cake plugin assets symlink
 
 # Clear the model caches and start the migrations process
-bin/cake orm_cache    clear
 bin/cake schema_cache clear
 bin/cake migrations migrate --no-lock
 
