@@ -123,7 +123,7 @@ return [
 
         /* A dedicated cache for Muffin's Throttle */
         'throttle' => [
-            'className' => 'Apcu',
+            'className' => 'Cake\Cache\Engine\ApcuEngine',
             'prefix' => 'throttle_'
         ],
 
@@ -138,7 +138,7 @@ return [
         ],
         // Set the home page cache for 6 hours
         'HomePageCacheConfig' => [
-            'className'   => 'Apcu',
+            'className'   => 'Cake\Cache\Engine\ApcuEngine',
             'duration'    => '+6 hours',
             'prefix'      => 'homePage_',
             'probability' => 50
