@@ -204,17 +204,18 @@ input[type="checkbox"]{
   margin: auto;
 }
 .checkbox_container .checkbox::before{
-  content: '\f096';
-  font-family: 'FontAwesome';
+  content: '\f0c8';
+  font-family: 'Font Awesome 5 Free';
   color: rgb(50, 143, 234);
   left: -35px;
   box-sizing: border-box;
   border-radius: 25%;
+  font-weight: 400;
 }
 .checkbox_container label.checkbox::after{
   content: '\f00c';
-  font-family: 'FontAwesome';
-  font-size: 0.9rem;
+  font-family: 'Font Awesome 5 Free';
+  font-size: 1.0rem;
   left: 2px;
   top: 5px;
   color: transparent;
