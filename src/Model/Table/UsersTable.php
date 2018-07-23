@@ -201,11 +201,9 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique([
-            'mail',
-            'twitchToken',
-            'twitchUserId'
-        ]));
+        $rules->add($rules->isUnique(['name']));
+        $rules->add($rules->isUnique(['mail']));
+        $rules->add($rules->isUnique(['twitchUserId']));
 
         $rules->
             add(function($entity) {
@@ -435,12 +433,10 @@ class UsersTable extends Table
         $destination = 'uploads/files/pics/profile_picture_' . $user_id . '.png';
         $file = fopen($destination, 'w+');
         $curl = curl_init($remote_url);
-        /* curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); */
         curl_setopt($curl, CURLOPT_FILE, $file);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($curl, CURLOPT_TIMEOUT, 1000);
         curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0');
-        /* curl_setopt($curl, CURLOPT_VERBOSE, true); */
         curl_exec($curl);
 
         if(curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200)

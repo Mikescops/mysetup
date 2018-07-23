@@ -76,6 +76,11 @@ class LikesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique([
+            'setup_id',
+            'user_id'
+        ]));
+
         $rules->add($rules->existsIn(['setup_id'], 'Setups'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 

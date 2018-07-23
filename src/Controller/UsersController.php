@@ -157,7 +157,7 @@ class UsersController extends AppController
 
                 else
                 {
-                    $this->Flash->error(__('The user could not be saved. (Is this address already taken ?)'));
+                    $this->Flash->error(__('Your account could not be registered, either your name or email address is already being used'));
                     return $this->redirect($this->referer());
                 }
             }

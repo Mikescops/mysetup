@@ -80,6 +80,8 @@ class ArticlesTable extends Table
 
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['title']));
+
         $rules->
             add(function($entity) {
                 if(isset($entity['category']) and array_key_exists($entity['category'], $this->categories))
