@@ -111,10 +111,7 @@ class ThirdPartiesController extends AppController
                     'audience'      => $APIBaseURL
                 ]);
 
-                $token = [
-                    'token'  => $response->json['access_token'],
-                    'cached' => Time::now()
-                ];
+                $token = $response->json['access_token'];
 
                 Cache::write('LeDenicheur', $token, 'ThirdPartiesCacheConfig');
             }
@@ -125,7 +122,7 @@ class ThirdPartiesController extends AppController
                 'limit'        => 16,
                 'query'        => urlencode($this->_cleanString($query)),
                 'suggestions'  => false,
-                'access_token' => $token['token']
+                'access_token' => $token
             ]);
 
             // The resulted products will be stored there !
