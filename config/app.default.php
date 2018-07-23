@@ -251,12 +251,6 @@ return [
             'domain_name' => 'YOUR_MATOMO_DOMAIN_NAME_GOES_HERE',
             'token'       => 'YOUR_MATOMO_TOKEN_GOES_HERE',
         ],
-        'Google' => [
-            'CAPTCHA' => [
-                'site'   => 'YOUR_GOOGLE_CAPTCHA_SITE_KEY_GOES_HERE',
-                'secret' => 'YOUR_GOOGLE_CAPTCHA_SECRET_KEY_GOES_HERE',
-            ],
-        ],
         'Twitch' => [
             'id'     => 'YOUR_TWITCH_ID_GOES_HERE',
             'secret' => 'YOUR_TWITCH_SECRET_GOES_HERE',
