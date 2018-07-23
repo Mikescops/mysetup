@@ -101,6 +101,13 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/twitch/*', ['controller' => 'Users', 'action' => 'twitch']);
     /* _________________________ */
 
+    /* Likes Controller's routes */
+    $routes
+        ->connect('/likes/:id:slug', ['controller' => 'Likes', 'action' => 'index'])
+        ->setPatterns(['id' => '\d+'])
+        ->setPass(['id']);
+    /* _________________________ */
+
     /* Our API routes, we connect the Throttle middleware */
     $routes->scope('/api', function($routes) {
         $routes->applyMiddleware('throttle');

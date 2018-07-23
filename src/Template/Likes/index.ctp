@@ -1,22 +1,25 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', __('My likes | mySetup.co'));
+$this->assign('title', __('{0}\'s likes | mySetup.co', h($user->name)));
 
-echo $this->Html->meta('description', __('Setups you like on mySetup.co'), ['block' => true]);
+echo $this->Html->meta('description', __('Setups liked by {0} on mySetup.co', $user->name), ['block' => true]);
 
 echo $this->Html->meta(['property' => 'og:title', 'content' => 'My likes | mySetup.co'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:description', 'content' => 'Setups you like on mySetup.co'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'Setups you like on mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => __('Setups liked by {0} on mySetup.co', $user->name)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => __('Setups liked by {0} on mySetup.co', $user->name)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/likes', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build($this->request->getPath(), true)], null ,['block' => true]);
 
 ?>
 
 <div class="colored-container">
     <div class="container">
-        <br><h2><?= __('My likes') ?> <?php if(count($likes)): ?>(<?= count($likes) ?>)<?php endif; ?></h2><br>
+        <br />
+        <h2>
+            <?= __('{0}\'s likes', $user->name) ?> <?php if(count($likes)): ?>(<?= count($likes) ?>)<?php endif; ?>
+        </h2>
     </div>
 </div>
 <div class="container">

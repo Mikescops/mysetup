@@ -14,18 +14,19 @@ class LikesController extends AppController
 {
     /* /!\ Careful /!\
      * This is not a 'regular' `index()` method :
-     * This one will list the likes of the current user.
-     * It's only available 'privately'.
+     * This one will list the likes of the passed user.
      */
-    public function index()
+    public function index($id = null)
     {
         if($this->request->is('get'))
         {
-            // Let's just fetch the setups that the current user has liked !
+            $user = $this->Likes->Users->get($id);
+
+            // Let's fetch the setups that the passed user has liked !
             // They will be available into a `like` entity although...
             $likes = $this->Likes->find('all', [
                 'conditions' => [
-                    'Likes.user_id' => $this->Auth->user('id')
+                    'Likes.user_id' => $user->id
                 ],
                 'contain' => [
                     'Setups' => [
@@ -61,7 +62,7 @@ class LikesController extends AppController
                 ]
             ])->toArray();
 
-            $this->set('likes', $likes);
+            $this->set(compact('likes', 'user'));
         }
     }
 
@@ -197,7 +198,7 @@ class LikesController extends AppController
         parent::beforeFilter($event);
 
         // Anonymous visitors can retrieve likes number of a setup...
-        $this->Auth->allow('getLikes');
+        $this->Auth->allow('index', 'getLikes');
     }
 
     public function isAuthorized($user)

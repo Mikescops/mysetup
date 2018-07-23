@@ -90,8 +90,8 @@ use Cake\Core\Configure;
                         <li style="margin-right: 19px;">
                                 <a class="navbar-user"><?= h($authUser['name']) ?> <img class="current-profile-user" alt="<?= __('Profile picture of') ?> <?= h($authUser['name']) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $authUser['id'] . '.png?' . $authUser['modificationDate']->format('is')) ?>"></a>
                                 <ul style="left: auto;right: -20px;">
-                                    <li><a href="<?=$this->Url->build('/likes')?>"><?= __('My Likes') ?></a></li>
-                                    <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
+                                    <li><a href="<?= $this->Url->build('/likes/' . $authUser['id'] . '-' . $authUser['name']) ?>"><?= __('My Likes') ?></a></li>
+                                    <li><a href="<?= $this->Url->build('/users/' . $authUser['id'] . '-' . $authUser['name']) ?>"><?= __('My Setups') ?></a></li>
                                     <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
                                     <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
                                 </ul>
@@ -147,8 +147,8 @@ use Cake\Core\Configure;
                     <li>
                         <ul>
                             <?php if($authUser): ?>
-                                <li><a href="<?=$this->Url->build('/likes')?>"><?= __('My Likes') ?></a></li>
-                                <li><a href="<?=$this->Url->build('/users/'. $authUser['id'])?>"><?= __('My Setups') ?></a></li>
+                                <li><a href="<?= $this->Url->build('/likes/' . $authUser['id'] . '-' . $authUser['name']) ?>"><?= __('My Likes') ?></a></li>
+                                <li><a href="<?= $this->Url->build('/users/' . $authUser['id'] . '-' . $authUser['name']) ?>"><?= __('My Setups') ?></a></li>
                                 <li><a href="#edit_profile_modal" data-lity><?= __('Edit Profile') ?></a></li>
                                 <li><a href="<?= $this->Url->build('/logout'); ?>"><?= __('Logout') ?></a></li>
                             <?php else: ?>

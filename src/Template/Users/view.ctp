@@ -28,14 +28,20 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
             <div class="column column-50">
                 <ul class="user-stats">
                     <li><span><?= count($user['setups']) ?></span> <?= __n('setup', 'setups', count($user['setups'])) ?></li>
-                    <li><span><?= count($user['likes']) ?></span> <?= __n('like', 'likes', count($user['likes'])) ?></li>
+                    <li>
+                        <?php if(count($user['likes'])): ?>
+                            <span><?= $this->Html->link(count($user['likes']), '/likes/' . $user->id . '-' . $user->name) ?></span>
+                        <?php else: ?>
+                            <span><?= count($user['likes']) ?></span>
+                        <?php endif; ?>
+                        <?= __n('like', 'likes', count($user['likes'])) ?>
+                    </li>
                     <li><span><?= count($user['comments']) ?></span> <?= __n('comment', 'comments', count($user['comments'])) ?></li>
                 </ul>
             </div>
 
         </div>
     </div>
-
 
 </div>
 
