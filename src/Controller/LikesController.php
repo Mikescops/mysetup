@@ -100,7 +100,7 @@ class LikesController extends AppController
             $setup_id = $this->request->getQuery('setup_id');
             if($this->Likes->Setups->exists(['id' => $setup_id]))
             {
-                if(!$this->Likes->exists(['setup_id' => $setup_id, 'user_id' => $this->Auth->user('id')]))
+                if(!$this->Likes->hasBeenLikedBy($setup_id, $this->Auth->user('id')))
                 {
                     // When an user likes a setup, we just create an entity with its id, and the setup's one
                     $like = $this->Likes->newEntity([
