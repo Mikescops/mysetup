@@ -7,7 +7,7 @@
 
 In order to deploy this website on your web server :
 
-1. `# aptitude install git apache2 mariadb-server php7.2 php7.2-mysql php7.2-xml php7.2-intl php7.2-mbstring php7.2-sqlite3 php7.2-curl php7.2-apcu php7.2-zip php-imagick unzip phpmyadmin composer gettext`
+1. `# aptitude install git apache2 mariadb-server php7.2 php7.2-mysql php7.2-xml php7.2-intl php7.2-mbstring php7.2-sqlite3 php7.2-curl php7.2-apcu php7.2-zip php7.2-gd php-imagick unzip phpmyadmin composer gettext`
 2.
     1. `# nano /etc/apache2/sites-available/mysetup.conf`
         ```apacheconf
