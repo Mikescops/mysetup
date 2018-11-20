@@ -66,7 +66,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <?= h($setup->title) ?>
                     <?php if($setup->featured): ?>
                         <i title="<?= __('This setup is featured on mySetup.co !')?>" class="fa fa-star setup-star"></i>
-                    <?php endif ?>                    
+                    <?php endif ?>
                 </h3>
                 <p>
                     <?= __('Shared by') ?> <?= $this->Html->link($setup->user->name, $this->Url->build('/users/'.$setup->user_id.'-'.$this->Text->slug($setup->user->name))) ?><?php if($setup->user->verified): echo ' <i class="fa fa-check-circle verified_account"></i> '; endif; if($setup->user->name != $setup->author and $setup->author !== ''): echo ", " . __("created by ") . h($setup->author) ; endif?>
@@ -207,7 +207,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                                     <div class="comment-body">
                                         <div class="text" id="comment-<?= $comments->id ?>">
                                           <p content="<?= h($comments->content) ?>"><?= h($comments->content) ?></p>
-                                          <?= $this->Html->scriptBlock("$(function(){ $('#comment-".  $comments->id ." > p').html(emojione.toImage(`".$comments->content."`)); });", array('block' => 'scriptBottom')) ?>
+                                          <?= $this->Html->scriptBlock("$(function(){ $('#comment-".  $comments->id ." > p').html(emojione.toImage(`".h($comments->content)."`)); });", array('block' => 'scriptBottom')) ?>
                                         </div>
                                         <p class="attribution"><?= __('by') ?> <a href="<?= $this->Url->build('/users/'.$comments->user_id)?>"><?= h($comments->user['name']) ?></a> <?= __('at') ?> <?= $this->Time->format($comments->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comments->dateTime, $authUser['timeZone']); if(!$authUser): echo ' (GMT)'; endif; ?></p>
 
