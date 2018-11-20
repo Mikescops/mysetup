@@ -25,6 +25,7 @@ use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Http\Middleware\SecurityHeadersMiddleware;
 
 use Setup\Middleware\MaintenanceMiddleware;
+use Muffin\Throttle\Middleware\ThrottleMiddleware;
 
 /**
  * Application setup class.
@@ -69,6 +70,35 @@ class Application extends BaseApplication
     }
 
     /**
+     * Define the routes for an application.
+     *
+     * Use the provided RouteBuilder to define an application's routing, register scoped middleware.
+     *
+     * @param \Cake\Routing\RouteBuilder $routes A route builder to add routes into.
+     * @return void
+     */
+    public function routes($routes)
+    {
+        // Register scoped middleware for use in routes.php
+        $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
+            'secure'   => !Configure::read('debug'),
+            'httpOnly' => true
+        ]));
+
+        /* Muffin's Throttle middleware to limit requests on our APIs routes */
+        $routes->registerMiddleware('throttle', new ThrottleMiddleware([
+            'limit'    => 100,
+            'response' => [
+                'body' => json_encode(['error' => 'Rate limit reached']),
+                'type' => 'json'
+            ]
+        ]));
+        /* _________________________________________________________________ */
+
+        parent::routes($routes);
+    }
+
+    /**
      * Setup the middleware your application will use.
      *
      * @param \Cake\Http\MiddlewareQueue $middlewareQueue The middleware queue to setup.
@@ -79,10 +109,12 @@ class Application extends BaseApplication
         $middlewareQueue
             // Catch any exceptions in the lower layers,
             // and make an error page/response
-            ->add(ErrorHandlerMiddleware::class)
+            ->add(new ErrorHandlerMiddleware(null, Configure::read('Error')))
 
             // Handle plugin/theme assets like CakePHP normally does.
-            ->add(AssetMiddleware::class)
+            ->add(new AssetMiddleware([
+                'cacheTime' => Configure::read('Asset.cacheTime')
+            ]))
 
             // Add routing middleware.
             ->add(new RoutingMiddleware($this))
@@ -90,12 +122,6 @@ class Application extends BaseApplication
             // Here we'll accept the user's locale (whatever it is)
             // Check AppController.php@initialize() and AppController.php@beforeRender()
             ->add(new LocaleSelectorMiddleware(['*']))
-
-            // Since CakePHP 3.5, CSRF protection should be handled by a middleware
-            ->add(new CsrfProtectionMiddleware([
-                'secure'   => !Configure::read('debug'),
-                'httpOnly' => true
-            ]))
 
             // Set here some security headers
             ->add((new SecurityHeadersMiddleware())

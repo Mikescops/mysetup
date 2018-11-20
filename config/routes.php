@@ -18,12 +18,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
-
-use Muffin\Throttle\Middleware\ThrottleMiddleware;
 
 /**
  * The default class to use for all routes
@@ -46,16 +43,11 @@ use Muffin\Throttle\Middleware\ThrottleMiddleware;
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
-
-    /* Muffin's Throttle middleware to limit requests on our APIs routes */
-    $routes->registerMiddleware('throttle', new ThrottleMiddleware([
-        'limit'    => 100,
-        'response' => [
-            'body' => json_encode(['error' => 'Rate limit reached']),
-            'type' => 'json'
-        ]
-    ]));
-    /* _________________________________________________________________ */
+    /**
+     * Apply a middleware to the current route scope.
+     * Requires middleware to be registered via `Application::routes()` with `registerMiddleware()`
+     */
+    $routes->applyMiddleware('csrf');
 
     /* Static pages' routes... */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);
@@ -132,3 +124,14 @@ Router::scope('/', function (RouteBuilder $routes) {
     // However, default routes are still available...
     $routes->fallbacks(DashedRoute::class);
 });
+
+/**
+ * If you need different set of middleware or none at all, open new scope and define routes there
+ *
+ * ```
+ * Router::scope('/api', function (RouteBuilder $routes) {
+ *     // No $routes->applyMiddleware() here.
+ *     // Connect API actions here.
+ * });
+ * ```
+ */
