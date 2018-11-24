@@ -1,6 +1,11 @@
 #!/bin/bash
 
 
+# Make the Cake program executable
+if [[ ! -x bin/cake ]]; then
+    chmod +x bin/cake
+fi
+
 # Enable maintenance mode !
 bin/cake Setup.MaintenanceMode activate
 
