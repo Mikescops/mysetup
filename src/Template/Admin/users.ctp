@@ -55,7 +55,7 @@
                     </td>
                     <td><?= ($user->mailVerification ? __('No') : __('Yes')) ?></td>
                     <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']); ?></td>
-                    <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); ?></td>
+                    <td><?= $this->Time->format($user->lastLogginDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->lastLogginDate, $authUser['timeZone']); ?></td>
                     <td><?= ($user->twitchToken ? __('Yes') : __('No')) ?></td>
                     <td>
                         <?php if($user->uwebsite or $user->ufacebook or $user->utwitter or $user->utwitch): ?>
