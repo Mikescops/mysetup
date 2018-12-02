@@ -16,10 +16,17 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build($
 
 <div class="colored-container">
     <div class="container">
-        <br />
-        <h2>
-            <?= __('{0}\'s likes', $user->name) ?> <?php if(count($likes)): ?>(<?= count($likes) ?>)<?php endif; ?>
-        </h2>
+        <div class="row user-profile">
+            <div class="column column-80">
+                <img alt="<?= __('Profile picture of') ?> #<?= $user->id ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
+                <div><h2><?= __('{0}\'s likes', h($user->name)) ?> <?php if($user->verified): echo '<i class="fa fa-check-circle verified_account"></i>'; endif ?></h2></div>
+            </div>
+            <div class="column column-20">
+                <ul class="user-stats">
+                    <li><span><?= count($likes) ?></span></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 <div class="container">
