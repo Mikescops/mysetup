@@ -1,7 +1,7 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', __('{0}\'s likes | mySetup.co', h($user->name)));
+$this->assign('title', __('{0}\'s likes') . ' | mySetup.co', h($user->name)));
 
 echo $this->Html->meta('description', __('Setups liked by {0} on mySetup.co', $user->name), ['block' => true]);
 
