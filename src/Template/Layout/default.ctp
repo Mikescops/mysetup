@@ -61,12 +61,12 @@ use Cake\Core\Configure;
                 <div class="right-nav">
 
                     <ul>
+                        <?php if($debug): ?>
+                            <li>
+                                <a style="color: red; cursor: initial;"><i class="fa fa-code-branch" aria-hidden="true"></i> <?= __('Development Instance') ?></a>
+                            </li>
+                        <?php endif; ?>
                         <?php if($authUser): ?>
-                            <?php if($debug): ?>
-                                <li>
-                                    <a style="color: red; cursor: initial;"><i class="fa fa-code-branch" aria-hidden="true"></i> <?= __('Development Instance') ?></a>
-                                </li>
-                            <?php endif; ?>
                             <li>
                                 <a id="notifications-trigger"><i class="far fa-bell fa-fw" aria-hidden="true"></i></a>
                             </li>
