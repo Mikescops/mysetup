@@ -21,7 +21,8 @@ In order to deploy this website on your web server :
         ```
     2. `# a2ensite mysetup`
     3. `# a2enmod expires headers rewrite filter deflate`
-    4. `# systemctl restart apache2`
+    4. `# echo "apc.enable_cli = On" >> /etc/php/7.1/apache2/conf.d/20-apcu.ini`
+    5. `# systemctl restart apache2`
 3. `$ cd /var/www/html/`
 4. `$ git clone https://github.com/MikeScops/mysetup.git`
 5. `$ cd mysetup/`
