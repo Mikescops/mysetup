@@ -210,9 +210,11 @@ class PagesController extends AppController
                     ]
                 ]
             ]);
+
+            $this->set('mainSetup', $mainSetup);
         }
 
-        $this->set(compact('featuredSetups', 'popularSetups', 'brandSetups', 'activeUsers', 'randomResources', 'mainSetup'));
+        $this->set(compact('featuredSetups', 'popularSetups', 'brandSetups', 'activeUsers', 'randomResources'));
 
         $this->display('home');
     }
