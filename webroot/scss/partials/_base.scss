@@ -280,6 +280,11 @@ footer{
 	padding: 0 0.8em;
 }
 
+input.invalid{
+	background-color: #ffa4a4;
+	border: 0.1rem solid #f00;
+}
+
 // Imports >>>
 
 @import "home";
