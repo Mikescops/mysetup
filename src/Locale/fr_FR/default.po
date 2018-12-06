@@ -861,7 +861,7 @@ msgstr "Éditer"
 
 #: Template/Articles/index.ctp:20
 msgid "Our latest updates"
-msgstr "Nos dernières acutalités"
+msgstr "Nos dernières actualités"
 
 #: Template/Articles/view.ctp:23
 msgid "Home"
