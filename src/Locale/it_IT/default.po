@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
-"POT-Creation-Date: 2018-12-02 16:11+0000\n"
-"PO-Revision-Date: 2018-12-02 17:17+0100\n"
+"POT-Creation-Date: 2018-12-06 18:57+0000\n"
+"PO-Revision-Date: 2018-12-06 20:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: fr <support@mysetup.co>\n"
 "Language: it_IT\n"
@@ -1570,18 +1570,18 @@ msgid "This website is hosted by"
 msgstr "Questo sito è ospitato da"
 
 #: Template/Pages/legals.ctp:58
-msgid "Contact"
-msgstr "Contatto"
+msgid "Mail contact"
+msgstr "Contatto per posta"
 
-#: Template/Pages/legals.ctp:58
-msgid "or by email"
-msgstr "o via email"
+#: Template/Pages/legals.ctp:59
+msgid "This accommodation is provided free of charge by Mr. Mors Corentin."
+msgstr "Questo alloggio è fornito gratuitamente da Corentin Mors."
 
-#: Template/Pages/legals.ctp:61
+#: Template/Pages/legals.ctp:62
 msgid "Credits"
 msgstr "Crediti"
 
-#: Template/Pages/legals.ctp:63
+#: Template/Pages/legals.ctp:64
 msgid ""
 "© 2017 - 2018 mysetup.co – All rights reserved. Total or partial production "
 "or imitation of said documents without the express prior written consent of "
@@ -1785,11 +1785,11 @@ msgstr "La nostra squadra | mySetup.co"
 msgid "Who is behind mySetup.co ?"
 msgstr "Chi c'è dietro mySetup.co ?"
 
-#: Template/Pages/team.ctp:44
+#: Template/Pages/team.ctp:39
 msgid "Graphics"
 msgstr "Grafica"
 
-#: Template/Pages/team.ctp:58
+#: Template/Pages/team.ctp:51
 msgid "Translation"
 msgstr "Traduzione"
 
@@ -1980,3 +1980,6 @@ msgid "comment"
 msgid_plural "comments"
 msgstr[0] "commento"
 msgstr[1] "commenti"
+
+#~ msgid "or by email"
+#~ msgstr "o via email"
