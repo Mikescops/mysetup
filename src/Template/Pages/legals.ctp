@@ -54,8 +54,9 @@ echo $this->Html->meta('description', __('Legal mentions about your personal dat
 
 	<h3><?= __('Hosting') ?></h3>
 	<p>
-		<?= __('This website is hosted by') ?> <a href="https://www.ikoula.com/">Ikoula</a>.<br />
-		<?= __('Contact') ?> : +33 (0) 1 84 01 02 50, <?= __('or by email') ?> : <a href="mailto:ikoula@ikoula.com">ikoula@ikoula.com</a>.
+		<?= __('This website is hosted by') ?> <a href="https://www.ovh.com/fr/support/mentions-legales/">OVH</a>.<br />
+		<?= __('Mail contact') ?> : 2 rue Kellermann - 59100 Roubaix - France<br />
+		<?= __('This accommodation is provided free of charge by Mr. Mors Corentin.') ?>
 	</p>
 
 	<h3><?= __('Credits') ?></h3>

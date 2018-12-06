@@ -191,5 +191,4 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="column"><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img alt="Partner LeDenicheur" src="<?=$this->Url->build('/img/partners/ledenicheur.png')?>"></a></div>
     <div class="column"><a href="https://www.twitch.tv/" target="_blank" class="item"><img alt="Partner Twitch" src="<?=$this->Url->build('/img/partners/twitch-white.png')?>"></a></div>
     <div class="column"><a href="https://geek-mexicain.net/" target="_blank" class="item"><img alt="Partner Geek Mexicain" src="<?=$this->Url->build('/img/partners/geekmexicain.png')?>"></a></div>
-    <div class="column"><a href="https://www.ikoula.com/" target="_blank" class="item"><img alt="Partner Ikoula" src="<?=$this->Url->build('/img/partners/ikoula-white.png')?>"></a></div>
 </div>
