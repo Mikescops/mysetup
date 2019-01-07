@@ -207,7 +207,7 @@ use Cake\Core\Configure;
                 </div>
                 <div class="column column-25 logo_footer">
                     <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mysetup.co')); ?>
-                    <p><?= __('All rights reserved') ?> – mySetup.co<br> © 2017 - 2018</p>
+                    <p><?= __('All rights reserved') ?> – mySetup.co<br> © 2017 - 2019</p>
                 </div>
             </div>
         </div>
