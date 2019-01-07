@@ -14,7 +14,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
 ?>
 
-<div class="home_hero_container sitecontainer">
+<div class="home_hero_container sitecontainer" <?php if($authUser['mainSetup_id'] != 0): ?>style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.80), #161623), url(<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg' )) ?>)"<?php endif ?>>
     <div class="container">
     <?php if(!$authUser): ?>
         <div class="hero_image">
@@ -49,9 +49,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 </div>
             </div>
         <?php else: ?>
-            <div class="hero_mainsetup" alt="<?= h($mainSetup->title) ?>" style="background-image:url(<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg' )) ?>)"></div>
-
-            <div class="hero_hover">
+            <div class="hero_mainsetup">
                 <h2><?= __('Your main setup has') ?> <?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?> !</h2>
                 <p><?= __('Share it to get more') ?> :</p>
 
