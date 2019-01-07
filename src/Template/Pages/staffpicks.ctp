@@ -22,20 +22,28 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 </div>
 <div class="container">
     <div class="maincontainer">
-    <div class="row">
-        <div class="column column-100">
+        <div class="row">
+            <div class="column column-100">
 
-            <div class="feeditem">
+                <div class="feeditem">
 
-            <?php foreach ($setups as $setup): ?>
+                <?php foreach ($setups as $setup): ?>
 
-                <?= $this->element('List/cards', ['setup' => $setup]) ?>
+                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
 
-            <?php endforeach ?>
+                <?php endforeach ?>
+
+                </div>
 
             </div>
+        </div>
+        
+        <br>
+
+        <div class="rowsocial" style="column-count: auto;">
+
+            <?= $this->element('Structure/social_networks_tiles') ?>
 
         </div>
-    </div>
     </div>
 </div>
