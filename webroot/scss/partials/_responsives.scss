@@ -125,6 +125,10 @@
 	    height: 60px;
 	}
 
+	.fullitem {
+		max-width: 100%;
+	}
+
 	.fullitem:hover > .fullitem-inner {
 	    height: 80px;
 	}
