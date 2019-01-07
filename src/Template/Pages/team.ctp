@@ -18,10 +18,11 @@ echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block'
     <div class="member">
         <?= $this->Html->image('/img/contributors/corentin-mors.png', ['alt' => 'Corentin Mors']) ?>
 
-        <p><strong>Corentin Mors</strong>: Student at INSA Centre Val de Loire, former president of Geek Mexicain et developer of website like Uzzy.me and Pixelswap. I started to work on web development very young and now I manage plenty of projects over the net. I've designed mySetup.co as long as its Twitch extension from scratch.</p>
-        <a href="https://pixelswap.fr/" target="_blank"><i class="fa fa-globe"></i> PixelSwap</a> |
+        <p><strong>Corentin Mors</strong>: Student at INSA Centre Val de Loire, former president of Geek Mexicain and developer of various websites and tools. I've designed mySetup.co as long as its Twitch extension from scratch.</p>
+        <a href="https://pixelswap.fr/" target="_blank"><i class="fa fa-globe"></i> PixelSwap Blog</a> |
+        <a href="https://dev.pixelswap.fr/" target="_blank"><i class="fas fa-briefcase"></i> My Works</a> |
         <a href="https://twitter.com/MikeScops" target="_blank"><i class="fab fa-twitter"></i> mikescops</a> |
-        <a href="https://www.linkedin.com/in/corentinmors/" target="_blank"><i class="fab fa-linkedin"></i> Hire me</a>
+        <a href="https://www.linkedin.com/in/corentinmors/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
     </div>
     <br/>
     <div class="member">
@@ -74,5 +75,7 @@ echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block'
         <a href="https://twitter.com/thea_frst" target="_blank"><i class="fab fa-twitter"></i> Twitter</a> |
         <a href="https://unsplash.com/@freshcookie" target="_blank"><i class="fa fa-camera "></i> Unsplash</a>
     </div>
+
+    <br />
 </div>
 </div>
