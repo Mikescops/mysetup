@@ -13,11 +13,11 @@ echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/recent', true)], null ,['block' => true]);
 
 ?>
-<div class="colored-container">
+<div class="weeklypicks">
     <div class="container">
-        <br><h2><?= __('Weekly Picks') ?></h2>
+        <h2><?= __('Weekly Picks') ?></h2>
         <p><?= __('The best setups of the week') ?> n°<?= $week ?></p>
-        <br>
+        <hr>
     </div>
 </div>
 
@@ -26,4 +26,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <?= $this->element('List/showcase', ['setup' => $setup]) ?>
 
 <?php endforeach ?>
+
+<br>
+<a class="button previous-weekly" href=""><i class="fas fa-chevron-left"></i> Previous week</a>
 

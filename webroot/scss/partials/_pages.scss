@@ -256,3 +256,36 @@
 }
 
 
+/********** WEEKLY PICKS PAGE *********/
+
+.weeklypicks{
+
+	h2{
+		font-size: 4em;
+		text-align: center;
+		padding-top: 100px;
+	}
+
+	p{
+		text-align: center;
+	}
+
+	hr{
+		margin: 0 auto;
+		border: 0;
+		border-radius: 6px;
+		height: 5px;
+		background: linear-gradient(145deg, #344154 0%, #3A62A8 100%);
+		width: 20%;
+	}
+}
+
+
+.previous-weekly{
+	display: block;
+	width: 100%;
+	max-width: 300px;
+	margin: 0 auto;
+	border: 0;
+	background: #272727;
+}
