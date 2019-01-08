@@ -4,8 +4,6 @@
 
 <div>
     <div class="container">
-        <div class="rowfeed">
-            <div class="feeditem">
 
 <div class="setup-showcase">
 	<h4><a href="<?= $this->Url->build('/setups/'.$setup->id.'-'.$this->Text->slug($setup->title)); ?>"><?= h($setup->title) ?></a></h4>
@@ -46,12 +44,8 @@
 		</div>
 	</div>
 </div>
-<div class="setup-showcase-background" style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.60), #151515), url(<?= urldecode($setup['resources']['featured_image']) ?>);
+<div class="setup-showcase-background" style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.60), #151515), url(/<?= urldecode($setup['resources']['featured_image']) ?>);
 "></div>
 
-
-            </div>
-            <br clear='all'>
-        </div>
     </div>
 </div>
