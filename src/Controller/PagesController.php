@@ -246,8 +246,8 @@ class PagesController extends AppController
     public function weeklyPicks($year = null, $week = null)
     {
         if($year < 2016 || $year > 2100 || $week < 1 || $week > 54){
-            $this->Flash->warning(__('This date does not exist :('));
-            return $this->redirect('/');
+            $this->Flash->warning(__('This date does not exist, here you are the featured setups of this week !'));
+            return $this->redirect('/weekly/');
         }
 
         $setups = $this->Setups->getSetups(['featured' => true, 'yearweek' => [$year, $week], 'number' => 5]);
