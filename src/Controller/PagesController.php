@@ -52,11 +52,16 @@ class PagesController extends AppController
         $featuredSetups_ids = Cache::read('featuredSetups_ids', 'HomePageCacheConfig');
         if($featuredSetups_ids === false)
         {
-            $featuredSetups = $this->Setups->getSetups(['featured' => true, 'number' => 3]);
+            $featuredSetups = $this->Setups->getSetups(['featured' => true, 'products' => true, 'number' => 6]);
 
             $featuredSetups_ids = [];
             foreach($featuredSetups as $featuredSetup)
             {
+                // Here we'll get each resource linked to this setup, and set them up into the existing entity
+                $featuredSetup['resources'] = [
+                    'products' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray(),
+                    'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
+                ];
                 array_push($featuredSetups_ids, $featuredSetup->id);
             }
 
@@ -68,9 +73,14 @@ class PagesController extends AppController
             $featuredSetups = [];
             foreach($featuredSetups_ids as $featuredSetups_id)
             {
-                $tmp_setup = $this->Setups->fetchSetupById($featuredSetups_id, ['featured' => true]);
+                $tmp_setup = $this->Setups->fetchSetupById($featuredSetups_id, true);
                 if($tmp_setup !== null)
                 {
+                    // Here we'll get each resource linked to this setup, and set them up into the existing entity
+                    $tmp_setup['resources'] = [
+                        'products' => $this->Setups->Resources->find()->where(['setup_id' => $tmp_setup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray(),
+                        'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $tmp_setup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
+                    ];
                     array_push($featuredSetups, $tmp_setup);
                 }
             }

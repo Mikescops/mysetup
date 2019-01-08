@@ -603,3 +603,89 @@
 	border: solid 2px #328fea;
 	background-color: rgb(0, 0, 0);
 }
+
+/**** Showcase items ****/
+
+.setup-showcase{
+	margin: 0 auto;
+	margin-bottom: 20px;
+	max-width: 800px;
+	width: 100%;
+	z-index: 2;
+
+	h4{
+		font-size: 32px;
+		font-weight: 700;
+		text-transform: none;
+		margin: 0;
+		padding: 15px 10px;
+
+		a{
+			text-decoration: none;
+			color: #fff;
+		}
+	}
+}
+
+.showcase-meta{
+	display: flex;
+	margin-bottom: 10px;
+
+	.showcase-author{
+
+		padding: 20px;
+
+		.author-name-prefix{
+			color: #7a7a8c;
+		}
+
+		.author-name{
+			color: #fff;
+		}
+		
+	}
+
+	.showcase-likes{
+		font-size: 2em;
+		padding: 20px 0;
+	}
+}
+
+.showcase-avatar{
+	position: relative;
+	-ms-flex-item-align: start;
+	align-self: start;
+}
+
+.author-avatar img{
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	margin: 12px 10px;
+}
+
+.avatar-circle{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 80px;
+	height: 56px;
+	fill: none;
+	stroke: url(#main-gradient);
+	stroke-width: 8;
+	stroke-linecap: round;
+	pointer-events: none;
+
+	position: absolute;
+}
+
+.setup-showcase-background{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 80%;
+	height: 80%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	z-index: 1;
+}

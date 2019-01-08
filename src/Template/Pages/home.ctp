@@ -36,18 +36,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                     <a href="#add_setup_modal" data-lity class="hero_calltoaction"><?= __('Add my setup now') ?></a>
                 </div>
             </div>
-
-            <div class="rowfeed">
-                <div class="feeditem">
-
-                    <?php foreach ($featuredSetups as $setup): ?>
-
-                        <?= $this->element('List/cards', ['setup' => $setup]) ?>
-
-                    <?php endforeach ?>
-                    <br clear="all">
-                </div>
-            </div>
+            <br>
         <?php else: ?>
             <div class="hero_mainsetup">
                 <h2><?= __('Your main setup has') ?> <?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?> !</h2>
@@ -125,6 +114,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         </div>
     </div>
 </div>
+
+<?php $randFeatured = array_rand($featuredSetups, 1); ?>
+<?= $this->element('List/showcase', ['setup' => $featuredSetups[$randFeatured]]) ?>
 
 <?php $i = 0;  foreach($brandSetups as $brand => $setups): ?>
 
