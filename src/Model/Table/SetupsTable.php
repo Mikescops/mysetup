@@ -245,8 +245,8 @@ class SetupsTable extends Table
             $week_end = clone $week_start;
             $week_end = $week_end->add(new \DateInterval("P1W"));
 
-            $conditions += ['Setups.creationDate >' => $week_start];
-            $conditions += ['Setups.creationDate <' => $week_end];
+            $conditions += ['Setups.creationDate >=' => $week_start];
+            $conditions += ['Setups.creationDate <=' => $week_end];
         }
 
         // If the query specified only the featured ones...
