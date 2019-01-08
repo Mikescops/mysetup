@@ -223,7 +223,8 @@ class SetupsTable extends Table
             'offset'   => null,
             'type'     => null,
             'weeks'    => null,
-            'fuzzy'    => null
+            'fuzzy'    => null,
+            'yearweek' => null
         ],
         $array);
 
@@ -233,6 +234,19 @@ class SetupsTable extends Table
         if($params['weeks'] and intval($params['weeks']))
         {
             $conditions += ['Setups.creationDate >' => new \DateTime('-' . intval($params['weeks']) . ' weeks')];
+        }
+
+        if($params['yearweek']){
+            $year = $params['yearweek'][0];
+            $week_no = $params['yearweek'][1];
+
+            $week_start = new \DateTime();
+            $week_start->setISODate($year,$week_no);
+            $week_end = clone $week_start;
+            $week_end = $week_end->add(new \DateInterval("P1W"));
+
+            $conditions += ['Setups.creationDate >' => $week_start];
+            $conditions += ['Setups.creationDate <' => $week_end];
         }
 
         // If the query specified only the featured ones...

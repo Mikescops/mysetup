@@ -53,6 +53,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);
     $routes->connect('/recent', ['controller' => 'Pages', 'action' => 'recent']);
     $routes->connect('/staffpicks', ['controller' => 'Pages', 'action' => 'staffpicks']);
+    $routes->connect('/weekly/:year-:week', ['controller' => 'Pages', 'action' => 'weeklyPicks'])
+            ->setPatterns(['year' => '\d+', 'week' => '\d+'])
+            ->setPass(['year', 'week']);
     $routes->connect('/bugReport', ['controller' => 'Pages', 'action' => 'bugReport']);
     // ... and all the other ones
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);

@@ -52,7 +52,7 @@ class PagesController extends AppController
         $featuredSetups_ids = Cache::read('featuredSetups_ids', 'HomePageCacheConfig');
         if($featuredSetups_ids === false)
         {
-            $featuredSetups = $this->Setups->getSetups(['featured' => true, 'products' => true, 'number' => 6]);
+            $featuredSetups = $this->Setups->getSetups(['featured' => true, 'number' => 6]);
 
             $featuredSetups_ids = [];
             foreach($featuredSetups as $featuredSetup)
@@ -73,7 +73,7 @@ class PagesController extends AppController
             $featuredSetups = [];
             foreach($featuredSetups_ids as $featuredSetups_id)
             {
-                $tmp_setup = $this->Setups->fetchSetupById($featuredSetups_id, true);
+                $tmp_setup = $this->Setups->fetchSetupById($featuredSetups_id);
                 if($tmp_setup !== null)
                 {
                     // Here we'll get each resource linked to this setup, and set them up into the existing entity
@@ -241,6 +241,23 @@ class PagesController extends AppController
         $this->set('setups', $this->Setups->getSetups(['featured' => true, 'number' => 20]));
 
         $this->display('staffpicks');
+    }
+
+    public function weeklyPicks($year = null, $week = null)
+    {
+        $setups = $this->Setups->getSetups(['featured' => true, 'yearweek' => [$year, $week], 'number' => 5]);
+
+        foreach($setups as $featuredSetup)
+        {
+            $featuredSetup['resources'] = [
+                'products' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray(),
+                'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
+            ];
+        }
+
+        $this->set(compact('setups', 'year', 'week'));
+
+        $this->display('weekly_picks');
     }
 
     public function bugReport()
@@ -419,7 +436,7 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['display', 'home', 'recent', 'staffpicks', 'bugReport', 'search']);
+        $this->Auth->allow(['display', 'home', 'recent', 'staffpicks', 'weeklyPicks', 'bugReport', 'search']);
 
         // Another hook to avoid error pages when an user...
         // ...types directly in an (existing) raw address
@@ -437,6 +454,10 @@ class PagesController extends AppController
 
                 case 'staffpicks':
                     $this->redirect(['action' => 'staffpicks']);
+                    break;
+
+                case 'weeklyPicks':
+                    $this->redirect(['action' => 'weeklyPicks']);
                     break;
 
                 case 'bugReport':
