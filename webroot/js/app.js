@@ -467,7 +467,10 @@ function printLikes(id) {
 		type: 'get',
 		success: function(json) {
 			$(".pointing_label").html(json);
-		}
+		},
+		error: function (request, status, error) {
+	        console.log(error);
+	    }
 	});
 }
 

@@ -198,7 +198,7 @@ class LikesController extends AppController
         parent::beforeFilter($event);
 
         // Anonymous visitors can retrieve likes number of a setup...
-        $this->Auth->allow('index', 'getLikes');
+        $this->Auth->allow(['index', 'getLikes']);
     }
 
     public function isAuthorized($user)
