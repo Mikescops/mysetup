@@ -61,10 +61,10 @@
 
                 <?php endif ?>
 
-                <ul class="draggable-cards dragscroll search_results add_setup"></ul>
+                <ul class="draggable-cards dragscroll search_results edit_setup"></ul>
 
                 <h5 class="basket-title"><?= __('Setup items') ?></h5>
-                <ul class="draggable-cards dragscroll basket_items add_setup">
+                <ul class="draggable-cards dragscroll basket_items edit_setup">
                     <?php foreach ($setup['resources']['products'] as $item): ?>
                         <li class="text-card">
                             <div class="wrapper">
