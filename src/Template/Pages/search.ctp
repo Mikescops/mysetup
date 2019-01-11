@@ -109,9 +109,9 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
 
                 <?php if(isset($results["setups"]) && count($results["setups"]) > 0): ?>
                     <h3><?= __('Found setups') ?></h3>
-                    <?php foreach ($results["setups"] as $setup): ?>
+                    <?php foreach ($results["setups"] as $k => $setup): ?>
                         <?= $this->element('List/tiles', ['setup' => $setup]) ?>
-                    <?php endforeach;?>
+                    <?php if($this->request->getPath() == '/search/' && $k > 9){break;} endforeach;?>
                     <br clear='all'>
                 <?php endif;?>
 
