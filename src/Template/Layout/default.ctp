@@ -221,7 +221,8 @@ use Cake\Core\Configure;
 
     <div id="notifications-pop" style="display: none;"><div id="notif-container"></div><div id="no-notif">You have no notifications.</div></div>
 
-    <!-- App Js async load -->
+    <!-- Lib & App Js async load -->
+    <?= $this->Html->script('libs.min.js') ?>
     <?= $this->Html->script('app.min.js') ?>
 
     <!-- Emoji handling -->
