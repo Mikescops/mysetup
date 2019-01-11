@@ -330,14 +330,15 @@ function searchItem(query, action) {
 					let encodedUrl = encodeURIComponent(url);
 
 					list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${src}) no-repeat center center; background-size: contain"></div> <a onclick="addToBasket(\`${encodedTitle}\`, '${encodedUrl}', '${encodedSrc}', '${action}')" class="bottom"><i class="fas fa-plus"></i> Add</a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${title} </div> </div> </div>`);
-					
-					console.log(list);
 
 					$(".search_results." + action).append(list);
 				});
 
 				var image = $('mediumimage');
 
+			},
+			error: function(error) {
+				$(".search_results." + action).html("No products found...");
 			}
 		});
 
