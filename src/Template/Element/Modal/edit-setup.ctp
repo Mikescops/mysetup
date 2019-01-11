@@ -61,16 +61,22 @@
 
                 <?php endif ?>
 
-                <ul class="search_results edit_setup"></ul>
-                <ul class="basket_items edit_setup">
-                    <?php foreach ($setup['resources']['products'] as $item): ?>
+                <ul class="draggable-cards dragscroll search_results add_setup"></ul>
 
-                        <li>
-                            <a onclick="deleteFromBasket('<?= h($item->title) ?>',this,'edit_setup')">
-                                <img src="<?= urldecode($item->src) ?>">
-                                <p><?= h(urldecode($item->title)) ?></p>
-                                <i class="far fa-check-square" aria-hidden="true"></i>
-                            </a>
+                <h5 class="basket-title"><?= __('Setup items') ?></h5>
+                <ul class="draggable-cards dragscroll basket_items add_setup">
+                    <?php foreach ($setup['resources']['products'] as $item): ?>
+                        <li class="text-card">
+                            <div class="wrapper">
+                                <div class="card-container">
+                                    <div class="top" style="background: url(<?= urldecode($item->src) ?>) no-repeat center center; background-size: contain"></div> 
+                                    <a onclick="deleteFromBasket('<?= h($item->title) ?>',this,'edit_setup')" class="bottom"><i class="far fa-trash-alt"></i> Remove</a> 
+                                </div>
+                                <div class="inside">
+                                    <div class="icon"><i class="fas fa-info-circle"></i></div>
+                                    <div class="contents"><?= h(urldecode($item->title)) ?></div>
+                                </div>
+                            </div>
                         </li>
 
                     <?php endforeach ?>
