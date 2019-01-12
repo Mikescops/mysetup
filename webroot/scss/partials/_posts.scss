@@ -81,17 +81,6 @@
 	opacity: 0.8;
 }
 
-@-moz-document url-prefix() {
-  .featured-gradient {
-    background: #151515!important;
-    filter: none!important;
-   	-webkit-filter: none!important;
-	-o-filter: none!important;
-	-ms-filter: none!important;
-	opacity: 1;
-  }
-}
-
 .featured-inner{
 	background-color: rgba(0,0,0,0.8);
 	width: 100%;
