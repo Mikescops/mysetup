@@ -13,7 +13,7 @@ bin/cake Setup.MaintenanceMode activate
 bin/cake cache clear_all
 
 # Sync the vendor packages with the `composer.lock` specifications
-COMPOSER_ALLOW_SUPERUSER=true composer install -o -n
+COMPOSER_ALLOW_SUPERUSER=true composer install -o -n --no-dev
 
 # Some CakePHP optimizations
 bin/cake plugin assets symlink
