@@ -39,3 +39,5 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 ?>
 <a class="button previous-weekly" href="<?= $this->Url->build('/weekly/'.$prev_year.'-'.$prev_week, true) ?>"><i class="fas fa-chevron-left"></i> Previous week</a>
 
+<br><br>
+
