@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
-"POT-Creation-Date: 2018-12-06 18:57+0000\n"
-"PO-Revision-Date: 2018-12-06 20:00+0100\n"
+"POT-Creation-Date: 2019-01-12 15:33+0000\n"
+"PO-Revision-Date: 2019-01-12 16:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: fr <support@mysetup.co>\n"
 "Language: it_IT\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: Controller/AdminController.php:210
 msgid "No notification could be sent..."
@@ -113,7 +113,12 @@ msgstr "ha fato un commento sul tuo setup"
 msgid "An user profile picture"
 msgstr "Un'immagine del profilo utente"
 
-#: Controller/PagesController.php:244 Controller/UsersController.php:106
+#: Controller/PagesController.php:249
+msgid ""
+"This date does not exist, here you are the featured setups of this week !"
+msgstr "Questa data non esiste, eccovi i setup di questa settimana !"
+
+#: Controller/PagesController.php:276 Controller/UsersController.php:106
 msgid ""
 "Google's CAPTCHA has detected you as a bot, sorry ! If you're a REAL human, "
 "please re-try :)"
@@ -121,19 +126,19 @@ msgstr ""
 "Il CAPTCHA di Google ti ha rilevato come un bot, mi dispiace! Se sei un vero "
 "umano, per favore riprova :)"
 
-#: Controller/PagesController.php:257
+#: Controller/PagesController.php:289
 msgid "Your bug has been correctly sent ! Thanks for this report :)"
 msgstr "Il tuo bug è stato inviato correttamente! Grazie per questo report :)"
 
-#: Controller/PagesController.php:262
+#: Controller/PagesController.php:294
 msgid "You didn't report anything (or have missed something) :("
 msgstr "Non hai segnalato nulla (o hai perso qualcosa) :("
 
-#: Controller/PagesController.php:288;324
+#: Controller/PagesController.php:320;356
 msgid "We have found the user you are looking for !"
 msgstr "Abbiamo trovato l'utente che stai cercando !"
 
-#: Controller/PagesController.php:300
+#: Controller/PagesController.php:332
 msgid "We have found the component you are looking for !"
 msgstr "Abbiamo trovato il componente che stai cercando !"
 
@@ -888,21 +893,25 @@ msgstr "Pubblicato il"
 msgid "by"
 msgstr "di"
 
-#: Template/Element/List/cards.ctp:13
+#: Template/Element/List/cards.ctp:13 Template/Element/List/showcase.ctp:13
 #: Template/Element/List/tiles-js-template.ctp:26
 #: Template/Element/List/tiles.ctp:29 Template/Element/Modal/edit-profile.ctp:8
-#: Template/Layout/default.ctp:91 Template/Likes/index.ctp:21;53
-#: Template/Pages/home.ctp:177 Template/Pages/search.ctp:124
+#: Template/Layout/default.ctp:92 Template/Likes/index.ctp:21;53
+#: Template/Pages/home.ctp:150 Template/Pages/search.ctp:124
 #: Template/Setups/view.ctp:63;204 Template/Users/view.ctp:16;68
 msgid "Profile picture of"
 msgstr "Foto del profilo di"
+
+#: Template/Element/List/showcase.ctp:29
+msgid "Creator"
+msgstr "Creatore"
 
 #: Template/Element/Modal/add-setup.ctp:8
 #: Template/Element/Modal/edit-setup.ctp:9
 msgid "Basics"
 msgstr "Nozioni di base"
 
-#: Template/Element/Modal/add-setup.ctp:11;92
+#: Template/Element/Modal/add-setup.ctp:11;95
 #: Template/Element/Modal/edit-setup.ctp:12 Template/Pages/search.ctp:57
 msgid "Components"
 msgstr "Componenti"
@@ -939,12 +948,12 @@ msgstr "Si accettano solo immagini più chiare di 5 MB !"
 msgid "required fields"
 msgstr "campi richiesti"
 
-#: Template/Element/Modal/add-setup.ctp:55;70
-#: Template/Element/Modal/edit-setup.ctp:49;81
+#: Template/Element/Modal/add-setup.ctp:55;73
+#: Template/Element/Modal/edit-setup.ctp:49;87
 msgid "Next step"
 msgstr "Passo prossimo"
 
-#: Template/Element/Modal/add-setup.ctp:57;72;102
+#: Template/Element/Modal/add-setup.ctp:57;75;105
 msgid "Save as draft"
 msgstr "Salva come bozza"
 
@@ -953,23 +962,28 @@ msgstr "Salva come bozza"
 msgid "Search for components..."
 msgstr "Ricerca di componenti..."
 
-#: Template/Element/Modal/add-setup.ctp:81
-#: Template/Element/Modal/edit-setup.ctp:94
+#: Template/Element/Modal/add-setup.ctp:68
+#: Template/Element/Modal/edit-setup.ctp:66
+msgid "Setup items"
+msgstr "Componenti del setup"
+
+#: Template/Element/Modal/add-setup.ctp:84
+#: Template/Element/Modal/edit-setup.ctp:100
 msgid "Video (Youtube, Dailymotion, Twitch, ...)"
 msgstr "Video (Youtube, Dailymotion, Twitch, ...)"
 
-#: Template/Element/Modal/add-setup.ctp:83
-#: Template/Element/Modal/edit-setup.ctp:104
+#: Template/Element/Modal/add-setup.ctp:86
+#: Template/Element/Modal/edit-setup.ctp:110
 msgid "It's not my setup !"
 msgstr "Non è il moi Setup !"
 
-#: Template/Element/Modal/add-setup.ctp:84
-#: Template/Element/Modal/edit-setup.ctp:105
+#: Template/Element/Modal/add-setup.ctp:87
+#: Template/Element/Modal/edit-setup.ctp:111
 msgid "Setup's owner"
 msgstr "Proprietario del setup"
 
-#: Template/Element/Modal/add-setup.ctp:100
-#: Template/Element/Modal/edit-setup.ctp:120
+#: Template/Element/Modal/add-setup.ctp:103
+#: Template/Element/Modal/edit-setup.ctp:126
 msgid "Publish"
 msgstr "Pubblica"
 
@@ -1049,27 +1063,27 @@ msgstr "Anteprima Galleria"
 msgid "Change gallery image"
 msgstr "Cambia l'immagine della galleria"
 
-#: Template/Element/Modal/edit-setup.ctp:50;83;124
+#: Template/Element/Modal/edit-setup.ctp:50;89;130
 msgid "Save as draft (the setup will not be visible)"
 msgstr "Salva come bozza (l'installazione non sarà visibile)"
 
-#: Template/Element/Modal/edit-setup.ctp:60;137
+#: Template/Element/Modal/edit-setup.ctp:60;143
 msgid "Add a product manually"
 msgstr "Aggiungi un prodotto manualmente"
 
-#: Template/Element/Modal/edit-setup.ctp:112
+#: Template/Element/Modal/edit-setup.ctp:118
 msgid "Feature this setup !"
 msgstr "Presenta questa configurazione!"
 
-#: Template/Element/Modal/edit-setup.ctp:123
+#: Template/Element/Modal/edit-setup.ctp:129
 msgid "You are going to delete this setup ! Are you sure ?"
 msgstr "Sei sicuro di volere cancellare questo setup ?"
 
-#: Template/Element/Modal/edit-setup.ctp:139
+#: Template/Element/Modal/edit-setup.ctp:145
 msgid "Product Title"
 msgstr "Titolo del prodotto"
 
-#: Template/Element/Modal/edit-setup.ctp:142
+#: Template/Element/Modal/edit-setup.ctp:148
 msgid "Add"
 msgstr "Aggiungere"
 
@@ -1141,7 +1155,7 @@ msgstr ""
 "Puoi anche configurare il tuo bot Twitch Chat per visualizzare il tuo link o "
 "la tua immagine."
 
-#: Template/Element/Structure/sidebar.ctp:3 Template/Pages/home.ctp:103
+#: Template/Element/Structure/sidebar.ctp:3 Template/Pages/home.ctp:90
 msgid "Read our latest news"
 msgstr "Leggi le nostre ultime notizie"
 
@@ -1242,11 +1256,11 @@ msgstr "Sei sicuro di voler cancellare le cache dell'applicazione ?"
 msgid "Development Instance"
 msgstr "Istanza di Sviluppo"
 
-#: Template/Layout/default.ctp:74;134
+#: Template/Layout/default.ctp:74;135
 msgid "Add Setup"
 msgstr "Aggiungere Setup"
 
-#: Template/Layout/default.ctp:78;138
+#: Template/Layout/default.ctp:78;139
 msgid "Admin Panel"
 msgstr "Pannello del Amministratore"
 
@@ -1254,43 +1268,47 @@ msgstr "Pannello del Amministratore"
 msgid "Categories"
 msgstr "Categorie"
 
-#: Template/Layout/default.ctp:85;144
+#: Template/Layout/default.ctp:85;145
 msgid "Most recent"
 msgstr "Piu recente"
 
-#: Template/Layout/default.ctp:86 Template/Pages/staffpicks.ctp:4;18
+#: Template/Layout/default.ctp:86;146 Template/Pages/weekly_picks.ctp:4;18
+msgid "Weekly Picks"
+msgstr "Weekly Picks"
+
+#: Template/Layout/default.ctp:87;147 Template/Pages/staffpicks.ctp:4;18
 msgid "Staff Picks"
 msgstr "Selezione del Staff"
 
-#: Template/Layout/default.ctp:93;150
+#: Template/Layout/default.ctp:94;153
 msgid "My Likes"
 msgstr "I Miei Preferiti"
 
-#: Template/Layout/default.ctp:94;151
+#: Template/Layout/default.ctp:95;154
 msgid "My Setups"
 msgstr "Le mie Setups"
 
-#: Template/Layout/default.ctp:95;152
+#: Template/Layout/default.ctp:96;155
 msgid "Edit Profile"
 msgstr "Modifica il profilo"
 
-#: Template/Layout/default.ctp:96;153
+#: Template/Layout/default.ctp:97;156
 msgid "Logout"
 msgstr "Logout"
 
-#: Template/Layout/default.ctp:106
+#: Template/Layout/default.ctp:107
 msgid "Sign In / Up"
 msgstr "Registrarsi / Iscriversi"
 
-#: Template/Layout/default.ctp:107;202
+#: Template/Layout/default.ctp:108;202
 msgid "Help - Q&amp;A"
 msgstr "Aiuto - Q&amp;A"
 
-#: Template/Layout/default.ctp:110;156 Template/Users/login.ctp:34
+#: Template/Layout/default.ctp:111;159 Template/Users/login.ctp:34
 msgid "Connect with"
 msgstr "Connettere con"
 
-#: Template/Layout/default.ctp:155
+#: Template/Layout/default.ctp:158
 msgid "Log in"
 msgstr "Login"
 
@@ -1407,55 +1425,55 @@ msgstr "Avviare ora e selezionare tutti i componenti."
 msgid "Add my setup now"
 msgstr "Aggiungi ora il mio setup"
 
-#: Template/Pages/home.ctp:55
+#: Template/Pages/home.ctp:42
 msgid "Your main setup has"
 msgstr "Il setup principale ha"
 
-#: Template/Pages/home.ctp:56
+#: Template/Pages/home.ctp:43
 msgid "Share it to get more"
 msgstr "Condividi per ottenere di più"
 
-#: Template/Pages/home.ctp:59
+#: Template/Pages/home.ctp:46
 msgid "See it in action"
 msgstr "Guardalo in azione"
 
-#: Template/Pages/home.ctp:60 Template/Setups/view.ctp:92
+#: Template/Pages/home.ctp:47 Template/Setups/view.ctp:92
 msgid "Embed on Twitch"
 msgstr "Incorporare su Twitch"
 
-#: Template/Pages/home.ctp:61 Template/Setups/view.ctp:93
+#: Template/Pages/home.ctp:48 Template/Setups/view.ctp:93
 msgid "Embed on your website"
 msgstr "Incastra il tuo sito web"
 
-#: Template/Pages/home.ctp:62
+#: Template/Pages/home.ctp:49
 msgid "Post it !"
 msgstr "Pubblicare !"
 
-#: Template/Pages/home.ctp:63
+#: Template/Pages/home.ctp:50
 msgid "Tweet it !"
 msgstr "Tweet !"
 
-#: Template/Pages/home.ctp:80 Template/Pages/search.ctp:17
+#: Template/Pages/home.ctp:67 Template/Pages/search.ctp:17
 msgid "Search a component... Find a cool setup !"
 msgstr "Cerca un componente... Trova un setup fantastico !"
 
-#: Template/Pages/home.ctp:98
+#: Template/Pages/home.ctp:85
 msgid "Login with Twitch and create my Setup !"
 msgstr "Login con Twitch e crea il mio Setup !"
 
-#: Template/Pages/home.ctp:134
+#: Template/Pages/home.ctp:104
 msgid "Popular setups"
 msgstr "Setups populares"
 
-#: Template/Pages/home.ctp:162
+#: Template/Pages/home.ctp:135
 msgid "More {0} setups"
 msgstr "Altre setups {0}"
 
-#: Template/Pages/home.ctp:172
+#: Template/Pages/home.ctp:145
 msgid "Suggested Users"
 msgstr "Utenti suggeriti"
 
-#: Template/Pages/home.ctp:55 Template/Users/view.ctp:37
+#: Template/Pages/home.ctp:42 Template/Users/view.ctp:37
 msgid "like"
 msgid_plural "likes"
 msgstr[0] "like"
@@ -1583,18 +1601,17 @@ msgstr "Crediti"
 
 #: Template/Pages/legals.ctp:64
 msgid ""
-"© 2017 - 2018 mysetup.co – All rights reserved. Total or partial production "
-"or imitation of said documents without the express prior written consent of "
-"mysetup.co is strictly prohibited and constitutes a punishable violation "
-"under France’s Intellectual Property Code. All brands and trademarks on "
-"mysetup.co belongs to their respective owners."
+"All rights reserved. Total or partial production or imitation of said "
+"documents without the express prior written consent of mysetup.co is "
+"strictly prohibited and constitutes a punishable violation under France’s "
+"Intellectual Property Code. All brands and trademarks on mysetup.co belongs "
+"to their respective owners."
 msgstr ""
-"© 2017 - 2018 mysetup.co - Tutti i diritti riservati. La produzione totale o "
-"parziale o l'imitazione di detti documenti senza l'esplicito consenso "
-"scritto di mysetup.co è severamente vietata e costituisce una violazione "
-"punibile ai sensi del Codice della proprietà intellettuale francese. Tutti i "
-"marchi e marchi registrati su mysetup.co appartengono ai rispettivi "
-"proprietari."
+"Tutti i diritti riservati. La produzione totale o parziale o l'imitazione di "
+"detti documenti senza l'esplicito consenso scritto di mysetup.co è "
+"severamente vietata e costituisce una violazione punibile ai sensi del "
+"Codice della proprietà intellettuale francese. Tutti i marchi e marchi "
+"registrati su mysetup.co appartengono ai rispettivi proprietari."
 
 #: Template/Pages/q&a.ctp:4
 msgid "Q&amp;A"
@@ -1612,41 +1629,49 @@ msgstr ""
 msgid "Q&amp;A - We answer common questions"
 msgstr "Q&amp;A - Rispondiamo a domande comuni"
 
-#: Template/Pages/q&a.ctp:18;31
+#: Template/Pages/q&a.ctp:17
+msgid "Questions"
+msgstr "Domande"
+
+#: Template/Pages/q&a.ctp:20;36
 msgid "I didn't receive the verification mail"
 msgstr "Non ho ricevuto la mail di verifica"
 
-#: Template/Pages/q&a.ctp:19;36
+#: Template/Pages/q&a.ctp:21;39
 msgid "I can't find a product with the product search"
 msgstr "Non riesco a trovare un prodotto con la ricerca del prodotto"
 
-#: Template/Pages/q&a.ctp:20;41
+#: Template/Pages/q&a.ctp:22;42
 msgid "The product search is not responding"
 msgstr "La ricerca del prodotto non risponde"
 
-#: Template/Pages/q&a.ctp:21;46
+#: Template/Pages/q&a.ctp:23;45
 msgid "My setup was not created due to the images I uploaded"
 msgstr ""
 "La mia configurazione non è stata creata a causa delle immagini che ho "
 "caricato"
 
-#: Template/Pages/q&a.ctp:22;51
+#: Template/Pages/q&a.ctp:24;48
 msgid "I can't add a Youtube / Twitch video on my setup"
 msgstr "Non riesco ad aggiungere un video Youtube / Twitch sul mio setup"
 
-#: Template/Pages/q&a.ctp:23;56
+#: Template/Pages/q&a.ctp:25;51
 msgid "How to use the Markdown"
 msgstr "Come usare il Markdown"
 
-#: Template/Pages/q&a.ctp:24;61
+#: Template/Pages/q&a.ctp:26;54
 msgid "My setup has been refused, why ?"
 msgstr "Il mio setup è stato rifiutato, perché ?"
 
-#: Template/Pages/q&a.ctp:25;66
+#: Template/Pages/q&a.ctp:27;57
 msgid "How can I use the API you provide ?"
 msgstr "Come posso usare l'API che offri ?"
 
-#: Template/Pages/q&a.ctp:32
+#: Template/Pages/q&a.ctp:34
+msgid "Answers"
+msgstr "Risposte"
+
+#: Template/Pages/q&a.ctp:37
 msgid ""
 "Check your spam folder, your mailbox may have dropped it there. If you "
 "didn't receive it within 10 minutes please contact us on our social networks."
@@ -1655,7 +1680,7 @@ msgstr ""
 "lasciata lì. Se non lo hai ricevuto entro 10 minuti, contattaci sui nostri "
 "social network."
 
-#: Template/Pages/q&a.ctp:37
+#: Template/Pages/q&a.ctp:40
 msgid ""
 "Some products does not exist in our database, because it is a special "
 "edition or it is too old. Try to find a replacement available."
@@ -1663,7 +1688,7 @@ msgstr ""
 "Alcuni prodotti non esistono nel nostro database, perché è un'edizione "
 "speciale o è troppo vecchio. Prova a trovare una sostituzione disponibile."
 
-#: Template/Pages/q&a.ctp:42
+#: Template/Pages/q&a.ctp:43
 msgid ""
 "Sometimes the product search is busy with lot of request, please wait few "
 "moments and retry your search."
@@ -1671,7 +1696,7 @@ msgstr ""
 "A volte la ricerca del prodotto è piena di richieste, attendi qualche minuto "
 "e riprova la ricerca."
 
-#: Template/Pages/q&a.ctp:47
+#: Template/Pages/q&a.ctp:46
 msgid ""
 "We use some rules on images to prevent abuses. Images are limited to 5Mo per "
 "image and the format should be jpg, jpeg or png."
@@ -1680,7 +1705,7 @@ msgstr ""
 "sono limitate a 5Mo per immagine e il formato dovrebbe essere jpg, jpeg o "
 "png."
 
-#: Template/Pages/q&a.ctp:52
+#: Template/Pages/q&a.ctp:49
 msgid ""
 "Video links must be full URI links like : \"https://www.youtube.com/watch?"
 "v=dQw4w9WgXcQ\" or \"https://player.twitch.tv/?channel=mikescops\""
@@ -1689,13 +1714,13 @@ msgstr ""
 "\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\" o \"https://player.twitch."
 "tv/?channel=mikescops\""
 
-#: Template/Pages/q&a.ctp:57
+#: Template/Pages/q&a.ctp:52
 msgid "The Markdown system is similar to Github's one, please read more on the"
 msgstr ""
 "Il sistema Markdown è simile a quello di Github, si prega di leggere di più "
 "sul file"
 
-#: Template/Pages/q&a.ctp:62
+#: Template/Pages/q&a.ctp:55
 msgid ""
 "If your setup has been moderated and refused, you can read why in your setup "
 "description. Please create another setup and follow the moderators "
@@ -1705,7 +1730,7 @@ msgstr ""
 "motivo della descrizione del tuo setup. Si prega di creare un'altra "
 "configurazione e seguire le linee guida dei moderatori."
 
-#: Template/Pages/q&a.ctp:68
+#: Template/Pages/q&a.ctp:59
 msgid ""
 "It's pretty easy, just add the code below to your page (and set the setup id "
 "accordingly)."
@@ -1713,7 +1738,7 @@ msgstr ""
 "E 'abbastanza facile, basta aggiungere il codice qui sotto alla tua pagina "
 "(e impostare il setup id di conseguenza)."
 
-#: Template/Pages/q&a.ctp:69
+#: Template/Pages/q&a.ctp:60
 msgid ""
 "You may also retrieve the setups posted on the website with HTTP calls "
 "(details are provided below too)"
@@ -1769,7 +1794,7 @@ msgstr "Configurazioni trovati"
 msgid "Found users"
 msgstr "Utenti trovati"
 
-#: Template/Pages/staffpicks.ctp:6
+#: Template/Pages/staffpicks.ctp:6 Template/Pages/weekly_picks.ctp:6
 msgid "See the best setups selected by our staff on mySetup.co"
 msgstr "Guarda i migliori setup selezionati dal nostro staff su mySetup.co"
 
@@ -1785,13 +1810,17 @@ msgstr "La nostra squadra | mySetup.co"
 msgid "Who is behind mySetup.co ?"
 msgstr "Chi c'è dietro mySetup.co ?"
 
-#: Template/Pages/team.ctp:39
+#: Template/Pages/team.ctp:40
 msgid "Graphics"
 msgstr "Grafica"
 
-#: Template/Pages/team.ctp:51
+#: Template/Pages/team.ctp:52
 msgid "Translation"
 msgstr "Traduzione"
+
+#: Template/Pages/weekly_picks.ctp:19
+msgid "The best setups of the week"
+msgstr "Le migliori setups della settimana"
 
 #: Template/Setups/view.ctp:37
 msgid "Watch it in video"
