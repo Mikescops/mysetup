@@ -143,6 +143,8 @@ use Cake\Core\Configure;
                     <li>
                         <ul>
                             <li><a href="<?= $this->Url->build('/recent'); ?>"><?= __('Most recent') ?></a></li>
+                            <li><a href="<?= $this->Url->build('/weekly'); ?>"><?= __('Weekly Picks') ?></a></li>
+                            <li><a href="<?= $this->Url->build('/staffpicks'); ?>"><?= __('Staff Picks') ?></a></li>
                         </ul>
                     </li>
                     <li>
