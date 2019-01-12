@@ -54,7 +54,7 @@ use Cake\Core\Configure;
         <div class="row container">
             <div class="column column-20">
                 <a href="<?= $this->Url->build('/', true); ?>">
-                    <?= $this->Html->image('mysetup_logo.svg', ['alt' => 'mySetup', 'class' => 'ms-logo', 'height' => '30px']); ?>
+                    <?= $this->Html->image('mysetup_logo.svg', ['alt' => 'mysetup.co', 'class' => 'ms-logo', 'height' => '30px']); ?>
                 </a>
             </div>
             <div class="column column-80">
@@ -168,12 +168,9 @@ use Cake\Core\Configure;
 
     <?= $this->fetch('content') ?>
 
-    <?php if(!$authUser && $this->request->getPath() != '' && $this->request->getPath() != '/login'): ?>
+    <?php if(!$authUser && $this->request->getPath() != '/' && $this->request->getPath() != '/login'): ?>
 
         <section class="colored-box before-footer calltosignin">
-            <svg class="decorative-divider" preserveAspectRatio="none" viewBox="0 0 100 100">
-                <polygon points="0 0 100 0 100 100" fill="#151515"></polygon>
-            </svg>
             <div class="container">
                 <div class="row">
                     <div class="column">
