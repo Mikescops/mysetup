@@ -2,25 +2,11 @@
  * mySetup v3.1.0
  * https://mysetup.co
  *
- * Copyright (c) 2018 Corentin Mors / Samuel Forestier
+ * Copyright (c) 2019 Corentin Mors / Samuel Forestier
  * All rights reserved
  */
 
 /*jshint esversion: 6 */
-
-// @koala-prepend "jquery-3.2.0.min.js"
-
-/*** Ex lib.min.js ***/
-// @koala-prepend "amazon-autocomplete.js"
-// @koala-prepend "jssocials.min.js"
-// @koala-prepend "lity.js"
-// @koala-prepend "slick.min.js"
-
-// @koala-prepend "tippy.min.js"
-// @koala-prepend "emojione.min.js"
-// @koala-prepend "cookieconsent.min.js"
-// @koala-prepend "slim.min.js"
-
 
 /**
  * @name Cookieconsent
@@ -332,27 +318,27 @@ function searchItem(query, action) {
 				}
 
 				$.each(products, function(key, value) {
-					var list = $('<li></li>');
-					var img = $('<img>');
+					let list = $('<li class="text-card"></li>');
 
-					var src = value.src;
-					var encodedSrc = encodeURIComponent(src);
-					img.attr('src', src);
+					let src = value.src;
+					let encodedSrc = encodeURIComponent(src);
 
-					var encodedTitle = value.title;
-					var title = decodeURIComponent(encodedTitle);
-					img.attr('title', title);
+					let encodedTitle = value.title;
+					let title = decodeURIComponent(encodedTitle);
 
-					var url = value.href;
-					var encodedUrl = encodeURIComponent(url);
+					let url = value.href;
+					let encodedUrl = encodeURIComponent(url);
 
-					list.html(`<a onclick="addToBasket(\`${encodedTitle}\`, '${encodedUrl}', '${encodedSrc}', '${action}')"><p>${title}</p><i class="far fa-square" aria-hidden="true"></i></a>`);
-					list.find('a').prepend(img);
+					list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${src}) no-repeat center center; background-size: contain"></div> <a onclick="addToBasket(\`${encodedTitle}\`, '${encodedUrl}', '${encodedSrc}', '${action}')" class="bottom"><i class="fas fa-plus"></i></a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${title} </div> </div> </div>`);
+
 					$(".search_results." + action).append(list);
 				});
 
 				var image = $('mediumimage');
 
+			},
+			error: function(error) {
+				$(".search_results." + action).html("No products found...");
 			}
 		});
 
@@ -368,7 +354,6 @@ function searchItem(query, action) {
  * @param {string} [action] [Define where the function is called (add or edit)]
  */
 function addToBasket(title, url, src, action) {
-
 	$('.hiddenInput.' + action).val($('.hiddenInput.' + action).val() + title + ';' + url + ';' + src + ',');
 
 	$(".search_results." + action).html("");
@@ -377,11 +362,10 @@ function addToBasket(title, url, src, action) {
 	decodedTitle = decodeURIComponent(title);
 	decodedSrc = decodeURIComponent(src);
 
-	var list = $('<li></li>');
-	var img = $('<img>');
-	img.attr('src', decodedSrc);
-	list.html(`<a onclick="deleteFromBasket(\`${title}\`,this,'${action}')"><p>${decodedTitle}</p><i class="far fa-check-square" aria-hidden="true"></i></a>`);
-	list.find('a').prepend(img);
+	let list = $('<li class="text-card"></li>');
+	
+	list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${decodedSrc}) no-repeat center center; background-size: contain"></div> <a onclick="deleteFromBasket(\`${title}\`,this,'${action}')" class="bottom"><i class="far fa-trash-alt"></i></a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${decodedTitle} </div> </div> </div>`);
+
 	$(".basket_items." + action).append(list);
 }
 
