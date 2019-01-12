@@ -10,7 +10,7 @@ echo $this->Html->meta(['property' => 'og:description', 'content' => 'See the be
 echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'See the best setups selected by our staff on mySetup.co'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/recent', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/staffpicks', true)], null ,['block' => true]);
 
 ?>
 <div class="colored-container">

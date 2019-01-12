@@ -1,16 +1,16 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', __('Weekly Picks') . ' | mySetup.co');
+$this->assign('title', __('Weekly Picks #'.$week) . ' | mySetup.co');
 
-echo $this->Html->meta('description', __('See the best setups selected by our staff on mySetup.co'), ['block' => true]);
+echo $this->Html->meta('description', __('The best setups of the week n°'.$week. ' selected by our staff.'), ['block' => true]);
 
-echo $this->Html->meta(['property' => 'og:title', 'content' => 'Staff Picks | mySetup.co'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:description', 'content' => 'See the best setups selected by our staff on mySetup.co'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'See the best setups selected by our staff on mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:title', 'content' => 'Weekly Picks #'.$week. ' | mySetup.co'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => 'The best setups of the week n°'.$week. ' selected by our staff.'], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'The best setups of the week n°'.$week. ' selected by our staff.'], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/recent', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/weekly', true)], null ,['block' => true]);
 
 ?>
 <div class="weeklypicks">
