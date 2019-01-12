@@ -29,7 +29,7 @@
 			<div class="author-name-prefix"><?= __('Creator') ?></div>
 			<a class="author-name" href="<?=$this->Url->build('/users/'.$setup->user_id.'-'.$this->Text->slug($setup->user->name))?>"><?= h($setup->user->name) ?></a>
 		</div>
-		<div class="showcase-likes"><?= $setup->like_count ?> likes</div>
+		<div class="showcase-likes"><?= $setup->like_count ?> <?= __n('like', 'likes', $setup->like_count) ?></div>
 	</div>
 	<div class="showcase-content">
 		<div class="showcase-description"></div>
