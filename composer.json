@@ -3,7 +3,7 @@
     "description": "mySetup.co | The best place to share your computer setup with your community !",
     "homepage": "https://mysetup.co/",
     "type": "project",
-    "license": "All rights reserved",
+    "license": "proprietary",
     "require": {
         "php": ">=7.1.3",
         "cakephp/cakephp": "3.6.*",
