@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
-"POT-Creation-Date: 2019-01-12 15:33+0000\n"
-"PO-Revision-Date: 2019-01-12 16:54+0100\n"
+"POT-Creation-Date: 2019-01-12 16:32+0000\n"
+"PO-Revision-Date: 2019-01-12 17:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: fr <support@mysetup.com>\n"
 "Language: es\n"
@@ -895,6 +895,13 @@ msgstr "Foto del perfil de"
 msgid "Creator"
 msgstr "Creador"
 
+#: Template/Element/List/showcase.ctp:32 Template/Pages/home.ctp:42
+#: Template/Users/view.ctp:37
+msgid "like"
+msgid_plural "likes"
+msgstr[0] "like"
+msgstr[1] "likes"
+
 #: Template/Element/Modal/add-setup.ctp:8
 #: Template/Element/Modal/edit-setup.ctp:9
 msgid "Basics"
@@ -1261,7 +1268,7 @@ msgstr "Categorías"
 msgid "Most recent"
 msgstr "Lo más reciente"
 
-#: Template/Layout/default.ctp:86;146 Template/Pages/weekly_picks.ctp:4;18
+#: Template/Layout/default.ctp:86;146 Template/Pages/weekly_picks.ctp:18
 msgid "Weekly Picks"
 msgstr "Weekly Picks"
 
@@ -1461,12 +1468,6 @@ msgstr "Otras setups con {0}"
 #: Template/Pages/home.ctp:145
 msgid "Suggested Users"
 msgstr "Perfiles Sugeridos"
-
-#: Template/Pages/home.ctp:42 Template/Users/view.ctp:37
-msgid "like"
-msgid_plural "likes"
-msgstr[0] "like"
-msgstr[1] "likes"
 
 #: Template/Pages/legals.ctp:4
 msgid "Legal Mentions | mySetup.co"
@@ -1780,7 +1781,7 @@ msgstr "Setups encontrados"
 msgid "Found users"
 msgstr "Usuarios encontrados"
 
-#: Template/Pages/staffpicks.ctp:6 Template/Pages/weekly_picks.ctp:6
+#: Template/Pages/staffpicks.ctp:6
 msgid "See the best setups selected by our staff on mySetup.co"
 msgstr "Vea los mejores setups seleccionados por el staff en mySetup.co"
 
@@ -1804,9 +1805,25 @@ msgstr "Gráficos"
 msgid "Translation"
 msgstr "Traducción"
 
+#: Template/Pages/weekly_picks.ctp:4
+msgid "Weekly Picks #"
+msgstr "Weekly Picks #"
+
+#: Template/Pages/weekly_picks.ctp:6
+msgid "The best setups of the week n°"
+msgstr "Los mejores setups de la semana n°"
+
 #: Template/Pages/weekly_picks.ctp:19
 msgid "The best setups of the week"
 msgstr "Los mejores setups de la semana"
+
+#: Template/Pages/weekly_picks.ctp:30
+msgid "No featured setups this week, sorry !"
+msgstr "No hay setups destacados esta semana, ¡lo siento!"
+
+#: Template/Pages/weekly_picks.ctp:40
+msgid "Previous week"
+msgstr "Semana anterior"
 
 #: Template/Setups/view.ctp:37
 msgid "Watch it in video"
