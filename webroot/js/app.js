@@ -329,7 +329,7 @@ function searchItem(query, action) {
 					let url = value.href;
 					let encodedUrl = encodeURIComponent(url);
 
-					list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${src}) no-repeat center center; background-size: contain"></div> <a onclick="addToBasket(\`${encodedTitle}\`, '${encodedUrl}', '${encodedSrc}', '${action}')" class="bottom"><i class="fas fa-plus"></i> Add</a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${title} </div> </div> </div>`);
+					list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${src}) no-repeat center center; background-size: contain"></div> <a onclick="addToBasket(\`${encodedTitle}\`, '${encodedUrl}', '${encodedSrc}', '${action}')" class="bottom"><i class="fas fa-plus"></i></a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${title} </div> </div> </div>`);
 
 					$(".search_results." + action).append(list);
 				});
@@ -364,7 +364,7 @@ function addToBasket(title, url, src, action) {
 
 	let list = $('<li class="text-card"></li>');
 	
-	list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${decodedSrc}) no-repeat center center; background-size: contain"></div> <a onclick="deleteFromBasket(\`${title}\`,this,'${action}')" class="bottom"><i class="far fa-trash-alt"></i> Remove</a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${decodedTitle} </div> </div> </div>`);
+	list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${decodedSrc}) no-repeat center center; background-size: contain"></div> <a onclick="deleteFromBasket(\`${title}\`,this,'${action}')" class="bottom"><i class="far fa-trash-alt"></i></a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${decodedTitle} </div> </div> </div>`);
 
 	$(".basket_items." + action).append(list);
 }

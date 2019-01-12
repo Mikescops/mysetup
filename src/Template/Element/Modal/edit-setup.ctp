@@ -70,7 +70,7 @@
                             <div class="wrapper">
                                 <div class="card-container">
                                     <div class="top" style="background: url(<?= urldecode($item->src) ?>) no-repeat center center; background-size: contain"></div> 
-                                    <a onclick="deleteFromBasket('<?= h($item->title) ?>',this,'edit_setup')" class="bottom"><i class="far fa-trash-alt"></i> Remove</a> 
+                                    <a onclick="deleteFromBasket('<?= h($item->title) ?>',this,'edit_setup')" class="bottom"><i class="far fa-trash-alt"></i></a> 
                                 </div>
                                 <div class="inside">
                                     <div class="icon"><i class="fas fa-info-circle"></i></div>
