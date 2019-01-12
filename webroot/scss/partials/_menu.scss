@@ -20,7 +20,8 @@ nav {
 }
 
 .nav-transparent .row:first-child, .nav-transparent .ms-logo{
-	height: 60px;
+	height: 30px;
+	margin: 15px 0;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
@@ -82,7 +83,8 @@ nav {
 }
 
 .nav-color .row:first-child, .nav-color .ms-logo{
-	height: 40px;
+	height: 25px;
+	margin: 10px 0;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;

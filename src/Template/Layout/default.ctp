@@ -54,7 +54,7 @@ use Cake\Core\Configure;
         <div class="row container">
             <div class="column column-20">
                 <a href="<?= $this->Url->build('/', true); ?>">
-                    <?= $this->Html->image('mySetup_logo.svg', ['alt' => 'mySetup', 'class' => 'ms-logo', 'height' => '100%']); ?>
+                    <?= $this->Html->image('mysetup_logo.svg', ['alt' => 'mySetup', 'class' => 'ms-logo', 'height' => '30px']); ?>
                 </a>
             </div>
             <div class="column column-80">
