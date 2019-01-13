@@ -128,9 +128,9 @@ class ResourcesTable extends Table
 
     // A new method to retrieve resources from `Pages@search()` function
     // Please refer to `SetupsTable@getSetups()` method for advanced documentation.
-    public function getResources($query = null)
+    public function getResources($query = null, $number = null)
     {
-        return $this->find('all', [
+        $query = $this->find('all', [
             'conditions' => [
                     'type'                                                             => 'SETUP_PRODUCT',
                     'CONVERT(Resources.title USING utf8) COLLATE utf8_general_ci LIKE' => '%' . rawurlencode($query) . '%'
@@ -143,9 +143,14 @@ class ResourcesTable extends Table
         ])
         ->matching('Setups', function($q) {
             return $q->where(['Setups.status' => 'PUBLISHED']);
-        })
-        ->distinct('Resources.title')
-        ->toArray();
+        });
+
+        if($number !== null)
+        {
+            $query->limit($number);
+        }
+
+        return $query->distinct('Resources.title')->toArray();
     }
 
     public function saveResourceProducts($products, $setup, $flash, $admin = false)

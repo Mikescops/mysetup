@@ -308,7 +308,7 @@ class PagesController extends AppController
             switch($entity)
             {
                 case 'setups':
-                    $results = $this->Setups->getSetups(['query' => $query]);
+                    $results = $this->Setups->getSetups(['query' => $query, 'number' => 8]);
                     break;
 
                 case 'users':
@@ -324,7 +324,7 @@ class PagesController extends AppController
                     break;
 
                 case 'resources':
-                    $results = $this->Resources->getResources($query);
+                    $results = $this->Resources->getResources($query, 8);
 
                     // Redirect to home search if the result is only one resource
                     if(count($results) == 1)
@@ -338,8 +338,8 @@ class PagesController extends AppController
                 default:
                     // See `setPatterns()` of `/search/:entity` route.
                     $users     = $this->Users->getUsers($query);
-                    $setups    = $this->Setups->getSetups(['query' => $query]);
-                    $resources = $this->Resources->getResources($query);
+                    $setups    = $this->Setups->getSetups(['query' => $query, 'number' => 8]);
+                    $resources = $this->Resources->getResources($query, 8);
 
                     /*
                         Redirect to user profile if :
