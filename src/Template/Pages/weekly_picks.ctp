@@ -16,7 +16,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 <div class="weeklypicks">
     <div class="container">
         <h2><?= __('Weekly Picks') ?></h2>
-        <p><?= __('The best setups of the week') ?> n°<?= $week ?></p>
+        <p><?= __('The best setups of the week') ?> n° <?= $this->Number->format($week) ?></p>
         <hr>
     </div>
 </div>
