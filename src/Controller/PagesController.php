@@ -255,8 +255,7 @@ class PagesController extends AppController
         foreach($setups as $featuredSetup)
         {
             $featuredSetup['resources'] = [
-                'products' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray(),
-                'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
+                'products' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray()
             ];
         }
 
