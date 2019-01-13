@@ -34,8 +34,16 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 <br>
 
 <?php
-    if ($week == 1){$prev_week = 52; $prev_year = $year-1;}
-    else {$prev_week = $week -1; $prev_year = $year;}
+    if ($week === 1)
+    {
+        $prev_week = 52;
+        $prev_year = $year - 1;
+    }
+    else
+    {
+        $prev_week = $week - 1;
+        $prev_year = $year;
+    }
 ?>
 <a class="button previous-weekly" href="<?= $this->Url->build('/weekly/'.$prev_year.'-'.$prev_week, true) ?>"><i class="fas fa-chevron-left"></i> <?= __('Previous week') ?></a>
 
