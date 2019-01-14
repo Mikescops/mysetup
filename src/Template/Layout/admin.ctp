@@ -116,6 +116,7 @@
     </script>
 
     <!-- Set the Flash dependencies on this layout (needed for entities related actions) -->
+    <?= $this->Html->script('libs.min.js') ?>
     <?= $this->Html->script('app.min.js') ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
