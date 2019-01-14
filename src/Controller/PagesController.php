@@ -300,7 +300,7 @@ class PagesController extends AppController
             switch($entity)
             {
                 case 'setups':
-                    $results = $this->Setups->getSetups(['query' => $query, 'number' => 8]);
+                    $results = $this->Setups->getSetups(['query' => $query]);
                     break;
 
                 case 'users':
@@ -316,7 +316,7 @@ class PagesController extends AppController
                     break;
 
                 case 'resources':
-                    $results = $this->Resources->getResources($query, 8);
+                    $results = $this->Resources->getResources($query);
 
                     // Redirect to home search if the result is only one resource
                     if(count($results) == 1)
