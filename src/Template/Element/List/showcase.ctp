@@ -35,7 +35,7 @@
 		<div class="showcase-description"></div>
 		<div class="showcase-products">
 			<div class="config-items">
-	            <?php foreach($setup['resources']['products'] as $item): ?>
+	            <?php foreach($setup['products'] as $item): ?>
 
 	                <a target="_blank" href="<?= $this->Url->build('/setups/'.$setup->id, true) ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></a>
 

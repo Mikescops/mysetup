@@ -58,10 +58,7 @@ class PagesController extends AppController
             foreach($featuredSetups as $featuredSetup)
             {
                 // Here we'll get each resource linked to this setup, and set them up into the existing entity
-                $featuredSetup['resources'] = [
-                    'products' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray(),
-                    'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
-                ];
+                $featuredSetup['products'] = $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray();
                 array_push($featuredSetups_ids, $featuredSetup->id);
             }
 
@@ -77,10 +74,7 @@ class PagesController extends AppController
                 if($tmp_setup !== null)
                 {
                     // Here we'll get each resource linked to this setup, and set them up into the existing entity
-                    $tmp_setup['resources'] = [
-                        'products' => $this->Setups->Resources->find()->where(['setup_id' => $tmp_setup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray(),
-                        'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $tmp_setup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
-                    ];
+                    $tmp_setup['products'] = $this->Setups->Resources->find()->where(['setup_id' => $tmp_setup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray();
                     array_push($featuredSetups, $tmp_setup);
                 }
             }
@@ -255,9 +249,7 @@ class PagesController extends AppController
 
         foreach($setups as $featuredSetup)
         {
-            $featuredSetup['resources'] = [
-                'products' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray()
-            ];
+            $featuredSetup['products'] = $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray();
         }
 
         $this->set(compact('setups', 'year', 'week'));
