@@ -5,7 +5,7 @@
         "><i class="fab fa-facebook-f fa-2x"></i></a>
     
     <a href="https://twitter.com/mysetup_co" target="_blank" style="background-color: #55acee"><i class="fab fa-twitter fa-2x"></i></a>
-    <a href="https://geeks.one/@mysetup_co" title="Mastodon" target="_blank" style="background-color: #282c37"><i class="fab fa-mastodon fa-2x"></i></a>
+    <a href="https://pcgamer.social/@mysetup_co" rel="me" title="Mastodon" target="_blank" style="background-color: #282c37"><i class="fab fa-mastodon fa-2x"></i></a>
     <a href="https://www.instagram.com/mysetup.co/" target="_blank" style="background:
         radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%),
         radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),

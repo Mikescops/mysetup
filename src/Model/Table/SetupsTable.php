@@ -236,9 +236,9 @@ class SetupsTable extends Table
             $conditions += ['Setups.creationDate >' => new \DateTime('-' . intval($params['weeks']) . ' weeks')];
         }
 
-        if($params['yearweek']){
-            $year = $params['yearweek'][0];
-            $week_no = $params['yearweek'][1];
+        if($params['yearweek'])
+        {
+            list($year, $week_no) = $params['yearweek'];
 
             $week_start = new \DateTime();
             $week_start->setISODate($year,$week_no);

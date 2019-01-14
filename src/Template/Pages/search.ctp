@@ -97,9 +97,9 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                         <?php else:?>
                             <h3><?= __('Found components') ?></h3>
                             <div class="config-items">
-                                <?php foreach ($resources as $k => $item): ?>
+                                <?php foreach ($resources as $item): ?>
                                     <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
-                                <?php if($this->request->getPath() == '/search/' && $k > 6){break;} endforeach;?>
+                                <?php endforeach; ?>
                             </div>
                         <?php endif;?>
                         <br clear="all">
@@ -109,9 +109,9 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
 
                 <?php if(isset($results["setups"]) && count($results["setups"]) > 0): ?>
                     <h3><?= __('Found setups') ?></h3>
-                    <?php foreach ($results["setups"] as $k => $setup): ?>
+                    <?php foreach ($results["setups"] as $setup): ?>
                         <?= $this->element('List/tiles', ['setup' => $setup]) ?>
-                    <?php if($this->request->getPath() == '/search/' && $k > 8){break;} endforeach;?>
+                    <?php endforeach; ?>
                     <br clear='all'>
                 <?php endif;?>
 

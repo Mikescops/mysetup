@@ -57,6 +57,7 @@ class Application extends BaseApplication
          */
         if (Configure::read('debug')) {
             $this->addPlugin(\DebugKit\Plugin::class);
+            Configure::write('DebugKit.forceEnable', true);
         }
 
         $this->addPlugin('Sitemap', ['bootstrap' => false, 'routes' => true]);

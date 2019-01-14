@@ -23,7 +23,7 @@
 					<symbol id="half-circle" viewBox="0 0 106 57"><path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path></symbol>
 				</defs>
             </svg>
-            
+
 		</div>
 		<div class="showcase-author">
 			<div class="author-name-prefix"><?= __('Creator') ?></div>
@@ -44,8 +44,7 @@
 		</div>
 	</div>
 </div>
-<div class="setup-showcase-background" style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.60), #151515), url(/<?= urldecode($setup['resources']['featured_image']) ?>);
-"></div>
+<div class="setup-showcase-background" style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.60), #151515), url(<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg')) ?>"></div>
 
     </div>
 </div>

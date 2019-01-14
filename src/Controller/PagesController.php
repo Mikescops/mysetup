@@ -245,7 +245,8 @@ class PagesController extends AppController
 
     public function weeklyPicks($year = null, $week = null)
     {
-        if($week < 1 || $week > 54){
+        if($week < 1 || $week > 54)
+        {
             $this->Flash->warning(__('This date does not exist, here you are the featured setups of this week !'));
             return $this->redirect('/weekly/');
         }
@@ -255,8 +256,7 @@ class PagesController extends AppController
         foreach($setups as $featuredSetup)
         {
             $featuredSetup['resources'] = [
-                'products' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray(),
-                'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src']
+                'products' => $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray()
             ];
         }
 
@@ -308,7 +308,7 @@ class PagesController extends AppController
             switch($entity)
             {
                 case 'setups':
-                    $results = $this->Setups->getSetups(['query' => $query]);
+                    $results = $this->Setups->getSetups(['query' => $query, 'number' => 8]);
                     break;
 
                 case 'users':
@@ -324,7 +324,7 @@ class PagesController extends AppController
                     break;
 
                 case 'resources':
-                    $results = $this->Resources->getResources($query);
+                    $results = $this->Resources->getResources($query, 8);
 
                     // Redirect to home search if the result is only one resource
                     if(count($results) == 1)
@@ -338,8 +338,8 @@ class PagesController extends AppController
                 default:
                     // See `setPatterns()` of `/search/:entity` route.
                     $users     = $this->Users->getUsers($query);
-                    $setups    = $this->Setups->getSetups(['query' => $query]);
-                    $resources = $this->Resources->getResources($query);
+                    $setups    = $this->Setups->getSetups(['query' => $query, 'number' => 8]);
+                    $resources = $this->Resources->getResources($query, 8);
 
                     /*
                         Redirect to user profile if :
