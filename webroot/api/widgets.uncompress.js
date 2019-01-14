@@ -6,8 +6,23 @@ function r(f) {
 r(function() {
     var frames = document.getElementsByClassName('mysetup-embed');
 
-    for (i = 0; i < frames.length; i++) {
-        let item = frames[i];
+    if(frames.length > 0){
+        for (i = 0; i < frames.length; i++) {
+            renderFrame(frames[i]);
+        }
+    }
+    else{
+        frames = document.getElementById('mysetup-embed');
+        if(frames == null){
+            console.warn("[MYSETUP EMBED API] No mysetup.co frame found, please use our documentation to handle errors.");
+        }
+        else{
+            console.info("[MYSETUP EMBED API] Fallback to 'id' attribute, please consider using 'class' instead.");
+            renderFrame(frames);
+        }
+    }
+
+    function renderFrame(item){
         let iframe = document.createElement('iframe');
         iframe.frameBorder = 0;
         iframe.scrolling = "no";
@@ -21,13 +36,12 @@ r(function() {
             iframe.setAttribute("style", "display:block;position:absolute;top:0;left:0");
             item.setAttribute("style", "position:relative;padding-bottom: 75%");
         }
-        if (item.getAttribute('dev') == 'on') {
-            iframe.src = document.location.origin + '/api/embed/' + item.getAttribute('ms-setup');
+        if (item.getAttribute('dev')) {
+            iframe.src = 'http://' + item.getAttribute('dev') + '/api/embed/' + item.getAttribute('ms-setup');
         } else {
             iframe.src = 'https://mysetup.co/api/embed/' + item.getAttribute('ms-setup');
         }
         item.innerHTML = "";
         item.prepend(iframe);
     }
-    
 });
