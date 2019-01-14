@@ -34,7 +34,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 <br>
 
 <?php
-    if ($week === 1)
+    if ((int)$week === 1)
     {
         $prev_week = 52;
         $prev_year = $year - 1;
