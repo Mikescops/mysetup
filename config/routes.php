@@ -57,7 +57,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             ->setPatterns(['year' => '\d{4}', 'week' => '\d{1,2}'])
             ->setPass(['year', 'week']);
     // if incorrect weekly path, use current week
-    $routes->redirect('/weekly/*', '/weekly/'. (new \DateTime())->format("Y-W"));
+    $routes->redirect('/weekly/*', '/weekly/'. (new \DateTime("-1 week"))->format("Y-W"));
     $routes->connect('/bugReport', ['controller' => 'Pages', 'action' => 'bugReport']);
     // ... and all the other ones
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
