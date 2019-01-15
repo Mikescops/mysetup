@@ -1,4 +1,4 @@
-/** @cc_on EMBED API mySetup.co v3.2.0 */
+/** @cc_on EMBED API mySetup.co v3.6 */
 
 function r(f) {
     /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f();
@@ -37,7 +37,7 @@ r(function() {
             item.setAttribute("style", "position:relative;padding-bottom: 75%");
         }
         if (item.getAttribute('dev')) {
-            iframe.src = 'http://' + item.getAttribute('dev') + '/api/embed/' + item.getAttribute('ms-setup');
+            iframe.src = item.getAttribute('dev') + 'api/embed/' + item.getAttribute('ms-setup');
         } else {
             iframe.src = 'https://mysetup.co/api/embed/' + item.getAttribute('ms-setup');
         }

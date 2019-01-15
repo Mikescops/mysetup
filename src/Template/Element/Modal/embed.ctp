@@ -9,7 +9,7 @@
     <div class="display-preview">
 
         <script async src="<?= $this->Url->build('/api/widgets.js') ?>"></script>
-        <div class="mysetup-embed" <?= ($debug ? 'dev="on"' : '') ?> ms-setup="<?= $setup->id ?>" ms-width="responsive"><?= __('Setup shared by') ?> <?= $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id'], '_full' => true]) ?> <?= __x('"sur" un site', 'on') ?> <a href="<?= $this->Url->build('/', true) ?>">mySetup.co</a></div>
+        <div class="mysetup-embed" <?= ($debug ? 'dev="' . $this->Url->build('/', true) . '"' : '') ?> ms-setup="<?= $setup->id ?>" ms-width="responsive"><?= __('Setup shared by') ?> <?= $this->Html->link($setup->user['name'], ['controller' => 'users', 'action' => 'view', $setup->user['id'], '_full' => true]) ?> <?= __x('"sur" un site', 'on') ?> <a href="<?= $this->Url->build('/', true) ?>">mySetup.co</a></div>
 
     </div>
     <br>
