@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Cache\Cache;
 
 use Cake\Console\ShellDispatcher;
 
@@ -36,6 +37,15 @@ class AdminController extends AppController
     public function beforeRender(Event $event)
     {
         parent::beforeRender($event);
+
+        // By using Git, let's retrieve the diff state against HEAD.
+        $headState = Cache::read('headState', 'HomePageCacheConfig');
+        if($headState === false)
+        {
+            $headState = (rtrim(`git --no-pager diff {$this->viewVars['msVersion']}`) === '');
+            Cache::write('headState', $headState, 'HomePageCacheConfig');
+        }
+        $this->set('headState', $headState);
     }
 
     public function dashboard()

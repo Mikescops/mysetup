@@ -107,7 +107,7 @@
 
     <footer class="footer">
         <div class="container-fluid">
-            <p class="text-center text-muted">mySetup.co - Admin Panel</p>
+            <p class="text-center text-muted">Admin Panel<br>mySetup.co (<?= h($msVersion) ?>) | HEAD : <span class="badge badge-<?= ($headState ? 'success' : 'warning') ?>"><?= ($headState ? 'CLEAN' : 'DIRTY') ?></span></p>
         </div>
     </footer>
 
