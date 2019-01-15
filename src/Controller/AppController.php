@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Cache\Cache;
 use Cake\I18n\I18n;
 
 /**
@@ -138,8 +139,17 @@ class AppController extends Controller
         }
 
         // Just give the session user entity to the front...
-        // This object is supposed to be synchronize with the "real" one.
+        // This object is supposed to be synchronized with the "real" one.
         $this->set('authUser', $this->request->getSession()->read('Auth.User'));
+
+        // By using Git, let's retrieve the closest tag of the current HEAD.
+        $msVersion = Cache::read('msVersion', 'HomePageCacheConfig');
+        if($msVersion === false)
+        {
+            $msVersion = rtrim(`git describe --tags --abbrev=0`);
+            Cache::write('msVersion', $msVersion, 'HomePageCacheConfig');
+        }
+        $this->set('msVersion', $msVersion);
     }
 
     public function beforeFilter(Event $event)

@@ -206,16 +206,16 @@ use Cake\Core\Configure;
                 <div class="column column-25">
                 </div>
                 <div class="column column-25 logo_footer">
-                    <?php echo $this->Html->image('logo_footer.svg', array('alt' => 'mysetup.co')); ?>
-                    <p><?= __('All rights reserved') ?> – mySetup.co<br> © 2017 - 2019</p>
+                    <?= $this->Html->image('logo_footer.svg', ['alt' => 'mysetup.co']) ?>
+                    <p><?= __('All rights reserved') ?> &mdash; mySetup.co (<?= h($msVersion) ?>)<br>© 2017 - 2019</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        const webRootJs = "<?= $this->Url->build('/', true); ?>";
-        const twitchClientId = "<?= Configure::read('Credentials.Twitch.id'); ?>";
+        const webRootJs = "<?= $this->Url->build('/', true) ?>";
+        const twitchClientId = "<?= Configure::read('Credentials.Twitch.id') ?>";
     </script>
 
     <div id="notifications-pop" style="display: none;"><div id="notif-container"></div><div id="no-notif">You have no notifications.</div></div>
