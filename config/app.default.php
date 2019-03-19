@@ -314,11 +314,13 @@ return [
                     'www.amazon.de',
                     'www.amazon.com',
                     'www.amazon.fr',
+                    'redirect.viglink.com'
                 ],
                 'src' => [
                     'cdn.pji.nu',
                     'images-eu.ssl-images-amazon.com',
                     'images-na.ssl-images-amazon.com',
+                    'images.viglink.com'
                 ],
             ],
             'Video' => [

@@ -12,6 +12,7 @@ use ApaiIO\ApaiIO;
 use ApaiIO\Operations\Search;
 use ApaiIO\Request\GuzzleRequest;
 use ApaiIO\Configuration\GenericConfiguration;
+use function GuzzleHttp\json_decode;
 
 /**
  * ThirdParties Controller
@@ -152,59 +153,32 @@ class ThirdPartiesController extends AppController
 
         else
         {
-            // Prepares a configuration object to communicate with Amazon stores
-            // The statement below will voluntary fail with an error 500 on the production if the `lang` parameter specified does not exist.
-            $conf = (new GenericConfiguration())
-                        ->setCountry(
-                            Configure::read('Credentials.Amazon.Stores.' . $store . '.country')
-                        )
-                        ->setAccessKey(
-                            Configure::read('Credentials.Amazon.Stores.' . $store . '.access')
-                        )
-                        ->setSecretKey(
-                            Configure::read('Credentials.Amazon.Stores.' . $store . '.secret')
-                        )
-                        ->setAssociateTag(
-                            Configure::read('Credentials.Amazon.Stores.' . $store . '.associate_tag')
-                        )
-                        ->setRequest((new GuzzleRequest((new \GuzzleHttp\Client()))));
-
-            // Our query will be set in another object here
-            $search = (new Search())
-                        ->setCategory('All')
-                        ->setKeywords($query)
-                        ->setResponsegroup(['Small', 'Images']);
-
-            // What a weird way to convert XML response to a PHP object to iterate on !
-            $response = json_decode(
-                json_encode(
-                    simplexml_load_string(
-                        (new ApaiIO($conf))->runOperation($search)
-                    )
-                ),
-                true
-            );
-
             // The resulted products will be stored there !
             $results['products'] = [];
 
+            $ch = curl_init("https://rest.viglink.com/api/product/search?apiKey=a043a2073a313f89ef7396f6deab4c1f&query=".urlencode($this->_cleanString($query))."&category=Computing&itemsPerPage=10");
+
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: secret 24443fdf6afc051b635b2425902648e4f36e813e'));
+
+            curl_setopt($ch, CURLOPT_ENCODING, '');
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 400); 
+            curl_setopt($ch, CURLOPT_TIMEOUT, 400);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $response = curl_exec($ch);
+            curl_close($ch);
+
+            $response = json_decode($response, true);
+            
             // Let's build a cool object with these data
-            if(isset($response['Items']['Item']))
+            if(!empty($response['items']))
             {
-                foreach($response['Items']['Item'] as $product => $value)
+                foreach($response['items'] as $product => $value)
                 {
                     // Sometimes the Amazon API does not set the image directly within the first object...
-                    if(isset($value['MediumImage']))
+                    if(isset($value['imageUrl']))
                     {
-                        $src = $value['MediumImage']['URL'];
-                    }
-                    elseif(isset($value['ImageSets']['ImageSet']['MediumImage']))
-                    {
-                        $src = $value['ImageSets']['ImageSet']['MediumImage']['URL'];
-                    }
-                    elseif(isset($value['ImageSets']['ImageSet'][0]['MediumImage']))
-                    {
-                        $src = $value['ImageSets']['ImageSet'][0]['MediumImage']['URL'];
+                        $src = $value['imageUrl'];
                     }
                     else
                     {
@@ -214,8 +188,8 @@ class ThirdPartiesController extends AppController
                     }
 
                     array_push($results['products'], [
-                        'title' => rawUrlEncode($value['ItemAttributes']['Title']),
-                        'href'  => $value['DetailPageURL'],
+                        'title' => rawUrlEncode($value['name']),
+                        'href'  => $value['url'],
                         'src'   => $src
                     ]);
                 }
