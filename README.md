@@ -67,6 +67,17 @@ So as to extract the strings from the source code, and edit them with _Poedit_, 
 
 Output files will be under `src/Locale/`, as : `{cake,default}.pot`
 
+## Compiling assets
+
+To compile .scss and .js files we use [koala](https://koala-app.com/) software.
+
+* `libs.js` > `libs.min.js`
+* `app.js` > `app.min.js`
+* `widgets.uncompress.js` > `widgets.js`
+* `main.scss` > `../css/main.min.css`
+
+No option for scss. As for js, activate __compress__, __preserve copyrights__ and __harmony (es6+)__.
+
 ## Authors
 
 | [![twitter/mikescops](https://avatars0.githubusercontent.com/u/4266283?s=100&v=4)](http://twitter.com/mikescops "Follow @mikescops on Twitter") | [![mastodon/horlogeskynet](https://avatars1.githubusercontent.com/u/5331869?s=100&v=4)](https://mastodon.social/@HorlogeSkynet)
