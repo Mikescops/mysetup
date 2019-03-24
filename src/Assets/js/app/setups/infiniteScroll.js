@@ -12,7 +12,7 @@ function infiniteScroll(nbtodisplay) {
 		if (($(window).scrollTop() + $(window).height()) + 500 > $(document).height()) {
 			$(window).data('ajaxready', false);
 			$.ajax({
-				url: webRootJs + "api/getSetups",
+				url: webRootJs + 'api/getSetups',
 				data: {
 					p: offset,
 					n: nbtodisplay,
@@ -23,11 +23,11 @@ function infiniteScroll(nbtodisplay) {
 				success: function (setups) {
 					if (setups[0]) {
 						// Cache of the template
-						var template = document.getElementById("template-list-item");
+						var template = document.getElementById('template-list-item');
 						// Get the contents of the template
 						var templateHtml = template.innerHTML;
 						// Final HTML variable as empty string
-						var listHtml = "";
+						var listHtml = '';
 						// Simple sanitizer for HTML entities
 						var escapeHtml = function (text) {
 							var map = {
@@ -35,7 +35,7 @@ function infiniteScroll(nbtodisplay) {
 								'<': '&lt;',
 								'>': '&gt;',
 								'"': '&quot;',
-								"'": '&#039;'
+								'\'': '&#039;'
 							};
 							return text.replace(/[&<>"']/g, function (match) {
 								return map[match];
@@ -52,12 +52,12 @@ function infiniteScroll(nbtodisplay) {
 								img_src += value.resources[0].src;
 							}
 							else {
-								img_src += "img/not_found.jpg";
+								img_src += 'img/not_found.jpg';
 							}
 							let likes = value.like_count;
 							let user_name = escapeHtml(value.user.name);
-							let user_src = webRootJs + `uploads/files/pics/profile_picture_${value.user_id}.png?` + ("0" + (new Date(value.user.modificationDate)).getMinutes()).slice(-2) + ("0" + (new Date(value.user.modificationDate)).getSeconds()).slice(-2);
-							let user_url = webRootJs + `users/` + value.user_id;
+							let user_src = webRootJs + `uploads/files/pics/profile_picture_${value.user_id}.png?` + ('0' + (new Date(value.user.modificationDate)).getMinutes()).slice(-2) + ('0' + (new Date(value.user.modificationDate)).getSeconds()).slice(-2);
+							let user_url = webRootJs + 'users/' + value.user_id;
 							let main_color = [0, 0, 0];
 							if (value.main_colors) {
 								main_color = $.parseJSON(value.main_colors)[0];
@@ -82,7 +82,7 @@ function infiniteScroll(nbtodisplay) {
 
 						$(window).data('ajaxready', true);
 					} else {
-						$('.no_more_setups').html("No more setups to display...");
+						$('.no_more_setups').html('No more setups to display...');
 					}
 				}
 			});

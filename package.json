@@ -5,6 +5,7 @@
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
+    "eslint": "^5.15.3",
     "gulp": "^4.0.0",
     "gulp-importjs": "^0.1.8",
     "gulp-include": "^2.3.1",

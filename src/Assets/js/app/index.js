@@ -34,22 +34,22 @@ $(function () {
 		$('.pwd_field').show('fast');
 		return false;
 	});
-	$("#social-networks").jsSocials({
-		shareIn: "popup",
+	$('#social-networks').jsSocials({
+		shareIn: 'popup',
 		showCount: false,
 		showLabel: false,
-		shares: ["twitter", "facebook", "googleplus", "pinterest", "whatsapp"]
+		shares: ['twitter', 'facebook', 'googleplus', 'pinterest', 'whatsapp']
 	});
 
-	$("#profileImage").click(function (e) {
-		$("#profileUpload").click();
+	$('#profileImage').click(function () {
+		$('#profileUpload').click();
 	});
-	$("#profileUpload").change(function () {
+	$('#profileUpload').change(function () {
 		fasterPreview(this);
 	});
 
 
-	$(".edit-comment").click(function (e) {
+	$('.edit-comment').click(function () {
 		var $comment = $(this),
 			$place = $comment.attr('source');
 		var $oldvalue = $('#' + $place + '> p').attr('content'),
