@@ -1,4 +1,4 @@
-// @koala-prepend "./simpletoast.js"
+//=require simpletoast.js
 
 /**
  * @name Cookieconsent

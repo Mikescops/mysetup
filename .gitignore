@@ -7,4 +7,4 @@
 /webroot/debug_kit
 /src/Locale/*.pot
 /src/Locale/*/*.mo
-node_modules
+/node_modules/
