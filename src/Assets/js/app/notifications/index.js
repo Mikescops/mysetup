@@ -5,7 +5,7 @@
 function checknotification() {
 	if (inIframe() == false) {
 		$.ajax({
-			url: webRootJs + "notifications/getNotifications",
+			url: webRootJs + 'notifications/getNotifications',
 			data: {
 				n: '8'
 			},
@@ -45,7 +45,7 @@ function markasread(id) {
 		url: webRootJs + 'notifications/markAsRead',
 		type: 'get',
 		data: {
-			"notification_id": id
+			'notification_id': id
 		},
 	});
 

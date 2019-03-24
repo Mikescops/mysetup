@@ -53,10 +53,10 @@ $(function () {
 $('.video-url-input').on('input', function () {
 	var input = $(this);
 	if (input.val().substring(0, 4) == 'www.') { input.val('http://www.' + input.val().substring(4)); }
-	var re = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
+	var re = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/;
 	var is_url = re.test(input.val());
-	if (is_url) { input.removeClass("invalid").addClass("valid"); }
-	else { input.removeClass("valid").addClass("invalid"); }
+	if (is_url) { input.removeClass('invalid').addClass('valid'); }
+	else { input.removeClass('valid').addClass('invalid'); }
 });
 
 
@@ -111,5 +111,5 @@ $(function () {
 });
 
 function featuredPreviewChange() {
-	$(".gallery-holder.homide").removeClass('homide');
+	$('.gallery-holder.homide').removeClass('homide');
 }
