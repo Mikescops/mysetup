@@ -8,17 +8,17 @@
 
 /*jshint esversion: 6 */
 
-// @koala-prepend "./app/ui/index.js"
+//=require ui/index.js
 
-// @koala-prepend "./app/setups/index.js"
+//=require setups/index.js
 
-// @koala-prepend "./app/users/index.js"
+//=require users/index.js
 
-// @koala-prepend "./app/utils/index.js"
+//=require utils/index.js
 
-// @koala-prepend "./app/notifications/index.js"
+//=require notifications/index.js
 
-// @koala-prepend "./app/comments/index.js"
+//=require comments/index.js
 
 /**
  * On load functions
@@ -59,4 +59,3 @@ $(function () {
 		$('#edit-comment-hidden > form').attr('action', $('#edit-comment-hidden > form').attr('action') + '/' + $id);
 	});
 });
-

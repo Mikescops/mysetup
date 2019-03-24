@@ -1,0 +1,30 @@
+{
+  "name": "mysetup",
+  "version": "1.0.0",
+  "description": "Share your own setup",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-importjs": "^0.1.8",
+    "gulp-include": "^2.3.1",
+    "gulp-minify": "^3.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mikescops/mysetup.git"
+  },
+  "keywords": [
+    "setup",
+    "tech"
+  ],
+  "author": "Forestier Samuel, Mors Corentin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mikescops/mysetup/issues"
+  },
+  "homepage": "https://github.com/Mikescops/mysetup#readme"
+}
