@@ -17,16 +17,16 @@ function searchItem(query, action) {
 			url: webRootJs + 'thirdParties/searchProducts',
 			type: 'get',
 			data: {
-				"q": query
+				'q': query
 			},
 			success: function (response) {
 
-				$(".search_results." + action).html("");
+				$('.search_results.' + action).html('');
 
 				var products = response.products;
 
 				if (products[0] == null) {
-					$(".search_results." + action).append("No products found...");
+					$('.search_results.' + action).append('No products found...');
 				}
 
 				$.each(products, function (key, value) {
@@ -41,16 +41,14 @@ function searchItem(query, action) {
 					let url = value.href;
 					let encodedUrl = encodeURIComponent(url);
 
-					list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${src}) no-repeat center center; background-size: contain"></div> <a onclick="addToBasket(\`${encodedTitle}\`, '${encodedUrl}', '${encodedSrc}', '${action}')" class="bottom"><i class="fas fa-plus"></i></a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${title} </div> </div> </div>`);
+					list.html(`<div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${src}) no-repeat center center; background-size: contain"></div> <a onclick="addToBasket(\`${encodedTitle}\`, '${encodedUrl}', '${encodedSrc}', '${action}')" class="bottom"><i class="fas fa-plus"></i></a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${title} </div> </div> </div>`);
 
-					$(".search_results." + action).append(list);
+					$('.search_results.' + action).append(list);
 				});
-
-				var image = $('mediumimage');
 
 			},
 			error: function (error) {
-				$(".search_results." + action).html("No products found...");
+				$('.search_results.' + action).html('No products found...');
 			}
 		});
 
@@ -68,8 +66,8 @@ function searchItem(query, action) {
 function addToBasket(title, url, src, action) {
 	$('.hiddenInput.' + action).val($('.hiddenInput.' + action).val() + title + ';' + url + ';' + src + ',');
 
-	$(".search_results." + action).html("");
-	$(".liveInput." + action).val("");
+	$('.search_results.' + action).html('');
+	$('.liveInput.' + action).val('');
 
 	decodedTitle = decodeURIComponent(title);
 	decodedSrc = decodeURIComponent(src);
@@ -78,7 +76,7 @@ function addToBasket(title, url, src, action) {
 
 	list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${decodedSrc}) no-repeat center center; background-size: contain"></div> <a onclick="deleteFromBasket(\`${title}\`,this,'${action}')" class="bottom"><i class="far fa-trash-alt"></i></a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${decodedTitle} </div> </div> </div>`);
 
-	$(".basket_items." + action).append(list);
+	$('.basket_items.' + action).append(list);
 }
 
 /**
@@ -90,10 +88,10 @@ function addToBasket(title, url, src, action) {
  */
 function deleteFromBasket(title, parent, action) {
 	var ResearchArea = $('.hiddenInput.' + action).val();
-	var splitTextInput = ResearchArea.split(",");
+	var splitTextInput = ResearchArea.split(',');
 
 	new_arr = $.grep(splitTextInput, function (n, i) { // just use arr
-		return n.split(";")[0] != title;
+		return n.split(';')[0] != title;
 	});
 
 	$('.hiddenInput.' + action).val(new_arr);

@@ -4,46 +4,46 @@
  * @name Cookieconsent
  * @description Call cookieconsent panel
  */
-window.addEventListener("load", function () {
-    window.cookieconsent.initialise({
-        "palette": {
-            "popup": {
-                "background": "#000"
-            },
-            "button": {
-                "background": "#328fea"
-            }
-        },
-        "theme": "classic",
-        "position": "bottom-left",
-        "content": {
-            "href": webRootJs + "pages/legals"
-        }
-    });
+window.addEventListener('load', function () {
+	window.cookieconsent.initialise({
+		'palette': {
+			'popup': {
+				'background': '#000'
+			},
+			'button': {
+				'background': '#328fea'
+			}
+		},
+		'theme': 'classic',
+		'position': 'bottom-left',
+		'content': {
+			'href': webRootJs + 'pages/legals'
+		}
+	});
 });
 
 /**
  * MAIN MENU transition effect
  */
 $(window).scroll(function () {
-    var scrollTop = $(window).scrollTop();
-    if (scrollTop < 50) {
-        $('.heavy-nav').stop().removeClass('nav-color').addClass('nav-transparent');
-    } else {
-        $('.heavy-nav').stop().removeClass('nav-transparent').addClass('nav-color');
-    }
+	var scrollTop = $(window).scrollTop();
+	if (scrollTop < 50) {
+		$('.heavy-nav').stop().removeClass('nav-color').addClass('nav-transparent');
+	} else {
+		$('.heavy-nav').stop().removeClass('nav-transparent').addClass('nav-color');
+	}
 });
 
 /**
  * This function is for css initialization
  */
 $(function () {
-    var scrollTop = $(window).scrollTop();
-    if (scrollTop < 50) {
-        $('.heavy-nav').addClass('nav-transparent');
-    } else {
-        $('.heavy-nav').addClass('nav-color');
-    }
+	var scrollTop = $(window).scrollTop();
+	if (scrollTop < 50) {
+		$('.heavy-nav').addClass('nav-transparent');
+	} else {
+		$('.heavy-nav').addClass('nav-color');
+	}
 });
 
 /**
@@ -52,18 +52,18 @@ $(function () {
  * @type {HELPER}
  */
 function inIframe() {
-    try {
-        return window.self !== window.top;
-    } catch (e) {
-        return true;
-    }
+	try {
+		return window.self !== window.top;
+	} catch (e) {
+		return true;
+	}
 }
 
 /**
  * This function will detect if a add_setup_modal anchor is used in the URL
  */
 $(function () {
-	if (window.location.hash && window.location.hash.substring(1) == "add_setup_modal") {
+	if (window.location.hash && window.location.hash.substring(1) == 'add_setup_modal') {
 		eventFire(document.getElementById('menu_trigger_add_modal'), 'click');
 	}
 });
