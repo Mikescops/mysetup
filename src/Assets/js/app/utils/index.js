@@ -1,4 +1,4 @@
-// @koala-prepend "./twitch.js"
+//=require twitch.js
 
 /**
  * @name convertToSlug

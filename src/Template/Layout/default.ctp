@@ -14,7 +14,7 @@ use Cake\Core\Configure;
         <?= $this->fetch('title') ?>
     </title>
 
-    <?= $this->Html->css('main.min.css') ?>
+    <?= $this->Html->css('/dist/main.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -221,12 +221,12 @@ use Cake\Core\Configure;
     <div id="notifications-pop" style="display: none;"><div id="notif-container"></div><div id="no-notif">You have no notifications.</div></div>
 
     <!-- Lib & App Js async load -->
-    <?= $this->Html->script('libs.min.js') ?>
-    <?= $this->Html->script('app.min.js') ?>
+    <?= $this->Html->script('/dist/libs.min.js') ?>
+    <?= $this->Html->script('/dist/app.min.js') ?>
 
     <!-- Emoji handling -->
     <?php if($authUser): ?>
-        <?= $this->Html->script('libs/emojiarea.min.js') ?>
+        <?= $this->Html->script('/dist/emojiarea.min.js') ?>
     <?php endif; ?>
 
     <script>const toast = new siiimpleToast();</script>
