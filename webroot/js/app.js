@@ -363,7 +363,7 @@ function addToBasket(title, url, src, action) {
 	decodedSrc = decodeURIComponent(src);
 
 	let list = $('<li class="text-card"></li>');
-	
+
 	list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${decodedSrc}) no-repeat center center; background-size: contain"></div> <a onclick="deleteFromBasket(\`${title}\`,this,'${action}')" class="bottom"><i class="far fa-trash-alt"></i></a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${decodedTitle} </div> </div> </div>`);
 
 	$(".basket_items." + action).append(list);
@@ -731,7 +731,7 @@ function infiniteScroll(nbtodisplay) {
 							let likes = value.like_count;
 							let user_name = escapeHtml(value.user.name);
 							let user_src = webRootJs + `uploads/files/pics/profile_picture_${value.user_id}.png?` + ("0" + (new Date(value.user.modificationDate)).getMinutes()).slice(-2) + ("0" + (new Date(value.user.modificationDate)).getSeconds()).slice(-2);
-							let user_url = webRootJs + `users/` + value.user_id;
+							let user_url = webRootJs + `users/` + value.user_id + `-${convertToSlug(user_name)}`;
 							let main_color = [0,0,0];
 							if(value.main_colors){
 								main_color = $.parseJSON(value.main_colors)[0];
