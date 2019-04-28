@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
-"POT-Creation-Date: 2019-01-12 16:32+0000\n"
-"PO-Revision-Date: 2019-01-13 00:52+0100\n"
+"POT-Creation-Date: 2019-04-28 15:04+0000\n"
+"PO-Revision-Date: 2019-04-28 17:11+0200\n"
 "Last-Translator: \n"
 "Language-Team: fr <support@mysetup.co>\n"
 "Language: fr\n"
@@ -13,43 +13,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.1\n"
 
-#: Controller/AdminController.php:210
+#: Controller/AdminController.php:220
 msgid "No notification could be sent..."
 msgstr "Aucune notification n'a pu être envoyée."
 
-#: Controller/AdminController.php:224
+#: Controller/AdminController.php:234
 msgid "The notification has just been sent !"
 msgstr "La notification vient d'être envoyée !"
 
-#: Controller/AdminController.php:229
+#: Controller/AdminController.php:239
 msgid "The notification couldn't be sent."
 msgstr "La notification n'a pas pu être envoyée."
 
-#: Controller/AdminController.php:236
+#: Controller/AdminController.php:246
 msgid "One information is missing to send this notification."
 msgstr "Une information est manquante pour envoyer cette notification."
 
-#: Controller/AdminController.php:241
+#: Controller/AdminController.php:251
 msgid "Everyone"
 msgstr "Tout le monde"
 
-#: Controller/AdminController.php:253
+#: Controller/AdminController.php:263
 msgid "The application caches have been cleared !"
 msgstr "Les caches applicatifs ont été vidés !"
 
-#: Controller/AdminController.php:257
+#: Controller/AdminController.php:267
 msgid "The application caches could not be cleared. Code returned :"
 msgstr "Les caches applicatifs n'ont pas pu être vidés. Code de retour :"
 
-#: Controller/AdminController.php:205
+#: Controller/AdminController.php:215
 msgid "notification have been sent !"
 msgid_plural "notifications have been sent !"
 msgstr[0] "notification a été envoyée !"
 msgstr[1] "notifications ont été envoyées !"
 
-#: Controller/AdminController.php:215
+#: Controller/AdminController.php:225
 msgid "notification couldn't be sent..."
 msgid_plural "notifications couldn't be sent..."
 msgstr[0] "notification n'a pas pu être envoyée..."
@@ -111,12 +111,12 @@ msgstr "a commenté votre setup"
 msgid "An user profile picture"
 msgstr "Une image de profil"
 
-#: Controller/PagesController.php:249
+#: Controller/PagesController.php:244
 msgid ""
 "This date does not exist, here you are the featured setups of this week !"
 msgstr "Cette date n'existe pas, voilà les meilleurs setups de cette semaine !"
 
-#: Controller/PagesController.php:276 Controller/UsersController.php:106
+#: Controller/PagesController.php:268 Controller/UsersController.php:106
 msgid ""
 "Google's CAPTCHA has detected you as a bot, sorry ! If you're a REAL human, "
 "please re-try :)"
@@ -124,19 +124,19 @@ msgstr ""
 "Le CAPTCHA de Google vous a détecté comme un robot, désolé ! Si vous êtes "
 "réellement un humain, ré-essayez"
 
-#: Controller/PagesController.php:289
+#: Controller/PagesController.php:281
 msgid "Your bug has been correctly sent ! Thanks for this report :)"
 msgstr "Votre bogue a correctement été envoyé ! Merci pour ce signalement :)"
 
-#: Controller/PagesController.php:294
+#: Controller/PagesController.php:286
 msgid "You didn't report anything (or have missed something) :("
 msgstr "Rien n'a a été décrit (ou quelque chose a été oublié) :("
 
-#: Controller/PagesController.php:320;356
+#: Controller/PagesController.php:312;348
 msgid "We have found the user you are looking for !"
 msgstr "Nous avons trouvé l'utilisateur que tu recherches !"
 
-#: Controller/PagesController.php:332
+#: Controller/PagesController.php:324
 msgid "We have found the component you are looking for !"
 msgstr "Nous avons trouvé le composant que tu recherches !"
 
@@ -427,7 +427,7 @@ msgstr ""
 msgid "The comment is too long (more than 500 characters)"
 msgstr "Le commentaire est trop long (plus de 500 caractères)."
 
-#: Model/Table/ResourcesTable.php:170
+#: Model/Table/ResourcesTable.php:175
 msgid ""
 "One of the products you chose does not validate our rules... Please contact "
 "an administrator."
@@ -435,14 +435,14 @@ msgstr ""
 "Un de vos produits ne valident pas nos exigences. Veuillez contacter un "
 "administrateur."
 
-#: Model/Table/ResourcesTable.php:189;251;288
+#: Model/Table/ResourcesTable.php:194;256;293
 msgid ""
 "One of your resources could not be saved... Please contact an administrator."
 msgstr ""
 "Une de vos ressources n'a pas pu être enregistrée. Veuillez contacter un "
 "administrateur."
 
-#: Model/Table/ResourcesTable.php:205
+#: Model/Table/ResourcesTable.php:210
 msgid ""
 "An internal error occurred while saving your images... Please contact an "
 "administrator."
@@ -450,7 +450,7 @@ msgstr ""
 "Une erreur interne est survenue pendant que nous sauvegardions vos images. "
 "Veuillez contacter un administrateur."
 
-#: Model/Table/ResourcesTable.php:235
+#: Model/Table/ResourcesTable.php:240
 msgid ""
 "One of your image could not be converted to JPG, compressed, resized or "
 "saved... Please contact an administrator."
@@ -458,7 +458,7 @@ msgstr ""
 "Une de vos images n'a pas pu être convertie en JPG, compressée, "
 "redimensionnée, ou bien enregistrée. Veuillez contacter un administrateur."
 
-#: Model/Table/ResourcesTable.php:263
+#: Model/Table/ResourcesTable.php:268
 msgid ""
 "One of the files you uploaded does not validate our rules... Please contact "
 "an administrator."
@@ -466,7 +466,7 @@ msgstr ""
 "Un des fichiers que vous avez chargé ne valide pas nos exigences. Veuillez "
 "contacter un administrateur."
 
-#: Model/Table/ResourcesTable.php:300
+#: Model/Table/ResourcesTable.php:305
 msgid ""
 "The video link you chose does not validate our rules... Please contact an "
 "administrator."
@@ -474,7 +474,7 @@ msgstr ""
 "Votre lien vidéo ne valide pas nos exigences. Veuillez contacter un "
 "administrateur."
 
-#: Model/Table/ResourcesTable.php:399
+#: Model/Table/ResourcesTable.php:404
 msgid "One of the setup images could not be migrated."
 msgstr ""
 "Une des images du setup n'a pas pu être migrée. Désolé pour le désagrément..."
@@ -586,7 +586,7 @@ msgid "Actions"
 msgstr "Actions"
 
 #: Template/Admin/comments.ctp:33 Template/Admin/setups.ctp:41
-#: Template/Admin/users.ctp:75 View/Helper/PaginatorHelper.php:1212
+#: Template/Admin/users.ctp:75 View/Helper/PaginatorHelper.php:1213
 msgid "View"
 msgstr "Voir"
 
@@ -1846,9 +1846,13 @@ msgstr "Les meilleurs setups de la semaine"
 msgid "No featured setups this week, sorry !"
 msgstr "Pas de setups sélectionnés cette semaine, désolé !"
 
-#: Template/Pages/weekly_picks.ctp:40
+#: Template/Pages/weekly_picks.ctp:48
 msgid "Previous week"
 msgstr "Semaine précédente"
+
+#: Template/Pages/weekly_picks.ctp:64
+msgid "Next week"
+msgstr "Semaine suivante"
 
 #: Template/Setups/view.ctp:37
 msgid "Watch it in video"
