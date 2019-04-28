@@ -47,5 +47,23 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 ?>
 <a class="button previous-weekly" href="<?= $this->Url->build('/weekly/'.$prev_year.'-'.$prev_week, true) ?>"><i class="fas fa-chevron-left"></i> <?= __('Previous week') ?></a>
 
+<?php if ((new \DateTime())->setISODate($year, $week) < (new \DateTime("-1 week"))) : ?>
+    <?php
+        if ($week >= 52)
+        {
+            $next_week = 1;
+            $next_year = $year + 1;
+        }
+        else
+        {
+            $next_week = $week + 1;
+            $next_year = $year;
+        }
+    ?>
+        <br />
+        <a class="button previous-weekly" href="<?= $this->Url->build('/weekly/'.$next_year.'-'.$next_week, true) ?>"><?= __('Next week') ?> <i class="fas fa-chevron-right"></i></a>
+    <?php endif;
+?>
+
 <br><br>
 
