@@ -28,10 +28,10 @@
             ?>
 
             <?php
-                echo $this->Form->control('uwebsite', ['label' => ['text' => '', 'class' => 'fa fa-globe'], 'placeholder' => "https://website.me", 'default' => $authUser['uwebsite']]);
-                echo $this->Form->control('ufacebook', ['label' => ['text' => '', 'class' => 'fab fa-facebook'], 'placeholder' => "https://facebook.com/me", 'default' => $authUser['ufacebook']]);
-                echo $this->Form->control('utwitter', ['label' => ['text' => '', 'class' => 'fab fa-twitter'], 'placeholder' => "https://twitter.com/me", 'default' => $authUser['utwitter']]);
-                echo $this->Form->control('utwitch', ['label' => ['text' => '', 'class' => 'fab fa-twitch'], 'placeholder' => "https://www.twitch.tv/me", 'default' => $authUser['utwitch']]);
+                echo $this->Form->control('uwebsite', ['label' => ['text' => '', 'class' => 'fa fa-globe'], 'type' => 'url', 'placeholder' => "https://website.me", 'default' => $authUser['uwebsite']]);
+                echo $this->Form->control('ufacebook', ['label' => ['text' => '', 'class' => 'fab fa-facebook'], 'type' => 'url', 'placeholder' => "https://facebook.com/me", 'default' => $authUser['ufacebook']]);
+                echo $this->Form->control('utwitter', ['label' => ['text' => '', 'class' => 'fab fa-twitter'], 'type' => 'url', 'placeholder' => "https://twitter.com/me", 'default' => $authUser['utwitter']]);
+                echo $this->Form->control('utwitch', ['label' => ['text' => '', 'class' => 'fab fa-twitch'], 'type' => 'url', 'placeholder' => "https://www.twitch.tv/me", 'default' => $authUser['utwitch']]);
             ?>
 
             <span><?= __('Choose your main setup : ') ?></span>

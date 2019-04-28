@@ -14,10 +14,10 @@
         ?>
 
         <?php
-            echo $this->Form->control('uwebsite', ['label' => ['text' => '', 'class' => 'fa fa-globe'], 'placeholder' => "https://website.me", 'default' => $user['uwebsite']]);
-            echo $this->Form->control('ufacebook', ['label' => ['text' => '', 'class' => 'fab fa-facebook'], 'placeholder' => "https://facebook.com/me", 'default' => $user['ufacebook']]);
-            echo $this->Form->control('utwitter', ['label' => ['text' => '', 'class' => 'fab fa-twitter'], 'placeholder' => "https://twitter.com/me", 'default' => $user['utwitter']]);
-            echo $this->Form->control('utwitch', ['label' => ['text' => '', 'class' => 'fab fa-twitch'], 'placeholder' => "https://www.twitch.tv/me", 'default' => $user['utwitch']]);
+            echo $this->Form->control('uwebsite', ['label' => ['text' => '', 'class' => 'fa fa-globe'], 'type' => 'url', 'placeholder' => "https://website.me", 'default' => $user['uwebsite']]);
+            echo $this->Form->control('ufacebook', ['label' => ['text' => '', 'class' => 'fab fa-facebook'], 'type' => 'url', 'placeholder' => "https://facebook.com/me", 'default' => $user['ufacebook']]);
+            echo $this->Form->control('utwitter', ['label' => ['text' => '', 'class' => 'fab fa-twitter'], 'type' => 'url', 'placeholder' => "https://twitter.com/me", 'default' => $user['utwitter']]);
+            echo $this->Form->control('utwitch', ['label' => ['text' => '', 'class' => 'fab fa-twitch'], 'type' => 'url', 'placeholder' => "https://www.twitch.tv/me", 'default' => $user['utwitch']]);
         ?>
 
         <?php

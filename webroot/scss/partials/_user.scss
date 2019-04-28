@@ -71,7 +71,9 @@
   line-height:1em;
 }
 
-#edit_profile_modal .input.text, #edit_profile_modal .input.email{
+#edit_profile_modal .input.text,
+#edit_profile_modal .input.url,
+#edit_profile_modal .input.email{
 	position: relative;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -81,7 +83,9 @@
 	margin-bottom: 1.5rem;
 }
 
-#edit_profile_modal .input.text label, #edit_profile_modal .input.email label {
+#edit_profile_modal .input.text label,
+#edit_profile_modal .input.url label,
+#edit_profile_modal .input.email label {
     padding: .5rem .75rem;
     width: 40px;
     margin-bottom: 0;
@@ -98,7 +102,9 @@
 	border-top-right-radius: 0;
 }
 
-#edit_profile_modal .input.text input, #edit_profile_modal .input.email input{
+#edit_profile_modal .input.text input,
+#edit_profile_modal .input.url input,
+#edit_profile_modal .input.email input{
 	border-bottom-left-radius: 0;
 	border-top-left-radius: 0;
 	margin-bottom: 0;
