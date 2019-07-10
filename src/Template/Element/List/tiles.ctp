@@ -22,7 +22,7 @@
         "></div>
         <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg' )) ?>">
     </a>
-    <div class="red_like"><i class="fa fa-heart"></i> <?= $setup->like_count ?></div>
+    <div class="badge_like"><i class="fa fa-thumbs-up"></i> <?= $setup->like_count ?></div>
 
     <div class="item-inner">
         <a class="featured-user" href="<?=$this->Url->build('/users/'.$setup->user_id.'-'.$this->Text->slug($setup->user->name))?>">
