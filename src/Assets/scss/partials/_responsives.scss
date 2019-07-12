@@ -13,18 +13,18 @@
 		display: none;
 	}
 
-	.slider-item .red_like{
+	.slider-item .badge_like{
 		display: none;
 	}
 
-	.red_like{
+	.badge_like{
 		top: 0;
 		bottom: auto;
 		margin: 0;
 		border-radius: 0 4px 0 4px;
 	}
 
-	.setup-item .red_like {
+	.setup-item .badge_like {
 		right: 0;
 		padding-right: 10px;
 	}
@@ -35,7 +35,7 @@
 		column-count: 1;
 	}
 
-	.feeditem .red_like {
+	.feeditem .badge_like {
 	    margin: 0;
 	}
 
@@ -338,7 +338,7 @@
 		width: 50px;
 	}
 
-	.red_button, .edit_panel{
+	.like_button, .edit_panel{
 		margin-top: 5px;
 	}
 

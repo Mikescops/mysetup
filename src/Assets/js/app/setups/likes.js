@@ -5,7 +5,7 @@
  */
 function likeSetup(id) {
 
-	if ($('.red_button').hasClass('active')) {
+	if ($('.like_button').hasClass('active')) {
 		$.ajax({
 			url: webRootJs + 'likes/dislike',
 			type: 'get',
@@ -28,12 +28,12 @@ function likeSetup(id) {
 	}
 
 	function answer_like() {
-		$('.red_button').addClass('active');
+		$('.like_button').addClass('active');
 		printLikes(id);
 	}
 
 	function answer_dislike() {
-		$('.red_button').removeClass('active');
+		$('.like_button').removeClass('active');
 		printLikes(id);
 	}
 
@@ -79,7 +79,7 @@ function doesLike(setup) {
 		type: 'get',
 		success: function (json) {
 			if (json == 'true')
-				$('.red_button').addClass('active');
+				$('.like_button').addClass('active');
 		}
 	});
 }

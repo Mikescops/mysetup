@@ -424,13 +424,13 @@
 }
 
 
-.red_like{
+.badge_like{
 	position: absolute;
 	right: 0;
 	bottom: 0;
 	margin: 10px;
 	z-index: 15;
-	background-color: #db2828;
+	background-color: #3C72B8;
 	border-radius: 4px;
 	padding: 5px 10px 5px 10px;
 	box-shadow: 0 0 15px rgba(0,0,0,.55);
@@ -438,7 +438,7 @@
 	-webkit-box-shadow: 0 0 15px rgba(0,0,0,.55);
 }
 
-.fullitem .red_like{
+.fullitem .badge_like{
 	margin-bottom: 15px;
 }
 
@@ -452,7 +452,7 @@
 
 	.setup-pic{
 	    position: relative;
-	    display: inline-block;
+	    display: block;
 		float: left;
 
 		img{
@@ -495,7 +495,7 @@
 	float: left;
 }
 
-.setup-item .red_like{
+.setup-item .badge_like{
   	position: absolute;
   	right: 35px;
 	bottom: 14px;
@@ -518,7 +518,7 @@
     column-count: 2;
 }
 
-.feeditem .red_like {
+.feeditem .badge_like {
     margin: 7px;
 }
 

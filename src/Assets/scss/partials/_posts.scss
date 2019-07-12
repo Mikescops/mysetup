@@ -309,7 +309,7 @@
 }
 
 
-.labeled_button, .red_button{
+.labeled_button, .like_button{
     cursor: pointer;
     display: inline-block;
     line-height: 1em;
@@ -317,11 +317,10 @@
     border-radius: 4px;
 }
 
-.red_button{
+.like_button{
 	margin-top: 20px;
 	border: 1px solid #292929;
 	background: #292929;
-/*	border-radius: 25px;*/
 	color: #fff;
 	text-decoration: none;
 	height: 40px;
@@ -339,28 +338,28 @@
 }
 
 
-.red_button:focus{
+.like_button:focus{
 	color: #fff;
 }
 
-.red_button:hover{
-	border: 1px solid #E73535;
-	color: #E73535;
+.like_button:hover{
+	border: 1px solid rgb(108, 160, 230);
+	color: rgb(108, 160, 230);
 }
 
-.red_button.active{
-	border: 1px solid #FC003E;
-	color: #FC003E;
+.like_button.active{
+	border: 1px solid #3C72B8;
+	background: #3C72B8;
+
+	&:hover{
+		color: #fff;
+	}
 }
 
 .pointing_label{
 	position: relative;
 	padding: .7em .8em .7em 0em;
 	font-size: 1.1em;
-}
-
-.item-meta{
-
 }
 
 .setup-colors{
