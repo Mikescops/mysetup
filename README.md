@@ -54,6 +54,15 @@ If you want to bump vendor packages version :
 3. Commit the `composer.lock` changes
 4. Deploy normally to _production_ with `$ bash bin/deployment.sh`
 
+### Compiling assets
+
+To compile .scss and .js files we use [Gulp](https://gulpjs.com/) software.
+
+1. Install npm (Node.js)
+2. Install required packages with `$ npm install`
+3. [Wait for the full download of the Internet to be completed]
+4. Run the automatic building pipeline with `$ npm run assets:build`
+
 ### Translations
 
 If you wanna add a translation for a foreign language :
@@ -67,19 +76,8 @@ So as to extract the strings from the source code, and edit them with _Poedit_, 
 
 Output files will be under `src/Locale/`, as : `{cake,default}.pot`
 
-## Compiling assets
-
-To compile .scss and .js files we use [koala](https://koala-app.com/) software.
-
-* `libs.js` > `libs.min.js`
-* `app.js` > `app.min.js`
-* `widgets.uncompress.js` > `widgets.js`
-* `main.scss` > `../css/main.min.css`
-
-No option for scss. As for js, activate __compress__, __preserve copyrights__ and __harmony (es6+)__.
-
 ## Authors
 
 | [![twitter/mikescops](https://avatars0.githubusercontent.com/u/4266283?s=100&v=4)](http://twitter.com/mikescops "Follow @mikescops on Twitter") | [![mastodon/horlogeskynet](https://avatars1.githubusercontent.com/u/5331869?s=100&v=4)](https://mastodon.social/@HorlogeSkynet)
 |---|---|
-| [Corentin Mors](https://pixelswap.fr/) | [Samuel Forestier](https://horlogeskynet.github.io/) |
+| [Corentin Mors](https://pixelswap.fr/) | [Samuel Forestier](https://blog.samuel.domains/) |
