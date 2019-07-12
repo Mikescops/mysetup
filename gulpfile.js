@@ -46,6 +46,24 @@ gulp.task('minify-js-app', async function () {
 		.pipe(gulp.dest('webroot/dist'));
 });
 
+/**
+ * $ gulp minify-js-api
+ * description: compress API-relative js files and output them in the webroot folder
+ */
+gulp.task('minify-js-api', async function () {
+    gulp.src('src/Assets/js/api/widgets.js')
+        .pipe(minify({
+            noSource: true,
+            preserveComments: 'some',
+            ext: {
+                src: '-debug.js',
+                min: '.js'
+            },
+            ignoreFiles: ['.min.js']
+        }))
+        .pipe(gulp.dest('webroot/api/'));
+});
+
 
 /**
  * $ gulp minify-scss
@@ -61,7 +79,12 @@ gulp.task('minify-scss', () => {
  * $ gulp build
  * description: prepare all assets
  */
-gulp.task('build', gulp.parallel('minify-scss', 'minify-js-app', 'minify-js-libs'));
+gulp.task('build', gulp.parallel([
+    'minify-scss',
+    'minify-js-app',
+    'minify-js-api',
+    'minify-js-libs'
+]));
 
 /**
  * $ gulp default
@@ -70,5 +93,6 @@ gulp.task('build', gulp.parallel('minify-scss', 'minify-js-app', 'minify-js-libs
 gulp.task('default', gulp.series('build', watch = function () {
 	gulp.watch(['./src/Assets/scss/**/*.scss'], gulp.series('minify-scss'));
 	gulp.watch(['./src/Assets/js/app/**/*.js'], gulp.series('minify-js-app'));
+    gulp.watch(['./src/Assets/js/api/**/*.js'], gulp.series('minify-js-api'));
 	gulp.watch(['./src/Assets/js/libs/**/*.js'], gulp.series('minify-js-libs'));
 }));
