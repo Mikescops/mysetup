@@ -1,0 +1,63 @@
+<url>
+    <loc>https://mysetup.co/</loc>
+    <changefreq>always</changefreq>
+    <priority>1</priority>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="fr"
+               href="https://mysetup.co/?lang=fr"/>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="it"
+               href="https://mysetup.co/?lang=it"/>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="es"
+               href="https://mysetup.co/?lang=es"/>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="de"
+               href="https://mysetup.co/?lang=de"/>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="en"
+               href="https://mysetup.co/?lang=en"/>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="uk"
+               href="https://mysetup.co/?lang=uk"/>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="us"
+               href="https://mysetup.co/?lang=us"/>
+</url>
+<url>
+    <loc>https://mysetup.co/recent</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+</url>
+<url>
+    <loc>https://mysetup.co/staffpicks</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+</url>
+<url>
+    <loc>https://mysetup.co/blog</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+</url>
+<url>
+    <loc>https://mysetup.co/pages/team</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+</url>
+<url>
+    <loc>https://mysetup.co/pages/legal</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://mysetup.co/pages/q&amp;a</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+</url>

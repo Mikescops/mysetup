@@ -87,11 +87,6 @@ class UsersTable extends Table
                 ]
             ]
         ]);
-        $this->addBehavior('Sitemap.Sitemap', [
-            'changefreq' => 'weekly',
-            'priority'   => 0.5,
-            'lastmod'    => 'modificationDate'
-        ]);
     }
 
     /** Let's get the real url of user **/

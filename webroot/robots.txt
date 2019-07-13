@@ -7,4 +7,4 @@ Disallow: /comments/
 Disallow: /notifications/
 Disallow: /requests/
 
-Sitemap: https://mysetup.co/sitemap/
+Sitemap: https://mysetup.co/sitemap.xml

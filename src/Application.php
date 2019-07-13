@@ -60,14 +60,8 @@ class Application extends BaseApplication
             Configure::write('DebugKit.forceEnable', true);
         }
 
-        $this->addPlugin('Sitemap', ['bootstrap' => false, 'routes' => true]);
-        Configure::write('Sitemap.tables', [
-            'Setups', 'Users', 'Articles'
-        ]);
-
         $this->addPlugin('Tanuck/Markdown');
         $this->addPlugin('Muffin/Throttle');
-        $this->addPlugin('Setup', ['bootstrap' => true]);
     }
 
     /**
