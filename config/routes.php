@@ -126,6 +126,17 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/admin', ['controller' => 'Admin', 'action' => 'dashboard']);
     /* _______________________ */
 
+    /* Sitemap routes */
+    $routes->scope('/sitemap', function($routes) {
+        $routes->connect('.xml', ['controller' => 'sitemaps', 'action' => 'index']);
+        $routes->connect('-setups.xml', ['controller' => 'sitemaps', 'action' => 'setups']);
+        $routes->connect('-blog.xml', ['controller' => 'sitemaps', 'action' => 'articles']);
+        $routes->connect('-users.xml', ['controller' => 'sitemaps', 'action' => 'users']);
+        $routes->connect('-static.xml', ['controller' => 'sitemaps', 'action' => 'static']);
+    });
+
+    /* _______________________ */
+
     // However, default routes are still available...
     $routes->fallbacks(DashedRoute::class);
 });

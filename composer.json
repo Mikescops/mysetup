@@ -28,8 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src",
-            "Sitemap\\": "plugins/Sitemap/src/"
+            "App\\": "src"
         }
     },
     "autoload-dev": {

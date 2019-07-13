@@ -78,13 +78,6 @@ class SetupsTable extends Table
                 ]
             ]
         ]);
-        $this->addBehavior('Sitemap.Sitemap', [
-            'changefreq' => 'daily',
-            'priority'   => 0.7,
-            'conditions' => [
-                'status' => 'PUBLISHED'
-            ]
-        ]);
     }
 
     /** Let's get the real url of setup **/

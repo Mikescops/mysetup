@@ -3,7 +3,6 @@
 /tmp/*
 /logs/*
 /webroot/uploads/files/
-/webroot/sitemap
 /webroot/debug_kit
 /src/Locale/*.pot
 /src/Locale/*/*.mo
