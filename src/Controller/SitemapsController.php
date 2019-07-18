@@ -60,7 +60,7 @@ class SitemapsController extends AppController
         $this->viewBuilder()->setLayout('sitemap');
 
         $this->loadModel('Users');
-        $users = $this->Users->find()->select(['id', 'name', 'mainSetup_id'])->where(['mainSetup_id >' => 'O'])->all();
+        $users = $this->Users->find()->select(['id', 'name', 'mainSetup_id'])->where(['mainSetup_id !=' => O])->all();
 
         $this->set('records', $users);
     }
