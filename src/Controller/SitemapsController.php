@@ -17,22 +17,27 @@ class SitemapsController extends AppController
         $this->Auth->allow();
     }
 
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+
+        /* /!\ Each method present in this very file will be formatted as XML /!\ */
+        $this->RequestHandler->respondAs('xml');
+    }
+
     public function index()
     {
         $this->viewBuilder()->setLayout('sitemapindex');
-        $this->RequestHandler->respondAs('xml');
     }
 
     public function static()
     {
         $this->viewBuilder()->setLayout('sitemap');
-        $this->RequestHandler->respondAs('xml');
     }
 
     public function setups()
     {
         $this->viewBuilder()->setLayout('sitemap');
-        $this->RequestHandler->respondAs('xml');
 
         $this->loadModel('Setups');
         $setups = $this->Setups->find()->select(['id', 'title', 'modifiedDate'])->where(['status' => 'PUBLISHED'])->all();
@@ -43,7 +48,6 @@ class SitemapsController extends AppController
     public function articles()
     {
         $this->viewBuilder()->setLayout('sitemap');
-        $this->RequestHandler->respondAs('xml');
 
         $this->loadModel('Articles');
         $articles = $this->Articles->find()->select(['id', 'title', 'dateTime'])->all();
@@ -54,7 +58,6 @@ class SitemapsController extends AppController
     public function users()
     {
         $this->viewBuilder()->setLayout('sitemap');
-        $this->RequestHandler->respondAs('xml');
 
         $this->loadModel('Users');
         $users = $this->Users->find()->select(['id', 'name', 'mainSetup_id'])->where(['mainSetup_id >' => 'O'])->all();
