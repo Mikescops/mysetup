@@ -5,7 +5,5 @@
 
 <?xml-stylesheet type="text/xsl" href="<?=$this->Url->build('/dist/sitemap.xsl', true) ?>"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <?php
-        echo $this->fetch('content');
-    ?>
+    <?= $this->fetch('content') ?>
 </urlset>
