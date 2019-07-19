@@ -133,7 +133,6 @@ Router::scope('/', function (RouteBuilder $routes) {
             ->setPatterns(['target' => '(-.*)?'])
             ->setPass(['target']);
     });
-
     /* _______________________ */
 
     // However, default routes are still available...
