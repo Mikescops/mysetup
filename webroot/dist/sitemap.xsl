@@ -70,7 +70,7 @@
 				<div id="content">
 					<div id="content-head">
 						<h1>XML Sitemap</h1>
-						<p>Welcome to the sitemap of <a href="http://mysetup.co">mysetup.co</a>. Oh! By the way, if you read this, you're not a Google robot :P</p>
+						<p>Welcome to the sitemap of <a href="/">mySetup.co</a>. Oh! By the way, if you read this, you're not a Google robot :P</p>
 						<p><xsl:choose>
 								<xsl:when test="$fileType='Sitemap'">
 									This sitemap contains <xsl:value-of select="count(sitemap:urlset/sitemap:url)"></xsl:value-of> URLs</xsl:when>

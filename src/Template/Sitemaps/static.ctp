@@ -1,63 +1,63 @@
 <url>
-    <loc>https://mysetup.co/</loc>
+    <loc><?= $this->Url->build('/', true) ?></loc>
     <changefreq>always</changefreq>
     <priority>1</priority>
-    <xhtml:link 
+    <xhtml:link
                rel="alternate"
                hreflang="fr"
-               href="https://mysetup.co/?lang=fr"/>
-    <xhtml:link 
+               href="<?= $this->Url->build('/?lang=fr', true) ?>"/>
+    <xhtml:link
                rel="alternate"
                hreflang="it"
-               href="https://mysetup.co/?lang=it"/>
-    <xhtml:link 
+               href="<?= $this->Url->build('/?lang=it', true) ?>"/>
+    <xhtml:link
                rel="alternate"
                hreflang="es"
-               href="https://mysetup.co/?lang=es"/>
-    <xhtml:link 
+               href="<?= $this->Url->build('/?lang=es', true) ?>"/>
+    <xhtml:link
                rel="alternate"
                hreflang="de"
-               href="https://mysetup.co/?lang=de"/>
-    <xhtml:link 
+               href="<?= $this->Url->build('/?lang=de', true) ?>"/>
+    <xhtml:link
                rel="alternate"
                hreflang="en"
-               href="https://mysetup.co/?lang=en"/>
-    <xhtml:link 
+               href="<?= $this->Url->build('/?lang=en', true) ?>"/>
+    <xhtml:link
                rel="alternate"
                hreflang="uk"
-               href="https://mysetup.co/?lang=uk"/>
-    <xhtml:link 
+               href="<?= $this->Url->build('/?lang=uk', true) ?>"/>
+    <xhtml:link
                rel="alternate"
                hreflang="us"
-               href="https://mysetup.co/?lang=us"/>
+               href="<?= $this->Url->build('/?lang=us', true) ?>"/>
 </url>
 <url>
-    <loc>https://mysetup.co/recent</loc>
+    <loc><?= $this->Url->build('/recent', true) ?></loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
 </url>
 <url>
-    <loc>https://mysetup.co/staffpicks</loc>
+    <loc><?= $this->Url->build('/staffpicks', true) ?></loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
 </url>
 <url>
-    <loc>https://mysetup.co/blog</loc>
+    <loc><?= $this->Url->build('/blog', true) ?></loc>
     <changefreq>daily</changefreq>
     <priority>1</priority>
 </url>
 <url>
-    <loc>https://mysetup.co/pages/team</loc>
+    <loc><?= $this->Url->build('/pages/team', true) ?></loc>
     <changefreq>daily</changefreq>
     <priority>1</priority>
 </url>
 <url>
-    <loc>https://mysetup.co/pages/legal</loc>
+    <loc><?= $this->Url->build('/pages/legal', true) ?></loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
 </url>
 <url>
-    <loc>https://mysetup.co/pages/q&amp;a</loc>
+    <loc><?= $this->Url->build('/pages/q&a', true) ?></loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
 </url>
