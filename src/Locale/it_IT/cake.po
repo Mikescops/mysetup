@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
-"POT-Creation-Date: 2018-06-21 16:10+0000\n"
-"PO-Revision-Date: 2018-06-21 18:47+0200\n"
+"POT-Creation-Date: 2019-07-19 21:03+0000\n"
+"PO-Revision-Date: 2019-07-19 23:06+0200\n"
 "Last-Translator: \n"
 "Language-Team: fr <support@mysetup.co>\n"
 "Language: it_IT\n"
@@ -13,19 +13,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: Controller/Component/AuthComponent.php:500
 msgid "You are not authorized to access that location."
 msgstr "Non sei autorizzato ad accedere a questa pagina web."
 
 #: Controller/Component/CsrfComponent.php:162
-#: Http/Middleware/CsrfProtectionMiddleware.php:190
+#: Http/Middleware/CsrfProtectionMiddleware.php:191
 msgid "Missing CSRF token cookie"
 msgstr "Missing CSRF token cookie"
 
 #: Controller/Component/CsrfComponent.php:166
-#: Http/Middleware/CsrfProtectionMiddleware.php:194
+#: Http/Middleware/CsrfProtectionMiddleware.php:195
 msgid "CSRF token mismatch."
 msgstr "CSRF token mismatch."
 
@@ -37,11 +37,11 @@ msgstr "Non trovato"
 msgid "An Internal Error Has Occurred."
 msgstr "Un errore interno si è verificato ."
 
-#: Http/Response.php:2603
+#: Http/Response.php:2620
 msgid "The requested file contains `..` and will not be read."
 msgstr "Il file richiesto contiene `..` e non sarà letto."
 
-#: Http/Response.php:2624
+#: Http/Response.php:2641
 msgid "The requested file was not found"
 msgstr "Il file richiesto non è stato trovato"
 
@@ -225,15 +225,15 @@ msgstr "Questo campo non può essere vuoto"
 msgid "The provided value is invalid"
 msgstr "La valore assegnata non è valida"
 
-#: View/Helper/FormHelper.php:1097
+#: View/Helper/FormHelper.php:1099
 msgid "Edit {0}"
 msgstr "Modificare {0}"
 
-#: View/Helper/FormHelper.php:1099
+#: View/Helper/FormHelper.php:1101
 msgid "New {0}"
 msgstr "Appendice {0}"
 
-#: View/Helper/FormHelper.php:1986
+#: View/Helper/FormHelper.php:1988
 msgid "Submit"
 msgstr "Presentare"
 
