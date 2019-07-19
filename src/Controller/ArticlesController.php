@@ -93,18 +93,13 @@ class ArticlesController extends AppController
             if($this->Articles->save($article))
             {
                 $this->Flash->success(__('The article has been saved.'));
-
                 return $this->redirect('/blog/' . $article->id . '-' . Text::slug($article->title));
             }
 
-            else
-            {
-                $this->Articles->deletePicture($article['picture']);
-                $this->Flash->error(__('The article could not be saved. Please, try again.'));
+            $this->Articles->deletePicture($article['picture']);
+            $this->Flash->error(__('The article could not be saved. Please, try again.'));
 
-                return $this->redirect(['action' => 'add']);
-            }
-
+            return $this->redirect(['action' => 'add']);
         }
 
         $categories = $this->Articles->categories;
@@ -163,18 +158,14 @@ class ArticlesController extends AppController
                 return $this->redirect('/blog/' . $article->id . '-' . Text::slug($article->title));
             }
 
-            else
+            // If the user uploaded a new image (different path), we've to delete it now !
+            if($pictureToDelete != $data['picture'])
             {
-                // If the user uploaded a new image (different path), we've to delete it now !
-                if($pictureToDelete != $data['picture'])
-                {
-                    $this->Articles->deletePicture($data['picture']);
-                }
-
-                $this->Flash->error(__('The article could not be saved. Please, try again.'));
-
-                return $this->redirect($this->referer());
+                $this->Articles->deletePicture($data['picture']);
             }
+
+            $this->Flash->error(__('The article could not be saved. Please, try again.'));
+            return $this->redirect($this->referer());
         }
 
         $categories = $this->Articles->categories;
@@ -201,11 +192,8 @@ class ArticlesController extends AppController
             return $this->redirect(['action' => 'index']);
         }
 
-        else
-        {
-            $this->Flash->error(__('The article could not be deleted. Please, try again.'));
-            return $this->redirect(['action' => 'view', $id]);
-        }
+        $this->Flash->error(__('The article could not be deleted. Please, try again.'));
+        return $this->redirect(['action' => 'view', $id]);
     }
 
     public function beforeFilter(Event $event)
@@ -227,10 +215,7 @@ class ArticlesController extends AppController
                     return true;
                 }
 
-                else
-                {
-                    return false;
-                }
+                return false;
             }
 
             // Each admin can add a new article, or edit an existing one
@@ -239,10 +224,7 @@ class ArticlesController extends AppController
                 return true;
             }
 
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         // Useless but left for the future

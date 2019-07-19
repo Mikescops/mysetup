@@ -159,11 +159,8 @@ class SetupsController extends AppController
                 return $this->redirect(['action' => 'view', $setup->id]);
             }
 
-            else
-            {
-                $this->Flash->error(__('The setup could not be saved. Please, try again.'));
-                return $this->redirect($this->referer());
-            }
+            $this->Flash->error(__('The setup could not be saved. Please, try again.'));
+            return $this->redirect($this->referer());
         }
     }
 
@@ -315,10 +312,7 @@ class SetupsController extends AppController
             return $this->redirect('/');
         }
 
-        else
-        {
-            return $this->redirect($this->referer());
-        }
+        return $this->redirect($this->referer());
     }
 
     public function beforeFilter(Event $event)

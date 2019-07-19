@@ -257,17 +257,11 @@ class ResourcesTable extends Table
                 return false;
             }
 
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
-        else
-        {
-            $flash->warning(__('One of the files you uploaded does not validate our rules... Please contact an administrator.'));
-            return false;
-        }
+        $flash->warning(__('One of the files you uploaded does not validate our rules... Please contact an administrator.'));
+        return false;
     }
 
     public function saveResourceVideo($video, $setup, $type, $flash)
@@ -294,18 +288,12 @@ class ResourcesTable extends Table
                 return false;
             }
 
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
-        else
-        {
-            $flash->warning(__('The video link you chose does not validate our rules... Please contact an administrator.'));
-            $this->Users->Notifications->warnAdminAboutUnsavedLink($setup->user_id, $video, 'VIDEO');
-            return false;
-        }
+        $flash->warning(__('The video link you chose does not validate our rules... Please contact an administrator.'));
+        $this->Users->Notifications->warnAdminAboutUnsavedLink($setup->user_id, $video, 'VIDEO');
+        return false;
     }
 
     /* This function fetches images from `gallery0, gallery1, ..., gallery4` inputs, and replaces old ones if existing ! */

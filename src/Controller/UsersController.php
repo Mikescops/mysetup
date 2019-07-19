@@ -155,18 +155,12 @@ class UsersController extends AppController
                     return $this->redirect('/');
                 }
 
-                else
-                {
-                    $this->Flash->error(__('Your account could not be registered, either your name or email address is already being used'));
-                    return $this->redirect($this->referer());
-                }
-            }
-
-            else
-            {
-                $this->Flash->error(__('These passwords do not match. Please try again.'));
+                $this->Flash->error(__('Your account could not be registered, either your name or email address is already being used'));
                 return $this->redirect($this->referer());
             }
+
+            $this->Flash->error(__('These passwords do not match. Please try again.'));
+            return $this->redirect($this->referer());
         }
     }
 
@@ -322,19 +316,13 @@ class UsersController extends AppController
             return $this->redirect($this->Auth->logout());
         }
 
-        else
+        // If the user is consulting this very entity, let's redirect him to the home page.
+        if(strpos($this->referer(), (string)$user->id) !== false)
         {
-            // If the user is consulting this very entity, let's redirect him to the home page.
-            if(strpos($this->referer(), (string)$user->id) !== false)
-            {
-                return $this->redirect('/');
-            }
-
-            else
-            {
-                return $this->redirect($this->referer());
-            }
+            return $this->redirect('/');
         }
+
+        return $this->redirect($this->referer());
     }
 
     public function login()
@@ -359,29 +347,23 @@ class UsersController extends AppController
                     return $this->redirect($this->referer());
                 }
 
-                else
-                {
-                    // Let's save the current date / time in the DB...
-                    $user = $this->Users->get($user['id']);
-                    $user->lastLogginDate = Time::now();
-                    // The `modificationDate` value won't change as we've just updated the `lastLogginDate` value...
-                    $user->setDirty('modificationDate', true);
-                    $this->Users->save($user);
+                // Let's save the current date / time in the DB...
+                $user = $this->Users->get($user['id']);
+                $user->lastLogginDate = Time::now();
+                // The `modificationDate` value won't change as we've just updated the `lastLogginDate` value...
+                $user->setDirty('modificationDate', true);
+                $this->Users->save($user);
 
-                    $this->Flash->success(__('You are successfully logged in !'));
+                $this->Flash->success(__('You are successfully logged in !'));
 
-                    $this->Users->prepareSessionForUser($this->request->getSession(), $user);
-                    $this->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $user, parent::isAdmin($user));
+                $this->Users->prepareSessionForUser($this->request->getSession(), $user);
+                $this->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $user, parent::isAdmin($user));
 
-                    $this->Auth->setUser($user);
-                    return $this->redirect($this->Auth->redirectUrl());
-                }
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
             }
 
-            else
-            {
-                $this->Flash->error(__('Username or password is incorrect'));
-            }
+            $this->Flash->error(__('Username or password is incorrect'));
         }
     }
 
@@ -393,11 +375,8 @@ class UsersController extends AppController
             return $this->redirect($this->Auth->logout());
         }
 
-        else
-        {
-            $this->Flash->warning(__('You can\'t logout because you\'re not connected.'));
-            return $this->redirect($this->referer());
-        }
+        $this->Flash->warning(__('You can\'t logout because you\'re not connected.'));
+        return $this->redirect($this->referer());
     }
 
     public function resetPassword()
@@ -428,25 +407,16 @@ class UsersController extends AppController
                     return $this->redirect(['action' => 'login']);
                 }
 
-                else
-                {
-                    $this->Flash->error(__("Internal error, please try again."));
-                    return $this->redirect(['action' => 'login']);
-                }
-            }
-
-            else
-            {
-                $this->Flash->warning(__("This email address does not exist in our database. Are you sure you that you have an account ?"));
+                $this->Flash->error(__("Internal error, please try again."));
                 return $this->redirect(['action' => 'login']);
             }
-        }
 
-        else
-        {
-            $this->Flash->error(__("Internal error, please try again."));
+            $this->Flash->warning(__("This email address does not exist in our database. Are you sure you that you have an account ?"));
             return $this->redirect(['action' => 'login']);
         }
+
+        $this->Flash->error(__("Internal error, please try again."));
+        return $this->redirect(['action' => 'login']);
     }
 
     public function verifyAccount($id = null, $token = null)
@@ -478,18 +448,12 @@ class UsersController extends AppController
                     return $this->redirect($this->Auth->redirectUrl());
                 }
 
-                else
-                {
-                    $this->Flash->error(__('Your token is invalid'));
-                    return $this->redirect('/');
-                }
-            }
-
-            else
-            {
-                $this->Flash->error(__('This request is invalid'));
+                $this->Flash->error(__('Your token is invalid'));
                 return $this->redirect('/');
             }
+
+            $this->Flash->error(__('This request is invalid'));
+            return $this->redirect('/');
         }
     }
 
@@ -629,12 +593,10 @@ class UsersController extends AppController
                         $this->Flash->warning(__('Your unverified existing account cannot be linked to Twitch because your email address is not verified either. Please verify it before retrying (you will receive a new email soon).'));
                         return $this->redirect('/');
                     }
-                    else
-                    {
-                        // If the Twitch address is verified, let's do the same into our DB
-                        $user->mailVerification = null;
-                        $this->Flash->success(__('Your existing account has been verified during this first Twitch connection !'));
-                    }
+
+                    // If the Twitch address is verified, let's do the same into our DB
+                    $user->mailVerification = null;
+                    $this->Flash->success(__('Your existing account has been verified during this first Twitch connection !'));
                 }
 
                 // This user entity has a verified email address, but an unverified one on Twitch.

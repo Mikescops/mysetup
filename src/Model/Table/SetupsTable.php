@@ -162,10 +162,7 @@ class SetupsTable extends Table
                     return true;
                 }
 
-                else
-                {
-                    return false;
-                }
+                return false;
             },
             'statusIntegrity_rule');
 

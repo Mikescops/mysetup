@@ -179,11 +179,7 @@ class AppController extends Controller
             return true;
         }
 
-        else
-        {
-            $this->redirect('/');
-            return false;
-        }
+        return false;
     }
 
     /* DANGEROUS PART */
@@ -194,10 +190,7 @@ class AppController extends Controller
             return true;
         }
 
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     protected function isAdminBySession($session)
@@ -207,10 +200,7 @@ class AppController extends Controller
             return true;
         }
 
-        else
-        {
-            return false;
-        }
+        return false;
     }
     /* _______________*/
 }
