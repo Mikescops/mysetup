@@ -137,12 +137,20 @@ return [
             'prefix'      => 'twitchPromote_',
             'probability' => 75
         ],
-        // Set the home page cache for 6 hours
+        // Set the home page cache for 6 hours.
         'HomePageCacheConfig' => [
             'className'   => 'Cake\Cache\Engine\ApcuEngine',
             'duration'    => '+6 hours',
             'prefix'      => 'homePage_',
             'probability' => 50
+        ],
+        // We'll serve Sitemap files during one day before building them again.
+        'SitemapsCacheConfig' => [
+            'className'   => 'Cake\Cache\Engine\FileEngine',
+            'duration'    => '+1 day',
+            'path'        => CACHE . 'sitemaps' . DS,
+            'prefix'      => 'sitemap_',
+            'probability' => 75
         ],
     ],
 
