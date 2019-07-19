@@ -1,35 +1,23 @@
 <sitemap>
     <loc>
-        <?= $this->Url->build([
-            'controller' => 'sitemaps',
-            'action' => 'static'
-        ], true) ?>
+        <?= $this->Url->build('/sitemap-static.xml', true) ?>
     </loc>
 </sitemap>
 
 <sitemap>
     <loc>
-        <?= $this->Url->build([
-            'controller' => 'sitemaps',
-            'action' => 'setups'
-        ], true) ?>
+        <?= $this->Url->build('/sitemap-setups.xml', true) ?>
     </loc>
 </sitemap>
 
 <sitemap>
     <loc>
-        <?= $this->Url->build([
-            'controller' => 'sitemaps',
-            'action' => 'articles'
-        ], true) ?>
+        <?= $this->Url->build('/sitemap-blog.xml', true) ?>
     </loc>
 </sitemap>
 
 <sitemap>
     <loc>
-        <?= $this->Url->build([
-            'controller' => 'sitemaps',
-            'action' => 'users'
-        ], true) ?>
+        <?= $this->Url->build('/sitemap-users.xml', true) ?>
     </loc>
 </sitemap>
