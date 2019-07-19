@@ -19,7 +19,7 @@ use Cake\Core\Configure;
 /**
  * Application View
  *
- * Your application’s default view class
+ * Your application's default view class
  *
  * @link http://book.cakephp.org/3.0/en/views.html#the-app-view
  */
