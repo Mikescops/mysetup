@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
-"POT-Creation-Date: 2019-04-28 15:04+0000\n"
-"PO-Revision-Date: 2019-04-28 17:10+0200\n"
+"POT-Creation-Date: 2019-07-19 21:03+0000\n"
+"PO-Revision-Date: 2019-07-19 23:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: fr <support@mysetup.co>\n"
 "Language: it_IT\n"
@@ -61,19 +61,19 @@ msgstr[1] "le notifiche non possono essere inviate ..."
 msgid "You need a featured image with this article !"
 msgstr "Hai bisogno di un'immagine per questo articolo !"
 
-#: Controller/ArticlesController.php:95;161
+#: Controller/ArticlesController.php:95;156
 msgid "The article has been saved."
 msgstr "L'articolo è stato salvato."
 
-#: Controller/ArticlesController.php:103;174
+#: Controller/ArticlesController.php:100;167
 msgid "The article could not be saved. Please, try again."
 msgstr "Impossibile salvare l'articolo. Riprova."
 
-#: Controller/ArticlesController.php:200
+#: Controller/ArticlesController.php:191
 msgid "The article has been deleted."
 msgstr "L'articolo è stato cancellato."
 
-#: Controller/ArticlesController.php:206
+#: Controller/ArticlesController.php:195
 msgid "The article could not be deleted. Please, try again."
 msgstr "Impossibile cancellare l'articolo. Riprova."
 
@@ -193,19 +193,19 @@ msgstr ""
 msgid "The setup has been saved."
 msgstr "Il setup è stato salvato."
 
-#: Controller/SetupsController.php:164;280
+#: Controller/SetupsController.php:162;277
 msgid "The setup could not be saved. Please, try again."
 msgstr "Impossibile salvare il setup. Riprova."
 
-#: Controller/SetupsController.php:275
+#: Controller/SetupsController.php:272
 msgid "The setup has been updated."
 msgstr "Il setup è stato aggiornato."
 
-#: Controller/SetupsController.php:306
+#: Controller/SetupsController.php:303
 msgid "The setup has been deleted."
 msgstr "Il setup è stato cancellato."
 
-#: Controller/SetupsController.php:310
+#: Controller/SetupsController.php:307
 msgid "The setup could not be deleted. Please, try again."
 msgstr "Impossibile cancellare il setup. Riprova."
 
@@ -215,7 +215,7 @@ msgstr ""
 "Il tuo account è stato creato, controlla la tua email per verificare il tuo "
 "account"
 
-#: Controller/UsersController.php:160
+#: Controller/UsersController.php:158
 msgid ""
 "Your account could not be registered, either your name or email address is "
 "already being used"
@@ -223,11 +223,11 @@ msgstr ""
 "Il tuo account non può essere registrato, il tuo nome o indirizzo e-mail è "
 "già in uso"
 
-#: Controller/UsersController.php:167;203
+#: Controller/UsersController.php:162;197
 msgid "These passwords do not match. Please try again."
 msgstr "Queste password non combaciano. Riprova."
 
-#: Controller/UsersController.php:222;233;245;257
+#: Controller/UsersController.php:216;227;239;251
 msgid ""
 "One of your social inputs URL does not fit with its field. It has not been "
 "saved"
@@ -235,59 +235,59 @@ msgstr ""
 "Uno dei tuoi URL di input sociali non è adatto al suo campo. Non è stato "
 "salvato"
 
-#: Controller/UsersController.php:281
+#: Controller/UsersController.php:275
 msgid "The user has been updated."
 msgstr "L'utente è stato aggiornato."
 
-#: Controller/UsersController.php:286
+#: Controller/UsersController.php:280
 msgid "The user could not be updated. Please, try again."
 msgstr "L'utente non poteva essere aggiornato. Riprova."
 
-#: Controller/UsersController.php:308
+#: Controller/UsersController.php:302
 msgid "The user has been deleted."
 msgstr "L'utente è stato cancellatto."
 
-#: Controller/UsersController.php:310
+#: Controller/UsersController.php:304
 msgid "The user could not be deleted. Please, try again."
 msgstr "L'utente non poteva essere cancellatto. Riprova."
 
-#: Controller/UsersController.php:316
+#: Controller/UsersController.php:310
 msgid "You just CANNOT delete the admin user of the website..."
 msgstr "Non puoi cancellare l'amministratore del website ..."
 
-#: Controller/UsersController.php:344
+#: Controller/UsersController.php:332
 msgid "You are already logged in."
 msgstr "Sei già collegato."
 
-#: Controller/UsersController.php:358
+#: Controller/UsersController.php:346
 msgid "Your account is not verified, check your emails !"
 msgstr "Il tuo account non è verificato, controlla le tue e-mail!"
 
-#: Controller/UsersController.php:371;580
+#: Controller/UsersController.php:357;544
 msgid "You are successfully logged in !"
 msgstr "Hai eseguito il login con successo!"
 
-#: Controller/UsersController.php:383
+#: Controller/UsersController.php:366
 msgid "Username or password is incorrect"
 msgstr "Username o password sono sbagliati"
 
-#: Controller/UsersController.php:392
+#: Controller/UsersController.php:374
 msgid "You are now logged out, see you soon !"
 msgstr "Sei ora disconnesso, ti vedi presto!"
 
-#: Controller/UsersController.php:398
+#: Controller/UsersController.php:378
 msgid "You can't logout because you're not connected."
 msgstr "Non puoi disconnettersi perché non sei connesso."
 
-#: Controller/UsersController.php:427
+#: Controller/UsersController.php:406
 msgid "An email has been sent to this email address !"
 msgstr "E-mail è stata inviata a questo indirizzo!"
 
-#: Controller/UsersController.php:433;447
+#: Controller/UsersController.php:410;418
 msgid "Internal error, please try again."
 msgstr "Errore interno, riprova."
 
-#: Controller/UsersController.php:440
+#: Controller/UsersController.php:414
 msgid ""
 "This email address does not exist in our database. Are you sure you that you "
 "have an account ?"
@@ -295,33 +295,33 @@ msgstr ""
 "Questo indirizzo email non esiste nel nostro database. Sei sicuro di avere "
 "un account?"
 
-#: Controller/UsersController.php:470;707
+#: Controller/UsersController.php:440;669
 msgid "We advise you to edit your profile (use the panel at the top)..."
 msgstr ""
 "Ti consigliamo di modificare il tuo profilo (utilizza il pannello più "
 "alto) ..."
 
-#: Controller/UsersController.php:471;708
+#: Controller/UsersController.php:441;670
 msgid "... in order to add a profile picture ! You'd look better :P"
 msgstr "... per aggiungere un'immagine del profilo! Sembri meglio: P"
 
-#: Controller/UsersController.php:473
+#: Controller/UsersController.php:443
 msgid "Your account is now activated, you're now logged in ;)"
 msgstr "Il tuo account è attivo, sei connesso;)"
 
-#: Controller/UsersController.php:483
+#: Controller/UsersController.php:451
 msgid "Your token is invalid"
 msgstr "Il tuo token è non valido"
 
-#: Controller/UsersController.php:490
+#: Controller/UsersController.php:455
 msgid "This request is invalid"
 msgstr "Questa richiesta è non valida"
 
-#: Controller/UsersController.php:528;545
+#: Controller/UsersController.php:492;509
 msgid "We could not access Twitch's data"
 msgstr "Non abbiamo potuto accedere ai dati del Twitch"
 
-#: Controller/UsersController.php:576
+#: Controller/UsersController.php:540
 msgid ""
 "Your (new) Twitch email address is already linked to a regular account. "
 "Please contact an administrator"
@@ -329,7 +329,7 @@ msgstr ""
 "Il tuo (nuovo) indirizzo email di Twitch è già collegato ad un account "
 "normale. Contattare un amministratore"
 
-#: Controller/UsersController.php:594
+#: Controller/UsersController.php:558
 msgid ""
 "Your email address has been synchronized with the one from your Twitch "
 "account"
@@ -337,7 +337,7 @@ msgstr ""
 "Il tuo indirizzo email è stato sincronizzato con quello del tuo account "
 "Twitch"
 
-#: Controller/UsersController.php:599
+#: Controller/UsersController.php:563
 msgid ""
 "The new email address of your Twitch account has not been verified. Thus, we "
 "haven't updated it here yet"
@@ -345,7 +345,7 @@ msgstr ""
 "Il nuovo indirizzo email del tuo account Twitch non è stato verificato. "
 "Quindi, non l'abbiamo ancora aggiornato qui"
 
-#: Controller/UsersController.php:629
+#: Controller/UsersController.php:593
 msgid ""
 "Your unverified existing account cannot be linked to Twitch because your "
 "email address is not verified either. Please verify it before retrying (you "
@@ -355,14 +355,14 @@ msgstr ""
 "perché nemmeno il tuo indirizzo email è verificato. Si prega di verificare "
 "prima di riprovare (riceverai una nuova email presto)."
 
-#: Controller/UsersController.php:636
+#: Controller/UsersController.php:599
 msgid ""
 "Your existing account has been verified during this first Twitch connection !"
 msgstr ""
 "Il tuo account esistente è stato verificato durante questa prima connessione "
 "Twitch !"
 
-#: Controller/UsersController.php:645
+#: Controller/UsersController.php:607
 msgid ""
 "The email address of your Twitch account is not verified. We can't link your "
 "accounts yet"
@@ -370,11 +370,11 @@ msgstr ""
 "L'indirizzo email del tuo account Twitch non è stato verificato. Non "
 "possiamo legare i tuoi conti"
 
-#: Controller/UsersController.php:655
+#: Controller/UsersController.php:617
 msgid "Your account has just been linked to your Twitch one !"
 msgstr "Il tuo account è stato appena collegato al tuo Twitch !"
 
-#: Controller/UsersController.php:668
+#: Controller/UsersController.php:630
 msgid ""
 "The email address of your Twitch account has not been verified. We can't "
 "create your account yet"
@@ -382,18 +382,18 @@ msgstr ""
 "L'indirizzo email del tuo account Twitch non è stato verificato. Non "
 "possiamo ancora creare il tuo account"
 
-#: Controller/UsersController.php:704
+#: Controller/UsersController.php:666
 msgid "Your account is now activated, and you have been logged in ;)"
 msgstr "Il tuo account è ora attivato e hai effettuato il login ;)"
 
-#: Controller/UsersController.php:717
+#: Controller/UsersController.php:679
 msgid ""
 "An error occurred while saving your account. Please contact an administrator."
 msgstr ""
 "Si è verificato un errore durante il salvataggio dell'account. Contattare un "
 "amministratore."
 
-#: Model/Table/ArticlesTable.php:121
+#: Model/Table/ArticlesTable.php:118
 msgid ""
 "An internal error occurred while saving your image... Please contact an "
 "administrator."
@@ -401,7 +401,7 @@ msgstr ""
 "Si è verificato un errore interno durante il salvataggio dell'immagine ... "
 "Contatta un amministratore."
 
-#: Model/Table/ArticlesTable.php:134
+#: Model/Table/ArticlesTable.php:131
 msgid ""
 "Your image could not be converted to JPG, compressed, resized or saved... "
 "Please contact an administrator."
@@ -409,11 +409,11 @@ msgstr ""
 "La tua immagine non può essere convertita in JPG, compressa, ridimensionata "
 "o salvata ... Contatta un amministratore."
 
-#: Model/Table/ArticlesTable.php:145
+#: Model/Table/ArticlesTable.php:142
 msgid "Your image could not be saved."
 msgstr "La tua immagine non può essere salvata."
 
-#: Model/Table/ArticlesTable.php:152
+#: Model/Table/ArticlesTable.php:149
 msgid ""
 "Your image does not validate our rules... Please contact an administrator."
 msgstr ""
@@ -432,7 +432,7 @@ msgstr ""
 "Uno dei prodotti che hai scelto non convalida le nostre regole ... Si prega "
 "di contattare un amministratore."
 
-#: Model/Table/ResourcesTable.php:194;256;293
+#: Model/Table/ResourcesTable.php:194;256;287
 msgid ""
 "One of your resources could not be saved... Please contact an administrator."
 msgstr ""
@@ -455,7 +455,7 @@ msgstr ""
 "Una delle tue immagini non poteva essere convertita in JPG, compressa, "
 "ridimensionata o salvata ... Contattare un amministratore."
 
-#: Model/Table/ResourcesTable.php:268
+#: Model/Table/ResourcesTable.php:263
 msgid ""
 "One of the files you uploaded does not validate our rules... Please contact "
 "an administrator."
@@ -463,7 +463,7 @@ msgstr ""
 "Uno dei file caricati non convalida le nostre regole ... Si prega di "
 "contattare un amministratore."
 
-#: Model/Table/ResourcesTable.php:305
+#: Model/Table/ResourcesTable.php:294
 msgid ""
 "The video link you chose does not validate our rules... Please contact an "
 "administrator."
@@ -471,7 +471,7 @@ msgstr ""
 "Il collegamento video che hai scelto non convalida le nostre regole ... Si "
 "prega di contattare un amministratore."
 
-#: Model/Table/ResourcesTable.php:404
+#: Model/Table/ResourcesTable.php:392
 msgid "One of the setup images could not be migrated."
 msgstr "Non è stato possibile migrare una delle immagini di setup."
 
@@ -483,19 +483,19 @@ msgstr "Questo titolo è troppo lungo (più di 48 caratteri)"
 msgid "This description is too long (more than 5000 characters)"
 msgstr "Questa descrizione è troppo lunga (più di 5000 caratteri)"
 
-#: Model/Table/UsersTable.php:133
+#: Model/Table/UsersTable.php:131
 msgid "This E-mail address is already used"
 msgstr "Questo indirizzo e-mail è già utilizzato"
 
-#: Model/Table/UsersTable.php:137
+#: Model/Table/UsersTable.php:135
 msgid "We need a valid E-mail address"
 msgstr "Abbiamo bisogno di un indirizzo e-mail valido"
 
-#: Model/Table/UsersTable.php:143
+#: Model/Table/UsersTable.php:141
 msgid "The password has to contain more than 8 characters"
 msgstr "La password deve contenere più di 8 caratteri"
 
-#: Model/Table/UsersTable.php:335
+#: Model/Table/UsersTable.php:326
 msgid ""
 "An internal error occurred while creating your profile picture. Please "
 "contact an administrator."
@@ -503,14 +503,14 @@ msgstr ""
 "Si è verificato un errore interno durante la creazione dell'immagine del "
 "profilo. Contattare un amministratore."
 
-#: Model/Table/UsersTable.php:341
+#: Model/Table/UsersTable.php:332
 msgid ""
 "Your default picture could not be set... Please contact an administrator."
 msgstr ""
 "Impossibile impostare l'immagine predefinita ... Si prega di contattare un "
 "amministratore."
 
-#: Model/Table/UsersTable.php:351
+#: Model/Table/UsersTable.php:342
 msgid ""
 "An internal error occurred while saving your profile picture. Please contact "
 "an administrator."
@@ -518,7 +518,7 @@ msgstr ""
 "Si è verificato un errore interno durante il salvataggio dell'immagine del "
 "profilo. Si prega di contattare un amministratore."
 
-#: Model/Table/UsersTable.php:365
+#: Model/Table/UsersTable.php:356
 msgid ""
 "Your profile picture could not be compressed, resized, converted to a PNG "
 "format or saved... Please contact an administrator."
@@ -527,11 +527,11 @@ msgstr ""
 "convertita in formato PNG o salvata ... Si prega di contattare un "
 "amministratore."
 
-#: Model/Table/UsersTable.php:371
+#: Model/Table/UsersTable.php:362
 msgid "Your profile picture could not be saved."
 msgstr "L'immagine del tuo profilo non poteva essere salvata."
 
-#: Model/Table/UsersTable.php:377
+#: Model/Table/UsersTable.php:368
 msgid ""
 "The file you uploaded does not validate our rules... Please contact an "
 "administrator."
@@ -539,7 +539,7 @@ msgstr ""
 "Il file che hai caricato non convalida le nostre regole ... Si prega di "
 "contattare un amministratore."
 
-#: Model/Table/UsersTable.php:454
+#: Model/Table/UsersTable.php:445
 msgid ""
 "Your profile picture could not be resized, converted to a PNG format or "
 "saved... Please contact an administrator."

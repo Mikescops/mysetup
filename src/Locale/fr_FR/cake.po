@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
-"POT-Creation-Date: 2018-06-21 16:10+0000\n"
-"PO-Revision-Date: 2018-06-21 18:44+0200\n"
+"POT-Creation-Date: 2019-07-19 21:03+0000\n"
+"PO-Revision-Date: 2019-07-19 23:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: fr <support@mysetup.co>\n"
 "Language: fr\n"
@@ -13,19 +13,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: Controller/Component/AuthComponent.php:500
 msgid "You are not authorized to access that location."
 msgstr "Vous n'êtes pas autorisé(e) à accéder à cette page."
 
 #: Controller/Component/CsrfComponent.php:162
-#: Http/Middleware/CsrfProtectionMiddleware.php:190
+#: Http/Middleware/CsrfProtectionMiddleware.php:191
 msgid "Missing CSRF token cookie"
 msgstr "Cookie CSRF manquant"
 
 #: Controller/Component/CsrfComponent.php:166
-#: Http/Middleware/CsrfProtectionMiddleware.php:194
+#: Http/Middleware/CsrfProtectionMiddleware.php:195
 msgid "CSRF token mismatch."
 msgstr "Jeton CSRF invalide."
 
@@ -37,11 +37,11 @@ msgstr "Non trouvée"
 msgid "An Internal Error Has Occurred."
 msgstr "Une erreur interne est survenue."
 
-#: Http/Response.php:2603
+#: Http/Response.php:2620
 msgid "The requested file contains `..` and will not be read."
 msgstr "Le fichier demandé contient `..` et ne sera pas lu."
 
-#: Http/Response.php:2624
+#: Http/Response.php:2641
 msgid "The requested file was not found"
 msgstr "Le fichier demandé n'a pas été trouvé"
 
@@ -225,15 +225,15 @@ msgstr "Ce champ ne put pas être laissé vide"
 msgid "The provided value is invalid"
 msgstr "La valeur renseignée est invalide"
 
-#: View/Helper/FormHelper.php:1097
+#: View/Helper/FormHelper.php:1099
 msgid "Edit {0}"
 msgstr "Éditer {0}"
 
-#: View/Helper/FormHelper.php:1099
+#: View/Helper/FormHelper.php:1101
 msgid "New {0}"
 msgstr "Ajouter {0}"
 
-#: View/Helper/FormHelper.php:1986
+#: View/Helper/FormHelper.php:1988
 msgid "Submit"
 msgstr "Soumettre"
 

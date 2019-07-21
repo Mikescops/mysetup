@@ -27,9 +27,6 @@ class CaptchaComponent extends Component
             return false;
         }
 
-        else
-        {
-            return true;
-        }
+        return true;
     }
 }

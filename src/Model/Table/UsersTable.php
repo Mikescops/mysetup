@@ -119,11 +119,9 @@ class UsersTable extends Table
                         // For Users.{add,twitch}, we just check the non-existence of an entity already having this email address.
                         return !$this->exists(['mail' => strtolower($email)]);
                     }
-                    else
-                    {
-                        // This is for Users.edit, we check that ONLY ONE entity got this (new ?) email address.
-                        return ($this->find()->where(['mail' => strtolower($email), 'id !=' => $context['data']['id']])->count() === 0);
-                    }
+
+                    // This is for Users.edit, we check that ONLY ONE entity got this (new ?) email address.
+                    return ($this->find()->where(['mail' => strtolower($email), 'id !=' => $context['data']['id']])->count() === 0);
                 },
                 'message' => __('This E-mail address is already used')
             ])
@@ -206,10 +204,8 @@ class UsersTable extends Table
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+
+                return false;
             },
             'timeZoneIntegrity_rule');
 
@@ -219,10 +215,8 @@ class UsersTable extends Table
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+
+                return false;
             },
             'preferredStoreIntegrity_rule');
 
@@ -234,10 +228,7 @@ class UsersTable extends Table
                     return false;
                 }
 
-                else
-                {
-                    return true;
-                }
+                return true;
             },
             'mainSetup_idIntegrity_rule');
 
@@ -450,10 +441,7 @@ class UsersTable extends Table
             return false;
         }
 
-        else
-        {
-            return true;
-        }
+        return true;
     }
 
     /*
