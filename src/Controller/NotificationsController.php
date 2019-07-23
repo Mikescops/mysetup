@@ -30,7 +30,7 @@ class NotificationsController extends AppController
                 ]
             ]);
 
-            $this->set('notifications', $notifications);
+            $this->set('notifications', $this->buildNotifications($notifications));
         }
     }
 
@@ -50,32 +50,7 @@ class NotificationsController extends AppController
                 'limit' => $this->request->getQuery('n', 4)
             ]);
 
-            $results['notifications'] = [];
-
-            // Here we'll concatenate 'on-the-go' a "time ago with words" to the notifications content and makes some translations (it was the actually the goal of this method...)
-            foreach($notifications as $notification)
-            {
-                $notification->content = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $notification->dateTime->timeAgoInWords() . '</span></a>', $notification->content);
-
-                if(strpos($notification->content, $this->Notifications->types['like']))
-                {
-                    $notification->content = str_replace($this->Notifications->types['alt'], __('Liker\'s profile picture'), $notification->content);
-                    $notification->content = str_replace($this->Notifications->types['like'], __('liked your setup'), $notification->content);
-                }
-
-                elseif(strpos($notification->content, $this->Notifications->types['comment']))
-                {
-                    $notification->content = str_replace($this->Notifications->types['alt'], __('Commenter\'s profile picture'), $notification->content);
-                    $notification->content = str_replace($this->Notifications->types['comment'], __('commented your setup'), $notification->content);
-                }
-
-                else  // Other notifications...
-                {
-                    $notification->content = str_replace($this->Notifications->types['alt'], __('An user profile picture'), $notification->content);
-                }
-
-                array_push($results['notifications'], $notification);
-            }
+            $results['notifications'] = $this->buildNotifications($notifications);
 
             // Adds the unread notifications count to the output
             $results['count'] = $this->Notifications->find()->where([
@@ -88,6 +63,37 @@ class NotificationsController extends AppController
                 'body' => json_encode($results)
             ]);
         }
+    }
+
+    private function buildNotifications($notifications)
+    {
+        $builtNotifications = [];
+        // Here we'll concatenate 'on-the-go' a "time ago with words" to the notifications content and makes some translations (it was the actually the goal of this method...)
+        foreach($notifications as $notification)
+        {
+            $notification->content = str_replace('</a>', ' <span><i class="fa fa-clock-o"></i> ' . $notification->dateTime->timeAgoInWords() . '</span></a>', $notification->content);
+
+            if(strpos($notification->content, $this->Notifications->types['like']))
+            {
+                $notification->content = str_replace($this->Notifications->types['alt'], __('Liker\'s profile picture'), $notification->content);
+                $notification->content = str_replace($this->Notifications->types['like'], __('liked your setup'), $notification->content);
+            }
+
+            elseif(strpos($notification->content, $this->Notifications->types['comment']))
+            {
+                $notification->content = str_replace($this->Notifications->types['alt'], __('Commenter\'s profile picture'), $notification->content);
+                $notification->content = str_replace($this->Notifications->types['comment'], __('commented your setup'), $notification->content);
+            }
+
+            else  // Other notifications...
+            {
+                $notification->content = str_replace($this->Notifications->types['alt'], __('An user profile picture'), $notification->content);
+            }
+
+            array_push($builtNotifications, $notification);
+        }
+
+        return $builtNotifications;
     }
 
     public function markAsRead()

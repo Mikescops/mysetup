@@ -124,7 +124,7 @@ use Cake\Core\Configure;
             </div>
 
             <div class="mobile-nav">
-                <!-- <a class="nav-links"><i class="fa fa-bullhorn" aria-hidden="true"></i></a> -->
+                <a class="nav-links" href="<?= $this->Url->build(['controller' => 'Notifications', 'action' => 'index']) ?>"><i class="fa fa-bullhorn" aria-hidden="true"></i></a>
                 <a class="nav-links" onclick="revealElement($('.search-bar'))"><i class="fa fa-search"></i></a>
                 <a class="nav-links" href="#mobile-nav" data-lity><i class="fa fa-bars"></i></a>
             </div>

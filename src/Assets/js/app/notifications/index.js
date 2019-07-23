@@ -16,7 +16,12 @@ const checknotification = () => {
 				$('#notif-container').html('');
 				if (notifs['notifications'].length) {
 					$.each(notifs['notifications'], (key, value) => {
-						$('#notif-container').append(`<div onclick="markasread(${value.id})" class="notif notifnb-${value.id}">${value.content}<div class="notif-close"><span onclick="markasread(${value.id})">×</span></div></div>`);
+						$('#notif-container').append(`<div onclick="markNotificationAsRead(${value.id})" id="notifnb-${value.id}" class="notif notifnb-${value.id}">
+							${value.content}
+							<div class="notif-close">
+								<span onclick="markNotificationAsRead(${value.id})"><i class="fa fa-eye-slash"></i></span>
+							</div>
+						</div>`);
 					});
 
 					$('#notifications-trigger').addClass('notif-trigger');
@@ -36,20 +41,47 @@ const checknotification = () => {
 };
 
 /**
- * @name markasread
+ * @name markNotificationAsRead
  * @description Mark a notification as read - call cake controller AJAX request
  * @param {int} [id] [ID of notification]
  */
-const markasread = (id) => {
+const markNotificationAsRead = (id) => {
 	$.ajax({
 		url: webRootJs + 'notifications/markAsRead',
 		type: 'get',
 		data: {
-			'notification_id': id
-		},
+			id
+		}
 	});
 
-	$('.notifnb-' + id).remove();
+	$('#notifnb-' + id).remove();
+
+	$(`.notifnb-${id}`).removeClass('unread');
+	$(`.notifnb-${id} .notif-close`).html(`<span onclick="markNotificationAsUnread(${id})"><i class="fa fa-eye"></i></span>`);
+
+	if (!$.trim($('#notif-container').html()).length) {
+		$('#notifications-trigger').removeClass('notif-trigger');
+		$('#no-notif').show();
+		notificationInstance.update(notificationcenter);
+	}
+};
+
+/**
+ * @name markNotificationAsUnread
+ * @description Mark a notification as read - call cake controller AJAX request
+ * @param {int} [id] [ID of notification]
+ */
+const markNotificationAsUnread = (id) => {
+	$.ajax({
+		url: webRootJs + 'notifications/markAsUnread',
+		type: 'get',
+		data: {
+			id
+		}
+	});
+
+	$(`.notifnb-${id}`).addClass('unread');
+	$(`.notifnb-${id} .notif-close`).html(`<span onclick="markNotificationAsRead(${id})"><i class="fa fa-eye-slash"></i></span>`);
 
 	if (!$.trim($('#notif-container').html()).length) {
 		$('#notifications-trigger').removeClass('notif-trigger');

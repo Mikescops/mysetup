@@ -1,0 +1,19 @@
+.notifications-container {
+    max-width: 800px;
+    margin: 0 auto;
+
+    .notif {
+        padding: 16px 10px;
+        height: 83px;
+        border-left: 4px solid #3b3b3b;
+        border-bottom: 1px solid #3b3b3b;
+        position: relative;
+        text-align: left;
+        font-size: 14px;
+        line-height: 17px;
+
+        &.unread {
+            border-left: 4px solid #2167bd;
+        }
+    }
+}
