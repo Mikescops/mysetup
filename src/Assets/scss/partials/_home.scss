@@ -153,6 +153,13 @@
 	color: #d7d7d7;
 }
 
+.home_container {
+	.config-items{
+		max-height: 180px;
+	}
+	padding-bottom: 10px;
+}
+
 .fancy {
   line-height: unset;
   text-align: center;
@@ -178,7 +185,7 @@
 	-webkit-column-count: 2;
 	-moz-column-count: 2;
 	column-count: 2;
-	margin: 40px 10px;
+	margin: 30px 10px;
 	height: 110px;
 }
 

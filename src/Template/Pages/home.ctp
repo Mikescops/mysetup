@@ -5,94 +5,82 @@ $this->assign('title', 'mySetup.co | ' . __('Share your own setup'));
 
 echo $this->Html->meta('description', __('The best place to share your computer setup with your community ! Inspire others or get inspired with gaming setups, battlestations...'), ['block' => true]);
 
-echo $this->Html->meta(['property' => 'og:title', 'content' => 'mySetup.co | ' . __('Share your own setup')], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:description', 'content' => 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/', true)], null ,['block' => true]);
+echo $this->Html->meta(['property' => 'og:title', 'content' => 'mySetup.co | ' . __('Share your own setup')], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...'], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...'], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/', true)], null, ['block' => true]);
 
 ?>
 
-<div class="home_hero_container sitecontainer" <?php if($authUser['mainSetup_id'] != 0): ?>style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.80), #161623), url(<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg' )) ?>)"<?php endif ?>>
+<div class="home_hero_container sitecontainer" <?php if ($authUser['mainSetup_id'] != 0) : ?>style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.80), #161623), url(<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg')) ?>)" <?php endif ?>>
     <div class="container">
-    <?php if(!$authUser): ?>
-        <div class="hero_image">
-            <div class="hero_container">
-                <h2>Share<br> your setup,<br> get inspired</h2>
-                <?= $this->Html->image('hero.svg', ['alt' => 'Hero mySetup.co', 'class' => 'hero-setup']) ?>
-                <?= $this->Html->image('mouse.svg', ['alt' => 'Mouse mySetup.co', 'class' => 'hero-mouse']) ?>
-            </div>
-            <?= $this->Html->link(__('Add my setup'), '/login', ['class' => 'hero_calltoaction']) ?>
-        </div>
-    <?php else: ?>
-        <?php if($authUser['mainSetup_id'] == 0): ?>
-            <div class="hero_inner">
-                <div class="hero_column">
-                    <h3><?= __('You didn\'t add any setup yet !') ?></h3>
-                    <p><?= __('Start now and select all your setup\'s components.') ?></p>
+        <?php if (!$authUser) : ?>
+            <div class="hero_image">
+                <div class="hero_container">
+                    <h2>Share<br> your setup,<br> get inspired</h2>
+                    <?= $this->Html->image('hero.svg', ['alt' => 'Hero mySetup.co', 'class' => 'hero-setup']) ?>
+                    <?= $this->Html->image('mouse.svg', ['alt' => 'Mouse mySetup.co', 'class' => 'hero-mouse']) ?>
                 </div>
-                <div class="hero_column center-margin-button">
-                    <a href="#add_setup_modal" data-lity class="hero_calltoaction"><?= __('Add my setup now') ?></a>
-                </div>
+                <?= $this->Html->link(__('Add my setup'), '/login', ['class' => 'hero_calltoaction']) ?>
             </div>
-            <br>
-        <?php else: ?>
-            <div class="hero_mainsetup">
-                <h2><?= __('Your main setup has') ?> <?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?> !</h2>
-                <p><?= __('Share it to get more') ?> :</p>
+        <?php else : ?>
+            <?php if ($authUser['mainSetup_id'] == 0) : ?>
+                <div class="hero_inner">
+                    <div class="hero_column">
+                        <h3><?= __('You didn\'t add any setup yet !') ?></h3>
+                        <p><?= __('Start now and select all your setup\'s components.') ?></p>
+                    </div>
+                    <div class="hero_column center-margin-button">
+                        <a href="#add_setup_modal" data-lity class="hero_calltoaction"><?= __('Add my setup now') ?></a>
+                    </div>
+                </div>
+                <br>
+            <?php else : ?>
+                <div class="hero_mainsetup">
+                    <h2><?= __('Your main setup has') ?> <?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?> !</h2>
+                    <p><?= __('Share it to get more') ?> :</p>
 
-                <div class="embed-links">
-                    <a href="<?= $this->Url->build('/setups/'.$mainSetup->id.'-'.$this->Text->slug($mainSetup->title)) ?>" class="jssocials-share-link"><i class="fa fa-laptop"></i> <?= __('See it in action') ?></a>
-                    <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fab fa-twitch"></i> <?= __('Embed on Twitch') ?></a>
-                    <a href="#embed_website_script" data-lity class="jssocials-share-link"><i class="fa fa-code"></i> <?= __('Embed on your website') ?></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&t=<?= h($mainSetup->title )?>" target="_blank" class="jssocials-share-link"><i class="fab fa-facebook-square"></i> <?= __('Post it !') ?></a>
-                    <a href="https://twitter.com/intent/tweet?via=mysetup_co&url=<?= $this->Url->build('/setups/'.$mainSetup->id."-".$this->Text->slug($mainSetup->title), true)?>&text=<?= h($mainSetup->title) ?>" target="_blank" class="jssocials-share-link"><i class="fab fa-twitter"></i> <?= __('Tweet it !') ?></a>
+                    <div class="embed-links">
+                        <a href="<?= $this->Url->build('/setups/' . $mainSetup->id . '-' . $this->Text->slug($mainSetup->title)) ?>" class="jssocials-share-link"><i class="fa fa-laptop"></i> <?= __('See it in action') ?></a>
+                        <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fab fa-twitch"></i> <?= __('Embed on Twitch') ?></a>
+                        <a href="#embed_website_script" data-lity class="jssocials-share-link"><i class="fa fa-code"></i> <?= __('Embed on your website') ?></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build('/setups/' . $mainSetup->id . "-" . $this->Text->slug($mainSetup->title), true) ?>&t=<?= h($mainSetup->title) ?>" target="_blank" class="jssocials-share-link"><i class="fab fa-facebook-square"></i> <?= __('Post it !') ?></a>
+                        <a href="https://twitter.com/intent/tweet?via=mysetup_co&url=<?= $this->Url->build('/setups/' . $mainSetup->id . "-" . $this->Text->slug($mainSetup->title), true) ?>&text=<?= h($mainSetup->title) ?>" target="_blank" class="jssocials-share-link"><i class="fab fa-twitter"></i> <?= __('Tweet it !') ?></a>
+                    </div>
                 </div>
-            </div>
-            <?= $this->element('Modal/twitch', ['setup' => $mainSetup]) ?>
-            <?= $this->element('Modal/embed', ['setup' => $mainSetup]) ?>
+                <?= $this->element('Modal/twitch', ['setup' => $mainSetup]) ?>
+                <?= $this->element('Modal/embed', ['setup' => $mainSetup]) ?>
+            <?php endif ?>
         <?php endif ?>
-    <?php endif ?>
     </div>
 </div>
 
 <div class="container">
 
-    <div class="maincontainer">
+    <div class="maincontainer home_container">
 
         <div class="large_search" style="margin-top: -60px">
 
             <i class="fa fa-search"></i>
             <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" />
-            <?= $this->Html->scriptBlock('
+            <?= $this->Html->scriptBlock(
+                '
                 let searchInput = new AmazonAutocomplete("#keyword-search");
                 searchInput.onSelectedWord(word => window.open(`' . $this->Url->build('/search/') . '?q=${word}`, "_self"));
-                ', ['block' => 'scriptBottom']
+                ',
+                ['block' => 'scriptBottom']
             ); ?>
 
         </div>
 
         <div class="config-items">
-            <?php foreach ($randomResources as $item): ?>
-                <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
-            <?php endforeach?>
-        </div>
-
-        <div class="rowsocial">
-            <?php if(!$authUser): ?>
-                <div class="twitch-advert" onclick="logTwitch('<?= $lang ?>')">
-                    <h4><i class="fab fa-twitch"></i> <?= __('Login with Twitch and create my Setup !') ?></h4>
-                </div>
-            <?php else: ?>
-                <div class="blog-advert">
-                    <a href="<?=$this->Url->build('/blog/')?>">
-                        <h5><i class="far fa-newspaper"></i> <?= __('Read our latest news') ?></h5>
-                    </a>
-                </div>
-            <?php endif ?>
-
-            <?= $this->element('Structure/social_networks_tiles') ?>
+            <?php foreach ($randomResources as $item) : ?>
+                <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>">
+                    <div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
+                </a>
+            <?php endforeach ?>
         </div>
 
     </div>
@@ -104,7 +92,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
             <div class="feeditem">
 
-                <?php foreach($popularSetups as $setup): ?>
+                <?php foreach ($popularSetups as $setup) : ?>
 
                     <?= $this->element('List/cards', ['setup' => $setup]) ?>
 
@@ -118,7 +106,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 <?php $randFeatured = array_rand($featuredSetups, 1); ?>
 <?= $this->element('List/showcase', ['setup' => $featuredSetups[$randFeatured]]) ?>
 
-<?php $i = 0;  foreach($brandSetups as $brand => $setups): ?>
+<?php $i = 0;
+foreach ($brandSetups as $brand => $setups) : ?>
 
     <div class="colored-box-<?= (++$i % 8) + 1 ?>">
         <div class="container">
@@ -126,13 +115,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <h4 class="fancy"><span><?= h($brand) ?></span></h4>
                 <div class="feeditem">
 
-                    <?php foreach ($setups as $setup): ?>
+                    <?php foreach ($setups as $setup) : ?>
 
                         <?= $this->element('List/cards', ['setup' => $setup]) ?>
 
                     <?php endforeach; ?>
                 </div>
-                <a class="home_more float-right" href="<?= $this->Url->build('/search/?q='.$brand); ?>"><?= __('More {0} setups', $brand) ?> <i class="fa fa-chevron-right"></i></a>
+                <a class="home_more float-right" href="<?= $this->Url->build('/search/?q=' . $brand); ?>"><?= __('More {0} setups', $brand) ?> <i class="fa fa-chevron-right"></i></a>
                 <br clear='all'>
             </div>
         </div>
@@ -144,9 +133,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="rowfeed">
         <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
         <div class="activeUsers">
-            <?php foreach($activeUsers as $activeUser): ?>
+            <?php foreach ($activeUsers as $activeUser) : ?>
                 <div class="featured-user">
-                    <a href="<?=$this->Url->build('/users/'.$activeUser->id.'-'.$this->Text->slug($activeUser->name))?>">
+                    <a href="<?= $this->Url->build('/users/' . $activeUser->id . '-' . $this->Text->slug($activeUser->name)) ?>">
                         <img alt="<?= __('Profile picture of') ?> <?= h($activeUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
                         <span>
                             <strong><?= h($activeUser->name) ?></strong>
@@ -158,11 +147,27 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         </div>
         <br clear='all'>
     </div>
+
+    <div class="rowsocial">
+        <?php if (!$authUser) : ?>
+            <div class="twitch-advert" onclick="logTwitch('<?= $lang ?>')">
+                <h4><i class="fab fa-twitch"></i> <?= __('Login with Twitch and create my Setup !') ?></h4>
+            </div>
+        <?php else : ?>
+            <div class="blog-advert">
+                <a href="<?= $this->Url->build('/blog/') ?>">
+                    <h5><i class="far fa-newspaper"></i> <?= __('Read our latest news') ?></h5>
+                </a>
+            </div>
+        <?php endif ?>
+
+        <?= $this->element('Structure/social_networks_tiles') ?>
+    </div>
 </div>
 
 <div class="row partners-row">
-    <div class="column"><a href="https://www.lafrenchtech.com/" target="_blank" class="item"><img alt="Partner French Tech" src="<?=$this->Url->build('/img/partners/french-tech.png')?>"></a></div>
-    <div class="column"><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img alt="Partner LeDenicheur" src="<?=$this->Url->build('/img/partners/ledenicheur.png')?>"></a></div>
-    <div class="column"><a href="https://www.twitch.tv/" target="_blank" class="item"><img alt="Partner Twitch" src="<?=$this->Url->build('/img/partners/twitch-white.png')?>"></a></div>
-    <div class="column"><a href="https://geek-mexicain.net/" target="_blank" class="item"><img alt="Partner Geek Mexicain" src="<?=$this->Url->build('/img/partners/geekmexicain.png')?>"></a></div>
+    <div class="column"><a href="https://www.lafrenchtech.com/" target="_blank" class="item"><img alt="Partner French Tech" src="<?= $this->Url->build('/img/partners/french-tech.png') ?>"></a></div>
+    <div class="column"><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img alt="Partner LeDenicheur" src="<?= $this->Url->build('/img/partners/ledenicheur.png') ?>"></a></div>
+    <div class="column"><a href="https://www.twitch.tv/" target="_blank" class="item"><img alt="Partner Twitch" src="<?= $this->Url->build('/img/partners/twitch-white.png') ?>"></a></div>
+    <div class="column"><a href="https://geek-mexicain.net/" target="_blank" class="item"><img alt="Partner Geek Mexicain" src="<?= $this->Url->build('/img/partners/geekmexicain.png') ?>"></a></div>
 </div>

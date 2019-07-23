@@ -87,31 +87,35 @@
 	padding: 10px;
 	z-index: 9;
 	margin-bottom: 10px;
-}
 
-.featured-inner h3{
-	margin: 10px 0 0 20px;
-	display: inline-block;
-	text-shadow: 0 1px 0 black;
-	-moz-text-shadow: 0 1px 0 black;
-	-webkit-text-shadow: 0 1px 0 black;
-}
+	h3{
+		margin: 10px 0 0 20px;
+		display: inline-block;
+		text-shadow: 0 1px 0 black;
+		-moz-text-shadow: 0 1px 0 black;
+		-webkit-text-shadow: 0 1px 0 black;
+	}
 
-.featured-inner p{
-	margin-left: 100px;
-	margin-bottom: 0;
-}
+	p{
+		margin-left: 100px;
+		margin-bottom: 0;
+	}
 
-.featured-inner .featured-user img{
-	width: 80px;
-	border-radius: 100%;
-	float: left;
-	border: solid 2px #328fea;
-	background-color: rgb(0, 0, 0);
-}
+	.featured-user img{
+		width: 80px;
+		border-radius: 100%;
+		float: left;
+		border: solid 2px #328fea;
+		background-color: rgb(0, 0, 0);
 
-.featured-user img:hover{
-	opacity: 0.9;
+		&:hover{
+			opacity: 0.9;
+		}
+	}
+
+	.like_button{
+		float: right;
+	}
 }
 
 .featured-overlay {
@@ -326,6 +330,17 @@
 	height: 40px;
 }
 
+.featured_label{
+	padding: 2px 5px;
+	font-size: 55%;
+	border-radius: 4px;
+	background: #c38a00;
+	text-shadow: none;
+	vertical-align: top;
+	margin: 3px;
+	display: inline-block;
+}
+
 .labeled_button{
 	margin: 0;
     text-shadow: none;
@@ -372,7 +387,7 @@
 		border: 2px solid rgba(255,255,255,.1);
 		border-radius: 2px;
 		box-sizing: border-box;
-		height: 100px;
+		height: 20px;
 		position: relative;
 		top: 0;
 		transition: all .12s ease-out;

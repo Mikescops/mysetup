@@ -123,8 +123,8 @@ use Cake\Core\Configure;
 
             </div>
 
-            <div class="mobile-nav float-right">
-                <a href="#mobile-nav" data-lity><i class="fa fa-ellipsis-v fa-4"></i></a>
+            <div class="mobile-nav">
+                <a href="#mobile-nav" data-lity><i class="fa fa-ellipsis-v"></i></a>
             </div>
 
             <div id="mobile-nav" class="lity-hide">

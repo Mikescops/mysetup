@@ -89,9 +89,17 @@
 /* Smaller than smartphone screen */
 @media (max-width: 640px) {
 
+	.ms-logo{
+		height: 20px!important;
+	}
+
 	.home_hero_container{
 		padding: 70px 0 40px 0;
 		max-height: 480px;
+
+		& .hero_container{
+			height: 270px;
+		}
 	}
 
 	.hero_image {
@@ -100,12 +108,14 @@
 			width: 100%;
 			left: 0;
 			margin: 0;
+			font-size: 40px;
+			top: 40px;
 		}
 		img{
 			display: none;
 		}
 		.hero_calltoaction{
-			bottom: 60px;
+			bottom: 0;
 			width: 90%;
 			right: 0;
 		}
@@ -163,28 +173,32 @@
 
 	/* POST RESPONSIVE */
 
-	.featured-inner .featured-user{
-		display: none;
-	}
-
-	.featured-inner p{
-		display: block!important;
-		margin-left: 0;
-		margin-bottom: 5px;
-	}
-
-	.featured-inner{
+	.featured-inner {
 		text-align: center;
 		position: static;
 		height: auto!important;
-	}
 
-	.featured-inner h3{
-		margin: 5px 0 5px 0;
-	}
+		.featured-user{
+			display: none;
+		}
 
-	.featured-inner .row .column.column-75 {
-    	max-width: 100%;
+		h3{
+			margin: 5px 0 5px 0;
+		}
+
+		p{
+			display: block!important;
+			margin-left: 0;
+			margin-bottom: 5px;
+		}
+
+		.row .column.column-75 {
+			max-width: 100%;
+		}
+
+		.like_button{
+			float: none;
+		}
 	}
 
 	.content-section{
@@ -230,10 +244,10 @@
 	    max-width: 100%;
 	}
 
-	.row .column.column-75, .row .column.column-25{
-		max-width: 100%;
+	.row .column.column-75, .row .column.column-25, .row .column.column-60{
+		flex: 0 0 100%;
+	    max-width: 100%;
 	}
-
 
 	/* FOOTER RESPONSIVE */
 
@@ -326,24 +340,26 @@
 		}
 	}
 
-	.featured-inner h3{
-		font-size: 1.3em;
-	}
+	.featured-inner{
+		h3{
+			font-size: 1.3em;
+		}
 
-	.featured-inner p{
-		display: none;
-	}
+		p{
+			display: none;
+		}
 
-	.featured-inner .featured-user img{
-		width: 50px;
-	}
+		.featured-user img{
+			width: 50px;
+		}
 
-	.like_button, .edit_panel{
-		margin-top: 5px;
-	}
+		.like_button, .edit_panel{
+			margin-top: 5px;
+		}
 
-	.labeled_button span{
-		display: none;
+		.labeled_button span{
+			display: none;
+		}
 	}
 
 	/* USER PROFILE */

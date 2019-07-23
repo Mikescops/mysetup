@@ -65,7 +65,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 <h3>
                     <?= h($setup->title) ?>
                     <?php if($setup->featured): ?>
-                        <i title="<?= __('This setup is featured on mySetup.co !')?>" class="fa fa-star setup-star"></i>
+                        <span class="featured_label" title="<?= __('This setup is featured on mySetup.co !')?>" >STAFF PICK</span>
                     <?php endif ?>
                 </h3>
                 <p>
@@ -73,7 +73,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                 </p>
             </div>
             <div class="column column-35">
-                <a class="like_button float-right" <?php if(!$authUser){echo "onclick=\"toast.message('" . __('You must be logged in to like !') . "');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
+                <a class="like_button" <?php if(!$authUser){echo "onclick=\"toast.message('" . __('You must be logged in to like !') . "');\"";} else{ echo "onclick=\"likeSetup('". $setup->id ."')\"";}?> tabindex="0">
                     <div class="labeled_button">
                         <i class="fa fa-thumbs-up"></i> <span>Like</span>
                     </div>
