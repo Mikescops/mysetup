@@ -422,7 +422,11 @@
     transform: translate3d(10px,0,0);
     transition: all .25s ease;
     padding-left: 35px;
-    background: linear-gradient(90deg,transparent,#393939 60%,#393939);
+	background: linear-gradient(90deg,transparent,#393939 60%,#393939);
+	
+	.fa {
+		font-size: 1.9rem;
+	}
 }
 
 .notif-close span{
