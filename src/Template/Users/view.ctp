@@ -109,7 +109,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                         <?php else: ?>
                             <p><?= __('Got another setup ? Add it now !') ?></p>
                         <?php endif; ?>
-                        <a href="#add_setup_modal" data-lity class="hero_calltoaction"><?= __('Create a Setup') ?></a>
+                        <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'add']) ?>" class="hero_calltoaction"><?= __('Create a Setup') ?></a>
                     </div>
                     <br>
                 <?php endif; ?>
