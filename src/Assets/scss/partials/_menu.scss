@@ -292,17 +292,19 @@
 .mobile-nav{
 	display: none;
 	position: fixed;
-	top: 5px;
+	top: 10px;
 	right: 10px;
-	font-size: 24px;
-}
+	font-size: 20px;
+	cursor: pointer;
 
-.mobile-nav a:first-child{
-	color: #fff;
-}
+	.nav-links{
+		color: #fff;
+		margin-left: 15px;
 
-.mobile-nav a:focus, .mobile-nav a:hover{
-	color: #fff;
+		&:focus, &:hover{
+			color: #fff;
+		}
+	}
 }
 
 #mobile-nav ul{

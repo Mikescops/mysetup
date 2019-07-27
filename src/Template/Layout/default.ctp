@@ -124,7 +124,8 @@ use Cake\Core\Configure;
             </div>
 
             <div class="mobile-nav">
-                <a href="#mobile-nav" data-lity><i class="fa fa-ellipsis-v"></i></a>
+                <a class="nav-links" onclick="revealElement($('.search-bar'))"><i class="fa fa-search"></i></a>
+                <a class="nav-links" href="#mobile-nav" data-lity><i class="fa fa-bars"></i></a>
             </div>
 
             <div id="mobile-nav" class="lity-hide">
