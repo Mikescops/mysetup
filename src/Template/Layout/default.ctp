@@ -74,7 +74,7 @@ use Cake\Core\Configure;
                         </li>
                         <?php if ($authUser) : ?>
                             <li>
-                                <a id="notifications-trigger"><i class="far fa-bell fa-fw" aria-hidden="true"></i></a>
+                                <a id="notifications-trigger"><i class="fa fa-bullhorn" aria-hidden="true"></i></a>
                             </li>
                             <li>
                                 <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'add']) ?>"><?= __('Add Setup') ?></a>
@@ -124,6 +124,7 @@ use Cake\Core\Configure;
             </div>
 
             <div class="mobile-nav">
+                <!-- <a class="nav-links"><i class="fa fa-bullhorn" aria-hidden="true"></i></a> -->
                 <a class="nav-links" onclick="revealElement($('.search-bar'))"><i class="fa fa-search"></i></a>
                 <a class="nav-links" href="#mobile-nav" data-lity><i class="fa fa-bars"></i></a>
             </div>
@@ -252,20 +253,20 @@ use Cake\Core\Configure;
     </script>
     <?php if ($authUser) : ?>
         <script>
-            const instance = new tippy('#notifications-trigger', {
+            const notificationInstance = new tippy('#notifications-trigger', {
                 html: '#notifications-pop',
                 sticky: false,
                 flipDuration: 0,
                 position: 'bottom',
                 arrow: true,
                 appendTo: document.body,
-                trigger: 'click',
+                trigger: 'click manual',
                 interactive: true,
                 animation: 'fade',
                 hideOnClick: false,
                 performance: true
             });
-            const notificationcenter = instance.getPopperElement(document.querySelector('#notifications-trigger'));
+            const notificationcenter = notificationInstance.getPopperElement(document.querySelector('#notifications-trigger'));
             checknotification();
             tippy('.button.draft');
             tippy('.setup-unpublished');
