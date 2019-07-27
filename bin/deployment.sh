@@ -29,6 +29,9 @@ done
 
 # Vendor packages manual patches for newer versions of CakePHP
 sed -i 's/->config/->getConfig/1' vendor/tanuck/cakephp-markdown/src/View/Helper/MarkdownHelper.php
+sed -i 's/->layout/->setLayout/1'             vendor/dereuromark/cakephp-setup/src/Middleware/MaintenanceMiddleware.php
+sed -i 's/->className/->setClassName/1'       vendor/dereuromark/cakephp-setup/src/Middleware/MaintenanceMiddleware.php
+sed -i 's/->templatePath/->setTemplatePath/1' vendor/dereuromark/cakephp-setup/src/Middleware/MaintenanceMiddleware.php
 
 # Disable maintenance mode !
 bin/cake Setup.MaintenanceMode deactivate
