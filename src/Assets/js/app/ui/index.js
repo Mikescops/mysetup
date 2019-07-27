@@ -64,7 +64,7 @@ const inIframe = () => {
 	} catch (e) {
 		return true;
 	}
-}
+};
 
 
 /**

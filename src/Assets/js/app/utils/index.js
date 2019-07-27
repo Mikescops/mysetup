@@ -5,7 +5,7 @@
  * @description Convert string to a slug which can be use as an url
  * @param {string} [str] [String to sluggify]
  */
-function convertToSlug(str) {
+const convertToSlug = (str) => {
 	var rExps = [
 		{ re: /[\xC0-\xC6]/g, ch: 'A' },
 		{ re: /[\xE0-\xE6]/g, ch: 'a' },
@@ -20,12 +20,12 @@ function convertToSlug(str) {
 		{ re: /[\xC7-\xE7]/g, ch: 'c' },
 		{ re: /[\xD1]/g, ch: 'N' },
 		{ re: /[\xF1]/g, ch: 'n' }];
-	var $slug = '';
-	var trimmed = $.trim(str);
-	for (var i = 0, len = rExps.length; i < len; i++)
+
+	let trimmed = $.trim(str);
+	for (let i = 0, len = rExps.length; i < len; i++)
 		trimmed = trimmed.replace(rExps[i].re, rExps[i].ch);
-	$slug = trimmed.replace(/[^a-z0-9-]/gi, '-')
+	
+	return trimmed.replace(/[^a-z0-9-]/gi, '-')
 		.replace(/-+/g, '-')
 		.replace(/^-|-$/g, '');
-	return $slug;
-}
+};

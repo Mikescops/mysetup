@@ -3,8 +3,21 @@
  * @description Call controller with AJAX request to add or remove a like on a setup
  * @param {int} [id] [ID of setup]
  */
-function likeSetup(id) {
+const likeSetup = (id) => {
+	const answer_like = () => {
+		$('.like_button').addClass('active');
+		printLikes(id);
+	};
 
+	const answer_dislike = () => {
+		$('.like_button').removeClass('active');
+		printLikes(id);
+	};
+
+	const answer_error = (response) => {
+		// console.log(response);
+	};
+	
 	if ($('.like_button').hasClass('active')) {
 		$.ajax({
 			url: webRootJs + 'likes/dislike',
@@ -26,28 +39,14 @@ function likeSetup(id) {
 			error: answer_error
 		});
 	}
-
-	function answer_like() {
-		$('.like_button').addClass('active');
-		printLikes(id);
-	}
-
-	function answer_dislike() {
-		$('.like_button').removeClass('active');
-		printLikes(id);
-	}
-
-	function answer_error(response) {
-		// console.log(response);
-	}
-}
+};
 
 /**
  * @name printLikes
  * @description Display number of likes of a setup - call cake controller AJAX request
  * @param {int} [id] [ID of setup]
  */
-function printLikes(id) {
+const printLikes = (id) => {
 	$.ajax({
 		url: webRootJs + 'likes/getlikes',
 		data: {
@@ -55,21 +54,21 @@ function printLikes(id) {
 		},
 		dataType: 'html',
 		type: 'get',
-		success: function (json) {
+		success: (json) => {
 			$('.pointing_label').html(json);
 		},
-		error: function (request, status, error) {
+		error: (request, status, error) => {
 			// console.log(error);
 		}
 	});
-}
+};
 
 /**
  * @name doesLike
  * @description Check if setup is liked by the current setup - call cake controller AJAX request
  * @param {int} [setup] [ID of setup]
  */
-function doesLike(setup) {
+const doesLike = (setup) => {
 	$.ajax({
 		url: webRootJs + 'likes/doesLike',
 		data: {
@@ -77,9 +76,9 @@ function doesLike(setup) {
 		},
 		dataType: 'html',
 		type: 'get',
-		success: function (json) {
+		success: (json) => {
 			if (json == 'true')
 				$('.like_button').addClass('active');
 		}
 	});
-}
+};

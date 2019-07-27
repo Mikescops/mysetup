@@ -23,8 +23,8 @@
 /**
  * On load functions
  */
-$(function () {
-	$('.reset_pwd').click(function () {
+$(() => {
+	$('.reset_pwd').click(() => {
 		$(this).hide();
 		$('.pwd_field').show('fast');
 		return false;
@@ -36,18 +36,18 @@ $(function () {
 		shares: ['twitter', 'facebook', 'googleplus', 'pinterest', 'whatsapp']
 	});
 
-	$('#profileImage').click(function () {
+	$('#profileImage').click(() => {
 		$('#profileUpload').click();
 	});
-	$('#profileUpload').change(function () {
+	$('#profileUpload').change(() => {
 		fasterPreview(this);
 	});
 
 
-	$('.edit-comment').click(function () {
-		var $comment = $(this),
+	$('.edit-comment').click(() => {
+		const $comment = $(this),
 			$place = $comment.attr('source');
-		var $oldvalue = $('#' + $place + '> p').attr('content'),
+		const $oldvalue = $('#' + $place + '> p').attr('content'),
 			$id = $place.replace(/[^0-9]/g, '');
 
 		$('.textarea-edit-comment > .emojionearea-editor').text($oldvalue);

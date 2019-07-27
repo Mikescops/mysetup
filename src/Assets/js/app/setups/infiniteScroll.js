@@ -3,11 +3,11 @@
  * @description Infinite Scroll to display setups lists
  * @param {int} [nbtodisplay] [Number of setups to display at each call of the function]
  */
-function infiniteScroll(nbtodisplay) {
-	var offset = nbtodisplay;
+const infiniteScroll = (nbtodisplay) => {
+	let offset = nbtodisplay;
 	$(window).data('ajaxready', true);
 	// On déclenche une fonction lorsque l'utilisateur utilise sa molette
-	$(window).scroll(function () {
+	$(window).scroll(() => {
 		if ($(window).data('ajaxready') == false) return; //permet de couper les trigger parallèles
 		if (($(window).scrollTop() + $(window).height()) + 500 > $(document).height()) {
 			$(window).data('ajaxready', false);
@@ -20,30 +20,29 @@ function infiniteScroll(nbtodisplay) {
 				},
 				dataType: 'json',
 				type: 'get',
-				success: function (setups) {
+				success: (setups) => {
 					if (setups[0]) {
 						// Cache of the template
-						var template = document.getElementById('template-list-item');
+						const template = document.getElementById('template-list-item');
 						// Get the contents of the template
-						var templateHtml = template.innerHTML;
+						const templateHtml = template.innerHTML;
 						// Final HTML variable as empty string
-						var listHtml = '';
+						let listHtml = '';
 						// Simple sanitizer for HTML entities
-						var escapeHtml = function (text) {
-							var map = {
+						const escapeHtml = (text) => {
+							const map = {
 								'&': '&amp;',
 								'<': '&lt;',
 								'>': '&gt;',
 								'"': '&quot;',
 								'\'': '&#039;'
 							};
-							return text.replace(/[&<>"']/g, function (match) {
+							return text.replace(/[&<>"']/g, (match) => {
 								return map[match];
 							});
 						};
 
-						$.each(setups, function (key, value) {
-
+						$.each(setups, (key, value) => {
 							let title = escapeHtml(value.title);
 							let url = webRootJs + `setups/${value.id}-${convertToSlug(escapeHtml(value.title))}`;
 							// It's possible that some setups have lost their featured image...
@@ -89,4 +88,4 @@ function infiniteScroll(nbtodisplay) {
 			offset += nbtodisplay;
 		}
 	});
-}
+};

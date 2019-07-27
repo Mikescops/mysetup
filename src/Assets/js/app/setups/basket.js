@@ -7,9 +7,9 @@
  * @const timer
  */
 var timer;
-function searchItem(query, action) {
+const searchItem = (query, action) => {
 	clearTimeout(timer);
-	timer = setTimeout(function validate() {
+	timer = setTimeout(() => {
 		if (query.length < 2) {
 			return;
 		}
@@ -19,11 +19,11 @@ function searchItem(query, action) {
 			data: {
 				'q': query
 			},
-			success: function (response) {
+			success: (response) => {
 
 				$('.search_results.' + action).html('');
 
-				var products = response.products;
+				const products = response.products;
 
 				if (products[0] == null) {
 					$('.search_results.' + action).append('No products found...');
@@ -47,13 +47,13 @@ function searchItem(query, action) {
 				});
 
 			},
-			error: function (error) {
+			error: () => {
 				$('.search_results.' + action).html('No products found...');
 			}
 		});
 
 	}, 400);
-}
+};
 
 /**
  * @name addToBasket
@@ -63,21 +63,18 @@ function searchItem(query, action) {
  * @param {string} [src] [Source of image]
  * @param {string} [action] [Define where the function is called (add or edit)]
  */
-function addToBasket(title, url, src, action) {
+const addToBasket = (title, url, src, action) => {
 	$('.hiddenInput.' + action).val($('.hiddenInput.' + action).val() + title + ';' + url + ';' + src + ',');
-
-	$('.search_results.' + action).html('');
-	$('.liveInput.' + action).val('');
 
 	decodedTitle = decodeURIComponent(title);
 	decodedSrc = decodeURIComponent(src);
 
 	let list = $('<li class="text-card"></li>');
 
-	list.html(` <div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${decodedSrc}) no-repeat center center; background-size: contain"></div> <a onclick="deleteFromBasket(\`${title}\`,this,'${action}')" class="bottom"><i class="far fa-trash-alt"></i></a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${decodedTitle} </div> </div> </div>`);
+	list.html(`<div class="wrapper"> <div class="card-container"> <div class="top" style="background: url(${decodedSrc}) no-repeat center center; background-size: contain"></div> <a onclick="deleteFromBasket(\`${title}\`,this,'${action}')" class="bottom"><i class="far fa-trash-alt"></i></a> </div> <div class="inside"> <div class="icon"><i class="fas fa-info-circle"></i></div> <div class="contents"> ${decodedTitle} </div> </div> </div>`);
 
 	$('.basket_items.' + action).append(list);
-}
+};
 
 /**
  * @name deleteFromBasket
@@ -86,15 +83,15 @@ function addToBasket(title, url, src, action) {
  * @param {string} [parent] [DOM element who triggered the function]
  * @param {string} [action] [Define where the function is called (add or edit)]
  */
-function deleteFromBasket(title, parent, action) {
-	var ResearchArea = $('.hiddenInput.' + action).val();
-	var splitTextInput = ResearchArea.split(',');
+const deleteFromBasket = (title, parent, action) => {
+	const ResearchArea = $('.hiddenInput.' + action).val();
+	const splitTextInput = ResearchArea.split(',');
 
-	new_arr = $.grep(splitTextInput, function (n, i) { // just use arr
+	new_arr = $.grep(splitTextInput, (n) => { // just use arr
 		return n.split(';')[0] != title;
 	});
 
 	$('.hiddenInput.' + action).val(new_arr);
 
 	parent.closest('li').remove();
-}
+};

@@ -2,7 +2,7 @@
  * @name checknotification
  * @description Notification check and refresh - call cake controller AJAX request
  */
-function checknotification() {
+const checknotification = () => {
 	if (inIframe() == false) {
 		$.ajax({
 			url: webRootJs + 'notifications/getNotifications',
@@ -16,7 +16,7 @@ function checknotification() {
 				$('#notif-container').html('');
 				if (notifs['notifications'].length) {
 					$.each(notifs['notifications'], function (key, value) {
-						$('#notif-container').append('<div onclick="markasread(' + value.id + ')" class="notif notifnb-' + value.id + '">' + value.content + '<div class="notif-close"><span onclick="markasread(' + value.id + ')">×</span></div></div>');
+						$('#notif-container').append(`<div onclick="markasread(${value.id})" class="notif notifnb-${value.id}">${value.content}<div class="notif-close"><span onclick="markasread(${value.id})">×</span></div></div>`);
 					});
 
 					$('#notifications-trigger').addClass('notif-trigger');
@@ -29,18 +29,18 @@ function checknotification() {
 				}
 			}
 		});
-		setTimeout(function () {
+		setTimeout(() => {
 			checknotification();
 		}, 30000);
 	}
-}
+};
 
 /**
  * @name markasread
  * @description Mark a notification as read - call cake controller AJAX request
  * @param {int} [id] [ID of notification]
  */
-function markasread(id) {
+const markasread = (id) => {
 	$.ajax({
 		url: webRootJs + 'notifications/markAsRead',
 		type: 'get',
@@ -56,4 +56,4 @@ function markasread(id) {
 		$('#no-notif').show();
 		instance.update(notificationcenter);
 	}
-}
+};
