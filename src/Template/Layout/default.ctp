@@ -71,7 +71,7 @@ use Cake\Core\Configure;
                                 <a id="notifications-trigger"><i class="far fa-bell fa-fw" aria-hidden="true"></i></a>
                             </li>
                             <li>
-                                <a href="<?= $this->Url->build('/setups/add'); ?>"><?= __('Add Setup') ?></a>
+                                <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'add']) ?>"><?= __('Add Setup') ?></a>
                             </li>
                             <?php if($authUser['admin']): ?>
                                 <li>
@@ -126,7 +126,7 @@ use Cake\Core\Configure;
                 <ul>
                     <?php if($authUser): ?>
                         <li>
-                            <a href="<?= $this->Url->build('/setups/add'); ?>"><i class="fa fa-plus-circle"></i> <?= __('Add Setup') ?></a>
+                            <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'add']) ?>"><i class="fa fa-plus-circle"></i> <?= __('Add Setup') ?></a>
                         </li>
                         <?php if($authUser['admin']): ?>
                             <li>
