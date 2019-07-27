@@ -71,7 +71,7 @@ $this->assign('title', __('Add Setup') . ' | mySetup.co');
 
             <?php
             echo $this->Form->control('video', ['class' => 'video-url-input', 'label' => __('Video (Youtube, Dailymotion ...)'), 'placeholder' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ']);
-            echo $this->Form->control('author', ['class' => 'setup_author', 'label' => __("Setup's owner"), 'placeholder' => __('Optionnal')]);
+            echo $this->Form->control('author', ['class' => 'setup_author', 'label' => __("Setup's owner"), 'placeholder' => __("This is not your own setup ? Insert its author's name or pseudo here !")]);
             ?>
 
             <div class="hidden">
