@@ -4,7 +4,7 @@
  * @name Cookieconsent
  * @description Call cookieconsent panel
  */
-window.addEventListener('load', function () {
+window.addEventListener('load', () => {
 	window.cookieconsent.initialise({
 		'palette': {
 			'popup': {
@@ -25,8 +25,8 @@ window.addEventListener('load', function () {
 /**
  * MAIN MENU transition effect
  */
-$(window).scroll(function () {
-	var scrollTop = $(window).scrollTop();
+$(window).scroll(() => {
+	let scrollTop = $(window).scrollTop();
 	if (scrollTop < 50) {
 		$('.heavy-nav').stop().removeClass('nav-color').addClass('nav-transparent');
 	} else {
@@ -37,27 +37,35 @@ $(window).scroll(function () {
 /**
  * This function is for css initialization
  */
-$(function () {
-	var scrollTop = $(window).scrollTop();
-	if (scrollTop < 50) {
-		$('.heavy-nav').addClass('nav-transparent');
-	} else {
-		$('.heavy-nav').addClass('nav-color');
-	}
-});
+
+let scrollTop = $(window).scrollTop();
+if (scrollTop < 50) {
+	$('.heavy-nav').addClass('nav-transparent');
+} else {
+	$('.heavy-nav').addClass('nav-color');
+}
+
+const revealElement = (element) => {
+	element.addClass('reveal');
+};
+
+const unRevealElement = (element) => {
+	element.removeClass('reveal');
+};
 
 /**
  * @name inIframe
  * @description Dectects if the current window is running under an iframe
  * @type {HELPER}
  */
-function inIframe() {
+const inIframe = () => {
 	try {
 		return window.self !== window.top;
 	} catch (e) {
 		return true;
 	}
 }
+
 
 /**
  * @description Slick slider on post page

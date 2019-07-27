@@ -2,8 +2,8 @@
 
 .ms-logo{
 	color: #fff;
-	height: 30px;
-	margin: 10px 0;
+	height: 24px;
+	margin: 18px 0;
 }
 
 .nav-transparent{
@@ -23,8 +23,8 @@
 }
 
 .nav-transparent .row:first-child, .nav-transparent .ms-logo{
-	height: 30px;
-	margin: 15px 0;
+	height: 24px;
+	margin: 18px 0;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
@@ -274,6 +274,19 @@
 
 .lity-hide {
     display: none;
+}
+
+.search-bar{
+	position: fixed;
+	top: -60px;
+	width: 100%;
+	background: #25272d;
+	z-index: 501;
+	transition: ease .5s;
+
+	&.reveal{
+		top:0;
+	}
 }
 
 .mobile-nav{

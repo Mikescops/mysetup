@@ -49,6 +49,7 @@ body{
 	background-color: #151515;
 	height: 100%;
 	margin: 0;
+	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 
 	-webkit-transition-duration: 0.5s; /* Safari */
