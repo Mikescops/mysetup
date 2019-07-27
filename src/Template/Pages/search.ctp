@@ -14,7 +14,9 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
 
         <div class="large_search">
             <i class="fa fa-search"></i>
-            <input type="text" id="keyword-search" value="<?= h(($this->request->getQuery('q') ? $this->request->getQuery('q') : "")) ?>" placeholder="<?= __('Search a component... Find a cool setup !') ?>" />
+            <form action="">
+                <input type="search" name="q" id="keyword-search" value="<?= h(($this->request->getQuery('q') ? $this->request->getQuery('q') : "")) ?>" placeholder="<?= __('Search a component... Find a cool setup !') ?>" />
+            </form>
             <?= $this->Html->scriptBlock('let searchInput = new AmazonAutocomplete("#keyword-search");searchInput.onSelectedWord(word => window.open(`?q=${word}`, "_self"));', array('block' => 'scriptBottom')); ?>
         </div>
 
