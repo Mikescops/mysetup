@@ -71,7 +71,7 @@ use Cake\Core\Configure;
                                 <a id="notifications-trigger"><i class="far fa-bell fa-fw" aria-hidden="true"></i></a>
                             </li>
                             <li>
-                                <a id="menu_trigger_add_modal" href="#add_setup_modal" data-lity><?= __('Add Setup') ?></a>
+                                <a href="<?= $this->Url->build('/setups/add'); ?>"><?= __('Add Setup') ?></a>
                             </li>
                             <?php if($authUser['admin']): ?>
                                 <li>
@@ -115,12 +115,6 @@ use Cake\Core\Configure;
 
                 </div>
 
-                <?php if($authUser): ?>
-
-                    <?= $this->element('Modal/add-setup') ?>
-
-                <?php endif; ?>
-
             </div>
 
             <div class="mobile-nav">
@@ -132,7 +126,7 @@ use Cake\Core\Configure;
                 <ul>
                     <?php if($authUser): ?>
                         <li>
-                            <a href="#add_setup_modal" data-lity><i class="fa fa-plus-circle"></i> <?= __('Add Setup') ?></a>
+                            <a href="<?= $this->Url->build('/setups/add'); ?>"><i class="fa fa-plus-circle"></i> <?= __('Add Setup') ?></a>
                         </li>
                         <?php if($authUser['admin']): ?>
                             <li>

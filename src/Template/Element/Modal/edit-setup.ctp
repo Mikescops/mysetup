@@ -107,7 +107,6 @@
                 // A hidden entry to gather the item resources
                 echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden', 'default' => $item_field]);
                 ?>
-                <a class="is_author"><i class="far fa-square"></i> <?= __("It's not my setup !") ?></a>
                 <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
                 <?php
                 echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
