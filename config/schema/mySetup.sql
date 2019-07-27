@@ -163,7 +163,6 @@ CREATE TABLE `requests` (
 CREATE TABLE `cloud_tags` (
   `id` INT(11) NOT NULL,
   `name` VARCHAR(64) NOT NULL,
-  `type` VARCHAR(64) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --

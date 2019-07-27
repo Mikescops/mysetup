@@ -111,7 +111,6 @@ class PagesController extends AppController
         if($brandSetups_ids === false)
         {
             $brandSetups = $this->loadModel('cloud_tags')->getSetupsByRandomTags([
-                'type'        => 'PRODUCTS_BRAND',
                 'number_tags' => 5
             ]);
 
