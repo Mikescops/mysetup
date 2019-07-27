@@ -55,21 +55,13 @@ class CloudTagsTable extends Table
             ->requirePresence('name', 'create')
             ->notEmpty('name');
 
-        $validator
-            ->scalar('type')
-            ->maxLength('type', 32)
-            ->requirePresence('type', 'create')
-            ->notEmpty('type');
-
         return $validator;
     }
 
 
     public function getSetupsByRandomTags($array = [])
     {
-
         $params = array_merge([
-            'type'         => null,
             'number_tags'  => 1,
             'limit_setups' => 3
         ],
@@ -77,23 +69,8 @@ class CloudTagsTable extends Table
 
         $setupTable = TableRegistry::get('Setups');
 
-        if($params['type'])
-        {
-            $conditions = ['type' => $params['type']];
-        }
-        else
-        {
-            $conditions = null;
-        }
-
         $results = [];
-
-        $tags = $this->find('all', [
-            'conditions' => $conditions,
-            'order'      => 'RAND()'
-        ])->toArray();
-
-        foreach($tags as $tag)
+        foreach($this->find('all')->order('RAND()')->toArray() as $tag)
         {
             $setups = $setupTable->getSetups([
                 'query'  => $tag->name,

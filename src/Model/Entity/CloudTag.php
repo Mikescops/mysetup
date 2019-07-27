@@ -8,7 +8,6 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $name
- * @property string $type
  */
 class CloudTag extends Entity
 {
@@ -23,7 +22,6 @@ class CloudTag extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'type' => true
+        'name' => true
     ];
 }
