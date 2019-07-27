@@ -54,9 +54,9 @@ $this->assign('title', __('Add Setup') . ' | mySetup.co');
 
         <div class="form-section">
 
-            <h3><?= __('Components') ?></h3>
+            <h3><?= __('Components') ?> *</h3>
 
-            <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, 'add_setup');" placeholder="<?= __('Search for components...') ?> *">
+            <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, 'add_setup');" placeholder="<?= __('Search for components...') ?>">
 
             <ul class="draggable-cards dragscroll search_results add_setup"></ul>
 
