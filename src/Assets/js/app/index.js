@@ -24,11 +24,6 @@
  * On load functions
  */
 $(function () {
-	$('.is_author').click(function () {
-		$(this).hide();
-		$('.setup_author').show('fast');
-		return false;
-	});
 	$('.reset_pwd').click(function () {
 		$(this).hide();
 		$('.pwd_field').show('fast');

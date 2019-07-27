@@ -83,7 +83,6 @@
             <?php
                 echo $this->Form->control('video', ['class' => 'video-url-input', 'label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'placeholder' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ']);
             ?>
-            <a class="is_author"><i class="far fa-square"></i> <?= __("It's not my setup !") ?></a>
             <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
             <?php
                 echo $this->Form->control('author', ['class' => 'setup_author', 'label' => false]);

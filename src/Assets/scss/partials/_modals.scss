@@ -130,6 +130,10 @@
 		flex: auto;
 		width: 12em;
 	}
+
+	.slim-round{
+		margin: .5em;
+	}
 }
 
 .gallery-holder.homide{
@@ -143,7 +147,7 @@
 
 .slim-round{
 	border-radius: 6px;
-	margin: .5em;
+	margin: .5em 0;
 	max-width: calc(100vw - 40px - 1em);
 }
 
@@ -153,14 +157,6 @@
 	label{
 		display: none;
 	}
-}
-
-.is_author{
-	cursor: pointer;
-}
-
-.setup_author{
-	display: none;
 }
 
 .reset_pwd{

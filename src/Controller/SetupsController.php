@@ -68,6 +68,10 @@ class SetupsController extends AppController
      */
     public function add()
     {
+        if($this->request->is('get'))
+        {
+            $this->render();
+        }
         if($this->request->is('post'))
         {
             // Let's get the data from the form
