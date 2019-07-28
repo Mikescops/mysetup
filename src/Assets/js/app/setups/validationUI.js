@@ -10,7 +10,7 @@ const replaceValidationUI = (form) => {
 
 	// Support Safari, iOS Safari, and the Android browser—each of which do not prevent
 	// form submissions by default
-	form.addEventListener('submit', (event) => {
+	form.addEventListener('submit', function (event) {
 		if (!this.checkValidity()) {
 			return event.preventDefault();
 		}
