@@ -51,19 +51,22 @@ const markNotificationAsRead = (id) => {
 		type: 'get',
 		data: {
 			id
+		},
+		success: (response) => {
+			if (response == 'MARKED') {
+				$('#notifnb-' + id).remove();
+
+				$(`.notifnb-${id}`).removeClass('unread');
+				$(`.notifnb-${id} .notif-close .notif-read`).html(`<span onclick="markNotificationAsUnread(${id})"><i class="fa fa-eye"></i></span>`);
+
+				if (!$.trim($('#notif-container').html()).length) {
+					$('#notifications-trigger').removeClass('notif-trigger');
+					$('#no-notif').show();
+					notificationInstance.update(notificationcenter);
+				}
+			}
 		}
 	});
-
-	$('#notifnb-' + id).remove();
-
-	$(`.notifnb-${id}`).removeClass('unread');
-	$(`.notifnb-${id} .notif-close`).html(`<span onclick="markNotificationAsUnread(${id})"><i class="fa fa-eye"></i></span>`);
-
-	if (!$.trim($('#notif-container').html()).length) {
-		$('#notifications-trigger').removeClass('notif-trigger');
-		$('#no-notif').show();
-		notificationInstance.update(notificationcenter);
-	}
 };
 
 /**
@@ -77,15 +80,38 @@ const markNotificationAsUnread = (id) => {
 		type: 'get',
 		data: {
 			id
+		},
+		success: (response) => {
+			if (response == 'MARKED') {
+				$(`.notifnb-${id}`).addClass('unread');
+				$(`.notifnb-${id} .notif-close .notif-read`).html(`<span onclick="markNotificationAsRead(${id})"><i class="fa fa-eye-slash"></i></span>`);
+			}
 		}
 	});
+};
 
-	$(`.notifnb-${id}`).addClass('unread');
-	$(`.notifnb-${id} .notif-close`).html(`<span onclick="markNotificationAsRead(${id})"><i class="fa fa-eye-slash"></i></span>`);
+/**
+ * @name deleteNotification
+ * @description Mark a notification as read - call cake controller AJAX request
+ * @param {int} [id] [ID of notification]
+ */
+const deleteNotification = (id) => {
+	$.ajax({
+		url: webRootJs + 'notifications/delete',
+		type: 'get',
+		data: {
+			id
+		},
+		success: (response) => {
+			if (response == 'DELETED') {
+				$(`.notifnb-${id}`).remove();
 
-	if (!$.trim($('#notif-container').html()).length) {
-		$('#notifications-trigger').removeClass('notif-trigger');
-		$('#no-notif').show();
-		notificationInstance.update(notificationcenter);
-	}
+				if (!$.trim($('#notif-container').html()).length) {
+					$('#notifications-trigger').removeClass('notif-trigger');
+					$('#no-notif').show();
+					notificationInstance.update(notificationcenter);
+				}
+			}
+		}
+	});
 };

@@ -24,11 +24,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <div class="notif notifnb-<?= $notification->id ?> <?= ($notification->new == 1) ? 'unread' : '' ?>">
                     <?= $notification->content ?>
                     <div class="notif-close">
-                        <?php if ($notification->new == 1) : ?>
-                            <span alt="<?= __('Mark as read') ?>" onclick="markNotificationAsRead(<?= $notification->id ?>)"><i class="fa fa-eye-slash"></i></span>
-                        <?php else : ?>
-                            <span alt="<?= __('Mark as unread') ?>" onclick="markNotificationAsUnread(<?= $notification->id ?>)"><i class="fa fa-eye"></i></span>
-                        <?php endif; ?>
+                        <span class="notif-read">
+                            <?php if ($notification->new == 1) : ?>
+                                <span alt="<?= __('Mark as read') ?>" onclick="markNotificationAsRead(<?= $notification->id ?>)"><i class="fa fa-eye-slash"></i></span>
+                            <?php else : ?>
+                                <span alt="<?= __('Mark as unread') ?>" onclick="markNotificationAsUnread(<?= $notification->id ?>)"><i class="fa fa-eye"></i></span>
+                            <?php endif; ?>
+                        </span>
+                        <span alt="<?= __('Delete notification') ?>" onclick="deleteNotification(<?= $notification->id ?>)"><i class="far fa-trash-alt"></i></span>
                     </div>
                 </div>
             <?php endforeach; ?>
