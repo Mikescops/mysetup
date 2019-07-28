@@ -124,7 +124,9 @@ use Cake\Core\Configure;
             </div>
 
             <div class="mobile-nav">
-                <a class="nav-links" href="<?= $this->Url->build(['controller' => 'Notifications', 'action' => 'index']) ?>"><i class="fa fa-bullhorn" aria-hidden="true"></i></a>
+                <?php if ($authUser) : ?>
+                    <a class="nav-links" href="<?= $this->Url->build(['controller' => 'Notifications', 'action' => 'index']) ?>"><i class="fa fa-bullhorn" aria-hidden="true"></i></a>
+                <?php endif; ?>
                 <a class="nav-links" onclick="revealElement($('.search-bar'))"><i class="fa fa-search"></i></a>
                 <a class="nav-links" href="#mobile-nav" data-lity><i class="fa fa-bars"></i></a>
             </div>
@@ -234,10 +236,13 @@ use Cake\Core\Configure;
         const twitchClientId = "<?= Configure::read('Credentials.Twitch.id') ?>";
     </script>
 
-    <div id="notifications-pop" style="display: none;">
-        <div id="notif-container"></div>
-        <div id="no-notif">You have no notifications.</div>
-    </div>
+    <?php if ($authUser) : ?>
+        <div id="notifications-pop" style="display: none;">
+            <a class="notifications-all-link" href="<?= $this->Url->build(['controller' => 'Notifications', 'action' => 'index']) ?>">View all notifications <i class="fas fa-chevron-right"></i></a>
+            <div id="notif-container"></div>
+            <div id="no-notif">You have no notifications.</div>
+        </div>
+    <?php endif; ?>
 
     <!-- Lib & App Js async load -->
     <?= $this->Html->script('/dist/libs.min.js') ?>
