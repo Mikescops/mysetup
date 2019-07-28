@@ -56,11 +56,12 @@ $this->assign('title', __('Add Setup') . ' | mySetup.co');
 
             <h3><?= __('Components') ?> *</h3>
 
-            <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, 'add_setup');" placeholder="<?= __('Search for components...') ?>">
+            <label><i class="fa fa-search"></i> <?= __('Search for components') ?></label>
+            <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, 'add_setup');" placeholder="Acer, Razer, Logitech...">
 
             <ul class="draggable-cards dragscroll search_results add_setup"></ul>
 
-            <h5 class="basket-title"><?= __('Setup items') ?></h5>
+            <label class="basket-title"><i class="fas fa-box-open"></i> <?= __('Setup items') ?></label>
             <ul class="draggable-cards dragscroll basket_items add_setup"></ul>
 
         </div>

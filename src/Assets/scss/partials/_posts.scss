@@ -586,7 +586,14 @@
     input[type="url"],
     textarea,
     select {
-        background: #fff;
+        color: #fff;
+        border-color: #333;
+        background: #333;
+        width: 100%;
+
+        &::placeholder{
+            color: #328fea;
+        }
     }
 
     .slim {
