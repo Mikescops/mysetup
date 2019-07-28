@@ -4,10 +4,9 @@ $('.video-url-input').on('input', function () {
 	if (input.val().substring(0, 4) == 'www.') { input.val('http://www.' + input.val().substring(4)); }
 	const re = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/;
 	const is_url = re.test(input.val());
-	if (is_url) { input.removeClass('invalid').addClass('valid'); }
+	if (is_url || input.val() == '') { input.removeClass('invalid').addClass('valid'); }
 	else { input.removeClass('valid').addClass('invalid'); }
 });
-
 
 /**
  * EDIT SETUP tabs
