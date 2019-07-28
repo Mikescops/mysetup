@@ -1,5 +1,5 @@
 // Colorize url input to prevent random text in video area
-$('.video-url-input').on('input', () => {
+$('.video-url-input').on('input', function () {
 	const input = $(this);
 	if (input.val().substring(0, 4) == 'www.') { input.val('http://www.' + input.val().substring(4)); }
 	const re = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/;
