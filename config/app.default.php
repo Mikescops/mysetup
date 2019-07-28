@@ -325,6 +325,7 @@ return [
                 ],
                 'src' => [
                     'cdn.pji.nu',
+                    'pricespy-75b8.kxcdn.com',
                     'images-eu.ssl-images-amazon.com',
                     'images-na.ssl-images-amazon.com',
                 ],
