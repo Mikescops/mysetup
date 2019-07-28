@@ -1,4 +1,4 @@
-/** @license EMBED API mySetup.co v3.6 **/
+/** @license EMBED API mySetup.co v3.7 **/
 
 const r = (f) => {
 	/in/.test(document.readyState) ? setTimeout(`r(${f})`, 9) : f();
