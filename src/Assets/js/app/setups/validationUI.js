@@ -24,7 +24,7 @@ const replaceValidationUI = (form) => {
 
 		for (let i = 0; i < invalidFields.length; i++) {
 			label = form.querySelector(`label[for=${invalidFields[i].id}]`);
-			listHtml += `<li>${label.innerHTML} | ${invalidFields[i].validationMessage}</li>`;
+			listHtml += `<div>${label.innerHTML} | ${invalidFields[i].validationMessage}</div>`;
 		}
 
 		// If there are errors, give focus to the first invalid field and show
