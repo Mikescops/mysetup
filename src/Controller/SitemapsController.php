@@ -94,7 +94,11 @@ class SitemapsController extends AppController
                 throw new NotFoundException();
         }
 
-        $this->set('records', $records);
+        if($records !== null)
+        {
+            $this->set('records', $records);
+        }
+
         $viewBuilder->setTemplate($target);
         $this->RequestHandler->respondAs('xml');
     }
