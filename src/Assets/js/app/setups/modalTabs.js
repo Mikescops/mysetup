@@ -59,6 +59,6 @@ $(() => {
 	});
 });
 
-const featuredPreviewChange = () => {
+function featuredPreviewChange() {
 	$('.gallery-holder.homide').removeClass('homide');
-};
+}
