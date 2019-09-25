@@ -86,25 +86,32 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 </div>
 
-<div class="colored-box-8">
-    <div class="container">
-        <div class="rowfeed">
-            <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
-            <div class="feeditem">
+<?php if($popularSetups && count($popularSetups) > 0) : ?>
+    <div class="colored-box-8">
+        <div class="container">
+            <div class="rowfeed">
+                <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
+                <div class="feeditem">
 
-                <?php foreach ($popularSetups as $setup) : ?>
+                    <?php foreach ($popularSetups as $setup) : ?>
 
-                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
+                        <?= $this->element('List/cards', ['setup' => $setup]) ?>
 
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
+                <br clear='all'>
             </div>
-            <br clear='all'>
         </div>
     </div>
-</div>
+<?php endif ?>
 
-<?php $randFeatured = array_rand($featuredSetups, 1); ?>
-<?= $this->element('List/showcase', ['setup' => $featuredSetups[$randFeatured]]) ?>
+
+<?php
+    if ($featuredSetups):
+        $randFeatured = array_rand($featuredSetups, 1);
+        echo $this->element('List/showcase', ['setup' => $featuredSetups[$randFeatured]]);
+    endif;
+?>
 
 <?php $i = 0;
 foreach ($brandSetups as $brand => $setups) : ?>
@@ -130,23 +137,25 @@ foreach ($brandSetups as $brand => $setups) : ?>
 <?php endforeach; ?>
 
 <div class="container">
-    <div class="rowfeed">
-        <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
-        <div class="activeUsers">
-            <?php foreach ($activeUsers as $activeUser) : ?>
-                <div class="featured-user">
-                    <a href="<?= $this->Url->build('/users/' . $activeUser->id . '-' . $this->Text->slug($activeUser->name)) ?>">
-                        <img alt="<?= __('Profile picture of') ?> <?= h($activeUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
-                        <span>
-                            <strong><?= h($activeUser->name) ?></strong>
-                            <span></span>
-                        </span>
-                    </a>
-                </div>
-            <?php endforeach ?>
+    <?php if($activeUsers) : ?>
+        <div class="rowfeed">
+            <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
+            <div class="activeUsers">
+                <?php foreach ($activeUsers as $activeUser) : ?>
+                    <div class="featured-user">
+                        <a href="<?= $this->Url->build('/users/' . $activeUser->id . '-' . $this->Text->slug($activeUser->name)) ?>">
+                            <img alt="<?= __('Profile picture of') ?> <?= h($activeUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
+                            <span>
+                                <strong><?= h($activeUser->name) ?></strong>
+                                <span></span>
+                            </span>
+                        </a>
+                    </div>
+                <?php endforeach ?>
+            </div>
+            <br clear='all'>
         </div>
-        <br clear='all'>
-    </div>
+    <?php endif ?>
 
     <div class="rowsocial">
         <?php if (!$authUser) : ?>
