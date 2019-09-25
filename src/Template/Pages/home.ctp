@@ -33,7 +33,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                         <p><?= __('Start now and select all your setup\'s components.') ?></p>
                     </div>
                     <div class="hero_column center-margin-button">
-                        <a href="#add_setup_modal" data-lity class="hero_calltoaction"><?= __('Add my setup now') ?></a>
+                        <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'add']) ?>" class="hero_calltoaction"><?= __('Add my setup now') ?></a>
                     </div>
                 </div>
                 <br>
