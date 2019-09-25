@@ -9,7 +9,7 @@ In order to deploy this website on your web server :
 
 1. `# aptitude install git apache2 mariadb-server php7.1 php7.1-mysql php7.1-xml php7.1-intl php7.1-mbstring php7.1-sqlite3 php7.1-curl php7.1-apcu php7.1-zip php-imagick unzip phpmyadmin composer gettext`
 2.
-    1. `# nano /etc/apache2/site-available/mysetup.conf`
+    1. `# nano /etc/apache2/sites-available/mysetup.conf`
         ```apacheconf
         <VirtualHost *:80>
             DocumentRoot /var/www/html/mysetup/webroot/
@@ -19,6 +19,7 @@ In order to deploy this website on your web server :
             </Directory>
         </VirtualHost>
         ```
+        Starting Apache 2.4 needs `Require all granted`.
     2. `# a2ensite mysetup`
     3. `# a2enmod expires headers rewrite filter deflate`
     4. `# echo "apc.enable_cli = On" >> /etc/php/7.1/apache2/conf.d/20-apcu.ini`
@@ -75,6 +76,20 @@ So as to extract the strings from the source code, and edit them with _Poedit_, 
 `$ bin/cake i18n extract --paths ./src --output ./src/Locale --extract-core yes --merge no --overwrite`
 
 Output files will be under `src/Locale/`, as : `{cake,default}.pot`
+
+### Issues you may have 
+
+1. Deployment script is failing at `PDOException: SQLSTATE[HY000]: General error: 1364 Field 'timeZone' doesn't have a default value` :
+    By default mysql don't allow null default value for fields, so you have to deactivate the security by adding 
+    ```
+    [mysqld]
+    sql_mode=''
+    ```
+    in your `/etc/mysql/mysql.conf.d/mysqld.cnf `
+1. I need a domain to use Twitch login.
+    Edit `/etc/apache2/sites-available/mysetup.conf` and add `Servername mysetup.net`.
+    Then in your `/etc/hosts` add `127.0.0.1    mysetup.net` in the list.
+    Make sure you have the correct credentials in your `app.php` file.
 
 ## Authors
 
