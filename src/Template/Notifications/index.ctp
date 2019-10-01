@@ -20,7 +20,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
     <div class="maincontainer">
         <div class="notifications-container">
-            <?php foreach ($notifications as $notification) : ?>
+            <h4><?= __('Notifications') ?></h4>
+            <?php if (count($notifications) > 0) : foreach ($notifications as $notification) : ?>
                 <div class="notif notifnb-<?= $notification->id ?> <?= ($notification->new == 1) ? 'unread' : '' ?>">
                     <?= $notification->content ?>
                     <div class="notif-close">
@@ -35,13 +36,17 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                     </div>
                 </div>
             <?php endforeach; ?>
+                <ul class="pagination">
+                    <?= $this->Paginator->first('<< ' . __('first')) ?>
+                    <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                    <?= $this->Paginator->numbers(['first' => 1, 'last' => 1, 'modulus' => 3]) ?>
+                    <?= $this->Paginator->next(__('next') . ' >') ?>
+                    <?= $this->Paginator->last(__('last') . ' >>') ?>
+                </ul>
+            <?php else : ?>
+                <p><?= __('No new notification') ?></p>
+            <?php endif; ?>
         </div>
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers(['first' => 1, 'last' => 1, 'modulus' => 3]) ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
+
     </div>
 </div>
