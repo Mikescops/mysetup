@@ -26,12 +26,6 @@
     <?= $this->Html->meta(['link' => '/img/favicon/browserconfig.xml', 'name' => 'msapplication-config']) ?>
     <meta name="theme-color" content="#151515">
 
-    <meta name="twitter:card" value="summary">
-    <meta property="og:type" content="article" />
-    <meta name="twitter:site" content="@mysetup_co">
-    <meta property="og:site_name" content="mySetup.co" />
-    <meta property="fb:admins" content="1912097312403661" />
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
 
     <style type="text/css">
@@ -112,21 +106,19 @@
     </footer>
 
     <script>
-        const webRootJs = "<?= $this->Url->build('/', true); ?>";
+        const webRootJs = "<?= $this->Url->build('/', true) ?>";
     </script>
 
     <!-- Set the Flash dependencies on this layout (needed for entities related actions) -->
-    <?= $this->Html->script('libs.min.js') ?>
-    <?= $this->Html->script('app.min.js') ?>
+    <?= $this->Html->script('/dist/libs.min.js') ?>
+    <?= $this->Html->script('/dist/app.min.js') ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace()
-    </script>
+    <script>feather.replace()</script>
     <script>const toast = new siiimpleToast();</script>
     <script>$(function () {$('[data-toggle="tooltip"]').tooltip()})</script>
     <?= $this->Flash->render() ?>
