@@ -39,10 +39,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <br>
             <?php else : ?>
                 <div class="hero_mainsetup">
-                    <h2><?= __('Your main setup has') ?> <?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?> !</h2>
-                    <p><?= __('Share it to get more') ?> :</p>
+                    <h2><?= __('Welcome back') ?> <?= $authUser['name'] ?></h2>
 
                     <div class="embed-links">
+                        <span class="jssocials-share-link"><?= $mainSetup->like_count ?> <?= __n('like', 'likes', $mainSetup->like_count) ?></span>
                         <a href="<?= $this->Url->build('/setups/' . $mainSetup->id . '-' . $this->Text->slug($mainSetup->title)) ?>" class="jssocials-share-link"><i class="fa fa-laptop"></i> <?= __('See it in action') ?></a>
                         <a href="#embed_twitch_modal" data-lity class="jssocials-share-link"><i class="fab fa-twitch"></i> <?= __('Embed on Twitch') ?></a>
                         <a href="#embed_website_script" data-lity class="jssocials-share-link"><i class="fa fa-code"></i> <?= __('Embed on your website') ?></a>
