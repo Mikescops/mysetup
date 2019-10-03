@@ -1,7 +1,7 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', __('Notifications') . ' | mySetup.co');
+$this->assign('title', $this->Paginator->counter('({{count}}) '). __('Notifications') . ' | mySetup.co');
 
 echo $this->Html->meta('description', __('Your notifications on mySetup.co'), ['block' => true]);
 
