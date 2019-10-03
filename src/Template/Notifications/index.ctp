@@ -20,7 +20,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
     <div class="maincontainer">
         <div class="notifications-container">
-            <h4><?= __('Notifications') ?></h4>
+            <h4><i class="fas fa-stream"></i> <?= $this->Paginator->counter('{{count}}') ?> <?= __n('Notification', 'Notifications', $this->Paginator->counter('{{count}}')) ?></h4>
             <?php if (count($notifications) > 0) : foreach ($notifications as $notification) : ?>
                 <div class="notif notifnb-<?= $notification->id ?> <?= ($notification->new == 1) ? 'unread' : '' ?>">
                     <?= $notification->content ?>
