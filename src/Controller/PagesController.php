@@ -315,7 +315,7 @@ class PagesController extends AppController
                     break;
 
                 case 'resources':
-                    $results =  $this->paginate($this->Resources->getResources($query), ['limit' => 24])->toArray();
+                    $results = $this->paginate($this->Resources->getResources($query), ['limit' => 24])->toArray();
 
                     // Redirect to home search if the result is only one resource
                     if(count($results) == 1)

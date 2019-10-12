@@ -307,8 +307,8 @@ class SetupsTable extends Table
                 'AND' => [
                     'AND' => $conditions,
                     'OR'  => [
-                        'OR' => $title_cond,
-                        'OR' => $resources_cond
+                        $title_cond,
+                        $resources_cond
                     ]
                 ]
             ],
