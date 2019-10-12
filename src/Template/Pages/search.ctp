@@ -104,7 +104,7 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                                 <?php endforeach; ?>
                             </div>
                         <?php endif;?>
-                        <?php if ($this->Paginator->counter(['format' => '{{pages}}']) != 1) : ?>
+                        <?php if ($this->request->getPath() == '/search/resources' && $this->Paginator->counter(['format' => '{{pages}}']) != 1) : ?>
                             <ul class="pagination">
                                 <?= $this->Paginator->first('<< ' . __('first')) ?>
                                 <?= $this->Paginator->prev('< ' . __('previous')) ?>
@@ -114,6 +114,7 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                             </ul>
                         <?php endif;?>
                         <br clear="all">
+                        
                 <?php endif;?>
 
                 <?php if(isset($results["setups"]) && count($results["setups"]) > 0): ?>
@@ -121,7 +122,7 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                     <?php foreach ($results["setups"] as $setup): ?>
                         <?= $this->element('List/tiles', ['setup' => $setup]) ?>
                     <?php endforeach; ?>
-                    <?php if ($this->Paginator->counter(['format' => '{{pages}}']) != 1) : ?>
+                    <?php if ($this->request->getPath() == '/search/setups' && $this->Paginator->counter(['format' => '{{pages}}']) != 1) : ?>
                         <ul class="pagination">
                             <?= $this->Paginator->first('<< ' . __('first')) ?>
                             <?= $this->Paginator->prev('< ' . __('previous')) ?>
