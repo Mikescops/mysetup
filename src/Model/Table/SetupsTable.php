@@ -359,7 +359,7 @@ class SetupsTable extends Table
             $query->offset($params['offset']);
         }
 
-        return $query->distinct()->toArray();
+        return $query->distinct();
     }
 
     public function fetchSetupById($setup_id)
