@@ -43,7 +43,8 @@ CREATE TABLE `comments` (
 CREATE TABLE `likes` (
   `id` INT(11) NOT NULL,
   `setup_id` INT(11) NOT NULL,
-  `user_id` INT(11) NOT NULL
+  `user_id` INT(11) NOT NULL,
+  `dateTime` DATETIME NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------

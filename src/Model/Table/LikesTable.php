@@ -45,6 +45,13 @@ class LikesTable extends Table
             'joinType' => 'INNER'
         ]);
 
+        $this->addBehavior('Timestamp', [
+           'events' => [
+               'Model.beforeSave' => [
+                   'dateTime' => 'new'
+               ]
+           ]
+       ]);
         $this->addBehavior('CounterCache', [
             'Setups' => [
                 'like_count'
@@ -63,6 +70,10 @@ class LikesTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
+
+        $validator
+            ->dateTime('dateTime')
+            ->notEmpty('dateTime');
 
         return $validator;
     }
