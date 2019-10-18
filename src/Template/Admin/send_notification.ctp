@@ -12,7 +12,7 @@
 
     <?= $this->Form->create(null); ?>
     <fieldset>
-		<?= $this->Form->input('user_id', ['type' => 'text', 'list' => 'usersList', 'class' => 'form-control', 'placeholder' => __('Type to search'), 'label' => __('ID de l\'utilisateur')]) ?>
+		<?= $this->Form->input('user_id', ['type' => 'text', 'list' => 'usersList', 'class' => 'form-control', 'placeholder' => __('Type to search'), 'label' => __('User ID')]) ?>
 		<datalist id="usersList">
 			<?php foreach ($usersList as $user_id => $username): ?>
 				<option value="<?= $user_id ?>"><?= $username ?></option>
