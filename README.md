@@ -54,6 +54,7 @@ If you want to bump vendor packages version :
 2. Run some tests
 3. Commit the `composer.lock` changes
 4. Deploy normally to _production_ with `$ bash bin/deployment.sh`
+5. On your _development_ setup, you may force installation of `require-dev` vendors with `$ bash bin/deployment.sh --dev`.
 
 ### Compiling assets
 
