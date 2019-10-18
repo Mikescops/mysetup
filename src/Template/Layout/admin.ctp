@@ -56,6 +56,9 @@
             <a class="nav-link" href="<?= $this->Url->build('/admin/users'); ?>"><i data-feather="users"></i> <?= __('Users') ?></a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="<?= $this->Url->build('/admin/likes'); ?>"><i data-feather="thumbs-up"></i> <?= __('Likes') ?></a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="<?= $this->Url->build('/admin/comments'); ?>"><i data-feather="message-circle"></i> <?= __('Comments') ?></a>
           </li>
           <li class="nav-item">

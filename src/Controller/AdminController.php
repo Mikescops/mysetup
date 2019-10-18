@@ -154,6 +154,21 @@ class AdminController extends AppController
         $this->set('users', $users);
     }
 
+    public function likes()
+    {
+        $likes = $this->paginate($this->Likes, [
+            'contain' => [
+                'Users',
+                'Setups'
+            ],
+            'order' => [
+                'dateTime' => 'DESC'
+            ]
+        ]);
+
+        $this->set('likes', $likes);
+    }
+
     public function comments()
     {
         $comments = $this->paginate($this->Comments, [
