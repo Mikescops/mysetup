@@ -23,7 +23,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
                     <a href="<?= $this->Url->build('/') ?>"><?= __('Home') ?></a> <i class="fa fa-chevron-right"></i> <a href="<?= $this->Url->build('/blog') ?>"><?= __('Blog') ?></a> <i class="fa fa-chevron-right"></i> <?= h($article->title) ?>
 
                     <?php if($authUser['admin']): ?>&nbsp;&nbsp;
-                        <a title="<?= __('Edit this article') ?>" href="<?= $this->Url->build(['action' => 'edit', $article->id]) ?>"><i class="fa fa-pencil-alt"></i></a>
+                        <a title="<?= __('Edit this article') ?>" href="<?= $this->Url->build(['controller' => 'Admin', 'action' => 'articles_edit', $article->id]) ?>"><i class="fa fa-pencil-alt"></i></a>
                         &nbsp;
                         <?php if($authUser['id'] == $article->user_id): ?>
                             <?= $this->Form->postLink('', ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete this article ?'), 'class' => 'fa fa-trash', 'title' => __('Delete this article')]) ?>
