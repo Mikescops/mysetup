@@ -307,8 +307,8 @@ class SetupsTable extends Table
                 'AND' => [
                     'AND' => $conditions,
                     'OR'  => [
-                        'OR' => $title_cond,
-                        'OR' => $resources_cond
+                        $title_cond,
+                        $resources_cond
                     ]
                 ]
             ],
@@ -359,7 +359,7 @@ class SetupsTable extends Table
             $query->offset($params['offset']);
         }
 
-        return $query->distinct()->toArray();
+        return $query->distinct();
     }
 
     public function fetchSetupById($setup_id)

@@ -52,7 +52,7 @@ class PagesController extends AppController
         $featuredSetups_ids = Cache::read('featuredSetups_ids', 'HomePageCacheConfig');
         if($featuredSetups_ids === false)
         {
-            $featuredSetups = $this->Setups->getSetups(['featured' => true, 'number' => 6]);
+            $featuredSetups = $this->Setups->getSetups(['featured' => true, 'number' => 6])->toArray();
 
             $featuredSetups_ids = [];
             foreach($featuredSetups as $featuredSetup)
@@ -83,7 +83,7 @@ class PagesController extends AppController
         $popularSetups_ids = Cache::read('popularSetups_ids', 'HomePageCacheConfig');
         if($popularSetups_ids === false)
         {
-            $popularSetups = $this->Setups->getSetups(['type' => 'like', 'number' => 6]);
+            $popularSetups = $this->Setups->getSetups(['type' => 'like', 'number' => 6])->toArray();
 
             $popularSetups_ids = [];
             foreach($popularSetups as $featuredSetup)
@@ -224,14 +224,14 @@ class PagesController extends AppController
 
     public function recent()
     {
-        $this->set('setups', $this->Setups->getSetups(['number' => 16]));
+        $this->set('setups', $this->Setups->getSetups(['number' => 16])->toArray());
 
         $this->display('recent');
     }
 
     public function staffpicks()
     {
-        $this->set('setups', $this->Setups->getSetups(['featured' => true, 'number' => 20]));
+        $this->set('setups', $this->Setups->getSetups(['featured' => true, 'number' => 20])->toArray());
 
         $this->display('staffpicks');
     }
@@ -244,7 +244,7 @@ class PagesController extends AppController
             return $this->redirect('/weekly/');
         }
 
-        $setups = $this->Setups->getSetups(['featured' => true, 'yearweek' => [$year, $week], 'number' => 5]);
+        $setups = $this->Setups->getSetups(['featured' => true, 'yearweek' => [$year, $week], 'number' => 5])->toArray();
 
         foreach($setups as $featuredSetup)
         {
@@ -299,7 +299,7 @@ class PagesController extends AppController
             switch($entity)
             {
                 case 'setups':
-                    $results = $this->Setups->getSetups(['query' => $query]);
+                    $results = $this->paginate($this->Setups->getSetups(['query' => $query]), ['limit' => 10])->toArray();
                     break;
 
                 case 'users':
@@ -315,7 +315,7 @@ class PagesController extends AppController
                     break;
 
                 case 'resources':
-                    $results = $this->Resources->getResources($query);
+                    $results = $this->paginate($this->Resources->getResources($query), ['limit' => 24])->toArray();
 
                     // Redirect to home search if the result is only one resource
                     if(count($results) == 1)
@@ -329,8 +329,8 @@ class PagesController extends AppController
                 default:
                     // See `setPatterns()` of `/search/:entity` route.
                     $users     = $this->Users->getUsers($query);
-                    $setups    = $this->Setups->getSetups(['query' => $query, 'number' => 8]);
-                    $resources = $this->Resources->getResources($query, 8);
+                    $setups    = $this->Setups->getSetups(['query' => $query, 'number' => 8])->toArray();
+                    $resources = $this->Resources->getResources($query, 8)->toArray();
 
                     /*
                         Redirect to user profile if :

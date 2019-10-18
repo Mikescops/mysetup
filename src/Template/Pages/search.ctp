@@ -83,7 +83,7 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
 
                         elseif($results["error"] == "noresult")
                         {
-                            echo "<h4>" . __("We haven't found any results for this query :(") . "</h4>";
+                            echo "<h4>" . __("We haven't found any results for this query :(") . "</h4><br>";
                         }
                     }
                     else
@@ -104,9 +104,17 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                                 <?php endforeach; ?>
                             </div>
                         <?php endif;?>
+                        <?php if ($this->request->getPath() == '/search/resources' && $this->Paginator->counter(['format' => '{{pages}}']) > 1) : ?>
+                            <ul class="pagination">
+                                <?= $this->Paginator->first('<< ' . __('first')) ?>
+                                <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                                <?= $this->Paginator->numbers(['first' => 1, 'last' => 1, 'modulus' => 3]) ?>
+                                <?= $this->Paginator->next(__('next') . ' >') ?>
+                                <?= $this->Paginator->last(__('last') . ' >>') ?>
+                            </ul>
+                        <?php endif;?>
                         <br clear="all">
 
-                    <br clear="all">
                 <?php endif;?>
 
                 <?php if(isset($results["setups"]) && count($results["setups"]) > 0): ?>
@@ -114,6 +122,15 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                     <?php foreach ($results["setups"] as $setup): ?>
                         <?= $this->element('List/tiles', ['setup' => $setup]) ?>
                     <?php endforeach; ?>
+                    <?php if ($this->request->getPath() == '/search/setups' && $this->Paginator->counter(['format' => '{{pages}}']) > 1) : ?>
+                        <ul class="pagination">
+                            <?= $this->Paginator->first('<< ' . __('first')) ?>
+                            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                            <?= $this->Paginator->numbers(['first' => 1, 'last' => 1, 'modulus' => 3]) ?>
+                            <?= $this->Paginator->next(__('next') . ' >') ?>
+                            <?= $this->Paginator->last(__('last') . ' >>') ?>
+                        </ul>
+                    <?php endif;?>
                     <br clear='all'>
                 <?php endif;?>
 
@@ -130,7 +147,6 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                                 </span>
                                 </a>
                             </div>
-
                         <?php endforeach ?>
                     </div>
                 <?php endif;?>

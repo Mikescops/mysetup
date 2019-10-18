@@ -77,7 +77,7 @@ class CloudTagsTable extends Table
                 'number' => $params['limit_setups'],
                 'type'   => 'like',
                 'fuzzy'  => false
-            ]);
+            ])->toArray();
 
             if(count($setups) >= 3)
             {

@@ -150,7 +150,7 @@ class ResourcesTable extends Table
             $query->limit($number);
         }
 
-        return $query->distinct('Resources.title')->toArray();
+        return $query->distinct('Resources.title');
     }
 
     public function saveResourceProducts($products, $setup, $flash, $admin = false)
