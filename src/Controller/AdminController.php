@@ -143,8 +143,20 @@ class AdminController extends AppController
         $this->set('setups', $setups);
     }
 
-    public function users()
+    public function users($id = null)
     {
+        if($id){
+            $user = $this->Users->get($id, [
+                'contain' => [
+                    'Setups',
+                    'Comments',
+                    'Likes'
+                ]
+            ]);
+
+            $this->set('user', $user);
+            return $this->render('users/view');
+        }
         $users = $this->paginate($this->Users, [
             'order' => [
                 'creationDate' => 'DESC'
@@ -152,6 +164,7 @@ class AdminController extends AppController
         ]);
 
         $this->set('users', $users);
+        $this->render('users/list');
     }
 
     public function likes()

@@ -110,7 +110,7 @@ use Cake\Core\Configure;
             <h3><?= __('Recently connected') ?></h3>
             <div class="list-group">
                 <?php foreach ($stats['users']['recentConnected'] as $user):?>
-                    <a href="<?=$this->Url->build('/users/'.$user->id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="<?=$this->Url->build('/admin/users/'.$user->id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="media">
                             <img class="mr-3 rounded" height="45" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
                             <div class="media-body">
@@ -140,7 +140,7 @@ use Cake\Core\Configure;
             <h3><?= __('Recently registered') ?></h3>
             <div class="list-group">
                 <?php foreach ($stats['users']['recentCreated'] as $user):?>
-                    <a href="<?=$this->Url->build('/users/'.$user->id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="<?=$this->Url->build('/admin/users/'.$user->id)?>" targe="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="media">
                             <img class="mr-3 rounded" height="45" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
                             <div class="media-body">
