@@ -49,13 +49,13 @@ $this->assign('title', __('Users | myAdmin'));
                     <table class="table table-striped" cellpadding="0" cellspacing="0">
                         <thead>
                             <tr>
-                                <th scope="col"><?= $this->Paginator->sort('id', 'ID') ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('title', __('Title')) ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('author', __('Author')) ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('featured', __('Featured')) ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('status', __('Status')) ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('creationDate', __('Created on')) ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('modifiedDate', __('Modified on')) ?></th>
+                                <th scope="col">ID</th>
+                                <th scope="col"><?= __('Title') ?></th>
+                                <th scope="col"><?= __('Author') ?></th>
+                                <th scope="col"><?= __('Featured') ?></th>
+                                <th scope="col"><?= __('Status') ?></th>
+                                <th scope="col"><?= __('Created on') ?></th>
+                                <th scope="col"><?= __('Modified on') ?></th>
                                 <th scope="col" class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
@@ -89,10 +89,10 @@ $this->assign('title', __('Users | myAdmin'));
                     <table class="table table-striped" cellpadding="0" cellspacing="0">
                         <thead>
                             <tr>
-                                <th scope="col"><?= $this->Paginator->sort('id', 'ID') ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('content', __('Content')) ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('setup_id', __('Setup')) ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('dateTime', __('Date')) ?></th>
+                                <th scope="col">ID</th>
+                                <th scope="col"><?= __('Content') ?></th>
+                                <th scope="col"><?= __('Setup') ?></th>
+                                <th scope="col"><?= __('Date') ?></th>
                                 <th scope="col" class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
@@ -121,9 +121,9 @@ $this->assign('title', __('Users | myAdmin'));
                     <table class="table table-striped" cellpadding="0" cellspacing="0">
                         <thead>
                             <tr>
-                                <th scope="col"><?= $this->Paginator->sort('id', 'ID') ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('setup_id', __('Setup')) ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('dateTime', __('Date')) ?></th>
+                                <th scope="col">ID</th>
+                                <th scope="col"><?= __('Setup') ?></th>
+                                <th scope="col"><?= __('Date') ?></th>
                                 <th scope="col" class="actions"><?= __('See') ?></th>
                             </tr>
                         </thead>
