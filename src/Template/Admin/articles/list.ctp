@@ -33,6 +33,7 @@
                     <td class="actions">
                         <?= $this->Html->link('<i data-feather="eye"></i>',  ['controller' => 'Articles', 'action' => 'view', $article->id, '#' => 'articles'], ['title' => __('View'), 'escape' => false]) ?>
                         <?= $this->Html->link('<i data-feather="edit-2"></i>',  ['controller' => 'Admin', 'action' => 'articles_edit', $article->id], ['title' => __('Edit'), 'escape' => false]) ?>
+                        <?= $this->Form->postLink('<i data-feather="trash-2"></i>', ['controller' => 'Articles', 'action' => 'delete', $article->id], ['title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this article ?'), 'escape' => false]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
