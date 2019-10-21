@@ -47,7 +47,7 @@ $this->assign('title', __('Users | myAdmin'));
                                 } else {
                                     echo __('Yes');
                                 }
-                                ?>
+                            ?>
                         </td>
                         <td><?= ($user->mailVerification ? __('No') : __('Yes')) ?></td>
                         <td><?= $this->Time->format($user->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $user->creationDate, $authUser['timeZone']); ?></td>
@@ -69,7 +69,7 @@ $this->assign('title', __('Users | myAdmin'));
                                         <?php if ($user->utwitch) : echo '<a class="dropdown-item" href="' . h($user->utwitch) . '" title="' . h($user->utwitch) . '" target="_blank">Twitch</a>';
                                                 endif; ?>
                                     </div>
-                                <?php endif; ?>
+                            <?php endif; ?>
 
                         <td class="actions">
                             <?= $this->Html->link('<i data-feather="eye"></i>', ['controller' => 'Admin', 'action' => 'users', $user->id], ['title' => __('View'), 'escape' => false]) ?>

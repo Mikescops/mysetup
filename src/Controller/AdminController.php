@@ -145,18 +145,24 @@ class AdminController extends AppController
 
     public function users($id = null)
     {
-        if($id){
+        if($id)
+        {
             $user = $this->Users->get($id, [
                 'contain' => [
                     'Setups',
-                    'Comments',
-                    'Likes'
+                    'Comments' => [
+                        'Setups'
+                    ],
+                    'Likes' => [
+                        'Setups'
+                    ]
                 ]
             ]);
 
             $this->set('user', $user);
             return $this->render('users/view');
         }
+
         $users = $this->paginate($this->Users, [
             'order' => [
                 'creationDate' => 'DESC'

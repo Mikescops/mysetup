@@ -101,7 +101,7 @@ $this->assign('title', __('Users | myAdmin'));
                                 <tr>
                                     <td><?= $comment->id ?></td>
                                     <td><?= h($comment->content) ?></td>
-                                    <td><?= $this->Html->link($comment->setup_id, ['controller' => 'Setups', 'action' => 'view', $comment->setup_id]) ?></td>
+                                    <td><?= $this->Html->link($comment->setup->title, ['controller' => 'Setups', 'action' => 'view', $comment->setup_id]) ?></td>
                                     <td><?= $this->Time->format($comment->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $comment->dateTime, $authUser['timeZone']); ?></td>
                                     <td class="actions">
                                         <?= $this->Html->link('<i data-feather="eye"></i>',  ['controller' => 'Setups', 'action' => 'view', $comment->setup_id, '#' => 'comments'], ['title' => __('View'), 'escape' => false]) ?>
@@ -131,7 +131,7 @@ $this->assign('title', __('Users | myAdmin'));
                             <?php foreach ($user->likes as $like) : ?>
                                 <tr>
                                     <td><?= $like->id ?></td>
-                                    <td><?= $this->Html->link($like->setup_id, ['controller' => 'Setups', 'action' => 'view', $like->setup_id]) ?></td>
+                                    <td><?= $this->Html->link($like->setup->title, ['controller' => 'Setups', 'action' => 'view', $like->setup_id]) ?></td>
                                     <td><?= $this->Time->format($like->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $like->dateTime, $authUser['timeZone']); ?></td>
                                     <td class="actions">
                                         <?= $this->Html->link('<i data-feather="eye"></i>',  ['controller' => 'Setups', 'action' => 'view', $like->setup_id], ['title' => __('View'), 'escape' => false]) ?>
