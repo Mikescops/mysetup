@@ -65,7 +65,7 @@
             <a class="nav-link" href="<?= $this->Url->build('/admin/resources'); ?>"><i data-feather="layers"></i> <?= __('Resources') ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'add']); ?>"><i data-feather="edit"></i> <?= __('Add Article') ?></a>
+            <a class="nav-link" href="<?= $this->Url->build('/admin/articles'); ?>"><i data-feather="file-text"></i> <?= __('Articles') ?></a>
           </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">

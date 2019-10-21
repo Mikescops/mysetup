@@ -25,6 +25,7 @@ class AdminController extends AppController
         $this->loadModel('Comments');
         $this->loadModel('Likes');
         $this->loadModel('Resources');
+        $this->loadModel('Articles');
         $this->loadModel('Requests');
     }
 
@@ -216,6 +217,39 @@ class AdminController extends AppController
         ]);
 
         $this->set('resources', $resources);
+    }
+
+    public function articles()
+    {
+        $articles = $this->paginate($this->Articles, [
+            'contain' => [
+                'Users'
+            ],
+            'order' => [
+                'Articles.dateTime'=> 'desc'
+            ]
+        ]);
+
+        $this->set('articles', $articles);
+        $this->render('articles/list');
+    }
+
+    public function articlesAdd($id = null)
+    {
+        $article = $this->Articles->newEntity();
+        $categories = $this->Articles->categories;
+
+        $this->set(compact('article', 'categories'));
+        $this->render('articles/add');
+    }
+
+    public function articlesEdit($id = null)
+    {
+        $article = $this->Articles->get($id);
+        $categories = $this->Articles->categories;
+
+        $this->set(compact('article', 'categories'));
+        $this->render('articles/edit');
     }
 
     public function sendNotification()

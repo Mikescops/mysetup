@@ -4,12 +4,13 @@
   */
 
     $this->layout = 'admin';
+    $this->assign('title', __('Edit ') . h($article->title) . ' | myAdmin');
 ?>
 
 <div class="col-12 col-md-9 col-xl-10" style="max-width: 800px">
     <h3><?= __('Edit post') ?></h3>
 
-    <?= $this->Form->create($article, ['type' => 'file']) ?>
+    <?= $this->Form->create($article, ['type' => 'file', 'url' => ['controller' => 'Articles', 'action' => 'edit', $article->id]]) ?>
 
     <fieldset>
         <?php
@@ -24,7 +25,7 @@
 
     <?= $this->Form->end() ?>
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/10.1.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
 
     <script>
         ClassicEditor

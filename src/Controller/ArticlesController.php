@@ -62,49 +62,44 @@ class ArticlesController extends AppController
      */
     public function add()
     {
+        $this->request->allowMethod(['post']);
+
         $article = $this->Articles->newEntity();
 
-        if($this->request->is('post'))
+        $data = $this->request->getData();
+
+        // Before anything else, let's check and save the article's picture
+        if(isset($data['picture']) and $data['picture']['tmp_name'] !== '')
         {
-            $data = $this->request->getData();
+            $data['picture'] = $this->Articles->savePicture($data['picture'], $this->Flash);
 
-            // Before anything else, let's check and save the article's picture
-            if(isset($data['picture']) and $data['picture']['tmp_name'] !== '')
+            if(!$data['picture'])
             {
-                $data['picture'] = $this->Articles->savePicture($data['picture'], $this->Flash);
-
-                if(!$data['picture'])
-                {
-                    return $this->redirect(['action' => 'add']);
-                }
+                return $this->redirect(['action' => 'add']);
             }
-
-            else
-            {
-                $this->Flash->warning(__('You need a featured image with this article !'));
-                return $this->redirect($this->referer());
-            }
-
-            $article = $this->Articles->patchEntity($article, $data);
-
-            // Set the owner here
-            $article['user_id'] = $this->Auth->user('id');
-
-            if($this->Articles->save($article))
-            {
-                $this->Flash->success(__('The article has been saved.'));
-                return $this->redirect('/blog/' . $article->id . '-' . Text::slug($article->title));
-            }
-
-            $this->Articles->deletePicture($article['picture']);
-            $this->Flash->error(__('The article could not be saved. Please, try again.'));
-
-            return $this->redirect(['action' => 'add']);
         }
 
-        $categories = $this->Articles->categories;
+        else
+        {
+            $this->Flash->warning(__('You need a featured image with this article !'));
+            return $this->redirect($this->referer());
+        }
 
-        $this->set(compact('article', 'categories'));
+        $article = $this->Articles->patchEntity($article, $data);
+
+        // Set the owner here
+        $article['user_id'] = $this->Auth->user('id');
+
+        if($this->Articles->save($article))
+        {
+            $this->Flash->success(__('The article has been saved.'));
+            return $this->redirect('/blog/' . $article->id . '-' . Text::slug($article->title));
+        }
+
+        $this->Articles->deletePicture($article['picture']);
+        $this->Flash->error(__('The article could not be saved. Please, try again.'));
+
+        return $this->redirect(['action' => 'add']);
     }
 
     /**
@@ -116,61 +111,56 @@ class ArticlesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->request->allowMethod(['patch', 'post', 'put']);
+
         $article = $this->Articles->get($id);
 
-        if($this->request->is(['patch', 'post', 'put']))
+        $data = $this->request->getData();
+
+        $pictureToDelete = null;
+
+        if(isset($data['picture']) and $data['picture']['tmp_name'] !== '')
         {
-            $data = $this->request->getData();
+            // Here we save the path to the current picture
+            $pictureToDelete = $article['picture'];
 
-            $pictureToDelete = null;
+            // We save here the path to the new picture, returned by our dear function
+            $data['picture'] = $this->Articles->savePicture($data['picture'], $this->Flash);
 
-            if(isset($data['picture']) and $data['picture']['tmp_name'] !== '')
+            if(!$data['picture'])
             {
-                // Here we save the path to the current picture
-                $pictureToDelete = $article['picture'];
-
-                // We save here the path to the new picture, returned by our dear function
-                $data['picture'] = $this->Articles->savePicture($data['picture'], $this->Flash);
-
-                if(!$data['picture'])
-                {
-                    return $this->redirect(['action' => 'add']);
-                }
+                return $this->redirect(['action' => 'add']);
             }
-
-            else
-            {
-                $data['picture'] = $article['picture'];
-            }
-
-            $article = $this->Articles->patchEntity($article, $data);
-
-            if($this->Articles->save($article))
-            {
-                // If this path is non-null, we've to delete the old picture !
-                if($pictureToDelete)
-                {
-                    $this->Articles->deletePicture($pictureToDelete);
-                }
-
-                $this->Flash->success(__('The article has been saved.'));
-
-                return $this->redirect('/blog/' . $article->id . '-' . Text::slug($article->title));
-            }
-
-            // If the user uploaded a new image (different path), we've to delete it now !
-            if($pictureToDelete != $data['picture'])
-            {
-                $this->Articles->deletePicture($data['picture']);
-            }
-
-            $this->Flash->error(__('The article could not be saved. Please, try again.'));
-            return $this->redirect($this->referer());
         }
 
-        $categories = $this->Articles->categories;
+        else
+        {
+            $data['picture'] = $article['picture'];
+        }
 
-        $this->set(compact('article', 'categories'));
+        $article = $this->Articles->patchEntity($article, $data);
+
+        if($this->Articles->save($article))
+        {
+            // If this path is non-null, we've to delete the old picture !
+            if($pictureToDelete)
+            {
+                $this->Articles->deletePicture($pictureToDelete);
+            }
+
+            $this->Flash->success(__('The article has been saved.'));
+
+            return $this->redirect('/blog/' . $article->id . '-' . Text::slug($article->title));
+        }
+
+        // If the user uploaded a new image (different path), we've to delete it now !
+        if($pictureToDelete != $data['picture'])
+        {
+            $this->Articles->deletePicture($data['picture']);
+        }
+
+        $this->Flash->error(__('The article could not be saved. Please, try again.'));
+        return $this->redirect($this->referer());
     }
 
     /**
