@@ -143,8 +143,26 @@ class AdminController extends AppController
         $this->set('setups', $setups);
     }
 
-    public function users()
+    public function users($id = null)
     {
+        if($id)
+        {
+            $user = $this->Users->get($id, [
+                'contain' => [
+                    'Setups',
+                    'Comments' => [
+                        'Setups'
+                    ],
+                    'Likes' => [
+                        'Setups'
+                    ]
+                ]
+            ]);
+
+            $this->set('user', $user);
+            return $this->render('users/view');
+        }
+
         $users = $this->paginate($this->Users, [
             'order' => [
                 'creationDate' => 'DESC'
@@ -152,6 +170,7 @@ class AdminController extends AppController
         ]);
 
         $this->set('users', $users);
+        $this->render('users/list');
     }
 
     public function likes()
@@ -227,7 +246,7 @@ class AdminController extends AppController
 
                     if($i == 0)
                     {
-                        $this->Flash->success($nbUsers . ' ' . __n('notification have been sent !', 'notifications have been sent !', $nbUsers));
+                        $this->Flash->success($nbUsers . ' ' . __n('notification has been sent !', 'notifications have been sent !', $nbUsers));
                     }
 
                     elseif($i == $nbUsers)
