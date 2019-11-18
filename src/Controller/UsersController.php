@@ -22,7 +22,12 @@ class UsersController extends AppController
     {
         parent::initialize();
 
-        $this->loadComponent('Captcha');
+        $this->loadComponent('Captcha.Captcha', [
+            'actions' => [
+                'add',
+                'resetPassword'
+            ]
+        ]);
     }
 
     /**
@@ -100,12 +105,6 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
 
             $data = $this->request->getData();
-
-            if(!$this->Captcha->validation($data))
-            {
-                $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
-                return $this->redirect('/');
-            }
 
             if($data['password'] === $data['password2'])
             {

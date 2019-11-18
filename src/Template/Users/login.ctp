@@ -53,30 +53,12 @@ $this->assign('title', __('Login | mySetup.co'));
                     <?= __('Password should be at least 8 characters.') ?>
                 </li>
                 <li>
-                    <div class="g-recaptcha"
-                        data-sitekey="<?= Configure::read('Credentials.Google.CAPTCHA.site') ?>"
-                        data-size="invisible"
-                        data-badge="bottomleft"
-                        data-callback="onSubmit">
-                    </div>
+                    <?= $this->Captcha->render(['placeholder' => __('Please solve this Captcha before submitting'), 'required' => true]) ?>
                     <?= $this->Form->button(__('Sign up')) ?>
                 </li>
             </ul>
         </fieldset>
         <?= $this->Form->end() ?>
-
-        <?= $this->Html->scriptBlock('
-            $("#register-form").submit(function(event) {
-                event.preventDefault();
-                grecaptcha.reset();
-                grecaptcha.execute();
-            });
-
-            function onSubmit(token) {
-                document.getElementById("register-form").submit();
-            }
-        ', ['block' => 'scriptBottom']); ?>
-        <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     </div>
     <!--/#register.form-action-->
     <div id="reset" class="form-action hide">
@@ -91,6 +73,7 @@ $this->assign('title', __('Login | mySetup.co'));
                     <?= $this->Form->control('mailReset', ['placeholder' => __('Email address'), 'label' => false, 'type' => 'email', 'required' => true]) ?>
                 </li>
                 <li>
+                    <?= $this->Captcha->render(['placeholder' => __('Please solve this Captcha before submitting'), 'required' => true]) ?>
                     <?= $this->Form->button(__('Send'), ['class' => 'button']); ?>
                 </li>
             </ul>

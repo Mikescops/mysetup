@@ -21,6 +21,8 @@ use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
 use Cake\Cache\Cache;
 
+use Cake\Form\Form;
+
 /**
  * Static content controller
  *
@@ -34,7 +36,15 @@ class PagesController extends AppController
     {
         parent::initialize();
 
-        $this->loadComponent('Captcha');
+        //  Only "visitors" will have to complete a Captcha, let's lazy load this Component !
+        if($this->Auth->user() === null)
+        {
+            $this->loadComponent('Captcha.Captcha', [
+                'actions' => [
+                    'bugReport'
+                ]
+            ]);
+        }
 
         $this->loadModel('Users');
         $this->loadModel('Setups');
@@ -262,16 +272,25 @@ class PagesController extends AppController
         {
             $data = $this->request->getData();
 
-            if(!$this->Captcha->validation($data))
+            // Only "visitors" have to complete the Captcha !
+            if($this->Auth->user() === null)
             {
-                $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
-                return $this->redirect('/');
+                $form = new Form();
+                $this->Captcha->addValidation($form->validator());
+                $validation_result = $form->execute($data);
+            }
+            else
+            {
+                $validation_result = true;
             }
 
             $auth = $this->Auth->user();
 
-            if(isset($data['bugDescription']) and $data['bugDescription'] !== '' and strlen($data['bugDescription'] <= 5000) and ($auth or (isset($data['bugMail']) and $data['bugMail'] !== '')))
-            {
+            if($validation_result and
+                isset($data['bugDescription']) and $data['bugDescription'] !== '' and
+                strlen($data['bugDescription'] <= 5000) and
+                ($auth or (isset($data['bugMail']) and $data['bugMail'] !== '')
+            )) {
                 $email = $this->loadModel('Users')->getEmailObject('beta@mysetup.co', '[mySetup.co] There is a bug !');
                 $email->setTemplate('bug')
                       ->setViewVars(['content' => $data['bugDescription'], 'email' => ($auth ? $auth['mail'] : $data['bugMail'])])

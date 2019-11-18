@@ -15,7 +15,7 @@ echo $this->Html->meta('description', __('You found an issue on mySetup.co ? Rep
 <div class="container">
 <div class="bug-report-form">
 
-    <?= $this->Form->create(null, ['id' => 'bugreport-form']) ?>
+    <?= $this->Form->create(null) ?>
     <fieldset style="border:0;">
         <?php
             if(!$authUser)
@@ -26,29 +26,16 @@ echo $this->Html->meta('description', __('You found an issue on mySetup.co ? Rep
 
         <?= $this->Form->control('bugDescription', ['label' => __('Bug description'), 'class' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'placeholder' => __('Please, describe precisely the bug you unfortunately encountered on mySetup.co...'), 'required' => true]) ?>
 
-        <div class="g-recaptcha"
-            data-sitekey="<?= Configure::read('Credentials.Google.CAPTCHA.site') ?>"
-            data-size="invisible"
-            data-badge="bottomleft"
-            data-callback="onSubmit">
-        </div>
+        <?php
+            if(!$authUser)
+            {
+                echo $this->Captcha->render(['placeholder' => __('Please solve this Captcha'), 'required' => true]);
+            }
+        ?>
 
         <?= $this->Form->button(__('Send')) ?>
     </fieldset>
     <?= $this->Form->end() ?>
-
-    <?= $this->Html->scriptBlock('
-        $("#bugreport-form").submit(function(event) {
-            event.preventDefault();
-            grecaptcha.reset();
-            grecaptcha.execute();
-        });
-
-        function onSubmit(token) {
-            document.getElementById("bugreport-form").submit();
-        }
-    ', ['block' => 'scriptBottom']); ?>
-    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 
 </div>
 </div>

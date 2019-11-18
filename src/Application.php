@@ -62,6 +62,7 @@ class Application extends BaseApplication
 
         $this->addPlugin('Tanuck/Markdown');
         $this->addPlugin('Muffin/Throttle');
+        $this->addPlugin('Captcha', ['bootstrap' => true, 'routes' => true]);
         $this->addPlugin('Setup', ['bootstrap' => true]);
     }
 
