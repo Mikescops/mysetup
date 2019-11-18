@@ -94,7 +94,7 @@ class ThirdPartiesController extends AppController
         }
 
         // Is the user French ? Let's use the "LeDénicheur"'s API !
-        if($store === 'FR')
+        if($store)
         {
             // API endpoint
             $APIBaseURL = Configure::read('Credentials.LeDenicheur.endpoint');
@@ -146,7 +146,7 @@ class ThirdPartiesController extends AppController
             {
                 // If the research gave no result with LeDenicheur API, we "redirect" the query to the US Amazon store.
                 // We should not be redirecting the calling procedure on a public method, but its logic allows us to take some risks :)
-                return $this->searchProducts($query, 'US');
+                // return $this->searchProducts($query, 'US');
             }
         }
 
