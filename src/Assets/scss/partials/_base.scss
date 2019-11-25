@@ -55,7 +55,6 @@ body {
 }
 
 img {
-    user-drag: none;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -347,6 +346,7 @@ input.invalid {
 // Imports >>>
 
 @import "home";
+@import "grid";
 @import "menu";
 @import "modals";
 @import "pages";

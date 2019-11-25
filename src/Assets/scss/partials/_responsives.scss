@@ -39,24 +39,6 @@
 	    margin: 0;
 	}
 
-	.fullitem-inner{
-		height: 70px;
-		padding: 5px;
-	}
-
-	.feeditem .fullitem-inner{
-		height: 54px;
-		padding: 2px;
-	}
-
-	.feeditem .fullitem:hover > .fullitem-inner {
-	    height: 54px!important;
-	}
-
-	.fullitem:hover > .fullitem-inner {
-	    height: 70px!important;
-	}
-
 	.rowsocial .blog-advert h5, .rowsocial .twitch-advert h4{
 		font-size: 18px;
 	}
@@ -129,28 +111,6 @@
 		-webkit-column-count: 1!important; /* Chrome, Safari, Opera */
 	    -moz-column-count: 1!important; /* Firefox */
 	    column-count: 1!important;
-	}
-
-	.feeditem .fullitem:hover > .fullitem-inner {
-	    height: 60px;
-	}
-
-	.fullitem {
-		max-width: 100%;
-	}
-
-	.fullitem:hover > .fullitem-inner {
-	    height: 80px;
-	}
-
-	.fullitem-inner .featured-user img{
-		width: 40px;
-	}
-
-	.fullitem-inner h3{
-		line-height: 40px;
-		font-size: 1.2em;
-		margin-left: 7px;
 	}
 
 	.article-list .article-item{

@@ -91,11 +91,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <div class="container">
             <div class="rowfeed">
                 <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
-                <div class="feeditem">
+                <div class="card-grid">
 
                     <?php foreach ($popularSetups as $setup) : ?>
 
-                        <?= $this->element('List/cards', ['setup' => $setup]) ?>
+                        <?= $this->element('List/card-item', ['setup' => $setup]) ?>
 
                     <?php endforeach; ?>
                 </div>
@@ -120,14 +120,15 @@ foreach ($brandSetups as $brand => $setups) : ?>
         <div class="container">
             <div class="rowfeed">
                 <h4 class="fancy"><span><?= h($brand) ?></span></h4>
-                <div class="feeditem">
+                <div class="card-grid">
 
                     <?php foreach ($setups as $setup) : ?>
 
-                        <?= $this->element('List/cards', ['setup' => $setup]) ?>
+                        <?= $this->element('List/card-item', ['setup' => $setup]) ?>
 
                     <?php endforeach; ?>
                 </div>
+                <br>
                 <a class="home_more float-right" href="<?= $this->Url->build('/search/?q=' . $brand); ?>"><?= __('More {0} setups', $brand) ?> <i class="fa fa-chevron-right"></i></a>
                 <br clear='all'>
             </div>
