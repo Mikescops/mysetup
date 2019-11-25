@@ -1,297 +1,294 @@
 /********** TEAM PAGE *********/
 
-.team-page img{
-	float: left;
-	margin-right: 15px;
-	height: 100px;
-	border-radius: 4px;
+.team-page img {
+    float: left;
+    margin-right: 15px;
+    height: 100px;
+    border-radius: 4px;
 }
 
-.team-page p{
-	margin-bottom: 5px;
+.team-page p {
+    margin-bottom: 5px;
 }
 
-.team-page .member{
-	margin-bottom: 5px;
-	overflow: auto;
+.team-page .member {
+    margin-bottom: 5px;
+    overflow: auto;
 }
 
 /************** LOGIN / REGISTER CSS ******************/
 
 .login-form {
-	margin: 50px auto;
-	width: 500px;
-	max-width: 100%;
-	position: relative;
+    margin: 50px auto;
+    width: 500px;
+    max-width: 100%;
+    position: relative;
 }
 .login-form .tabs {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	width: 100%;
-	position: relative;
-	display: block;
-	margin-bottom: 20px;
-	text-align: center;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
 }
 .login-form .tabs li {
-	display: inline-block;
-	margin: 0;
-	padding: 0;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
 }
 .login-form .tabs a {
-	display: block;
-	float: left;
-	text-decoration: none;
-	color: white;
-	font-size: 16px;
-	padding: 8px 18px 8px 18px;
+    display: block;
+    float: left;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 8px 18px 8px 18px;
 }
 .login-form .tabs a.active {
-	border-bottom: solid 1px #fff;
-	-webkit-transition: all 0.5s linear;
-	-moz-transition: all 0.5s linear;
-	transition: all 0.5s linear;
+    border-bottom: solid 1px #fff;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    transition: all 0.5s linear;
 }
 
 .login-form .form-action {
-	position: relative;
+    position: relative;
 }
 
 .login-form form {
-	padding-right: 20px !important;
+    padding-right: 20px !important;
 }
 
-.login-form form input[type=text],
-.login-form form input[type=url],
-.login-form form input[type=password],
-.login-form form input[type=email] {
-	width: 100%;
-	height: 40px;
-	margin-bottom: 10px;
-	padding-left: 15px;
-	background: #fff;
-	border: none;
-	color: #2167bd;
-	outline: none;
+.login-form form input[type="text"],
+.login-form form input[type="url"],
+.login-form form input[type="password"],
+.login-form form input[type="email"] {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    background: #fff;
+    border: none;
+    color: #2167bd;
+    outline: none;
 }
 
-.login-form form select{
-	background-color: #fff;
-	color: #000;
+.login-form form select {
+    background-color: #fff;
+    color: #000;
 }
 
-.login-form form option{
-	color: #000;
+.login-form form option {
+    color: #000;
 }
 
-.login-form form ul{
-	list-style: none;
+.login-form form ul {
+    list-style: none;
 }
 
 .login-form .dark-box {
-	background: #5e0400;
-	box-shadow: 1px 3px 3px #3d0100 inset;
-	height: 40px;
-	width: 50px;
+    background: #5e0400;
+    box-shadow: 1px 3px 3px #3d0100 inset;
+    height: 40px;
+    width: 50px;
 }
 .login-form .form-action .dark-box.bottom {
-	position: absolute;
-	right: 0;
-	bottom: -24px;
+    position: absolute;
+    right: 0;
+    bottom: -24px;
 }
 .login-form .tabs + .dark-box.top {
-	position: absolute;
-	right: 0;
-	top: 0px;
+    position: absolute;
+    right: 0;
+    top: 0px;
 }
 .login-form .show {
-	display: block;
+    display: block;
 }
 .login-form .hide {
-	display: none;
+    display: none;
 }
 
 ::-webkit-input-placeholder {
-	color: #2167bd;
+    color: #2167bd;
 }
 :-moz-placeholder {
-	/* Firefox 18- */
-	color: #2167bd;
+    /* Firefox 18- */
+    color: #2167bd;
 }
 ::-moz-placeholder {
-	/* Firefox 19+ */
-	color: #2167bd;
+    /* Firefox 19+ */
+    color: #2167bd;
 }
 
 /************** BUG REPORT CSS **************/
 
 .bug-report-form {
-	margin: 50px auto;
-	width: 750px;
-	max-width: 100%;
-	position: relative;
+    margin: 50px auto;
+    width: 750px;
+    max-width: 100%;
+    position: relative;
 }
 .bug-report-form form {
-	padding-right: 20px !important;
+    padding-right: 20px !important;
 }
 .bug-report-form form textarea,
-.bug-report-form form input[type=email] {
-	width: 100%;
-	height: 40px;
-	margin-bottom: 10px;
-	padding-left: 15px;
-	background: #fff;
-	border: none;
-	color: #2167bd;
-	outline: none;
+.bug-report-form form input[type="email"] {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    background: #fff;
+    border: none;
+    color: #2167bd;
+    outline: none;
 }
 
 .bug-report-form textarea {
-	min-height: 150px;
+    min-height: 150px;
 }
-
 
 /************** SEARCH CSS **************/
 
-.search-container .activeUsers{
-	-webkit-column-count: 2; /* Chrome, Safari, Opera */
-	-moz-column-count: 2; /* Firefox */
-	column-count: 2;
+.search-container .activeUsers {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
 }
 
-.search-tabs{
-	text-align: center;
-	background: #354867;
-	width: 100%;
-	overflow-x: auto;
+.search-tabs {
+    text-align: center;
+    background: #354867;
+    width: 100%;
+    overflow-x: auto;
 
-	ul{
-		list-style: none;
-		margin: 0 auto;
-		display: flex;
-		-webkit-box-orient: horizontal;
-		-webkit-box-direction: normal;
-		-ms-flex-direction: row;
-		flex-direction: row;
+    ul {
+        list-style: none;
+        margin: 0 auto;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
 
-		li{
-			display: inline-block;
-			margin-bottom: 0;
-			padding: 1rem 0;
+        li {
+            display: inline-block;
+            margin-bottom: 0;
+            padding: 1rem 0;
 
-			&:hover, &.active{
-				background: rgba(255,255,255, .1)
-			}
+            &:hover,
+            &.active {
+                background: rgba(255, 255, 255, 0.1);
+            }
 
-			a{
-				color: #fff;
-				padding: 1rem 2rem;
-			}
-		}
+            a {
+                color: #fff;
+                padding: 1rem 2rem;
+            }
+        }
 
-		span.pushli{
-			flex: 1 0 auto;
-		}
-	}
+        span.pushli {
+            flex: 1 0 auto;
+        }
+    }
 }
 
-.search-sorting{
-	list-style: none;
-	background: rgba(255,255,255,.1);
-	border-radius: 4px;
-	width: 100%;
-	border: 1px solid rgba(255,255,255,.3);
+.search-sorting {
+    list-style: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 
-	li{
-		padding: .5rem 1rem;
-		margin-bottom: 0;
-		border-bottom: 1px solid rgba(255,255,255,.3);
+    li {
+        padding: 0.5rem 1rem;
+        margin-bottom: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 
-		&:hover{
-			background: rgba(255,255,255,.1);
-		}
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-		a{
-			text-decoration: none;
-			color: #fff;
-			display: block;
-		}
+        a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
 
-		&:last-child{
-			border: 0;
-		}
-	}
-
+        &:last-child {
+            border: 0;
+        }
+    }
 }
 
 /********** FAQ PAGE *********/
 
-.faq-questions li{
-	background: #3c3a3a;
-	padding: 5px 10px;
-	border-radius: 5px;
+.faq-questions li {
+    background: #3c3a3a;
+    padding: 5px 10px;
+    border-radius: 5px;
 
-	a{
-		color: #fff;
-	}
+    a {
+        color: #fff;
+    }
 
-	a:hover{
-		color: $color-blue;
-	}
+    a:hover {
+        color: $color-blue;
+    }
 }
 
-.faq-answers{
-	h4{
-		background: #3c3a3a;
-		padding: 5px 10px;
-		border-radius: 5px 5px 0 0;
-	}
+.faq-answers {
+    h4 {
+        background: #3c3a3a;
+        padding: 5px 10px;
+        border-radius: 5px 5px 0 0;
+    }
 
-	p{
-		background: #272727;
-		padding: 5px 10px;
-		margin-top: -20px;
-		border-radius: 0 0 5px 5px;
-	}
+    p {
+        background: #272727;
+        padding: 5px 10px;
+        margin-top: -20px;
+        border-radius: 0 0 5px 5px;
+    }
 }
-
 
 /********** WEEKLY PICKS PAGE *********/
 
-.weeklypicks{
+.weeklypicks {
+    h2 {
+        font-size: 4em;
+        text-align: center;
+        padding-top: 100px;
+    }
 
-	h2{
-		font-size: 4em;
-		text-align: center;
-		padding-top: 100px;
-	}
+    p {
+        text-align: center;
+    }
 
-	p{
-		text-align: center;
-	}
-
-	hr{
-		margin: 0 auto;
-		border: 0;
-		border-radius: 6px;
-		height: 5px;
-		background: linear-gradient(145deg, #344154 0%, #3A62A8 100%);
-		width: 20%;
-	}
+    hr {
+        margin: 0 auto;
+        border: 0;
+        border-radius: 6px;
+        height: 5px;
+        background: linear-gradient(145deg, #344154 0%, #3a62a8 100%);
+        width: 20%;
+    }
 }
 
-.no-showcase{
-	font-size: 2em;
-	text-align: center;
-	margin: 20px auto;
+.no-showcase {
+    font-size: 2em;
+    text-align: center;
+    margin: 20px auto;
 }
 
-.previous-weekly{
-	display: block;
-	width: 100%;
-	max-width: 300px;
-	margin: 0 auto;
-	border: 0;
-	background: #272727;
+.previous-weekly {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    border: 0;
+    background: #272727;
 }

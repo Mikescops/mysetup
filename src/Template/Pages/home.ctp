@@ -175,7 +175,7 @@ foreach ($brandSetups as $brand => $setups) : ?>
     </div>
 </div>
 
-<div class="row partners-row">
+<div class="row partners-row before-footer">
     <div class="column"><a href="https://www.lafrenchtech.com/" target="_blank" class="item"><img alt="Partner French Tech" src="<?= $this->Url->build('/img/partners/french-tech.png') ?>"></a></div>
     <div class="column"><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img alt="Partner LeDenicheur" src="<?= $this->Url->build('/img/partners/ledenicheur.png') ?>"></a></div>
     <div class="column"><a href="https://www.twitch.tv/" target="_blank" class="item"><img alt="Partner Twitch" src="<?= $this->Url->build('/img/partners/twitch-white.png') ?>"></a></div>

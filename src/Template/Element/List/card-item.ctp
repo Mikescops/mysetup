@@ -7,7 +7,7 @@
         </a>
 
         <div class="setup-meta">
-            <span class="setup-title">
+            <h3 class="setup-title">
                 <a href="<?= $this->Url->build('/setups/' . $setup->id . '-' . $this->Text->slug($setup->title)) ?>">
                     <?php if ($setup->status == 'DRAFT') : ?>
                         <i title="<?= __('Only you can see this setup') ?>" class="fa fa-eye-slash setup-unpublished"></i>
@@ -16,7 +16,7 @@
                     <?php endif ?>
                     <?= h($setup->title) ?>
                 </a>
-            </span>
+            </h3>
             <span class="setup-author"><?= h($setup->user ? $setup->user->name : $user->name) ?></span>
         </div>
 
@@ -29,5 +29,7 @@
     <a href="<?= $this->Url->build('/setups/' . $setup->id . '-' . $this->Text->slug($setup->title)) ?>">
         <img class="setup-image" alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg')) ?>">
     </a>
+
+    <div class="card-bg" style="<?= isset($css_style) ? $css_style : '' ?>"></div>
 
 </article>

@@ -24,21 +24,21 @@
         height: 100%;
         z-index: 1;
 
-        &::after {
+        .card-bg {
             position: absolute;
             content: "";
             right: -1rem;
             bottom: -1rem;
             left: 1rem;
             top: 1rem;
-            background: #0000006b;
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 10px;
             z-index: -1;
             -webkit-transition: 0.3s ease;
             transition: 0.3s ease;
         }
 
-        &:hover::after {
+        &:hover .card-bg {
             left: -1rem;
             right: -1rem;
             top: -1rem;
@@ -84,6 +84,7 @@
                     display: block;
                     font-size: 17px;
                     margin: 0 0 0.25rem;
+                    letter-spacing: normal;
                     a {
                         color: white;
                     }

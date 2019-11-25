@@ -71,6 +71,7 @@ img {
 }
 
 footer {
+    margin-top: 40px;
     padding-top: 40px;
     padding-bottom: 50px;
     background-color: #000;
@@ -229,6 +230,8 @@ footer {
 }
 
 .before-footer {
+    margin-bottom: -40px;
+
     .container {
         text-align: center;
         padding: 4rem 15px 6rem 15px;

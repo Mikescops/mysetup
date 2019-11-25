@@ -77,7 +77,7 @@ const infiniteScroll = (nbtodisplay) => {
 								.replace(/{{ rgb_3 }}/g, rgb_3);
 						});
 
-						$('.fullitem_holder').append(listHtml);
+						$('#grid-holder').append(listHtml);
 
 						$(window).data('ajaxready', true);
 					} else {
