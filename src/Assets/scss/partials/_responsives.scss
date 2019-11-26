@@ -93,12 +93,6 @@
         display: block;
     }
 
-    .activeUsers {
-        -webkit-column-count: 1 !important; /* Chrome, Safari, Opera */
-        -moz-column-count: 1 !important; /* Firefox */
-        column-count: 1 !important;
-    }
-
     /* POST RESPONSIVE */
 
     .featured-inner {
@@ -231,12 +225,6 @@
 
     .rowsocial .social-networks {
         display: none;
-    }
-
-    .activeUsers {
-        -webkit-column-count: 2; /* Chrome, Safari, Opera */
-        -moz-column-count: 2; /* Firefox */
-        column-count: 2;
     }
 
     /* HOME RESPONSIVE */

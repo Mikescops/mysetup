@@ -33,7 +33,7 @@ class AppView extends View
         if($this->request->getParam('action') === 'view')
         {
             // We'll only load our Markdown Helper for '{Setups,Articles}.view' pages !
-            if(in_array($this->request->getParam('controller'), ['Setups', 'Articles', 'Users']))
+            if(in_array($this->request->getParam('controller'), ['Setups', 'Articles', 'Users', 'Pages']))
             {
                 $this->loadHelper('Tanuck/Markdown.Markdown');
                 $this->loadHelper('MySetupTools');
