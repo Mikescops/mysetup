@@ -91,11 +91,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <div class="container">
             <div class="rowfeed">
                 <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
-                <div class="feeditem">
+                <div class="card-grid">
 
                     <?php foreach ($popularSetups as $setup) : ?>
 
-                        <?= $this->element('List/cards', ['setup' => $setup]) ?>
+                        <?= $this->element('List/card-item', ['setup' => $setup]) ?>
 
                     <?php endforeach; ?>
                 </div>
@@ -120,14 +120,15 @@ foreach ($brandSetups as $brand => $setups) : ?>
         <div class="container">
             <div class="rowfeed">
                 <h4 class="fancy"><span><?= h($brand) ?></span></h4>
-                <div class="feeditem">
+                <div class="card-grid">
 
                     <?php foreach ($setups as $setup) : ?>
 
-                        <?= $this->element('List/cards', ['setup' => $setup]) ?>
+                        <?= $this->element('List/card-item', ['setup' => $setup]) ?>
 
                     <?php endforeach; ?>
                 </div>
+                <br>
                 <a class="home_more float-right" href="<?= $this->Url->build('/search/?q=' . $brand); ?>"><?= __('More {0} setups', $brand) ?> <i class="fa fa-chevron-right"></i></a>
                 <br clear='all'>
             </div>
@@ -174,7 +175,7 @@ foreach ($brandSetups as $brand => $setups) : ?>
     </div>
 </div>
 
-<div class="row partners-row">
+<div class="row partners-row before-footer">
     <div class="column"><a href="https://www.lafrenchtech.com/" target="_blank" class="item"><img alt="Partner French Tech" src="<?= $this->Url->build('/img/partners/french-tech.png') ?>"></a></div>
     <div class="column"><a href="https://ledenicheur.fr/?ref=61490" target="_blank" class="item"><img alt="Partner LeDenicheur" src="<?= $this->Url->build('/img/partners/ledenicheur.png') ?>"></a></div>
     <div class="column"><a href="https://www.twitch.tv/" target="_blank" class="item"><img alt="Partner Twitch" src="<?= $this->Url->build('/img/partners/twitch-white.png') ?>"></a></div>

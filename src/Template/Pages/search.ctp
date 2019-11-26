@@ -1,7 +1,8 @@
 <?php
+
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 
 $this->assign('title', __('Search for') . ' "' . h($this->request->getQuery('q') ? $this->request->getQuery('q') : "") . '" | mySetup.co');
 
@@ -28,39 +29,36 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
     <ul>
         <span class="pushli"></span>
         <?php
-            $queries = '';
-            foreach($this->request->getQuery() as $id => $query)
-            {
-                if($queries)
-                {
-                    $queries .= '&';
-                }
-
-                $queries .= $id . '=' . $query;
+        $queries = '';
+        foreach ($this->request->getQuery() as $id => $query) {
+            if ($queries) {
+                $queries .= '&';
             }
 
-            if($queries)
-            {
-                $queries = '?' . $queries;
-            }
+            $queries .= $id . '=' . $query;
+        }
+
+        if ($queries) {
+            $queries = '?' . $queries;
+        }
         ?>
-        <li <?php if($this->request->getPath() == '/search/'): ?>class="active"<?php endif; ?>>
-            <a href="<?=$this->Url->build('/search/' . h($queries))?>">
+        <li <?php if ($this->request->getPath() == '/search/') : ?>class="active" <?php endif; ?>>
+            <a href="<?= $this->Url->build('/search/' . h($queries)) ?>">
                 <?= __('All') ?>
             </a>
         </li>
-        <li <?php if($this->request->getPath() == '/search/setups'): ?>class="active"<?php endif; ?>>
-            <a href="<?=$this->Url->build('/search/setups' . h($queries))?>">
+        <li <?php if ($this->request->getPath() == '/search/setups') : ?>class="active" <?php endif; ?>>
+            <a href="<?= $this->Url->build('/search/setups' . h($queries)) ?>">
                 <?= __('Setups') ?>
             </a>
         </li>
-        <li <?php if($this->request->getPath() == '/search/resources'): ?>class="active"<?php endif; ?>>
-            <a href="<?=$this->Url->build('/search/resources' . h($queries))?>">
+        <li <?php if ($this->request->getPath() == '/search/resources') : ?>class="active" <?php endif; ?>>
+            <a href="<?= $this->Url->build('/search/resources' . h($queries)) ?>">
                 <?= __('Components') ?>
             </a>
         </li>
-        <li <?php if($this->request->getPath() == '/search/users'): ?>class="active"<?php endif; ?>>
-            <a href="<?=$this->Url->build('/search/users' . h($queries))?>">
+        <li <?php if ($this->request->getPath() == '/search/users') : ?>class="active" <?php endif; ?>>
+            <a href="<?= $this->Url->build('/search/users' . h($queries)) ?>">
                 <?= __('Users') ?>
             </a>
         </li>
@@ -73,37 +71,33 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
         <div class="row">
             <div class="column column-75 search-container">
 
-                <?php
-                    if(isset($results["error"]))
-                    {
-                        if($results["error"] == "noquery")
-                        {
-                            echo "<h4>" . __("No search query, no results :(") . "</h4>";
-                        }
-
-                        elseif($results["error"] == "noresult")
-                        {
-                            echo "<h4>" . __("We haven't found any results for this query :(") . "</h4><br>";
-                        }
+                <?php if (isset($results["error"])) {
+                    if ($results["error"] == "noquery") {
+                        echo "<h4>" . __("No search query, no results :(") . "</h4>";
+                    } elseif ($results["error"] == "noresult") {
+                        echo "<h4>" . __("We haven't found any results for this query :(") . "</h4><br>";
                     }
-                    else
-                    {
-                ?>
+                } else {
+                    ?>
 
-                <?php if(isset($results["resources"]) && count($results["resources"]) > 0): $resources = $results["resources"]; ?>
+                    <?php if (isset($results["resources"]) && count($results["resources"]) > 0) : $resources = $results["resources"]; ?>
 
-                        <?php if(count($resources, COUNT_RECURSIVE) == 1): ?>
-                            <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"><div class="item_box float-left" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div></a>
+                        <?php if (count($resources, COUNT_RECURSIVE) == 1) : ?>
+                            <a href="<?= urldecode($resources[0]->href) ?>" target="_blank">
+                                <div class="item_box float-left" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div>
+                            </a>
                             <span><?= __('All setups related to') ?> :</span>
                             <h4><?= urldecode(h($resources[0]->title)) ?> <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"> <i class="fa fa-shopping-bag"></i></a></h4>
-                        <?php else:?>
+                        <?php else : ?>
                             <h3><?= __('Found components') ?></h3>
                             <div class="config-items">
-                                <?php foreach ($resources as $item): ?>
-                                    <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>"><div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div></a>
+                                <?php foreach ($resources as $item) : ?>
+                                    <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>">
+                                        <div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
+                                    </a>
                                 <?php endforeach; ?>
                             </div>
-                        <?php endif;?>
+                        <?php endif; ?>
                         <?php if ($this->request->getPath() == '/search/resources' && $this->Paginator->counter(['format' => '{{pages}}']) > 1) : ?>
                             <ul class="pagination">
                                 <?= $this->Paginator->first('<< ' . __('first')) ?>
@@ -112,46 +106,48 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                                 <?= $this->Paginator->next(__('next') . ' >') ?>
                                 <?= $this->Paginator->last(__('last') . ' >>') ?>
                             </ul>
-                        <?php endif;?>
+                        <?php endif; ?>
                         <br clear="all">
 
-                <?php endif;?>
+                    <?php endif; ?>
 
-                <?php if(isset($results["setups"]) && count($results["setups"]) > 0): ?>
-                    <h3><?= __('Found setups') ?></h3>
-                    <?php foreach ($results["setups"] as $setup): ?>
-                        <?= $this->element('List/tiles', ['setup' => $setup]) ?>
-                    <?php endforeach; ?>
-                    <?php if ($this->request->getPath() == '/search/setups' && $this->Paginator->counter(['format' => '{{pages}}']) > 1) : ?>
-                        <ul class="pagination">
-                            <?= $this->Paginator->first('<< ' . __('first')) ?>
-                            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-                            <?= $this->Paginator->numbers(['first' => 1, 'last' => 1, 'modulus' => 3]) ?>
-                            <?= $this->Paginator->next(__('next') . ' >') ?>
-                            <?= $this->Paginator->last(__('last') . ' >>') ?>
-                        </ul>
-                    <?php endif;?>
-                    <br clear='all'>
-                <?php endif;?>
+                    <?php if (isset($results["setups"]) && count($results["setups"]) > 0) : ?>
+                        <h3><?= __('Found setups') ?></h3>
+                        <div class="card-grid">
+                            <?php foreach ($results["setups"] as $setup) : ?>
+                                <?= $this->element('List/card-item', ['setup' => $setup]) ?>
+                            <?php endforeach; ?>
+                            <?php if ($this->request->getPath() == '/search/setups' && $this->Paginator->counter(['format' => '{{pages}}']) > 1) : ?>
+                                <ul class="pagination">
+                                    <?= $this->Paginator->first('<< ' . __('first')) ?>
+                                    <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                                    <?= $this->Paginator->numbers(['first' => 1, 'last' => 1, 'modulus' => 3]) ?>
+                                    <?= $this->Paginator->next(__('next') . ' >') ?>
+                                    <?= $this->Paginator->last(__('last') . ' >>') ?>
+                                </ul>
+                            <?php endif; ?>
+                            <br clear='all'>
+                        </div>
+                    <?php endif; ?>
 
-                <?php if(isset($results["users"]) && count($results["users"]) > 0): ?>
-                    <h3><?= __('Found users') ?></h3>
-                    <div class="activeUsers">
-                        <?php foreach($results["users"] as $foundUser): ?>
-                            <div class="featured-user">
-                                <a href="<?=$this->Url->build('/users/'.$foundUser->id)?>">
-                                    <img alt="<?= __('Profile picture of') ?> <?= h($foundUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $foundUser->id . '.png?' . $this->Time->format($foundUser->modificationDate, 'mmss', null, null)); ?>">
-                                <span>
-                                    <strong><?= h($foundUser->name) ?> <?php if($foundUser->verified): echo '<i class="fa fa-check-circle verified_account"></i>'; endif ?></strong>
-                                    <span></span>
-                                </span>
-                                </a>
-                            </div>
-                        <?php endforeach ?>
-                    </div>
-                <?php endif;?>
+                    <?php if (isset($results["users"]) && count($results["users"]) > 0) : ?>
+                        <h3><?= __('Found users') ?></h3>
+                        <div class="activeUsers">
+                            <?php foreach ($results["users"] as $foundUser) : ?>
+                                <div class="featured-user">
+                                    <a href="<?= $this->Url->build('/users/' . $foundUser->id) ?>">
+                                        <img alt="<?= __('Profile picture of') ?> <?= h($foundUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $foundUser->id . '.png?' . $this->Time->format($foundUser->modificationDate, 'mmss', null, null)); ?>">
+                                        <span>
+                                            <strong><?= h($foundUser->name) ?> <?= $foundUser->verified ? '<i class="fa fa-check-circle verified_account"></i>' : '' ?></strong>
+                                            <span></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
+                    <?php endif; ?>
 
-                <?php }?>
+                <?php } ?>
             </div>
         </div>
     </div>

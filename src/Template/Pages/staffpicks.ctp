@@ -25,11 +25,11 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <div class="row">
             <div class="column column-100">
 
-                <div class="feeditem">
+                <div class="card-grid">
 
                 <?php foreach ($setups as $setup): ?>
 
-                    <?= $this->element('List/cards', ['setup' => $setup]) ?>
+                    <?= $this->element('List/card-item', ['setup' => $setup]) ?>
 
                 <?php endforeach ?>
 

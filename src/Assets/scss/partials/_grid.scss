@@ -1,0 +1,112 @@
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    -webkit-box-align: start;
+    -webkit-align-items: start;
+    -ms-flex-align: start;
+    align-items: start;
+    justify-items: center;
+    grid-gap: 4rem 3rem;
+
+    .item-grid {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        color: #717790;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+
+        .card-bg {
+            position: absolute;
+            content: "";
+            right: -1rem;
+            bottom: -1rem;
+            left: 1rem;
+            top: 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            z-index: -1;
+            -webkit-transition: 0.3s ease;
+            transition: 0.3s ease;
+        }
+
+        &:hover .card-bg {
+            left: -1rem;
+            right: -1rem;
+            top: -1rem;
+        }
+
+        .header {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-top: 1rem;
+            -webkit-box-ordinal-group: 4;
+            -webkit-order: 3;
+            -ms-flex-order: 3;
+            order: 3;
+
+            .user-avatar {
+                float: left;
+                padding-right: 10px;
+
+                img {
+                    display: block;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 6px;
+                    min-width: 40px;
+                }
+            }
+
+            .setup-meta {
+                line-height: initial;
+                width: 95%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                margin-right: 5px;
+
+                .setup-title {
+                    display: block;
+                    font-size: 17px;
+                    margin: 0 0 0.25rem;
+                    letter-spacing: normal;
+                    a {
+                        color: white;
+                    }
+                }
+                .setup-author {
+                    display: block;
+                    font-size: 1.5rem;
+                }
+            }
+
+            .setup-like-box {
+                white-space: nowrap;
+                margin-right: 5px;
+                color: #fff;
+            }
+        }
+
+        .setup-image {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #444857;
+        }
+    }
+}
