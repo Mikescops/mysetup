@@ -276,7 +276,8 @@ class UsersTable extends Table
                 'id',
                 'name',
                 'verified',
-                'modificationDate'
+                'modificationDate',
+                'utwitch'
             ],
             'contain' => [
                 'Setups' => [
@@ -460,7 +461,8 @@ class UsersTable extends Table
             'fields' => [
                 'id',
                 'name',
-                'modificationDate'
+                'modificationDate',
+                'utwitch'
             ],
             'conditions' => [
                 'mainSetup_id !=' => 0,

@@ -141,14 +141,14 @@ foreach ($brandSetups as $brand => $setups) : ?>
     <?php if($activeUsers) : ?>
         <div class="rowfeed">
             <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
-            <div class="activeUsers">
+            <div class="user-grid">
                 <?php foreach ($activeUsers as $activeUser) : ?>
-                    <div class="featured-user">
+                    <div class="item-grid">
                         <a href="<?= $this->Url->build('/users/' . $activeUser->id . '-' . $this->Text->slug($activeUser->name)) ?>">
                             <img alt="<?= __('Profile picture of') ?> <?= h($activeUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $activeUser->id . '.png?' . $this->Time->format($activeUser->modificationDate, 'mmss', null, null)); ?>">
                             <span>
                                 <strong><?= h($activeUser->name) ?></strong>
-                                <span></span>
+                                <span><?= h($this->MySetupTools->urlPrettifying($activeUser->utwitch)) ?></span>
                             </span>
                         </a>
                     </div>

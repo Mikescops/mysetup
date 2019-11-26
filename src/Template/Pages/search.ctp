@@ -132,14 +132,14 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
 
                     <?php if (isset($results["users"]) && count($results["users"]) > 0) : ?>
                         <h3><?= __('Found users') ?></h3>
-                        <div class="activeUsers">
-                            <?php foreach ($results["users"] as $foundUser) : ?>
-                                <div class="featured-user">
-                                    <a href="<?= $this->Url->build('/users/' . $foundUser->id) ?>">
-                                        <img alt="<?= __('Profile picture of') ?> <?= h($foundUser->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $foundUser->id . '.png?' . $this->Time->format($foundUser->modificationDate, 'mmss', null, null)); ?>">
+                        <div class="user-grid">
+                            <?php foreach ($results["users"] as $user) : ?>
+                                <div class="item-grid">
+                                    <a href="<?= $this->Url->build('/users/' . $user->id) ?>">
+                                        <img alt="<?= __('Profile picture of') ?> <?= h($user->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $user->id . '.png?' . $this->Time->format($user->modificationDate, 'mmss', null, null)); ?>">
                                         <span>
-                                            <strong><?= h($foundUser->name) ?> <?= $foundUser->verified ? '<i class="fa fa-check-circle verified_account"></i>' : '' ?></strong>
-                                            <span></span>
+                                            <strong><?= h($user->name) ?> <?= $user->verified ? '<i class="fa fa-check-circle verified_account"></i>' : '' ?></strong>
+                                            <span><?= h($this->MySetupTools->urlPrettifying($user->utwitch)) ?></span>
                                         </span>
                                     </a>
                                 </div>
