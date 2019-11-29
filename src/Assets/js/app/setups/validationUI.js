@@ -4,7 +4,7 @@
  */
 const replaceValidationUI = (form) => {
 	// Suppress the default bubbles
-	form.addEventListener('invalid', (event) => {
+	form.addEventListener('invalid', function (event) {
 		event.preventDefault();
 	}, true);
 
@@ -14,11 +14,12 @@ const replaceValidationUI = (form) => {
 		if (!this.checkValidity()) {
 			return event.preventDefault();
 		}
-		$('#publish-add').replaceWith('<span class=\'float-right button\'><i class=\'fa fa-circle-o-notch fa-spin fa-fw\'></i></span>');
+		$('#publish-add').replaceWith('<span class=\'float-right button\'><i class=\'fas fa-circle-notch fa-spin fa-fw\'></i></span>');
 	});
 
 	const submitButton = form.querySelector('input[type=submit]');
 	submitButton.addEventListener('click', () => {
+		fillProductForm();
 		const invalidFields = form.querySelectorAll(':invalid');
 		let listHtml = '', label;
 
@@ -39,9 +40,13 @@ const replaceValidationUI = (form) => {
 };
 
 // Replace the validation UI for all forms
-const forms = document.querySelectorAll('.form_add_setup');
-for (let i = 0; i < forms.length; i++) {
-	replaceValidationUI(forms[i]);
+const add_forms = document.querySelectorAll('.form_add_setup');
+for (let i = 0; i < add_forms.length; i++) {
+	replaceValidationUI(add_forms[i]);
+}
+const edit_forms = document.querySelectorAll('.form_edit_setup');
+for (let i = 0; i < edit_forms.length; i++) {
+	replaceValidationUI(edit_forms[i]);
 }
 
 /**

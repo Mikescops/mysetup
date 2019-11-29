@@ -20,3 +20,4 @@
 //=require emojione.min.js
 //=require cookieconsent.min.js
 //=require slim.min.js
+//=require sortablejs.min.js
