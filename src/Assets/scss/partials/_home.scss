@@ -22,53 +22,36 @@
     position: relative;
     overflow: hidden;
     margin: 0 -20px;
-    height: 430px;
+    height: 365px;
 
-    h2 {
+    .hero_content {
         position: absolute;
-        left: 50%;
-        z-index: 100;
-        font-variant: small-caps;
-        font-size: 3.2em;
-        font-weight: bold;
-        top: 60px;
+        left: 0;
+        padding: 20px;
+        top: 45px;
+        width: 500px;
+        max-width: 100%;
         text-align: left;
-        margin-left: -366px;
-        line-height: 1em;
-        color: #e2e5ea;
-    }
-}
 
-.hero_image img {
-    position: absolute;
-    left: 50%;
-    max-width: unset;
+        h2 {
+            z-index: 100;
+            font-variant: small-caps;
+            font-size: 3.2em;
+            font-weight: bold;
+            line-height: 1em;
+            color: #e2e5ea;
+        }
 
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
+        p {
+            font-size: 20px;
+            font-weight: lighter;
+        }
 
-.hero-setup {
-    margin-left: -375px;
-}
-
-.hero-mouse {
-    position: absolute;
-    top: 225px;
-    margin-left: 278px;
-
-    animation: float-mouse 5s ease-in-out infinite;
-}
-
-@keyframes float-mouse {
-    0% {
-        transform: translatey(0px);
-    }
-    50% {
-        transform: translatey(-16px);
-    }
-    100% {
-        transform: translatey(0px);
+        .hero_calltoaction {
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
     }
 }
 
@@ -119,30 +102,24 @@
 }
 
 .hero_calltoaction {
+    cursor: pointer;
     text-decoration: none;
     padding: 12px 20px;
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 4px;
-    background: #5967c3;
-    background: -webkit-linear-gradient(left top, #5967c3, #83cedc);
-    background: linear-gradient(to bottom right, #5967c3, #83cedc);
+    background: #62b3fb;
+    transition: background-color 150ms ease-out,background-image 150ms ease-out,background-position 150ms ease-out,color 150ms ease-out;
 
     &:hover {
-        cursor: pointer;
         color: #fff;
-        margin-bottom: -1px !important;
+        background: #5967c3;
     }
-}
 
-.hero_image .hero_calltoaction {
-    position: absolute;
-    margin: 0 auto;
-    width: 240px;
-    bottom: 40px;
-    left: 0;
-    right: 30px;
+    &:focus {
+        color: #ddd;
+    }
 }
 
 .home_more {
