@@ -11,13 +11,13 @@ $this->assign('title', __('Login | mySetup.co'));
 <div class="login-form">
     <ul class="tabs">
         <li>
-            <a href="#login" class="active"><?= __('Login') ?></a>
+            <a id="tab-button-login" href="#login" class="active"><?= __('Login') ?></a>
         </li>
         <li>
-            <a href="#register"><?= __('Register') ?></a>
+            <a id="tab-button-register" href="#register"><?= __('Register') ?></a>
         </li>
         <li>
-            <a href="#reset"><?= __('Reset Password') ?></a>
+            <a id="tab-button-reset" href="#reset"><?= __('Reset Password') ?></a>
         </li>
     </ul>
     <div id="login" class="form-action show">
@@ -31,7 +31,9 @@ $this->assign('title', __('Login | mySetup.co'));
                     <?= $this->Form->control('password', ['required' => true, 'placeholder' => __('Password'), 'label' => false]) ?>
                 </li>
                 <li>
-                    <?= $this->Form->button(__('Login'), ['class' => 'button']); ?> <a class="button button-outline float-right" onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> <i class="fab fa-twitch"></i> </a>
+                    <?= $this->Form->button(__('Login'), ['class' => 'button large-button']); ?>
+                    <div class="separator"><?= __('OR') ?></div>
+                    <a class="button button-transparent large-button" onclick="logTwitch('<?= $lang ?>')"><?= __('Connect with') ?> Twitch <i class="fab fa-twitch"></i> </a>
                 </li>
             </ul>
         </fieldset>
@@ -59,7 +61,9 @@ $this->assign('title', __('Login | mySetup.co'));
                         data-badge="bottomleft"
                         data-callback="onSubmit">
                     </div>
-                    <?= $this->Form->button(__('Sign up')) ?>
+                    <?= $this->Form->button(__('Sign up'), ['class' => 'button large-button']) ?>
+                    <div class="separator"><?= __('OR') ?></div>
+                    <a class="button button-transparent large-button" onclick="logTwitch('<?= $lang ?>')"><?= __('Sign up with') ?> Twitch <i class="fab fa-twitch"></i> </a>
                 </li>
             </ul>
         </fieldset>
@@ -91,7 +95,7 @@ $this->assign('title', __('Login | mySetup.co'));
                     <?= $this->Form->control('mailReset', ['placeholder' => __('Email address'), 'label' => false, 'type' => 'email', 'required' => true]) ?>
                 </li>
                 <li>
-                    <?= $this->Form->button(__('Send'), ['class' => 'button']); ?>
+                    <?= $this->Form->button(__('Send'), ['class' => 'button large-button']); ?>
                 </li>
             </ul>
         </fieldset>
