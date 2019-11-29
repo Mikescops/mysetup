@@ -101,6 +101,29 @@ $(function () {
 		HIDE_CLASS = 'hide',
 		ACTIVE_CLASS = 'active';
 
+	if (window.location.hash) {
+		var hash = window.location.hash.substring(1);
+		if (hash == 'register' || hash == 'reset') {
+			var $tab = $('#login'),
+				href = $('#' + hash);
+
+			$('.active').removeClass(ACTIVE_CLASS);
+			$tab.addClass(ACTIVE_CLASS);
+			$('#tab-button-' + hash).addClass(ACTIVE_CLASS);
+
+			$('.show')
+				.removeClass(SHOW_CLASS)
+				.addClass(HIDE_CLASS)
+				.hide();
+
+			$(href)
+				.removeClass(HIDE_CLASS)
+				.addClass(SHOW_CLASS)
+				.hide()
+				.fadeIn(550);
+		}
+	}
+
 	$('.tabs').on('click', 'li a', function (e) {
 		e.preventDefault();
 		var $tab = $(this),

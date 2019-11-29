@@ -19,7 +19,7 @@
 /************** LOGIN / REGISTER CSS ******************/
 
 .login-form {
-    margin: 50px auto;
+    margin: 100px auto;
     width: 500px;
     max-width: 100%;
     position: relative;
@@ -46,12 +46,19 @@
     color: white;
     font-size: 16px;
     padding: 8px 18px 8px 18px;
+
+    &:hover {
+        background: #ffffff29;
+        border-radius: 4px;
+    }
 }
 .login-form .tabs a.active {
-    border-bottom: solid 1px #fff;
+    font-weight: bold;
     -webkit-transition: all 0.5s linear;
     -moz-transition: all 0.5s linear;
     transition: all 0.5s linear;
+    background: #ffffff29;
+    border-radius: 4px;
 }
 
 .login-form .form-action {
