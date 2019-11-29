@@ -91,7 +91,7 @@ $this->assign('title', __('Add Setup') . ' | mySetup.co');
         <br>
 
         <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-add']); ?>
-        <a class="button draft float-left fa fa-file-alt fa-lg" title="<?= __('Save as draft') ?>" onclick="saveasdraftadd()"></a>
+        <a class="button draft float-left fa fa-file-alt fa-lg" title="<?= __('Save as draft') ?>" onclick="event.preventDefault();fillProductForm('add_setup');saveasdraftadd()"></a>
 
         </fieldset>
 

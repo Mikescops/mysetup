@@ -1,6 +1,6 @@
 <div id="edit_setup_modal" class="lity-hide">
 
-    <?= $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'Setups', 'action' => 'edit', $setup->id]]); ?>
+    <?= $this->Form->create(null, ['type' => 'file', 'class' => 'form_edit_setup', 'url' => ['controller' => 'Setups', 'action' => 'edit', $setup->id]]); ?>
     <fieldset style="border:0;">
 
         <div class="edit-form">
@@ -22,25 +22,28 @@
                 echo $this->Form->control('title', ['label' => __('Title'), 'id' => 'title', 'maxlength' => 48, 'default' => $setup->title, 'required' => 'true']);
                 echo $this->Form->control('description', ['label' => __('Description'), 'id' => 'textarea', 'rows' => 10, 'style' => 'width:100%', 'maxlength' => 5000, 'default' => $setup->description]);
                 ?>
-                <span class="float-right link-marksupp"><a target="_blank" href="<?=$this->Url->build('/pages/q&a#q-6')?>"><i class="fa fa-info-circle"></i> <?= __('Markdown supported') ?></a></span>
+                <span class="float-right link-marksupp"><a target="_blank" href="<?= $this->Url->build('/pages/q&a#q-6') ?>"><i class="fa fa-info-circle"></i> <?= __('Markdown supported') ?></a></span>
                 <br />
                 <i class="fa fa-camera"></i> <?= __('We only accept images lighter than 5 MB !') ?>
                 <div class="slim slim-round" data-download="true" data-ratio="1080:500" data-size="1080,500">
                     <img alt="<?= __('Featured Preview') ?>" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg')) ?>">
                     <?php
-                    echo $this->Form->control('featuredImage', ['name' => 'featuredImage[]', 'hidden','type' => 'file', 'label' => '']);
+                    echo $this->Form->control('featuredImage', ['name' => 'featuredImage[]', 'hidden', 'type' => 'file', 'label' => '']);
                     ?>
                 </div>
 
                 <div class="gallery-holder">
-                    <?php $i = 0;foreach ($setup['resources']['gallery_images'] as $image):?>
+                    <?php $i = 0;
+                    foreach ($setup['resources']['gallery_images'] as $image) : ?>
                         <div class="slim slim-round" data-download="true" data-save-initial-image="true" data-ratio="16:9" data-size="1366,768">
-                            <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Change gallery image') ?>" src="<?= $this->Url->build('/'.$image->src)?>">
-                            <?php echo $this->Form->control('gallery'.$i, ['name' => 'gallery'.$i.'[]', 'hidden', 'type' => 'file', 'label' => '']); ?>
+                            <img alt="<?= __('Gallery Preview') ?>" title="<?= __('Change gallery image') ?>" src="<?= $this->Url->build('/' . $image->src) ?>">
+                            <?php echo $this->Form->control('gallery' . $i, ['name' => 'gallery' . $i . '[]', 'hidden', 'type' => 'file', 'label' => '']); ?>
                         </div>
-                    <?php $i++; endforeach; for($i; $i < 5; $i++):?>
+                    <?php $i++;
+                    endforeach;
+                    for ($i; $i < 5; $i++) : ?>
                         <div class="slim slim-round" data-download="true" data-ratio="16:9" data-size="1366,768">
-                            <?php echo $this->Form->control('gallery'.$i, ['name' => 'gallery'.$i.'[]', 'hidden', 'type' => 'file', 'label' => '']); ?>
+                            <?php echo $this->Form->control('gallery' . $i, ['name' => 'gallery' . $i . '[]', 'hidden', 'type' => 'file', 'label' => '']); ?>
                         </div>
                     <?php endfor; ?>
                 </div>
@@ -55,7 +58,7 @@
 
                 <input type="text" class="liveInput edit_setup" onkeyup="searchItem(this.value, 'edit_setup');" placeholder="<?= __('Search for components...') ?>">
 
-                <?php if($authUser['admin']): ?>
+                <?php if ($authUser['admin']) : ?>
 
                     <a href="#edit_setup_manual_modal" data-lity><?= __('Add a product manually') ?></a>
 
@@ -65,12 +68,12 @@
 
                 <h5 class="basket-title"><?= __('Setup items') ?></h5>
                 <ul class="draggable-cards dragscroll basket_items edit_setup">
-                    <?php foreach ($setup['resources']['products'] as $item): ?>
+                    <?php foreach ($setup['resources']['products'] as $item) : ?>
                         <li class="text-card">
                             <div class="wrapper">
                                 <div class="card-container">
-                                    <div class="top" style="background: url(<?= urldecode($item->src) ?>) no-repeat center center; background-size: contain"></div> 
-                                    <a onclick="deleteFromBasket('<?= h($item->title) ?>',this,'edit_setup')" class="bottom"><i class="far fa-trash-alt"></i></a> 
+                                    <div class="top" style="background: url(<?= urldecode($item->src) ?>) no-repeat center center; background-size: contain"></div>
+                                    <a onclick="deleteFromBasket('<?= h($item->title) ?>',this)" class="bottom"><i class="far fa-trash-alt"></i></a>
                                 </div>
                                 <div class="inside">
                                     <div class="icon"><i class="fas fa-info-circle"></i></div>
@@ -96,24 +99,22 @@
 
                 <?php
                 /* Fill the video source if exist */
-                if(!empty($setup['resources']['video_link'])){$video_field = $setup['resources']['video_link'];}else{$video_field = '';}
+                if (!empty($setup['resources']['video_link'])) {
+                    $video_field = $setup['resources']['video_link'];
+                } else {
+                    $video_field = '';
+                }
                 echo $this->Form->control('video', ['class' => 'video-url-input', 'label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'placeholder' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'default' => $video_field]);
 
-                /* Fill the current items in the field before edit */
-                $item_field = '';
-                foreach ($setup['resources']['products'] as $item){
-                    $item_field = $item_field.$item->title.';'.$item->href.';'.$item->src.',';
-                }
                 // A hidden entry to gather the item resources
-                echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden', 'default' => $item_field]);
+                echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden']);
                 ?>
                 <label for="author" class="setup_author"><?= __("Setup's owner") ?></label>
                 <?php
                 echo $this->Form->control('author', ['class' => 'setup_author', 'label' => '', 'default' => $setup->author]);
                 ?>
                 <?php
-                if($authUser['admin'])
-                {
+                if ($authUser['admin']) {
                     echo $this->Form->control('featured', ['type' => 'checkbox', 'label' => ['text' => __('Feature this setup !'), 'class' => 'checkbox'], 'default' => $setup->featured, 'hiddenField' => true]);
                 }
                 ?>
@@ -122,20 +123,29 @@
 
                 <div class="modal-footer">
 
-                    <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-edit']); ?>
+                    <?= $this->Form->submit(__('Publish'), ['class' => 'float-right button', 'id' => 'publish-edit', 'onsubmit' => 'event.preventDefault();fillProductForm("edit_setup")']); ?>
                     <?= $this->Form->end(); ?>
                     <a href="#components-edit" class="button next float-right"><i class="fa fa-chevron-left"></i></a>
                     <?= $this->Form->postLink('<i></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['confirm' => __('You are going to delete this setup ! Are you sure ?'), 'escape' => false, 'class' => 'button delete float-left far fa-trash-alt fa-lg']) ?>
-                    <a class="button draft float-left fa fa-file-alt fa-lg" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="saveasdraftedit()"></a>
+                    <a class="button draft float-left fa fa-file-alt fa-lg" title="<?= __('Save as draft (the setup will not be visible)') ?>" onclick="event.preventDefault();fillProductForm('edit_setup');saveasdraftedit()"></a>
 
                 </div>
             </div>
 
         </div>
     </fieldset>
+    <script>
+        function populateBasket() {
+            <?php
+            foreach ($setup['resources']['products'] as $item) {
+                echo 'basket.push({"title":"' . $item->title . '","url":"' . $item->href . '","src":"' . $item->src . '"});';
+            }
+            ?>
+        };
+    </script>
 </div>
 
-<?php if($authUser['admin']): ?>
+<?php if ($authUser['admin']) : ?>
 
     <div id="edit_setup_manual_modal" class="lity-hide">
 
