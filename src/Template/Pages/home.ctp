@@ -19,11 +19,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
         <?php if (!$authUser) : ?>
             <div class="hero_image">
                 <div class="hero_container">
-                    <h2>Share<br> your setup,<br> get inspired</h2>
-                    <?= $this->Html->image('hero.svg', ['alt' => 'Hero mySetup.co', 'class' => 'hero-setup']) ?>
-                    <?= $this->Html->image('mouse.svg', ['alt' => 'Mouse mySetup.co', 'class' => 'hero-mouse']) ?>
+                    <div class="hero_content">
+                        <h2><?= __('Share your setup everywhere') ?></h2>
+                        <p><?= __('Twitch, Twitter, Facebook, personal website...') ?></p>
+                        <?= $this->Html->link(__('Add my setup'), '/login', ['class' => 'hero_calltoaction']) ?>
+                    </div>
+                    <?= $this->Html->image('hero_computer.svg', ['alt' => 'Hero mySetup.co', 'class' => 'hero-setup']) ?>
                 </div>
-                <?= $this->Html->link(__('Add my setup'), '/login', ['class' => 'hero_calltoaction']) ?>
             </div>
         <?php else : ?>
             <?php if ($authUser['mainSetup_id'] == 0) : ?>
@@ -86,7 +88,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 </div>
 
-<?php if($popularSetups && count($popularSetups) > 0) : ?>
+<?php if ($popularSetups && count($popularSetups) > 0) : ?>
     <div class="colored-box-8">
         <div class="container">
             <div class="rowfeed">
@@ -107,10 +109,10 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
 
 <?php
-    if ($featuredSetups):
-        $randFeatured = array_rand($featuredSetups, 1);
-        echo $this->element('List/showcase', ['setup' => $featuredSetups[$randFeatured]]);
-    endif;
+if ($featuredSetups) :
+    $randFeatured = array_rand($featuredSetups, 1);
+    echo $this->element('List/showcase', ['setup' => $featuredSetups[$randFeatured]]);
+endif;
 ?>
 
 <?php $i = 0;
@@ -138,7 +140,7 @@ foreach ($brandSetups as $brand => $setups) : ?>
 <?php endforeach; ?>
 
 <div class="container">
-    <?php if($activeUsers) : ?>
+    <?php if ($activeUsers) : ?>
         <div class="rowfeed">
             <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
             <div class="user-grid">

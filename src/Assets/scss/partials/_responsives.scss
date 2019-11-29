@@ -4,6 +4,10 @@
 
 /* Smaller than mobile screen */
 @media (max-width: 450px) {
+    .hero_container .hero_content p{
+        display: none;
+    }
+
     /* Hide captcha badge on mobile */
     .grecaptcha-badge {
         display: none;
@@ -57,23 +61,14 @@
         }
     }
 
-    .hero_image {
-        h2 {
-            text-align: center;
-            width: 100%;
-            left: 0;
-            margin: 0;
-            font-size: 40px;
-            top: 40px;
-        }
-        img {
-            display: none;
-        }
-        .hero_calltoaction {
-            bottom: 0;
-            width: 90%;
-            right: 0;
-        }
+    .hero_container .hero_content {
+        text-align: center;
+        top: 20px;
+        width: 100%;
+    }
+
+    .hero_container img {
+        display: none;
     }
 
     .feeditem {
