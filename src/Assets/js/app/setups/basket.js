@@ -88,12 +88,6 @@ const deleteFromBasket = (title, parent) => {
 	parent.closest('li').remove();
 };
 
-var sortable = new Sortable($('.basket_items')[0], {
-	onEnd: function (evt) {
-		basket.splice(evt.newIndex, 0, basket.splice(evt.oldIndex, 1)[0]);
-	}
-});
-
 const fillProductForm = () => {
 	const list = basket.map((element) => element.title + ';' + element.url + ';' + element.src + ',').toString();
 	$('.hiddenInput').val(list);

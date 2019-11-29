@@ -143,6 +143,13 @@
             ?>
         };
     </script>
+    <?= $this->Html->scriptBlock("
+        var sortable = new Sortable($('.basket_items')[0], {
+            onEnd: function(evt) {
+                basket.splice(evt.newIndex, 0, basket.splice(evt.oldIndex, 1)[0]);
+            }
+        });
+        ", array('block' => 'scriptBottom')) ?>
 </div>
 
 <?php if ($authUser['admin']) : ?>
