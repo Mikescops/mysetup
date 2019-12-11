@@ -9,7 +9,7 @@
 }
 
 .user-profile a:hover {
-    color: #328fea;
+    color: $color-blue;
 }
 
 .user-profile img {
@@ -18,7 +18,7 @@
     margin: 10px 25px 10px 0;
     border-radius: 100%;
     float: left;
-    border: solid 2px #328fea;
+    border: solid 2px $color-blue;
     background-color: rgb(0, 0, 0);
 }
 

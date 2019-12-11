@@ -92,9 +92,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="colored-box-8">
         <div class="container">
             <div class="rowfeed">
-                <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
+                <h3><span><?= __('Popular setups') ?></span></h3>
                 <div class="card-grid">
-
                     <?php foreach ($popularSetups as $setup) : ?>
 
                         <?= $this->element('List/card-item', ['setup' => $setup]) ?>
@@ -121,9 +120,8 @@ foreach ($brandSetups as $brand => $setups) : ?>
     <div class="colored-box-<?= (++$i % 8) + 1 ?>">
         <div class="container">
             <div class="rowfeed">
-                <h4 class="fancy"><span><?= h($brand) ?></span></h4>
+                <h3><?= h($brand) ?></h3>
                 <div class="card-grid">
-
                     <?php foreach ($setups as $setup) : ?>
 
                         <?= $this->element('List/card-item', ['setup' => $setup]) ?>
@@ -142,7 +140,7 @@ foreach ($brandSetups as $brand => $setups) : ?>
 <div class="container">
     <?php if ($activeUsers) : ?>
         <div class="rowfeed">
-            <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
+            <h3><?= __('Suggested Users') ?></h3>
             <div class="user-grid">
                 <?php foreach ($activeUsers as $activeUser) : ?>
                     <div class="item-grid">

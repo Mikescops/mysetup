@@ -88,6 +88,7 @@
     margin-bottom: 10px;
 
     h3 {
+        font-family: inherit;
         margin: 10px 0 0 20px;
         display: inline-block;
         text-shadow: 0 1px 0 black;
@@ -104,7 +105,7 @@
         width: 80px;
         border-radius: 100%;
         float: left;
-        border: solid 2px #328fea;
+        border: solid 2px $color-blue;
         background-color: rgb(0, 0, 0);
 
         &:hover {
@@ -453,14 +454,11 @@
     top: 0;
     width: 100%;
     padding: 10px;
-    text-align: center;
     z-index: 10;
 
     h4 {
         margin-bottom: 0;
-        padding: 0.5rem 3rem;
-        background: rgba(0, 0, 0, 0.1);
-        border-radius: 6px;
+        padding: 0.5rem 10px;
     }
 }
 
@@ -591,7 +589,7 @@
         width: 100%;
 
         &::placeholder {
-            color: #328fea;
+            color: $color-blue;
         }
     }
 

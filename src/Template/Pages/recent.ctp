@@ -15,8 +15,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 ?>
 <div class="colored-container">
     <div class="container">
-        <br>
-        <h2><?= __('Latest setups') ?></h2><br>
+        <h2><?= __('Latest Setups') ?></h2><br>
     </div>
 </div>
 <div class="container">

@@ -1,4 +1,9 @@
 /* mysetup SCSS files */
 
+$gradient-blue: linear-gradient(to right bottom, #172ca0, #1533a4, #133aa7, #1340aa, #1446ad, #2648b2, #3349b6, #3f4bbb, #5747c0, #6d41c4, #8339c6, #982cc6);
+$color-dark-blue: #172ca0;
+$color-blue: #328fea;
+$color-black: #151515;
+
 @import "modules/all";
 @import "partials/base";

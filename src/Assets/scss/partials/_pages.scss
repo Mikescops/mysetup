@@ -162,7 +162,7 @@
 
 .search-tabs {
     text-align: center;
-    background: #354867;
+    background: $color-dark-blue;
     width: 100%;
     overflow-x: auto;
 
@@ -225,6 +225,10 @@
     }
 }
 
+.search-single-component {
+    display: flex;
+}
+
 /********** FAQ PAGE *********/
 
 .faq-questions li {
@@ -267,15 +271,6 @@
 
     p {
         text-align: center;
-    }
-
-    hr {
-        margin: 0 auto;
-        border: 0;
-        border-radius: 6px;
-        height: 5px;
-        background: linear-gradient(145deg, #344154 0%, #3a62a8 100%);
-        width: 20%;
     }
 }
 

@@ -8,7 +8,7 @@ echo $this->Html->meta('description', __('Who is behind mySetup.co ?'), ['block'
 ?>
 <div class="colored-container">
     <div class="container">
-        <br><h2><?= __('Our Team') ?></h2><br>
+        <h2><?= __('Our Team') ?></h2><br>
     </div>
 </div>
 <div class="container">

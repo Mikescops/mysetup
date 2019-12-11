@@ -1,11 +1,11 @@
 /*********** INDEX CSS ***********/
 
 .home_hero_container {
-    background-color: #344154;
+    background-color: $color-dark-blue;
     padding: 70px 0 10px 0;
     max-height: 530px;
     overflow: hidden;
-    background: linear-gradient(145deg, #344154 0%, #3a62a8 100%);
+    background: $gradient-blue;
 
     background-position: center;
     background-repeat: no-repeat;
@@ -35,7 +35,6 @@
 
         h2 {
             z-index: 100;
-            font-variant: small-caps;
             font-size: 3.2em;
             font-weight: bold;
             line-height: 1em;
@@ -56,7 +55,7 @@
 }
 
 .hero_inner {
-    margin-top: 30px;
+    margin: 50px 0 30px;
     display: flex;
 }
 
@@ -109,12 +108,13 @@
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 4px;
-    background: #62b3fb;
-    transition: background-color 150ms ease-out,background-image 150ms ease-out,background-position 150ms ease-out,color 150ms ease-out;
+    background: $color-blue;
+    transition: background-color 150ms ease-out, background-image 150ms ease-out, background-position 150ms ease-out,
+        color 150ms ease-out;
 
     &:hover {
         color: #fff;
-        background: #5967c3;
+        background: $color-dark-blue;
     }
 
     &:focus {
@@ -126,8 +126,12 @@
     max-width: 100%;
     white-space: normal;
     height: auto;
-    margin-top: -10px;
     color: #d7d7d7;
+    font-size: 1.5rem;
+
+    &:hover {
+        color: $color-blue;
+    }
 }
 
 .home_container {
@@ -137,24 +141,11 @@
     padding-bottom: 10px;
 }
 
-.fancy {
-    line-height: unset;
-    text-align: center;
-    width: 100%;
-
-    span {
-        padding: 0.5rem 3rem;
-        background: rgba(0, 0, 0, 0.1);
-        border-radius: 6px;
-    }
-}
-
 .rowfeed {
-    padding: 20px 0;
+    padding: 40px 0;
 
-    h4 {
-        margin: 2rem 0 3rem;
-        text-transform: uppercase;
+    h3 {
+        font-size: 3.2rem;
     }
 }
 
@@ -393,8 +384,8 @@
     z-index: 2;
 
     h4 {
-        font-size: 32px;
-        font-weight: 700;
+        font-size: 3rem;
+        font-weight: bold;
         text-transform: none;
         margin: 0;
         padding: 0 10px;

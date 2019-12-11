@@ -195,7 +195,7 @@
 }
 .right-nav a:hover {
     text-decoration: none;
-    color: #328fea;
+    color: $color-blue;
 }
 
 .right-nav li ul a {
@@ -452,7 +452,7 @@
 }
 
 .notif-close span:hover {
-    color: #328fea;
+    color: $color-blue;
 }
 
 .notif:hover > .notif-close {
@@ -472,7 +472,7 @@
     float: left;
     border-radius: 25px;
     margin-right: 15px;
-    border: solid 2px #328fea;
+    border: solid 2px $color-blue;
 }
 
 .notif a span:last-child {
