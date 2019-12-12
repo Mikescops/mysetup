@@ -104,10 +104,14 @@
         }
 
         .setup-image {
-            position: relative;
+            background: #16222a;
+            color: #16222a;
+            display: block;
+            min-height: 157px;
+            height: auto;
+            width: 100%;
+
             border-radius: 6px;
-            overflow: hidden;
-            background: #444857;
         }
     }
 }

@@ -18,7 +18,7 @@
 			<div class="config-items">
 				<?php foreach ($setup['products'] as $item) : ?>
 
-					<a target="_blank" href="<?= $this->Url->build('/setups/' . $setup->id, true) ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></a>
+					<a target="_blank" href="<?= $this->Url->build('/setups/' . $setup->id, true) ?>" class="item_box lazy" data-src="<?= urldecode($item->src) ?>"></a>
 
 				<?php endforeach ?>
 			</div>

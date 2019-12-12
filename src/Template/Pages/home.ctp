@@ -84,7 +84,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             <div class="config-items">
                 <?php foreach ($randomResources as $item) : ?>
                     <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>">
-                        <div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
+                        <div class="item_box lazy" data-src="<?= urldecode($item->src) ?>"></div>
                     </a>
                 <?php endforeach ?>
             </div>

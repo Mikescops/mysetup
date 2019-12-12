@@ -1,6 +1,18 @@
 //=require simpletoast.js
 
 /**
+ * @name LazyLoad
+ * @description Lazy load content like image on demand
+ */
+$(function() {
+	$('.lazy').lazy({
+		effect: 'fadeIn',
+		effectTime: 250,
+		visibleOnly: true
+	});
+});
+
+/**
  * @name Cookieconsent
  * @description Call cookieconsent panel
  */
