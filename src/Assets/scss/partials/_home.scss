@@ -2,7 +2,7 @@
 
 .home_hero_container {
     background-color: $color-dark-blue;
-    padding: 70px 0 10px 0;
+    padding-top: 70px;
     max-height: 530px;
     overflow: hidden;
     background: $gradient-blue;
@@ -142,10 +142,11 @@
 }
 
 .rowfeed {
-    padding: 40px 0;
+    padding: 5rem 0;
 
     h3 {
         font-size: 3.2rem;
+        margin-bottom: 4rem;
     }
 }
 
@@ -375,6 +376,10 @@
 }
 
 /**** Showcase items ****/
+
+.showcase-holder {
+    position: relative;
+}
 
 .setup-showcase {
     margin: 30px auto;
