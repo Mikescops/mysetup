@@ -13,6 +13,14 @@ $(function() {
 });
 
 /**
+ * @name RandomGrid
+ * @description Sort randomly a setup grid
+ */
+$("#random-grid").html($("#random-grid .item-grid").sort(function(){
+    return Math.random()-0.5;
+}));
+
+/**
  * @name Cookieconsent
  * @description Call cookieconsent panel
  */

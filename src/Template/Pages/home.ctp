@@ -64,7 +64,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     <div class="container">
         <div class="rowfeed">
             <h3><span><?= __('Popular setups') ?></span></h3>
-            <div class="card-grid">
+            <div id="random-grid" class="card-grid">
                 <?php foreach ($popularSetups as $setup) : ?>
 
                     <?= $this->element('List/card-item', ['setup' => $setup]) ?>
