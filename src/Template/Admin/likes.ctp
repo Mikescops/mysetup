@@ -1,10 +1,11 @@
 <?php
-/**
-  * @var \App\View\AppView $this
-  */
 
-    $this->layout = 'admin';
-    $this->assign('title', __('Likes | myAdmin'));
+/**
+ * @var \App\View\AppView $this
+ */
+
+$this->layout = 'admin';
+$this->assign('title', __('Likes | myAdmin'));
 ?>
 <div class="col-12 col-md-9 col-xl-10">
     <h3><?= __('Likes') ?> - <?= $this->Paginator->counter(['format' => '{{count}}']) ?></h3>
@@ -21,16 +22,16 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($likes as $like): ?>
-                <tr>
-                    <td><?= $like->id ?></td>
-                    <td><?= $like->has('user') ? $this->Html->link($like->user->name, ['controller' => 'Users', 'action' => 'view', $like->user->id]) : '' ?></td>
-                    <td><?= $like->has('setup') ? $this->Html->link($like->setup->title, ['controller' => 'Setups', 'action' => 'view', $like->setup->id]) : '' ?></td>
-                    <td><?= $this->Time->format($like->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $like->dateTime, $authUser['timeZone']); ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link('<i data-feather="eye"></i>',  ['controller' => 'Setups', 'action' => 'view', $like->setup->id, '#' => 'likes'], ['title' => __('View'), 'escape' => false]) ?>
-                    </td>
-                </tr>
+                <?php foreach ($likes as $like) : ?>
+                    <tr>
+                        <td><?= $like->id ?></td>
+                        <td><?= $like->has('user') ? $this->Html->link($like->user->name, ['controller' => 'Users', 'action' => 'view', $like->user->id]) : '' ?></td>
+                        <td><?= $like->has('setup') ? $this->Html->link($like->setup->title, ['controller' => 'Setups', 'action' => 'view', $like->setup->id]) : '' ?></td>
+                        <td><?= $this->Time->format($like->dateTime, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $like->dateTime, $authUser['timeZone']); ?></td>
+                        <td class="actions">
+                            <?= $this->Html->link('<i data-feather="eye"></i>',  ['controller' => 'Setups', 'action' => 'view', $like->setup->id, '#' => 'likes'], ['title' => __('View'), 'escape' => false]) ?>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>

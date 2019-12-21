@@ -8,7 +8,7 @@ echo $this->Html->meta('description', __('We answer common questions and issues 
 ?>
 <div class="colored-container">
     <div class="container">
-        <br><h3><?= __('Q&amp;A - We answer common questions') ?></h3><br>
+        <h2><?= __('Q&amp;A - We answer common questions') ?></h2><br>
     </div>
 </div>
 <div class="container">

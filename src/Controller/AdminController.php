@@ -66,7 +66,15 @@ class AdminController extends AppController
 
         // Some more information  !
         // We assume that this page can't be accesses if there is not any user
-        $stats['users']['certified'] = round($this->Users->find()->where(['mailVerification IS' => null])->count() / $stats['count']['users'] * 100, 2);
+        $stats['users']['certified'] = $this->Users->find()->where(['mailVerification IS' => null])->count();
+
+        $stats['users']['lang']['US'] = $this->Users->find()->where(['preferredStore IS' => 'US'])->count();
+        $stats['users']['lang']['FR'] = $this->Users->find()->where(['preferredStore IS' => 'FR'])->count();
+        $stats['users']['lang']['ES'] = $this->Users->find()->where(['preferredStore IS' => 'ES'])->count();
+        $stats['users']['lang']['IT'] = $this->Users->find()->where(['preferredStore IS' => 'IT'])->count();
+        $stats['users']['lang']['UK'] = $this->Users->find()->where(['preferredStore IS' => 'UK'])->count();
+        $stats['users']['lang']['DE'] = $this->Users->find()->where(['preferredStore IS' => 'DE'])->count();
+
         $stats['users']['twitch']    = round($this->Users->find()->where(['twitchToken IS NOT'  => null])->count() / $stats['count']['users'] * 100, 2);
 
         // Log only users with creation and last login dates "not closed" in time (more than ~10 minutes of difference)

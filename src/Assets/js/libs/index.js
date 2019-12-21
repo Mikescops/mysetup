@@ -21,3 +21,4 @@
 //=require cookieconsent.min.js
 //=require slim.min.js
 //=require sortablejs.min.js
+//=require jquery.lazy.min.js

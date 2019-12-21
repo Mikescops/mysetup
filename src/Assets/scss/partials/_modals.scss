@@ -76,7 +76,7 @@
     }
     .inside {
         z-index: 9;
-        background: #328fea;
+        background: $color-blue;
         width: 120px;
         height: 120px;
         position: absolute;
@@ -219,7 +219,7 @@
 }
 .add-form .tabs a.active,
 .edit-form .tabs-edit a.active-edit {
-    border-bottom: solid 1px #328fea;
+    border-bottom: solid 1px $color-blue;
     -webkit-transition: all 0.5s linear;
     -moz-transition: all 0.5s linear;
     transition: all 0.5s linear;

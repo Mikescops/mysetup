@@ -1,10 +1,11 @@
 <?php
-/**
-  * @var \App\View\AppView $this
-  */
 
-    $this->layout = 'admin';
-    $this->assign('title', __('Setups | myAdmin'));
+/**
+ * @var \App\View\AppView $this
+ */
+
+$this->layout = 'admin';
+$this->assign('title', __('Setups | myAdmin'));
 ?>
 
 <div class="col-12 col-md-9 col-xl-10">
@@ -27,21 +28,21 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($setups as $setup): ?>
-                <tr>
-                    <td><?= $setup->id ?></td>
-                    <td><?= $setup->has('user') ? $this->Html->link($setup->user->name, ['controller' => 'Users', 'action' => 'view', $setup->user->id]) : '' ?></td>
-                    <td><?= h($setup->title) ?></td>
-                    <td><?= h($setup->author) ?></td>
-                    <td><?= ($setup->featured ? __('Yes') : __('No')) ?></td>
-                    <td><?= h($setup->status) ?></td>
-                    <td><?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); ?></td>
-                    <td><?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link('<i data-feather="eye"></i>', ['controller' => 'Setups', 'action' => 'view', $setup->id], ['title' => __('View'), 'escape' => false]) ?>
-                        <?= $this->Form->postLink('<i data-feather="trash-2"></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this setup ?'), 'escape' => false]) ?>
-                    </td>
-                </tr>
+                <?php foreach ($setups as $setup) : ?>
+                    <tr>
+                        <td><?= $setup->id ?></td>
+                        <td><?= $setup->has('user') ? $this->Html->link($setup->user->name, ['controller' => 'Users', 'action' => 'view', $setup->user->id]) : '' ?></td>
+                        <td><?= h($setup->title) ?></td>
+                        <td><?= h($setup->author) ?></td>
+                        <td><?= ($setup->featured ? __('Yes') : __('No')) ?></td>
+                        <td><?= h($setup->status) ?></td>
+                        <td><?= $this->Time->format($setup->creationDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->creationDate, $authUser['timeZone']); ?></td>
+                        <td><?= $this->Time->format($setup->modifiedDate, [\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT], $setup->modifiedDate, $authUser['timeZone']); ?></td>
+                        <td class="actions">
+                            <?= $this->Html->link('<i data-feather="eye"></i>', ['controller' => 'Setups', 'action' => 'view', $setup->id], ['title' => __('View'), 'escape' => false]) ?>
+                            <?= $this->Form->postLink('<i data-feather="trash-2"></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this setup ?'), 'escape' => false]) ?>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
@@ -57,4 +58,3 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
-

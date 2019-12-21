@@ -1,10 +1,11 @@
 <?php
-/**
-  * @var \App\View\AppView $this
-  */
 
-    $this->layout = 'admin';
-    $this->assign('title', __('Resources | myAdmin'));
+/**
+ * @var \App\View\AppView $this
+ */
+
+$this->layout = 'admin';
+$this->assign('title', __('Resources | myAdmin'));
 ?>
 
 <div class="col-12 col-md-9 col-xl-10">
@@ -23,24 +24,23 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($resources as $resource): ?>
-                <tr>
-                    <td><?= $resource->id ?></td>
-                    <td><?= $this->Html->link($resource->user->name, ['controller' => 'Users', 'action' => 'view', $resource->user_id]) ?></td>
-                    <td><?= $this->Html->link($resource->setup->title, ['controller' => 'Setups', 'action' => 'view', $resource->setup_id]) ?></td>
-                    <td><?= h($resource->type) ?></td>
-                    <td><?= urldecode(h($resource->title)) ?></td>
-                    <td><?php if ($resource->href) :?> <a href="<?= urldecode(h($resource->href)) ?>"><i data-feather="link"></i></a> <?php endif ?></td>
-                    <?php
-                        $src = urldecode($resource->src);
-                        if(substr($src, 0, strlen('uploads/files/')) === 'uploads/files/')
-                        {
-                            $src = $this->Url->build('/') . $src;
-                        }
-                    ?>
-                    <td><a href="<?= $src ?>"><?= $src ?></a>
-                    </td>
-                </tr>
+                <?php foreach ($resources as $resource) : ?>
+                    <tr>
+                        <td><?= $resource->id ?></td>
+                        <td><?= $this->Html->link($resource->user->name, ['controller' => 'Users', 'action' => 'view', $resource->user_id]) ?></td>
+                        <td><?= $this->Html->link($resource->setup->title, ['controller' => 'Setups', 'action' => 'view', $resource->setup_id]) ?></td>
+                        <td><?= h($resource->type) ?></td>
+                        <td><?= urldecode(h($resource->title)) ?></td>
+                        <td><?php if ($resource->href) : ?> <a href="<?= urldecode(h($resource->href)) ?>"><i data-feather="link"></i></a> <?php endif ?></td>
+                        <?php
+                            $src = urldecode($resource->src);
+                            if (substr($src, 0, strlen('uploads/files/')) === 'uploads/files/') {
+                                $src = $this->Url->build('/') . $src;
+                            }
+                            ?>
+                        <td><a href="<?= $src ?>"><?= $src ?></a>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>

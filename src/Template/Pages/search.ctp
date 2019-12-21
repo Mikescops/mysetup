@@ -83,11 +83,15 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                     <?php if (isset($results["resources"]) && count($results["resources"]) > 0) : $resources = $results["resources"]; ?>
 
                         <?php if (count($resources, COUNT_RECURSIVE) == 1) : ?>
-                            <a href="<?= urldecode($resources[0]->href) ?>" target="_blank">
-                                <div class="item_box float-left" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div>
-                            </a>
-                            <span><?= __('All setups related to') ?> :</span>
-                            <h4><?= urldecode(h($resources[0]->title)) ?> <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"> <i class="fa fa-shopping-bag"></i></a></h4>
+                            <div class="search-single-component">
+                                <a href="<?= urldecode($resources[0]->href) ?>" target="_blank">
+                                    <div class="item_box float-left" style="background-image: url(<?= urldecode($resources[0]->src) ?>)"></div>
+                                </a>
+                                <div>
+                                    <span><?= __('All setups related to') ?> :</span>
+                                    <h4><?= urldecode(h($resources[0]->title)) ?> <a href="<?= urldecode($resources[0]->href) ?>" target="_blank"> <i class="fa fa-shopping-bag"></i></a></h4>
+                                </div>
+                            </div>
                         <?php else : ?>
                             <h3><?= __('Found components') ?></h3>
                             <div class="config-items">
@@ -112,22 +116,24 @@ echo $this->Html->meta('description', __('Find all setups, components or users r
                     <?php endif; ?>
 
                     <?php if (isset($results["setups"]) && count($results["setups"]) > 0) : ?>
-                        <h3><?= __('Found setups') ?></h3>
-                        <div class="card-grid">
-                            <?php foreach ($results["setups"] as $setup) : ?>
-                                <?= $this->element('List/card-item', ['setup' => $setup]) ?>
-                            <?php endforeach; ?>
-                            <?php if ($this->request->getPath() == '/search/setups' && $this->Paginator->counter(['format' => '{{pages}}']) > 1) : ?>
-                                <ul class="pagination">
-                                    <?= $this->Paginator->first('<< ' . __('first')) ?>
-                                    <?= $this->Paginator->prev('< ' . __('previous')) ?>
-                                    <?= $this->Paginator->numbers(['first' => 1, 'last' => 1, 'modulus' => 3]) ?>
-                                    <?= $this->Paginator->next(__('next') . ' >') ?>
-                                    <?= $this->Paginator->last(__('last') . ' >>') ?>
-                                </ul>
-                            <?php endif; ?>
-                            <br clear='all'>
+                        <div>
+                            <h3><?= __('Found setups') ?></h3>
+                            <div class="card-grid">
+                                <?php foreach ($results["setups"] as $setup) : ?>
+                                    <?= $this->element('List/card-item', ['setup' => $setup]) ?>
+                                <?php endforeach; ?>
+                                <?php if ($this->request->getPath() == '/search/setups' && $this->Paginator->counter(['format' => '{{pages}}']) > 1) : ?>
+                                    <ul class="pagination">
+                                        <?= $this->Paginator->first('<< ' . __('first')) ?>
+                                        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                                        <?= $this->Paginator->numbers(['first' => 1, 'last' => 1, 'modulus' => 3]) ?>
+                                        <?= $this->Paginator->next(__('next') . ' >') ?>
+                                        <?= $this->Paginator->last(__('last') . ' >>') ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </div>
                         </div>
+                        <br clear='all'>
                     <?php endif; ?>
 
                     <?php if (isset($results["users"]) && count($results["users"]) > 0) : ?>

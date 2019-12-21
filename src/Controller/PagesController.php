@@ -172,7 +172,7 @@ class PagesController extends AppController
         $activeUsers = Cache::read('activeUsers', 'HomePageCacheConfig');
         if($activeUsers === false)
         {
-            $activeUsers = $this->Users->getActiveUsers(8);
+            $activeUsers = $this->Users->getActiveUsers(9);
 
             Cache::write('activeUsers', $activeUsers, 'HomePageCacheConfig');
         }
@@ -231,7 +231,7 @@ class PagesController extends AppController
 
     public function staffpicks()
     {
-        $this->set('setups', $this->Setups->getSetups(['featured' => true, 'number' => 20])->toArray());
+        $this->set('setups', $this->Setups->getSetups(['featured' => true, 'number' => 21])->toArray());
 
         $this->display('staffpicks');
     }

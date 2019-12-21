@@ -122,7 +122,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("
 
             <?php $i=0; foreach ($setup['resources']['products'] as $item): ?>
 
-            <div id="item-trigger-<?= $i ?>" class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
+            <div id="item-trigger-<?= $i ?>" class="item_box lazy" data-src="<?= urldecode($item->src) ?>"></div>
 
             <div id="item-about-<?= $i ?>" style="display: none;">
                 <div class="about-inner">

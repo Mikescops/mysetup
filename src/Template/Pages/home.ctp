@@ -59,61 +59,47 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 </div>
 
-<div class="container">
-
-    <div class="maincontainer home_container">
-
-        <div class="large_search" style="margin-top: -60px">
-
-            <i class="fa fa-search"></i>
-            <input type="text" id="keyword-search" placeholder="<?= __('Search a component... Find a cool setup !') ?>" />
-            <?= $this->Html->scriptBlock(
-                '
-                let searchInput = new AmazonAutocomplete("#keyword-search");
-                searchInput.onSelectedWord(word => window.open(`' . $this->Url->build('/search/') . '?q=${word}`, "_self"));
-                ',
-                ['block' => 'scriptBottom']
-            ); ?>
-
-        </div>
-
-        <div class="config-items">
-            <?php foreach ($randomResources as $item) : ?>
-                <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>">
-                    <div class="item_box" style="background-image: url(<?= urldecode($item->src) ?>)"></div>
-                </a>
-            <?php endforeach ?>
-        </div>
-
-    </div>
-</div>
-
 <?php if ($popularSetups && count($popularSetups) > 0) : ?>
-    <div class="colored-box-8">
-        <div class="container">
-            <div class="rowfeed">
-                <h4 class="fancy"><span><?= __('Popular setups') ?></span></h4>
-                <div class="card-grid">
 
-                    <?php foreach ($popularSetups as $setup) : ?>
+    <div class="container">
+        <div class="rowfeed">
+            <h3><span><?= __('Popular setups') ?></span></h3>
+            <div id="random-grid" class="card-grid">
+                <?php foreach ($popularSetups as $setup) : ?>
 
-                        <?= $this->element('List/card-item', ['setup' => $setup]) ?>
+                    <?= $this->element('List/card-item', ['setup' => $setup]) ?>
 
-                    <?php endforeach; ?>
-                </div>
-                <br clear='all'>
+                <?php endforeach; ?>
+            </div>
+            <br clear='all'>
+        </div>
+    </div>
+
+<?php endif ?>
+
+<div class="colored-box-8">
+    <div class="container">
+        <div class="rowfeed">
+            <h3><?= __('Components you may like') ?></h3>
+            <div class="config-items">
+                <?php foreach ($randomResources as $item) : ?>
+                    <a href="<?= $this->Url->build('/search/?q=' . h($item->title)) ?>">
+                        <div class="item_box lazy" data-src="<?= urldecode($item->src) ?>"></div>
+                    </a>
+                <?php endforeach ?>
             </div>
         </div>
     </div>
-<?php endif ?>
+</div>
 
-
-<?php
-if ($featuredSetups) :
-    $randFeatured = array_rand($featuredSetups, 1);
-    echo $this->element('List/showcase', ['setup' => $featuredSetups[$randFeatured]]);
-endif;
-?>
+<div>
+    <div class="container">
+        <?php if ($featuredSetups) :
+            $randFeatured = array_rand($featuredSetups, 1);
+            echo $this->element('List/showcase', ['setup' => $featuredSetups[$randFeatured]]);
+        endif; ?>
+    </div>
+</div>
 
 <?php $i = 0;
 foreach ($brandSetups as $brand => $setups) : ?>
@@ -121,9 +107,8 @@ foreach ($brandSetups as $brand => $setups) : ?>
     <div class="colored-box-<?= (++$i % 8) + 1 ?>">
         <div class="container">
             <div class="rowfeed">
-                <h4 class="fancy"><span><?= h($brand) ?></span></h4>
+                <h3><?= h($brand) ?></h3>
                 <div class="card-grid">
-
                     <?php foreach ($setups as $setup) : ?>
 
                         <?= $this->element('List/card-item', ['setup' => $setup]) ?>
@@ -142,7 +127,7 @@ foreach ($brandSetups as $brand => $setups) : ?>
 <div class="container">
     <?php if ($activeUsers) : ?>
         <div class="rowfeed">
-            <h4 class="fancy"><span><?= __('Suggested Users') ?></span></h4>
+            <h3><?= __('Suggested Users') ?></h3>
             <div class="user-grid">
                 <?php foreach ($activeUsers as $activeUser) : ?>
                     <div class="item-grid">

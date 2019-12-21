@@ -8,7 +8,7 @@ echo $this->Html->meta('description', __('Legal mentions about your personal dat
 ?>
 <div class="colored-container">
     <div class="container">
-        <br><h2><?= __('Legal Mentions') ?></h2><br>
+        <h2><?= __('Legal Mentions') ?></h2><br>
     </div>
 </div>
 <div class="container">

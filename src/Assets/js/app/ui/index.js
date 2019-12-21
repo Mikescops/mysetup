@@ -1,6 +1,26 @@
 //=require simpletoast.js
 
 /**
+ * @name LazyLoad
+ * @description Lazy load content like image on demand
+ */
+$(function() {
+	$('.lazy').lazy({
+		effect: 'fadeIn',
+		effectTime: 250,
+		visibleOnly: true
+	});
+});
+
+/**
+ * @name RandomGrid
+ * @description Sort randomly a setup grid
+ */
+$("#random-grid").html($("#random-grid .item-grid").sort(function(){
+    return Math.random()-0.5;
+}));
+
+/**
  * @name Cookieconsent
  * @description Call cookieconsent panel
  */
