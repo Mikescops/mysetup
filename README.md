@@ -8,7 +8,7 @@
 In order to deploy this website on your web server :
 
 1. `# aptitude install git apache2 mariadb-server php7.2 php7.2-mysql php7.2-xml php7.2-intl php7.2-mbstring php7.2-sqlite3 php7.2-curl php7.2-apcu php7.2-zip php-imagick unzip phpmyadmin composer gettext`
-2.
+1.
     1. `# nano /etc/apache2/sites-available/mysetup.conf`
         ```apacheconf
         <VirtualHost *:80>
@@ -24,18 +24,19 @@ In order to deploy this website on your web server :
     3. `# a2enmod expires headers rewrite filter deflate`
     4. `# echo "apc.enable_cli = On" >> /etc/php/7.2/apache2/conf.d/20-apcu.ini`
     5. `# systemctl restart apache2`
-3. `$ cd /var/www/html/`
-4. `$ git clone https://github.com/MikeScops/mysetup.git`
-5. `$ cd mysetup/`
-6. `$ mkdir -p webroot/uploads/files/pics/`
-7. `$ cp webroot/img/profile-default.png webroot/uploads/files/pics/profile_picture_1.png`
-8. `# chown -R www-data:www-data webroot/uploads/`
-9. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and create a new database with `utf8mb4_bin` as collation.
-10. Configure a new user with required rights on this database (**Data** & **Structure**), and set it up in the `config/app.php` file, in the **Datasources** section.
-11. You may also want to set several **third party services credentials** within the same file !
-12. Now run our deployment script (a maintenance mode will be automatically enabled) : `$ sudo bash bin/deployment.sh`
-13. If everything went fine, please run `# crontab -u www-data -e` and add the following line : `@daily php -d register_argc_argv=1 /var/www/html/mysetup/bin/cake.php clean_database -q`
-14. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page is supposed to appear !
+1. `$ cd /var/www/html/`
+1. `$ git clone https://github.com/MikeScops/mysetup.git`
+1. `$ cd mysetup/`
+1. `$ mkdir -p webroot/uploads/files/pics/`
+1. `$ cp webroot/img/profile-default.png webroot/uploads/files/pics/profile_picture_1.png`
+1. `# chown -R www-data:www-data webroot/uploads/`
+1. `mkdir tmp/thumbs && chmod 775 tmp/thumbs` for thumber generator
+1. Go to [http://YOUR_SERVER_IP/phpmyadmin/](http://YOUR_SERVER_IP/phpmyadmin/), and create a new database with `utf8mb4_bin` as collation.
+1. Configure a new user with required rights on this database (**Data** & **Structure**), and set it up in the `config/app.php` file, in the **Datasources** section.
+1. You may also want to set several **third party services credentials** within the same file !
+1. Now run our deployment script (a maintenance mode will be automatically enabled) : `$ sudo bash bin/deployment.sh`
+1. If everything went fine, please run `# crontab -u www-data -e` and add the following line : `@daily php -d register_argc_argv=1 /var/www/html/mysetup/bin/cake.php clean_database -q`
+1. You're done. Go to [http://YOUR_SERVER_IP/](http://YOUR_SERVER_IP/), the page is supposed to appear !
 
 ## Notes to developers
 
