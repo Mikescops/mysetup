@@ -24,11 +24,12 @@
  * On load functions
  */
 $(() => {
-	$('.reset_pwd').click(() => {
+	$('.reset_pwd').click(function() {
 		$(this).hide();
 		$('.pwd_field').show('fast');
 		return false;
 	});
+	
 	$('#social-networks').jsSocials({
 		shareIn: 'popup',
 		showCount: false,
@@ -36,15 +37,15 @@ $(() => {
 		shares: ['twitter', 'facebook', 'googleplus', 'pinterest', 'whatsapp']
 	});
 
-	$('#profileImage').click(() => {
+	$('#profileImage').click(function() {
 		$('#profileUpload').click();
 	});
-	$('#profileUpload').change(() => {
+	$('#profileUpload').change(function() {
 		fasterPreview(this);
 	});
 
 
-	$('.edit-comment').click(() => {
+	$('.edit-comment').click(function() {
 		const $comment = $(this),
 			$place = $comment.attr('source');
 		const $oldvalue = $('#' + $place + '> p').attr('content'),
