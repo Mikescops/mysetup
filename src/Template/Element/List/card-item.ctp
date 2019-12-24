@@ -27,7 +27,7 @@
     </header>
 
     <a href="<?= $this->Url->build('/setups/' . $setup->id . '-' . $this->Text->slug($setup->title)) ?>">
-        <img class="setup-image lazy" alt="<?= h($setup->title) ?>" src="/img/transparent.png" data-src="<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg')) ?>">
+        <img class="setup-image lazy" alt="<?= h($setup->title) ?>" src="/img/transparent.png" data-src="<?= $this->Thumb->fitUrl($this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg'), true), ['height' => 235, 'width' => 510], []) ?>">
     </a>
 
     <div class="card-bg" style="<?= isset($css_style) ? $css_style : '' ?>"></div>

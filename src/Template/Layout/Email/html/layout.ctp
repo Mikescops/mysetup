@@ -144,7 +144,7 @@
             <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
                 <tr>
                     <td style="padding: 20px 0; text-align: center">
-                        <img src="<?= $this->Url->build('/img/mySetup_logo.svg', true) ?>" aria-hidden="true" width="200" height="50" border="0" style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                        <img src="<?= $this->Url->build('/img/mysetup_logo.svg', true) ?>" aria-hidden="true" width="200" height="50" border="0" style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
                     </td>
                 </tr>
             </table>

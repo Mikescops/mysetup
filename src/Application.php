@@ -63,6 +63,8 @@ class Application extends BaseApplication
         $this->addPlugin('Tanuck/Markdown');
         $this->addPlugin('Muffin/Throttle');
         $this->addPlugin('Setup', ['bootstrap' => true]);
+        $this->addPlugin('Thumber/Cake');
+        Configure::write('Thumber.driver', 'imagick');
     }
 
     /**

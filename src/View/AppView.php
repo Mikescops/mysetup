@@ -30,6 +30,8 @@ class AppView extends View
     {
         $this->set('debug', Configure::read('debug'));
 
+        $this->loadHelper('Thumber/Cake.Thumb');
+
         if($this->request->getParam('action') === 'view')
         {
             // We'll only load our Markdown Helper for '{Setups,Articles}.view' pages !

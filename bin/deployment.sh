@@ -12,6 +12,9 @@ bin/cake Setup.MaintenanceMode activate
 # Clear the application caches
 bin/cake cache clear_all
 
+# Clear the thumbnails from cache
+bin/cake thumber.clear_all
+
 # Sync the vendor packages with the `composer.lock` specifications
 COMPOSER_ALLOW_SUPERUSER=true composer install -o -n "${1:---no-dev}"
 
