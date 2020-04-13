@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -12,6 +13,7 @@
  * @since     3.3.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App;
 
 use Cake\Core\Configure;
@@ -65,6 +67,7 @@ class Application extends BaseApplication
         $this->addPlugin('Setup', ['bootstrap' => true]);
         $this->addPlugin('Thumber/Cake');
         Configure::write('Thumber.driver', 'imagick');
+        $this->addPlugin('Connehito/CakeSentry', ['bootstrap' => true]);
     }
 
     /**
@@ -123,9 +126,9 @@ class Application extends BaseApplication
 
             // Set here some security headers
             ->add((new SecurityHeadersMiddleware())
-                  ->setCrossDomainPolicy()
-                  ->setReferrerPolicy()
-                  ->setXssProtection())
+                ->setCrossDomainPolicy()
+                ->setReferrerPolicy()
+                ->setXssProtection())
 
             // Loads the Setup-plugin's "Maintenance mode" (see `bin/deployment.sh` script)
             ->add(MaintenanceMiddleware::class);
