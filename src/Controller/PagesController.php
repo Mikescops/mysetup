@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -12,6 +13,7 @@
  * @since     0.2.9
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Core\Configure;
@@ -50,29 +52,22 @@ class PagesController extends AppController
 
         // Our BD now contains too many elements, we'll store all of them in cache for some times !
         $featuredSetups_ids = Cache::read('featuredSetups_ids', 'HomePageCacheConfig');
-        if($featuredSetups_ids === false)
-        {
+        if ($featuredSetups_ids === false) {
             $featuredSetups = $this->Setups->getSetups(['featured' => true, 'number' => 6])->toArray();
 
             $featuredSetups_ids = [];
-            foreach($featuredSetups as $featuredSetup)
-            {
+            foreach ($featuredSetups as $featuredSetup) {
                 // Here we'll get each resource linked to this setup, and set them up into the existing entity
                 $featuredSetup['products'] = $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray();
                 array_push($featuredSetups_ids, $featuredSetup->id);
             }
 
             Cache::write('featuredSetups_ids', $featuredSetups_ids, 'HomePageCacheConfig');
-        }
-
-        else
-        {
+        } else {
             $featuredSetups = [];
-            foreach($featuredSetups_ids as $featuredSetups_id)
-            {
+            foreach ($featuredSetups_ids as $featuredSetups_id) {
                 $tmp_setup = $this->Setups->fetchSetupById($featuredSetups_id);
-                if($tmp_setup !== null)
-                {
+                if ($tmp_setup !== null) {
                     // Here we'll get each resource linked to this setup, and set them up into the existing entity
                     $tmp_setup['products'] = $this->Setups->Resources->find()->where(['setup_id' => $tmp_setup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray();
                     array_push($featuredSetups, $tmp_setup);
@@ -81,63 +76,47 @@ class PagesController extends AppController
         }
 
         $popularSetups_ids = Cache::read('popularSetups_ids', 'HomePageCacheConfig');
-        if($popularSetups_ids === false)
-        {
+        if ($popularSetups_ids === false) {
             $popularSetups = $this->Setups->getSetups(['type' => 'like', 'number' => 6])->toArray();
 
             $popularSetups_ids = [];
-            foreach($popularSetups as $featuredSetup)
-            {
+            foreach ($popularSetups as $featuredSetup) {
                 array_push($popularSetups_ids, $featuredSetup->id);
             }
 
             Cache::write('popularSetups_ids', $popularSetups_ids, 'HomePageCacheConfig');
-        }
-
-        else
-        {
+        } else {
             $popularSetups = [];
-            foreach($popularSetups_ids as $popularSetups_id)
-            {
+            foreach ($popularSetups_ids as $popularSetups_id) {
                 $tmp_setup = $this->Setups->fetchSetupById($popularSetups_id, ['type' => 'like']);
-                if($tmp_setup !== null)
-                {
+                if ($tmp_setup !== null) {
                     array_push($popularSetups, $tmp_setup);
                 }
             }
         }
 
         $brandSetups_ids = Cache::read('brandSetups_ids', 'HomePageCacheConfig');
-        if($brandSetups_ids === false)
-        {
+        if ($brandSetups_ids === false) {
             $brandSetups = $this->loadModel('cloud_tags')->getSetupsByRandomTags([
                 'number_tags' => 5
             ]);
 
             $brandSetups_ids = [];
-            foreach($brandSetups as $brand_tag => $brand_setups)
-            {
+            foreach ($brandSetups as $brand_tag => $brand_setups) {
                 $brandSetups_ids[$brand_tag] = [];
-                foreach($brand_setups as $brand_setup)
-                {
+                foreach ($brand_setups as $brand_setup) {
                     array_push($brandSetups_ids[$brand_tag], $brand_setup->id);
                 }
             }
 
             Cache::write('brandSetups_ids', $brandSetups_ids, 'HomePageCacheConfig');
-        }
-
-        else
-        {
+        } else {
             $brandSetups = [];
-            foreach($brandSetups_ids as $brand_tag => $brandSetups_ids)
-            {
+            foreach ($brandSetups_ids as $brand_tag => $brandSetups_ids) {
                 $brandSetups[$brand_tag] = [];
-                foreach($brandSetups_ids as $brandSetups_id)
-                {
+                foreach ($brandSetups_ids as $brandSetups_id) {
                     $tmp_setup = $this->Setups->fetchSetupById($brandSetups_id, ['query' => $brand_tag]);
-                    if($tmp_setup !== null)
-                    {
+                    if ($tmp_setup !== null) {
                         array_push($brandSetups[$brand_tag], $tmp_setup);
                     }
                 }
@@ -145,8 +124,7 @@ class PagesController extends AppController
         }
 
         $randomResources = Cache::read('randomResources', 'HomePageCacheConfig');
-        if($randomResources === false)
-        {
+        if ($randomResources === false) {
             $randomResources = $this->Setups->Resources->find('all', [
                 'fields' => [
                     'title',
@@ -157,12 +135,12 @@ class PagesController extends AppController
                 ],
                 'limit' => 6
             ])
-            ->matching('Setups', function($q) {
-                return $q->where(['Setups.status' => 'PUBLISHED']);
-            })
-            ->distinct(['Resources.title', 'Resources.src'])
-            ->order('RAND()')
-            ->toArray();
+                ->matching('Setups', function ($q) {
+                    return $q->where(['Setups.status' => 'PUBLISHED']);
+                })
+                ->distinct(['Resources.title', 'Resources.src'])
+                ->order('RAND()')
+                ->toArray();
 
             Cache::write('randomResources', $randomResources, 'HomePageCacheConfig');
         }
@@ -170,16 +148,14 @@ class PagesController extends AppController
 
 
         $activeUsers = Cache::read('activeUsers', 'HomePageCacheConfig');
-        if($activeUsers === false)
-        {
+        if ($activeUsers === false) {
             $activeUsers = $this->Users->getActiveUsers(9);
 
             Cache::write('activeUsers', $activeUsers, 'HomePageCacheConfig');
         }
 
         /* Let's load less elements on mobile devices */
-        if($this->RequestHandler->isMobile())
-        {
+        if ($this->request->is('mobile')) {
             // Only 3 popular setups !
             $popularSetups = array_slice($popularSetups, 0, 3);
 
@@ -191,8 +167,7 @@ class PagesController extends AppController
         }
         /* __________________________________________ */
 
-        if($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0)
-        {
+        if ($this->Auth->user() and $this->Auth->user('mainSetup_id') != 0) {
             $mainSetup = $this->Setups->get($this->Auth->user('mainSetup_id'), [
                 'contain' => [
                     'Resources' => [
@@ -238,16 +213,14 @@ class PagesController extends AppController
 
     public function weeklyPicks($year = null, $week = null)
     {
-        if($week < 1 || $week > 54)
-        {
+        if ($week < 1 || $week > 54) {
             $this->Flash->warning(__('This date does not exist, here you are the featured setups of this week !'));
             return $this->redirect('/weekly/');
         }
 
         $setups = $this->Setups->getSetups(['featured' => true, 'yearweek' => [$year, $week], 'number' => 5])->toArray();
 
-        foreach($setups as $featuredSetup)
-        {
+        foreach ($setups as $featuredSetup) {
             $featuredSetup['products'] = $this->Setups->Resources->find()->where(['setup_id' => $featuredSetup->id, 'type' => 'SETUP_PRODUCT'])->limit(4)->toArray();
         }
 
@@ -258,30 +231,24 @@ class PagesController extends AppController
 
     public function bugReport()
     {
-        if($this->request->is('post'))
-        {
+        if ($this->request->is('post')) {
             $data = $this->request->getData();
 
-            if(!$this->Captcha->validation($data))
-            {
+            if (!$this->Captcha->validation($data)) {
                 $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
                 return $this->redirect('/');
             }
 
             $auth = $this->Auth->user();
 
-            if(isset($data['bugDescription']) and $data['bugDescription'] !== '' and strlen($data['bugDescription'] <= 5000) and ($auth or (isset($data['bugMail']) and $data['bugMail'] !== '')))
-            {
+            if (isset($data['bugDescription']) and $data['bugDescription'] !== '' and strlen($data['bugDescription'] <= 5000) and ($auth or (isset($data['bugMail']) and $data['bugMail'] !== ''))) {
                 $email = $this->loadModel('Users')->getEmailObject('beta@mysetup.co', '[mySetup.co] There is a bug !');
                 $email->setTemplate('bug')
-                      ->setViewVars(['content' => $data['bugDescription'], 'email' => ($auth ? $auth['mail'] : $data['bugMail'])])
-                      ->send();
+                    ->setViewVars(['content' => $data['bugDescription'], 'email' => ($auth ? $auth['mail'] : $data['bugMail'])])
+                    ->send();
 
                 $this->Flash->success(__('Your bug has been correctly sent ! Thanks for this report :)'));
-            }
-
-            else
-            {
+            } else {
                 $this->Flash->warning(__('You didn\'t report anything (or have missed something) :('));
             }
         }
@@ -292,12 +259,10 @@ class PagesController extends AppController
     public function search($entity = null)
     {
         $query = trim($this->request->getQuery('q'));
-        if($query and strlen($query) >= 2)
-        {
+        if ($query and strlen($query) >= 2) {
             $this->loadModel('Resources');
 
-            switch($entity)
-            {
+            switch ($entity) {
                 case 'setups':
                     $results = $this->paginate($this->Setups->getSetups(['query' => $query]), ['limit' => 10])->toArray();
                     break;
@@ -306,8 +271,7 @@ class PagesController extends AppController
                     $results = $this->Users->getUsers($query);
 
                     // Redirect to user profile if the result is only one entity, matching its name
-                    if(count($results) == 1 && strtolower($results[0]->name) === strtolower($query))
-                    {
+                    if (count($results) == 1 && strtolower($results[0]->name) === strtolower($query)) {
                         $this->Flash->success(__('We have found the user you are looking for !'));
                         return $this->redirect(['controller' => 'Users', 'action' => 'view', $results[0]->id]);
                     }
@@ -318,8 +282,7 @@ class PagesController extends AppController
                     $results = $this->paginate($this->Resources->getResources($query), ['limit' => 24])->toArray();
 
                     // Redirect to home search if the result is only one resource
-                    if(count($results) == 1)
-                    {
+                    if (count($results) == 1) {
                         $this->Flash->success(__('We have found the component you are looking for !'));
                         return $this->redirect('/search/?q=' . $query);
                     }
@@ -339,23 +302,20 @@ class PagesController extends AppController
                         * The resulted setups are only his
                         * No resource can be associated with this query
                     */
-                    if(count($users) == 1
-                    && strtolower($users[0]->name) === strtolower($query)
-                    && count($setups) == count($users[0]['setups'])
-                    && count($resources) == 0)
-                    {
+                    if (
+                        count($users) == 1
+                        && strtolower($users[0]->name) === strtolower($query)
+                        && count($setups) == count($users[0]['setups'])
+                        && count($resources) == 0
+                    ) {
                         $this->Flash->success(__('We have found the user you are looking for !'));
                         return $this->redirect(['controller' => 'Users', 'action' => 'view', $users[0]->id]);
                     }
 
                     // Handle empty results here
-                    if(count($setups) == 0 && count($resources) == 0 && count($users) == 0)
-                    {
+                    if (count($setups) == 0 && count($resources) == 0 && count($users) == 0) {
                         $results = null;
-                    }
-
-                    else
-                    {
+                    } else {
                         // Well well this is X-mas, let's set a labeled multi-dimensional array with all of these results
                         $results = [
                             'users' => $users,
@@ -367,20 +327,14 @@ class PagesController extends AppController
                     break;
             }
 
-            if(!$results || count($results) == 0)
-            {
+            if (!$results || count($results) == 0) {
                 $results = ['error' => 'noresult'];
-            }
-
-            elseif($entity)  // Does not match here if it matched the `default` case above
+            } elseif ($entity)  // Does not match here if it matched the `default` case above
             {
                 // `$entity` will label the type of results present
                 $results = [$entity => $results];
             }
-        }
-
-        else
-        {
+        } else {
             $results = ['error' => 'noquery'];
         }
 
@@ -436,10 +390,8 @@ class PagesController extends AppController
 
         // Another hook to avoid error pages when an user...
         // ...types directly in an (existing) raw address
-        if($this->request->getParam('controller') === 'Pages' and $this->request->getParam('action') === 'display')
-        {
-            switch($this->request->getAttribute('params')['pass'][0])
-            {
+        if ($this->request->getParam('controller') === 'Pages' and $this->request->getParam('action') === 'display') {
+            switch ($this->request->getAttribute('params')['pass'][0]) {
                 case 'home':
                     $this->redirect(['action' => 'home']);
                     break;

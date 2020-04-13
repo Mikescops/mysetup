@@ -1,4 +1,5 @@
 <?php
+
 namespace config;
 
 return [
@@ -479,5 +480,10 @@ return [
         'defaults' => 'php',
         'cookie'   => 'MYSETUPCO',
         'timeout'  => 0
+    ],
+
+    /** Sentry configuration */
+    'Sentry' => [
+        'dsn' => 'YOUR_SENTRY_CONFIGURATION'
     ],
 ];
