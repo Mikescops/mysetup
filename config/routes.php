@@ -84,6 +84,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     /* __________________________ */
 
     /* Users Controller's routes */
+    $routes->connect('/test',  ['controller' => 'Users', 'action' => 'test']);
     $routes->connect('/login',  ['controller' => 'Users', 'action' => 'login']);
     $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
     $routes

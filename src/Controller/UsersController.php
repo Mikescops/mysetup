@@ -146,22 +146,35 @@ class UsersController extends AppController
                         $this->Users->saveDefaultProfilePicture($user, $this->Flash);
                     }
 
-                    $email = $this->Users->getEmailObject($user->mail, 'Verify your account !');
+                    $email = $this->Users->getEmailObject($user->mail, 'Verify your account!');
                     $email->setTemplate('verify')
                           ->setViewVars(['name' => $data['name'], 'id' => $user->id, 'token' => $user->mailVerification])
                           ->send();
 
-                    $this->Flash->success(__('Your account has been created, check your email to verify your account'));
-                    return $this->redirect('/');
+                    $intersitial_content = (object) array(
+                        'icon' => 'far fa-envelope-open',
+                        'message' => __('Your account has been created, check your email to verify your account.')
+                    );
+                    $this->set('content', $intersitial_content);
+                    return $this->render('interstitial');
                 }
 
-                $this->Flash->error(__('Your account could not be registered, either your name or email address is already being used'));
+                $this->Flash->error(__('Your account could not be registered, either your name or email address is already being used.'));
                 return $this->redirect($this->referer());
             }
 
             $this->Flash->error(__('These passwords do not match. Please try again.'));
             return $this->redirect($this->referer());
         }
+    }
+
+    public function test() {
+        $intersitial_content = (object) array(
+            'icon' => 'far fa-envelope-open',
+            'message' => __('Your account has been created, check your email to verify your account.')
+        );
+        $this->set('content', $intersitial_content);
+        return $this->render('interstitial');
     }
 
     /**
@@ -213,7 +226,7 @@ class UsersController extends AppController
             if(isset($data['uwebsite']) and $data['uwebsite'] != '' and !isset(parse_url($data['uwebsite'])['host']))
             {
                 $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['uwebsite'], 'WEBSITE');
-                $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+                $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved.'));
 
                 $data['uwebsite'] = $user['uwebsite'];
             }
@@ -224,7 +237,7 @@ class UsersController extends AppController
                 if(!isset($temp['host']) or $temp['host'] !== 'facebook.com')
                 {
                     $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['ufacebook'], 'FACEBOOK');
-                    $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+                    $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved.'));
 
                     $data['ufacebook'] = $user['ufacebook'];
                 }
@@ -236,7 +249,7 @@ class UsersController extends AppController
                 if(!isset($temp['host']) or $temp['host'] !== 'twitter.com')
                 {
                     $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['utwitter'], 'TWITTER');
-                    $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+                    $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved.'));
 
                     $data['utwitter'] = $user['utwitter'];
                 }
@@ -248,7 +261,7 @@ class UsersController extends AppController
                 if(!isset($temp['host']) or $temp['host'] !== 'twitch.tv')
                 {
                     $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['utwitch'], 'TWITCH');
-                    $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
+                    $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved.'));
 
                     $data['utwitch'] = $user['utwitch'];
                 }
@@ -343,7 +356,7 @@ class UsersController extends AppController
             {
                 if($user['mailVerification'])
                 {
-                    $this->Flash->warning(__('Your account is not verified, check your emails !'));
+                    $this->Flash->warning(__('Your account is not verified, check your emails!'));
                     return $this->redirect($this->referer());
                 }
 
@@ -371,7 +384,7 @@ class UsersController extends AppController
     {
         if($this->Auth->user() !== null)
         {
-            $this->Flash->success(__('You are now logged out, see you soon !'));
+            $this->Flash->success(__('You are now logged out, see you soon!'));
             return $this->redirect($this->Auth->logout());
         }
 
@@ -398,20 +411,24 @@ class UsersController extends AppController
                 $user->password = $temp;
                 if($this->Users->save($user))
                 {
-                    $email = $this->Users->getEmailObject($data['mailReset'], 'Your password has been reseted !');
+                    $email = $this->Users->getEmailObject($data['mailReset'], 'Your password has been reseted!');
                     $email->setTemplate('password')
                           ->setViewVars(['name' => $user->name, 'password' => $temp])
                           ->send();
 
-                    $this->Flash->success(__("An email has been sent to this email address !"));
-                    return $this->redirect(['action' => 'login']);
+                    $intersitial_content = (object) array(
+                        'icon' => 'far fa-envelope-open',
+                        'message' => __('An email has been sent to this email address!')
+                    );
+                    $this->set('content', $intersitial_content);
+                    return $this->render('interstitial');
                 }
 
                 $this->Flash->error(__("Internal error, please try again."));
                 return $this->redirect(['action' => 'login']);
             }
 
-            $this->Flash->warning(__("This email address does not exist in our database. Are you sure you that you have an account ?"));
+            $this->Flash->warning(__("This email address does not exist in our database. Are you sure you that you have an account?"));
             return $this->redirect(['action' => 'login']);
         }
 
@@ -436,11 +453,7 @@ class UsersController extends AppController
 
                     $this->Users->save($user);
 
-                    // Let's add some notifications to this new user
-                    $this->Users->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
-                    $this->Users->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
-
-                    $this->Flash->success(__('Your account is now activated, you\'re now logged in ;)'));
+                    $this->Flash->success(__('Your account is now activated!'));
 
                     $this->Users->prepareSessionForUser($this->request->getSession(), $user);
 
@@ -489,7 +502,7 @@ class UsersController extends AppController
         // Here we check if the response fit what we expect, and if we're allowed to get the user data
         if(!$response or !isset($response->json['scope']) or !in_array($scope, $response->json['scope']))
         {
-            $this->Flash->warning(__('We could not access Twitch\'s data'));
+            $this->Flash->warning(__('We could not access Twitch\'s data.'));
             return $this->redirect('/');
         }
 
@@ -506,7 +519,7 @@ class UsersController extends AppController
 
         if(!$response or !isset($response->json))
         {
-            $this->Flash->warning(__('We could not access Twitch\'s data'));
+            $this->Flash->warning(__('We could not access Twitch\'s data.'));
             return $this->redirect('/');
         }
 
@@ -537,11 +550,11 @@ class UsersController extends AppController
                     {
                         // But, is the DB f*cked up (?)
                         // Or the user has 2 different accounts (one "regular", and another one linked to Twitch) ?
-                        $this->Flash->error(__('Your (new) Twitch email address is already linked to a regular account. Please contact an administrator'));
+                        $this->Flash->error(__('Your (new) Twitch email address is already linked to a regular account. Please contact an administrator.'));
                         return $this->redirect('/');
                     }
 
-                    $this->Flash->success(__('You are successfully logged in !'));
+                    $this->Flash->success(__('You are successfully logged in!'));
                 }
 
                 // The user exists in the DB but does not have a Twitch user_ID ==> The user is linking its accounts !
@@ -555,12 +568,12 @@ class UsersController extends AppController
                         // Whatever the account status was, this email address can be considered verified...
                         $user->mailVerification = null;
 
-                        $this->Flash->success(__('Your email address has been synchronized with the one from your Twitch account'));
+                        $this->Flash->success(__('Your email address has been synchronized with the one from your Twitch account.'));
                     }
                     else
                     {
                         // If the address is still not verified, draw a Flash !
-                        $this->Flash->warning(__('The new email address of your Twitch account has not been verified. Thus, we haven\'t updated it here yet'));
+                        $this->Flash->warning(__('The new email address of your Twitch account has not been verified. Thus, we haven\'t updated it here yet.'));
                     }
                 }
 
@@ -596,7 +609,7 @@ class UsersController extends AppController
 
                     // If the Twitch address is verified, let's do the same into our DB
                     $user->mailVerification = null;
-                    $this->Flash->success(__('Your existing account has been verified during this first Twitch connection !'));
+                    $this->Flash->success(__('Your existing account has been verified during this first Twitch connection!'));
                 }
 
                 // This user entity has a verified email address, but an unverified one on Twitch.
@@ -604,7 +617,7 @@ class UsersController extends AppController
                 // Thanks to @Garkolym for the restricted disclosure.
                 else if(!$response->json['email_verified'])
                 {
-                    $this->Flash->warning(__('The email address of your Twitch account is not verified. We can\'t link your accounts yet'));
+                    $this->Flash->warning(__('The email address of your Twitch account is not verified. We can\'t link your accounts yet.'));
                     return $this->redirect($this->referer());
                 }
 
@@ -614,7 +627,7 @@ class UsersController extends AppController
                 $user->utwitch      = 'https://www.twitch.tv/' . $response->json['display_name'];
 
                 // This is a[n] [ambiguous] toast message (it does not fit entirely with the reality)
-                $this->Flash->success(__('Your account has just been linked to your Twitch one !'));
+                $this->Flash->success(__('Your account has just been linked to your Twitch one!'));
             }
 
             // On this "code branch", whatever the path previously taken, the account is being updated, but not directly by the user.
@@ -627,7 +640,7 @@ class UsersController extends AppController
         {
             if(!$response->json['email_verified'])
             {
-                $this->Flash->warning(__('The email address of your Twitch account has not been verified. We can\'t create your account yet'));
+                $this->Flash->warning(__('The email address of your Twitch account has not been verified. We can\'t create your account yet.'));
                 return $this->redirect($this->referer());
             }
 
@@ -658,16 +671,12 @@ class UsersController extends AppController
                 $this->Users->saveDefaultProfilePicture($user, $this->Flash);
             }
 
-            $email = $this->Users->getEmailObject($user->mail, 'Your account has been created !');
+            $email = $this->Users->getEmailObject($user->mail, 'Your account has been created!');
             $email->setTemplate('welcome')
                   ->setViewVars(['name' => $user->name])
                   ->send();
 
-            $this->Flash->success(__('Your account is now activated, and you have been logged in ;)'));
-
-            // Let's add some notifications to this new user
-            $this->Users->Notifications->createNotification($user->id, __('We advise you to edit your profile (use the panel at the top)...'));
-            $this->Users->Notifications->createNotification($user->id, __('... in order to add a profile picture ! You\'d look better :P'));
+            $this->Flash->success(__('Your account is now activated!'));
         }
 
         // Just before logging this user in, let's save the current date time into the DB
@@ -774,7 +783,7 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['logout', 'add', 'resetPassword', 'view', 'verifyAccount', 'twitch']);
+        $this->Auth->allow(['logout', 'add', 'resetPassword', 'view', 'verifyAccount', 'twitch', 'test']);
     }
 
     public function isAuthorized($user)
