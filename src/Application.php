@@ -67,7 +67,6 @@ class Application extends BaseApplication
         $this->addPlugin('Setup', ['bootstrap' => true]);
         $this->addPlugin('Thumber/Cake');
         Configure::write('Thumber.driver', 'imagick');
-        $this->addPlugin('Connehito/CakeSentry', ['bootstrap' => true]);
     }
 
     /**

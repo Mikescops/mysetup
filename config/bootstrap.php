@@ -42,9 +42,6 @@ use Cake\Log\Log;
 use Cake\Mailer\Email;
 use Cake\Mailer\TransportFactory;
 use Cake\Utility\Security;
-use Cake\Event\EventManager;
-
-require 'sentry.php';
 
 /*
  * Read configuration file and inject configuration into various
@@ -54,6 +51,7 @@ require 'sentry.php';
  * idea to create multiple configuration files, and separate the configuration
  * that changes from configuration that does not. This makes deployment simpler.
  */
+
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
@@ -102,7 +100,52 @@ $isCli = PHP_SAPI === 'cli';
 if ($isCli) {
     (new ConsoleErrorHandler(Configure::read('Error')))->register();
 } else {
-    (new ErrorHandler(Configure::read('Error')))->register();
+    $msVersion = rtrim(`git describe --tags --abbrev=0`);
+    $environment = Configure::read('debug') ? 'development' : 'production';
+
+    \Sentry\init([
+        'project_root' => APP,
+        'dsn' => Configure::read('Sentry.dsn'),
+        'release' => $msVersion,
+        'environment' => $environment,
+        'error_types' => Configure::read('Error.errorLevel'),
+        'excluded_exceptions' => Configure::read('Error.skipLog'),
+        'send_default_pii' => false
+    ]);
+
+    class SentryErrorHandler extends ErrorHandler
+    {
+        public function handleException(Exception $exception)
+        {
+            \Sentry\captureException($exception);
+
+            parent::handleException($exception);
+        }
+    }
+    class SentryErrorHandlerMiddleware extends \Cake\Error\Middleware\ErrorHandlerMiddleware
+    {
+        public function handleException($exception, $request, $response)
+        {
+            \Sentry\captureException($exception);
+
+            return parent::handleException($exception, $request, $response);
+        }
+    }
+
+    (new SentryErrorHandler(Configure::read('Error')))->register();
+
+    $appClass = Configure::read('App.namespace') . '\Application';
+    if (class_exists($appClass)) {
+        \Cake\Event\EventManager::instance()->on('Server.buildMiddleware', function ($event, $queue) {
+            /* @var \Cake\Http\MiddlewareQueue $queue */
+            $middleware = new SentryErrorHandlerMiddleware();
+            try {
+                $queue->insertAfter(\Cake\Error\Middleware\ErrorHandlerMiddleware::class, $middleware);
+            } catch (LogicException $e) {
+                $queue->prepend($middleware);
+            }
+        });
+    }
 }
 
 /*
@@ -185,5 +228,3 @@ Type::build('timestamp')
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
-
-EventManager::instance()->on(new SentryOptionsContext());

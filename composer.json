@@ -15,10 +15,10 @@
         "ksubileau/color-thief-php": "^1.3",
         "muffin/throttle": "^1.1",
         "dereuromark/cakephp-setup": "^1.3",
-        "connehito/cake-sentry": "^2.0",
         "mirko-pagliai/cakephp-thumber": "1.8.1",
         "cakephp/debug_kit": "3.x",
-        "mirko-pagliai/php-thumber": "1.0.1"
+        "mirko-pagliai/php-thumber": "1.0.1",
+        "sentry/sdk": "2.1.0"
     },
     "require-dev": {
         "psy/psysh": "@stable",

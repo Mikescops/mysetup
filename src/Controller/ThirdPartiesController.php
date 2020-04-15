@@ -12,7 +12,8 @@ use ApaiIO\ApaiIO;
 use ApaiIO\Operations\Search;
 use ApaiIO\Request\GuzzleRequest;
 use ApaiIO\Configuration\GenericConfiguration;
-use Exception;
+use App\Utility\SentryLogger;
+use App\Errors\UsageError;
 
 /**
  * ThirdParties Controller
@@ -125,7 +126,7 @@ class ThirdPartiesController extends AppController
                 // Let's build a cool object with these data
                 $json_response = $response->getJson();
                 if (isset($json_response['error'])) {
-                    throw new Exception('Fail getting API Auth access.');
+                    throw new UsageError('Fail getting product API Auth access.');
                 }
                 if (isset($json_response['resources'])) {
                     foreach ($json_response['resources']['products']['items'] as $product => $value) {
@@ -210,7 +211,7 @@ class ThirdPartiesController extends AppController
                 'body' => json_encode($results)
             ]);
         } catch (\Throwable $exception) {
-            \Sentry\captureException($exception);
+            (new SentryLogger())->logErrorWithUser($exception, $this->Auth);
 
             return new Response([
                 'type' => 'json',
