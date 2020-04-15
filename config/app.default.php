@@ -187,7 +187,12 @@ return [
     'Error' => [
         'errorLevel' => E_ALL,
         'exceptionRenderer' => 'Cake\Error\ExceptionRenderer',
-        'skipLog' => [],
+        'skipLog' => [
+            \Cake\Http\Exception\NotFoundException::class,
+            \Cake\Routing\Exception\MissingRouteException::class,
+            \Cake\Routing\Exception\MissingControllerException::class,
+            \Sentry\Exception\FatalErrorException::class,
+        ],
         'log' => true,
         'trace' => true,
     ],
