@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -36,8 +37,7 @@ class UsersController extends AppController
     {
         // If the visitor is not the owner (nor an admin), let's send only to the View the PUBLISHED setups (+ the count will be good with this method ;))
         $conditions = null;
-        if($id != $this->Auth->user('id') and !parent::isAdminBySession($this->request->getSession()))
-        {
+        if ($id != $this->Auth->user('id') and !parent::isAdminBySession($this->request->getSession())) {
             $conditions = ['Setups.status' => 'PUBLISHED'];
         }
 
@@ -60,7 +60,7 @@ class UsersController extends AppController
                         'conditions' => [
                             'type' => 'SETUP_FEATURED_IMAGE'
                         ],
-                        'fields' =>[
+                        'fields' => [
                             'src',
                             'setup_id'
                         ]
@@ -101,18 +101,15 @@ class UsersController extends AppController
 
             $data = $this->request->getData();
 
-            if(!$this->Captcha->validation($data))
-            {
+            if (!$this->Captcha->validation($data)) {
                 $this->Flash->warning(__('Google\'s CAPTCHA has detected you as a bot, sorry ! If you\'re a REAL human, please re-try :)'));
                 return $this->redirect('/');
             }
 
-            if($data['password'] === $data['password2'])
-            {
+            if ($data['password'] === $data['password2']) {
                 $user = $this->Users->patchEntity($this->Users->newEntity(), $data);
 
-                if(!isset($user['preferredStore']) or $user['preferredStore'] === '')
-                {
+                if (!isset($user['preferredStore']) or $user['preferredStore'] === '') {
                     $user['preferredStore'] = 'US';
                 }
 
@@ -137,19 +134,17 @@ class UsersController extends AppController
                 // No setup exists yet...
                 $user->mainSetup_id = 0;
 
-                if($this->Users->save($user))
-                {
+                if ($this->Users->save($user)) {
                     // Here we'll try to retrieve a Gravatar avatar linked to this email address
                     // If it fails, we'll fall back on the default egg head
-                    if(!$this->Users->saveRemoteProfilePicture($user->id, 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($user->mail))) . '?s=100&d=404', $this->Flash))
-                    {
+                    if (!$this->Users->saveRemoteProfilePicture($user->id, 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($user->mail))) . '?s=100&d=404', $this->Flash)) {
                         $this->Users->saveDefaultProfilePicture($user, $this->Flash);
                     }
 
                     $email = $this->Users->getEmailObject($user->mail, 'Verify your account !');
                     $email->setTemplate('verify')
-                          ->setViewVars(['name' => $data['name'], 'id' => $user->id, 'token' => $user->mailVerification])
-                          ->send();
+                        ->setViewVars(['name' => $data['name'], 'id' => $user->id, 'token' => $user->mailVerification])
+                        ->send();
 
                     $this->Flash->success(__('Your account has been created, check your email to verify your account'));
                     return $this->redirect('/');
@@ -175,78 +170,60 @@ class UsersController extends AppController
     {
         $user = $this->Users->get($id);
 
-        if($this->request->is(['patch', 'post', 'put']))
-        {
+        if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
 
             // Here we'll block the 'Users.mail' modification (unless for Administrators)
-            if(!isset($data['mail']) || ($data['mail'] != $user['mail'] && !parent::isAdminBySession($this->request->getSession())))
-            {
+            if (!isset($data['mail']) || ($data['mail'] != $user['mail'] && !parent::isAdminBySession($this->request->getSession()))) {
                 $data['mail'] = $user['mail'];
             }
 
-            if(!isset($data['secret']) || $data['secret'] === '')
-            {
+            if (!isset($data['secret']) || $data['secret'] === '') {
                 $data['password'] = $user['password'];
-            }
-
-            else
-            {
-                if($data['secret'] !== $data['secret2'])
-                {
+            } else {
+                if ($data['secret'] !== $data['secret2']) {
                     $this->Flash->error(__('These passwords do not match. Please try again.'));
                     return $this->redirect($this->referer());
-                }
-
-                else
-                {
+                } else {
                     $data['password'] = $data['secret'];
                 }
             }
 
-            if(!isset($data['verified']) or !parent::isAdminBySession($this->request->getSession()))
-            {
+            if (!isset($data['verified']) or !parent::isAdminBySession($this->request->getSession())) {
                 $data['verified'] = $user['verified'];
             }
 
             // Let's check the social inputs links !
-            if(isset($data['uwebsite']) and $data['uwebsite'] != '' and !isset(parse_url($data['uwebsite'])['host']))
-            {
+            if (isset($data['uwebsite']) and $data['uwebsite'] != '' and !isset(parse_url($data['uwebsite'])['host'])) {
                 $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['uwebsite'], 'WEBSITE');
                 $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
 
                 $data['uwebsite'] = $user['uwebsite'];
             }
-            if(isset($data['ufacebook']) and $data['ufacebook'] != '')
-            {
+            if (isset($data['ufacebook']) and $data['ufacebook'] != '') {
                 $temp = str_replace('www.', '', parse_url($data['ufacebook']));
 
-                if(!isset($temp['host']) or $temp['host'] !== 'facebook.com')
-                {
+                if (!isset($temp['host']) or $temp['host'] !== 'facebook.com') {
                     $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['ufacebook'], 'FACEBOOK');
                     $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
 
                     $data['ufacebook'] = $user['ufacebook'];
                 }
             }
-            if(isset($data['utwitter']) and $data['utwitter'] != '')
-            {
+            if (isset($data['utwitter']) and $data['utwitter'] != '') {
                 $temp = str_replace('www.', '', parse_url($data['utwitter']));
 
-                if(!isset($temp['host']) or $temp['host'] !== 'twitter.com')
-                {
+                if (!isset($temp['host']) or $temp['host'] !== 'twitter.com') {
                     $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['utwitter'], 'TWITTER');
                     $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
 
                     $data['utwitter'] = $user['utwitter'];
                 }
             }
-            if(isset($data['utwitch']) and $data['utwitch'] != '')
-            {
+            if (isset($data['utwitch']) and $data['utwitch'] != '') {
                 $temp = str_replace('www.', '', parse_url($data['utwitch']));
 
-                if(!isset($temp['host']) or $temp['host'] !== 'twitch.tv')
-                {
+                if (!isset($temp['host']) or $temp['host'] !== 'twitch.tv') {
                     $this->Users->Notifications->warnAdminAboutUnsavedLink($user['id'], $data['utwitch'], 'TWITCH');
                     $this->Flash->warning(__('One of your social inputs URL does not fit with its field. It has not been saved'));
 
@@ -256,15 +233,12 @@ class UsersController extends AppController
 
             $user = $this->Users->patchEntity($user, $data);
 
-            if($this->Users->save($user))
-            {
-                if(isset($data['picture']) and $data['picture'] !== '' and (int)$data['picture']['error'] === UPLOAD_ERR_OK)
-                {
+            if ($this->Users->save($user)) {
+                if (isset($data['picture']) and $data['picture'] !== '' and (int) $data['picture']['error'] === UPLOAD_ERR_OK) {
                     $this->Users->saveProfilePicture($data['picture'], $user, $this->Flash);
                 }
 
-                if($this->Auth->user('id') == $user->id)
-                {
+                if ($this->Auth->user('id') == $user->id) {
                     // The user may have changed its preferred store (language) and / or its timezone, let's update this into the server's session
                     $this->Users->prepareSessionForUser($this->request->getSession(), $user);
 
@@ -273,10 +247,7 @@ class UsersController extends AppController
                 }
 
                 $this->Flash->success(__('The user has been updated.'));
-            }
-
-            else
-            {
+            } else {
                 $this->Flash->error(__('The user could not be updated. Please, try again.'));
             }
 
@@ -296,29 +267,23 @@ class UsersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
 
-        if($user and !parent::isAdmin($user))
-        {
-            if($this->Users->delete($user)) {
+        if ($user and !parent::isAdmin($user)) {
+            if ($this->Users->delete($user)) {
                 $this->Flash->success(__('The user has been deleted.'));
             } else {
                 $this->Flash->error(__('The user could not be deleted. Please, try again.'));
             }
-        }
-
-        else
-        {
+        } else {
             $this->Flash->error(__('You just CANNOT delete the admin user of the website...'));
         }
 
         // Only disconnects someone who is deleting himself (and not an admin !) :O
-        if($user->id === $this->Auth->user('id'))
-        {
+        if ($user->id === $this->Auth->user('id')) {
             return $this->redirect($this->Auth->logout());
         }
 
         // If the user is consulting this very entity, let's redirect him to the home page.
-        if(strpos($this->referer(), (string)$user->id) !== false)
-        {
+        if (strpos($this->referer(), (string) $user->id) !== false) {
             return $this->redirect('/');
         }
 
@@ -327,22 +292,18 @@ class UsersController extends AppController
 
     public function login()
     {
-        if($this->Auth->user() !== null)
-        {
+        if ($this->Auth->user() !== null) {
             $this->Flash->warning(__('You are already logged in.'));
             return $this->redirect('/');
         }
 
-        if($this->request->is('post'))
-        {
+        if ($this->request->is('post')) {
             // This statement is super-important : It allows the users to type their email address with some UPPERCASES...
             // CakePHP 4.X compliant, of course ;)
             $this->request = $this->request->withData('mail', strtolower($this->request->getData('mail')));
 
-            if($user = $this->Auth->identify())
-            {
-                if($user['mailVerification'])
-                {
+            if ($user = $this->Auth->identify()) {
+                if ($user['mailVerification']) {
                     $this->Flash->warning(__('Your account is not verified, check your emails !'));
                     return $this->redirect($this->referer());
                 }
@@ -369,8 +330,7 @@ class UsersController extends AppController
 
     public function logout()
     {
-        if($this->Auth->user() !== null)
-        {
+        if ($this->Auth->user() !== null) {
             $this->Flash->success(__('You are now logged out, see you soon !'));
             return $this->redirect($this->Auth->logout());
         }
@@ -383,12 +343,10 @@ class UsersController extends AppController
     {
         $data = $this->request->getData();
 
-        if($data['mailReset'] !== '')
-        {
+        if ($data['mailReset'] !== '') {
             $user = $this->Users->find()->where(['mail' => $data['mailReset']])->first();
 
-            if($user)
-            {
+            if ($user) {
                 // So as to limit race condition exploitation on the "reset password" feature, let's wait a bit before generating a new password.
                 // The duration will be picked randomly between `0` and `3` seconds.
                 sleep(mt_rand(0, 3));
@@ -396,12 +354,11 @@ class UsersController extends AppController
                 // Let's generate a new random password, and send it to the email address specified
                 $temp = Security::randomString(16);
                 $user->password = $temp;
-                if($this->Users->save($user))
-                {
+                if ($this->Users->save($user)) {
                     $email = $this->Users->getEmailObject($data['mailReset'], 'Your password has been reseted !');
                     $email->setTemplate('password')
-                          ->setViewVars(['name' => $user->name, 'password' => $temp])
-                          ->send();
+                        ->setViewVars(['name' => $user->name, 'password' => $temp])
+                        ->send();
 
                     $this->Flash->success(__("An email has been sent to this email address !"));
                     return $this->redirect(['action' => 'login']);
@@ -421,14 +378,11 @@ class UsersController extends AppController
 
     public function verifyAccount($id = null, $token = null)
     {
-        if($this->request->is('get'))
-        {
+        if ($this->request->is('get')) {
             $user = $this->Users->find()->where(['id' => $id])->first();
 
-            if($user)
-            {
-                if($user->mailVerification === $token)
-                {
+            if ($user) {
+                if ($user->mailVerification === $token) {
                     $user->mailVerification = null;
 
                     // Let's set his first login date btw
@@ -467,8 +421,7 @@ class UsersController extends AppController
         $scope = 'user_read';
 
         // A simple test to check the URL validity (still : "F*CK Twitch's API")
-        if(!$this->request->getQuery('code') or (!$this->request->getQuery('scope') or $this->request->getQuery('scope') !== $scope) or !$this->request->getQuery('state'))
-        {
+        if (!$this->request->getQuery('code') or (!$this->request->getQuery('scope') or $this->request->getQuery('scope') !== $scope) or !$this->request->getQuery('state')) {
             // Let's throw a 404 if the URL does not fit what we expect...
             throw new NotFoundException();
         }
@@ -487,13 +440,12 @@ class UsersController extends AppController
         ]);
 
         // Here we check if the response fit what we expect, and if we're allowed to get the user data
-        if(!$response or !isset($response->json['scope']) or !in_array($scope, $response->json['scope']))
-        {
+        if (!$response or !isset($response->getJson()['scope']) or !in_array($scope, $response->getJson()['scope'])) {
             $this->Flash->warning(__('We could not access Twitch\'s data'));
             return $this->redirect('/');
         }
 
-        $token = $response->json['access_token'];
+        $token = $response->getJson()['access_token'];
 
         // We run a query through Twitch's API, in order to gather some information about this user
         $response = $http->get('https://api.twitch.tv/kraken/user', [], [
@@ -504,23 +456,20 @@ class UsersController extends AppController
             ]
         ]);
 
-        if(!$response or !isset($response->json))
-        {
+        if (!$response or !$response->getJson()) {
             $this->Flash->warning(__('We could not access Twitch\'s data'));
             return $this->redirect('/');
         }
 
         // Let's try to get an user entity linked to the Twitch address email or the Twitch user_ID of this user
         $user = null;
-        $user_by_email     = $this->Users->find()->where(['mail'         => $response->json['email']])->first();
-        $user_by_twitch_ID = $this->Users->find()->where(['twitchUserId' => $response->json['_id']])->first();
+        $user_by_email     = $this->Users->find()->where(['mail'         => $response->getJson()['email']])->first();
+        $user_by_twitch_ID = $this->Users->find()->where(['twitchUserId' => $response->getJson()['_id']])->first();
 
         // Let's first check if at least ONE OF THE TWO ENTITIES is non-null
-        if($user_by_email !== null || $user_by_twitch_ID !== null)
-        {
+        if ($user_by_email !== null || $user_by_twitch_ID !== null) {
             // If we got an user from its Twitch ID...
-            if($user_by_twitch_ID !== null)
-            {
+            if ($user_by_twitch_ID !== null) {
                 $user = $user_by_twitch_ID;
 
                 // We save temporarily the "old" token to revoke it later (if everything went good)
@@ -530,11 +479,9 @@ class UsersController extends AppController
                 $user->twitchToken = $token;
 
                 // If we got two user entities...
-                if($user_by_email !== null)
-                {
+                if ($user_by_email !== null) {
                     // They ARE SUPPOSED to be the same one...
-                    if($user_by_email->id !== $user_by_twitch_ID->id)
-                    {
+                    if ($user_by_email->id !== $user_by_twitch_ID->id) {
                         // But, is the DB f*cked up (?)
                         // Or the user has 2 different accounts (one "regular", and another one linked to Twitch) ?
                         $this->Flash->error(__('Your (new) Twitch email address is already linked to a regular account. Please contact an administrator'));
@@ -545,20 +492,16 @@ class UsersController extends AppController
                 }
 
                 // The user exists in the DB but does not have a Twitch user_ID ==> The user is linking its accounts !
-                else
-                {
+                else {
                     // The user has changed (and verified) the new email address of its Twitch account, let's update the email stored in our DB
-                    if($response->json['email_verified'])
-                    {
-                        $user->mail = $response->json['email'];
+                    if ($response->getJson()['email_verified']) {
+                        $user->mail = $response->getJson()['email'];
 
                         // Whatever the account status was, this email address can be considered verified...
                         $user->mailVerification = null;
 
                         $this->Flash->success(__('Your email address has been synchronized with the one from your Twitch account'));
-                    }
-                    else
-                    {
+                    } else {
                         // If the address is still not verified, draw a Flash !
                         $this->Flash->warning(__('The new email address of your Twitch account has not been verified. Thus, we haven\'t updated it here yet'));
                     }
@@ -571,25 +514,21 @@ class UsersController extends AppController
                     'client_secret' => $client_secret,
                     'token'         => $oldToken
                 ]);
-            }
-
-            else // if($user_by_email !== null && $user_by_twitch_ID === null)
+            } else // if($user_by_email !== null && $user_by_twitch_ID === null)
             {
                 $user = $user_by_email;
 
                 // It's possible that this user already has an UNVERIFIED account...
-                if($user->mailVerification !== null)
-                {
+                if ($user->mailVerification !== null) {
                     // ... with also an unverified email address on its Twitch account :/
-                    if(!$response->json['email_verified'])
-                    {
+                    if (!$response->getJson()['email_verified']) {
                         // If it's true, let's send him a (new) email to verify it, and redirect him with a message
                         $user->mailVerification = Security::randomString(32);
                         $this->Users->save($user);
                         $email = $this->Users->getEmailObject($user->mail, 'Verify your account !');
                         $email->setTemplate('verify')
-                              ->setViewVars(['name' => $user->name, 'id' => $user->id, 'token' => $user->mailVerification])
-                              ->send();
+                            ->setViewVars(['name' => $user->name, 'id' => $user->id, 'token' => $user->mailVerification])
+                            ->send();
                         $this->Flash->warning(__('Your unverified existing account cannot be linked to Twitch because your email address is not verified either. Please verify it before retrying (you will receive a new email soon).'));
                         return $this->redirect('/');
                     }
@@ -602,16 +541,15 @@ class UsersController extends AppController
                 // This user entity has a verified email address, but an unverified one on Twitch.
                 // /!\ This might be an account high-jacking /!\
                 // Thanks to @Garkolym for the restricted disclosure.
-                else if(!$response->json['email_verified'])
-                {
+                else if (!$response->getJson()['email_verified']) {
                     $this->Flash->warning(__('The email address of your Twitch account is not verified. We can\'t link your accounts yet'));
                     return $this->redirect($this->referer());
                 }
 
                 // If we could verify its email address, let's just "link" its account with Twitch by setting these data
                 $user->twitchToken  = $token;
-                $user->twitchUserId = $response->json['_id'];
-                $user->utwitch      = 'https://www.twitch.tv/' . $response->json['display_name'];
+                $user->twitchUserId = $response->getJson()['_id'];
+                $user->utwitch      = 'https://www.twitch.tv/' . $response->getJson()['display_name'];
 
                 // This is a[n] [ambiguous] toast message (it does not fit entirely with the reality)
                 $this->Flash->success(__('Your account has just been linked to your Twitch one !'));
@@ -623,45 +561,41 @@ class UsersController extends AppController
         }
 
         // The user HAS NOT BEEN FOUND, let's create a new account for him (if its Twitch email address has been verified of course) !
-        else
-        {
-            if(!$response->json['email_verified'])
-            {
+        else {
+            if (!$response->getJson()['email_verified']) {
                 $this->Flash->warning(__('The email address of your Twitch account has not been verified. We can\'t create your account yet'));
                 return $this->redirect($this->referer());
             }
 
             $user = $this->Users->newEntity([
                 'id'             => $this->Users->getNewRandomID(),
-                'name'           => $response->json['display_name'],
-                'mail'           => $response->json['email'],
+                'name'           => $response->getJson()['display_name'],
+                'mail'           => $response->getJson()['email'],
                 'password'       => Security::randomString(16),
                 // Fetches the language formatted in the query by the JS
                 'preferredStore' => strtoupper(substr($this->request->getQuery('state'), 0, 2)),
                 'timeZone'       => 'Europe/London',
                 'twitchToken'    => $token,
-                'twitchUserId'   => $response->json['_id'],
+                'twitchUserId'   => $response->getJson()['_id'],
                 'verified'       => 0,
                 'mainSetup_id'   => 0,
-                'utwitch'        => 'https://www.twitch.tv/' . $response->json['display_name']
+                'utwitch'        => 'https://www.twitch.tv/' . $response->getJson()['display_name']
             ]);
 
             // As this Amazon Store does not exist, we just replace it by the `US` one
-            if($user->preferredStore === 'EN')
-            {
+            if ($user->preferredStore === 'EN') {
                 $user->preferredStore = 'US';
             }
 
             // We'll use the Twitch API to retrieve its profile picture :O
-            if(!$this->Users->saveRemoteProfilePicture($user->id, $response->json['logo'], $this->Flash))
-            {
+            if (!$this->Users->saveRemoteProfilePicture($user->id, $response->getJson()['logo'], $this->Flash)) {
                 $this->Users->saveDefaultProfilePicture($user, $this->Flash);
             }
 
             $email = $this->Users->getEmailObject($user->mail, 'Your account has been created !');
             $email->setTemplate('welcome')
-                  ->setViewVars(['name' => $user->name])
-                  ->send();
+                ->setViewVars(['name' => $user->name])
+                ->send();
 
             $this->Flash->success(__('Your account is now activated, and you have been logged in ;)'));
 
@@ -674,8 +608,7 @@ class UsersController extends AppController
         $user->lastLogginDate = Time::now();
 
         // Let's try to save this user !
-        if(!$this->Users->save($user))
-        {
+        if (!$this->Users->save($user)) {
             $this->Flash->error(__('An error occurred while saving your account. Please contact an administrator.'));
             return $this->redirect('/');
         }
@@ -690,8 +623,7 @@ class UsersController extends AppController
     // Portability right of personal data (GDPR compliance)
     public function getPersonalData()
     {
-        if(!$this->request->is('post'))
-        {
+        if (!$this->request->is('post')) {
             die();
         }
 
@@ -721,7 +653,7 @@ class UsersController extends AppController
                         'like_count'
                     ],
                     'Resources' => [
-                        'fields' =>[
+                        'fields' => [
                             'setup_id',
                             'src'
                         ],
@@ -779,13 +711,11 @@ class UsersController extends AppController
 
     public function isAuthorized($user)
     {
-        if(isset($user) && in_array($this->request->getParam('action'), ['edit', 'delete']) && (int)$this->request->getAttribute('params')['pass'][0] === $user['id'])
-        {
+        if (isset($user) && in_array($this->request->getParam('action'), ['edit', 'delete']) && (int) $this->request->getAttribute('params')['pass'][0] === $user['id']) {
             return true;
         }
 
-        if(isset($user) && $this->request->getParam('action') === 'getPersonalData')
-        {
+        if (isset($user) && $this->request->getParam('action') === 'getPersonalData') {
             return true;
         }
 

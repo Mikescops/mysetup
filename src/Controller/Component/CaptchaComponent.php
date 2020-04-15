@@ -11,8 +11,7 @@ class CaptchaComponent extends Component
     public function validation($data)
     {
         // The submitted form does not have any Google's response ?
-        if(!isset($data['g-recaptcha-response']))
-        {
+        if (!isset($data['g-recaptcha-response'])) {
             return false;
         }
 
@@ -22,8 +21,7 @@ class CaptchaComponent extends Component
             'response' => $data['g-recaptcha-response']
         ]);
 
-        if(!$response or !isset($response->json['success']) or !$response->json['success'])
-        {
+        if (!$response or !isset($response->getJson()['success']) or !$response->getJson()['success']) {
             return false;
         }
 
