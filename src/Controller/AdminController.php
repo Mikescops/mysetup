@@ -138,18 +138,31 @@ class AdminController extends AppController
         $this->set('stats', $stats);
     }
 
-    public function setups()
+    public function setups($id = null)
     {
-        $setups = $this->paginate($this->Setups, [
-            'order' => [
-                'creationDate' => 'DESC'
-            ],
-            'contain' => [
-                'Users'
-            ]
-        ]);
+        if ($id) {
+            $setup = $this->paginate($this->Setups, [
+                'conditions' => [
+                    'Setups.id' => $id
+                ],
+                'contain' => [
+                    'Users'
+                ]
+            ]);
 
-        $this->set('setups', $setups);
+            $this->set('setups', $setup);
+        } else {
+            $setups = $this->paginate($this->Setups, [
+                'order' => [
+                    'creationDate' => 'DESC'
+                ],
+                'contain' => [
+                    'Users'
+                ]
+            ]);
+
+            $this->set('setups', $setups);
+        }
     }
 
     /**
