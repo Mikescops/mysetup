@@ -31,8 +31,8 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
             <?php if ($authUser['mainSetup_id'] == 0) : ?>
                 <div class="hero_inner">
                     <div class="hero_column">
-                        <h3><?= __('You didn\'t add any setup yet !') ?></h3>
-                        <p><?= __('Start now and select all your setup\'s components.') ?></p>
+                        <h3><?= __('Welcome') ?> <?= $authUser['name'] ?>,</h3>
+                        <p><?= __('You can add your setup or find inspiration in the awesome content below!') ?></p>
                     </div>
                     <div class="hero_column center-margin-button">
                         <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'add']) ?>" class="hero_calltoaction"><?= __('Add my setup now') ?></a>
