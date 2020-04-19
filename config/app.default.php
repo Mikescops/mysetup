@@ -489,6 +489,7 @@ return [
 
     /** Sentry configuration */
     'Sentry' => [
+        'enable' => false,
         'dsn' => 'YOUR_SENTRY_CONFIGURATION'
     ],
 ];

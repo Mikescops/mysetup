@@ -99,7 +99,7 @@ ini_set('intl.default_locale', Configure::read('App.defaultLocale'));
 $isCli = PHP_SAPI === 'cli';
 if ($isCli) {
     (new ConsoleErrorHandler(Configure::read('Error')))->register();
-} else {
+} elseif (Configure::read('Sentry.enable') === true) {
     $msVersion = rtrim(`git describe --tags --abbrev=0`);
     $environment = Configure::read('debug') ? 'development' : 'production';
 
@@ -146,6 +146,8 @@ if ($isCli) {
             }
         });
     }
+} else {
+    (new ErrorHandler(Configure::read('Error')))->register();
 }
 
 /*
