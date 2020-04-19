@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -42,8 +43,7 @@ class SetupsController extends AppController
 
         // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner, nor an administrator...
         $session = $this->request->getSession();
-        if(!$this->Setups->isPublic($id) and (!$session->check('Auth.User') or !$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and !parent::isAdminBySession($session))
-        {
+        if (!$this->Setups->isPublic($id) and (!$session->check('Auth.User') or !$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and !parent::isAdminBySession($session)) {
             $this->Flash->error(__('You are not authorized to access that location.'));
             return $this->redirect('/');
         }
@@ -68,8 +68,7 @@ class SetupsController extends AppController
      */
     public function add()
     {
-        if($this->request->is('post'))
-        {
+        if ($this->request->is('post')) {
             // Let's get the data from the form
             $data = $this->request->getData();
 
@@ -77,8 +76,7 @@ class SetupsController extends AppController
             //die();
 
             // Before anything else, let's check whether or not this new setup has a featured image and at least one resource !
-            if((!isset($data['featuredImage']) or json_decode($data['featuredImage'][0])->output->name === '') or (!isset($data['resources']) or $data['resources'] === ''))
-            {
+            if ((!isset($data['featuredImage']) or json_decode($data['featuredImage'][0])->output->name === '') or (!isset($data['resources']) or $data['resources'] === '')) {
                 $this->Flash->error(__('It looks like you missed something...'));
                 return $this->redirect($this->referer());
             }
@@ -90,15 +88,13 @@ class SetupsController extends AppController
             $data['user_id'] = $user->id;
 
             // Here we'll assign automatically the owner name of the setup
-            if(!isset($data['author']) or $data['author'] === '')
-            {
+            if (!isset($data['author']) or $data['author'] === '') {
                 $data['author'] = $user->name;
             }
 
 
             // We'll only allow `PUBLISHED` and `DRAFT` status on Setups.add
-            if(!isset($data['status']) or !in_array($data['status'], ['PUBLISHED', 'DRAFT']))
-            {
+            if (!isset($data['status']) or !in_array($data['status'], ['PUBLISHED', 'DRAFT'])) {
                 // If this dude tried to play us, he'll receive a little gift :
                 $data['status'] = 'REJECTED';
             }
@@ -109,18 +105,16 @@ class SetupsController extends AppController
             // Here we'll assign a random id to this new setup
             do {
                 $setup->id = mt_rand() + 1;
-            } while($this->Setups->find()->where(['id' => $setup->id])->count() !== 0);
+            } while ($this->Setups->find()->where(['id' => $setup->id])->count() !== 0);
 
             // Set some default values for Setups.add
             $setup->featured    = false;
             $setup->main_colors = '';
 
             // So, before registering Resources entities, we need to save the setup in the DB, for foreign-dependency reasons
-            if($this->Setups->save($setup))
-            {
+            if ($this->Setups->save($setup)) {
                 /* Here we get and save the featured image */
-                if(!$this->Setups->Resources->saveResourceImage((array) json_decode($data['featuredImage'][0])->output, $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
-                {
+                if (!$this->Setups->Resources->saveResourceImage((array) json_decode($data['featuredImage'][0])->output, $setup, 'SETUP_FEATURED_IMAGE', $this->Flash)) {
                     $this->Setups->delete($setup);
                     $this->Flash->warning(__('Your featured image could not be saved, and it is needed for your setup...'));
                     return $this->redirect($this->referer());
@@ -139,15 +133,13 @@ class SetupsController extends AppController
                 $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, parent::isAdminBySession($this->request->getSession()));
 
                 /* Here we save the setup video URL (if it exists) */
-                if(isset($data['video']) and $data['video'] !== '')
-                {
+                if (isset($data['video']) and $data['video'] !== '') {
                     // We ignore the return of this method, 'cause its failing is not relevant here
                     $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash);
                 }
 
                 // User's main Setup feature : If this user does not have currently any, let's assign this new one
-                if($user->mainSetup_id == 0)
-                {
+                if ($user->mainSetup_id == 0) {
                     $user->mainSetup_id = $setup->id;
                     $user->setDirty('modificationDate', true);
                     $this->Setups->Users->save($user);
@@ -175,41 +167,37 @@ class SetupsController extends AppController
     {
         $setup = $this->Setups->get($id);
 
-        if($this->request->is(['patch', 'post', 'put']))
-        {
+        if ($this->request->is(['patch', 'post', 'put'])) {
             // Let's fetch the form's data
             $data = $this->request->getData();
 
             // Here we'll assign automatically the owner name if the user has removed the old one
-            if(!isset($data['author']) or $data['author'] === '')
-            {
+            if (!isset($data['author']) or $data['author'] === '') {
                 $data['author'] = $this->Setups->Users->get($setup->user_id)['name'];
             }
 
             // A regular user should have the right to submit its setups with PUBLISHED and DRAFT status values
-            if(!isset($data['status']) or
-               (!in_array($data['status'], ['PUBLISHED', 'DRAFT']) && !parent::isAdminBySession($this->request->getSession())))
-            {
+            if (
+                !isset($data['status']) or
+                (!in_array($data['status'], ['PUBLISHED', 'DRAFT']) && !parent::isAdminBySession($this->request->getSession()))
+            ) {
                 $data['status'] = $setup['status'];
             }
 
             // Only administrators can change the featured aspect of a setup
-            if(!isset($data['featured']) or !parent::isAdminBySession($this->request->getSession()))
-            {
+            if (!isset($data['featured']) or !parent::isAdminBySession($this->request->getSession())) {
                 $data['featured'] = $setup['featured'];
             }
 
             $setup = $this->Setups->patchEntity($setup, $data);
 
-            if($this->Setups->save($setup))
-            {
+            if ($this->Setups->save($setup)) {
                 /* Here we delete all products then save again each product that has been selected by the user */
                 $this->Setups->Resources->deleteAll(['Resources.user_id' => $setup->user_id, 'Resources.setup_id' => $id, 'Resources.type' => 'SETUP_PRODUCT']);
                 $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, parent::isAdminBySession($this->request->getSession()));
 
                 /* Here we get and save the featured image */
-                if(!empty($data['featuredImage'][0]))
-                {
+                if (!empty($data['featuredImage'][0])) {
                     // We fetch the CURRENT featured image, so as to delete it afterwards
                     $image_to_delete = $this->Setups->Resources->find()->where([
                         'Resources.user_id'  => $setup->user_id,
@@ -218,8 +206,7 @@ class SetupsController extends AppController
                     ])->first();
 
                     // We try to save the new image chosen by the user !
-                    if($this->Setups->Resources->saveResourceImage((array) json_decode($data['featuredImage'][0])->output, $setup, 'SETUP_FEATURED_IMAGE', $this->Flash))
-                    {
+                    if ($this->Setups->Resources->saveResourceImage((array) json_decode($data['featuredImage'][0])->output, $setup, 'SETUP_FEATURED_IMAGE', $this->Flash)) {
                         // If it's OK, we just delete the old one, and re-compute the main colors !
                         $this->Setups->Resources->delete($image_to_delete);
 
@@ -243,19 +230,14 @@ class SetupsController extends AppController
                     'type'     => 'SETUP_VIDEO_LINK'
                 ])->first();
                 // If the user has specified a new one...
-                if(isset($data['video']) and $data['video'] !== '')
-                {
+                if (isset($data['video']) and $data['video'] !== '') {
                     // ... that is equal to the old one
-                    if($video_to_delete && $video_to_delete->src === $data['video'])
-                    {
+                    if ($video_to_delete && $video_to_delete->src === $data['video']) {
                         // We won't delete it !
                         $video_to_delete = null;
-                    }
-                    else
-                    {
+                    } else {
                         // ... if not, we save this new link (the old one will be delete just below)
-                        if(!$this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash))
-                        {
+                        if (!$this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash)) {
                             // If we are here, the NEW link could not be saved...
                             // Let's be kind and don't delete the old one ;)
                             $video_to_delete = null;
@@ -263,17 +245,13 @@ class SetupsController extends AppController
                     }
                 }
                 // We delete the old one (if we still have to) !
-                if($video_to_delete !== null)
-                {
+                if ($video_to_delete !== null) {
                     $this->Setups->Resources->delete($video_to_delete);
                 }
                 /* ______________________________________ */
 
                 $this->Flash->success(__('The setup has been updated.'));
-            }
-
-            else
-            {
+            } else {
                 $this->Flash->error(__('The setup could not be saved. Please, try again.'));
             }
 
@@ -292,23 +270,18 @@ class SetupsController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $setup = $this->Setups->get($id);
-        if($this->Setups->delete($setup))
-        {
+        if ($this->Setups->delete($setup)) {
             // Force user session updating (`mainSetup_id` may have changed)
-            if($this->Auth->user('id') == $setup->user_id)
-            {
+            if ($this->Auth->user('id') == $setup->user_id) {
                 $this->Setups->Users->synchronizeSessionWithUserEntity($this->request->getSession(), null, parent::isAdmin($this->Auth->user()));
             }
 
             $this->Flash->success(__('The setup has been deleted.'));
-        }
-        else
-        {
+        } else {
             $this->Flash->error(__('The setup could not be deleted. Please, try again.'));
         }
 
-        if(strpos($this->referer(), $id))
-        {
+        if (strpos($this->referer(), $id)) {
             return $this->redirect('/');
         }
 
@@ -324,18 +297,12 @@ class SetupsController extends AppController
 
     public function isAuthorized($user)
     {
-        if(isset($user))
-        {
-            if(in_array($this->request->getParam('action'), ['edit', 'delete']))
-            {
-                if($this->Setups->isOwnedBy((int)$this->request->getAttribute('params')['pass'][0], $user['id']))
-                {
+        if (isset($user)) {
+            if (in_array($this->request->getParam('action'), ['edit', 'delete'])) {
+                if ($this->Setups->isOwnedBy((int) $this->request->getAttribute('params')['pass'][0], $user['id'])) {
                     return true;
                 }
-            }
-
-            elseif($this->request->getParam('action') === 'add')
-            {
+            } elseif ($this->request->getParam('action') === 'add') {
                 return true;
             }
         }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -41,8 +42,7 @@ class AdminController extends AppController
 
         // By using Git, let's retrieve the diff state against HEAD.
         $headState = Cache::read('headState', 'HomePageCacheConfig');
-        if($headState === false)
-        {
+        if ($headState === false) {
             $headState = (rtrim(`git --no-pager diff {$this->viewVars['msVersion']}`) === '');
             Cache::write('headState', $headState, 'HomePageCacheConfig');
         }
@@ -152,10 +152,36 @@ class AdminController extends AppController
         $this->set('setups', $setups);
     }
 
+    /**
+     * Set featured method
+     * @param string|null $id Setup id.
+     */
+    public function setFeaturedSetup($id = null)
+    {
+        $this->request->allowMethod(['post']);
+
+        $setup = $this->Setups->get($id);
+        $setup->featured = 1;
+
+        $setup->setDirty('modifiedDate', true);
+
+        if ($this->Setups->save($setup)) {
+            $this->Flash->success(__('The setup has been featured.'));
+        } else {
+            $this->Flash->error(__('The setup could not be featured. Please, try again.'));
+        }
+
+
+        if (strpos($this->referer(), $id)) {
+            return $this->redirect('/');
+        }
+
+        return $this->redirect($this->referer());
+    }
+
     public function users($id = null)
     {
-        if($id)
-        {
+        if ($id) {
             $user = $this->Users->get($id, [
                 'contain' => [
                     'Setups',
@@ -234,7 +260,7 @@ class AdminController extends AppController
                 'Users'
             ],
             'order' => [
-                'Articles.dateTime'=> 'desc'
+                'Articles.dateTime' => 'desc'
             ]
         ]);
 
@@ -265,60 +291,40 @@ class AdminController extends AppController
         // Let's just build an array as ['user_id' => 'user_name'] for each user...
         $usersList = $this->Users->find('list')->toArray();
 
-        if($this->request->is('post'))
-        {
+        if ($this->request->is('post')) {
             $data = $this->request->getData();
-            if(isset($data['user_id']) and (isset($data['message']) and $data['message'] !== ''))
-            {
+            if (isset($data['user_id']) and (isset($data['message']) and $data['message'] !== '')) {
                 $this->loadModel('Notifications');
 
                 // Are we sending this to everyone ?
-                if($data['user_id'] === 'global')
-                {
+                if ($data['user_id'] === 'global') {
                     $i = 0;
                     $nbUsers = count($usersList);
 
-                    foreach(array_keys($usersList) as $user_id)
-                    {
-                        if(!$this->Notifications->createNotification($user_id, $data['message']))
-                        {
+                    foreach (array_keys($usersList) as $user_id) {
+                        if (!$this->Notifications->createNotification($user_id, $data['message'])) {
                             $i++;
                         }
                     }
 
-                    if($i == 0)
-                    {
+                    if ($i == 0) {
                         $this->Flash->success($nbUsers . ' ' . __n('notification has been sent !', 'notifications have been sent !', $nbUsers));
-                    }
-
-                    elseif($i == $nbUsers)
-                    {
+                    } elseif ($i == $nbUsers) {
                         $this->Flash->error(__('No notification could be sent...'));
-                    }
-
-                    else
-                    {
+                    } else {
                         $this->Flash->warning($i . ' / ' . $nbUsers . ' ' . __n('notification couldn\'t be sent...', 'notifications couldn\'t be sent...', $nbUsers));
                     }
                 }
 
                 // Or only one user ?
-                else
-                {
-                    if($this->Notifications->createNotification($data['user_id'], $data['message']))
-                    {
+                else {
+                    if ($this->Notifications->createNotification($data['user_id'], $data['message'])) {
                         $this->Flash->success(__('The notification has just been sent !'));
-                    }
-
-                    else
-                    {
+                    } else {
                         $this->Flash->error(__('The notification couldn\'t be sent.'));
                     }
                 }
-            }
-
-            else
-            {
+            } else {
                 $this->Flash->warning(__('One information is missing to send this notification.'));
             }
         }
@@ -330,16 +336,12 @@ class AdminController extends AppController
 
     public function clearCaches()
     {
-        if($this->request->is('post'))
-        {
+        if ($this->request->is('post')) {
             $output = (new ShellDispatcher())->run(['cake', 'cache', 'clear_all']);
 
-            if($output === 0)
-            {
+            if ($output === 0) {
                 $this->Flash->success(__('The application caches have been cleared !'));
-            }
-            else
-            {
+            } else {
                 $this->Flash->success(__('The application caches could not be cleared. Code returned :') . ' ' . $output);
             }
 

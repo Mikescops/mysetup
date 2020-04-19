@@ -41,6 +41,9 @@ $this->assign('title', __('Setups | myAdmin'));
                         <td class="actions">
                             <?= $this->Html->link('<i data-feather="eye"></i>', ['controller' => 'Setups', 'action' => 'view', $setup->id], ['title' => __('View'), 'escape' => false]) ?>
                             <?= $this->Form->postLink('<i data-feather="trash-2"></i>', ['controller' => 'Setups', 'action' => 'delete', $setup->id], ['title' => __('Delete'), 'confirm' => __('Are you sure you want to delete this setup ?'), 'escape' => false]) ?>
+                            <?php if (!$setup->featured && $setup->status === 'PUBLISHED') : ?>
+                                <?= $this->Form->postLink('<i data-feather="star"></i>', ['controller' => 'Admin', 'action' => 'setFeaturedSetup', $setup->id], ['title' => __('Feature'), 'escape' => false]) ?>
+                            <?php endif ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
