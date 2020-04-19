@@ -157,7 +157,7 @@ class PagesController extends AppController
         /* Let's load less elements on mobile devices */
         if ($this->request->is('mobile')) {
             // Only 3 popular setups !
-            $popularSetups = array_slice($popularSetups, 0, 3);
+            $featuredSetups = array_slice($featuredSetups, 0, 3);
 
             // Only 4 resources !
             $randomResources = array_slice($randomResources, 0, 4);

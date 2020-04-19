@@ -16,13 +16,16 @@
 		<div class="showcase-description"></div>
 		<div class="showcase-products">
 			<div class="config-items">
-				<?php foreach ($setup['products'] as $item) : ?>
+				<?php if ($setup['products']) : foreach ($setup['products'] as $item) : ?>
 
-					<a target="_blank" href="<?= $this->Url->build('/setups/' . $setup->id, true) ?>" class="item_box lazy" data-src="<?= urldecode($item->src) ?>"></a>
+						<a target="_blank" href="<?= $this->Url->build('/setups/' . $setup->id, true) ?>" class="item_box lazy" data-src="<?= urldecode($item->src) ?>"></a>
 
-				<?php endforeach ?>
+					<?php endforeach;
+				else : ?>
+					<a target="_blank" href="<?= $this->Url->build('/setups/' . $setup->id, true) ?>"><?= __('Discover this setup') ?> <i class="fa fa-chevron-right"></i></a>
+				<?php endif ?>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="setup-showcase-background" style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.60), #151515), url(<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg')) ?>"></div>
+<div class="setup-showcase-background" style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.60), #151515), url(<?= $this->Url->build('/' . (!empty($setup->resources[0]) ? $setup->resources[0]->src : 'img/not_found.jpg')) ?>)"></div>

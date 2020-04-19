@@ -59,13 +59,13 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
     </div>
 </div>
 
-<?php if ($popularSetups && count($popularSetups) > 0) : ?>
+<?php if ($featuredSetups && count($featuredSetups) > 0) : ?>
 
     <div class="container">
         <div class="rowfeed">
-            <h3><span><?= __('Popular setups') ?></span></h3>
+            <h3><span><?= __('Staff Picks') ?></span></h3>
             <div id="random-grid" class="card-grid">
-                <?php foreach ($popularSetups as $setup) : ?>
+                <?php foreach ($featuredSetups as $setup) : ?>
 
                     <?= $this->element('List/card-item', ['setup' => $setup]) ?>
 
@@ -94,9 +94,9 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
 <div>
     <div class="container">
-        <?php if ($featuredSetups) :
-            $randFeatured = array_rand($featuredSetups, 1);
-            echo $this->element('List/showcase', ['setup' => $featuredSetups[$randFeatured]]);
+        <?php if ($popularSetups) :
+            $randFeatured = array_rand($popularSetups, 1);
+            echo $this->element('List/showcase', ['setup' => $popularSetups[$randFeatured]]);
         endif; ?>
     </div>
 </div>
