@@ -192,6 +192,33 @@ class AdminController extends AppController
         return $this->redirect($this->referer());
     }
 
+    /**
+     * Reject setup method
+     * @param string|null $id Setup id.
+     */
+    public function rejectSetup($id = null)
+    {
+        $this->request->allowMethod(['post']);
+
+        $setup = $this->Setups->get($id);
+        $setup->status = 'REJECTED';
+
+        $setup->setDirty('modifiedDate', true);
+
+        if ($this->Setups->save($setup)) {
+            $this->Flash->success(__('The setup has been rejected.'));
+        } else {
+            $this->Flash->error(__('The setup could not be rejected. Please, try again.'));
+        }
+
+
+        if (strpos($this->referer(), $id)) {
+            return $this->redirect('/');
+        }
+
+        return $this->redirect($this->referer());
+    }
+
     public function users($id = null)
     {
         if ($id) {

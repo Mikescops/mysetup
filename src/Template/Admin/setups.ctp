@@ -44,6 +44,9 @@ $this->assign('title', __('Setups | myAdmin'));
                             <?php if (!$setup->featured && $setup->status === 'PUBLISHED') : ?>
                                 <?= $this->Form->postLink('<i data-feather="star"></i>', ['controller' => 'Admin', 'action' => 'setFeaturedSetup', $setup->id], ['title' => __('Feature'), 'escape' => false]) ?>
                             <?php endif ?>
+                            <?php if ($setup->status === 'PUBLISHED') : ?>
+                                <?= $this->Form->postLink('<i data-feather="x-octagon"></i>', ['controller' => 'Admin', 'action' => 'rejectSetup', $setup->id], ['title' => __('Reject'), 'confirm' => __('Are you sure you want to ban this setup ?'), 'escape' => false]) ?>
+                            <?php endif ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
