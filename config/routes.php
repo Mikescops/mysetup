@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Routes configuration
  *
@@ -54,10 +55,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/recent', ['controller' => 'Pages', 'action' => 'recent']);
     $routes->connect('/staffpicks', ['controller' => 'Pages', 'action' => 'staffpicks']);
     $routes->connect('/weekly/:year-:week', ['controller' => 'Pages', 'action' => 'weeklyPicks'])
-            ->setPatterns(['year' => '\d{4}', 'week' => '\d{1,2}'])
-            ->setPass(['year', 'week']);
+        ->setPatterns(['year' => '\d{4}', 'week' => '\d{1,2}'])
+        ->setPass(['year', 'week']);
     // if incorrect weekly path, use current week
-    $routes->redirect('/weekly/*', '/weekly/'. (new \DateTime("-1 week"))->format("Y-W"));
+    $routes->redirect('/weekly/*', '/weekly/' . (new \DateTime("-1 week"))->format("Y-W"));
     $routes->connect('/bugReport', ['controller' => 'Pages', 'action' => 'bugReport']);
     // ... and all the other ones
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
@@ -71,7 +72,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     /* ___________________ */
 
     /* Setups Controller's routes */
-    $routes->scope('/setups', function($routes) {
+    $routes->scope('/setups', function ($routes) {
         $routes
             ->connect('/:id:slug', ['controller' => 'Setups', 'action' => 'view'])
             ->setPatterns(['id' => '\d+', 'slug' => '(-.*)?'])
@@ -106,14 +107,14 @@ Router::scope('/', function (RouteBuilder $routes) {
     /* _________________________ */
 
     /* Our API routes, we connect the Throttle middleware */
-    $routes->scope('/api', function($routes) {
+    $routes->scope('/api', function ($routes) {
         $routes->applyMiddleware('throttle');
         $routes->connect('/:action/*', ['controller' => 'Api', 'action' => 'action']);
     });
     /* ______________________________________ */
 
     /* Articles Controller's routes */
-    $routes->scope('/blog', function($routes) {
+    $routes->scope('/blog', function ($routes) {
         $routes->connect('/', ['controller' => 'Articles']);
         $routes
             ->connect('/:id:slug', ['controller' => 'Articles', 'action' => 'view'])
@@ -127,7 +128,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     /* _______________________ */
 
     /* Sitemap routes */
-    $routes->scope('/sitemap', function($routes) {
+    $routes->scope('/sitemap', function ($routes) {
         $routes
             ->connect(':target.xml', ['controller' => 'Sitemaps', 'action' => 'dispatch'])
             ->setPatterns(['target' => '(-.*)?'])
