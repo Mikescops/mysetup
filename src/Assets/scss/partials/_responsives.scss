@@ -4,7 +4,7 @@
 
 /* Smaller than mobile screen */
 @media (max-width: 450px) {
-    .hero_container .hero_content p{
+    .hero_container .hero_content p {
         display: none;
     }
 
@@ -57,14 +57,19 @@
         max-height: 480px;
 
         & .hero_container {
-            height: 270px;
+            height: auto;
         }
     }
 
     .hero_container .hero_content {
+        position: relative;
         text-align: center;
-        top: 20px;
+        top: 0;
         width: 100%;
+
+        h2 {
+            font-size: 2.5em;
+        }
     }
 
     .hero_container img {

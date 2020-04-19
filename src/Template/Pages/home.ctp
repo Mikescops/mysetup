@@ -34,7 +34,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                         <h3><?= __('Welcome') ?> <?= $authUser['name'] ?>,</h3>
                         <p><?= __('You can add your setup or find inspiration in the awesome content below!') ?></p>
                     </div>
-                    <div class="hero_column center-margin-button">
+                    <div class="hero_column right-margin-button">
                         <a href="<?= $this->Url->build(['controller' => 'Setups', 'action' => 'add']) ?>" class="hero_calltoaction"><?= __('Add my setup now') ?></a>
                     </div>
                 </div>

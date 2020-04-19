@@ -64,8 +64,8 @@
     flex-direction: row;
 }
 
-.hero_inner .center-margin-button {
-    text-align: center;
+.hero_inner .right-margin-button {
+    text-align: right;
     margin-top: 20px;
 }
 
@@ -109,8 +109,8 @@
     font-weight: bold;
     border-radius: 4px;
     background: $color-blue;
-    transition: background-color 150ms ease-out, background-image 150ms ease-out, background-position 150ms ease-out,
-        color 150ms ease-out;
+    transition: background-color 150ms ease-out, background-image 150ms ease-out,
+        background-position 150ms ease-out, color 150ms ease-out;
 
     &:hover {
         color: #fff;
@@ -184,8 +184,16 @@
     z-index: 10;
     background-color: #bb68c4;
     background: #6441a4; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #bb68c4 0%, #6441a4 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #bb68c4 0%, #6441a4 100%); /* Chrome10-25,Safari5.1-6 */
+    background: -moz-linear-gradient(
+        -45deg,
+        #bb68c4 0%,
+        #6441a4 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+        -45deg,
+        #bb68c4 0%,
+        #6441a4 100%
+    ); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(
         135deg,
         #bb68c4 0%,
@@ -199,8 +207,16 @@
 .twitch-advert:before {
     border-radius: inherit;
     background-image: linear-gradient(#6441a4, #6441a4);
-    background: -moz-linear-gradient(-45deg, #6441a4 0%, #6441a4 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #6441a4 0%, #6441a4 100%); /* Chrome10-25,Safari5.1-6 */
+    background: -moz-linear-gradient(
+        -45deg,
+        #6441a4 0%,
+        #6441a4 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+        -45deg,
+        #6441a4 0%,
+        #6441a4 100%
+    ); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(
         135deg,
         #6441a4 0%,
@@ -250,8 +266,16 @@
     background-color: #3c72b8;
     z-index: 10;
     background: #3c72b8; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #3c72b8 0%, #3a4071 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #3c72b8 0%, #3a4071 100%); /* Chrome10-25,Safari5.1-6 */
+    background: -moz-linear-gradient(
+        -45deg,
+        #3c72b8 0%,
+        #3a4071 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+        -45deg,
+        #3c72b8 0%,
+        #3a4071 100%
+    ); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(
         135deg,
         #3c72b8 0%,
@@ -265,8 +289,16 @@
 .blog-advert:before {
     border-radius: inherit;
     background-image: linear-gradient(#3c72b8, #3c72b8);
-    background: -moz-linear-gradient(-45deg, #3c72b8 0%, #3c72b8 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #3c72b8 0%, #3c72b8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: -moz-linear-gradient(
+        -45deg,
+        #3c72b8 0%,
+        #3c72b8 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+        -45deg,
+        #3c72b8 0%,
+        #3c72b8 100%
+    ); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(
         135deg,
         #3c72b8 0%,
