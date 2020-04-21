@@ -22,6 +22,10 @@
     border-bottom: 1px solid #f4f4f4;
 }
 
+.basket_items {
+    min-height: 212px;
+}
+
 .draggable-cards {
     white-space: nowrap;
     max-width: calc(600px - 40px);

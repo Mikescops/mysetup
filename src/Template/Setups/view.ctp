@@ -30,13 +30,6 @@ $rgb_colors = json_decode($setup->main_colors)[0];
             <div class="featured-img-setup slider-item-inner">
 
                 <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true) ?>">
-                <?php if (!empty($setup['resources']['video_link'])) : ?>
-                    <div class="overlay">
-                        <a class="videoplayer-icon" href="<?= $setup['resources']['video_link'] ?>" title="<?= __('Watch it in video') ?>" data-lity>
-                            <i class="fa fa-play-circle"></i>
-                        </a>
-                    </div>
-                <?php endif ?>
 
             </div>
         </div>
