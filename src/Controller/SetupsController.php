@@ -88,9 +88,7 @@ class SetupsController extends AppController
             $data['user_id'] = $user->id;
 
             // Here we'll assign automatically the owner name of the setup
-            if (!isset($data['author']) or $data['author'] === '') {
-                $data['author'] = $user->name;
-            }
+            $data['author'] = $user->name;
 
 
             // We'll only allow `PUBLISHED` and `DRAFT` status on Setups.add
@@ -131,12 +129,6 @@ class SetupsController extends AppController
 
                 /* Here we save each product that has been selected by the user */
                 $this->Setups->Resources->saveResourceProducts($data['resources'], $setup, $this->Flash, parent::isAdminBySession($this->request->getSession()));
-
-                /* Here we save the setup video URL (if it exists) */
-                if (isset($data['video']) and $data['video'] !== '') {
-                    // We ignore the return of this method, 'cause its failing is not relevant here
-                    $this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash);
-                }
 
                 // User's main Setup feature : If this user does not have currently any, let's assign this new one
                 if ($user->mainSetup_id == 0) {
@@ -222,32 +214,6 @@ class SetupsController extends AppController
 
                 // Replace the gallery images (handle in the Resources model)
                 $this->Setups->Resources->saveGalleryImages($setup, $data, $this->Flash);
-
-                /* Here we handle video link modification */
-                // First, we retrieve the current, if any
-                $video_to_delete = $this->Setups->Resources->find()->where([
-                    'setup_id' => $setup->id,
-                    'type'     => 'SETUP_VIDEO_LINK'
-                ])->first();
-                // If the user has specified a new one...
-                if (isset($data['video']) and $data['video'] !== '') {
-                    // ... that is equal to the old one
-                    if ($video_to_delete && $video_to_delete->src === $data['video']) {
-                        // We won't delete it !
-                        $video_to_delete = null;
-                    } else {
-                        // ... if not, we save this new link (the old one will be delete just below)
-                        if (!$this->Setups->Resources->saveResourceVideo($data['video'], $setup, 'SETUP_VIDEO_LINK', $this->Flash)) {
-                            // If we are here, the NEW link could not be saved...
-                            // Let's be kind and don't delete the old one ;)
-                            $video_to_delete = null;
-                        }
-                    }
-                }
-                // We delete the old one (if we still have to) !
-                if ($video_to_delete !== null) {
-                    $this->Setups->Resources->delete($video_to_delete);
-                }
                 /* ______________________________________ */
 
                 $this->Flash->success(__('The setup has been updated.'));

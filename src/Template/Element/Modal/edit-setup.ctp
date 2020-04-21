@@ -98,14 +98,6 @@
             <div id="infos-edit" class="form-action-edit hide-edit">
 
                 <?php
-                /* Fill the video source if exist */
-                if (!empty($setup['resources']['video_link'])) {
-                    $video_field = $setup['resources']['video_link'];
-                } else {
-                    $video_field = '';
-                }
-                echo $this->Form->control('video', ['class' => 'video-url-input', 'label' => __('Video (Youtube, Dailymotion, Twitch, ...)'), 'placeholder' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'default' => $video_field]);
-
                 // A hidden entry to gather the item resources
                 echo $this->Form->control('resources', ['class' => 'hiddenInput edit_setup', 'type' => 'hidden']);
                 ?>
