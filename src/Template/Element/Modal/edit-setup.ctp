@@ -64,10 +64,10 @@
 
                 <?php endif ?>
 
-                <ul class="draggable-cards dragscroll search_results edit_setup"></ul>
+                <ul class="draggable-cards search_results edit_setup"></ul>
 
                 <h5 class="basket-title"><?= __('Setup items') ?></h5>
-                <ul class="draggable-cards dragscroll basket_items edit_setup">
+                <ul class="draggable-cards basket_items edit_setup">
                     <?php foreach ($setup['resources']['products'] as $item) : ?>
                         <li class="text-card">
                             <div class="wrapper">
@@ -138,7 +138,8 @@
     </script>
     <?= $this->Html->scriptBlock("
         populateBasket();
-        var sortable = new Sortable($('.basket_items')[0], {
+        const sortable = new Sortable($('.basket_items')[0], {
+            delayOnTouchOnly: 200,
             onEnd: function(evt) {
                 basket.splice(evt.newIndex, 0, basket.splice(evt.oldIndex, 1)[0]);
             }

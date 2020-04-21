@@ -59,10 +59,10 @@ $this->assign('title', __('Add Setup') . ' | mySetup.co');
             <label><i class="fa fa-search"></i> <?= __('Search for components') ?></label>
             <input type="text" class="liveInput add_setup" onkeyup="searchItem(this.value, 'add_setup');" placeholder="Acer, Razer, Logitech...">
 
-            <ul class="draggable-cards dragscroll search_results add_setup"></ul>
+            <ul class="draggable-cards search_results add_setup"></ul>
 
             <label class="basket-title"><i class="fas fa-box-open"></i> <?= __('Setup items') ?></label>
-            <ul class="draggable-cards dragscroll basket_items add_setup"></ul>
+            <ul class="draggable-cards basket_items add_setup"></ul>
 
         </div>
 
@@ -86,9 +86,9 @@ $this->assign('title', __('Add Setup') . ' | mySetup.co');
 
         <?= $this->Form->end(); ?>
 
-
         <?= $this->Html->scriptBlock("
-        var sortable = new Sortable($('.basket_items')[0], {
+        const sortable = new Sortable($('.basket_items')[0], {
+            delayOnTouchOnly: 200,
             onEnd: function(evt) {
                 basket.splice(evt.newIndex, 0, basket.splice(evt.oldIndex, 1)[0]);
             }

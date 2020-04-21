@@ -22,12 +22,16 @@
     border-bottom: 1px solid #f4f4f4;
 }
 
+.search_results {
+    white-space: nowrap;
+}
+
 .basket_items {
     min-height: 212px;
+    text-align: center;
 }
 
 .draggable-cards {
-    white-space: nowrap;
     max-width: calc(600px - 40px);
     overflow-x: auto;
     width: calc(100vw - 40px);

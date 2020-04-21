@@ -13,13 +13,6 @@
         display: none;
     }
 
-    .search_results,
-    .basket_items {
-        -moz-column-count: 1;
-        -webkit-column-count: 1;
-        column-count: 1;
-    }
-
     .rowsocial .blog-advert h5,
     .rowsocial .twitch-advert h4 {
         font-size: 18px;
@@ -183,14 +176,6 @@
         display: block;
         float: left;
         padding-right: 10px;
-    }
-
-    /* ADD MODAL RESPONSIVE */
-
-    .search_results p,
-    .basket_items p {
-        line-height: 30px;
-        min-height: 60px;
     }
 }
 
