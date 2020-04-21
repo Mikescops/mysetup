@@ -137,6 +137,7 @@
     <script>
         function populateBasket() {
             <?php
+            echo 'basket = [];';
             foreach ($setup['resources']['products'] as $item) {
                 echo 'basket.push({"title":"' . $item->title . '","url":"' . $item->href . '","src":"' . $item->src . '"});';
             }
@@ -144,6 +145,7 @@
         };
     </script>
     <?= $this->Html->scriptBlock("
+        populateBasket();
         var sortable = new Sortable($('.basket_items')[0], {
             onEnd: function(evt) {
                 basket.splice(evt.newIndex, 0, basket.splice(evt.oldIndex, 1)[0]);
