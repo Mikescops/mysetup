@@ -10,6 +10,10 @@
     <title></title>
 
     <style>
+        p a {
+            color: #0087ff;
+        }
+
         img {
             -ms-interpolation-mode: bicubic;
         }
