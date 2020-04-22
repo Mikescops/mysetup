@@ -374,6 +374,22 @@ class AdminController extends AppController
         $this->set('usersList', $usersList);
     }
 
+    /**
+     * This an email is a test method, only for admin and debug
+     */
+    public function sendTestEmail()
+    {
+        $email = $this->Users->getEmailObject('medias@pixelswap.fr', 'MS Test Email', 'Mike');
+        $email->setTemplate('welcome')
+            ->send();
+
+        $email->setTemplate('verify')
+            ->setViewVars(['id' => 'xxx', 'token' => 'yyyyyy'])
+            ->send();
+
+        return $this->redirect($this->referer());
+    }
+
     public function clearCaches()
     {
         if ($this->request->is('post')) {

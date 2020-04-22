@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\Core\Configure;
@@ -113,9 +114,8 @@ class UsersTable extends Table
         $validator
             ->notEmpty('mail')
             ->add('mail', 'unique', [
-                'rule' => function($email, $context) {
-                    if($context['newRecord'])
-                    {
+                'rule' => function ($email, $context) {
+                    if ($context['newRecord']) {
                         // For Users.{add,twitch}, we just check the non-existence of an entity already having this email address.
                         return !$this->exists(['mail' => strtolower($email)]);
                     }
@@ -127,13 +127,15 @@ class UsersTable extends Table
             ])
             ->add('mail', 'validFormat', [
                 'rule' => 'email',
-                'message' => __('We need a valid E-mail address')]);
+                'message' => __('We need a valid E-mail address')
+            ]);
 
         $validator
             ->notEmpty('password')
             ->add('password', 'length', [
                 'rule' => ['minLength', 8],
-                'message' => __('The password has to contain more than 8 characters')]);
+                'message' => __('The password has to contain more than 8 characters')
+            ]);
 
         $validator
             ->notEmpty('preferredStore');
@@ -198,39 +200,39 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['mail']));
         $rules->add($rules->isUnique(['twitchUserId']));
 
-        $rules->
-            add(function($entity) {
-                if(isset($entity['timeZone']) and array_key_exists($entity['timeZone'], $this->timezones))
-                {
+        $rules->add(
+            function ($entity) {
+                if (isset($entity['timeZone']) and array_key_exists($entity['timeZone'], $this->timezones)) {
                     return true;
                 }
 
                 return false;
             },
-            'timeZoneIntegrity_rule');
+            'timeZoneIntegrity_rule'
+        );
 
-        $rules->
-            add(function($entity) {
-                if(isset($entity['preferredStore']) and in_array($entity['preferredStore'], ['US', 'UK', 'ES', 'IT', 'FR', 'DE']))
-                {
+        $rules->add(
+            function ($entity) {
+                if (isset($entity['preferredStore']) and in_array($entity['preferredStore'], ['US', 'UK', 'ES', 'IT', 'FR', 'DE'])) {
                     return true;
                 }
 
                 return false;
             },
-            'preferredStoreIntegrity_rule');
+            'preferredStoreIntegrity_rule'
+        );
 
-        $rules->
-            add(function($entity) {
+        $rules->add(
+            function ($entity) {
                 // Here we only allow a "0" value, or an ID existing in the Setups DB
-                if($entity['mainSetup_id'] !== 0 and !$this->Setups->exists(['id' => $entity['mainSetup_id']]))
-                {
+                if ($entity['mainSetup_id'] !== 0 and !$this->Setups->exists(['id' => $entity['mainSetup_id']])) {
                     return false;
                 }
 
                 return true;
             },
-            'mainSetup_idIntegrity_rule');
+            'mainSetup_idIntegrity_rule'
+        );
 
         return $rules;
     }
@@ -242,19 +244,16 @@ class UsersTable extends Table
 
     public function afterDelete(Event $event, EntityInterface $entity)
     {
-        if(!(new File('uploads/files/pics/profile_picture_' . $entity['id'] . '.png'))->delete())
-        {
+        if (!(new File('uploads/files/pics/profile_picture_' . $entity['id'] . '.png'))->delete()) {
             // How can we inform the user about this error... ?
         }
 
-        if(!(new Folder('uploads/files/' . $entity['id']))->delete())
-        {
+        if (!(new Folder('uploads/files/' . $entity['id']))->delete()) {
             // How can we inform the user about this error... ?
         }
 
         // Let's revoke the Twitch token access !
-        if($entity['twitchToken'])
-        {
+        if ($entity['twitchToken']) {
             (new Client())->post('https://api.twitch.tv/kraken/oauth2/revoke', [
                 'client_id'     => $this->getTwitchAPIID(),
                 'client_secret' => $this->getTwitchAPISecret(),
@@ -291,8 +290,8 @@ class UsersTable extends Table
                 ]
             ]
         ])
-        ->distinct()
-        ->toArray();
+            ->distinct()
+            ->toArray();
     }
 
     public function getTwitchAPIID()
@@ -304,37 +303,32 @@ class UsersTable extends Table
         return Configure::read('Credentials.Twitch.secret');
     }
 
-    public function getEmailObject($receiver, $subject)
+    public function getEmailObject($receiver, $subject, $recipient_name)
     {
         return (
             (new Email())
-                ->setEmailFormat('html')
-                ->setLayout('layout')
-                ->setTo($receiver)
-                ->setSubject($subject)
-        );
+            ->setEmailFormat('html')
+            ->setLayout('layout')
+            ->setTo($receiver)
+            ->setSubject($subject))->setViewVars(['recipient_name' => $recipient_name]);
     }
 
     public function saveDefaultProfilePicture($user, $flash)
     {
-        if(!file_exists('uploads/files/pics') and !mkdir('uploads/files/pics', 0755))
-        {
+        if (!file_exists('uploads/files/pics') and !mkdir('uploads/files/pics', 0755)) {
             $flash->error(__('An internal error occurred while creating your profile picture. Please contact an administrator.'));
             return;
         }
 
-        if(!(new File('img/profile-default.png'))->copy('uploads/files/pics/profile_picture_' . strval($user->id) . '.png'))
-        {
+        if (!(new File('img/profile-default.png'))->copy('uploads/files/pics/profile_picture_' . strval($user->id) . '.png')) {
             $flash->warning(__('Your default picture could not be set... Please contact an administrator.'));
         }
     }
 
     public function saveProfilePicture($file, $user, $flash)
     {
-        if($file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg') && !strpos($file['type'], 'gif'))
-        {
-            if(!file_exists('uploads/files/pics') and !mkdir('uploads/files/pics', 0755))
-            {
+        if ($file['size'] <= 5000000 && substr($file['type'], 0, strlen('image/')) === 'image/' && !strpos($file['type'], 'svg') && !strpos($file['type'], 'gif')) {
+            if (!file_exists('uploads/files/pics') and !mkdir('uploads/files/pics', 0755)) {
                 $flash->error(__('An internal error occurred while saving your profile picture. Please contact an administrator.'));
                 return;
             }
@@ -342,25 +336,17 @@ class UsersTable extends Table
             // A temporary path to the image, '.png' anyway (check the real conversion below...)
             $destination = 'uploads/files/pics/profile_picture_' . strval($user->id) . '.png';
 
-            if(move_uploaded_file($file['tmp_name'], $destination))
-            {
+            if (move_uploaded_file($file['tmp_name'], $destination)) {
                 $image = new \Imagick($destination);
 
                 // This is the scenario: we compress the image, apply a Gaussian blur, and fall back to a PNG format before cropping & storing it...
-                if(!$image || !$image->setImageCompressionQuality(85) || !$image->gaussianBlurImage(0.8, 10) || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination))
-                {
+                if (!$image || !$image->setImageCompressionQuality(85) || !$image->gaussianBlurImage(0.8, 10) || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination)) {
                     $flash->warning(__('Your profile picture could not be compressed, resized, converted to a PNG format or saved... Please contact an administrator.'));
                 }
-            }
-
-            else
-            {
+            } else {
                 $flash->warning(__('Your profile picture could not be saved.'));
             }
-        }
-
-        else
-        {
+        } else {
             $flash->warning(__('The file you uploaded does not validate our rules... Please contact an administrator.'));
         }
     }
@@ -372,7 +358,7 @@ class UsersTable extends Table
         // Here we'll assign a random id to this new user
         do {
             $id = mt_rand() + 1;
-        } while($this->find()->where(['id' => $id])->count() !== 0);
+        } while ($this->find()->where(['id' => $id])->count() !== 0);
 
         return $id;
     }
@@ -382,26 +368,22 @@ class UsersTable extends Table
         $locale = null;
 
         // `FR-*` locales
-        if(preg_match('/^fr([-_].*)?$/i', $country_id))
-        {
+        if (preg_match('/^fr([-_].*)?$/i', $country_id)) {
             $locale = 'fr_FR';
         }
 
         // `ES-*` locales
-        elseif(preg_match('/^es([-_].*)?$/i', $country_id))
-        {
+        elseif (preg_match('/^es([-_].*)?$/i', $country_id)) {
             $locale = 'es_ES';
         }
 
         // `IT-*` locales
-        elseif(preg_match('/^it([-_].*)?$/i', $country_id))
-        {
+        elseif (preg_match('/^it([-_].*)?$/i', $country_id)) {
             $locale = 'it_IT';
         }
 
         // All the others (yet)
-        else
-        {
+        else {
             $locale = 'en_GB';
         }
 
@@ -426,8 +408,7 @@ class UsersTable extends Table
         curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0');
         curl_exec($curl);
 
-        if(curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200)
-        {
+        if (curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200) {
             return false;
         }
 
@@ -436,8 +417,7 @@ class UsersTable extends Table
 
         // Let's resize (and convert ?) this new image
         $image = new \Imagick($destination);
-        if(!$image || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination))
-        {
+        if (!$image || !$image->setImageFormat('png') || !$image->cropThumbnailImage(100, 100) || !$image->writeImage($destination)) {
             $flash->warning(__('Your profile picture could not be resized, converted to a PNG format or saved... Please contact an administrator.'));
             return false;
         }
@@ -469,21 +449,19 @@ class UsersTable extends Table
                 'mailVerification IS' => null,
                 'lastLogginDate >=' => new \DateTime('-1 month')
             ]
-        ])->matching('Setups', function($q) {
+        ])->matching('Setups', function ($q) {
             return $q->where(['Setups.status' => 'PUBLISHED']);
         })->distinct()->toArray();
     }
 
     public function synchronizeSessionWithUserEntity($session, $user = null, $admin = false)
     {
-        if(!$user)
-        {
+        if (!$user) {
             $user = $this->get($session->read('Auth.User.id'));
         }
 
         // Simply sets a boolean useful in view in the future
-        if($admin)
-        {
+        if ($admin) {
             $user['admin'] = true;
         }
 

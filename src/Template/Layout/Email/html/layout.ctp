@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -9,40 +10,6 @@
     <title></title>
 
     <style>
-        html, body {
-            margin: 0 auto !important;
-            padding: 0 !important;
-            height: 100% !important;
-            width: 100% !important;
-            mso-line-height-rule: exactly;
-        }
-
-        * {
-            outline: none;
-            -ms-text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        div[style*="margin: 16px 0"] {
-            margin:0 !important;
-        }
-
-        table, td {
-            mso-table-lspace: 0pt !important;
-            mso-table-rspace: 0pt !important;
-        }
-
-        table {
-            border-spacing: 0 !important;
-            border-collapse: collapse !important;
-            table-layout: fixed !important;
-            margin: 0 auto !important;
-        }
-
-        table table table {
-            table-layout: auto;
-        }
-
         img {
             -ms-interpolation-mode: bicubic;
         }
@@ -52,32 +19,10 @@
             text-decoration: none !important;
         }
 
-        .x-gmail-data-detectors, .x-gmail-data-detectors *, .aBn {
-            border-bottom: 0 !important;
-            cursor: default !important;
-        }
-
-        .a6S {
-            display: none !important;
-            opacity: 0.01 !important;
-        }
-        img.g-img + div {
-            display:none !important;
-        }
-
-        .button-link {
-            text-decoration: none !important;
-        }
-
-        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
-            .email-container {
-                min-width: 375px !important;
-            }
-        }
-
-        .button-td, .button-a {
+        .button-a {
             transition: all 100ms ease-in;
             background: #444444;
+            color: #fff !important;
             border: 15px solid #444444;
             font-family: sans-serif;
             font-size: 13px;
@@ -89,94 +34,67 @@
             font-weight: bold;
             margin: 20px 0px;
         }
-        .button-td:hover, .button-a:hover {
+
+        .button-a:hover {
             background: #555555 !important;
             border-color: #555555 !important;
         }
-        @media screen and (max-width: 600px) {
-            .email-container p {
-                font-size: 17px !important;
-                line-height: 22px !important;
-            }
-        }
-
-        .center {
-            width: 100%;
-            background: #222222;
-            text-align: left;
-        }
-
-        .summary {
-            display: none;
-            font-size: 1px;
-            line-height: 1px;
-            max-height: 0px;
-            max-width: 0px;
-            opacity: 0;
-            overflow: hidden;
-            mso-hide: all;
-            font-family: sans-serif;
-        }
     </style>
-
-    <!--[if gte mso 9]>
-        <xml>
-          <o:OfficeDocumentSettings>
-            <o:AllowPNG/>
-            <o:PixelsPerInch>96</o:PixelsPerInch>
-         </o:OfficeDocumentSettings>
-        </xml>
-    <![endif]-->
 </head>
 
-<body width="100%" bgcolor="#222222">
-    <center class="center">
-        <div class="summary">
-            Hey you, this is an email from mySetup.co !
-        </div>
-        <div style="max-width: 600px; margin: auto;" class="email-container">
-            <!--[if mso]>
-                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
-                    <tr>
-                        <td>
-            <![endif]-->
-
-            <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
-                <tr>
-                    <td style="padding: 20px 0; text-align: center">
-                        <img src="<?= $this->Url->build('/img/mysetup_logo.svg', true) ?>" aria-hidden="true" width="200" height="50" border="0" style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    </td>
-                </tr>
-            </table>
-            <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px; margin-top: 50px !important">
-                <tr>
-                    <td bgcolor="#222222">
-
-                        <?= $this->fetch('content') ?>
-
-                    </td>
-                </tr>
-            </table>
-            <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
-                <tr>
-                    <td style="padding: 30px 10px; width: 100%; font-size: 12px; font-family: sans-serif; line-height: 18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
-                        mySetup.co
-                        <br />
-                        88 Boulevard Lahitolle, 18000 Bourges, France
-                        <br />
-                        <br />
-                        <img src="<?= $this->Url->build('/img/logo_footer.svg', true) ?>" alt="mySetup.co's Support" style="height: 80px; background-color: #ffffff; border-radius: 50%;" >
-                        <br />
-                    </td>
-                </tr>
-            </table>
-
-            <!--[if mso]>
-                        </td>
-                    </tr>
-                </table>
-            <![endif]-->
-        </div>
-    </center>
+<body>
+    <table class="main-body" style="box-sizing: border-box; min-height: 150px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%; height: 100%; background-color: rgb(234, 236, 237);" width="100%" height="100%" bgcolor="rgb(234, 236, 237)">
+        <tbody style="box-sizing: border-box;">
+            <tr class="row" style="box-sizing: border-box; vertical-align: top;" valign="top">
+                <td class="main-body-cell" style="box-sizing: border-box; background-color: #222222;" bgcolor="#222222">
+                    <table class="container" style="box-sizing: border-box; font-family: Helvetica, serif; min-height: 150px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: auto; margin-right: auto; margin-bottom: auto; margin-left: auto; height: 0px; width: 90%; max-width: 550px;" width="90%" height="0">
+                        <tbody style="box-sizing: border-box;">
+                            <tr style="box-sizing: border-box;">
+                                <td class="container-cell" style="box-sizing: border-box; vertical-align: top; font-size: medium; padding-bottom: 50px; padding: 15px 1px 10px 1px;" valign="top">
+                                    <img id="itpp" src="<?= $this->Url->build('/img/mysetup_logo.png', true) ?>" style="box-sizing: border-box; color: black; max-width: 200px; margin: 0 0 10px 5px;">
+                                    <table class="list-item" style="box-sizing: border-box; height: auto; width: 100%; margin-top: 0px; margin-right: auto; margin-bottom: 10px; margin-left: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin: 0 auto 0 auto;" width="100%">
+                                        <tbody style="box-sizing: border-box;">
+                                            <tr style="box-sizing: border-box;">
+                                                <td class="list-item-cell" style="box-sizing: border-box; background-color: rgb(255, 255, 255); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; overflow-x: hidden; overflow-y: hidden; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;" bgcolor="rgb(255, 255, 255)">
+                                                    <table class="list-item-content" style="box-sizing: border-box; border-collapse: collapse; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; height: 150px; width: 100%;" width="100%" height="150">
+                                                        <tbody style="box-sizing: border-box;">
+                                                            <tr class="list-item-row" style="box-sizing: border-box;">
+                                                                <td class="list-cell-right" style="box-sizing: border-box; width: 70%; color: rgb(111, 119, 125); font-size: 13px; line-height: 20px; padding-top: 10px; padding-right: 20px; padding-bottom: 0px; padding-left: 20px; padding: 20px 20px 15px 20px;" width="70%">
+                                                                    <h1 class="card-title" style="box-sizing: border-box; font-size: 25px; font-weight: 700; color: rgb(68, 68, 68); font-family: Arial Black, Gadget, sans-serif; text-align: left; line-height: 28px;">
+                                                                        <?= __('Hello') ?> <?= $recipient_name ?>,
+                                                                    </h1>
+                                                                    <p class="card-text" style="box-sizing: border-box; font-family: Arial Black, Gadget, sans-serif; margin: 10px 0 10px 0;">
+                                                                        <?= $this->fetch('content') ?>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="footer" style="box-sizing: border-box; margin-top: 50px; color: rgb(152, 156, 165); text-align: center; font-size: 11px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%; margin: 0 0 0 0;" width="100%" align="center">
+                                        <tbody style="box-sizing: border-box;">
+                                            <tr style="box-sizing: border-box;">
+                                                <td class="footer-cell" style="box-sizing: border-box;">
+                                                    <div class="c2577" style="box-sizing: border-box; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; padding: 0 10px 0 10px;">
+                                                    </div>
+                                                    <p class="footer-info" style="box-sizing: border-box; color: #ffffff; font-family: Arial, Helvetica, sans-serif;">mysetup.co
+                                                        <br style="box-sizing: border-box;">
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
+
 </html>

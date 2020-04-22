@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -16,8 +17,7 @@ class RequestsController extends AppController
 {
     public function requestOwnership($id = null)
     {
-        if($this->request->is('post') and $id != null)
-        {
+        if ($this->request->is('post') and $id != null) {
             $user = $this->Auth->user();
             $setup = $this->Requests->Setups->get($id, [
                 'contain' => [
@@ -30,32 +30,24 @@ class RequestsController extends AppController
                 ]
             ]);
 
-            if($setup->user_id != $user->id and !$this->Requests->exists(['user_id' => $user->id, 'setup_id' => $setup->id]))
-            {
+            if ($setup->user_id != $user->id and !$this->Requests->exists(['user_id' => $user->id, 'setup_id' => $setup->id])) {
                 $request = $this->Requests->newEntity([
                     'token'      => Security::randomString(),
                     'user_id'    => $user->id,
                     'setup_id'   => $setup->id
                 ]);
 
-                if($this->Requests->save($request))
-                {
-                    $email = $this->Requests->Users->getEmailObject($setup->user->mail, $user->name . ' has claimed your setup !');
+                if ($this->Requests->save($request)) {
+                    $email = $this->Requests->Users->getEmailObject($setup->user->mail, $user->name . ' has claimed your setup !', $setup->user->name);
                     $email->setTemplate('ownership')
-                          ->setViewVars(['setup_id' => $setup->id, 'setup_title' => $setup->title, 'owner_name' => $setup->user->name, 'requester_id' => $user->id, 'requester_name' => $user->name, 'requester_mail' => $user->mail, 'token' => $request->token])
-                          ->send();
+                        ->setViewVars(['setup_id' => $setup->id, 'setup_title' => $setup->title, 'requester_id' => $user->id, 'requester_name' => $user->name, 'requester_mail' => $user->mail, 'token' => $request->token])
+                        ->send();
 
                     $this->Flash->success(__('Your request has just been sent. Let\'s wait for the owner\'s approval for now.'));
-                }
-
-                else
-                {
+                } else {
                     $this->Flash->error(__('An error occurred while saving your request.'));
                 }
-            }
-
-            else
-            {
+            } else {
                 $this->Flash->warning(__('No, no. This is impossible.'));
             }
 
@@ -65,16 +57,13 @@ class RequestsController extends AppController
 
     public function answerOwnership($id = null, $token = null, $response = null)
     {
-        if($this->request->is('get'))
-        {
+        if ($this->request->is('get')) {
             $request = $this->Requests->find()->where(['setup_id' => $id, 'token' => $token])->first();
 
             // If this request exists...
-            if($request)
-            {
+            if ($request) {
                 // ... and the response is YES...
-                if($response)
-                {
+                if ($response) {
                     // ... let's change the ownership of this setup !
 
                     /* First, we fetch the concerned entities */
@@ -90,13 +79,9 @@ class RequestsController extends AppController
                     $setup->user_id = $new_owner->id;
 
                     // ... and save everything (the request is deleted only if the changes have been saved !).
-                    if(!$this->Requests->Setups->save($setup) || !$this->Requests->delete($request))
-                    {
+                    if (!$this->Requests->Setups->save($setup) || !$this->Requests->delete($request)) {
                         $this->Flash->error(__('An error occurred while processing your answer.'));
-                    }
-
-                    else
-                    {
+                    } else {
                         $this->Flash->success(__('Your voice has been heard !'));
 
                         // The setup has been updated, let's now change the resources user IDs and move the images to the new owner's directory
@@ -104,23 +89,20 @@ class RequestsController extends AppController
 
                         // Argh, a case is missing : The new owner didn't have any setup.
                         // This new one will become its default one ;)
-                        if($new_owner->mainSetup_id == 0)
-                        {
+                        if ($new_owner->mainSetup_id == 0) {
                             $new_owner->mainSetup_id = $setup->id;
 
                             $new_owner->setDirty('modificationDate', true);
                             $this->Requests->Users->save($new_owner);
 
                             // If the new owner is the current user (another case is not very likely, but who knows ?)
-                            if($this->Auth->user('id') == $new_owner->id)
-                            {
+                            if ($this->Auth->user('id') == $new_owner->id) {
                                 $this->Requests->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $new_owner, parent::isAdmin($new_owner));
                             }
                         }
 
                         // If the same setup was the main one of the previous owner, let's affect him one other (or none)
-                        if($old_owner->mainSetup_id == $setup->id)
-                        {
+                        if ($old_owner->mainSetup_id == $setup->id) {
                             $newMainSetup = $this->Requests->Setups->find('all', [
                                 'fields' => [
                                     'id'
@@ -138,31 +120,20 @@ class RequestsController extends AppController
                             $old_owner->setDirty('modificationDate', true);
                             $this->Requests->Users->save($old_owner);
 
-                            if($this->Auth->user('id') === $old_owner->id)
-                            {
+                            if ($this->Auth->user('id') === $old_owner->id) {
                                 $this->Requests->Users->synchronizeSessionWithUserEntity($this->request->getSession(), $old_owner, parent::isAdmin($old_owner));
                             }
                         }
                     }
-                }
-
-                else
-                {
+                } else {
                     // else if, let's just delete the request in our DB
-                    if($this->Requests->delete($request))
-                    {
+                    if ($this->Requests->delete($request)) {
                         $this->Flash->success(__('Your voice has been heard !'));
-                    }
-
-                    else
-                    {
+                    } else {
                         $this->Flash->error(__('An error occurred while processing your answer.'));
                     }
                 }
-            }
-
-            else
-            {
+            } else {
                 $this->Flash->error(__('This request is invalid.'));
             }
 
@@ -172,23 +143,18 @@ class RequestsController extends AppController
 
     public function requestReport($id = null)
     {
-        if($this->request->is('post') and $id != null)
-        {
+        if ($this->request->is('post') and $id != null) {
             $user = $this->Requests->Users->get($this->Auth->user('id'));
             $setup = $this->Requests->Setups->get($id);
 
-            if($setup->user_id != $user->id)
-            {
-                $email = $this->Requests->Users->getEmailObject('report@mysetup.co', 'A setup has been flagged !');
+            if ($setup->user_id != $user->id) {
+                $email = $this->Requests->Users->getEmailObject('report@mysetup.co', 'A setup has been flagged!', 'Support Team');
                 $email->setTemplate('report')
-                      ->setViewVars(['setup_id' => $setup->id, 'flagger_id' => $user->id, 'flagger_name' => $user->name, 'flagger_mail' => $user->mail])
-                      ->send();
+                    ->setViewVars(['setup_id' => $setup->id, 'flagger_id' => $user->id, 'flagger_name' => $user->name, 'flagger_mail' => $user->mail])
+                    ->send();
 
                 $this->Flash->success(__('Your request has just been sent, we may contact you in the future.'));
-            }
-
-            else
-            {
+            } else {
                 $this->Flash->warning(__('No, no. This is impossible.'));
             }
 
@@ -205,10 +171,8 @@ class RequestsController extends AppController
 
     public function isAuthorized($user)
     {
-        if(isset($user))
-        {
-            if(in_array($this->request->getParam('action'), ['requestOwnership', 'requestReport']))
-            {
+        if (isset($user)) {
+            if (in_array($this->request->getParam('action'), ['requestOwnership', 'requestReport'])) {
                 return true;
             }
         }
