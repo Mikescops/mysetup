@@ -1,17 +1,19 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', __('Weekly Picks #' . $week) . ' | mySetup.co');
+$seo_title = __('Weekly Picks #' . $week) . ' | mySetup.co';
+$seo_description = __('The best setups of the week n°' . $week . ' selected by our staff.');
 
-echo $this->Html->meta('description', __('The best setups of the week n°' . $week . ' selected by our staff.'), ['block' => true]);
-
-echo $this->Html->meta(['property' => 'og:title', 'content' => 'Weekly Picks #' . $week . ' | mySetup.co'], null, ['block' => true]);
-echo $this->Html->meta(['property' => 'og:description', 'content' => 'The best setups of the week n°' . $week . ' selected by our staff.'], null, ['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'The best setups of the week n°' . $week . ' selected by our staff.'], null, ['block' => true]);
+$this->assign('title', $seo_title);
+echo $this->Html->meta('description', $seo_description, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:title', 'content' => $seo_title], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:title', 'content' => $seo_title], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => $seo_description], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => $seo_description], null, ['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null, ['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null, ['block' => true]);
-echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/weekly', true)], null, ['block' => true]);
-
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/', true)], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:type', 'content' => 'website'], null, ['block' => true]);
 ?>
 <div class="weeklypicks">
     <div class="container">
@@ -28,7 +30,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
                 <br>
 
             <?php endforeach;
-            else : ?>
+        else : ?>
 
             <p class="no-showcase"><?= __('No featured setups this week, sorry !') ?></p>
 
@@ -49,14 +51,14 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
         <?php if ((new \DateTime())->setISODate($year, $week) < (new \DateTime("-1 week"))) : ?>
             <?php
-                if ($week >= 52) {
-                    $next_week = 1;
-                    $next_year = $year + 1;
-                } else {
-                    $next_week = $week + 1;
-                    $next_year = $year;
-                }
-                ?>
+            if ($week >= 52) {
+                $next_week = 1;
+                $next_year = $year + 1;
+            } else {
+                $next_week = $week + 1;
+                $next_year = $year;
+            }
+            ?>
             <br />
             <a class="button previous-weekly" href="<?= $this->Url->build('/weekly/' . $next_year . '-' . $next_week, true) ?>"><?= __('Next week') ?> <i class="fas fa-chevron-right"></i></a>
         <?php endif;

@@ -4,17 +4,23 @@
  * @var \App\View\AppView $this
  */
 
-$this->assign('title', h($setup->title) . ' | mySetup.co');
 
-echo $this->Html->meta('description', $this->Text->truncate($this->MySetupTools->getPlainTextIntroFromHTML($this->Markdown->transform($setup->description)), 150, ['ellipsis' => '..', 'exact' => true]), ['block' => true]);
+$seo_title = h($setup->title) . ' | mySetup.co';
+$seo_description = __('Discover the setup "') . h($setup->title) . __('" created by ') . h($setup->user->name) . __(' and share your thoughts!');
+$canonical_url = $this->Url->build("/setups/" . $setup->id . "-" . $this->Text->slug($setup->title), true);
+$setup_feature_image = $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true);
 
-echo $this->Html->meta(array('rel' => 'canonical', 'href' => $this->Url->build("/setups/" . $setup->id . "-" . $this->Text->slug($setup->title), true)), null, ['block' => true]);
-echo $this->Html->meta(['property' => 'og:title', 'content' => $setup->title . ' | mySetup.co'], null, ['block' => true]);
-echo $this->Html->meta(['property' => 'og:description', 'content' => $this->Text->truncate($this->MySetupTools->getPlainTextIntroFromHTML($this->Markdown->transform($setup->description)), 150, ['ellipsis' => '..', 'exact' => true])], null, ['block' => true]);
-echo $this->Html->meta(['name' => 'twitter:description', 'content' => $this->Text->truncate($this->MySetupTools->getPlainTextIntroFromHTML($this->Markdown->transform($setup->description)), 150, ['ellipsis' => '..', 'exact' => true])], null, ['block' => true]);
-echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true)], null, ['block' => true]);
-echo $this->Html->meta(['name' => 'twitter:image', 'content' => $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true)], null, ['block' => true]);
-echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build("/setups/" . $setup->id . "-" . $this->Text->slug($setup->title), true)], null, ['block' => true]);
+$this->assign('title', $seo_title);
+echo $this->Html->meta('description', $seo_description, ['block' => true]);
+echo $this->Html->meta('canonical', $canonical_url, array('rel' => 'canonical', 'type' => null, 'title' => null, 'block' => true));
+echo $this->Html->meta(['property' => 'og:title', 'content' => $seo_title], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:title', 'content' => $seo_title], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => $seo_description], null, ['block' => true]);
+echo $this->Html->meta(['name' => 'twitter:description', 'content' => $seo_description], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $setup_feature_image], null, ['block' => true]);
+echo $this->Html->meta(['name' => 'twitter:image', 'content' => $setup_feature_image], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $canonical_url], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:type', 'content' => 'website'], null, ['block' => true]);
 ?>
 
 <?php
@@ -22,14 +28,14 @@ $rgb_colors = json_decode($setup->main_colors)[0];
 ?>
 
 <div class="featured-container">
-    <div class="featured-gradient" style="background-image: url('<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true) ?>')"></div>
+    <div class="featured-gradient" style="background-image: url('<?= $setup_feature_image ?>')"></div>
 
     <div class="post_slider">
 
         <div class="slider-item">
             <div class="featured-img-setup slider-item-inner">
 
-                <img alt="<?= h($setup->title) ?>" src="<?= $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true) ?>">
+                <img alt="<?= h($setup->title) ?>" src="<?= $setup_feature_image ?>">
 
             </div>
         </div>
@@ -53,12 +59,12 @@ $rgb_colors = json_decode($setup->main_colors)[0];
                 <a class="featured-user" href="<?= $this->Url->build('/users/' . $setup->user->id . '-' . $this->Text->slug($setup->user->name)) ?>">
                     <img alt="<?= __('Profile picture of') ?> <?= h($setup->user->name) ?>" src="<?= $this->Url->build('/uploads/files/pics/profile_picture_' . $setup->user_id . '.png?' . $this->Time->format($setup->user->modificationDate, 'mmss', null, null)) ?>">
                 </a>
-                <h3>
+                <h1>
                     <?= h($setup->title) ?>
                     <?php if ($setup->featured) : ?>
                         <span class="featured_label" title="<?= __('This setup is featured on mySetup.co !') ?>">STAFF PICK</span>
                     <?php endif ?>
-                </h3>
+                </h1>
                 <p>
                     <?= __('Shared by') ?> <?= $this->Html->link($setup->user->name, $this->Url->build('/users/' . $setup->user_id . '-' . $this->Text->slug($setup->user->name))) ?><?php if ($setup->user->verified) : echo ' <i class="fa fa-check-circle verified_account"></i> ';
                                                                                                                                                                                         endif;
@@ -166,7 +172,20 @@ $rgb_colors = json_decode($setup->main_colors)[0];
 
                 <div class="section-inner">
 
-                    <?= preg_replace('/<a (.*)>(.*)<\/a>/', '<a rel="nofollow" $1>$2</a>', $this->Markdown->transform(h($setup->description))) ?>
+                    <?= $setup->description === '' ? '<p>' . __('No description provided.') . '</p>' : preg_replace('/<a (.*)>(.*)<\/a>/', '<a rel="nofollow" $1>$2</a>', $this->Markdown->transform(h($setup->description))) ?>
+
+                    <h4>
+                        <?= __('List of components') ?>
+                    </h4>
+                    <ul>
+                        <?php foreach ($setup['resources']['products'] as $item) : ?>
+                            <li><?= h(urldecode($item->title)) ?></li>
+                        <?php endforeach ?>
+                    </ul>
+
+                    <h4>
+                        <?= __('Colors') ?>
+                    </h4>
 
                     <div class="setup-colors">
                         <?php foreach (json_decode($setup->main_colors) as $color) : ?>

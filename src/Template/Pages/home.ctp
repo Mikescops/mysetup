@@ -1,17 +1,20 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', 'mySetup.co | ' . __('Share your own setup'));
 
-echo $this->Html->meta('description', __('The best place to share your computer setup with your community ! Inspire others or get inspired with gaming setups, battlestations...'), ['block' => true]);
+$seo_title = 'mySetup.co | ' . __('Discover and Share Awesome Setups');
+$seo_description = __('The best place to share your computer setup with your community ! Inspire others or get inspired with gaming setups, battlestations...');
 
-echo $this->Html->meta(['property' => 'og:title', 'content' => 'mySetup.co | ' . __('Share your own setup')], null, ['block' => true]);
-echo $this->Html->meta(['property' => 'og:description', 'content' => 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...'], null, ['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'The best place to share your "my setup" with your community ! Inspire others or get inspired with gaming setups, battlestations...'], null, ['block' => true]);
+$this->assign('title', $seo_title);
+echo $this->Html->meta('description', $seo_description, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:title', 'content' => $seo_title], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:title', 'content' => $seo_title], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => $seo_description], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => $seo_description], null, ['block' => true]);
 echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null, ['block' => true]);
 echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null, ['block' => true]);
 echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/', true)], null, ['block' => true]);
-
+echo $this->Html->meta(['property' => 'og:type', 'content' => 'website'], null, ['block' => true]);
 ?>
 
 <div class="home_hero_container sitecontainer" <?php if ($authUser['mainSetup_id'] != 0) : ?>style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.80), #161623), url(<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg')) ?>)" <?php endif ?>>

@@ -1,17 +1,19 @@
 <?php
 
 $this->layout = 'default';
-$this->assign('title', __('Staff Picks') . ' | mySetup.co');
+$seo_title = __('Staff Picks') . ' | mySetup.co';
+$seo_description = __('See the best setups selected by our staff on mySetup.co');
 
-echo $this->Html->meta('description', __('See the best setups selected by our staff on mySetup.co'), ['block' => true]);
-
-echo $this->Html->meta(['property' => 'og:title', 'content' => 'Staff Picks | mySetup.co'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:description', 'content' => 'See the best setups selected by our staff on mySetup.co'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:description', 'content' => 'See the best setups selected by our staff on mySetup.co'], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null ,['block' => true]);
-echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/staffpicks', true)], null ,['block' => true]);
-
+$this->assign('title', $seo_title);
+echo $this->Html->meta('description', $seo_description, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:title', 'content' => $seo_title], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:title', 'content' => $seo_title], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => $seo_description], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => $seo_description], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/', true)], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:type', 'content' => 'website'], null, ['block' => true]);
 ?>
 <div class="colored-container">
     <div class="container">
@@ -27,17 +29,17 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 
                 <div class="card-grid">
 
-                <?php foreach ($setups as $setup): ?>
+                    <?php foreach ($setups as $setup) : ?>
 
-                    <?= $this->element('List/card-item', ['setup' => $setup]) ?>
+                        <?= $this->element('List/card-item', ['setup' => $setup]) ?>
 
-                <?php endforeach ?>
+                    <?php endforeach ?>
 
                 </div>
 
             </div>
         </div>
-        
+
         <br>
 
         <div class="rowsocial" style="column-count: auto;">

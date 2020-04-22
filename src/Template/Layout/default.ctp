@@ -35,12 +35,12 @@ use Cake\Core\Configure;
     <meta name="theme-color" content="#151515">
 
     <?php
-    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'x-default', 'href' => $this->Url->build(null, true)));
-    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'fr', 'href' => $this->Url->build(null, true) . "?lang=fr"));
-    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'en', 'href' => $this->Url->build(null, true) . "?lang=us"));
-    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'es', 'href' => $this->Url->build(null, true) . "?lang=es"));
-    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'it', 'href' => $this->Url->build(null, true) . "?lang=it"));
-    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'de', 'href' => $this->Url->build(null, true) . "?lang=de"));
+    echo $this->Html->meta(array('rel' => 'alternate', 'link' => $this->request->here));
+    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'fr', 'link' => $this->Html->Url->Build($this->request->here, true) . "?lang=fr"));
+    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'en', 'link' => $this->Html->Url->Build($this->request->here, true)));
+    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'es', 'link' => $this->Html->Url->Build($this->request->here, true) . "?lang=es"));
+    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'it', 'link' => $this->Html->Url->Build($this->request->here, true) . "?lang=it"));
+    echo $this->Html->meta(array('rel' => 'alternate', 'hreflang' => 'de', 'link' => $this->Html->Url->Build($this->request->here, true) . "?lang=de"));
     ?>
 
     <meta name="twitter:card" value="summary_large_image">
@@ -225,7 +225,7 @@ use Cake\Core\Configure;
                 </div>
                 <div class="column column-25 logo_footer">
                     <?= $this->Html->image('logo_footer.svg', ['alt' => 'mysetup.co']) ?>
-                    <p><?= __('All rights reserved') ?> &mdash; mySetup.co (<?= h($msVersion) ?>)<br>© 2017 - 2019</p>
+                    <p><?= __('All rights reserved') ?> &mdash; mySetup.co (<?= h($msVersion) ?>)<br>© 2017 - 2020</p>
                 </div>
             </div>
         </div>

@@ -4,8 +4,19 @@
  * @var \App\View\AppView $this
  */
 
-$this->assign('title', __('Setups by ') . h($user->name) . ' | mySetup.co');
-echo $this->Html->meta('description', __('All the setups shared by ') . $user->name, ['block' => true]);
+$seo_title = __('Setups by ') . h($user->name) . ' | mySetup.co';
+$seo_description = __('Discover all the setups shared by ') . h($user->name);
+
+$this->assign('title', $seo_title);
+echo $this->Html->meta('description', $seo_description, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:title', 'content' => $seo_title], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:title', 'content' => $seo_title], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:description', 'content' => $seo_description], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:description', 'content' => $seo_description], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'twitter:image', 'content' => $this->Url->build('/img/mysetup_header.jpg', true)], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('/', true)], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:type', 'content' => 'website'], null, ['block' => true]);
 ?>
 
 <div class="colored-container">
@@ -58,7 +69,7 @@ echo $this->Html->meta('description', __('All the setups shared by ') . $user->n
                     <?php if (!empty($user->setups)) : foreach ($user->setups as $setup) : ?>
                             <?= $this->element('List/card-item', ['setup' => $setup]) ?>
                         <?php endforeach;
-                        else : ?>
+                    else : ?>
 
                         <?php if (!$authUser || $authUser->id != $user->id) : ?>
                             <?= __('There is no setup here yet...') ?>
