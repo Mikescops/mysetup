@@ -44,7 +44,6 @@ use Cake\Core\Configure;
     ?>
 
     <meta name="twitter:card" value="summary_large_image">
-    <meta property="og:type" content="article" />
     <meta name="twitter:site" content="@mysetup_co">
     <meta property="og:site_name" content="mySetup.co" />
     <meta property="fb:admins" content="1912097312403661" />
