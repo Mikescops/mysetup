@@ -9,6 +9,7 @@ $seo_title = h($setup->title) . ' | mySetup.co';
 $seo_description = __('Discover the setup "') . h($setup->title) . __('" created by ') . h($setup->user->name) . __(' and share your thoughts!');
 $canonical_url = $this->Url->build("/setups/" . $setup->id . "-" . $this->Text->slug($setup->title), true);
 $setup_feature_image = $this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true);
+$og_featured_image = $this->Thumb->fitUrl($this->Url->build('/' . ($setup['resources']['featured_image'] ? $setup['resources']['featured_image'] : 'img/not_found.jpg'), true), ['height' => 1200, 'width' => 1200], []);
 
 $this->assign('title', $seo_title);
 echo $this->Html->meta('description', $seo_description, ['block' => true]);
@@ -17,7 +18,7 @@ echo $this->Html->meta(['property' => 'og:title', 'content' => $seo_title], null
 echo $this->Html->meta(['property' => 'twitter:title', 'content' => $seo_title], null, ['block' => true]);
 echo $this->Html->meta(['property' => 'og:description', 'content' => $seo_description], null, ['block' => true]);
 echo $this->Html->meta(['name' => 'twitter:description', 'content' => $seo_description], null, ['block' => true]);
-echo $this->Html->meta(['property' => 'og:image', 'content' => $setup_feature_image], null, ['block' => true]);
+echo $this->Html->meta(['property' => 'og:image', 'content' => $og_featured_image], null, ['block' => true]);
 echo $this->Html->meta(['name' => 'twitter:image', 'content' => $setup_feature_image], null, ['block' => true]);
 echo $this->Html->meta(['property' => 'og:url', 'content' => $canonical_url], null, ['block' => true]);
 echo $this->Html->meta(['property' => 'og:type', 'content' => 'website'], null, ['block' => true]);
