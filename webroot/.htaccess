@@ -5,6 +5,10 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
@@ -18,7 +22,10 @@
     Require all denied
 </Files>
 
-AddType image/svg+xml .svg
+<IfModule mod_mime.c>
+    AddType image/x-icon .ico
+    AddType image/svg+xml .svg
+</IfModule>
 
 <IfModule mod_expires.c>
     ExpiresActive On
@@ -26,15 +33,27 @@ AddType image/svg+xml .svg
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/gif "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
     ExpiresByType text/css "access plus 1 month"
     ExpiresByType application/pdf "access plus 1 month"
     ExpiresByType text/x-javascript "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
     ExpiresByType application/x-shockwave-flash "access plus 1 month"
     ExpiresByType image/x-icon "access plus 1 year"
-    ExpiresDefault "access plus 2 days"
+    ExpiresDefault "access plus 1 week"
 </IfModule>
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript image/svg+xml
+</IfModule>
+
+# Block access to all hidden files and directories. These types of files
+# usually contain user preferences and can include private information like,
+# for example, the `.git` or `.svn` directories.
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+   RewriteCond %{REQUEST_URI} "!(^|/)\.well-known/([^./]+./?)+$" [NC]
+   RewriteCond %{SCRIPT_FILENAME} -d [OR]
+   RewriteCond %{SCRIPT_FILENAME} -f
+   RewriteRule "(^|/)\." - [F]
 </IfModule>
