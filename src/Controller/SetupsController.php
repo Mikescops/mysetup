@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\Network\Response;
 
 /**
  * Setups Controller
@@ -50,11 +49,17 @@ class SetupsController extends AppController
         // _________________________________________________________________________________________________________________________________
 
         // Here we'll get each resource linked to this setup, and set them up into the existing entity
+
+        $products = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->toArray();
+        $featured_image = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first();
+        $gallery_images = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_GALLERY_IMAGE'])->toArray();
+        $video_link = $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_VIDEO_LINK'])->first();
+
         $setup['resources'] = [
-            'products' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_PRODUCT'])->toArray(),
-            'featured_image' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_FEATURED_IMAGE'])->first()['src'],
-            'gallery_images' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_GALLERY_IMAGE'])->toArray(),
-            'video_link' => $this->Setups->Resources->find()->where(['setup_id' => $id, 'type' => 'SETUP_VIDEO_LINK'])->first()['src']
+            'products' => $products,
+            'featured_image' => isset($featured_image['src']) ? $featured_image['src'] : '',
+            'gallery_images' => $gallery_images,
+            'video_link' => isset($video_link['src']) ? $video_link['src'] : ''
         ];
         // ___________________________________________________________________________________________
 

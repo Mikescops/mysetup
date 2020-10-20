@@ -17,7 +17,7 @@ echo $this->Html->meta(['property' => 'og:url', 'content' => $this->Url->build('
 echo $this->Html->meta(['property' => 'og:type', 'content' => 'website'], null, ['block' => true]);
 ?>
 
-<div class="home_hero_container sitecontainer" <?php if ($authUser['mainSetup_id'] != 0) : ?>style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.80), #161623), url(<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg')) ?>)" <?php endif ?>>
+<div class="home_hero_container sitecontainer" <?php if ($authUser && $authUser['mainSetup_id'] != 0) : ?>style="background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.80), #161623), url(<?= $this->Url->build('/' . (!empty($mainSetup->resources[0]) ? $mainSetup->resources[0]->src : 'img/not_found.jpg')) ?>)" <?php endif ?>>
     <div class="container">
         <?php if (!$authUser) : ?>
             <div class="hero_image">
