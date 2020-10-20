@@ -2,7 +2,7 @@
 
 In order to deploy this website on your web server :
 
-1. `# aptitude install git apache2 mariadb-server php7.2 php7.2-mysql php7.2-xml php7.2-intl php7.2-mbstring php7.2-sqlite3 php7.2-curl php7.2-apcu php7.2-zip php-imagick unzip phpmyadmin composer gettext`
+1. `# aptitude install git apache2 mariadb-server php7.2 php-mysql php-xml php-intl php-mbstring php-sqlite3 php-curl php-apcu php-zip php-imagick unzip phpmyadmin composer gettext`
 1.  1. `# nano /etc/apache2/sites-available/mysetup.conf`
         ```apacheconf
         <VirtualHost *:80>
@@ -59,6 +59,23 @@ To compile .scss and .js files we use [Gulp](https://gulpjs.com/) software.
 2. Install required packages with `$ npm ci` (this follows the package.lock) or `$ npm install` (this will update package.lock)
 3. [Wait for the full download of the Internet to be completed]
 4. Run the automatic building pipeline with `$ npm run assets:build`
+
+### Dump database weekly
+
+Run `crontab -u www-data -e` and add the following line : `@weekly bash /root/scripts/save_mysetup_sql.sh`
+
+And register this scrpt
+
+```
+#!/usr/bin/env bash
+
+export MYSQL_PWD=ulSCV1LvrMDMSrtt3Dvx
+mysqldump -u mysetup mysetup --ignore-table=mysetup.sessions --ignore-table=mysetup.phinxlog | gzip -c > /data/saves/mysetup/sqldumps/mysetup-`date +\%d-\%m-\%y`.sql.gz
+
+exit 0
+```
+
+Don't forget to ignore any useless or temp tables.
 
 ### Issues you may have
 
