@@ -310,7 +310,7 @@ class UsersController extends AppController
 
                 // Let's save the current date / time in the DB...
                 $user = $this->Users->get($user['id']);
-                $user->lastLogginDate = Time::now();
+                $user->lastLogginDate = Time::now('Europe/Paris');
                 // The `modificationDate` value won't change as we've just updated the `lastLogginDate` value...
                 $user->setDirty('modificationDate', true);
                 $this->Users->save($user);
@@ -386,7 +386,7 @@ class UsersController extends AppController
                     $user->mailVerification = null;
 
                     // Let's set his first login date btw
-                    $user->lastLogginDate = Time::now();
+                    $user->lastLogginDate = Time::now('Europe/Paris');
 
                     $this->Users->save($user);
 
@@ -604,7 +604,7 @@ class UsersController extends AppController
         }
 
         // Just before logging this user in, let's save the current date time into the DB
-        $user->lastLogginDate = Time::now();
+        $user->lastLogginDate = Time::now('Europe/Paris');
 
         // Let's try to save this user !
         if (!$this->Users->save($user)) {

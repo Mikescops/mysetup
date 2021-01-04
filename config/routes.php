@@ -107,7 +107,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     /* _________________________ */
 
     /* Our API routes, we connect the Throttle middleware */
-    $routes->scope('/api', function ($routes) {
+    $routes->prefix('api', function ($routes) {
         $routes->applyMiddleware('throttle');
         $routes->connect('/:action/*', ['controller' => 'Api', 'action' => 'action']);
     });
