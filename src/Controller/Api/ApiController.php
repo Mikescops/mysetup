@@ -1,11 +1,13 @@
 <?php
-namespace App\Controller;
+
+namespace App\Controller\Api;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Network\Response;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Cache\Cache;
+use Cake\I18n\Time;
 
 /**
  * API Controller
@@ -27,6 +29,14 @@ class APIController extends AppController
     {
         parent::beforeFilter($event);
 
+        $actions = [
+            'changePassword',
+        ];
+        if (in_array($this->request->params['action'], $actions)) {
+            // for security component
+            $this->Security->setConfig('unlockedActions', $actions);
+        }
+
         // Dangerous. Fortunately, it's applied only locally...
         $this->Auth->allow();
     }
@@ -34,34 +44,26 @@ class APIController extends AppController
     /* A public endpoint to retrieve setups in a JSON format */
     public function getSetups()
     {
-        if($this->request->is('ajax') or $this->request->is('get'))
-        {
+        if ($this->request->is('ajax') or $this->request->is('get')) {
             // By default, we'll return a maximum of 8 results
             $n = $this->request->getQuery('n', 8);
-            if($n < 1)
-            {
+            if ($n < 1) {
                 $n = 1;
-            }
-            elseif($n > 16)
-            {
+            } elseif ($n > 16) {
                 $n = 16;
             }
 
             // Treat `q` parameter here...
             $q = trim($this->request->getQuery('q'));
-            if($q)
-            {
-                if(strlen($q) < 3)
-                {
+            if ($q) {
+                if (strlen($q) < 3) {
                     return new Response([
                         'status' => 412,
                         'type'   => 'json',
                         'body'   => json_encode(['error' => 'Query too short'])
                     ]);
                 }
-            }
-            else
-            {
+            } else {
                 // If the query is an empty string, we force to `null` to reduce query complexity afterwards.
                 $q = null;
             }
@@ -89,8 +91,7 @@ class APIController extends AppController
     {
         $twitch_id = $this->request->getQuery('twitchId');
 
-        if($this->request->is('get') and $twitch_id)
-        {
+        if ($this->request->is('get') and $twitch_id) {
             $this->loadModel('Users');
 
             $user = $this->Users->find('all', [
@@ -132,16 +133,12 @@ class APIController extends AppController
             ])->first();
 
             // The user has been found !
-            if($user !== null)
-            {
+            if ($user !== null) {
                 // The user got a main setup set !
-                if($user->mainSetup_id != 0)
-                {
+                if ($user->mainSetup_id != 0) {
                     // We iterate over the user's setups to keep only the main one.
-                    foreach($user->setups as $key => $setup)
-                    {
-                        if($setup->id != $user->mainSetup_id)
-                        {
+                    foreach ($user->setups as $key => $setup) {
+                        if ($setup->id != $user->mainSetup_id) {
                             unset($user->setups[$key]);
                         }
                     }
@@ -150,41 +147,24 @@ class APIController extends AppController
                     $user->setups = array_values($user->setups);
 
                     // Last check to ensure the setup is not unpublished !
-                    if($user->setups[0]->status !== 'PUBLISHED')
-                    {
+                    if ($user->setups[0]->status !== 'PUBLISHED') {
                         // "(draft)|(rejected)_main_setup"
                         $results = ['error' => strtolower($user->setups[0]->status) . '_main_setup'];
-                    }
-
-                    else
-                    {
+                    } else {
                         $results = $user;
                     }
-                }
-
-                else
-                {
+                } else {
                     // Does the user have a setup "set-able" as main ?
-                    if(!count($user->setups))
-                    {
+                    if (!count($user->setups)) {
                         $results = ['error' => 'no_setup'];
-                    }
-
-                    else
-                    {
+                    } else {
                         $results = ['error' => 'no_main_setup_set'];
                     }
                 }
-            }
-
-            else
-            {
+            } else {
                 $results = ['error' => 'user_not_found'];
             }
-        }
-
-        else
-        {
+        } else {
             $results = ['error' => 'bad_query'];
         }
 
@@ -212,10 +192,11 @@ class APIController extends AppController
 
         // The 'view' action will be authorized, unless the setup is not PUBLISHED and the visitor is not its owner, nor an administrator...
         $session = $this->request->getSession();
-        if(!$this->Setups->isPublic($id) and
-           (!$session->read('Auth.User.id') or!$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and
-           !parent::isAdminBySession($session))
-        {
+        if (
+            !$this->Setups->isPublic($id) and
+            (!$session->read('Auth.User.id') or !$this->Setups->isOwnedBy($id, $session->read('Auth.User.id'))) and
+            !parent::isAdminBySession($session)
+        ) {
             // Just throw a 404-like exception here to make the `iframe` voluntary crash
             throw new NotFoundException();
         }
@@ -235,8 +216,7 @@ class APIController extends AppController
     public function twitchPromote()
     {
         // Limits queries to GET request
-        if(!$this->request->is('get'))
-        {
+        if (!$this->request->is('get')) {
             die();
         }
 
@@ -259,17 +239,17 @@ class APIController extends AppController
         ]);
 
         // Only logged in users will be able to generate THEIR image (or administrators)
-        if($this->Auth->user('id') != $setup->user->id && !$this->Auth->user('admin'))
-        {
+        if ($this->Auth->user('id') != $setup->user->id && !$this->Auth->user('admin')) {
             throw new NotFoundException();
         }
 
         // Is the image missing from the cache ? Has the setup recently changed ? Has the user recently changed ?
         $data = Cache::read($setup->id, 'TwitchPromoteCacheConfig');
-        if($data === false ||
-           $setup->modifiedDate != $data['timestamps']['setup_date'] ||
-           $setup->user->modificationDate != $data['timestamps']['user_date'])
-        {
+        if (
+            $data === false ||
+            $setup->modifiedDate != $data['timestamps']['setup_date'] ||
+            $setup->user->modificationDate != $data['timestamps']['user_date']
+        ) {
             // Seems not, let's generate and store it directly as JPEG-formatted string !
 
             // At first, we load the profile picture of the setup owner
@@ -286,8 +266,7 @@ class APIController extends AppController
             $text->setFont('fonts/corbel.ttf');
 
             // Let's make a beautiful truncation of the setup title if it's too long
-            if(strlen($setup->title) > 24)
-            {
+            if (strlen($setup->title) > 24) {
                 $matches = [];
                 preg_match('/.{1,24}(?:\W|$)/', $setup->title, $matches);
                 $setup->title = rtrim($matches[0]) . '...';
@@ -296,8 +275,7 @@ class APIController extends AppController
             $image->annotateImage($text, 88, 282, 0, $setup->title);
 
             // Same thing with the user name :S
-            if(strlen($setup->user->name) > 22)
-            {
+            if (strlen($setup->user->name) > 22) {
                 $matches = [];
                 preg_match('/.{1,22}(?:\W|$)/', $setup->user->name, $matches);
                 $setup->user->name = rtrim($matches[0]) . '...';
@@ -344,8 +322,7 @@ class APIController extends AppController
     public function pLink()
     {
         // Allows only GET requests
-        if(!$this->request->is('get'))
-        {
+        if (!$this->request->is('get')) {
             // Just throw a 404-like exception here...
             throw new NotFoundException();
         }
@@ -361,5 +338,49 @@ class APIController extends AppController
         ]);
 
         return $this->redirect(htmlspecialchars_decode(urldecode($resource->href)));
+    }
+
+    public function changePassword()
+    {
+        // Allows only GET requests
+        if (!$this->request->is('post')) {
+            // Just throw a 404-like exception here...
+            throw new NotFoundException();
+        }
+
+        $this->request = $this->request->withData('mail', strtolower($this->request->getData('login')));
+
+        if ($user = $this->Auth->identify()) {
+            if ($user['mailVerification']) {
+                $results = ['status' => 'USER.ACCOUNT_NOT_VERIFIED'];
+            } else {
+
+                $user = $this->Users->get($user['id']);
+
+                $data = [];
+                $data['lastLogginDate'] = Time::now('Europe/Paris');
+                $data['password'] = $this->request->getData('newPassword');
+
+                // Let's validate the data first
+                $user = $this->Users->patchEntity($user, $data);
+
+                if ($user->errors()) {
+                    $results = ['status' => 'SECURITY_REQUIREMENT.NOT_STRONG_ENOUGH'];
+                } else {
+                    if ($this->Users->save($user)) {
+                        $results = ['status' => 'OK'];
+                    } else {
+                        $results = ['status' => 'UNKNOWN_ERROR'];
+                    }
+                }
+            }
+        } else {
+            $results = ['status' => 'LOGIN.GENERIC_FAILURE'];
+        }
+
+        return new Response([
+            'type' => 'json',
+            'body' => json_encode($results)
+        ]);
     }
 }

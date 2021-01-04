@@ -80,10 +80,7 @@ class Application extends BaseApplication
     public function routes($routes)
     {
         // Register scoped middleware for use in routes.php
-        $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
-            'secure'   => !Configure::read('debug'),
-            'httpOnly' => true
-        ]));
+        $routes->registerMiddleware('csrf', $this->csrfMiddleware());
 
         /* Muffin's Throttle middleware to limit requests on our APIs routes */
         $routes->registerMiddleware('throttle', new ThrottleMiddleware([
@@ -96,6 +93,25 @@ class Application extends BaseApplication
         /* _________________________________________________________________ */
 
         parent::routes($routes);
+    }
+
+
+    public function csrfMiddleware()
+    {
+        $csrf = new CsrfProtectionMiddleware([
+            'secure'   => !Configure::read('debug'),
+            'httpOnly' => true
+        ]);
+
+        // Token check will be skipped when callback returns `true`.
+        $csrf->whitelistCallback(function ($request) {
+            // Skip token check for API URLs.
+            if ($request->getParam('prefix') === 'api') {
+                return true;
+            }
+        });
+
+        return $csrf;
     }
 
     /**

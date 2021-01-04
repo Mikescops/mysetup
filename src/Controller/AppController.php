@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -12,6 +13,7 @@
  * @since     0.2.9
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -79,16 +81,11 @@ class AppController extends Controller
          *
          */
         $lang = null;
-        if($this->request->getQuery('lang'))
-        {
+        if ($this->request->getQuery('lang')) {
             $lang = $this->request->getQuery('lang');
-        }
-        elseif($this->request->getSession()->check('Config.language'))
-        {
+        } elseif ($this->request->getSession()->check('Config.language')) {
             $lang = $this->request->getSession()->read('Config.language');
-        }
-        else
-        {
+        } else {
             $lang = I18n::getLocale();
         }
         $lang = $this->loadModel('Users')->getLocaleByCountryID($lang);
@@ -108,8 +105,7 @@ class AppController extends Controller
         $user = $this->Auth->user();
 
         // Test if a user is logged in, and if it's the case, fetch some more data
-        if($user !== null)
-        {
+        if ($user !== null) {
             // We'll need this Model below...
             $this->loadModel('Setups');
 
@@ -130,8 +126,7 @@ class AppController extends Controller
             $this->set('newSetupEntity', $this->Setups->newEntity());
 
             // We'll need also the setups available status
-            if(!$this->isAdmin($user))
-            {
+            if (!$this->isAdmin($user)) {
                 // ... but if the user is not an admin, let's hide from him the `REJECTED` status.
                 unset($this->Setups->status['REJECTED']);
             }
@@ -144,8 +139,7 @@ class AppController extends Controller
 
         // By using Git, let's retrieve the closest tag of the current HEAD.
         $msVersion = Cache::read('msVersion', 'HomePageCacheConfig');
-        if($msVersion === false)
-        {
+        if ($msVersion === false) {
             $msVersion = rtrim(`git describe --tags --abbrev=0`);
             Cache::write('msVersion', $msVersion, 'HomePageCacheConfig');
         }
@@ -174,8 +168,7 @@ class AppController extends Controller
     public function isAuthorized($user)
     {
         /* DANGEROUS PART IS JUST BELOW, PLEASE TAKE THAT WITH EXTREME PRECAUTION */
-        if(isset($user) && $this->isAdmin($user))
-        {
+        if (isset($user) && $this->isAdmin($user)) {
             return true;
         }
 
@@ -185,8 +178,7 @@ class AppController extends Controller
     /* DANGEROUS PART */
     protected function isAdmin($user)
     {
-        if($user['mail'] === 'admin@admin.admin' or $user['verified'] === 125)
-        {
+        if ($user['mail'] === 'admin@admin.admin' or $user['verified'] === 125) {
             return true;
         }
 
@@ -195,8 +187,7 @@ class AppController extends Controller
 
     protected function isAdminBySession($session)
     {
-        if($session->read('Auth.User.mail') === 'admin@admin.admin' or $session->check('Auth.User.admin'))
-        {
+        if ($session->read('Auth.User.mail') === 'admin@admin.admin' or $session->check('Auth.User.admin')) {
             return true;
         }
 
