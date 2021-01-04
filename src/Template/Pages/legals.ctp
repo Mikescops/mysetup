@@ -64,7 +64,7 @@ echo $this->Html->meta(['property' => 'og:type', 'content' => 'website'], null, 
 
 		<h3><?= __('Credits') ?></h3>
 		<p>
-			© 2017 - 2020 – mysetup.co – <?= __('All rights reserved. Total or partial production or imitation of said documents without the express prior written consent of mysetup.co is strictly prohibited and constitutes a punishable violation under France’s Intellectual Property Code. All brands and trademarks on mysetup.co belongs to their respective owners.') ?>
+			© 2017 - 2021 – mysetup.co – <?= __('All rights reserved. Total or partial production or imitation of said documents without the express prior written consent of mysetup.co is strictly prohibited and constitutes a punishable violation under France’s Intellectual Property Code. All brands and trademarks on mysetup.co belongs to their respective owners.') ?>
 		</p>
 
 	</div>
