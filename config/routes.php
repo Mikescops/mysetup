@@ -110,6 +110,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->prefix('api', function ($routes) {
         $routes->applyMiddleware('throttle');
         $routes->connect('/:action/*', ['controller' => 'Api', 'action' => 'action']);
+        $routes->fallbacks(DashedRoute::class);
     });
     /* ______________________________________ */
 

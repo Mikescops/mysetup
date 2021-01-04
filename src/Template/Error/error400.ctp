@@ -1,10 +1,11 @@
 <?php
+
 use Cake\Error\Debugger;
 use Cake\Core\Configure;
 
 $this->layout = 'default';
 
-if (Configure::read('debug')):
+if (Configure::read('debug')) :
     $this->layout = 'dev_error';
 
     $this->assign('title', $message);
@@ -12,19 +13,19 @@ if (Configure::read('debug')):
 
     $this->start('file');
 ?>
-<?php if (!empty($error->queryString)) : ?>
-    <p class="notice">
-        <strong>SQL Query: </strong>
-        <?= h($error->queryString) ?>
-    </p>
-<?php endif; ?>
-<?php if (!empty($error->params)) : ?>
+    <?php if (!empty($error->queryString)) : ?>
+        <p class="notice">
+            <strong>SQL Query: </strong>
+            <?= h($error->queryString) ?>
+        </p>
+    <?php endif; ?>
+    <?php if (!empty($error->params)) : ?>
         <strong>SQL Query Params: </strong>
         <?php Debugger::dump($error->params) ?>
-<?php endif; ?>
-<?= $this->element('auto_table_warning') ?>
+    <?php endif; ?>
+    <?= $this->element('auto_table_warning') ?>
 <?php
-    if (extension_loaded('xdebug')):
+    if (extension_loaded('xdebug')) :
         xdebug_print_function_stack();
     endif;
 
@@ -36,7 +37,8 @@ endif;
 
         <a href="<?= $this->Url->build('/', true); ?>"><?php echo $this->Html->image('404_page.png', ['alt' => __('404 page'), 'style' => 'width: 175px; max-width: 50%; float: right']); ?></a>
 
-        <br><h3>404 - <?= __('This page does not exist') ?></h3><br>
+        <br>
+        <h3>404 - <?= __('This page does not exist') ?></h3><br>
 
         <br>
 
@@ -54,8 +56,7 @@ endif;
             <?= $this->Html->scriptBlock('
                 let searchInput = new AmazonAutocomplete("#keyword-search");
                 searchInput.onSelectedWord(word => window.open(`' . $this->Url->build('/search/') . '?q=${word}`, "_self"));
-                ', ['block' => 'scriptBottom']
-            ); ?>
+                ', ['block' => 'scriptBottom']); ?>
 
         </div>
         <br><br><br><br>
