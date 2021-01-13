@@ -210,6 +210,8 @@ class APIController extends AppController
         // ___________________________________________________________________________________________
 
         $this->set('setup', $setup);
+
+        $this->render('embed');
     }
 
     /* Twitch-promote image generation ! */
