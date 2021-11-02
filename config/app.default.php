@@ -341,6 +341,7 @@ return [
                 'youtu.be',
                 'dailymotion.com',
                 'dai.ly',
+                'twitch.tv',
                 'player.twitch.tv',
                 'vimeo.com',
                 'flic.kr',
