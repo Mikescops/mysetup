@@ -163,6 +163,12 @@ class ResourcesTable extends Table
             $elements = explode(';', $elements);
             if(count($elements) == 3)
             {
+                if(empty($elements[1]) || empty($elements[2]))
+                {
+                    $flash->warning(__('One of the products you chose was not saved, sorry.'));
+                    continue;
+                }
+                
                 // Let's parse the URLs provided, in order to check their authenticity
                 $parsing_2 = parse_url(urldecode($elements[1]));
                 $parsing_3 = parse_url(urldecode($elements[2]));
