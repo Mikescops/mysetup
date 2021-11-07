@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Share your own setup",
   "main": "gulpfile.js",
-  "dependencies": {},
   "devDependencies": {
     "eslint": "^6.5.1",
     "gulp": "^4.0.2",
