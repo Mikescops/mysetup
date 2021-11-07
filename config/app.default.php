@@ -192,6 +192,8 @@ return [
             \Cake\Routing\Exception\MissingRouteException::class,
             \Cake\Routing\Exception\MissingControllerException::class,
             \Sentry\Exception\FatalErrorException::class,
+            \Thumber\Exception\NotReadableImageException::class,
+            \Thumber\Exception\NotReadableImageException::class,
         ],
         'log' => true,
         'trace' => true,
